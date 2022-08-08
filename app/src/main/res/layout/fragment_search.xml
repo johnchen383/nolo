@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DashboardFragment"
-    android:background="@android:color/holo_blue_dark">
+    tools:context=".fragments.SearchFragment"
+    android:background="@android:color/holo_green_dark">
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/text_search"
+        android:text="SEARCH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
