@@ -12,5 +12,14 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+<!--        <item name="windowNoTitle">true</item>-->
+
+    </style>
+
+    <!-- Bottom navigation style-->
+    <style name="BottomNavigation">
+        <item name="itemIconTint">@android:color/darker_gray</item>
+        <item name="elevation">0dp</item>
+        <item name="labelVisibilityMode">unlabeled</item>
     </style>
 </resources>
