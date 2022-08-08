@@ -1,7 +1,8 @@
-package com.example.nolo;
+package com.example.nolo.activities;
 
 import android.os.Bundle;
 
+import com.example.nolo.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

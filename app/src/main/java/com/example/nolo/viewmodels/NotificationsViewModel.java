@@ -1,4 +1,4 @@
-package com.example.nolo.ui.notifications;
+package com.example.nolo.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
