@@ -12,8 +12,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewHolder vh;
-
     private class ViewHolder {
         BottomNavigationView navView;
 
@@ -22,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private ViewHolder vh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
