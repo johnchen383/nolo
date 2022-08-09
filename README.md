@@ -4,15 +4,15 @@ An ecommerce mobile application build in Android Studio with Java for Software E
 ## Commit conventions
 Please use the following convention when creating commits `[type]: [msg]`
 
-`feat` - for new features
+`AB#{id} feat` - for new features
 
-`fix`- for bug fixes
+`AB#{id} fix`- for bug fixes
 
-`style` - for stylistic changes
+`AB#{id} style` - for stylistic changes
 
-`doc` - for documentation
+`AB#{id} doc` - for documentation
 
-`refactor` - for refactoring the codebase
+`AB#{id} refactor` - for refactoring the codebase
 
 ## Use of branches
 Refer to the Jira board for tickets. Branch off `main` with your associated ticket. Name your branch as `NLXXX_some-ticket-name` where XXX is the ticket number. Ensure all branches are merged back into `main` via pull requests, approved by all other team members.
