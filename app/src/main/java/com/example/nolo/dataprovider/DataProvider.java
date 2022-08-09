@@ -3,6 +3,7 @@ package com.example.nolo.dataprovider;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
+import com.example.nolo.repositories.Collections;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
@@ -29,6 +30,6 @@ public class DataProvider {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<IStore> stores = generateStores();
         for (IStore store : stores)
-            db.collection("stores").add(store);
+            db.collection(Collections.STORES).add(store);
     }
 }
