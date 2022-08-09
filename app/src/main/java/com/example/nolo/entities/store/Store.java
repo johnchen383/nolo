@@ -8,6 +8,16 @@ import java.util.List;
 
 public class Store implements IStore {
     private String storeId, storeName;
+
+    /*
+     * Object list cannot use IBranch (Branch Interface),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use Branch class as the object list.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     private List<Branch> branches;
 
     public Store() {}
