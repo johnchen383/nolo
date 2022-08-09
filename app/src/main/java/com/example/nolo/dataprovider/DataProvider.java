@@ -1,9 +1,16 @@
 package com.example.nolo.dataprovider;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.Collections;
+import com.example.nolo.repositories.CollectionPath;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
@@ -11,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataProvider {
-    public static List<IStore> generateStores() {
+    private static List<IStore> generateStores() {
         List<IStore> stores = new ArrayList<>();
 
         List<Branch> branches = new ArrayList<>();
@@ -26,10 +33,22 @@ public class DataProvider {
         return stores;
     }
 
-    public static void addStoreToFirestore() {
+    public static void addStoresToFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<IStore> stores = generateStores();
-        for (IStore store : stores)
-            db.collection(Collections.STORES).add(store);
+
+        for (IStore store : stores) {
+            db.collection(CollectionPath.STORES).add(store).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.i("Add stores to Firebase", store.getStoreId() + " added.");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.i("Add stores to Firebase", store.getStoreId() + " NOT added.");
+                }
+            });
+        }
     }
 }

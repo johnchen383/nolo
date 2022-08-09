@@ -1,6 +1,6 @@
 package com.example.nolo.repositories;
 
-public class Collections {
+public class CollectionPath {
     public static final String STORES = "stores";
     public static final String USERS = "users";
     public static final String CATEGORIES = "categories";

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        StoresRepository.getInstance().fetchStoreById("LcJHoRqrS05bzTUxTDZd");
-//        DataProvider.addStoreToFirestore();
+//        DataProvider.addStoresToFirestore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

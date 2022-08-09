@@ -8,7 +8,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.Collections;
+import com.example.nolo.repositories.CollectionPath;
 import com.example.nolo.repositories.store.StoresRepository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -41,7 +41,7 @@ public class InstrumentedTest {
         branches.add(new Branch("pakang", "51 Pak Lane", new GeoPoint(10, 8)));
         IStore testStore = new Store("pbtech", branches);
 
-        db.collection(Collections.STORES).add(testStore).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection(CollectionPath.STORES).add(testStore).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 String id = documentReference.getId();

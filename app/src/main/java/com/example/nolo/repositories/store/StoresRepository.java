@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.Collections;
+import com.example.nolo.repositories.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,7 +30,7 @@ public class StoresRepository implements IStoresRepository {
 
     @Override
     public Store fetchStoreById(String storeId) {
-        db.collection(Collections.STORES).document(storeId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection(CollectionPath.STORES).document(storeId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
