@@ -1,6 +1,7 @@
 package com.example.nolo.activities;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.example.nolo.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         vh = new ViewHolder();
 
+        //hide title bar and status bar
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
