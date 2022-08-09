@@ -8,6 +8,7 @@
     android:background="@android:color/holo_blue_dark">
 
     <TextView
+        android:id="@+id/text_profile"
         android:text="PROFILE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
