@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.viewmodels.HomeViewModel;
+import com.example.nolo.viewmodels.CartViewModel;
 
-public class HomeFragment extends Fragment {
+public class CartFragment extends Fragment {
     private class ViewHolder {
         TextView textView;
 
@@ -22,15 +22,15 @@ public class HomeFragment extends Fragment {
 
     private ViewHolder vh;
 
-    private HomeViewModel homeViewModel;
+    private CartViewModel cartViewModel;
 
-    public HomeFragment() {
-        super(R.layout.fragment_home);
+    public CartFragment() {
+        super(R.layout.fragment_cart);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        cartViewModel =
+                new ViewModelProvider(this).get(CartViewModel.class);
     }
 }

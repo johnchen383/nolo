@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment"
-    android:background="@android:color/holo_purple">
+    tools:context=".fragments.CartFragment"
+    android:background="@android:color/holo_red_dark">
 
     <TextView
-        android:id="@+id/text_home"
-        android:text="HOME"
+        android:id="@+id/text_cart"
+        android:text="CART"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

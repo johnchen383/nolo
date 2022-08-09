@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.viewmodels.HomeViewModel;
+import com.example.nolo.viewmodels.ProfileViewModel;
 
-public class HomeFragment extends Fragment {
+public class ProfileFragment extends Fragment {
     private class ViewHolder {
         TextView textView;
 
@@ -22,15 +22,15 @@ public class HomeFragment extends Fragment {
 
     private ViewHolder vh;
 
-    private HomeViewModel homeViewModel;
+    private ProfileViewModel profileViewModel;
 
-    public HomeFragment() {
-        super(R.layout.fragment_home);
+    public ProfileFragment() {
+        super(R.layout.fragment_profile);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
     }
 }
