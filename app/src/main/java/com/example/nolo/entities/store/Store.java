@@ -1,6 +1,5 @@
 package com.example.nolo.entities.store;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Store implements IStore {
