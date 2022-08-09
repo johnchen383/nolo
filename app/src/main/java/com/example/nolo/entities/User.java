@@ -37,8 +37,8 @@ public class User implements IUser {
     }
 
     @Override
-    public void addViewHistory(String id) {
-        viewHistoryIds.add(id);
+    public void addViewHistory(String itemId) {
+        viewHistoryIds.add(itemId);
     }
 
     public List<String> getCartIds() {
@@ -46,12 +46,12 @@ public class User implements IUser {
     }
 
     @Override
-    public void addCart(String id) {
-        cartIds.add(id);
+    public void addCart(String itemId) {
+        cartIds.add(itemId);
     }
 
     @Override
-    public void removeCart(String id) {
-        cartIds.remove(id);
+    public void removeCart(String itemId) {
+        cartIds.remove(itemId);
     }
 }

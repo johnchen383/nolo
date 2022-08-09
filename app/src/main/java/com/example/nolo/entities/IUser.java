@@ -7,8 +7,8 @@ public interface IUser {
     String getUserAuthUid();
     String getEmail();
     List<String> getViewHistoryIds();
-    void addViewHistory(String id);
+    void addViewHistory(String itemId);
     List<String> getCartIds();
-    void addCart(String id);
-    void removeCart(String id);
+    void addCart(String itemId);
+    void removeCart(String itemId);
 }
