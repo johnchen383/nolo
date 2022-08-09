@@ -12,6 +12,9 @@ import com.example.nolo.R;
 import com.example.nolo.viewmodels.CartViewModel;
 
 public class CartFragment extends Fragment {
+    private ViewHolder vh;
+    private CartViewModel cartViewModel;
+
     private class ViewHolder {
         TextView textView;
 
@@ -19,10 +22,6 @@ public class CartFragment extends Fragment {
             textView = getView().findViewById(R.id.text_cart);
         }
     }
-
-    private ViewHolder vh;
-
-    private CartViewModel cartViewModel;
 
     public CartFragment() {
         super(R.layout.fragment_cart);

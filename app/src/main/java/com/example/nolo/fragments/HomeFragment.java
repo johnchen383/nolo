@@ -12,17 +12,16 @@ import com.example.nolo.R;
 import com.example.nolo.viewmodels.HomeViewModel;
 
 public class HomeFragment extends Fragment {
+    private ViewHolder vh;
+    private HomeViewModel homeViewModel;
+
     private class ViewHolder {
         TextView textView;
 
         public ViewHolder(){
-            textView = getView().findViewById(R.id.text_cart);
+            textView = getView().findViewById(R.id.text_home);
         }
     }
-
-    private ViewHolder vh;
-
-    private HomeViewModel homeViewModel;
 
     public HomeFragment() {
         super(R.layout.fragment_home);

@@ -12,26 +12,27 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
+    private ViewHolder vh;
+
     private class ViewHolder {
-        BottomNavigationView navView;
+        public BottomNavigationView navView;
 
         public ViewHolder(){
-            navView = findViewById(R.id.nav_view);
+            navView = (BottomNavigationView) findViewById(R.id.nav_view);
         }
     }
-
-    private ViewHolder vh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
         vh = new ViewHolder();
-        setContentView(R.layout.activity_main);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile)

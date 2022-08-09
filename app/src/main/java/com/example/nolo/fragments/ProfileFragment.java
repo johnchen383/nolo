@@ -12,17 +12,16 @@ import com.example.nolo.R;
 import com.example.nolo.viewmodels.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
+    private ViewHolder vh;
+    private ProfileViewModel profileViewModel;
+
     private class ViewHolder {
         TextView textView;
 
         public ViewHolder(){
-            textView = getView().findViewById(R.id.text_cart);
+            textView = getView().findViewById(R.id.text_profile);
         }
     }
-
-    private ViewHolder vh;
-
-    private ProfileViewModel profileViewModel;
 
     public ProfileFragment() {
         super(R.layout.fragment_profile);
