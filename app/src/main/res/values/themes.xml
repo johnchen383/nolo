@@ -19,6 +19,7 @@
 
     <!-- Bottom navigation style-->
     <style name="BottomNavigation">
+        <item name="itemBackground">@drawable/nav_indicator</item>
         <item name="elevation">0dp</item>
         <item name="labelVisibilityMode">unlabeled</item>
         <item name="itemRippleColor">@android:color/transparent</item>
