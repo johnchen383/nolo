@@ -1,4 +1,4 @@
-package com.example.nolo.repositories;
+package com.example.nolo.repositories.store;
 
 import com.example.nolo.entities.store.Store;
 import com.google.firebase.firestore.FirebaseFirestore;
