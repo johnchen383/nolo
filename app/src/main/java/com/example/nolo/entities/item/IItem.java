@@ -1,4 +1,4 @@
-package com.example.nolo.entities;
+package com.example.nolo.entities.item;
 
 import java.util.List;
 

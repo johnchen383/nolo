@@ -1,11 +1,11 @@
-package com.example.nolo.entities;
+package com.example.nolo.entities.item;
 
 import java.util.List;
 
-public class Phone extends Item {
+public class Laptop extends Item {
     private List<String> recommendedAccessories;
 
-    public Phone(String itemId, String category, String store, String specs, double price, List<String> imageUris, List<String> recommendedAccessories) {
+    public Laptop(String itemId, String category, String store, String specs, double price, List<String> imageUris, List<String> recommendedAccessories) {
         super(itemId, category, store, specs, price, imageUris);
         this.recommendedAccessories = recommendedAccessories;
     }

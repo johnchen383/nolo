@@ -1,4 +1,4 @@
-package com.example.nolo.entities;
+package com.example.nolo.entities.category;
 
 public class Category implements ICategory {
     private String categoryId, categoryName, imageUri;

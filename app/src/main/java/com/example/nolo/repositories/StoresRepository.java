@@ -1,6 +1,6 @@
 package com.example.nolo.repositories;
 
-import com.example.nolo.entities.Store;
+import com.example.nolo.entities.store.Store;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class StoresRepository implements IStoresRepository {

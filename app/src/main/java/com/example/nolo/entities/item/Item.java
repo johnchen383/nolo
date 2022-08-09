@@ -1,4 +1,4 @@
-package com.example.nolo.entities;
+package com.example.nolo.entities.item;
 
 import com.google.firebase.firestore.Exclude;
 

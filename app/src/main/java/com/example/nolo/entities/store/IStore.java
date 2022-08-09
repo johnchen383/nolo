@@ -1,4 +1,4 @@
-package com.example.nolo.entities;
+package com.example.nolo.entities.store;
 
 public interface IStore {
     String getStoreId();

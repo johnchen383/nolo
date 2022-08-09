@@ -1,4 +1,4 @@
-package com.example.nolo.entities;
+package com.example.nolo.entities.category;
 
 public interface ICategory {
     String getCategoryId();
