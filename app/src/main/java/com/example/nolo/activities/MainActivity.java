@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         public ViewHolder(){
             navView = findViewById(R.id.nav_view);
+            navView.setItemIconTintList(null);
         }
     }
 
