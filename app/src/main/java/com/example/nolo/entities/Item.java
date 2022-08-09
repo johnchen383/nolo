@@ -4,7 +4,7 @@ import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
-public class Item implements IItem {
+public abstract class Item implements IItem {
     private String itemId, category, store, specs;
     private double price;
     private List<String> imageUris;
