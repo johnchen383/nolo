@@ -9,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.nolo.R;
+import com.example.nolo.dataprovider.DataProvider;
+import com.example.nolo.repositories.store.StoresRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        StoresRepository.getInstance().fetchStoreById("9Xt5AJ3sXJ69gMonFCN6");
+//        DataProvider.addStoreToFirestore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
