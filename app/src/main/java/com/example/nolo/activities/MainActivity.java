@@ -15,24 +15,23 @@ public class MainActivity extends AppCompatActivity {
     private ViewHolder vh;
 
     private class ViewHolder {
-        public BottomNavigationView navView;
+        BottomNavigationView navView;
 
         public ViewHolder(){
-            navView = (BottomNavigationView) findViewById(R.id.nav_view);
+            navView = findViewById(R.id.nav_view);
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        vh = new ViewHolder();
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
-        vh = new ViewHolder();
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile)
