@@ -15,6 +15,7 @@ public class SearchFragment extends Fragment {
 
     public SearchFragment() {
         super(R.layout.fragment_search);
+        System.out.println("IN SEARCH");
     }
 
     @Override
