@@ -1,13 +1,17 @@
 package com.example.nolo.entities.store;
 
+import com.google.firebase.firestore.GeoPoint;
+
 public class Branch implements IBranch {
     private String branchName, address;
+    private GeoPoint geoPoint;
 
     public Branch() {}
 
-    public Branch(String branchName, String address) {
+    public Branch(String branchName, String address, GeoPoint geoPoint) {
         this.branchName = branchName;
         this.address = address;
+        this.geoPoint = geoPoint;
     }
 
     @Override
@@ -18,5 +22,10 @@ public class Branch implements IBranch {
     @Override
     public String getAddress() {
         return address;
+    }
+
+    @Override
+    public GeoPoint getGeoPoint() {
+        return geoPoint;
     }
 }

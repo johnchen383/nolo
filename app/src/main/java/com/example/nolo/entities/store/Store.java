@@ -7,8 +7,6 @@ import com.google.firebase.firestore.Exclude;
 import java.util.List;
 
 public class Store implements IStore {
-    private String storeId, storeName;
-
     /*
      * Object list cannot use IBranch (Branch Interface),
      * the reason is when the Firebase auto converts the data into
@@ -19,6 +17,7 @@ public class Store implements IStore {
      * So it is a reasonable excuse to violate the SOLID principle.
      */
     private List<Branch> branches;
+    private String storeId, storeName;
 
     public Store() {}
 
