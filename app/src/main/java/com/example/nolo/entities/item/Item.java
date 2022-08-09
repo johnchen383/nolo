@@ -9,6 +9,9 @@ public abstract class Item implements IItem {
     private double price;
     private List<String> imageUris;
 
+    /**
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public Item() {}
 
     public Item(String itemId, String category, String store, String specs, double price, List<String> imageUris) {

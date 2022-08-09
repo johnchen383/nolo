@@ -6,6 +6,9 @@ public class User implements IUser {
     private String userId, userAuthUid, email;
     private List<String> viewHistoryIds, cartIds;
 
+    /**
+      * 0 argument constructor for convert Firebase data to this class
+      */
     public User() {}
 
     public User(String userId, String userAuthUid, String email, List<String> viewHistoryIds, List<String> cartIds) {
