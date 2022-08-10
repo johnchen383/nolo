@@ -7,9 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class ItemsRepository implements IItemsRepository {
     private static ItemsRepository itemsRepository = null;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db;
 
-    private ItemsRepository() {}
+    private ItemsRepository() {
+        db = FirebaseFirestore.getInstance();
+    }
 
     public static ItemsRepository getInstance() {
         if (itemsRepository == null)

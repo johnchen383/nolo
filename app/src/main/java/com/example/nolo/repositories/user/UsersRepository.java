@@ -7,9 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class UsersRepository implements IUsersRepository {
     private static UsersRepository usersRepository = null;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db;
 
-    private UsersRepository() {}
+    private UsersRepository() {
+        db = FirebaseFirestore.getInstance();
+    }
 
     public static UsersRepository getInstance() {
         if (usersRepository == null)

@@ -7,9 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class CategoriesRepository implements ICategoriesRepository {
     private static CategoriesRepository categoriesRepository = null;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db;
 
-    private CategoriesRepository() {}
+    private CategoriesRepository() {
+        db = FirebaseFirestore.getInstance();
+    }
 
     public static CategoriesRepository getInstance() {
         if (categoriesRepository == null)
