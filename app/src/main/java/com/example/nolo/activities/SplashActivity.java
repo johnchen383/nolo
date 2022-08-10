@@ -1,6 +1,7 @@
 package com.example.nolo.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,10 @@ public class SplashActivity extends BaseActivity {
 
         if (loadable.equals(loaded)){
             System.out.println("All loaded");
-            startActivity(new Intent(this, MainActivity.class));
+            ActivityOptionsCompat fadeAnimOptions = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out);
+
+            startActivity(new Intent(this, MainActivity.class), fadeAnimOptions.toBundle());
         }
     }
 
