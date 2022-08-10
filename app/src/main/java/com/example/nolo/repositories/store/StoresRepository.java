@@ -29,7 +29,7 @@ public class StoresRepository implements IStoresRepository {
     }
 
     @Override
-    public Store fetchStoreById(String storeId) {
+    public IStore fetchStoreById(String storeId) {
         db.collection(CollectionPath.STORES).document(storeId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

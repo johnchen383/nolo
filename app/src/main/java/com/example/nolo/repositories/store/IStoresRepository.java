@@ -1,7 +1,7 @@
 package com.example.nolo.repositories.store;
 
-import com.example.nolo.entities.store.Store;
+import com.example.nolo.entities.store.IStore;
 
 public interface IStoresRepository {
-    Store fetchStoreById(String storeId);
+    IStore fetchStoreById(String storeId);
 }
