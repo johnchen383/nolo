@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="319dp"
-        android:layout_height="265dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/splash_margin"
         app:srcCompat="@drawable/splash_logo"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="233dp" />
+        android:layout_gravity="center"/>
 </LinearLayout>
