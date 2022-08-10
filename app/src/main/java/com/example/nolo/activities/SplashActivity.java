@@ -9,17 +9,32 @@ import android.view.WindowManager;
 
 import com.example.nolo.R;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SplashActivity extends BaseActivity {
+    Set<Class<?>> loadable = new HashSet<>();
+    Set<Class<?>> loaded = new HashSet<>();
+
+    private void onLoadEntityComplete(Class<?> entity){
+        loaded.add(entity);
+
+        if (loadable.equals(loaded)){
+            System.out.println("All loaded");
+            startActivity(new Intent(this, MainActivity.class));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        loadable.add(MainActivity.class);
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            startActivity(new Intent(this, MainActivity.class));
+            onLoadEntityComplete(MainActivity.class);
         }, 5000);
     }
 }
