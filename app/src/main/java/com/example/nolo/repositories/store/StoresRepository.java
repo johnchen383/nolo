@@ -22,12 +22,14 @@ import java.util.function.Consumer;
   */
 public class StoresRepository implements IStoresRepository {
     private static StoresRepository storesRepository = null;
-    private FirebaseFirestore db;
-    private List<IStore> stores;
+    private final FirebaseFirestore db;
+    private final List<IStore> stores;
+    private long lastLoadedTime;
 
     private StoresRepository() {
         db = FirebaseFirestore.getInstance();
         stores = new ArrayList<>();
+        lastLoadedTime = 0;
     }
 
     public static StoresRepository getInstance() {
@@ -37,8 +39,15 @@ public class StoresRepository implements IStoresRepository {
         return storesRepository;
     }
 
+    private void reloadStoresIfExpired() {
+        if (System.currentTimeMillis() - lastLoadedTime > 1000*60*10)
+            loadStores((a) -> {});
+    }
+
     @Override
     public void loadStores(Consumer<List<IStore>> function) {
+        lastLoadedTime = System.currentTimeMillis();
+
         db.collection(CollectionPath.STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -65,12 +74,15 @@ public class StoresRepository implements IStoresRepository {
 
     @Override
     public IStore getStoreById(String storeId) {
+        IStore result = null;
         for (IStore store : stores) {
             if (store.getStoreId().equals(storeId)) {
-                return store;
+                result = store;
+                break;
             }
         }
 
-        return null;
+        reloadStoresIfExpired();
+        return result;
     }
 }
