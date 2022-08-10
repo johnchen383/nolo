@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.nolo.R;
 import com.example.nolo.entities.store.IStore;
+import com.example.nolo.interactors.GetStoreByIdUseCase;
 import com.example.nolo.repositories.store.StoresRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void printThing(List<IStore> store){
-        System.out.println(StoresRepository.getInstance().getStoreById("0JTyhbrZVb6OVG9hd4XP").toString());
+        System.out.println(GetStoreByIdUseCase.getStoreById("0JTyhbrZVb6OVG9hd4XP").toString());
     }
 
     @Override
