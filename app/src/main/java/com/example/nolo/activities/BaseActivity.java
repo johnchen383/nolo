@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nolo.R;
 
+//TODO: justify that it does not violate LSP
 public class BaseActivity extends AppCompatActivity {
 
     @Override
