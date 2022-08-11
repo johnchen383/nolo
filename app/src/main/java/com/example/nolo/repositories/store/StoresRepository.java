@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,6 +20,9 @@ import java.util.function.Consumer;
   * This is a singleton class for Stores repository.
   */
 public class StoresRepository implements IStoresRepository {
+    public static final long TIME_IN_MILLISECONDS_10MINUTES = 1000*60*10;
+    public static final String COLLECTION_PATH_STORES = "stores";
+
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
     private final List<IStore> stores;
@@ -40,7 +42,7 @@ public class StoresRepository implements IStoresRepository {
     }
 
     private void reloadStoresIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > 1000*60*10)
+        if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_10MINUTES)
             loadStores((a) -> {});
     }
 
@@ -48,7 +50,7 @@ public class StoresRepository implements IStoresRepository {
     public void loadStores(Consumer<List<IStore>> function) {
         lastLoadedTime = System.currentTimeMillis();
 
-        db.collection(CollectionPath.STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(COLLECTION_PATH_STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

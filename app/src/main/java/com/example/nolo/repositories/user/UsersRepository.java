@@ -6,6 +6,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * This is a singleton class for Users repository.
  */
 public class UsersRepository implements IUsersRepository {
+    public static final String COLLECTION_PATH_USERS = "users";
+
     private static UsersRepository usersRepository = null;
     private final FirebaseFirestore db;
 

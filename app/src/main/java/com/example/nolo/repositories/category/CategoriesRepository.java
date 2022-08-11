@@ -6,6 +6,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * This is a singleton class for Categories repository.
  */
 public class CategoriesRepository implements ICategoriesRepository {
+    public static final String COLLECTION_PATH_CATEGORIES = "categories";
+
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
 

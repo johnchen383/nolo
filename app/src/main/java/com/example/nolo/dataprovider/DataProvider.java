@@ -1,5 +1,7 @@
 package com.example.nolo.dataprovider;
 
+import static com.example.nolo.repositories.store.StoresRepository.COLLECTION_PATH_STORES;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -7,7 +9,6 @@ import androidx.annotation.NonNull;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.CollectionPath;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,7 +39,7 @@ public class DataProvider {
         List<IStore> stores = generateStores();
 
         for (IStore store : stores) {
-            db.collection(CollectionPath.STORES).add(store).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            db.collection(COLLECTION_PATH_STORES).add(store).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
                     Log.i("Add stores to Firebase", store.getStoreId() + " added.");

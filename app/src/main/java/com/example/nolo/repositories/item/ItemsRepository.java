@@ -6,6 +6,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * This is a singleton class for Items repository.
  */
 public class ItemsRepository implements IItemsRepository {
+    public static final String COLLECTION_PATH_LAPTOPS = "laptops";
+    public static final String COLLECTION_PATH_PHONES = "phones";
+    public static final String COLLECTION_PATH_ACCESSORIES = "accessories";
+
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
 
