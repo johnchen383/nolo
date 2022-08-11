@@ -42,12 +42,12 @@ public class DataProvider {
             db.collection(COLLECTION_PATH_STORES).add(store).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
-                    Log.i("Add stores to Firebase", store.getStoreId() + " added.");
+                    Log.i("Add stores to Firebase", documentReference.getId() + " added.");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.i("Add stores to Firebase", store.getStoreId() + " NOT added.");
+                    Log.i("Add stores to Firebase", store + " NOT added.");
                 }
             });
         }
