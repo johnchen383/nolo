@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.interactors.GetStoreByIdUseCase;
+import com.example.nolo.interactors.LoadAllRepositoriesUseCase;
 import com.example.nolo.repositories.store.StoresRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,13 +28,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadRepository(Class<?> loadedRepository){
+    // TODO: This is placeholder for after loaded repository class
+    private void loadedRepository(Class<?> loadedRepository){
         System.out.println("Load finished");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        StoresRepository.getInstance().loadStores(this::loadRepository);
+        LoadAllRepositoriesUseCase.loadAllRepository(this::loadedRepository);
 //        DataProvider.addStoresToFirestore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
