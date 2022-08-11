@@ -9,13 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.nolo.R;
-import com.example.nolo.entities.store.IStore;
-import com.example.nolo.interactors.GetStoreByIdUseCase;
-import com.example.nolo.interactors.LoadAllRepositoriesUseCase;
-import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ViewHolder vh;
@@ -33,10 +28,15 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Load finished");
     }
 
+    private void loadRepositories() {
+        LoadStoresRepositoryUseCase.loadStoresRepository(this::loadedRepository);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LoadAllRepositoriesUseCase.loadAllRepository(this::loadedRepository);
+        loadRepositories();
 //        DataProvider.addStoresToFirestore();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
