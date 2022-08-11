@@ -45,14 +45,19 @@ public class StoresRepository implements IStoresRepository {
     }
 
     /*
-     * Reload */
+     * Reload data from Firebase if the cached data is outdated/expired.
+     */
     private void reloadStoresIfExpired() {
         if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_10MINUTES)
             loadStores(a -> {});
     }
 
+    /*
+     * Load data from Firebase.
+     */
     @Override
     public void loadStores(Consumer<Class<?>> loadedRepository) {
+        stores.clear();
         lastLoadedTime = System.currentTimeMillis();
 
         db.collection(COLLECTION_PATH_STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
