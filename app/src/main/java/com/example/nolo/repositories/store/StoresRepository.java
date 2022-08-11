@@ -34,6 +34,9 @@ public class StoresRepository implements IStoresRepository {
         lastLoadedTime = 0;
     }
 
+    /*
+     * This is for singleton class.
+     */
     public static StoresRepository getInstance() {
         if (storesRepository == null)
             storesRepository = new StoresRepository();
@@ -41,9 +44,11 @@ public class StoresRepository implements IStoresRepository {
         return storesRepository;
     }
 
+    /*
+     * Reload */
     private void reloadStoresIfExpired() {
         if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_10MINUTES)
-            loadStores((a) -> {});
+            loadStores(a -> {});
     }
 
     @Override
@@ -56,7 +61,7 @@ public class StoresRepository implements IStoresRepository {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         IStore store = document.toObject(Store.class);
-                        store.setStoreId(document.getId());
+                        store.setStoreId(document.getId());  // store document ID after getting the object
                         stores.add(store);
                         Log.i("Load Stores From Firebase", store.toString());
                     }
@@ -70,6 +75,7 @@ public class StoresRepository implements IStoresRepository {
                     Log.i("Load Stores From Firebase", "Loading Stores collection failed from Firestore!");
                 }
 
+                // inform this repository finished loading
                 loadedRepository.accept(StoresRepository.class);
             }
         });

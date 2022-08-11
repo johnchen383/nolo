@@ -28,13 +28,16 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Load finished");
     }
 
-    private void loadRepositories() {
+    /*
+     * This method will load all repositories
+     */
+    private void loadAllRepositories() {
         LoadStoresRepositoryUseCase.loadStoresRepository(this::loadedRepository);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loadRepositories();
+        loadAllRepositories();
 //        DataProvider.addStoresToFirestore();
 
         super.onCreate(savedInstanceState);
