@@ -34,4 +34,6 @@ Refer to the Jira board for tickets. Branch off `main` with your associated tick
   - /layout [all layout xml files]
   - /navigation [navigation with bottom nav]
   - /menu [bottom nav xml]
+  
+- /assets_raw [for all processed assets not stored in `res` directly]
 ```
