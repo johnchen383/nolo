@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void printThing(List<IStore> store){
-        System.out.println(GetStoreByIdUseCase.getStoreById("0JTyhbrZVb6OVG9hd4XP").toString());
+    private void loadRepository(Class<?> loadedRepository){
+        System.out.println("Load finished");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        StoresRepository.getInstance().loadStores(this::printThing);
+        StoresRepository.getInstance().loadStores(this::loadRepository);
 //        DataProvider.addStoresToFirestore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

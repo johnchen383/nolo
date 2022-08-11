@@ -47,7 +47,7 @@ public class StoresRepository implements IStoresRepository {
     }
 
     @Override
-    public void loadStores(Consumer<List<IStore>> function) {
+    public void loadStores(Consumer<Class<?>> loadedRepository) {
         lastLoadedTime = System.currentTimeMillis();
 
         db.collection(COLLECTION_PATH_STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -60,7 +60,6 @@ public class StoresRepository implements IStoresRepository {
                         stores.add(store);
                         Log.i("Load Stores From Firebase", store.toString());
                     }
-                    function.accept(stores);
 
                     if (stores.size() > 0) {
                         Log.i("Load Stores From Firebase", "Success");
@@ -70,6 +69,8 @@ public class StoresRepository implements IStoresRepository {
                 } else {
                     Log.i("Load Stores From Firebase", "Loading Stores collection failed from Firestore!");
                 }
+
+                loadedRepository.accept(StoresRepository.class);
             }
         });
     }
