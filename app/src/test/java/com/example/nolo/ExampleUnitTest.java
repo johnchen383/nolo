@@ -1,6 +1,7 @@
 package com.example.nolo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import android.app.Application;
 import android.content.Context;
@@ -25,5 +26,8 @@ import java.util.concurrent.atomic.AtomicReference;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-
+    @Test
+    public void test(){
+        fail();
+    }
 }
