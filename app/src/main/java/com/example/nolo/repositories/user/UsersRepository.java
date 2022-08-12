@@ -21,4 +21,38 @@ public class UsersRepository implements IUsersRepository {
 
         return usersRepository;
     }
+
+    @Override
+    public IUser getCurrentUser() {
+        return null;
+    }
+
+    @Override
+    public void signUp(String email, String password) {
+    }
+
+    @Override
+    public void logIn(String email, String password) {
+        
+    }
+
+    @Override
+    public void logOut() {
+
+    }
+
+    @Override
+    public void addViewHistory(String itemId) {
+
+    }
+
+    @Override
+    public void addCart(String itemId) {
+
+    }
+
+    @Override
+    public void removeCart(String itemId) {
+
+    }
 }
