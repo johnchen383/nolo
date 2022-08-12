@@ -9,9 +9,11 @@ android {
     defaultConfig {
         applicationId "com.example.nolo"
         minSdk 26
-        targetSdk 31
+        targetSdk 30
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {

@@ -24,16 +24,16 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Note no integration tests are automatically run by gradle GitHub actions
- * To run these tests, change target sdk to 30 (make sure to revert back to 31 after)
  */
 @RunWith(AndroidJUnit4.class)
 public class StoresInstrumentedTest {
     Context appContext;
-    CountDownLatch lock = new CountDownLatch(1);
+    CountDownLatch lock;
 
     @Before
     public void setUp(){
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        lock = new CountDownLatch(1);
         FirebaseApp.initializeApp(appContext);
     }
 
@@ -53,7 +53,7 @@ public class StoresInstrumentedTest {
 
         lock.await(20000, TimeUnit.MILLISECONDS);
         assertEquals(StoresRepository.class, str.get(0));
-        assertTrue(new SplashViewModel().getLoadable().contains(UsersRepository.class));
+        assertTrue(new SplashViewModel().getLoadable().contains(StoresRepository.class));
     }
 
     //TODO: testing the fetching of store by id once items are inserted
