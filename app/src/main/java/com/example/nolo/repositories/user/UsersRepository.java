@@ -50,7 +50,9 @@ public class UsersRepository implements IUsersRepository {
             List<String> viewHistoryIds = new ArrayList<>();
             List<String> cartIds = new ArrayList<>();
 
-            IUser user = new User(userAuthUid, email, viewHistoryIds, cartIds);
+            IUser user = new User(viewHistoryIds, cartIds);
+            user.setUserAuthUid(userAuthUid);
+            user.setEmail(email);
 
             return user;
         }

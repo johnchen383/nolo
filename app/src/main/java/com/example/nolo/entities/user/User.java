@@ -1,5 +1,9 @@
 package com.example.nolo.entities.user;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.firestore.Exclude;
+
 import java.util.List;
 
 public class User implements IUser {
@@ -11,19 +15,29 @@ public class User implements IUser {
       */
     public User() {}
 
-    public User(String userAuthUid, String email, List<String> viewHistoryIds, List<String> cartIds) {
-        this.userAuthUid = userAuthUid;
-        this.email = email;
+    public User(List<String> viewHistoryIds, List<String> cartIds) {
         this.viewHistoryIds = viewHistoryIds;
         this.cartIds = cartIds;
     }
 
     @Override
+    public void setUserAuthUid(String userAuthUid) {
+        this.userAuthUid = userAuthUid;
+    }
+
+    @Override
+    @Exclude
     public String getUserAuthUid() {
         return userAuthUid;
     }
 
     @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    @Exclude
     public String getEmail() {
         return email;
     }
@@ -50,5 +64,14 @@ public class User implements IUser {
     @Override
     public void removeCart(String itemId) {
         cartIds.remove(itemId);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "User{" +
+                "userAuthUid='" + userAuthUid + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

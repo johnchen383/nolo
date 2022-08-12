@@ -1,5 +1,7 @@
 package com.example.nolo.entities.store;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.firestore.GeoPoint;
 
 public class Branch implements IBranch {
@@ -30,5 +32,11 @@ public class Branch implements IBranch {
     @Override
     public GeoPoint getGeoPoint() {
         return geoPoint;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return branchName;
     }
 }
