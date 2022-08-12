@@ -26,6 +26,10 @@ Refer to the Jira board for tickets. Branch off `main` with your associated tick
   - /activities [all full screen UI elements]
   - /fragments [all partial screen elements, including bottom nav fragments]
   - /viewmodels [associated view models to activities + fragments]
+  - /dataprovider [for loading data to firebase]
+  - /entities [entity representation]
+  - /interactors [domain level use cases to interface view models and repo]
+  - /repositories [for firebase interaction]
  
 - /res
   - /drawable [all image assets and icons, as well as associated selectors]
@@ -37,3 +41,6 @@ Refer to the Jira board for tickets. Branch off `main` with your associated tick
   
 - /assets_raw [for all processed assets not stored in `res` directly]
 ```
+
+### Testing
+Testing is done with Integration Tests for each defined interactor
