@@ -3,14 +3,14 @@ package com.example.nolo.activities;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.example.nolo.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.example.nolo.R;
+import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends BaseActivity {
     private ViewHolder vh;
@@ -24,8 +24,23 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    // TODO: This is placeholder for after loaded repository class
+    private void loadedRepository(Class<?> loadedRepository){
+        System.out.println("Load finished");
+    }
+
+    /*
+     * This method will load all repositories
+     */
+    private void loadAllRepositories() {
+        LoadStoresRepositoryUseCase.loadStoresRepository(this::loadedRepository);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadAllRepositories();
+//        DataProvider.addStoresToFirestore();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

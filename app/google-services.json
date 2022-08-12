@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "556965497230",
+    "project_id": "softeng306-project-1",
+    "storage_bucket": "softeng306-project-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556965497230:android:48033d4254c4485220fcdf",
+        "android_client_info": {
+          "package_name": "com.example.nolo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556965497230-o59uskr18binpdtf6jnvqimg57dgqh8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-yhCw11omg-ym-3dPnqkYMX0AZKQWBxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556965497230-o59uskr18binpdtf6jnvqimg57dgqh8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
