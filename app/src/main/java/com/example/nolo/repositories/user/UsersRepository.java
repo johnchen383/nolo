@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -140,18 +141,30 @@ public class UsersRepository implements IUsersRepository {
         fAuth.signOut();
     }
 
+    // TODO: Adding duplicate IDs, then ???
     @Override
     public void addViewHistory(String itemId) {
+        currentUser.getViewHistoryIds().add(itemId);
 
+        // Add array value
+        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("viewHistoryIds", FieldValue.arrayUnion(itemId));
     }
 
+    // TODO: Adding duplicate IDs, then ???
     @Override
     public void addCart(String itemId) {
+        currentUser.getCartIds().add(itemId);
 
+        // Add array value
+        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayUnion(itemId));
     }
 
+    // TODO: Remove ID that is duplicate, then ???
     @Override
     public void removeCart(String itemId) {
+        currentUser.getCartIds().remove(itemId);
 
+        // Remove array value
+        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayRemove(itemId));
     }
 }
