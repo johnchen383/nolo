@@ -20,7 +20,7 @@ import java.util.function.Consumer;
   * This is a singleton class for Stores repository.
   */
 public class StoresRepository implements IStoresRepository {
-    public static final long TIME_IN_MILLISECONDS_10MINUTES = 1000*60*10;
+    public static final long TIME_IN_MILLISECONDS_TEN_MINUTES = 1000*60*10;
     public static final String COLLECTION_PATH_STORES = "stores";
 
     private static StoresRepository storesRepository = null;
