@@ -12,6 +12,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,14 @@ public class UsersRepository implements IUsersRepository {
     private static UsersRepository usersRepository = null;
     private final FirebaseFirestore db;
     private final FirebaseAuth fAuth;
+    private final List<IUser> usersRepo;
+    private IUser currentUser;
 
     private UsersRepository() {
         db = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
+        usersRepo = new ArrayList<>();
+        currentUser = null;
     }
 
     public static UsersRepository getInstance() {
@@ -40,23 +46,48 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public void loadUsers(Consumer<Class<?>> loadedRepository) {
+        usersRepo.clear();
+
+        db.collection(COLLECTION_PATH_USERS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        IUser user = document.toObject(User.class);
+                        user.setUserAuthUid(document.getId());  // store document ID after getting the object
+                        usersRepo.add(user);
+                        Log.i("Load Users From Firebase", user.toString());
+                    }
+                } else {
+                    Log.i("Load Users From Firebase", "Loading Users collection failed from Firestore!");
+                }
+
+                // inform this repository finished loading
+                loadedRepository.accept(UsersRepository.class);
+            }
+        });
+    }
+
+    @Override
     public IUser getCurrentUser() {
-        FirebaseUser currentUser = fAuth.getCurrentUser();
+        FirebaseUser currentFBUser = fAuth.getCurrentUser();
 
         // Check if user is signed in (non-null)
-        if (currentUser != null) {
-            String userAuthUid = currentUser.getUid();
-            String email = currentUser.getEmail();
-            List<String> viewHistoryIds = new ArrayList<>();
-            List<String> cartIds = new ArrayList<>();
+        if (currentFBUser != null) {
+            String userAuthUid = currentFBUser.getUid();
 
-            IUser user = new User(viewHistoryIds, cartIds);
-            user.setUserAuthUid(userAuthUid);
-            user.setEmail(email);
-
-            return user;
+            // Find the user in the user repository (Firestore)
+            for (IUser u : usersRepo) {
+                if (u.getUserAuthUid().equals(userAuthUid)) {
+                    currentUser = u;
+                    currentUser.setEmail(currentFBUser.getEmail());
+                    return currentUser;
+                }
+            }
         }
 
+        // Not signed in
         return null;
     }
 
@@ -67,6 +98,19 @@ public class UsersRepository implements IUsersRepository {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Sign Up", "createUserWithEmail:success");
+
+                    // after signing up, add user into Firestore
+                    String uid = task.getResult().getUser().getUid();
+                    db.collection(COLLECTION_PATH_USERS).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.i("Add users to Firebase", uid + " added.");
+                            } else {
+                                Log.i("Add users to Firebase", uid + " NOT added.");
+                            }
+                        }
+                    });
                 } else {
                     Log.i("Sign Up", "createUserWithEmail:failure", task.getException());
                 }

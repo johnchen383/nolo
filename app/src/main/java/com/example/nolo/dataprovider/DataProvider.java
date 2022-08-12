@@ -66,14 +66,14 @@ public class DataProvider {
         cartIds = List.of("1", "2", "3", "4");
         u = new User(historyIds, cartIds);
         u.setEmail("john@gmail.com");
-        u.setUserAuthUid("john");  // userAuthUid here is used for password
+        u.setUserAuthUid("johnJohn");  // userAuthUid here is used for password
         users.add(u);
 
         historyIds = List.of("22", "33", "44");
         cartIds = List.of("2", "3", "4", "5");
         u = new User(historyIds, cartIds);
         u.setEmail("nick@gmail.com");
-        u.setUserAuthUid("nick");  // userAuthUid here is used for password
+        u.setUserAuthUid("nickNick");  // userAuthUid here is used for password
         users.add(u);
 
         return users;

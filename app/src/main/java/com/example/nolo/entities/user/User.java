@@ -7,6 +7,7 @@ import com.google.firebase.firestore.Exclude;
 import java.util.List;
 
 public class User implements IUser {
+    // {userAuthUid, email} will not be in the Firestore
     private String userAuthUid, email;
     private List<String> viewHistoryIds, cartIds;
 
