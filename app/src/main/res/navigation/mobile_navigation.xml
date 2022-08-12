@@ -5,6 +5,14 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
+<!--    <action-->
+<!--        android:id="@+id/action_cart_fragment"-->
+<!--        app:enterAnim="@anim/slide_left"-->
+<!--        app:exitAnim="@anim/wait_anim"-->
+<!--        app:popEnterAnim="@anim/wait_anim"-->
+<!--        app:popExitAnim="@anim/slide_right"-->
+<!--        app:destination="@id/navigation_cart" />-->
+
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.nolo.fragments.HomeFragment"
