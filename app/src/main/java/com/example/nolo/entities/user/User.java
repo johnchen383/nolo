@@ -3,7 +3,7 @@ package com.example.nolo.entities.user;
 import java.util.List;
 
 public class User implements IUser {
-    private String userId, userAuthUid, email;
+    private String userAuthUid, email;
     private List<String> viewHistoryIds, cartIds;
 
     /**
@@ -11,17 +11,11 @@ public class User implements IUser {
       */
     public User() {}
 
-    public User(String userId, String userAuthUid, String email, List<String> viewHistoryIds, List<String> cartIds) {
-        this.userId = userId;
+    public User(String userAuthUid, String email, List<String> viewHistoryIds, List<String> cartIds) {
         this.userAuthUid = userAuthUid;
         this.email = email;
         this.viewHistoryIds = viewHistoryIds;
         this.cartIds = cartIds;
-    }
-
-    @Override
-    public String getUserId() {
-        return userId;
     }
 
     @Override
