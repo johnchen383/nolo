@@ -21,12 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Note no integration tests are automatically run by gradle GitHub actions
+ * To run these tests, change target sdk to 30 (make sure to revert back to 31 after)
  */
 @RunWith(AndroidJUnit4.class)
 public class StoresInstrumentedTest {
@@ -47,6 +45,7 @@ public class StoresInstrumentedTest {
     @Test
     public void testLoadingStoresData() throws Exception {
         List<Class<?>> str = new ArrayList<>();
+
         LoadStoresRepositoryUseCase.loadStoresRepository((cName) -> {
             str.add(cName);
             lock.countDown();
@@ -56,4 +55,6 @@ public class StoresInstrumentedTest {
         assertEquals(StoresRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(UsersRepository.class));
     }
+
+    //TODO: testing the fetching of store by id once items are inserted
 }
