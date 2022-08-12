@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
 
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.repositories.user.UsersRepository;
+import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class StoresInstrumentedTest {
     Context appContext;
     CountDownLatch lock = new CountDownLatch(1);
 
@@ -52,5 +54,6 @@ public class ExampleInstrumentedTest {
 
         lock.await(20000, TimeUnit.MILLISECONDS);
         assertEquals(StoresRepository.class, str.get(0));
+        assertTrue(new SplashViewModel().getLoadable().contains(UsersRepository.class));
     }
 }
