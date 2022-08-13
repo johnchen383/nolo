@@ -16,8 +16,7 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(String itemId, String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
-        this.itemId = itemId;
+    public Item(String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
         this.name = name;
         this.brand = brand;
         this.specs = specs;
@@ -26,6 +25,12 @@ public abstract class Item implements IItem {
     }
 
     @Override
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    @Override
+    @Exclude
     public String getItemId() {
         return itemId;
     }

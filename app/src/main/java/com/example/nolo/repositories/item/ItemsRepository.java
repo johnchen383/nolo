@@ -1,7 +1,17 @@
 package com.example.nolo.repositories.item;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.repositories.category.CategoriesRepository;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +61,38 @@ public class ItemsRepository implements IItemsRepository {
     @Override
     public void loadItems(Consumer<Class<?>> loadedRepository) {
         allItemsRepo.clear();
+        laptopsRepo.clear();
+        phonesRepo.clear();
+        accessoriesRepo.clear();
         lastLoadedTime = System.currentTimeMillis();
 
+        db.collection(COLLECTION_PATH_LAPTOPS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        IItem item = document.toObject(Laptop.class);
+                        item.setItemId(document.getId());  // store document ID after getting the object
+                        item.setCategoryId(null);  // TODO: How to get the category ID?
+                        laptopsRepo.add(item);
+                        allItemsRepo.add(item);
 
+                        Log.i("Load Laptops From Firebase", item.toString());
+                    }
+
+                    if (allItemsRepo.size() > 0) {
+                        Log.i("Load Laptops From Firebase", "Success");
+                    } else {
+                        Log.i("Load Laptops From Firebase", "Laptops collection is empty!");
+                    }
+                } else {
+                    Log.i("Load Laptops From Firebase", "Loading Laptops collection failed from Firestore!");
+                }
+
+                // inform this repository finished loading
+                loadedRepository.accept(CategoriesRepository.class);  // TODO: how to inform it when try to retrieve 3 collections?
+            }
+        });
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.example.nolo.entities.item.specs.ISpecs;
 import java.util.List;
 
 public interface IItem {
+    void setItemId(String itemId);
     String getItemId();
     void setCategoryId(String categoryId);
     String getCategoryId();
