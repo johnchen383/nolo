@@ -53,10 +53,7 @@ public class Store implements IStore {
     @NonNull
     @Override
     public String toString() {
-        String result = "Store ID: " + storeId + "; Store name: " + storeName + "; Branch names: ";
-        for (IBranch branch : branches) {
-            result += branch.getBranchName() + ", ";
-        }
+        String result = "Store ID: " + storeId;
         return result;
     }
 }

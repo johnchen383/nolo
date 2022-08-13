@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.nolo.R;
+import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.viewmodels.SplashViewModel;
 
@@ -25,12 +26,17 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
+    private void loadAllRepositories(){
+        LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
+        LoadCategoriesRepositoryUseCase.loadCategoriesRepository(this::onLoadRepoCacheComplete);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         splashViewModel =  new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
 
-        LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
+        loadAllRepositories();
     }
 }
