@@ -7,7 +7,6 @@ public interface ISpecs {
      * All items
      */
     String getSummary();
-    String getWeight();
 
     /**
      * Laptops & Phones
@@ -22,6 +21,7 @@ public interface ISpecs {
     String getTouchscreen();
     String getBattery();
     String getDimensions();
+    String getWeight();
 
     /**
      * Laptops

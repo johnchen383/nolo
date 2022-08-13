@@ -5,18 +5,17 @@ import java.util.List;
 public class LaptopSpecs extends Specs {
     private String operatingSystem, display, cpu, gpu, camera, keyboard,
             communication, audio, touchscreen, fingerprintReader, opticalDrive, ports, battery,
-            acAdaptor, dimensions;
+            acAdaptor, dimensions, weight;
     private List<ISpecsOption> ram, storage;
 
     public LaptopSpecs() {}
 
-    public LaptopSpecs(String summary, String weight, String operatingSystem,
-                       String display, String cpu, String gpu, List<ISpecsOption> ram,
-                       List<ISpecsOption> storage, String camera, String keyboard,
-                       String communication, String audio, String touchscreen,
+    public LaptopSpecs(String summary, String operatingSystem, String display, String cpu,
+                       String gpu, List<ISpecsOption> ram, List<ISpecsOption> storage, String camera,
+                       String keyboard, String communication, String audio, String touchscreen,
                        String fingerprintReader, String opticalDrive, String ports, String battery,
-                       String acAdaptor, String dimensions) {
-        super(summary, weight);
+                       String acAdaptor, String dimensions, String weight) {
+        super(summary);
         this.operatingSystem = operatingSystem;
         this.display = display;
         this.cpu = cpu;
@@ -34,6 +33,7 @@ public class LaptopSpecs extends Specs {
         this.battery = battery;
         this.acAdaptor = acAdaptor;
         this.dimensions = dimensions;
+        this.weight = weight;
     }
 
     @Override
@@ -119,5 +119,10 @@ public class LaptopSpecs extends Specs {
     @Override
     public String getDimensions() {
         return dimensions;
+    }
+
+    @Override
+    public String getWeight() {
+        return weight;
     }
 }

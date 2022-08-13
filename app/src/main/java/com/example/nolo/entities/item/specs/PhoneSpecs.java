@@ -4,17 +4,16 @@ import java.util.List;
 
 public class PhoneSpecs extends Specs {
     private String operatingSystem, display, cpu, camera, connectivity, audio, touchscreen,
-            protectionResistance, simCard, sensors, battery, dimensions;
+            protectionResistance, simCard, sensors, battery, dimensions, weight;
     private List<ISpecsOption> storage;
 
     public PhoneSpecs() {}
 
-    public PhoneSpecs(String summary, String weight, String operatingSystem,
-                      String display, String cpu, List<ISpecsOption> storage, String camera,
-                      String connectivity, String audio, String touchscreen,
-                      String protectionResistance, String simCard, String sensors, String battery,
-                      String dimensions) {
-        super(summary, weight);
+    public PhoneSpecs(String summary, String operatingSystem, String display, String cpu,
+                      List<ISpecsOption> storage, String camera, String connectivity, String audio,
+                      String touchscreen, String protectionResistance, String simCard,
+                      String sensors, String battery, String dimensions, String weight) {
+        super(summary);
         this.operatingSystem = operatingSystem;
         this.display = display;
         this.cpu = cpu;
@@ -28,6 +27,7 @@ public class PhoneSpecs extends Specs {
         this.sensors = sensors;
         this.battery = battery;
         this.dimensions = dimensions;
+        this.weight = weight;
     }
 
     @Override
@@ -55,7 +55,8 @@ public class PhoneSpecs extends Specs {
         return camera;
     }
 
-    public String getConnectivity() {
+    @Override
+    public String getCommunication() {
         return connectivity;
     }
 
@@ -92,5 +93,10 @@ public class PhoneSpecs extends Specs {
     @Override
     public String getDimensions() {
         return dimensions;
+    }
+
+    @Override
+    public String getWeight() {
+        return weight;
     }
 }

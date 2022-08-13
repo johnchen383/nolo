@@ -5,13 +5,12 @@ import com.google.firebase.firestore.Exclude;
 import java.util.List;
 
 public abstract class Specs implements ISpecs {
-    private String summary, weight;
+    private String summary;
 
     public Specs() {}
 
-    public Specs(String summary, String weight) {
+    public Specs(String summary) {
         this.summary = summary;
-        this.weight = weight;
     }
 
     /**
@@ -20,11 +19,6 @@ public abstract class Specs implements ISpecs {
     @Override
     public String getSummary() {
         return summary;
-    }
-
-    @Override
-    public String getWeight() {
-        return weight;
     }
 
     /**
@@ -77,6 +71,11 @@ public abstract class Specs implements ISpecs {
 
     @Exclude
     public String getDimensions() {
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    @Override
+    public String getWeight() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
