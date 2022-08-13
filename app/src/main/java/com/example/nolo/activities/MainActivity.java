@@ -25,21 +25,8 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    // TODO: This is placeholder for after loaded repository class
-    private void loadedRepository(Class<?> loadedRepository){
-        System.out.println("Load finished");
-    }
-
-    /*
-     * This method will load all repositories
-     */
-    private void loadAllRepositories() {
-        LoadStoresRepositoryUseCase.loadStoresRepository(this::loadedRepository);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        loadAllRepositories();
         DataProvider.addStoresToFirestore(true);
         DataProvider.addCategoriesToFirebase(true);
 

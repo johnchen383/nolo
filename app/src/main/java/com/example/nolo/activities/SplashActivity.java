@@ -26,13 +26,17 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
+    private void loadAllRepositories(){
+        LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
+        LoadCategoriesRepositoryUseCase.loadCategoriesRepository(this::onLoadRepoCacheComplete);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         splashViewModel =  new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
 
-        LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
-        LoadCategoriesRepositoryUseCase.loadCategoriesRepository(this::onLoadRepoCacheComplete);
+        loadAllRepositories();
     }
 }
