@@ -10,13 +10,13 @@ public class LaptopSpecs extends Specs {
 
     public LaptopSpecs() {}
 
-    public LaptopSpecs(String summary, String weight, List<IColour> colours, String operatingSystem,
+    public LaptopSpecs(String summary, String weight, String operatingSystem,
                        String display, String cpu, String gpu, List<ISpecsOption> ram,
                        List<ISpecsOption> storage, String camera, String keyboard,
                        String communication, String audio, String touchscreen,
                        String fingerprintReader, String opticalDrive, String ports, String battery,
                        String acAdaptor, String dimensions) {
-        super(summary, weight, colours);
+        super(summary, weight);
         this.operatingSystem = operatingSystem;
         this.display = display;
         this.cpu = cpu;

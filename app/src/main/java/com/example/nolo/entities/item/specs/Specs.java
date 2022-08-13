@@ -6,14 +6,12 @@ import java.util.List;
 
 public abstract class Specs implements ISpecs {
     private String summary, weight;
-    private List<IColour> colours;
 
     public Specs() {}
 
-    public Specs(String summary, String weight, List<IColour> colours) {
+    public Specs(String summary, String weight) {
         this.summary = summary;
         this.weight = weight;
-        this.colours = colours;
     }
 
     /**
@@ -27,11 +25,6 @@ public abstract class Specs implements ISpecs {
     @Override
     public String getWeight() {
         return weight;
-    }
-
-    @Override
-    public List<IColour> getColours() {
-        return colours;
     }
 
     /**

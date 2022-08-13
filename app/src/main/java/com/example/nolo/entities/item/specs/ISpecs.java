@@ -8,7 +8,6 @@ public interface ISpecs {
      */
     String getSummary();
     String getWeight();
-    List<IColour> getColours();
 
     /**
      * Laptops & Phones

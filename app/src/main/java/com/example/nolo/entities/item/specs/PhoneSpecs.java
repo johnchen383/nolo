@@ -9,12 +9,12 @@ public class PhoneSpecs extends Specs {
 
     public PhoneSpecs() {}
 
-    public PhoneSpecs(String summary, String weight, List<IColour> colours, String operatingSystem,
+    public PhoneSpecs(String summary, String weight, String operatingSystem,
                       String display, String cpu, List<ISpecsOption> storage, String camera,
                       String connectivity, String audio, String touchscreen,
                       String protectionResistance, String simCard, String sensors, String battery,
                       String dimensions) {
-        super(summary, weight, colours);
+        super(summary, weight);
         this.operatingSystem = operatingSystem;
         this.display = display;
         this.cpu = cpu;
