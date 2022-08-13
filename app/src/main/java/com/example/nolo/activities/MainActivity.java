@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
+import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -38,8 +39,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loadAllRepositories();
-//        DataProvider.addStoresToFirestore();
+//        loadAllRepositories();
+        DataProvider.addStoresToFirestore(true);
+        DataProvider.addCategoriesToFirebase(true);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
