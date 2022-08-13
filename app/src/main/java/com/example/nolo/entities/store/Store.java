@@ -54,10 +54,7 @@ public class Store implements IStore {
     @NonNull
     @Override
     public String toString() {
-        return "Store{" +
-                "storeId='" + storeId + '\'' +
-                ", storeName='" + storeName + '\'' +
-                ", branches=" + branches +
-                '}';
+        String result = "Store ID: " + storeId;
+        return result;
     }
 }

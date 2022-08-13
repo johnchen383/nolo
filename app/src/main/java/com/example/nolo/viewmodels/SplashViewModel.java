@@ -3,6 +3,8 @@ package com.example.nolo.viewmodels;
 import androidx.lifecycle.ViewModel;
 
 import com.example.nolo.activities.MainActivity;
+import com.example.nolo.repositories.category.CategoriesRepository;
+import com.example.nolo.repositories.store.StoresRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +14,8 @@ public class SplashViewModel extends ViewModel {
     Set<Class<?>> loaded = new HashSet<>();
 
     public SplashViewModel(){
-        loadable.add(MainActivity.class);
+        loadable.add(StoresRepository.class);
+        loadable.add(CategoriesRepository.class);
     }
 
     public Set<Class<?>> getLoadable(){

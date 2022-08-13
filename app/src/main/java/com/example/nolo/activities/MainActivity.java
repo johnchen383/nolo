@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
+import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,22 +25,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    // TODO: This is placeholder for after loaded repository class
-    private void loadedRepository(Class<?> loadedRepository){
-        System.out.println("Load finished");
-    }
-
-    /*
-     * This method will load all repositories
-     */
-    private void loadAllRepositories() {
-        LoadStoresRepositoryUseCase.loadStoresRepository(this::loadedRepository);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loadAllRepositories();
-//        DataProvider.addStoresToFirestore();
+//        DataProvider.addStoresToFirestore(true);
+//        DataProvider.addCategoriesToFirebase(true);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
