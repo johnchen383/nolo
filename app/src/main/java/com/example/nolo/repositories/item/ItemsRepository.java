@@ -18,12 +18,15 @@ public class ItemsRepository implements IItemsRepository {
 
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
-    private final List<IItem> itemsRepo;
+    private final List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
     private long lastLoadedTime;
 
     private ItemsRepository() {
         db = FirebaseFirestore.getInstance();
-        itemsRepo = new ArrayList<>();
+        allItemsRepo = new ArrayList<>();
+        laptopsRepo = new ArrayList<>();
+        phonesRepo = new ArrayList<>();
+        accessoriesRepo = new ArrayList<>();
         lastLoadedTime = 0;
     }
 
@@ -34,18 +37,43 @@ public class ItemsRepository implements IItemsRepository {
         return itemsRepository;
     }
 
+    /*
+     * Reload data from Firebase if the cached data is outdated/expired.
+     */
+    private void reloadItemsIfExpired() {
+        if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_TEN_MINUTES)
+            loadItems(a -> {});
+    }
+
+    /*
+     * Load data from Firebase.
+     */
     @Override
     public void loadItems(Consumer<Class<?>> loadedRepository) {
+        allItemsRepo.clear();
+        lastLoadedTime = System.currentTimeMillis();
+
 
     }
 
     @Override
     public List<IItem> getAllItems() {
-        return null;
+        reloadItemsIfExpired();
+
+        return allItemsRepo;
     }
 
     @Override
     public IItem getItemById(String itemId) {
-        return null;
+        IItem result = null;
+        for (IItem item : allItemsRepo) {
+            if (item.getItemId().equals(itemId)) {
+                result = item;
+                break;
+            }
+        }
+
+        reloadItemsIfExpired();
+        return result;
     }
 }
