@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        DataProvider.addStoresToFirestore(true);
+//        DataProvider.addStoresToFirestore(true);
 //        DataProvider.addCategoriesToFirebase(true);
 
         super.onCreate(savedInstanceState);
