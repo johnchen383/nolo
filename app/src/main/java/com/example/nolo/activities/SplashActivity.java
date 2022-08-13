@@ -9,6 +9,8 @@ import android.os.Bundle;
 import com.example.nolo.R;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.example.nolo.interactors.SignUpUseCase;
+import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
 
 public class SplashActivity extends BaseActivity {
@@ -36,7 +38,9 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         splashViewModel =  new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
-
+        
         loadAllRepositories();
+
+        SignUpUseCase.signUp("test@gmail.com", "testTest");
     }
 }

@@ -17,6 +17,7 @@ public class Store implements IStore {
       * So it is a reasonable excuse to violate the SOLID principle.
       */
     private List<Branch> branches;
+    // {storeId} will not be in the Firestore
     private String storeId, storeName;
 
     /**

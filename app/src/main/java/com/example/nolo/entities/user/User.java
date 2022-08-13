@@ -1,35 +1,46 @@
 package com.example.nolo.entities.user;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.firestore.Exclude;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class User implements IUser {
-    private String userId, userAuthUid, email;
-    private List<String> viewHistoryIds, cartIds;
+    // {userAuthUid, email} will not be in the Firestore
+    private String userAuthUid, email;
+    private List<String> viewHistoryIds = new ArrayList<>();
+    private List<String > cartIds = new ArrayList<>();
 
     /**
       * 0 argument constructor for convert Firebase data to this class
       */
     public User() {}
 
-    public User(String userId, String userAuthUid, String email, List<String> viewHistoryIds, List<String> cartIds) {
-        this.userId = userId;
-        this.userAuthUid = userAuthUid;
-        this.email = email;
+    public User(List<String> viewHistoryIds, List<String> cartIds) {
         this.viewHistoryIds = viewHistoryIds;
         this.cartIds = cartIds;
     }
 
     @Override
-    public String getUserId() {
-        return userId;
+    public void setUserAuthUid(String userAuthUid) {
+        this.userAuthUid = userAuthUid;
     }
 
     @Override
+    @Exclude
     public String getUserAuthUid() {
         return userAuthUid;
     }
 
     @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    @Exclude
     public String getEmail() {
         return email;
     }
@@ -56,5 +67,14 @@ public class User implements IUser {
     @Override
     public void removeCart(String itemId) {
         cartIds.remove(itemId);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "User{" +
+                "userAuthUid='" + userAuthUid + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

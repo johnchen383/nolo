@@ -25,12 +25,12 @@ public class StoresRepository implements IStoresRepository {
 
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
-    private final List<IStore> stores;
+    private final List<IStore> storesRepo;
     private long lastLoadedTime;
 
     private StoresRepository() {
         db = FirebaseFirestore.getInstance();
-        stores = new ArrayList<>();
+        storesRepo = new ArrayList<>();
         lastLoadedTime = 0;
     }
 
@@ -57,7 +57,7 @@ public class StoresRepository implements IStoresRepository {
      */
     @Override
     public void loadStores(Consumer<Class<?>> loadedRepository) {
-        stores.clear();
+        storesRepo.clear();
         lastLoadedTime = System.currentTimeMillis();
 
         db.collection(COLLECTION_PATH_STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -67,11 +67,11 @@ public class StoresRepository implements IStoresRepository {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         IStore store = document.toObject(Store.class);
                         store.setStoreId(document.getId());  // store document ID after getting the object
-                        stores.add(store);
+                        storesRepo.add(store);
                         Log.i("Load Stores From Firebase", store.toString());
                     }
 
-                    if (stores.size() > 0) {
+                    if (storesRepo.size() > 0) {
                         Log.i("Load Stores From Firebase", "Success");
                     } else {
                         Log.i("Load Stores From Firebase", "Stores collection is empty!");
@@ -89,7 +89,7 @@ public class StoresRepository implements IStoresRepository {
     @Override
     public IStore getStoreById(String storeId) {
         IStore result = null;
-        for (IStore store : stores) {
+        for (IStore store : storesRepo) {
             if (store.getStoreId().equals(storeId)) {
                 result = store;
                 break;
