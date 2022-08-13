@@ -1,20 +1,14 @@
 package com.example.nolo.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.WindowManager;
 
 import com.example.nolo.R;
-import com.example.nolo.viewmodels.CartViewModel;
+import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.viewmodels.SplashViewModel;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class SplashActivity extends BaseActivity {
     private SplashViewModel splashViewModel;
@@ -37,9 +31,6 @@ public class SplashActivity extends BaseActivity {
         splashViewModel =  new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
 
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            onLoadRepoCacheComplete(MainActivity.class);
-        }, 5000);
+        LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
     }
 }
