@@ -1,5 +1,7 @@
 package com.example.nolo.entities.item;
 
+import com.example.nolo.entities.item.specs.ISpecs;
+
 import java.util.List;
 
 public class Phone extends Item {
@@ -10,8 +12,8 @@ public class Phone extends Item {
      */
     public Phone() {}
 
-    public Phone(String itemId, String store, String specs, double price, List<String> imageUris, List<String> recommendedAccessories) {
-        super(itemId, store, specs, price, imageUris);
+    public Phone(String itemId, String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris, List<String> recommendedAccessories) {
+        super(itemId, name, brand, specs, storeVariants, imageUris);
         this.recommendedAccessories = recommendedAccessories;
     }
 

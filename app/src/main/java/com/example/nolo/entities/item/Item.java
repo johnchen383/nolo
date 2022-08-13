@@ -1,12 +1,14 @@
 package com.example.nolo.entities.item;
 
+import com.example.nolo.entities.item.specs.ISpecs;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
 public abstract class Item implements IItem {
-    private String itemId, categoryId, store, specs;
-    private double price;
+    private String itemId, categoryId, name, brand;
+    private ISpecs specs;
+    private List<IItemStoreVariant> storeVariants;
     private List<String> imageUris;
 
     /**
@@ -14,11 +16,12 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(String itemId, String store, String specs, double price, List<String> imageUris) {
+    public Item(String itemId, String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
         this.itemId = itemId;
-        this.store = store;
+        this.name = name;
+        this.brand = brand;
         this.specs = specs;
-        this.price = price;
+        this.storeVariants = storeVariants;
         this.imageUris = imageUris;
     }
 
@@ -39,18 +42,23 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    public String getStore() {
-        return store;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public String getSpecs() {
+    public String getBrand() {
+        return brand;
+    }
+
+    @Override
+    public ISpecs getSpecs() {
         return specs;
     }
 
     @Override
-    public double getPrice() {
-        return price;
+    public List<IItemStoreVariant> getStoreVariants() {
+        return storeVariants;
     }
 
     @Override
