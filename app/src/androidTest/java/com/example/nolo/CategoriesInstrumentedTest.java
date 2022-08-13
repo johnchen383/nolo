@@ -57,5 +57,5 @@ public class CategoriesInstrumentedTest {
         String id = GetCategoriesUseCase.getCategories().get(0).getCategoryId();
         assertTrue(GetCategoryByIdUseCase.getCategoryById(id) != null);
     }
-    
+
 }
