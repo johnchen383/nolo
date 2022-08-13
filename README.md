@@ -17,7 +17,7 @@ Please use the following convention when creating commits `[type]: [msg]`
 `AB#{id} refactor` - for refactoring the codebase
 
 ## Use of branches
-Refer to the Jira board for tickets. Branch off `main` with your associated ticket. Name your branch as `NLXXX_some-ticket-name` where XXX is the ticket number. Ensure all branches are merged back into `main` via pull requests, approved by all other team members.
+Refer to the Azure board for tickets. Branch off `main` with your associated ticket. Name your branch as `AB#XXX_some-ticket-name` where XXX is the ticket number. Ensure all branches are merged back into `main` via pull requests, approved by all other team members.
 
 
 ## Package structure
