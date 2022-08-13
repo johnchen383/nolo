@@ -5,19 +5,19 @@ import java.util.List;
 public class PhoneSpecs extends Specs {
     private String operatingSystem, display, cpu, camera, connectivity, audio, touchscreen,
             protectionResistance, simCard, sensors, battery, dimensions, weight;
-    private List<ISpecsOption> storage;
+    private List<ISpecsOption> storageOptions;
 
     public PhoneSpecs() {}
 
     public PhoneSpecs(String summary, String operatingSystem, String display, String cpu,
-                      List<ISpecsOption> storage, String camera, String connectivity, String audio,
+                      List<ISpecsOption> storageOptions, String camera, String connectivity, String audio,
                       String touchscreen, String protectionResistance, String simCard,
                       String sensors, String battery, String dimensions, String weight) {
         super(summary);
         this.operatingSystem = operatingSystem;
         this.display = display;
         this.cpu = cpu;
-        this.storage = storage;
+        this.storageOptions = storageOptions;
         this.camera = camera;
         this.connectivity = connectivity;
         this.audio = audio;
@@ -46,8 +46,8 @@ public class PhoneSpecs extends Specs {
     }
 
     @Override
-    public List<ISpecsOption> getStorage() {
-        return storage;
+    public List<ISpecsOption> getStorageOptions() {
+        return storageOptions;
     }
 
     @Override

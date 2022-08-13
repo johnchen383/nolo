@@ -6,12 +6,12 @@ public class LaptopSpecs extends Specs {
     private String operatingSystem, display, cpu, gpu, camera, keyboard,
             communication, audio, touchscreen, fingerprintReader, opticalDrive, ports, battery,
             acAdaptor, dimensions, weight;
-    private List<ISpecsOption> ram, storage;
+    private List<ISpecsOption> ramOptions, storageOptions;
 
     public LaptopSpecs() {}
 
     public LaptopSpecs(String summary, String operatingSystem, String display, String cpu,
-                       String gpu, List<ISpecsOption> ram, List<ISpecsOption> storage, String camera,
+                       String gpu, List<ISpecsOption> ramOptions, List<ISpecsOption> storageOptions, String camera,
                        String keyboard, String communication, String audio, String touchscreen,
                        String fingerprintReader, String opticalDrive, String ports, String battery,
                        String acAdaptor, String dimensions, String weight) {
@@ -20,8 +20,8 @@ public class LaptopSpecs extends Specs {
         this.display = display;
         this.cpu = cpu;
         this.gpu = gpu;
-        this.ram = ram;
-        this.storage = storage;
+        this.ramOptions = ramOptions;
+        this.storageOptions = storageOptions;
         this.camera = camera;
         this.keyboard = keyboard;
         this.communication = communication;
@@ -57,13 +57,13 @@ public class LaptopSpecs extends Specs {
     }
 
     @Override
-    public List<ISpecsOption> getRam() {
-        return ram;
+    public List<ISpecsOption> getRamOptions() {
+        return ramOptions;
     }
 
     @Override
-    public List<ISpecsOption> getStorage() {
-        return storage;
+    public List<ISpecsOption> getStorageOptions() {
+        return storageOptions;
     }
 
     @Override

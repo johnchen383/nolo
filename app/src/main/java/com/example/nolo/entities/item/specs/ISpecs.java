@@ -14,7 +14,7 @@ public interface ISpecs {
     String getOperatingSystem();
     String getDisplay();
     String getCpu();
-    List<ISpecsOption> getStorage();
+    List<ISpecsOption> getStorageOptions();
     String getCamera();
     String getCommunication();
     String getAudio();
@@ -27,7 +27,7 @@ public interface ISpecs {
      * Laptops
      */
     String getGpu();
-    List<ISpecsOption> getRam();
+    List<ISpecsOption> getRamOptions();
     String getKeyboard();
     String getFingerprintReader();
     String getOpticalDrive();

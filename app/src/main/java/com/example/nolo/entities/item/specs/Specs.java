@@ -40,7 +40,7 @@ public abstract class Specs implements ISpecs {
     }
 
     @Exclude
-    public List<ISpecsOption> getStorage() {
+    public List<ISpecsOption> getStorageOptions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
@@ -88,7 +88,7 @@ public abstract class Specs implements ISpecs {
     }
 
     @Exclude
-    public List<ISpecsOption> getRam() {
+    public List<ISpecsOption> getRamOptions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
