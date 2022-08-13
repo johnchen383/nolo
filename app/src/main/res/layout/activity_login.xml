@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LogInActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/login_logo" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/login_margin_horizontal">
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_top"
+            android:text="LOG IN"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/email_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_text_view"
+            android:textColorHint="@color/light_grey"
+            android:textColor="@color/light_grey"
+            android:hint="EMAIL"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/password_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PASSWORD"
+            android:textColorHint="@color/light_grey"
+            android:layout_below="@id/email_edit_view" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_edit_view"
+            android:backgroundTint="@color/light_grey"
+            android:text="LOG IN" />
+
+        <Button
+            android:id="@+id/login_google_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_button"
+            android:backgroundTint="@color/light_grey"
+            android:text="LOG IN WITH GOOGLE" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_google_button"
+            android:layout_centerHorizontal="true"
+            android:text="Don't have an account?" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

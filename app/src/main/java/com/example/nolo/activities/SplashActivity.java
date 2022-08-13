@@ -24,7 +24,7 @@ public class SplashActivity extends BaseActivity {
             ActivityOptionsCompat fadeAnimOptions = ActivityOptionsCompat.makeCustomAnimation(this,
                     android.R.anim.fade_in, android.R.anim.fade_out);
 
-            startActivity(new Intent(this, MainActivity.class), fadeAnimOptions.toBundle());
+            startActivity(new Intent(this, LogInActivity.class), fadeAnimOptions.toBundle());
         }
     }
 
