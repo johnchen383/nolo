@@ -70,6 +70,10 @@ public class UsersRepository implements IUsersRepository {
         });
     }
 
+    /*
+    * This method return the current user in User entity if the user is signed in,
+    * if the user is not signed in, it will return null.
+    */
     @Override
     public IUser getCurrentUser() {
         FirebaseUser currentFBUser = fAuth.getCurrentUser();
@@ -92,6 +96,22 @@ public class UsersRepository implements IUsersRepository {
         return null;
     }
 
+    /*
+     * After signing up, add user into Firestore.
+     */
+    private void addUserRepoAfterSignedUp(String uid) {
+        db.collection(COLLECTION_PATH_USERS).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.i("Add users to Firebase", uid + " added.");
+                } else {
+                    Log.i("Add users to Firebase", uid + " NOT added.");
+                }
+            }
+        });
+    }
+
     @Override
     public void signUp(String email, String password) {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -101,17 +121,7 @@ public class UsersRepository implements IUsersRepository {
                     Log.i("Sign Up", "createUserWithEmail:success");
 
                     // after signing up, add user into Firestore
-                    String uid = task.getResult().getUser().getUid();
-                    db.collection(COLLECTION_PATH_USERS).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.i("Add users to Firebase", uid + " added.");
-                            } else {
-                                Log.i("Add users to Firebase", uid + " NOT added.");
-                            }
-                        }
-                    });
+                    addUserRepoAfterSignedUp(task.getResult().getUser().getUid());
                 } else {
                     Log.i("Sign Up", "createUserWithEmail:failure", task.getException());
                 }

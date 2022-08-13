@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.firestore.Exclude;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User implements IUser {
     // {userAuthUid, email} will not be in the Firestore
     private String userAuthUid, email;
-    private List<String> viewHistoryIds, cartIds;
+    private List<String> viewHistoryIds = new ArrayList<>();
+    private List<String > cartIds = new ArrayList<>();
 
     /**
       * 0 argument constructor for convert Firebase data to this class
