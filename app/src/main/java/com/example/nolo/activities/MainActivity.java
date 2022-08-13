@@ -27,8 +27,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        DataProvider.addStoresToFirestore(true);
-        DataProvider.addCategoriesToFirebase(true);
+//        DataProvider.addStoresToFirestore(true);
+//        DataProvider.addCategoriesToFirebase(true);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

@@ -50,7 +50,7 @@ public class CategoriesRepository implements ICategoriesRepository {
     /*
      * Reload data from Firebase if the cached data is outdated/expired.
      */
-    private void reloadStoresIfExpired() {
+    private void reloadCategoriesIfExpired() {
         if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_TEN_MINUTES)
             loadCategories(a -> {});
     }
@@ -99,13 +99,13 @@ public class CategoriesRepository implements ICategoriesRepository {
             }
         }
 
-        reloadStoresIfExpired();
+        reloadCategoriesIfExpired();
         return result;
     }
 
     @Override
     public List<ICategory> getCategories() {
-        reloadStoresIfExpired();
+        reloadCategoriesIfExpired();
 
         return categories;
     }
