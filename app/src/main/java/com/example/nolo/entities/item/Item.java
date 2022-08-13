@@ -5,7 +5,7 @@ import com.google.firebase.firestore.Exclude;
 import java.util.List;
 
 public abstract class Item implements IItem {
-    private String itemId, category, store, specs;
+    private String itemId, categoryId, store, specs;
     private double price;
     private List<String> imageUris;
 
@@ -14,9 +14,8 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(String itemId, String category, String store, String specs, double price, List<String> imageUris) {
+    public Item(String itemId, String store, String specs, double price, List<String> imageUris) {
         this.itemId = itemId;
-        this.category = category;
         this.store = store;
         this.specs = specs;
         this.price = price;
@@ -29,8 +28,14 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    public String getCategory() {
-        return category;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    @Override
+    @Exclude
+    public String getCategoryId() {
+        return categoryId;
     }
 
     @Override

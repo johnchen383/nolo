@@ -10,8 +10,8 @@ public class Phone extends Item {
      */
     public Phone() {}
 
-    public Phone(String itemId, String category, String store, String specs, double price, List<String> imageUris, List<String> recommendedAccessories) {
-        super(itemId, category, store, specs, price, imageUris);
+    public Phone(String itemId, String store, String specs, double price, List<String> imageUris, List<String> recommendedAccessories) {
+        super(itemId, store, specs, price, imageUris);
         this.recommendedAccessories = recommendedAccessories;
     }
 

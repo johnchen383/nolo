@@ -8,7 +8,7 @@ public class Accessory extends Item {
      */
     public Accessory() {}
 
-    public Accessory(String itemId, String category, String store, String specs, double price, List<String> imageUris) {
-        super(itemId, category, store, specs, price, imageUris);
+    public Accessory(String itemId, String store, String specs, double price, List<String> imageUris) {
+        super(itemId, store, specs, price, imageUris);
     }
 }

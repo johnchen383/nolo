@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface IItem {
     String getItemId();
-    String getCategory();
+    void setCategoryId(String categoryId);
+    String getCategoryId();
     double getPrice();
     String getStore();
     String getSpecs();
