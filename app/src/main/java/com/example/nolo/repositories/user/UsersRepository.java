@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.nolo.entities.item.IItemVariant;
+import com.example.nolo.entities.item.IPurchasable;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -151,30 +153,39 @@ public class UsersRepository implements IUsersRepository {
         fAuth.signOut();
     }
 
-    // TODO: Adding duplicate IDs, then ???
     @Override
-    public void addViewHistory(String itemId) {
-        currentUser.getViewHistoryIds().add(itemId);
+    public void addViewHistory(IItemVariant item) {
+        currentUser.addViewHistory(item);
 
-        // Add array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("viewHistoryIds", FieldValue.arrayUnion(itemId));
+        String field = "viewHistory";
+        if (currentUser.isFieldNameValid(field)){
+            db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
+        } else {
+            Log.i("Err", "Unable to update cart as field not matched");
+        }
     }
 
-    // TODO: Adding duplicate IDs, then ???
     @Override
-    public void addCart(String itemId) {
-        currentUser.getCartIds().add(itemId);
+    public void addCart(IPurchasable cartItem) {
+        currentUser.addCart(cartItem);
 
-        // Add array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayUnion(itemId));
+        String field = "cart";
+        if (currentUser.isFieldNameValid(field)){
+            db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+        } else {
+            Log.i("Err", "Unable to update cart as field not matched");
+        }
     }
 
-    // TODO: Remove ID that is duplicate, then ???
     @Override
-    public void removeCart(String itemId) {
-        currentUser.getCartIds().remove(itemId);
+    public void removeCart(IPurchasable cartItem) {
+        currentUser.removeCart(cartItem);
 
-        // Remove array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayRemove(itemId));
+        String field = "cart";
+        if (currentUser.isFieldNameValid(field)){
+            db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+        } else {
+            Log.i("Err", "Unable to update cart as field not matched");
+        }
     }
 }

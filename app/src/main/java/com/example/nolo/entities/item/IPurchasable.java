@@ -1,6 +1,7 @@
 package com.example.nolo.entities.item;
 
-public interface IPurchase {
+public interface IPurchasable {
     IItemVariant getItemVariant();
     Integer getQuantity();
+    void incrementQuantity(Integer increment);
 }

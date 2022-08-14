@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.firestore.GeoPoint;
 
+import java.util.Objects;
+
 public class Colour implements IColour{
     private String name;
     private String hexCode;
@@ -32,5 +34,18 @@ public class Colour implements IColour{
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Colour colour = (Colour) o;
+        return Objects.equals(name, colour.name) && Objects.equals(hexCode, colour.hexCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, hexCode);
     }
 }

@@ -10,6 +10,10 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.IItemVariant;
+import com.example.nolo.entities.item.IPurchasable;
+import com.example.nolo.entities.item.ItemVariant;
+import com.example.nolo.entities.item.Purchasable;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
@@ -158,18 +162,17 @@ public class DataProvider {
 
     private static List<IUser> generateUsers() {
         List<IUser> users = new ArrayList<>();
-        List<String> historyIds, cartIds;
+        List<IItemVariant> history = new ArrayList<>();
+        List<IPurchasable> cart = new ArrayList<>();
         IUser u;
 
-        historyIds = Arrays.asList("11", "12", "13");
-        cartIds = Arrays.asList("1", "2", "3", "4");
-        u = new User(historyIds, cartIds);
+        history.add(new ItemVariant());
+        cart.add(new Purchasable());
+        u = new User(history, cart);
         u.setEmail("john.bm.chen@gmail.com");
         users.add(u);
 
-        historyIds = Arrays.asList();
-        cartIds = Arrays.asList();
-        u = new User(historyIds, cartIds);
+        u = new User(history, cart);
         u.setEmail("nick@gmail.com");
         users.add(u);
 

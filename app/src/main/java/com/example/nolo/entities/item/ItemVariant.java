@@ -1,5 +1,7 @@
 package com.example.nolo.entities.item;
 
+import java.util.Objects;
+
 public class ItemVariant implements IItemVariant {
     private IColour colour;
     private String itemId;
@@ -61,5 +63,18 @@ public class ItemVariant implements IItemVariant {
     @Override
     public String getRamSize() {
         return ramSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemVariant that = (ItemVariant) o;
+        return Objects.equals(colour, that.colour) && Objects.equals(itemId, that.itemId) && Objects.equals(storeId, that.storeId) && Objects.equals(branchName, that.branchName) && Objects.equals(storageSize, that.storageSize) && Objects.equals(ramSize, that.ramSize) && Objects.equals(categoryId, that.categoryId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(colour, itemId, storeId, branchName, storageSize, ramSize, categoryId);
     }
 }
