@@ -6,15 +6,19 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.IItemStoreVariant;
 import com.example.nolo.entities.item.ItemStoreVariant;
 import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.entities.item.Phone;
+import com.example.nolo.entities.item.specs.AccessorySpecs;
 import com.example.nolo.entities.item.specs.Colour;
 import com.example.nolo.entities.item.specs.IColour;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.ISpecsOption;
 import com.example.nolo.entities.item.specs.LaptopSpecs;
+import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.entities.item.specs.SpecsOption;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
@@ -271,6 +275,56 @@ public class DataProvider {
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
+
+        colours = new ArrayList<>();
+        itemStoreVariant = new ArrayList<>();
+        storages = new ArrayList<>();
+        colours.add(new Colour("black", "#000000"));
+        colours.add(new Colour("white", "#FFFFFF"));
+        colours.add(new Colour("red", "#FF0000"));
+        colours.add(new Colour("green", "#00FF00"));
+        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2000));
+        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1800));
+        itemStoreVariant.add(new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2100));
+        storages.add(new SpecsOption(128, 100));
+        storages.add(new SpecsOption(256, 200));
+        storages.add(new SpecsOption(512, 250));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        colours = new ArrayList<>();
+        itemStoreVariant = new ArrayList<>();
+        colours.add(new Colour("black", "#000000"));
+        colours.add(new Colour("silver", "#C0C0C0"));
+        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 400));
+        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 500));
+        itemStoreVariant.add(new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 450));
+        itemStoreVariant.add(new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 400));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
 
         return items;
     }
