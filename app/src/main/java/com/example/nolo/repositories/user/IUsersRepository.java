@@ -8,7 +8,7 @@ public interface IUsersRepository {
     void loadUsers(Consumer<Class<?>> loadedRepository);
     IUser getCurrentUser();
     void signUp(String email, String password);
-    void logIn(Consumer<Class<?>> userLoggedIn, String email, String password);
+    void logIn(Consumer<String> userLoggedIn, String email, String password);
     void logOut();
     void addViewHistory(String itemId);
     void addCart(String itemId);

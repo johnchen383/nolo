@@ -81,6 +81,7 @@ public class UsersRepository implements IUsersRepository {
         // Check if user is signed in (non-null)
         if (currentFBUser != null) {
             String userAuthUid = currentFBUser.getUid();
+            System.out.println("Current UID: " + currentFBUser.getUid());
 
             // Find the user in the user repository (Firestore)
             for (IUser u : usersRepo) {
@@ -92,6 +93,7 @@ public class UsersRepository implements IUsersRepository {
             }
         }
 
+        System.out.println("Not signed in");
         // Not signed in
         return null;
     }
@@ -130,18 +132,16 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
-    public void logIn(Consumer<Class<?>> userLoggedIn, String email, String password) {
+    public void logIn(Consumer<String> userLoggedIn, String email, String password) {
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Log In", "signInWithEmail:success");
+                    userLoggedIn.accept(null);
                 } else {
-                    Log.i("Log In", "signInWithEmail:failure", task.getException());
+                    userLoggedIn.accept(task.getException().getMessage());
                 }
-
-                // inform this repository finished loading
-                userLoggedIn.accept(UsersRepository.class);
             }
         });
     }
