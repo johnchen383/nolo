@@ -1,16 +1,16 @@
 package com.example.nolo.activities;
 
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.nolo.R;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.SignUpUseCase;
-import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
 
 public class SplashActivity extends BaseActivity {
@@ -31,6 +31,7 @@ public class SplashActivity extends BaseActivity {
     private void loadAllRepositories(){
         LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
         LoadCategoriesRepositoryUseCase.loadCategoriesRepository(this::onLoadRepoCacheComplete);
+        LoadItemsRepositoryUseCase.loadItemsRepository(this::onLoadRepoCacheComplete);
     }
 
     @Override
