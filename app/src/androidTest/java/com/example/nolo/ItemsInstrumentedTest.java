@@ -2,6 +2,7 @@ package com.example.nolo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
@@ -11,9 +12,10 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCategoryByIdUseCase;
-import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.GetCategoryItemsUseCase;
+import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
 import com.example.nolo.repositories.CategoryType;
-import com.example.nolo.repositories.category.CategoriesRepository;
+import com.example.nolo.repositories.item.ItemsRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;
 
@@ -30,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  * Note no integration tests are automatically run by gradle GitHub actions
  */
 @RunWith(AndroidJUnit4.class)
-public class CategoriesInstrumentedTest {
+public class ItemsInstrumentedTest {
     Context appContext;
     CountDownLatch lock;
 
@@ -42,10 +44,10 @@ public class CategoriesInstrumentedTest {
     }
 
     @Test
-    public void testLoadingCategoriesData() throws Exception {
+    public void testLoadingItemsData() throws Exception {
         List<Class<?>> str = new ArrayList<>();
 
-        LoadCategoriesRepositoryUseCase.loadCategoriesRepository((cName) -> {
+        LoadItemsRepositoryUseCase.loadItemsRepository((cName) -> {
             str.add(cName);
             lock.countDown();
         });
@@ -53,11 +55,13 @@ public class CategoriesInstrumentedTest {
         lock.await(20000, TimeUnit.MILLISECONDS);
 
         // Test if the Firebase data is loaded
-        assertEquals(CategoriesRepository.class, str.get(0));
-        assertTrue(new SplashViewModel().getLoadable().contains(CategoriesRepository.class));
+        assertEquals(ItemsRepository.class, str.get(0));
+        assertTrue(new SplashViewModel().getLoadable().contains(ItemsRepository.class));
 
-        // Test if there are only 3 categories {laptops, phones, accessories}
-        assertEquals(3, GetCategoriesUseCase.getCategories().size());
+        // Test getCategoryType()
+        assertSame(CategoryType.laptops, GetCategoryItemsUseCase.getCategoryItems(CategoryType.laptops).get(0).getCategoryType());
+        assertSame(CategoryType.phones, GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones).get(0).getCategoryType());
+        assertSame(CategoryType.accessories, GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories).get(0).getCategoryType());
 
         // Test getCategoryById()
         CategoryType id = GetCategoriesUseCase.getCategories().get(0).getCategoryType();
