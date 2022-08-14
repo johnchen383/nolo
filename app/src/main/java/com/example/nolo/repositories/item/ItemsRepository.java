@@ -8,9 +8,9 @@ import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
+import com.example.nolo.repositories.CategoryType;
 import com.example.nolo.repositories.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
-import com.example.nolo.repositories.category.CategoriesRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,7 +18,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
@@ -29,6 +32,7 @@ public class ItemsRepository implements IItemsRepository {
     private final FirebaseFirestore db;
     private final List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
     private long lastLoadedTime;
+    private final Set<CategoryType> loadableCategoryItems, loadedCategoryItems;
 
     private ItemsRepository() {
         db = FirebaseFirestore.getInstance();
@@ -37,8 +41,15 @@ public class ItemsRepository implements IItemsRepository {
         phonesRepo = new ArrayList<>();
         accessoriesRepo = new ArrayList<>();
         lastLoadedTime = 0;
+        loadableCategoryItems = new HashSet<>(List.of(
+                CategoryType.laptops, CategoryType.phones, CategoryType.accessories
+        ));
+        loadedCategoryItems = new HashSet<>();
     }
 
+    /*
+     * This is for singleton class.
+     */
     public static ItemsRepository getInstance() {
         if (itemsRepository == null)
             itemsRepository = new ItemsRepository();
@@ -55,19 +66,14 @@ public class ItemsRepository implements IItemsRepository {
     }
 
     /*
-     * Load data from Firebase.
+     * Load Laptop from Firebase.
      */
-    @Override
-    public void loadItems(Consumer<Class<?>> loadedRepository) {
-        allItemsRepo.clear();
+    private void loadLaptopsRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedLaptopsRepo) {
         laptopsRepo.clear();
-        phonesRepo.clear();
-        accessoriesRepo.clear();
-        lastLoadedTime = System.currentTimeMillis();
 
         /*
-        * Laptop
-        * */
+         * Laptop
+         */
         db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -76,7 +82,6 @@ public class ItemsRepository implements IItemsRepository {
                         IItem item = document.toObject(Laptop.class);
                         item.setItemId(document.getId());  // store document ID after getting the object
                         laptopsRepo.add(item);
-                        allItemsRepo.add(item);
 
                         Log.i("Load Laptops From Firebase", item.toString());
                     }
@@ -90,14 +95,21 @@ public class ItemsRepository implements IItemsRepository {
                     Log.i("Load Laptops From Firebase", "Loading Laptops collection failed from Firestore!");
                 }
 
-                // inform this repository finished loading
-                loadedRepository.accept(CategoriesRepository.class);
+                // inform laptops repository finished loading
+                loadedLaptopsRepo.accept(loadedRepository, CategoryType.laptops);
             }
         });
+    }
+
+    /*
+     * Load Phone from Firebase.
+     */
+    private void loadPhonesRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedPhonesRepo) {
+        phonesRepo.clear();
 
         /*
          * Phone
-         * */
+         */
         db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -106,7 +118,6 @@ public class ItemsRepository implements IItemsRepository {
                         IItem item = document.toObject(Phone.class);
                         item.setItemId(document.getId());  // store document ID after getting the object
                         phonesRepo.add(item);
-                        allItemsRepo.add(item);
 
                         Log.i("Load Phones From Firebase", item.toString());
                     }
@@ -120,14 +131,21 @@ public class ItemsRepository implements IItemsRepository {
                     Log.i("Load Phones From Firebase", "Loading Phones collection failed from Firestore!");
                 }
 
-                // inform this repository finished loading
-                loadedRepository.accept(CategoriesRepository.class);
+                // inform phones repository finished loading
+                loadedPhonesRepo.accept(loadedRepository, CategoryType.phones);
             }
         });
+    }
+
+    /*
+     * Load Accessory from Firebase.
+     */
+    private void loadAccessoriesRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedAccessoriesRepo) {
+        accessoriesRepo.clear();
 
         /*
          * Accessory
-         * */
+         */
         db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -136,7 +154,6 @@ public class ItemsRepository implements IItemsRepository {
                         IItem item = document.toObject(Accessory.class);
                         item.setItemId(document.getId());  // store document ID after getting the object
                         accessoriesRepo.add(item);
-                        allItemsRepo.add(item);
 
                         Log.i("Load Accessories From Firebase", item.toString());
                     }
@@ -150,10 +167,42 @@ public class ItemsRepository implements IItemsRepository {
                     Log.i("Load Accessories From Firebase", "Loading Accessories collection failed from Firestore!");
                 }
 
-                // inform this repository finished loading
-                loadedRepository.accept(CategoriesRepository.class);
+                // inform this accessories finished loading
+                loadedAccessoriesRepo.accept(loadedRepository, CategoryType.accessories);
             }
         });
+    }
+
+    /*
+     * When all items repository are loaded, inform that it is done
+     */
+    private void onLoadItemsRepoCacheComplete(Consumer<Class<?>> loadedRepository, CategoryType itemCategory) {
+        loadedCategoryItems.add(itemCategory);
+
+        if (loadedRepository.equals(loadableCategoryItems)) {
+            Log.i("Load Items From Firebase", "Success");
+
+            allItemsRepo.addAll(laptopsRepo);
+            allItemsRepo.addAll(phonesRepo);
+            allItemsRepo.addAll(accessoriesRepo);
+
+            // inform Items repository finished loading
+            loadedRepository.accept(ItemsRepository.class);
+        }
+    }
+
+    /*
+     * Load data from Firebase.
+     */
+    @Override
+    public void loadItems(Consumer<Class<?>> loadedRepository) {
+        allItemsRepo.clear();
+        loadedCategoryItems.clear();
+        lastLoadedTime = System.currentTimeMillis();
+
+        loadLaptopsRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
+        loadPhonesRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
+        loadAccessoriesRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
     }
 
     @Override
