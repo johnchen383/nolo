@@ -101,31 +101,31 @@ public class UsersRepository implements IUsersRepository {
     /*
      * After signing up, add user into Firestore.
      */
-    private void addUserRepoAfterSignedUp(String uid) {
+    private void addUserRepoAfterSignedUp(Consumer<String> userSignUp, String uid) {
         db.collection(COLLECTION_PATH_USERS).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.i("Add users to Firebase", uid + " added.");
+                    userSignUp.accept(null);
                 } else {
-                    Log.i("Add users to Firebase", uid + " NOT added.");
+                    userSignUp.accept(task.getException().getMessage());
                 }
             }
         });
     }
 
     @Override
-    public void signUp(String email, String password) {
+    public void signUp(Consumer<String> userSignedUp, String email, String password) {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Sign Up", "createUserWithEmail:success");
-
                     // after signing up, add user into Firestore
-                    addUserRepoAfterSignedUp(task.getResult().getUser().getUid());
+                    addUserRepoAfterSignedUp((err) -> userSignedUp.accept(err), task.getResult().getUser().getUid());
                 } else {
-                    Log.i("Sign Up", "createUserWithEmail:failure", task.getException());
+                    userSignedUp.accept(task.getException().getMessage());
                 }
             }
         });
