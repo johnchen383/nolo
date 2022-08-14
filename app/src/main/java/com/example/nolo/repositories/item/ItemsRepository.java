@@ -239,4 +239,17 @@ public class ItemsRepository implements IItemsRepository {
                 return null;
         }
     }
+
+    @Override
+    public List<IItem> getSearchSuggestions(String searchTerm) {
+        List<IItem> result = new ArrayList<>();
+        for (IItem item : allItemsRepo) {
+            if (item.getName().toLowerCase().contains(searchTerm.toLowerCase())) {
+                result.add(item);
+            }
+        }
+
+        reloadItemsIfExpired();
+        return result;
+    }
 }

@@ -6,6 +6,7 @@ import com.example.nolo.repositories.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
 public class Category implements ICategory {
+    // {categoryType} will not be in the Firestore
     private CategoryType categoryType;
     private String categoryName, imageUri;
 

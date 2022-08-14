@@ -7,6 +7,7 @@ import com.google.firebase.firestore.Exclude;
 import java.util.List;
 
 public abstract class Item implements IItem {
+    // {itemId, categoryType} will not be in the Firestore
     private String itemId, name, brand;
     private CategoryType categoryType;
     private ISpecs specs;

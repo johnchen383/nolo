@@ -11,4 +11,5 @@ public interface IItemsRepository {
     List<IItem> getAllItems();
     IItem getItemById(String itemId);
     List<IItem> getCategoryItems(CategoryType categoryType);
+    List<IItem> getSearchSuggestions(String searchTerm);
 }
