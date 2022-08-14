@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
+import com.example.nolo.repositories.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,8 +25,6 @@ import java.util.function.Consumer;
  * This is a singleton class for Users repository.
  */
 public class UsersRepository implements IUsersRepository {
-    public static final String COLLECTION_PATH_USERS = "users";
-
     private static UsersRepository usersRepository = null;
     private final FirebaseFirestore db;
     private final FirebaseAuth fAuth;
@@ -50,7 +49,7 @@ public class UsersRepository implements IUsersRepository {
     public void loadUsers(Consumer<Class<?>> loadedRepository) {
         usersRepo.clear();
 
-        db.collection(COLLECTION_PATH_USERS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(CollectionPath.users.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -100,7 +99,7 @@ public class UsersRepository implements IUsersRepository {
      * After signing up, add user into Firestore.
      */
     private void addUserRepoAfterSignedUp(String uid) {
-        db.collection(COLLECTION_PATH_USERS).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        db.collection(CollectionPath.users.name()).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -157,7 +156,8 @@ public class UsersRepository implements IUsersRepository {
         currentUser.getViewHistoryIds().add(itemId);
 
         // Add array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("viewHistoryIds", FieldValue.arrayUnion(itemId));
+        db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid())
+                .update("viewHistoryIds", FieldValue.arrayUnion(itemId));
     }
 
     // TODO: Adding duplicate IDs, then ???
@@ -166,7 +166,8 @@ public class UsersRepository implements IUsersRepository {
         currentUser.getCartIds().add(itemId);
 
         // Add array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayUnion(itemId));
+        db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid())
+                .update("cartIds", FieldValue.arrayUnion(itemId));
     }
 
     // TODO: Remove ID that is duplicate, then ???
@@ -175,6 +176,7 @@ public class UsersRepository implements IUsersRepository {
         currentUser.getCartIds().remove(itemId);
 
         // Remove array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayRemove(itemId));
+        db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid())
+                .update("cartIds", FieldValue.arrayRemove(itemId));
     }
 }

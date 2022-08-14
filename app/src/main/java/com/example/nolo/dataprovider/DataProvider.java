@@ -1,9 +1,5 @@
 package com.example.nolo.dataprovider;
 
-import static com.example.nolo.repositories.category.CategoriesRepository.COLLECTION_PATH_CATEGORIES;
-import static com.example.nolo.repositories.store.StoresRepository.COLLECTION_PATH_STORES;
-import static com.example.nolo.repositories.user.UsersRepository.COLLECTION_PATH_USERS;
-
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,15 +9,12 @@ import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.entities.user.IUser;
+import com.example.nolo.entities.user.User;
+import com.example.nolo.repositories.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-
-import com.example.nolo.entities.user.IUser;
-import com.example.nolo.entities.user.User;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +22,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +61,7 @@ public class DataProvider {
 
     public static void addCategoriesToFirebase(boolean clearCategories){
         if (clearCategories) {
-            clearCollection(COLLECTION_PATH_CATEGORIES, (a) -> addCategoriesToFirebase());
+            clearCollection(CollectionPath.categories.name(), (a) -> addCategoriesToFirebase());
         } else {
             addCategoriesToFirebase();
         }
@@ -80,7 +72,7 @@ public class DataProvider {
         List<ICategory> categories = generateCategories();
 
         for (ICategory category : categories) {
-            db.collection(COLLECTION_PATH_CATEGORIES).add(category).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            db.collection(CollectionPath.categories.name()).add(category).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
                     Log.i("Add categories to Firebase", documentReference.getId() + " added.");
@@ -139,7 +131,7 @@ public class DataProvider {
 
     public static void addStoresToFirestore(boolean clearStores){
         if (clearStores) {
-            clearCollection(COLLECTION_PATH_STORES, (a) -> addStoresToFirestore());
+            clearCollection(CollectionPath.stores.name(), (a) -> addStoresToFirestore());
         } else {
             addStoresToFirestore();
         }
@@ -150,7 +142,7 @@ public class DataProvider {
         List<IStore> stores = generateStores();
 
         for (IStore store : stores) {
-            db.collection(COLLECTION_PATH_STORES).add(store).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            db.collection(CollectionPath.stores.name()).add(store).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentReference> task) {
                     if (task.isSuccessful()) {
@@ -198,7 +190,7 @@ public class DataProvider {
                         user.setUserAuthUid(task.getResult().getUser().getUid());
                         Log.i("Sign Up", "createUserWithEmail:success");
 
-                        db.collection(COLLECTION_PATH_USERS).document(user.getUserAuthUid()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        db.collection(CollectionPath.users.name()).document(user.getUserAuthUid()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {

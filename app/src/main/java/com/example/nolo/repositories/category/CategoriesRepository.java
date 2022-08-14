@@ -6,9 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
-import com.example.nolo.entities.store.IStore;
-import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.repositories.CollectionPath;
+import com.example.nolo.repositories.RepositoryExpiredTime;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,9 +22,6 @@ import java.util.function.Consumer;
  * This is a singleton class for Categories repository.
  */
 public class CategoriesRepository implements ICategoriesRepository {
-    public static final long TIME_IN_MILLISECONDS_TEN_MINUTES = 1000*60*10;
-    public static final String COLLECTION_PATH_CATEGORIES = "categories";
-
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
     private final List<ICategory> categories;
@@ -51,7 +47,7 @@ public class CategoriesRepository implements ICategoriesRepository {
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadCategoriesIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_TEN_MINUTES)
+        if (System.currentTimeMillis() - lastLoadedTime > RepositoryExpiredTime.TIME_LIMIT)
             loadCategories(a -> {});
     }
 
@@ -63,7 +59,7 @@ public class CategoriesRepository implements ICategoriesRepository {
         categories.clear();
         lastLoadedTime = System.currentTimeMillis();
 
-        db.collection(COLLECTION_PATH_CATEGORIES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(CollectionPath.categories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

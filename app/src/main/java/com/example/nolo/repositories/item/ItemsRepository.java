@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.repositories.CollectionPath;
+import com.example.nolo.repositories.RepositoryExpiredTime;
 import com.example.nolo.repositories.category.CategoriesRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,11 +23,6 @@ import java.util.function.Consumer;
  * This is a singleton class for Items repository.
  */
 public class ItemsRepository implements IItemsRepository {
-    public static final long TIME_IN_MILLISECONDS_TEN_MINUTES = 1000*60*10;
-    public static final String COLLECTION_PATH_LAPTOPS = "laptops";
-    public static final String COLLECTION_PATH_PHONES = "phones";
-    public static final String COLLECTION_PATH_ACCESSORIES = "accessories";
-
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
     private final List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
@@ -51,7 +48,7 @@ public class ItemsRepository implements IItemsRepository {
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadItemsIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_TEN_MINUTES)
+        if (System.currentTimeMillis() - lastLoadedTime > RepositoryExpiredTime.TIME_LIMIT)
             loadItems(a -> {});
     }
 
@@ -66,7 +63,7 @@ public class ItemsRepository implements IItemsRepository {
         accessoriesRepo.clear();
         lastLoadedTime = System.currentTimeMillis();
 
-        db.collection(COLLECTION_PATH_LAPTOPS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
