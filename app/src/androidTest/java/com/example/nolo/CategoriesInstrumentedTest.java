@@ -11,9 +11,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCategoryByIdUseCase;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.example.nolo.repositories.CategoryType;
 import com.example.nolo.repositories.category.CategoriesRepository;
-import com.example.nolo.repositories.store.StoresRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;
 
@@ -54,7 +53,7 @@ public class CategoriesInstrumentedTest {
         assertEquals(CategoriesRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(CategoriesRepository.class));
         assertTrue(GetCategoriesUseCase.getCategories().size() == 3);
-        String id = GetCategoriesUseCase.getCategories().get(0).getCategoryId();
+        CategoryType id = GetCategoriesUseCase.getCategories().get(0).getCategoryType();
         assertTrue(GetCategoryByIdUseCase.getCategoryById(id) != null);
     }
 

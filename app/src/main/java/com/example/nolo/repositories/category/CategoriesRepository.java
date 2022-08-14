@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.repositories.CategoryType;
 import com.example.nolo.repositories.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,7 +66,7 @@ public class CategoriesRepository implements ICategoriesRepository {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         ICategory category = document.toObject(Category.class);
-                        category.setCategoryId(document.getId());  // store document ID after getting the object
+                        category.setCategoryType(CategoryType.valueOf(document.getId()));  // store document ID after getting the object
                         categories.add(category);
                         Log.i("Load Categories From Firebase", category.toString());
                     }
@@ -86,10 +87,10 @@ public class CategoriesRepository implements ICategoriesRepository {
     }
 
     @Override
-    public ICategory getCategoryById(String categoryId) {
+    public ICategory getCategoryById(CategoryType categoryType) {
         ICategory result = null;
         for (ICategory category : categories) {
-            if (category.getCategoryId().equals(categoryId)) {
+            if (category.getCategoryType().equals(categoryType)) {
                 result = category;
                 break;
             }

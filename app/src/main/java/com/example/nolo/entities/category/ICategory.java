@@ -1,8 +1,10 @@
 package com.example.nolo.entities.category;
 
+import com.example.nolo.repositories.CategoryType;
+
 public interface ICategory {
-    String getCategoryId();
+    CategoryType getCategoryType();
     String getCategoryName();
     String getImageUri();
-    void setCategoryId(String categoryId);
+    void setCategoryType(CategoryType categoryType);
 }

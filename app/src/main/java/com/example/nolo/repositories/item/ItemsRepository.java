@@ -70,7 +70,6 @@ public class ItemsRepository implements IItemsRepository {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         IItem item = document.toObject(Laptop.class);
                         item.setItemId(document.getId());  // store document ID after getting the object
-                        item.setCategoryId(null);  // TODO: How to get the category ID?
                         laptopsRepo.add(item);
                         allItemsRepo.add(item);
 

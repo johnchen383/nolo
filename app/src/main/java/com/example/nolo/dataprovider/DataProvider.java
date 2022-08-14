@@ -72,10 +72,10 @@ public class DataProvider {
         List<ICategory> categories = generateCategories();
 
         for (ICategory category : categories) {
-            db.collection(CollectionPath.categories.name()).add(category).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            db.collection(CollectionPath.categories.name()).document(category.getCategoryType().name()).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.i("Add categories to Firebase", documentReference.getId() + " added.");
+                public void onSuccess(Void unused) {
+                    Log.i("Add categories to Firebase", category.getCategoryType().name() + " added.");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
