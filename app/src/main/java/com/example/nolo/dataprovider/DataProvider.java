@@ -6,6 +6,11 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.IItemStoreVariant;
+import com.example.nolo.entities.item.specs.IColour;
+import com.example.nolo.entities.item.specs.ISpecs;
+import com.example.nolo.entities.item.specs.ISpecsOption;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
@@ -89,7 +94,6 @@ public class DataProvider {
     /**
      * STORES
      */
-
     private static List<IStore> generateStores() {
         List<IStore> stores = new ArrayList<>();
 
@@ -155,6 +159,9 @@ public class DataProvider {
         }
     }
 
+    /**
+     * USERS
+     */
     private static List<IUser> generateUsers() {
         List<IUser> users = new ArrayList<>();
         List<String> historyIds, cartIds;
@@ -203,6 +210,53 @@ public class DataProvider {
                     } else {
                         Log.i("Sign Up", "createUserWithEmail:failure", task.getException());
                     }
+                }
+            });
+        }
+    }
+
+    /**
+     * ITEMS
+     */
+    private static List<IItem> generateItems() {
+        List<IItem> items = new ArrayList<>();
+        ISpecs specs;
+        List<ISpecsOption> rams, storages = new ArrayList<>();
+        List<IItemStoreVariant> itemStoreVariant = new ArrayList<>();
+        List<IColour> colour = new ArrayList<>();
+
+
+
+        return items;
+    }
+
+    public static void addItemsToFirebase(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        List<IItem> items = generateItems();
+        String collectionPath;
+
+        for (IItem item : items) {
+            switch (item.getCategoryType()) {
+                case laptops:
+                    collectionPath = CollectionPath.laptops.name();
+                    break;
+                case phones:
+                    collectionPath = CollectionPath.phones.name();
+                    break;
+                default:
+                    collectionPath = CollectionPath.accessories.name();
+                    break;
+            }
+
+            db.collection(collectionPath).add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.i("Add items to Firebase", item + " added.");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.i("Add items to Firebase", item + " NOT added.");
                 }
             });
         }
