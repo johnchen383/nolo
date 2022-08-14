@@ -8,7 +8,7 @@ import com.example.nolo.repositories.CategoryType;
 import java.util.List;
 
 public class Laptop extends Item {
-    private List<String> recommendedAccessories;
+    private List<String> recommendedAccessoryIds;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
@@ -16,14 +16,14 @@ public class Laptop extends Item {
     public Laptop() {}
 
     public Laptop(String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants,
-                  List<String> imageUris, List<String> recommendedAccessories) {
+                  List<String> imageUris, List<String> recommendedAccessoryIds) {
         super(name, CategoryType.laptops, brand, specs, storeVariants, imageUris);
-        this.recommendedAccessories = recommendedAccessories;
+        this.recommendedAccessoryIds = recommendedAccessoryIds;
     }
 
     @Override
-    public List<String> getRecommendedAccessories() {
-        return recommendedAccessories;
+    public List<String> getRecommendedAccessoryIds() {
+        return recommendedAccessoryIds;
     }
 
     @NonNull

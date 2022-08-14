@@ -6,6 +6,6 @@ import java.util.List;
 
 public class GetAccessRecommendationsByItemIdUseCase {
     public static List<String> getAccessRecommendationsByItemId(String itemId) {
-        return ItemsRepository.getInstance().getItemById(itemId).getRecommendedAccessories();
+        return ItemsRepository.getInstance().getItemById(itemId).getRecommendedAccessoryIds();
     }
 }

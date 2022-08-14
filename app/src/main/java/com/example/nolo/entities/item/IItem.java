@@ -14,5 +14,5 @@ public interface IItem {
     ISpecs getSpecs();
     List<IItemStoreVariant> getStoreVariants();
     List<String> getImageUris();
-    List<String> getRecommendedAccessories();
+    List<String> getRecommendedAccessoryIds();
 }

@@ -8,9 +8,14 @@ import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.IItemStoreVariant;
+import com.example.nolo.entities.item.ItemStoreVariant;
+import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.entities.item.specs.Colour;
 import com.example.nolo.entities.item.specs.IColour;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.ISpecsOption;
+import com.example.nolo.entities.item.specs.LaptopSpecs;
+import com.example.nolo.entities.item.specs.SpecsOption;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
@@ -220,12 +225,52 @@ public class DataProvider {
      */
     private static List<IItem> generateItems() {
         List<IItem> items = new ArrayList<>();
+        List<String> imageUris = new ArrayList<>();  // TODO: Haven't added images yet
+        List<String> recommendedAccessoryIds = new ArrayList<>();  // TODO: Haven't other items yet
         ISpecs specs;
-        List<ISpecsOption> rams, storages = new ArrayList<>();
+        List<ISpecsOption> rams = new ArrayList<>();
+        List<ISpecsOption> storages = new ArrayList<>();
         List<IItemStoreVariant> itemStoreVariant = new ArrayList<>();
-        List<IColour> colour = new ArrayList<>();
+        List<IColour> colours = new ArrayList<>();
 
-
+        colours.add(new Colour("black", "#000000"));
+        colours.add(new Colour("white", "#FFFFFF"));
+        colours.add(new Colour("red", "#FF0000"));
+        colours.add(new Colour("green", "#00FF00"));
+        colours.add(new Colour("blue", "#0000FF"));
+        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1200));
+        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1500));
+        itemStoreVariant.add(new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 900));
+        rams.add(new SpecsOption(8, 50));
+        rams.add(new SpecsOption(16, 100));
+        rams.add(new SpecsOption(32, 200));
+        storages.add(new SpecsOption(256, 200));
+        storages.add(new SpecsOption(512, 250));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 512G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
 
         return items;
     }

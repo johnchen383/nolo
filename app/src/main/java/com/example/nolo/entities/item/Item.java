@@ -1,7 +1,5 @@
 package com.example.nolo.entities.item;
 
-import androidx.annotation.NonNull;
-
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.repositories.CategoryType;
 import com.google.firebase.firestore.Exclude;
@@ -73,17 +71,7 @@ public abstract class Item implements IItem {
     }
 
     @Exclude
-    public List<String> getRecommendedAccessories() {
+    public List<String> getRecommendedAccessoryIds() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemId='" + itemId + '\'' +
-                ", name='" + name + '\'' +
-                ", categoryType=" + categoryType +
-                '}';
     }
 }
