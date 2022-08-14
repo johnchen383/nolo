@@ -4,8 +4,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.entities.item.Phone;
 import com.example.nolo.repositories.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
 import com.example.nolo.repositories.category.CategoriesRepository;
@@ -63,6 +65,9 @@ public class ItemsRepository implements IItemsRepository {
         accessoriesRepo.clear();
         lastLoadedTime = System.currentTimeMillis();
 
+        /*
+        * Laptop
+        * */
         db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -76,7 +81,7 @@ public class ItemsRepository implements IItemsRepository {
                         Log.i("Load Laptops From Firebase", item.toString());
                     }
 
-                    if (allItemsRepo.size() > 0) {
+                    if (laptopsRepo.size() > 0) {
                         Log.i("Load Laptops From Firebase", "Success");
                     } else {
                         Log.i("Load Laptops From Firebase", "Laptops collection is empty!");
@@ -86,7 +91,67 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform this repository finished loading
-                loadedRepository.accept(CategoriesRepository.class);  // TODO: how to inform it when try to retrieve 3 collections?
+                loadedRepository.accept(CategoriesRepository.class);
+            }
+        });
+
+        /*
+         * Phone
+         * */
+        db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        IItem item = document.toObject(Phone.class);
+                        item.setItemId(document.getId());  // store document ID after getting the object
+                        phonesRepo.add(item);
+                        allItemsRepo.add(item);
+
+                        Log.i("Load Phones From Firebase", item.toString());
+                    }
+
+                    if (phonesRepo.size() > 0) {
+                        Log.i("Load Phones From Firebase", "Success");
+                    } else {
+                        Log.i("Load Phones From Firebase", "Phones collection is empty!");
+                    }
+                } else {
+                    Log.i("Load Phones From Firebase", "Loading Phones collection failed from Firestore!");
+                }
+
+                // inform this repository finished loading
+                loadedRepository.accept(CategoriesRepository.class);
+            }
+        });
+
+        /*
+         * Accessory
+         * */
+        db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        IItem item = document.toObject(Accessory.class);
+                        item.setItemId(document.getId());  // store document ID after getting the object
+                        accessoriesRepo.add(item);
+                        allItemsRepo.add(item);
+
+                        Log.i("Load Accessories From Firebase", item.toString());
+                    }
+
+                    if (accessoriesRepo.size() > 0) {
+                        Log.i("Load Accessories From Firebase", "Success");
+                    } else {
+                        Log.i("Load Accessories From Firebase", "Accessories collection is empty!");
+                    }
+                } else {
+                    Log.i("Load Accessories From Firebase", "Loading Accessories collection failed from Firestore!");
+                }
+
+                // inform this repository finished loading
+                loadedRepository.accept(CategoriesRepository.class);
             }
         });
     }
