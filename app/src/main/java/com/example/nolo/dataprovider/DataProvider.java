@@ -32,6 +32,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -55,6 +56,15 @@ public class DataProvider {
     }
 
     /**
+     * Clears collection before adding entities
+     * @param path
+     * @param addEntityMethod
+     */
+    public static void clearAndAddEntity(String path, Consumer<Void> addEntityMethod){
+        clearCollection(path, (a) -> addEntityMethod.accept(a));
+    }
+
+    /**
      * CATEGORIES
      */
     private static List<ICategory> generateCategories() {
@@ -67,15 +77,7 @@ public class DataProvider {
         return categories;
     }
 
-    public static void addCategoriesToFirebase(boolean clearCategories){
-        if (clearCategories) {
-            clearCollection(COLLECTION_PATH_CATEGORIES, (a) -> addCategoriesToFirebase());
-        } else {
-            addCategoriesToFirebase();
-        }
-    }
-
-    private static void addCategoriesToFirebase(){
+    public static void addCategoriesToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<ICategory> categories = generateCategories();
 
@@ -97,7 +99,6 @@ public class DataProvider {
     /**
      * STORES
      */
-
     private static List<IStore> generateStores() {
         List<IStore> stores = new ArrayList<>();
 
@@ -137,15 +138,7 @@ public class DataProvider {
         return stores;
     }
 
-    public static void addStoresToFirestore(boolean clearStores){
-        if (clearStores) {
-            clearCollection(COLLECTION_PATH_STORES, (a) -> addStoresToFirestore());
-        } else {
-            addStoresToFirestore();
-        }
-    }
-
-    private static void addStoresToFirestore() {
+    public static void addStoresToFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<IStore> stores = generateStores();
 
@@ -168,18 +161,16 @@ public class DataProvider {
         List<String> historyIds, cartIds;
         IUser u;
 
-        historyIds = List.of("11", "12", "13");
-        cartIds = List.of("1", "2", "3", "4");
+        historyIds = Arrays.asList("11", "12", "13");
+        cartIds = Arrays.asList("1", "2", "3", "4");
         u = new User(historyIds, cartIds);
-        u.setEmail("john@gmail.com");
-        u.setUserAuthUid("johnJohn");  // userAuthUid here is used for password
+        u.setEmail("john.bm.chen@gmail.com");
         users.add(u);
 
-        historyIds = List.of("22", "33", "44");
-        cartIds = List.of("2", "3", "4", "5");
+        historyIds = Arrays.asList();
+        cartIds = Arrays.asList();
         u = new User(historyIds, cartIds);
         u.setEmail("nick@gmail.com");
-        u.setUserAuthUid("nickNick");  // userAuthUid here is used for password
         users.add(u);
 
         return users;
@@ -191,7 +182,7 @@ public class DataProvider {
         List<IUser> users = generateUsers();
 
         for (IUser user : users) {
-            auth.createUserWithEmailAndPassword(user.getEmail(), user.getUserAuthUid()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.createUserWithEmailAndPassword(user.getEmail(), "password123").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
