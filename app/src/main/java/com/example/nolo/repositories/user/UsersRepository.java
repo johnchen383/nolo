@@ -161,7 +161,7 @@ public class UsersRepository implements IUsersRepository {
         if (currentUser.isFieldNameValid(field)){
             db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
         } else {
-            Log.i("Err", "Unable to update cart as field not matched");
+            Log.i("Err", "Unable to update view history as field not matched");
         }
     }
 

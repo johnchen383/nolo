@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.nolo.R;
+import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCurrentUserUseCase;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
