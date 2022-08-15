@@ -5,6 +5,12 @@ import com.example.nolo.repositories.user.UsersRepository;
 import java.util.function.Consumer;
 
 public class SignUpUseCase {
+    /**
+     *
+     * @param userSignedUp
+     * @param email
+     * @param password
+     */
     public static void signUp(Consumer<String> userSignedUp, String email, String password) {
         UsersRepository.getInstance().signUp(userSignedUp, email, password);
     }
