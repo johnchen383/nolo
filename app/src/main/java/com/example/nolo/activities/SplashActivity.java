@@ -38,6 +38,7 @@ public class SplashActivity extends BaseActivity {
             } else {
                 //navigate to sign in if not signed in
                 System.out.println("YOOOOOO");
+                startActivity(new Intent(this, LogInActivity.class), fadeAnimOptions.toBundle());
 
                 //sample code for log in
 //                LogInUseCase.logIn((error) -> {
