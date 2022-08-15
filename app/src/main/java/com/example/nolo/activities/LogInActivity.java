@@ -15,6 +15,7 @@ import com.example.nolo.R;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.LogInViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
+import com.google.android.material.button.MaterialButton;
 
 public class LogInActivity extends BaseActivity {
     private LogInViewModel logInViewModel;
@@ -27,8 +28,8 @@ public class LogInActivity extends BaseActivity {
         ImageView eyeBtn;
         TextView forgotPassword;
         TextView signUp;
-        Button logIn;
-        Button logInGoogle;
+        MaterialButton logIn;
+        MaterialButton logInGoogle;
 
 
         public ViewHolder(){
