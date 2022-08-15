@@ -17,6 +17,10 @@ import com.example.nolo.interactors.LogOutUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ProfileViewModel;
 
+/**
+ * Fragment to house the profile 'tab' on the main activity
+ * Used for viewing profile information, modifying profile information and performing profile actions (e.g., logout)
+ */
 public class ProfileFragment extends Fragment {
     private ViewHolder vh;
     private ProfileViewModel profileViewModel;
