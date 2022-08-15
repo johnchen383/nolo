@@ -30,6 +30,8 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
   - /entities [entity representation]
   - /interactors [domain level use cases to interface view models and repo]
   - /repositories [for firebase interaction]
+  - /util [for utility methods used across the application to reduce redundancy]
+  - /adaptors [to house adaptors which map dynamically sized lists of data to ListView/RecyclerViews]
  
 - /res
   - /drawable [all image assets and icons, as well as associated selectors]
