@@ -38,16 +38,6 @@ public class SplashActivity extends BaseActivity {
                 System.out.println("YOOOOOO");
                 startActivity(new Intent(this, LogInActivity.class), Animation.Fade(this).toBundle());
 
-                //sample code for log in
-//                LogInUseCase.logIn((error) -> {
-//                    if (error == null){
-//                        startActivity(new Intent(this, MainActivity.class), fadeAnimOptions.toBundle()); //TODO: change to sign in
-//                    } else {
-//                        //display error message
-//                        System.out.println("ERR: " + error);
-//                    }
-//                }, "john.bm.chen@gmail.com", "password124");
-
                 //sample code for sign up
 //                SignUpUseCase.signUp((error) -> {
 //                    if (error == null){
