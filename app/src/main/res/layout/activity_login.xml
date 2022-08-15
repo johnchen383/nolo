@@ -57,7 +57,7 @@
                 android:layout_height="@dimen/eye_icon_size"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/eye_open_icon"
+                app:srcCompat="@drawable/login_icon_eye_open"
                 android:clickable="true" />
         </RelativeLayout>
 
@@ -103,6 +103,7 @@
             android:text="Don't have an account?" />
 
         <TextView
+            android:id="@+id/register_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/question_text_view"
