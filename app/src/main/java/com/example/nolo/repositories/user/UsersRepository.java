@@ -135,15 +135,12 @@ public class UsersRepository implements IUsersRepository {
 
     @Override
     public void logIn(Consumer<String> userLoggedIn, String email, String password) {
-        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.i("Log In", "signInWithEmail:success");
-                    userLoggedIn.accept(null);
-                } else {
-                    userLoggedIn.accept(task.getException().getMessage());
-                }
+        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.i("Log In", "signInWithEmail:success");
+                userLoggedIn.accept(null);
+            } else {
+                userLoggedIn.accept(task.getException().getMessage());
             }
         });
     }
