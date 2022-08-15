@@ -5,7 +5,7 @@ import com.example.nolo.repositories.user.UsersRepository;
 import java.util.function.Consumer;
 
 public class LoadUsersRepositoryUseCase {
-    public static void loadStoresRepository(Consumer<Class<?>> loadedRepository) {
+    public static void loadUsersRepository(Consumer<Class<?>> loadedRepository) {
         UsersRepository.getInstance().loadUsers(loadedRepository);
     }
 }
