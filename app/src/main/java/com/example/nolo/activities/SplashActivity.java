@@ -31,8 +31,8 @@ import com.google.protobuf.Value;
 import java.util.function.Consumer;
 
 public class SplashActivity extends BaseActivity {
-    private final int START_DELAY = 0;
-    private final int END_DELAY = 400;
+    private final int START_DELAY = 1000;
+    private final int END_DELAY = 1000;
     private final int ANIMATION_INTERVAL = 1000;
 
     private SplashViewModel splashViewModel;
