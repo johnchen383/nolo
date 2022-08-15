@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.nolo.entities.item.IItemVariant;
+import com.example.nolo.entities.item.IPurchasable;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -81,6 +83,7 @@ public class UsersRepository implements IUsersRepository {
         // Check if user is signed in (non-null)
         if (currentFBUser != null) {
             String userAuthUid = currentFBUser.getUid();
+            System.out.println("Current UID: " + currentFBUser.getUid());
 
             // Find the user in the user repository (Firestore)
             for (IUser u : usersRepo) {
@@ -92,6 +95,7 @@ public class UsersRepository implements IUsersRepository {
             }
         }
 
+        System.out.println("Not signed in");
         // Not signed in
         return null;
     }
@@ -99,49 +103,47 @@ public class UsersRepository implements IUsersRepository {
     /*
      * After signing up, add user into Firestore.
      */
-    private void addUserRepoAfterSignedUp(String uid) {
+    private void addUserRepoAfterSignedUp(Consumer<String> userSignUp, String uid) {
         db.collection(COLLECTION_PATH_USERS).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.i("Add users to Firebase", uid + " added.");
+                    userSignUp.accept(null);
                 } else {
-                    Log.i("Add users to Firebase", uid + " NOT added.");
+                    userSignUp.accept(task.getException().getMessage());
                 }
             }
         });
     }
 
     @Override
-    public void signUp(String email, String password) {
+    public void signUp(Consumer<String> userSignedUp, String email, String password) {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Sign Up", "createUserWithEmail:success");
-
                     // after signing up, add user into Firestore
-                    addUserRepoAfterSignedUp(task.getResult().getUser().getUid());
+                    addUserRepoAfterSignedUp((err) -> userSignedUp.accept(err), task.getResult().getUser().getUid());
                 } else {
-                    Log.i("Sign Up", "createUserWithEmail:failure", task.getException());
+                    userSignedUp.accept(task.getException().getMessage());
                 }
             }
         });
     }
 
     @Override
-    public void logIn(Consumer<Class<?>> userLoggedIn, String email, String password) {
+    public void logIn(Consumer<String> userLoggedIn, String email, String password) {
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Log In", "signInWithEmail:success");
+                    userLoggedIn.accept(null);
                 } else {
-                    Log.i("Log In", "signInWithEmail:failure", task.getException());
+                    userLoggedIn.accept(task.getException().getMessage());
                 }
-
-                // inform this repository finished loading
-                userLoggedIn.accept(UsersRepository.class);
             }
         });
     }
@@ -151,30 +153,39 @@ public class UsersRepository implements IUsersRepository {
         fAuth.signOut();
     }
 
-    // TODO: Adding duplicate IDs, then ???
     @Override
-    public void addViewHistory(String itemId) {
-        currentUser.getViewHistoryIds().add(itemId);
+    public void addViewHistory(IItemVariant item) {
+        currentUser.addViewHistory(item);
 
-        // Add array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("viewHistoryIds", FieldValue.arrayUnion(itemId));
+        String field = "viewHistory";
+        if (currentUser.isFieldNameValid(field)){
+            db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
+        } else {
+            Log.i("Err", "Unable to update view history as field not matched");
+        }
     }
 
-    // TODO: Adding duplicate IDs, then ???
     @Override
-    public void addCart(String itemId) {
-        currentUser.getCartIds().add(itemId);
+    public void addCart(IPurchasable cartItem) {
+        currentUser.addCart(cartItem);
 
-        // Add array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayUnion(itemId));
+        String field = "cart";
+        if (currentUser.isFieldNameValid(field)){
+            db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+        } else {
+            Log.i("Err", "Unable to update cart as field not matched");
+        }
     }
 
-    // TODO: Remove ID that is duplicate, then ???
     @Override
-    public void removeCart(String itemId) {
-        currentUser.getCartIds().remove(itemId);
+    public void removeCart(IPurchasable cartItem) {
+        currentUser.removeCart(cartItem);
 
-        // Remove array value
-        db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update("cartIds", FieldValue.arrayRemove(itemId));
+        String field = "cart";
+        if (currentUser.isFieldNameValid(field)){
+            db.collection(COLLECTION_PATH_USERS).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+        } else {
+            Log.i("Err", "Unable to update cart as field not matched");
+        }
     }
 }
