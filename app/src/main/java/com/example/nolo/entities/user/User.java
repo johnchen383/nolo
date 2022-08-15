@@ -56,12 +56,7 @@ public class User implements IUser {
 
     @Override
     public void addViewHistory(IItemVariant item) {
-        for (IItemVariant viewedItem : viewHistory){
-            if (viewedItem.getItemId().equals(item.getItemId())){
-                //same item already viewed so remove first
-                viewHistory.remove(viewedItem);
-            }
-        }
+        viewHistory.removeIf(viewedItem -> viewedItem.getItemId().equals(item.getItemId()));
 
         //add item to start of list
         viewHistory.add(0, item);
