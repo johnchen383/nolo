@@ -16,6 +16,7 @@ import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
 import com.example.nolo.interactors.LogInUseCase;
 import com.example.nolo.interactors.LogOutUseCase;
 import com.example.nolo.interactors.SignUpUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
 
@@ -28,17 +29,14 @@ public class SplashActivity extends BaseActivity {
         if (splashViewModel.getLoadable().equals(splashViewModel.getLoaded())){
             System.out.println("All loaded");
 
-            ActivityOptionsCompat fadeAnimOptions = ActivityOptionsCompat.makeCustomAnimation(this,
-                    android.R.anim.fade_in, android.R.anim.fade_out);
-
             if (GetCurrentUserUseCase.getCurrentUser() != null){
                 //navigate to main if already signed in
                 System.out.println("YAAAAA");
-                startActivity(new Intent(this, MainActivity.class), fadeAnimOptions.toBundle());
+                startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
             } else {
                 //navigate to sign in if not signed in
                 System.out.println("YOOOOOO");
-                startActivity(new Intent(this, LogInActivity.class), fadeAnimOptions.toBundle());
+                startActivity(new Intent(this, LogInActivity.class), Animation.Fade(this).toBundle());
 
                 //sample code for log in
 //                LogInUseCase.logIn((error) -> {

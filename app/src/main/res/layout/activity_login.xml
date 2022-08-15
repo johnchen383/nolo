@@ -76,8 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/forgot_text_view"
             android:layout_marginBottom="@dimen/login_padding_small"
-            android:paddingVertical="@dimen/button_padding"
             android:backgroundTint="@color/light_grey"
+            android:paddingVertical="@dimen/button_padding"
             android:text="LOG IN" />
 
         <Button
