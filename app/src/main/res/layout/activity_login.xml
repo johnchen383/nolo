@@ -37,7 +37,7 @@
             android:textSize="@dimen/login_body_font"
             android:inputType="textEmailAddress"
             android:paddingTop="@dimen/login_padding_med"
-            android:textColor="@color/light_grey"
+            android:textColor="@color/white"
             android:textColorHint="@color/light_grey" />
 
         <RelativeLayout
@@ -54,6 +54,7 @@
                 android:fontFamily="@font/abeezee_regular"
                 android:paddingTop="@dimen/login_padding_med"
                 android:textColorHint="@color/light_grey"
+                android:textColor="@color/white"
                 android:textSize="@dimen/login_body_font" />
 
             <ImageView
@@ -82,10 +83,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/forgot_text_view"
             android:layout_marginBottom="@dimen/login_padding_small"
+            android:fontFamily="@font/abeezee_regular"
             android:paddingVertical="@dimen/login_button_padding"
             android:text="LOG IN"
             android:textSize="@dimen/login_body_font"
-            android:fontFamily="@font/abeezee_regular"
             app:cornerRadius="@dimen/login_button_radius"
             app:strokeColor="@color/faint_white"
             app:strokeWidth="@dimen/login_border" />

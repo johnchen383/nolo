@@ -9,7 +9,7 @@
     <dimen name="login_border">2dp</dimen>
     <dimen name="login_padding_small">4dp</dimen>
     <dimen name="login_padding_med">24dp</dimen>
-    <dimen name="login_button_padding">16dp</dimen>
+    <dimen name="login_button_padding">14dp</dimen>
     <dimen name="login_button_radius">40dp</dimen>
     <dimen name="login_body_font">16sp</dimen>
     <dimen name="eye_icon_size">20dp</dimen>
