@@ -43,4 +43,6 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
 ```
 
 ### Testing
-Testing is done with Integration Tests for each defined interactor
+Testing is done with Integration Tests for each defined repository entity
+Entity specific methods (such as adding/removing from cart) are tested with Unit Tests.
+GitHub actions validate unit tests and successful builds
