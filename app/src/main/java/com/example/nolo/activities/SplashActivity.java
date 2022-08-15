@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.nolo.R;
 import com.example.nolo.interactors.GetCategoriesUseCase;
@@ -18,9 +20,19 @@ import com.example.nolo.interactors.LogOutUseCase;
 import com.example.nolo.interactors.SignUpUseCase;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SplashActivity extends BaseActivity {
     private SplashViewModel splashViewModel;
+    private ViewHolder vh;
+
+    private class ViewHolder {
+        TextView load_state;
+
+        public ViewHolder(){
+            load_state = findViewById(R.id.load_state);
+        }
+    }
 
     private void onLoadRepoCacheComplete(Class<?> repoClass){
         splashViewModel.addLoaded(repoClass);
@@ -73,7 +85,16 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         splashViewModel =  new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
-        
+        vh = new ViewHolder();
+        setProgressLoad(0.5f);
         loadAllRepositories();
+    }
+
+    private void setProgressLoad(float progress){
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
+                vh.load_state.getLayoutParams();
+        params.weight = 1f - progress;
+
+        vh.load_state.setLayoutParams(params);
     }
 }
