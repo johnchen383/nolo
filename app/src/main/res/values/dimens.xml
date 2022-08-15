@@ -4,4 +4,6 @@
     <dimen name="indicator_height">2.5dp</dimen>
     <dimen name="indicator_rounds">1dp</dimen>
     <dimen name="indicator_width">30dp</dimen>
+    <dimen name="login_margin_horizontal">48dp</dimen>
+    <dimen name="login_margin_top">112dp</dimen>
 </resources>

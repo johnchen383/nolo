@@ -59,6 +59,7 @@ public class SplashActivity extends BaseActivity {
 //                    }
 //                }, "johnd.bm.chen@gmail.com", "password124");
             }
+
         }
     }
 
