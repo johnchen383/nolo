@@ -25,7 +25,7 @@
             android:fontFamily="@font/abeezee_regular"
             android:paddingBottom="@dimen/login_padding_med"
             android:text="LOG IN"
-            android:textSize="@dimen/login_h5" />
+            android:textSize="@dimen/font_h5" />
 
         <EditText
             android:id="@+id/email_edit"
@@ -39,7 +39,7 @@
             android:backgroundTint="@color/faint_white"
             android:textColor="@color/white"
             android:textColorHint="@color/light_grey"
-            android:textSize="@dimen/login_body" />
+            android:textSize="@dimen/font_body" />
 
         <RelativeLayout
             android:id="@+id/password_input"
@@ -57,12 +57,12 @@
                 android:backgroundTint="@color/faint_white"
                 android:textColor="@color/white"
                 android:textColorHint="@color/light_grey"
-                android:textSize="@dimen/login_body" />
+                android:textSize="@dimen/font_body" />
 
             <ImageView
                 android:id="@+id/eye_open"
-                android:layout_width="@dimen/eye_icon_size"
-                android:layout_height="@dimen/eye_icon_size"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/login_icon_eye_open"
@@ -88,28 +88,63 @@
             android:fontFamily="@font/abeezee_regular"
             android:paddingVertical="@dimen/login_button_padding"
             android:text="LOG IN"
-            android:textSize="@dimen/login_body"
-            app:cornerRadius="@dimen/login_button_radius"
-            app:strokeColor="@color/faint_white"
-            app:strokeWidth="@dimen/login_border" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_google_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login_button"
-            android:fontFamily="@font/abeezee_regular"
-            android:paddingVertical="@dimen/login_button_padding"
-            android:text="LOG IN WITH GOOGLE"
-            android:textSize="@dimen/login_body"
+            android:textSize="@dimen/font_body"
             app:cornerRadius="@dimen/login_button_radius"
             app:strokeColor="@color/faint_white"
             app:strokeWidth="@dimen/login_border" />
 
         <RelativeLayout
+            android:id="@+id/login_google_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_button">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/login_google_icon"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/login_google" />
+
+                <TextView
+                    android:id="@+id/login_google_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/login_google_icon"
+                    android:layout_marginLeft="@dimen/login_padding_med"
+                    android:fontFamily="@font/abeezee_regular"
+                    android:text="LOG IN WITH GOOGLE"
+                    android:textSize="@dimen/font_body" />
+
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_google_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:fontFamily="@font/abeezee_regular"
+                android:paddingVertical="@dimen/login_button_padding"
+                android:textSize="@dimen/font_body"
+                app:cornerRadius="@dimen/login_button_radius"
+                app:strokeColor="@color/faint_white"
+                app:strokeWidth="@dimen/login_border">
+
+            </com.google.android.material.button.MaterialButton>
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/login_google_button"
+            android:layout_below="@id/login_google_group"
             android:paddingTop="@dimen/login_padding_lrg"
             android:layout_centerHorizontal="true">
 
