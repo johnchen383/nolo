@@ -1,6 +1,7 @@
 package com.example.nolo.activities;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Button;
@@ -43,9 +44,12 @@ public class LogInActivity extends BaseActivity {
         }
     }
 
-    private void initListeners() {
+    private void initStyling() {
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        vh.signUp.setPaintFlags(vh.signUp.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+    }
 
+    private void initListeners() {
         vh.eyeBtn.setOnClickListener(v -> {
             boolean isHidden = vh.passwordInput.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             System.out.println(vh.passwordInput.getInputType());
@@ -90,6 +94,7 @@ public class LogInActivity extends BaseActivity {
         logInViewModel =  new ViewModelProvider(this).get(LogInViewModel.class);
         setContentView(R.layout.activity_login);
         vh = new ViewHolder();
+        initStyling();
         initListeners();
 
     }

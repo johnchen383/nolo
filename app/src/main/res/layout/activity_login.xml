@@ -115,7 +115,7 @@
             android:id="@+id/question_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="Don't have an account? "
             android:fontFamily="@font/abeezee_regular" />
 
         <TextView
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/question_text_view"
-            android:text=" Register"
+            android:text="Register"
             android:textColor="@color/light_brown"
             android:fontFamily="@font/abeezee_regular"
             android:clickable="true"/>
