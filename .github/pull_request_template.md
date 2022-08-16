@@ -8,7 +8,7 @@
 **Please complete the following checklist (add or update the checklist as required)**
 
 - [ ] Breaking changes (fix that might break any existing functionalities)
-- [ ] Integration/unit test(s) created
-- [ ] Dev testing done
+- [ ] Integration/unit test(s) created and passing 
+- [ ] General testing performed
 - [ ] Have Todo(s) that will be addressed later
 - [ ] ADO ticket number in title and in commits

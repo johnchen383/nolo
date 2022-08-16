@@ -21,17 +21,28 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
 
 
 ## Package structure
-```
-- /src/main/java/com/nolo
-  - /activities [all full screen UI elements]
-  - /fragments [all partial screen elements, including bottom nav fragments]
-  - /viewmodels [associated view models to activities + fragments]
-  - /dataprovider [for loading data to firebase]
-  - /entities [entity representation]
-  - /interactors [domain level use cases to interface view models and repo]
-  - /repositories [for firebase interaction]
-  - /util [for utility methods used across the application to reduce redundancy]
-  - /adaptors [to house adaptors which map dynamically sized lists of data to ListView/RecyclerViews]
+  .
+  
+    ├── ...
+    ├── app/src/main 
+    │       ├── ...
+    |       ├── java/com/example/nolo 
+    |       |        ├── ...
+    |       |        ├── activities            #all full screen UI elements
+    |       |        ├── fragments             #all partial screen elements, including bottom nav fragments
+    |       |        ├── viewmodels            #associated view models to activities + fragments
+    |       |        ├── dataprovider          #for loading data to firebase
+    |       |        ├── entities              #entity representation
+    |       |        ├── interactors           #domain level use cases to interface view models and repo
+    |       |        ├── repositories          #for firebase interaction
+    |       |        ├── util                  #for utility methods used across the application to reduce redundancy
+    |       |        ├── adaptors              #to house adaptors which map dynamically sized lists of data to ListView/RecyclerViews
+    |       |        └── ...
+    |       └── ...
+    ├── assets_raw                             #for all processed assets not stored in `res` directly
+    └── ...
+    
+    
  
 - /res
   - /drawable [all image assets and icons, as well as associated selectors]
@@ -41,8 +52,8 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
   - /navigation [navigation with bottom nav]
   - /menu [bottom nav xml]
   
-- /assets_raw [for all processed assets not stored in `res` directly]
-```
+TODO: tests and IT and res
+
 
 ### Testing
 Testing is done with Integration Tests for each defined repository entity

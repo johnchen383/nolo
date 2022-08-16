@@ -11,6 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nolo.R;
 import com.example.nolo.viewmodels.SearchViewModel;
 
+/**
+ * Fragment to house the search 'tab' on the main activity
+ * Used to search for a given item by search query. Filtering of search results is also supported
+ */
 public class SearchFragment extends Fragment {
     private ViewHolder vh;
     private SearchViewModel searchViewModel;
