@@ -24,37 +24,39 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
   .
   
     ├── ...
-    ├── app/src/main 
+    ├── app/src
     │       ├── ...
-    |       ├── java/com/example/nolo 
-    |       |        ├── ...
-    |       |        ├── activities            #all full screen UI elements
-    |       |        ├── fragments             #all partial screen elements, including bottom nav fragments
-    |       |        ├── viewmodels            #associated view models to activities + fragments
-    |       |        ├── dataprovider          #for loading data to firebase
-    |       |        ├── entities              #entity representation
-    |       |        ├── interactors           #domain level use cases to interface view models and repo
-    |       |        ├── repositories          #for firebase interaction
-    |       |        ├── util                  #for utility methods used across the application to reduce redundancy
-    |       |        ├── adaptors              #to house adaptors which map dynamically sized lists of data to ListView/RecyclerViews
-    |       |        └── ...
+    |       ├── main
+    |       |       ├── ...
+    |       |       ├── java/com/example/nolo 
+    |       |       |        ├── ...
+    |       |       |        ├── activities            #all full screen UI elements
+    |       |       |        ├── fragments             #all partial screen elements, including bottom nav fragments
+    |       |       |        ├── viewmodels            #associated view models to activities + fragments
+    |       |       |        ├── dataprovider          #for loading data to firebase
+    |       |       |        ├── entities              #entity representation
+    |       |       |        ├── interactors           #domain level use cases to interface view models and repo
+    |       |       |        ├── repositories          #for firebase interaction
+    |       |       |        ├── util                  #for utility methods used across the application to reduce redundancy
+    |       |       |        ├── adaptors              #to house adaptors which map dynamically sized lists of data to ListView/RecyclerViews
+    |       |       |        └── ...
+    |       |       ├── res 
+    |       |       |        ├── ...
+    |       |       |        ├── drawable              #all image assets and icons, as well as associated selectors
+    |       |       |        ├── dimen                 #all dimension constants
+    |       |       |        ├── strings               #all string constants
+    |       |       |        ├── layout                #all layout xml files
+    |       |       |        ├── navigation            #navigation with bottom nav
+    |       |       |        ├── menu                  #bottom nav xml
+    |       |       |        ├── font                  #fonts
+    |       |       |        └── ...
+    |       |       └── ...
+    |       ├── androidTest/java/com/example/nolo      #integration tests
+    |       ├── test/java/com/example/nolo             #unit tests
     |       └── ...
-    ├── assets_raw                             #for all processed assets not stored in `res` directly
+    ├── assets_raw                                     #for all processed assets not stored in `res` directly
     └── ...
     
-    
- 
-- /res
-  - /drawable [all image assets and icons, as well as associated selectors]
-  - /dimen [all dimension constants]
-  - /strings [all string constants]
-  - /layout [all layout xml files]
-  - /navigation [navigation with bottom nav]
-  - /menu [bottom nav xml]
-  
-TODO: tests and IT and res
-
-
 ### Testing
 Testing is done with Integration Tests for each defined repository entity
 Entity specific methods (such as adding/removing from cart) are tested with Unit Tests.
