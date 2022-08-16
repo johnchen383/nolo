@@ -8,9 +8,11 @@
     <dimen name="login_margin_top">112dp</dimen>
     <dimen name="login_border">2dp</dimen>
     <dimen name="login_padding_small">4dp</dimen>
-    <dimen name="login_padding_med">24dp</dimen>
+    <dimen name="login_padding_med">8dp</dimen>
+    <dimen name="login_padding_lrg">24dp</dimen>
     <dimen name="login_button_padding">14dp</dimen>
     <dimen name="login_button_radius">40dp</dimen>
-    <dimen name="login_body_font">16sp</dimen>
+    <dimen name="login_h5">24sp</dimen>
+    <dimen name="login_body">16sp</dimen>
     <dimen name="eye_icon_size">20dp</dimen>
 </resources>
