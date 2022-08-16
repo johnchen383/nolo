@@ -42,13 +42,13 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
     |       |       |        └── ...
     |       |       ├── res 
     |       |       |     ├── ...
-    |       |       |     ├── drawable              #all image assets and icons, as well as associated selectors
-    |       |       |     ├── dimen                 #all dimension constants
-    |       |       |     ├── strings               #all string constants
-    |       |       |     ├── layout                #all layout xml files
-    |       |       |     ├── navigation            #navigation with bottom nav
-    |       |       |     ├── menu                  #bottom nav xml
-    |       |       |     ├── font                  #fonts
+    |       |       |     ├── drawable                 #all image assets and icons, as well as associated selectors
+    |       |       |     ├── dimen                    #all dimension constants
+    |       |       |     ├── strings                  #all string constants
+    |       |       |     ├── layout                   #all layout xml files
+    |       |       |     ├── navigation               #navigation with bottom nav
+    |       |       |     ├── menu                     #bottom nav xml
+    |       |       |     ├── font                     #fonts
     |       |       |     └── ...
     |       |       └── ...
     |       ├── androidTest/java/com/example/nolo      #integration tests
