@@ -1,12 +1,12 @@
 package com.example.nolo.interactors;
 
-import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.repositories.user.UsersRepository;
 
 import java.util.List;
 
 public class GetRecentViewedItemsUseCase {
-    // TODO: Wait till Item entity is implemented
-    public static List<IItem> getRecentViewedItems() {
-        return null;
+    public static List<IItemVariant> getRecentViewedItems() {
+        return UsersRepository.getInstance().getViewHistory();
     }
 }

@@ -136,6 +136,7 @@ public class UsersRepository implements IUsersRepository {
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Log.i("Log In", "signInWithEmail:success");
+                currentUser = getCurrentUser();
                 userLoggedIn.accept(null);
             } else {
                 userLoggedIn.accept(task.getException().getMessage());
@@ -146,6 +147,7 @@ public class UsersRepository implements IUsersRepository {
     @Override
     public void logOut() {
         fAuth.signOut();
+        currentUser = null;
     }
 
     @Override
@@ -182,5 +184,15 @@ public class UsersRepository implements IUsersRepository {
         } else {
             Log.i("Err", "Unable to update cart as field not matched");
         }
+    }
+
+    @Override
+    public List<IItemVariant> getViewHistory() {
+        return currentUser.getViewHistory();
+    }
+
+    @Override
+    public List<IPurchasable> getCart() {
+        return currentUser.getCart();
     }
 }

@@ -1,12 +1,12 @@
 package com.example.nolo.interactors;
 
-import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.repositories.user.UsersRepository;
 
 import java.util.List;
 
 public class GetCartItemsUseCase {
-    // TODO: Wait till Item entity is implemented
-    public static List<IItem> getCartItems() {
-        return null;
+    public static List<IPurchasable> getCartItems() {
+        return UsersRepository.getInstance().getCart();
     }
 }
