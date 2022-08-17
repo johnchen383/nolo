@@ -1,4 +1,4 @@
-package com.example.nolo.entities.item.specs;
+package com.example.nolo.entities.item.specs.specsoption;
 
 public interface ISpecsOption {
     int getSize();

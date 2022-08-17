@@ -1,6 +1,6 @@
-package com.example.nolo.entities.item;
+package com.example.nolo.entities.item.variants;
 
-import com.example.nolo.entities.item.specs.IColour;
+import com.example.nolo.entities.item.colour.IColour;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.example.nolo.entities.item.specs;
 
+import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;

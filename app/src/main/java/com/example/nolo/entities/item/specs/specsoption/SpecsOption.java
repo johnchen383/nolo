@@ -1,4 +1,4 @@
-package com.example.nolo.entities.item.specs;
+package com.example.nolo.entities.item.specs.specsoption;
 
 public class SpecsOption implements ISpecsOption {
     private int size;
