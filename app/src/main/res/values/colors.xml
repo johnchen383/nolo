@@ -2,6 +2,8 @@
 <resources>
     <color name="navy">#263238</color>
     <color name="white">#FFFFFF</color>
+    <color name="faint_white">#C2C6C7</color>
+    <color name="light_grey">#7B8286</color>
     <color name="light_brown">#BCAAA4</color>
     <color name="light_blue">#7D8E96</color>
 </resources>

@@ -23,6 +23,7 @@ import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
 import com.example.nolo.interactors.LogInUseCase;
 import com.example.nolo.interactors.LogOutUseCase;
 import com.example.nolo.interactors.SignUpUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
