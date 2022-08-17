@@ -17,7 +17,13 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.nolo.R;
@@ -30,6 +36,7 @@ import com.example.nolo.interactors.LogInUseCase;
 import com.example.nolo.interactors.LogOutUseCase;
 import com.example.nolo.interactors.SignUpUseCase;
 import com.example.nolo.util.Animation;
+import com.example.nolo.util.Connectivity;
 import com.example.nolo.util.LocationPermissions;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
@@ -45,6 +52,7 @@ public class SplashActivity extends BaseActivity {
     private final int START_DELAY = 1000;
     private final int END_DELAY = 1000;
     private final int ANIMATION_INTERVAL = 1000;
+    boolean click = true;
 
     private SplashViewModel splashViewModel;
     private ViewHolder vh;
@@ -53,9 +61,13 @@ public class SplashActivity extends BaseActivity {
 
     private class ViewHolder {
         TextView load_state;
+        View popupView;
 
         public ViewHolder() {
             load_state = findViewById(R.id.load_state);
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            popupView = inflater.inflate(R.layout.popup_connectivity, null);
         }
     }
 
@@ -98,7 +110,38 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         vh = new ViewHolder();
 
+        if (!Connectivity.isConnected(this)){
+            System.out.println("NOT CONNECTED");
+            showConnectivityPopup();
+        } else {
+            System.out.println("CONNECTED");
+        }
+
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> loadAllRepositories()));
+    }
+
+    private void showConnectivityPopup(){
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // create the popup window
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                final PopupWindow popupWindow = new PopupWindow(vh.popupView, width, height, true);
+                popupWindow.showAtLocation(vh.popupView, Gravity.BOTTOM, 0, 0);
+
+                // dismiss the popup window when touched
+                vh.popupView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popupWindow.dismiss();
+                        return false;
+                    }
+                });
+            }
+        },50);
     }
 
     private void checkLocationPermissionsAndContinue(Consumer<Void> func) {
