@@ -2,11 +2,10 @@ package com.example.nolo.entities.user;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
 import com.google.firebase.firestore.Exclude;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class User implements IUser {
     private String userAuthUid, email;
     private List<IItemVariant> viewHistory = new ArrayList<>();
     private List<IPurchasable> cart = new ArrayList<>();
-    private final Integer MAX_VIEWED = 5;
+    private final int MAX_VIEWED = 5;
 
     /**
       * 0 argument constructor for convert Firebase data to this class
@@ -76,7 +75,7 @@ public class User implements IUser {
     @Exclude
     public boolean isFieldNameValid(String fieldName) {
         try {
-            Field field = (Field) User.class.getField(fieldName);
+            User.class.getField(fieldName);
             return true;
         } catch (NoSuchFieldException e) {
             return false;
