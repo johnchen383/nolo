@@ -14,6 +14,7 @@ import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.repositories.category.CategoriesRepository;
 import com.example.nolo.repositories.store.StoresRepository;
 import com.example.nolo.repositories.user.UsersRepository;
+import com.example.nolo.util.LocationPermissions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends BaseActivity {
@@ -36,6 +37,10 @@ public class MainActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        LocationPermissions.getCurrentLocation(this, (location) -> {
+            System.out.println("Location: " + location);
+        });
 
         vh = new ViewHolder();
 

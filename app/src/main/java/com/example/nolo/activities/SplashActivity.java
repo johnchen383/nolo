@@ -1,13 +1,19 @@
 package com.example.nolo.activities;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -24,8 +30,12 @@ import com.example.nolo.interactors.LogInUseCase;
 import com.example.nolo.interactors.LogOutUseCase;
 import com.example.nolo.interactors.SignUpUseCase;
 import com.example.nolo.util.Animation;
+import com.example.nolo.util.LocationPermissions;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.protobuf.Value;
 
@@ -39,6 +49,7 @@ public class SplashActivity extends BaseActivity {
     private SplashViewModel splashViewModel;
     private ViewHolder vh;
     private ValueAnimator anim;
+
 
     private class ViewHolder {
         TextView load_state;
@@ -59,7 +70,7 @@ public class SplashActivity extends BaseActivity {
         } else {
             //navigate to sign in if not signed in
             System.out.println("YOOOOOO");
-            startActivity(new Intent(this, MainActivity.class), fadeAnimOptions.toBundle());
+            startActivity(new Intent(this, LogInActivity.class), fadeAnimOptions.toBundle());
         }
 
     }
@@ -87,8 +98,27 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         vh = new ViewHolder();
 
-        //start loading after START_DELAY seconds
-        pause(START_DELAY, (a) -> loadAllRepositories());
+        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> loadAllRepositories()));
+    }
+
+    private void checkLocationPermissionsAndContinue(Consumer<Void> func) {
+        if (!LocationPermissions.hasLocationPermissions(this)) {
+            promptLocationPermissionsDialog((a) -> func.accept(null));
+        } else {
+            func.accept(null);
+        }
+    }
+
+    private void promptLocationPermissionsDialog(Consumer<Void> func) {
+        ActivityResultLauncher<String[]> locationPermissionRequest =
+                registerForActivityResult(
+                        new ActivityResultContracts.RequestMultiplePermissions(),
+                        result -> func.accept(null));
+
+        locationPermissionRequest.launch(new String[]{
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        });
     }
 
     private void pause(int delay, Consumer<Void> method) {
