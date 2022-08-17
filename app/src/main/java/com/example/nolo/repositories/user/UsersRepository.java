@@ -4,8 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.item.IItemVariant;
-import com.example.nolo.entities.item.IPurchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
 import com.example.nolo.enums.CollectionPath;
@@ -14,7 +14,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;

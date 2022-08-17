@@ -1,7 +1,7 @@
 package com.example.nolo.repositories.user;
 
-import com.example.nolo.entities.item.IItemVariant;
-import com.example.nolo.entities.item.IPurchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.user.IUser;
 
 import java.util.function.Consumer;

@@ -1,6 +1,8 @@
-package com.example.nolo.entities.item;
+package com.example.nolo.entities.item.purchasable;
 
 import android.util.Log;
+
+import com.example.nolo.entities.item.variant.IItemVariant;
 
 import java.util.Objects;
 

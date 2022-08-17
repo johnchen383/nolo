@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
-import com.example.nolo.entities.item.IItemVariant;
-import com.example.nolo.entities.item.IPurchasable;
-import com.example.nolo.entities.item.ItemVariant;
-import com.example.nolo.entities.item.Purchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
