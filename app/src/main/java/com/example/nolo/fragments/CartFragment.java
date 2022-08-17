@@ -11,6 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nolo.R;
 import com.example.nolo.viewmodels.CartViewModel;
 
+/**
+ * Fragment to house the cart 'tab' on the main activity
+ * Used for viewing cart items, modifying cart items, and transitioning to purchase
+ */
 public class CartFragment extends Fragment {
     private ViewHolder vh;
     private CartViewModel cartViewModel;
