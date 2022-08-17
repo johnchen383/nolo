@@ -1,20 +1,13 @@
 package com.example.nolo.activities;
 
 import android.os.Bundle;
-import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
-import com.example.nolo.dataprovider.DataProvider;
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
-import com.example.nolo.repositories.category.CategoriesRepository;
-import com.example.nolo.repositories.store.StoresRepository;
-import com.example.nolo.repositories.user.UsersRepository;
-import com.example.nolo.util.LocationPermissions;
+import com.example.nolo.util.DeviceLocation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends BaseActivity {
@@ -38,9 +31,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LocationPermissions.getCurrentLocation(this, (location) -> {
-            System.out.println("Location: " + location);
-        });
+
 
         vh = new ViewHolder();
 

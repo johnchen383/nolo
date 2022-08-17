@@ -14,22 +14,26 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.function.Consumer;
 
-public class LocationPermissions {
+public class DeviceLocation {
     private static FusedLocationProviderClient fusedLocationClient;
+    private static Location cachedLocation = null;
 
     public static boolean hasLocationPermissions(@NonNull android.content.Context context) {
         return !(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED);
     }
 
-    public static void getCurrentLocation(android.content.Context context, Consumer<Location> locationCallback) {
+    public static void loadCurrentLocation(android.content.Context context) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            locationCallback.accept(null);
             return;
         }
 
         fusedLocationClient.getCurrentLocation(PRIORITY_LOW_POWER, null)
-                .addOnSuccessListener(location -> locationCallback.accept(location));
+                .addOnSuccessListener(location -> cachedLocation = location);
+    }
+
+    public static Location getCurrentLocation(){
+        return cachedLocation;
     }
 }

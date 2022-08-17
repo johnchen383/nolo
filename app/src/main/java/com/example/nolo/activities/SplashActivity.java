@@ -2,23 +2,17 @@ package com.example.nolo.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -29,7 +23,7 @@ import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
 import com.example.nolo.util.Connectivity;
-import com.example.nolo.util.LocationPermissions;
+import com.example.nolo.util.DeviceLocation;
 import com.example.nolo.viewmodels.SplashViewModel;
 import java.util.function.Consumer;
 
@@ -97,7 +91,10 @@ public class SplashActivity extends BaseActivity {
             System.out.println("CONNECTED");
         }
 
-        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> loadAllRepositories()));
+        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
+            DeviceLocation.loadCurrentLocation(this);
+            loadAllRepositories();
+        }));
     }
 
     private void showConnectivityPopup(){
@@ -116,7 +113,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void checkLocationPermissionsAndContinue(Consumer<Void> func) {
-        if (!LocationPermissions.hasLocationPermissions(this)) {
+        if (!DeviceLocation.hasLocationPermissions(this)) {
             promptLocationPermissionsDialog((a) -> func.accept(null));
         } else {
             func.accept(null);
