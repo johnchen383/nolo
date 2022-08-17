@@ -18,6 +18,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class ItemsRepository implements IItemsRepository {
         phonesRepo = new ArrayList<>();
         accessoriesRepo = new ArrayList<>();
         lastLoadedTime = 0;
-        loadableCategoryItems = new HashSet<>(List.of(
+        loadableCategoryItems = new HashSet<>(Arrays.asList(
                 CategoryType.laptops, CategoryType.phones, CategoryType.accessories
         ));
         loadedCategoryItems = new HashSet<>();
