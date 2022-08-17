@@ -14,10 +14,7 @@ public interface IUser {
     List<IItemVariant> getViewHistory();
     void addViewHistory(IItemVariant item);
     List<IPurchasable> getCart();
-
-    @Exclude
-    boolean isFieldNameValid(String fieldName);
-
     void addCart(IPurchasable cartItem);
     void removeCart(IPurchasable cartItem);
+    boolean isFieldNameValid(String fieldName);
 }

@@ -10,15 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements IUser {
-    // {userAuthUid, email} will not be in the Firestore
+    private static final int MAX_VIEWED = 5;
+    /**
+     * {@link #userAuthUid} {@link #email} will not be in the Firestore
+     */
     private String userAuthUid, email;
     private List<IItemVariant> viewHistory = new ArrayList<>();
     private List<IPurchasable> cart = new ArrayList<>();
-    private final int MAX_VIEWED = 5;
 
     /**
-      * 0 argument constructor for convert Firebase data to this class
-      */
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public User() {}
 
     public User(List<IItemVariant> viewHistory, List<IPurchasable> cart) {
@@ -72,17 +74,6 @@ public class User implements IUser {
     }
 
     @Override
-    @Exclude
-    public boolean isFieldNameValid(String fieldName) {
-        try {
-            User.class.getField(fieldName);
-            return true;
-        } catch (NoSuchFieldException e) {
-            return false;
-        }
-    }
-
-    @Override
     public void addCart(IPurchasable cartItem) {
         //if already in cart, simply increment quantity of that in cart
         for (IPurchasable cItem : cart){
@@ -100,6 +91,17 @@ public class User implements IUser {
     public void removeCart(IPurchasable cartItem) {
         //removes if present
         cart.remove(cartItem);
+    }
+
+    @Override
+    @Exclude
+    public boolean isFieldNameValid(String fieldName) {
+        try {
+            User.class.getField(fieldName);
+            return true;
+        } catch (NoSuchFieldException e) {
+            return false;
+        }
     }
 
     @NonNull

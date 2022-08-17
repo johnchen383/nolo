@@ -8,16 +8,18 @@ import java.util.List;
 
 public class Store implements IStore {
     /**
-      * Object list cannot use IBranch (Branch Interface),
-      * the reason is when the Firebase auto converts the data into
-      * the object, it is unable to deserialize the object.
-      * It is because the interface does not have 0-argument constructor.
-      * To have the Firebase auto converts the data into the object,
-      * our team decided to use Branch class as the object list.
-      * So it is a reasonable excuse to violate the SOLID principle.
-      */
+     * Object list cannot use IBranch (Branch Interface),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use Branch class as the object list.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     private List<Branch> branches;
-    // {storeId} will not be in the Firestore
+    /**
+     * {@link #storeId} will not be in the Firestore
+     */
     private String storeId, storeName;
 
     /**
@@ -54,7 +56,6 @@ public class Store implements IStore {
     @NonNull
     @Override
     public String toString() {
-        String result = "Store ID: " + storeId;
-        return result;
+        return "Store ID: " + storeId;
     }
 }
