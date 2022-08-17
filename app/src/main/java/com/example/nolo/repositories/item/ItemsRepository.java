@@ -228,16 +228,22 @@ public class ItemsRepository implements IItemsRepository {
 
     @Override
     public List<IItem> getCategoryItems(CategoryType categoryType) {
+        List<IItem> result = new ArrayList<>();
+
         switch (categoryType) {
             case laptops:
-                return laptopsRepo;
+                result = laptopsRepo;
+                break;
             case phones:
-                return phonesRepo;
+                result = phonesRepo;
+                break;
             case accessories:
-                return accessoriesRepo;
-            default:
-                return null;
+                result = accessoriesRepo;
+                break;
         }
+
+        reloadItemsIfExpired();
+        return result;
     }
 
     @Override
