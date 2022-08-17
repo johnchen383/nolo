@@ -1,5 +1,7 @@
 package com.example.nolo.entities.item;
 
+import com.example.nolo.entities.item.colour.IColour;
+
 import java.util.Objects;
 
 public class ItemVariant implements IItemVariant {

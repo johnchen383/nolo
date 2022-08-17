@@ -12,13 +12,13 @@ import com.example.nolo.entities.item.ItemVariant;
 import com.example.nolo.entities.item.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.colour.Colour;
+import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.variants.IItemStoreVariant;
 import com.example.nolo.entities.item.variants.ItemStoreVariant;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.specs.AccessorySpecs;
-import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.LaptopSpecs;
@@ -42,7 +42,6 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
