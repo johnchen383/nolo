@@ -14,10 +14,14 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.nolo.R;
 import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCurrentUserUseCase;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
 import com.example.nolo.interactors.LogInUseCase;
@@ -78,6 +82,7 @@ public class SplashActivity extends BaseActivity {
         LoadStoresRepositoryUseCase.loadStoresRepository(this::onLoadRepoCacheComplete);
         LoadCategoriesRepositoryUseCase.loadCategoriesRepository(this::onLoadRepoCacheComplete);
         LoadUsersRepositoryUseCase.loadUsersRepository(this::onLoadRepoCacheComplete);
+        LoadItemsRepositoryUseCase.loadItemsRepository(this::onLoadRepoCacheComplete);
     }
 
     @Override

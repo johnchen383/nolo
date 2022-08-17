@@ -1,21 +1,21 @@
 package com.example.nolo;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import android.content.Context;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.viewmodels.SplashViewModel;
+import com.google.firebase.FirebaseApp;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
-
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
-import com.example.nolo.repositories.store.StoresRepository;
-import com.example.nolo.repositories.user.UsersRepository;
-import com.example.nolo.viewmodels.SplashViewModel;
-import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,8 @@ public class StoresInstrumentedTest {
         });
 
         lock.await(20000, TimeUnit.MILLISECONDS);
+
+        // Test if the Firebase data is loaded
         assertEquals(StoresRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(StoresRepository.class));
     }
