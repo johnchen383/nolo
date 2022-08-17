@@ -7,9 +7,6 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,32 +24,19 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.nolo.R;
-import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCurrentUserUseCase;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
-import com.example.nolo.interactors.LogInUseCase;
-import com.example.nolo.interactors.LogOutUseCase;
-import com.example.nolo.interactors.SignUpUseCase;
-import com.example.nolo.util.Animation;
 import com.example.nolo.util.Connectivity;
 import com.example.nolo.util.LocationPermissions;
-import com.example.nolo.viewmodels.CartViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.protobuf.Value;
-
 import java.util.function.Consumer;
 
 public class SplashActivity extends BaseActivity {
     private final int START_DELAY = 1000;
     private final int END_DELAY = 1000;
     private final int ANIMATION_INTERVAL = 1000;
-    boolean click = true;
 
     private SplashViewModel splashViewModel;
     private ViewHolder vh;
@@ -76,15 +60,10 @@ public class SplashActivity extends BaseActivity {
                 android.R.anim.fade_in, android.R.anim.fade_out);
 
         if (GetCurrentUserUseCase.getCurrentUser() != null) {
-            //navigate to main if already signed in
-            System.out.println("YAAAAA");
             startActivity(new Intent(this, MainActivity.class), fadeAnimOptions.toBundle());
         } else {
-            //navigate to sign in if not signed in
-            System.out.println("YOOOOOO");
             startActivity(new Intent(this, LogInActivity.class), fadeAnimOptions.toBundle());
         }
-
     }
 
     private void onLoadRepoCacheComplete(Class<?> repoClass) {
@@ -113,6 +92,7 @@ public class SplashActivity extends BaseActivity {
         if (!Connectivity.isConnected(this)){
             System.out.println("NOT CONNECTED");
             showConnectivityPopup();
+            //TODO: handle the clicking of the okay button, and only transition after??
         } else {
             System.out.println("CONNECTED");
         }
@@ -121,26 +101,17 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void showConnectivityPopup(){
+        //Delay required for android bug with popup windows
+        new Handler().postDelayed(() -> {
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            final PopupWindow popupWindow = new PopupWindow(vh.popupView, width, height, true);
+            popupWindow.showAtLocation(vh.popupView, Gravity.BOTTOM, 0, 0);
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // create the popup window
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                final PopupWindow popupWindow = new PopupWindow(vh.popupView, width, height, true);
-                popupWindow.showAtLocation(vh.popupView, Gravity.BOTTOM, 0, 0);
-
-                // dismiss the popup window when touched
-                vh.popupView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        popupWindow.dismiss();
-                        return false;
-                    }
-                });
-            }
+            vh.popupView.setOnTouchListener((v, event) -> {
+                popupWindow.dismiss();
+                return false;
+            });
         },50);
     }
 
