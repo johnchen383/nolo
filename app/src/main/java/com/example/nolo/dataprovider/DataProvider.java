@@ -6,6 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.IItemVariant;
+import com.example.nolo.entities.item.IPurchasable;
+import com.example.nolo.entities.item.ItemVariant;
+import com.example.nolo.entities.item.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variants.IItemStoreVariant;
@@ -38,6 +42,7 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -61,6 +66,15 @@ public class DataProvider {
     }
 
     /**
+     * Clears collection before adding entities
+     * @param path
+     * @param addEntityMethod
+     */
+    public static void clearAndAddEntity(String path, Consumer<Void> addEntityMethod){
+        clearCollection(path, (a) -> addEntityMethod.accept(a));
+    }
+
+    /**
      * CATEGORIES
      */
     private static List<ICategory> generateCategories() {
@@ -73,15 +87,7 @@ public class DataProvider {
         return categories;
     }
 
-    public static void addCategoriesToFirebase(boolean clearCategories){
-        if (clearCategories) {
-            clearCollection(CollectionPath.categories.name(), (a) -> addCategoriesToFirebase());
-        } else {
-            addCategoriesToFirebase();
-        }
-    }
-
-    private static void addCategoriesToFirebase(){
+    public static void addCategoriesToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<ICategory> categories = generateCategories();
 
@@ -142,15 +148,7 @@ public class DataProvider {
         return stores;
     }
 
-    public static void addStoresToFirestore(boolean clearStores){
-        if (clearStores) {
-            clearCollection(CollectionPath.stores.name(), (a) -> addStoresToFirestore());
-        } else {
-            addStoresToFirestore();
-        }
-    }
-
-    private static void addStoresToFirestore() {
+    public static void addStoresToFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<IStore> stores = generateStores();
 
@@ -173,21 +171,18 @@ public class DataProvider {
      */
     private static List<IUser> generateUsers() {
         List<IUser> users = new ArrayList<>();
-        List<String> historyIds, cartIds;
+        List<IItemVariant> history = new ArrayList<>();
+        List<IPurchasable> cart = new ArrayList<>();
         IUser u;
 
-        historyIds = List.of("11", "12", "13");
-        cartIds = List.of("1", "2", "3", "4");
-        u = new User(historyIds, cartIds);
-        u.setEmail("john@gmail.com");
-        u.setUserAuthUid("johnJohn");  // userAuthUid here is used for password
+        history.add(new ItemVariant());
+        cart.add(new Purchasable());
+        u = new User(history, cart);
+        u.setEmail("john.bm.chen@gmail.com");
         users.add(u);
 
-        historyIds = List.of("22", "33", "44");
-        cartIds = List.of("2", "3", "4", "5");
-        u = new User(historyIds, cartIds);
+        u = new User(history, cart);
         u.setEmail("nick@gmail.com");
-        u.setUserAuthUid("nickNick");  // userAuthUid here is used for password
         users.add(u);
 
         return users;
@@ -199,7 +194,7 @@ public class DataProvider {
         List<IUser> users = generateUsers();
 
         for (IUser user : users) {
-            auth.createUserWithEmailAndPassword(user.getEmail(), user.getUserAuthUid()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.createUserWithEmailAndPassword(user.getEmail(), "password123").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {

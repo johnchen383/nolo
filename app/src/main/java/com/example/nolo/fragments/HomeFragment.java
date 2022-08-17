@@ -11,6 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nolo.R;
 import com.example.nolo.viewmodels.HomeViewModel;
 
+/**
+ * Fragment to house the home 'tab' on the main activity
+ * Used for viewing featured items, browsing categories, and navigation to search
+ */
 public class HomeFragment extends Fragment {
     private ViewHolder vh;
     private HomeViewModel homeViewModel;

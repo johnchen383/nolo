@@ -11,6 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
 import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.example.nolo.repositories.category.CategoriesRepository;
+import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.repositories.user.UsersRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends BaseActivity {
@@ -27,8 +30,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        DataProvider.addStoresToFirestore(true);
-//        DataProvider.addCategoriesToFirebase(true);
+//        DataProvider.clearAndAddEntity(StoresRepository.COLLECTION_PATH_STORES, (a) -> DataProvider.addStoresToFirestore());
+//        DataProvider.clearAndAddEntity(CategoriesRepository.COLLECTION_PATH_CATEGORIES, (a) -> DataProvider.addCategoriesToFirebase());
+//        DataProvider.addUsersToFirestore();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

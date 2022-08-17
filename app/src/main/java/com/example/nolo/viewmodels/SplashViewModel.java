@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.nolo.repositories.category.CategoriesRepository;
 import com.example.nolo.repositories.item.ItemsRepository;
 import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.repositories.user.UsersRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class SplashViewModel extends ViewModel {
     public SplashViewModel(){
         loadable.add(StoresRepository.class);
         loadable.add(CategoriesRepository.class);
+        loadable.add(UsersRepository.class);
         loadable.add(ItemsRepository.class);
     }
 
@@ -31,5 +33,7 @@ public class SplashViewModel extends ViewModel {
         loaded.add(repoClass);
     }
 
-
+    public float getLoadProgress(){
+        return ((float)loaded.size()) / ((float) loadable.size());
+    }
 }
