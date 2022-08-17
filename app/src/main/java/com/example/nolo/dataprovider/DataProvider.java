@@ -25,7 +25,7 @@ import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
-import com.example.nolo.repositories.CollectionPath;
+import com.example.nolo.enums.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

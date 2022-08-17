@@ -1,7 +1,7 @@
 package com.example.nolo.entities.item;
 
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.repositories.CategoryType;
+import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;

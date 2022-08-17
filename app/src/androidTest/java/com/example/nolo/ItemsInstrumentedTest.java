@@ -14,7 +14,7 @@ import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCategoryByIdUseCase;
 import com.example.nolo.interactors.GetCategoryItemsUseCase;
 import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
-import com.example.nolo.repositories.CategoryType;
+import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.item.ItemsRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;

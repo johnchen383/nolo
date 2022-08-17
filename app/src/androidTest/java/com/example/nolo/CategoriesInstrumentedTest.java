@@ -12,7 +12,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.example.nolo.interactors.GetCategoriesUseCase;
 import com.example.nolo.interactors.GetCategoryByIdUseCase;
 import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
-import com.example.nolo.repositories.CategoryType;
+import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.category.CategoriesRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;

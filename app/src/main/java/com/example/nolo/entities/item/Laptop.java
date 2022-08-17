@@ -3,7 +3,7 @@ package com.example.nolo.entities.item;
 import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.repositories.CategoryType;
+import com.example.nolo.enums.CategoryType;
 
 import java.util.List;
 

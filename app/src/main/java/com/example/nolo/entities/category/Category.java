@@ -2,7 +2,7 @@ package com.example.nolo.entities.category;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.repositories.CategoryType;
+import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
 public class Category implements ICategory {

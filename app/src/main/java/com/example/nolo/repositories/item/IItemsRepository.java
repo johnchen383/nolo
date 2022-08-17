@@ -1,7 +1,7 @@
 package com.example.nolo.repositories.item;
 
 import com.example.nolo.entities.item.IItem;
-import com.example.nolo.repositories.CategoryType;
+import com.example.nolo.enums.CategoryType;
 
 import java.util.List;
 import java.util.function.Consumer;

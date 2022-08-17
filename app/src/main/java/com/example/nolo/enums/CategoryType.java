@@ -1,4 +1,4 @@
-package com.example.nolo.repositories;
+package com.example.nolo.enums;
 
 public enum CategoryType {
     laptops, phones, accessories

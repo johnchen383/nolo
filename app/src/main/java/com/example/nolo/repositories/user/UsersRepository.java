@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
-import com.example.nolo.repositories.CollectionPath;
+import com.example.nolo.enums.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
