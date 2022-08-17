@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.firestore.GeoPoint;
 
 import java.util.function.Consumer;
 
@@ -41,6 +42,18 @@ public class DeviceLocation {
         reloadCurrentLocationIfExpired();
 
         return cachedLocation;
+    }
+
+    public static float getDistanceBetweenLocationAndGeoPoint(GeoPoint gp){
+        Location loc = getCurrentLocation();
+
+        if (loc == null) return -1;
+
+        Location gpLoc = new Location("");
+        gpLoc.setLatitude(gp.getLatitude());
+        gpLoc.setLongitude(gp.getLongitude());
+
+        return loc.distanceTo(gpLoc);
     }
 
     private static void reloadCurrentLocationIfExpired() {
