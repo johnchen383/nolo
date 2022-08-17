@@ -1,4 +1,4 @@
-package com.example.nolo.entities.item.variants;
+package com.example.nolo.entities.item.storevariants;
 
 import com.example.nolo.entities.item.colour.IColour;
 
