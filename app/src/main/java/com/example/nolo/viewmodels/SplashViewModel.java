@@ -32,5 +32,7 @@ public class SplashViewModel extends ViewModel {
         loaded.add(repoClass);
     }
 
-
+    public float getLoadProgress(){
+        return ((float)loaded.size()) / ((float) loadable.size());
+    }
 }
