@@ -31,12 +31,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/login_padding_small"
+            android:gravity="bottom"
             app:hintTextColor="@color/light_grey"
             android:textColorHint="@color/light_grey"
             android:hint="@string/input_hint_email"
             app:boxStrokeColor="@color/white"
-            android:layout_marginLeft="@dimen/login_indent_offset"
-            >
+            android:layout_marginLeft="@dimen/login_indent_offset" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_edit"
@@ -53,19 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-<!--            <EditText-->
-<!--                android:id="@+id/password_edit"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="@dimen/login_indent_offset"-->
-<!--                android:backgroundTint="@color/faint_white"-->
-<!--                android:fontFamily="@font/abeezee_regular"-->
-<!--                android:hint="@string/input_hint_password"-->
-<!--                android:paddingTop="@dimen/login_padding_lrg"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textColorHint="@color/light_grey"-->
-<!--                android:textSize="@dimen/font_body" />-->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,13 +61,13 @@
                 android:textColorHint="@color/light_grey"
                 android:hint="@string/input_hint_password"
                 app:boxStrokeColor="@color/white"
-                android:layout_marginLeft="@dimen/login_indent_offset"
-                >
+                android:layout_marginLeft="@dimen/login_indent_offset" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="bottom"
                     android:background="@color/transparent"
                     android:fontFamily="@font/abeezee_regular"
                     android:inputType="textPassword"
@@ -196,3 +184,16 @@
 
 
 </LinearLayout>
+
+    <!--            <EditText-->
+    <!--                android:id="@+id/password_edit"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginLeft="@dimen/login_indent_offset"-->
+    <!--                android:backgroundTint="@color/faint_white"-->
+    <!--                android:fontFamily="@font/abeezee_regular"-->
+    <!--                android:hint="@string/input_hint_password"-->
+    <!--                android:paddingTop="@dimen/login_padding_lrg"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textColorHint="@color/light_grey"-->
+    <!--                android:textSize="@dimen/font_body" />-->

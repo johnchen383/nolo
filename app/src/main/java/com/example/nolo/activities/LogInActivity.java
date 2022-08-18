@@ -4,22 +4,18 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.InputType;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.LogInViewModel;
-import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class LogInActivity extends BaseActivity {
     private LogInViewModel logInViewModel;
@@ -27,8 +23,7 @@ public class LogInActivity extends BaseActivity {
     private ViewHolder vh;
 
     private class ViewHolder {
-        TextInputEditText emailInput;
-        EditText passwordInput;
+        TextInputEditText emailInput, passwordInput;
         RelativeLayout eyeBtn, signUp;
         ImageView eyeIcon;
         TextView forgotPassword, signUpText;
@@ -48,6 +43,7 @@ public class LogInActivity extends BaseActivity {
     }
 
     private void initStyling() {
+        vh.emailInput.setGravity(Gravity.BOTTOM);
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 

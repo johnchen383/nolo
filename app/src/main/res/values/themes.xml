@@ -27,11 +27,11 @@
     </style>
 
     <style name="TextInputAppearance" parent="TextAppearance.AppCompat">
-        <item name="colorAccent">@color/faint_white</item>
-        <item name="colorControlNormal">@color/faint_white</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
-        <item name="android:textColorHint">@color/navy</item>
+        <item name="colorAccent" tools:override="true">@color/colorAccent</item>
+        <item name="colorControlNormal" tools:override="true">@color/colorControlNormal</item>
+        <item name="colorControlActivated" tools:override="true">@color/colorControlActivated</item>
+        <item name="colorControlHighlight" tools:override="true">@color/colorControlHighlight</item>
+        <item name="android:textColorHint" tools:override="true">@color/white</item>
     </style>
 
 </resources>

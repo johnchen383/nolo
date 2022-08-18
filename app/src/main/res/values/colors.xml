@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="navy">#263238</color>
     <color name="white">#FFFFFF</color>
     <color name="faint_white">#C2C6C7</color>
     <color name="light_grey">#7B8286</color>
     <color name="light_brown">#BCAAA4</color>
     <color name="transparent">@android:color/transparent</color>
-    <color name="colorControlNormal">@color/faint_white</color>
-    <color name="colorControlActivated">@color/white</color>
-    <color name="colorControlHighlight">@color/white</color>
+
+    <color name="colorAccent" tools:override="true">@color/faint_white</color>
+    <color name="colorControlNormal" tools:override="true">@color/faint_white</color>
+    <color name="colorControlActivated" tools:override="true">@color/white</color>
+    <color name="colorControlHighlight" tools:override="true">@color/white</color>
 </resources>
