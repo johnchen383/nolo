@@ -5,9 +5,10 @@ import com.example.nolo.repositories.user.UsersRepository;
 
 public class AddViewedItemUseCase {
     /**
-     * records a selected itemvariant as being viewed in the view history of the current user, and pushes
-     * to firebase
-     * @param item
+     * Records a selected itemVariant as being viewed in the view history of the current user,
+     * and pushes to firebase
+     *
+     * @param item itemVariant
      */
     public static void addViewHistory(IItemVariant item) {
         UsersRepository.getInstance().addViewHistory(item);

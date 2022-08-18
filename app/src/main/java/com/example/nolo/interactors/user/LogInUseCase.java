@@ -6,8 +6,9 @@ import java.util.function.Consumer;
 
 public class LogInUseCase {
     /**
+     * Log in to the app
      *
-     * @param userLoggedIn
+     * @param userLoggedIn A function that will run after the login process (both successful and unsuccessful)
      * @param email
      * @param password
      */
