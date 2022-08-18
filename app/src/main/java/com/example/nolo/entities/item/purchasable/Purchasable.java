@@ -8,14 +8,14 @@ import java.util.Objects;
 
 public class Purchasable implements IPurchasable {
     private IItemVariant itemVariant;
-    private Integer quantity;
+    private int quantity;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public Purchasable(){}
 
-    public Purchasable(IItemVariant itemVariant, Integer quantity){
+    public Purchasable(IItemVariant itemVariant, int quantity){
         this.itemVariant = itemVariant;
         this.quantity = quantity;
     }
@@ -26,12 +26,12 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
     @Override
-    public void incrementQuantity(Integer increment){
+    public void incrementQuantity(int increment){
         if (increment < 0) {
             Log.i("Err", "Invalid increment");
             return;

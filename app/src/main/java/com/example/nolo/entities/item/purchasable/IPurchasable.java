@@ -4,6 +4,6 @@ import com.example.nolo.entities.item.variant.IItemVariant;
 
 public interface IPurchasable {
     IItemVariant getItemVariant();
-    Integer getQuantity();
-    void incrementQuantity(Integer increment);
+    int getQuantity();
+    void incrementQuantity(int increment);
 }
