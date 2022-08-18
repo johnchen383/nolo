@@ -7,10 +7,10 @@ import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
+/**
+ * {@link #itemId} {@link #categoryType} will not be in the Firestore
+ */
 public abstract class Item implements IItem {
-    /**
-     * {@link #itemId} {@link #categoryType} will not be in the Firestore
-     */
     private String itemId, name, brand;
     private CategoryType categoryType;
     private ISpecs specs;

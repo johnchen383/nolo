@@ -6,6 +6,9 @@ import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
+/**
+ * {@link #storeId} will not be in the Firestore
+ */
 public class Store implements IStore {
     /**
      * Object list cannot use IBranch (Branch Interface),
@@ -17,9 +20,6 @@ public class Store implements IStore {
      * So it is a reasonable excuse to violate the SOLID principle.
      */
     private List<Branch> branches;
-    /**
-     * {@link #storeId} will not be in the Firestore
-     */
     private String storeId, storeName;
 
     /**

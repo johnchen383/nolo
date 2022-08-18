@@ -9,11 +9,11 @@ import com.google.firebase.firestore.Exclude;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@link #userAuthUid} {@link #email} will not be in the Firestore
+ */
 public class User implements IUser {
     private static final int MAX_VIEWED = 5;
-    /**
-     * {@link #userAuthUid} {@link #email} will not be in the Firestore
-     */
     private String userAuthUid, email;
     private List<IItemVariant> viewHistory = new ArrayList<>();
     private List<IPurchasable> cart = new ArrayList<>();
