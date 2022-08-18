@@ -229,6 +229,27 @@ public class ItemsRepository implements IItemsRepository {
     }
 
     /**
+     * Get list of Items by list of item IDs.
+     * Convert list of Item IDs to list of Item entities
+     *
+     * @param itemIds List of item IDs
+     * @return List of Item entities
+     */
+    @Override
+    public List<IItem> getItemByIdList(List<String> itemIds) {
+        List<IItem> result = new ArrayList<>();
+
+        for (IItem item : allItemsRepo) {
+            if (itemIds.contains(item.getItemId())) {
+                result.add(item);
+            }
+        }
+
+        reloadItemsIfExpired();
+        return result;
+    }
+
+    /**
      * Get list of Items by a specific Category Type
      *
      * @param categoryType Specific Category Type
@@ -273,5 +294,16 @@ public class ItemsRepository implements IItemsRepository {
 
         reloadItemsIfExpired();
         return result;
+    }
+
+    /**
+     * Get list of Accessory entities that are recommended of a specific Item
+     *
+     * @param itemId Specific Item ID
+     * @return List of Accessory entities
+     */
+    @Override
+    public List<IItem> getAccessRecommendationsByItemId(String itemId) {
+        return getItemByIdList(getItemById(itemId).getRecommendedAccessoryIds());
     }
 }
