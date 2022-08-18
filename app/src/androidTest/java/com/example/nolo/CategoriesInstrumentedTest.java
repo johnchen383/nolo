@@ -10,7 +10,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.interactors.category.GetCategoryByIdUseCase;
+import com.example.nolo.interactors.category.GetCategoryByTypeUseCase;
 import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.category.CategoriesRepository;
@@ -61,7 +61,7 @@ public class CategoriesInstrumentedTest {
 
         // Test getCategoryById()
         CategoryType id = GetCategoriesUseCase.getCategories().get(0).getCategoryType();
-        assertNotNull(GetCategoryByIdUseCase.getCategoryById(id));
+        assertNotNull(GetCategoryByTypeUseCase.getCategoryByType(id));
     }
 
 }

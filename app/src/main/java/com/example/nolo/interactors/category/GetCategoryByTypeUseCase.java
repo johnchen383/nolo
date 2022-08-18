@@ -4,13 +4,15 @@ import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.category.CategoriesRepository;
 
-public class GetCategoryByIdUseCase {
+public class GetCategoryByTypeUseCase {
     /**
+     * Get Category entity by Category Type enum
      *
-     * @param categoryId
-     * @return
+     * @param categoryType Specific Category Type in enum
+     * @return Category entity if categoryType exists;
+     *         Otherwise null
      */
-    public static ICategory getCategoryById(CategoryType categoryType) {
+    public static ICategory getCategoryByType(CategoryType categoryType) {
         return CategoriesRepository.getInstance().getCategoryByType(categoryType);
     }
 }

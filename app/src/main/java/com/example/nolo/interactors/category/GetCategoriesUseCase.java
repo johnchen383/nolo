@@ -7,8 +7,9 @@ import java.util.List;
 
 public class GetCategoriesUseCase {
     /**
+     * Get List of Category entities
      *
-     * @return
+     * @return List of Category entities
      */
     public static List<ICategory> getCategories(){
         return CategoriesRepository.getInstance().getCategories();
