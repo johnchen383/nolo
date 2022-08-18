@@ -3,35 +3,20 @@ package com.example.nolo.activities;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.nolo.R;
-import com.example.nolo.interactors.GetCategoriesUseCase;
-import com.example.nolo.interactors.GetCurrentUserUseCase;
-import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
-import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
-import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
-import com.example.nolo.interactors.LogInUseCase;
-import com.example.nolo.interactors.LogOutUseCase;
-import com.example.nolo.interactors.SignUpUseCase;
-import com.example.nolo.util.Animation;
-import com.example.nolo.viewmodels.CartViewModel;
+import com.example.nolo.interactors.user.GetCurrentUserUseCase;
+import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
+import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
+import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
 import com.example.nolo.viewmodels.SplashViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.protobuf.Value;
 
 import java.util.function.Consumer;
 

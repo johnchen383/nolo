@@ -1,4 +1,4 @@
-package com.example.nolo.interactors;
+package com.example.nolo.interactors.user;
 
 import com.example.nolo.repositories.user.UsersRepository;
 

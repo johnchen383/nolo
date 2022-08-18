@@ -8,7 +8,7 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
 import com.example.nolo.repositories.store.StoresRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;

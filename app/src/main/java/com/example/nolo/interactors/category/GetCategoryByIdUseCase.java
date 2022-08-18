@@ -1,4 +1,4 @@
-package com.example.nolo.interactors;
+package com.example.nolo.interactors.category;
 
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.enums.CategoryType;

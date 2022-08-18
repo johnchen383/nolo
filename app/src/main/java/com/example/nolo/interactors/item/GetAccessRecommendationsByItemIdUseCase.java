@@ -1,4 +1,4 @@
-package com.example.nolo.interactors;
+package com.example.nolo.interactors.item;
 
 import com.example.nolo.repositories.item.ItemsRepository;
 

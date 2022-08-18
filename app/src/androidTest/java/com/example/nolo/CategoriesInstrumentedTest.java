@@ -9,9 +9,9 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.nolo.interactors.GetCategoriesUseCase;
-import com.example.nolo.interactors.GetCategoryByIdUseCase;
-import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.interactors.category.GetCategoryByIdUseCase;
+import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.category.CategoriesRepository;
 import com.example.nolo.viewmodels.SplashViewModel;

@@ -1,4 +1,4 @@
-package com.example.nolo.interactors;
+package com.example.nolo.interactors.store;
 
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.repositories.store.StoresRepository;

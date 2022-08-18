@@ -10,10 +10,10 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.nolo.interactors.GetCategoriesUseCase;
-import com.example.nolo.interactors.GetCategoryByIdUseCase;
-import com.example.nolo.interactors.GetCategoryItemsUseCase;
-import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
+import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.interactors.category.GetCategoryByIdUseCase;
+import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.item.ItemsRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
