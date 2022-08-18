@@ -56,12 +56,14 @@ public class CategoriesInstrumentedTest {
         assertEquals(CategoriesRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(CategoriesRepository.class));
 
+        // Test getCategories()
         // Test if there are only 3 categories {laptops, phones, accessories}
         assertEquals(3, GetCategoriesUseCase.getCategories().size());
 
-        // Test getCategoryById()
-        CategoryType id = GetCategoriesUseCase.getCategories().get(0).getCategoryType();
-        assertNotNull(GetCategoryByTypeUseCase.getCategoryByType(id));
+        // Test getCategoryByType()
+        assertEquals("laptops", GetCategoryByTypeUseCase.getCategoryByType(CategoryType.laptops).getCategoryName());
+        assertEquals("phones", GetCategoryByTypeUseCase.getCategoryByType(CategoryType.phones).getCategoryName());
+        assertEquals("accessories", GetCategoryByTypeUseCase.getCategoryByType(CategoryType.accessories).getCategoryName());
     }
 
 }

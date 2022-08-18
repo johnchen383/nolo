@@ -2,6 +2,7 @@ package com.example.nolo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -10,9 +11,13 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.category.GetCategoryByTypeUseCase;
+import com.example.nolo.interactors.item.GetAccessRecommendationsByItemIdUseCase;
+import com.example.nolo.interactors.item.GetAllItemsUseCase;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.item.ItemsRepository;
@@ -58,14 +63,24 @@ public class ItemsInstrumentedTest {
         assertEquals(ItemsRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(ItemsRepository.class));
 
-        // Test getCategoryType()
+        // Test getAllItems()
+        assertTrue(GetAllItemsUseCase.getAllItems().size() > 0);
+
+        // Test getItemById()
+        IItem i1 = GetAllItemsUseCase.getAllItems().get(0);
+        IItem i2 = GetItemByIdUseCase.getItemById(i1.getItemId());
+        assertEquals(i1.getItemId(), i2.getItemId());
+        assertEquals(i1.getName(), i2.getName());
+
+        // Test getCategoryItems()
+        assertTrue(GetCategoryItemsUseCase.getCategoryItems(CategoryType.laptops).size() > 0);
+        assertTrue(GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones).size() > 0);
+        assertTrue(GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories).size() > 0);
+
+        // Test Item.getCategoryType()
         assertSame(CategoryType.laptops, GetCategoryItemsUseCase.getCategoryItems(CategoryType.laptops).get(0).getCategoryType());
         assertSame(CategoryType.phones, GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones).get(0).getCategoryType());
         assertSame(CategoryType.accessories, GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories).get(0).getCategoryType());
-
-        // Test getCategoryById()
-        CategoryType id = GetCategoriesUseCase.getCategories().get(0).getCategoryType();
-        assertNotNull(GetCategoryByTypeUseCase.getCategoryByType(id));
     }
 
 }
