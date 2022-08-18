@@ -8,11 +8,11 @@ public class LogInUseCase {
     /**
      * Log in to the app
      *
-     * @param userLoggedIn A function that will run after the login process (both successful and unsuccessful)
+     * @param onUserLoggedIn A function that will run after the login process (both successful and unsuccessful)
      * @param email
      * @param password
      */
-    public static void logIn(Consumer<String> userLoggedIn, String email, String password) {
-        UsersRepository.getInstance().logIn(userLoggedIn, email, password);
+    public static void logIn(Consumer<String> onUserLoggedIn, String email, String password) {
+        UsersRepository.getInstance().logIn(onUserLoggedIn, email, password);
     }
 }

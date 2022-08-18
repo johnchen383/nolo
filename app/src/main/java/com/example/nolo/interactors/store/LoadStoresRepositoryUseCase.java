@@ -8,9 +8,9 @@ public class LoadStoresRepositoryUseCase {
     /**
      * Load data from Firebase
      *
-     * @param loadedRepository A function that will run after the repository is loaded
+     * @param onLoadedRepository A function that will run after the repository is loaded
      */
-    public static void loadStoresRepository(Consumer<Class<?>> loadedRepository) {
-        StoresRepository.getInstance().loadStores(loadedRepository);
+    public static void loadStoresRepository(Consumer<Class<?>> onLoadedRepository) {
+        StoresRepository.getInstance().loadStores(onLoadedRepository);
     }
 }
