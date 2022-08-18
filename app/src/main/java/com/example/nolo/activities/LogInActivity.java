@@ -64,17 +64,7 @@ public class LogInActivity extends BaseActivity {
     private void initListeners() {
         vh.eyeBtn.setOnClickListener(v -> {
             boolean isHidden = vh.passwordInput.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            System.out.println(vh.passwordInput.getInputType());
-            if (isHidden) {
-                vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                vh.passwordInput.getSelectionStart();
-                setCursorToEnd();
-                vh.eyeIcon.setImageResource(R.drawable.login_icon_eye_closed);
-            } else {
-                vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                setCursorToEnd();
-                vh.eyeIcon.setImageResource(R.drawable.login_icon_eye_open);
-            }
+            togglePassword(isHidden);
         });
 
         vh.forgotPassword.setOnClickListener(v -> {
@@ -93,8 +83,6 @@ public class LogInActivity extends BaseActivity {
             if (userEmail.isEmpty() || userPassword.isEmpty()) {
                 return;
             }
-
-            System.out.println("Email: " + userEmail + "\nPassword: " + userPassword);
 
             logInViewModel.logIn((error) -> {
                 if (error == null) {
@@ -119,6 +107,12 @@ public class LogInActivity extends BaseActivity {
         });
     }
 
+    public void togglePassword(boolean isHidden) {
+        vh.passwordInput.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        vh.eyeIcon.setImageResource(isHidden ? R.drawable.login_icon_eye_closed : R.drawable.login_icon_eye_open);
+        setCursorToEnd();
+    }
+
     public void clearFocus() {
         vh.emailInput.clearFocus();
         vh.passwordInput.clearFocus();
@@ -128,7 +122,6 @@ public class LogInActivity extends BaseActivity {
         if (isClearFocus) {
             clearFocus();
         }
-
         if (!vh.emailInput.hasFocus() && !vh.passwordInput.hasFocus()) {
             InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);

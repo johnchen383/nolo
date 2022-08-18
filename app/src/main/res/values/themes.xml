@@ -27,6 +27,7 @@
         <item name="itemRippleColor">@android:color/transparent</item>
     </style>
 
+    <!-- Text input style -->
     <style name="Widget.AppTheme.TextInputLayout.FilledBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
         <item name="errorIconDrawable">@null</item>
         <item name="errorTextColor">@color/light_brown</item>

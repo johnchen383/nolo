@@ -47,7 +47,6 @@
                 android:id="@+id/email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:gravity="bottom"
                 android:background="@drawable/login_edit_text"
                 android:fontFamily="@font/abeezee_regular"
@@ -78,7 +77,6 @@
                     android:id="@+id/password_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
                     android:gravity="bottom"
                     android:background="@drawable/login_edit_text"
                     android:fontFamily="@font/abeezee_regular"
@@ -111,7 +109,7 @@
                 android:layout_height="@dimen/touch_target_min"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="@dimen/login_eye_margin"
                 android:background="@null" />
 
         </RelativeLayout>
