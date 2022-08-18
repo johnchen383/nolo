@@ -6,14 +6,15 @@ import com.example.nolo.enums.CategoryType;
 
 import java.util.Objects;
 
+/**
+ * This class is for the selected Item.
+ * E.g. Items in Viewed History.
+ */
 public class ItemVariant implements IItemVariant {
     private IColour colour;
-    private String itemId;
     private CategoryType categoryType;
-    private String storeId;
-    private String branchName;
-    private ISpecsOption storageOption;
-    private ISpecsOption ramOption;
+    private String itemId, storeId, branchName;
+    private ISpecsOption storageOption, ramOption;
 
     /**
      * 0 argument constructor for convert Firebase data to this class

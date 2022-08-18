@@ -6,6 +6,10 @@ import com.example.nolo.entities.item.variant.IItemVariant;
 
 import java.util.Objects;
 
+/**
+ * This class is for the selected Item with quantity.
+ * E.g. Items in Cart.
+ */
 public class Purchasable implements IPurchasable {
     private IItemVariant itemVariant;
     private int quantity;

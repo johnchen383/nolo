@@ -4,6 +4,9 @@ import com.example.nolo.entities.item.colour.IColour;
 
 import java.util.List;
 
+/**
+ * This class is for the variant of a specific item and a specific store.
+ */
 public class ItemStoreVariant implements IItemStoreVariant {
     private String storeId;
     private List<IColour> colours;
