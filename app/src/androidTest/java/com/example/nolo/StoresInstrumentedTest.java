@@ -1,6 +1,7 @@
 package com.example.nolo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
@@ -8,7 +9,8 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
+import com.example.nolo.interactors.store.GetStoreByIdUseCase;
+import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
 import com.example.nolo.repositories.store.StoresRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
 import com.google.firebase.FirebaseApp;
@@ -56,7 +58,8 @@ public class StoresInstrumentedTest {
         // Test if the Firebase data is loaded
         assertEquals(StoresRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(StoresRepository.class));
-    }
 
-    //TODO: testing the fetching of store by id once items are inserted
+        // Test getStoreById()
+        assertNull(GetStoreByIdUseCase.getStoreById("null"));
+    }
 }

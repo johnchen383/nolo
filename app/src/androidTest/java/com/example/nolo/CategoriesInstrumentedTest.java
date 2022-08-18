@@ -9,9 +9,9 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.nolo.interactors.GetCategoriesUseCase;
-import com.example.nolo.interactors.GetCategoryByIdUseCase;
-import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.interactors.category.GetCategoryByTypeUseCase;
+import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.repositories.category.CategoriesRepository;
 import com.example.nolo.viewmodels.SplashViewModel;
@@ -56,12 +56,14 @@ public class CategoriesInstrumentedTest {
         assertEquals(CategoriesRepository.class, str.get(0));
         assertTrue(new SplashViewModel().getLoadable().contains(CategoriesRepository.class));
 
+        // Test getCategories()
         // Test if there are only 3 categories {laptops, phones, accessories}
         assertEquals(3, GetCategoriesUseCase.getCategories().size());
 
-        // Test getCategoryById()
-        CategoryType id = GetCategoriesUseCase.getCategories().get(0).getCategoryType();
-        assertNotNull(GetCategoryByIdUseCase.getCategoryById(id));
+        // Test getCategoryByType()
+        assertEquals("laptops", GetCategoryByTypeUseCase.getCategoryByType(CategoryType.laptops).getCategoryName());
+        assertEquals("phones", GetCategoryByTypeUseCase.getCategoryByType(CategoryType.phones).getCategoryName());
+        assertEquals("accessories", GetCategoryByTypeUseCase.getCategoryByType(CategoryType.accessories).getCategoryName());
     }
 
 }

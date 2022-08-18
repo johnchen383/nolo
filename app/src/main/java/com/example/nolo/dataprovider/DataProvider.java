@@ -6,19 +6,19 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
-import com.example.nolo.entities.item.IItemVariant;
-import com.example.nolo.entities.item.IPurchasable;
-import com.example.nolo.entities.item.ItemVariant;
-import com.example.nolo.entities.item.Purchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.variants.IItemStoreVariant;
-import com.example.nolo.entities.item.variants.ItemStoreVariant;
+import com.example.nolo.entities.item.colour.Colour;
+import com.example.nolo.entities.item.colour.IColour;
+import com.example.nolo.entities.item.storevariants.IItemStoreVariant;
+import com.example.nolo.entities.item.storevariants.ItemStoreVariant;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.specs.AccessorySpecs;
-import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.LaptopSpecs;
@@ -29,6 +29,7 @@ import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
+import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,7 +43,6 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -80,9 +80,9 @@ public class DataProvider {
     private static List<ICategory> generateCategories() {
         List<ICategory> categories = new ArrayList<>();
 
-        categories.add(new Category("accessories", "category_accessory.png"));
-        categories.add(new Category("phones", "category_phone.png"));
-        categories.add(new Category("laptops", "category_laptop.png"));
+        categories.add(new Category(CategoryType.laptops.name(), "category_accessory.png"));
+        categories.add(new Category(CategoryType.phones.name(), "category_phone.png"));
+        categories.add(new Category(CategoryType.accessories.name(), "category_laptop.png"));
 
         return categories;
     }
@@ -92,10 +92,10 @@ public class DataProvider {
         List<ICategory> categories = generateCategories();
 
         for (ICategory category : categories) {
-            db.collection(CollectionPath.categories.name()).document(category.getCategoryType().name()).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
+            db.collection(CollectionPath.categories.name()).document(category.getCategoryName()).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    Log.i("Add categories to Firebase", category.getCategoryType().name() + " added.");
+                    Log.i("Add categories to Firebase", category.getCategoryName() + " added.");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

@@ -8,6 +8,9 @@ import java.util.List;
 public abstract class Specs implements ISpecs {
     private String summary;
 
+    /**
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public Specs() {}
 
     public Specs(String summary) {

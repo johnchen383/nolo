@@ -2,24 +2,25 @@ package com.example.nolo.entities.user;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.item.IItemVariant;
-import com.example.nolo.entities.item.IPurchasable;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
 import com.google.firebase.firestore.Exclude;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@link #userAuthUid} {@link #email} will not be in the Firestore
+ */
 public class User implements IUser {
-    // {userAuthUid, email} will not be in the Firestore
+    private static final int MAX_VIEWED = 5;
     private String userAuthUid, email;
     private List<IItemVariant> viewHistory = new ArrayList<>();
     private List<IPurchasable> cart = new ArrayList<>();
-    private final Integer MAX_VIEWED = 5;
 
     /**
-      * 0 argument constructor for convert Firebase data to this class
-      */
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public User() {}
 
     public User(List<IItemVariant> viewHistory, List<IPurchasable> cart) {
@@ -73,17 +74,6 @@ public class User implements IUser {
     }
 
     @Override
-    @Exclude
-    public boolean isFieldNameValid(String fieldName) {
-        try {
-            Field field = (Field) User.class.getField(fieldName);
-            return true;
-        } catch (NoSuchFieldException e) {
-            return false;
-        }
-    }
-
-    @Override
     public void addCart(IPurchasable cartItem) {
         //if already in cart, simply increment quantity of that in cart
         for (IPurchasable cItem : cart){
@@ -101,6 +91,24 @@ public class User implements IUser {
     public void removeCart(IPurchasable cartItem) {
         //removes if present
         cart.remove(cartItem);
+    }
+
+
+    /**
+     * Check does the field name exist
+     * @param fieldName Field name (case sensitive)
+     * @return True if it is one of the field in User class;
+     *         False if it is not
+     */
+    @Override
+    @Exclude
+    public boolean isFieldNameValid(String fieldName) {
+        try {
+            User.class.getField(fieldName);
+            return true;
+        } catch (NoSuchFieldException e) {
+            return false;
+        }
     }
 
     @NonNull

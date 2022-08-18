@@ -17,15 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.nolo.R;
-import com.example.nolo.interactors.GetCurrentUserUseCase;
-import com.example.nolo.interactors.LoadCategoriesRepositoryUseCase;
-import com.example.nolo.interactors.LoadItemsRepositoryUseCase;
-import com.example.nolo.interactors.LoadStoresRepositoryUseCase;
-import com.example.nolo.interactors.LoadUsersRepositoryUseCase;
+import com.example.nolo.interactors.user.GetCurrentUserUseCase;
+import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
+import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
+import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
+import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
 import com.example.nolo.util.Connectivity;
 import com.example.nolo.util.DeviceLocation;
 import com.example.nolo.viewmodels.SplashViewModel;
