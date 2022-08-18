@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public interface IUsersRepository {
-    void loadUsers(Consumer<Class<?>> loadedRepository);
+    void loadUsers(Consumer<Class<?>> onLoadedRepository);
     IUser getCurrentUser();
-    void signUp(Consumer<String> userSignedUp, String email, String password);
-    void logIn(Consumer<String> userLoggedIn, String email, String password);
+    void signUp(Consumer<String> onUserSignedUp, String email, String password);
+    void logIn(Consumer<String> onUserLoggedIn, String email, String password);
     void logOut();
     void addViewHistory(IItemVariant item);
     List<IItemVariant> getViewHistory();

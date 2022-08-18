@@ -56,7 +56,7 @@ public class StoresRepository implements IStoresRepository {
      * Load data from Firebase.
      */
     @Override
-    public void loadStores(Consumer<Class<?>> loadedRepository) {
+    public void loadStores(Consumer<Class<?>> onLoadedRepository) {
         storesRepo.clear();
         timerForCache.startTimer();
 
@@ -81,7 +81,7 @@ public class StoresRepository implements IStoresRepository {
                 }
 
                 // inform this repository finished loading
-                loadedRepository.accept(StoresRepository.class);
+                onLoadedRepository.accept(StoresRepository.class);
             }
         });
     }

@@ -72,7 +72,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * Load Laptop from Firebase.
      */
-    private void loadLaptopsRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedLaptopsRepo) {
+    private void loadLaptopsRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedLaptopsRepo) {
         laptopsRepo.clear();
 
         db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -97,7 +97,7 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform laptops repository finished loading
-                loadedLaptopsRepo.accept(loadedRepository, CategoryType.laptops);
+                onLoadedLaptopsRepo.accept(onLoadedRepository, CategoryType.laptops);
             }
         });
     }
@@ -105,7 +105,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * Load Phone from Firebase.
      */
-    private void loadPhonesRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedPhonesRepo) {
+    private void loadPhonesRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedPhonesRepo) {
         phonesRepo.clear();
 
         db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -130,7 +130,7 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform phones repository finished loading
-                loadedPhonesRepo.accept(loadedRepository, CategoryType.phones);
+                onLoadedPhonesRepo.accept(onLoadedRepository, CategoryType.phones);
             }
         });
     }
@@ -138,7 +138,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * Load Accessory from Firebase.
      */
-    private void loadAccessoriesRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedAccessoriesRepo) {
+    private void loadAccessoriesRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedAccessoriesRepo) {
         accessoriesRepo.clear();
 
         db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -163,7 +163,7 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform this accessories finished loading
-                loadedAccessoriesRepo.accept(loadedRepository, CategoryType.accessories);
+                onLoadedAccessoriesRepo.accept(onLoadedRepository, CategoryType.accessories);
             }
         });
     }
@@ -171,7 +171,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * When all items repository are loaded, inform that it is done
      */
-    private void onLoadItemsRepoCacheComplete(Consumer<Class<?>> loadedRepository, CategoryType itemCategory) {
+    private void onLoadItemsRepoCacheComplete(Consumer<Class<?>> onLoadedRepository, CategoryType itemCategory) {
         loadedCategoryItems.add(itemCategory);
 
         if (loadedCategoryItems.equals(loadableCategoryItems)) {
@@ -182,7 +182,7 @@ public class ItemsRepository implements IItemsRepository {
             allItemsRepo.addAll(accessoriesRepo);
 
             // inform Items repository finished loading
-            loadedRepository.accept(ItemsRepository.class);
+            onLoadedRepository.accept(ItemsRepository.class);
         }
     }
 
@@ -190,14 +190,14 @@ public class ItemsRepository implements IItemsRepository {
      * Load data from Firebase.
      */
     @Override
-    public void loadItems(Consumer<Class<?>> loadedRepository) {
+    public void loadItems(Consumer<Class<?>> onLoadedRepository) {
         allItemsRepo.clear();
         loadedCategoryItems.clear();
         timerForCache.startTimer();
 
-        loadLaptopsRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
-        loadPhonesRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
-        loadAccessoriesRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
+        loadLaptopsRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
+        loadPhonesRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
+        loadAccessoriesRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
     }
 
     @Override

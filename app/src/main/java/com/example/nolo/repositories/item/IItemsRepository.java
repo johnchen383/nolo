@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public interface IItemsRepository {
-    void loadItems(Consumer<Class<?>> loadedRepository);
+    void loadItems(Consumer<Class<?>> onLoadedRepository);
     List<IItem> getAllItems();
     IItem getItemById(String itemId);
     List<IItem> getItemByIdList(List<String> itemIds);

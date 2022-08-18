@@ -53,7 +53,7 @@ public class UsersRepository implements IUsersRepository {
      * Load data from Firebase.
      */
     @Override
-    public void loadUsers(Consumer<Class<?>> loadedRepository) {
+    public void loadUsers(Consumer<Class<?>> onLoadedRepository) {
         usersRepo.clear();
 
         db.collection(CollectionPath.users.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -71,7 +71,7 @@ public class UsersRepository implements IUsersRepository {
                 }
 
                 // inform this repository finished loading
-                loadedRepository.accept(UsersRepository.class);
+                onLoadedRepository.accept(UsersRepository.class);
             }
         });
     }
@@ -110,47 +110,47 @@ public class UsersRepository implements IUsersRepository {
     /**
      * After signing up, add user into Firestore.
      */
-    private void addUserRepoAfterSignedUp(Consumer<String> userSignUp, String uid) {
+    private void addUserRepoAfterSignedUp(Consumer<String> onUserSignUp, String uid) {
         db.collection(CollectionPath.users.name()).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.i("Add users to Firebase", uid + " added.");
-                    userSignUp.accept(null);
+                    onUserSignUp.accept(null);
                 } else {
-                    userSignUp.accept(task.getException().getMessage());
+                    onUserSignUp.accept(task.getException().getMessage());
                 }
             }
         });
     }
 
     @Override
-    public void signUp(Consumer<String> userSignedUp, String email, String password) {
+    public void signUp(Consumer<String> onUserSignedUp, String email, String password) {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Sign Up", "createUserWithEmail:success");
                     // after signing up, add user into Firestore
-                    addUserRepoAfterSignedUp((err) -> userSignedUp.accept(err), task.getResult().getUser().getUid());
+                    addUserRepoAfterSignedUp((err) -> onUserSignedUp.accept(err), task.getResult().getUser().getUid());
                 } else {
-                    userSignedUp.accept(task.getException().getMessage());
+                    onUserSignedUp.accept(task.getException().getMessage());
                 }
             }
         });
     }
 
     @Override
-    public void logIn(Consumer<String> userLoggedIn, String email, String password) {
+    public void logIn(Consumer<String> onUserLoggedIn, String email, String password) {
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Log In", "signInWithEmail:success");
                     currentUser = getCurrentUser();
-                    userLoggedIn.accept(null);
+                    onUserLoggedIn.accept(null);
                 } else {
-                    userLoggedIn.accept(task.getException().getMessage());
+                    onUserLoggedIn.accept(task.getException().getMessage());
                 }
             }
         });

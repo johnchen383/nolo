@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public interface ICategoriesRepository {
-    void loadCategories(Consumer<Class<?>> loadedRepository);
+    void loadCategories(Consumer<Class<?>> onLoadedRepository);
     ICategory getCategoryByType(CategoryType categoryType);
     List<ICategory> getCategories();
 }

@@ -57,7 +57,7 @@ public class CategoriesRepository implements ICategoriesRepository {
      * Load data from Firebase.
      */
     @Override
-    public void loadCategories(Consumer<Class<?>> loadedRepository) {
+    public void loadCategories(Consumer<Class<?>> onLoadedRepository) {
         categoriesRepo.clear();
         timerForCache.startTimer();
 
@@ -82,7 +82,7 @@ public class CategoriesRepository implements ICategoriesRepository {
                 }
 
                 // inform this repository finished loading
-                loadedRepository.accept(CategoriesRepository.class);
+                onLoadedRepository.accept(CategoriesRepository.class);
             }
         });
     }
