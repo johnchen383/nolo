@@ -27,7 +27,11 @@
         <entry key="..\:/Projects/Uni Project/3rd Year/SOFTENG 306/project-1-java-new-team-1/app/src/main/res/layout/activity_main.xml" value="0.303985171455051" />
         <entry key="..\:/Projects/Uni Project/3rd Year/SOFTENG 306/project-1-java-new-team-1/app/src/main/res/layout/activity_splash.xml" value="0.11875" />
         <entry key="app/src/main/res/drawable/login_button.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/login_edit_text.xml" value="0.266" />
+        <entry key="app/src/main/res/drawable/login_text_edit_bg.xml" value="0.266" />
         <entry key="app/src/main/res/drawable/nav_icon_cart.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/nav_icon_home.xml" value="0.266" />
+        <entry key="app/src/main/res/drawable/nav_icon_search.xml" value="0.266" />
         <entry key="app/src/main/res/drawable/nav_indicator.xml" value="0.14098815917968752" />
         <entry key="app/src/main/res/font/abeezee_regular.xml" value="0.33384615384615385" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.30512820512820515" />

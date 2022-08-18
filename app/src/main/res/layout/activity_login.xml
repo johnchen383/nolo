@@ -32,7 +32,8 @@
             android:id="@+id/email_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/login_padding_small"
+            android:background="@drawable/login_edit_text"
+            android:theme="@style/Widget.AppTheme.TextInputLayout.FilledBox.Dense"
             app:hintTextColor="@color/light_grey"
             android:textColorHint="@color/light_grey"
             android:hint="@string/input_hint_email"
@@ -42,12 +43,12 @@
                 android:id="@+id/email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
+                android:gravity="bottom"
+                android:background="@drawable/login_edit_text"
                 android:fontFamily="@font/abeezee_regular"
                 android:textSize="@dimen/font_body1"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-               />
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
@@ -70,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
-                    android:background="@color/transparent"
+                    android:background="@drawable/login_edit_text"
                     android:fontFamily="@font/abeezee_regular"
                     android:textSize="@dimen/font_body1"
                     android:inputType="textPassword"
@@ -111,7 +112,8 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/touch_target_min"
             android:layout_marginTop="@dimen/login_padding_small"
-            android:paddingTop="@dimen/login_padding_med"
+            android:layout_marginBottom="@dimen/login_padding_med"
+            android:paddingTop="@dimen/login_padding_small"
             android:fontFamily="@font/abeezee_regular"
             android:text="Forgot your password?"
             android:textSize="@dimen/font_body2"

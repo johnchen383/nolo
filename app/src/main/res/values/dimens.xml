@@ -11,6 +11,7 @@
     <dimen name="login_padding_small">4dp</dimen>
     <dimen name="login_padding_med">8dp</dimen>
     <dimen name="login_padding_lrg">16dp</dimen>
+    <dimen name="login_padding_xlrg">32dp</dimen>
     <dimen name="login_indent_offset">-16dp</dimen>
     <dimen name="login_button_padding">14dp</dimen>
     <dimen name="login_border">2dp</dimen>
@@ -19,5 +20,7 @@
     <dimen name="font_h6">20sp</dimen>
     <dimen name="font_body1">16sp</dimen>
     <dimen name="font_body2">14sp</dimen>
+    <dimen name="font_caption">12sp</dimen>
+    <dimen name="font_overline">10sp</dimen>
     <dimen name="icon_size">20dp</dimen>
 </resources>
