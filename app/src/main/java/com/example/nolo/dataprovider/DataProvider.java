@@ -364,13 +364,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh-1000xm4_1_black.jpg",
-                "item_accessory_sony_wh-1000xm4_2_black.jpg",
-                "item_accessory_sony_wh-1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
 
-                "item_accessory_sony_wh-1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh-1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh-1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
