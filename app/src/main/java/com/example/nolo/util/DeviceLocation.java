@@ -23,7 +23,9 @@ public class DeviceLocation {
     private static android.content.Context ctx;
 
     public static boolean hasLocationPermissions(@NonNull android.content.Context context) {
-        return !(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED);
+        boolean noFineLocation = ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED;
+        boolean noCoarseLocation = ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
+        return !(noFineLocation && noCoarseLocation);
     }
 
     public static void loadCurrentLocation(@NonNull android.content.Context context) {
