@@ -11,6 +11,7 @@ import com.example.nolo.entities.item.Phone;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
+import com.example.nolo.util.TimeKeeper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +33,7 @@ public class ItemsRepository implements IItemsRepository {
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
     private final List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
-    private long lastLoadedTime;
+    private final TimeKeeper timerForCache;
     private final Set<CategoryType> loadableCategoryItems, loadedCategoryItems;
 
     private ItemsRepository() {
@@ -41,14 +42,14 @@ public class ItemsRepository implements IItemsRepository {
         laptopsRepo = new ArrayList<>();
         phonesRepo = new ArrayList<>();
         accessoriesRepo = new ArrayList<>();
-        lastLoadedTime = 0;
+        timerForCache = new TimeKeeper(RepositoryExpiredTime.TIME_LIMIT);
         loadableCategoryItems = new HashSet<>(Arrays.asList(
                 CategoryType.laptops, CategoryType.phones, CategoryType.accessories
         ));
         loadedCategoryItems = new HashSet<>();
     }
 
-    /*
+    /**
      * This is for singleton class.
      */
     public static ItemsRepository getInstance() {
@@ -58,11 +59,11 @@ public class ItemsRepository implements IItemsRepository {
         return itemsRepository;
     }
 
-    /*
+    /**
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadItemsIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > RepositoryExpiredTime.TIME_LIMIT)
+        if (timerForCache.isTimeLimitReached())
             loadItems(a -> {});
     }
 
@@ -192,14 +193,14 @@ public class ItemsRepository implements IItemsRepository {
         }
     }
 
-    /*
+    /**
      * Load data from Firebase.
      */
     @Override
     public void loadItems(Consumer<Class<?>> loadedRepository) {
         allItemsRepo.clear();
         loadedCategoryItems.clear();
-        lastLoadedTime = System.currentTimeMillis();
+        timerForCache.startTimer();
 
         loadLaptopsRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);
         loadPhonesRepo(loadedRepository, this::onLoadItemsRepoCacheComplete);

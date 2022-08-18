@@ -39,6 +39,9 @@ public class UsersRepository implements IUsersRepository {
         currentUser = null;
     }
 
+    /**
+     * This is for singleton class.
+     */
     public static UsersRepository getInstance() {
         if (usersRepository == null)
             usersRepository = new UsersRepository();
@@ -46,6 +49,9 @@ public class UsersRepository implements IUsersRepository {
         return usersRepository;
     }
 
+    /**
+     * Load data from Firebase.
+     */
     @Override
     public void loadUsers(Consumer<Class<?>> loadedRepository) {
         usersRepo.clear();

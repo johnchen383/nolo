@@ -9,6 +9,7 @@ import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
+import com.example.nolo.util.TimeKeeper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,15 +27,15 @@ public class CategoriesRepository implements ICategoriesRepository {
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
     private final List<ICategory> categories;
-    private long lastLoadedTime;
+    private final TimeKeeper timerForCache;
 
     private CategoriesRepository() {
         db = FirebaseFirestore.getInstance();
         categories = new ArrayList<>();
-        lastLoadedTime = 0;
+        timerForCache = new TimeKeeper(RepositoryExpiredTime.TIME_LIMIT);
     }
 
-    /*
+    /**
      * This is for singleton class.
      */
     public static CategoriesRepository getInstance() {
@@ -44,21 +45,21 @@ public class CategoriesRepository implements ICategoriesRepository {
         return categoriesRepository;
     }
 
-    /*
+    /**
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadCategoriesIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > RepositoryExpiredTime.TIME_LIMIT)
+        if (timerForCache.isTimeLimitReached())
             loadCategories(a -> {});
     }
 
-    /*
+    /**
      * Load data from Firebase.
      */
     @Override
     public void loadCategories(Consumer<Class<?>> loadedRepository) {
         categories.clear();
-        lastLoadedTime = System.currentTimeMillis();
+        timerForCache.startTimer();
 
         db.collection(CollectionPath.categories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

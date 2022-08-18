@@ -8,6 +8,7 @@ import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
 import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
+import com.example.nolo.util.TimeKeeper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,15 +26,15 @@ public class StoresRepository implements IStoresRepository {
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
     private final List<IStore> storesRepo;
-    private long lastLoadedTime;
+    private final TimeKeeper timerForCache;
 
     private StoresRepository() {
         db = FirebaseFirestore.getInstance();
         storesRepo = new ArrayList<>();
-        lastLoadedTime = 0;
+        timerForCache = new TimeKeeper(RepositoryExpiredTime.TIME_LIMIT);
     }
 
-    /*
+    /**
      * This is for singleton class.
      */
     public static StoresRepository getInstance() {
@@ -43,21 +44,21 @@ public class StoresRepository implements IStoresRepository {
         return storesRepository;
     }
 
-    /*
+    /**
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadStoresIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > RepositoryExpiredTime.TIME_LIMIT)
+        if (timerForCache.isTimeLimitReached())
             loadStores(a -> {});
     }
 
-    /*
+    /**
      * Load data from Firebase.
      */
     @Override
     public void loadStores(Consumer<Class<?>> loadedRepository) {
         storesRepo.clear();
-        lastLoadedTime = System.currentTimeMillis();
+        timerForCache.startTimer();
 
         db.collection(CollectionPath.stores.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
