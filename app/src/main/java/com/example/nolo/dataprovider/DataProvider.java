@@ -231,8 +231,506 @@ public class DataProvider {
         List<IItemStoreVariant> itemStoreVariant;
         List<IColour> colours;
 
-        /*
+        /**
          * Laptops
+         */
+        /*
+         * Laptop 1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 3
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 4
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -287,8 +785,560 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
 
-        /*
+        /**
          * Phones
+         */
+        /*
+         * Phone 1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 3
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 4
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 10
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("burgundy", "#6A4E57"),
@@ -349,8 +1399,272 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
 
-        /*
+        /**
          * Accessories
+         */
+        /*
+         * Accessory 1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 3
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 4
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black.jpg",
+                "item_accessory_sony_wh_1000xm4_2_black.jpg",
+                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 10
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
