@@ -2,11 +2,15 @@ package com.example.nolo.entities.category;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.store.IBranch;
+import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
+/**
+ * {@link #categoryType} will not be in the Firestore
+ */
 public class Category implements ICategory {
-    private String categoryId, categoryName, imageUri;
+    private CategoryType categoryType;
+    private String categoryName, imageUri;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
@@ -19,14 +23,14 @@ public class Category implements ICategory {
     }
 
     @Override
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
     }
 
     @Override
     @Exclude
-    public String getCategoryId() {
-        return categoryId;
+    public CategoryType getCategoryType() {
+        return categoryType;
     }
 
     @Override
@@ -42,7 +46,6 @@ public class Category implements ICategory {
     @NonNull
     @Override
     public String toString() {
-        String result = "Category ID: " + categoryId;
-        return result;
+        return "Category type: " + categoryType;
     }
 }

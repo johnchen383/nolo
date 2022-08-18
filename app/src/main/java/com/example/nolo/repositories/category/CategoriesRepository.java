@@ -6,9 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
-import com.example.nolo.entities.store.IStore;
-import com.example.nolo.entities.store.Store;
-import com.example.nolo.repositories.store.StoresRepository;
+import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.CollectionPath;
+import com.example.nolo.repositories.RepositoryExpiredTime;
+import com.example.nolo.util.TimeToLiveToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,21 +24,17 @@ import java.util.function.Consumer;
  * This is a singleton class for Categories repository.
  */
 public class CategoriesRepository implements ICategoriesRepository {
-    public static final long TIME_IN_MILLISECONDS_TEN_MINUTES = 1000*60*10;
-    public static final String COLLECTION_PATH_CATEGORIES = "categories";
-
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
-    private final List<ICategory> categories;
-    private long lastLoadedTime;
+    private List<ICategory> categoriesRepo;
+    private final TimeToLiveToken timeToLiveToken;
 
     private CategoriesRepository() {
         db = FirebaseFirestore.getInstance();
-        categories = new ArrayList<>();
-        lastLoadedTime = 0;
+        timeToLiveToken = new TimeToLiveToken(RepositoryExpiredTime.TIME_LIMIT);
     }
 
-    /*
+    /**
      * This is for singleton class.
      */
     public static CategoriesRepository getInstance() {
@@ -47,34 +44,34 @@ public class CategoriesRepository implements ICategoriesRepository {
         return categoriesRepository;
     }
 
-    /*
+    /**
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadCategoriesIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_TEN_MINUTES)
+        if (timeToLiveToken.hasExpired())
             loadCategories(a -> {});
     }
 
-    /*
+    /**
      * Load data from Firebase.
      */
     @Override
-    public void loadCategories(Consumer<Class<?>> loadedRepository) {
-        categories.clear();
-        lastLoadedTime = System.currentTimeMillis();
+    public void loadCategories(Consumer<Class<?>> onLoadedRepository) {
+        categoriesRepo = new ArrayList<>();
+        timeToLiveToken.reset();
 
-        db.collection(COLLECTION_PATH_CATEGORIES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(CollectionPath.categories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         ICategory category = document.toObject(Category.class);
-                        category.setCategoryId(document.getId());  // store document ID after getting the object
-                        categories.add(category);
+                        category.setCategoryType(CategoryType.valueOf(document.getId()));  // store document ID after getting the object
+                        categoriesRepo.add(category);
                         Log.i("Load Categories From Firebase", category.toString());
                     }
 
-                    if (categories.size() > 0) {
+                    if (categoriesRepo.size() > 0) {
                         Log.i("Load Categories From Firebase", "Success");
                     } else {
                         Log.i("Load Categories From Firebase", "Categories collection is empty!");
@@ -84,16 +81,23 @@ public class CategoriesRepository implements ICategoriesRepository {
                 }
 
                 // inform this repository finished loading
-                loadedRepository.accept(CategoriesRepository.class);
+                onLoadedRepository.accept(CategoriesRepository.class);
             }
         });
     }
 
+    /**
+     * Get Category entity by Category Type enum
+     *
+     * @param categoryType Specific Category Type in enum
+     * @return Category entity if categoryType exists;
+     *         Otherwise null
+     */
     @Override
-    public ICategory getCategoryById(String categoryId) {
+    public ICategory getCategoryByType(CategoryType categoryType) {
         ICategory result = null;
-        for (ICategory category : categories) {
-            if (category.getCategoryId().equals(categoryId)) {
+        for (ICategory category : categoriesRepo) {
+            if (category.getCategoryType().equals(categoryType)) {
                 result = category;
                 break;
             }
@@ -107,7 +111,7 @@ public class CategoriesRepository implements ICategoriesRepository {
     public List<ICategory> getCategories() {
         reloadCategoriesIfExpired();
 
-        return categories;
+        return categoriesRepo;
     }
 
 
