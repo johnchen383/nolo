@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
-  * This is a singleton class for Stores repository.
-  */
+ * This is a singleton class for Stores repository.
+ */
 public class StoresRepository implements IStoresRepository {
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
@@ -86,6 +86,13 @@ public class StoresRepository implements IStoresRepository {
         });
     }
 
+    /**
+     * Get Store entity by store ID
+     *
+     * @param storeId store ID
+     * @return Store entity if storeId exists;
+     *         Otherwise null
+     */
     @Override
     public IStore getStoreById(String storeId) {
         IStore result = null;
