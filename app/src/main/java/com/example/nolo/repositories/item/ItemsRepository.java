@@ -11,7 +11,7 @@ import com.example.nolo.entities.item.Phone;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;
-import com.example.nolo.util.TimeKeeper;
+import com.example.nolo.util.TimeToLiveToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,7 +33,7 @@ public class ItemsRepository implements IItemsRepository {
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
     private final List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
-    private final TimeKeeper timerForCache;
+    private final TimeToLiveToken timeToLiveToken;
     private final Set<CategoryType> loadableCategoryItems, loadedCategoryItems;
 
     private ItemsRepository() {
@@ -42,7 +42,7 @@ public class ItemsRepository implements IItemsRepository {
         laptopsRepo = new ArrayList<>();
         phonesRepo = new ArrayList<>();
         accessoriesRepo = new ArrayList<>();
-        timerForCache = new TimeKeeper(RepositoryExpiredTime.TIME_LIMIT);
+        timeToLiveToken = new TimeToLiveToken(RepositoryExpiredTime.TIME_LIMIT);
         loadableCategoryItems = new HashSet<>(Arrays.asList(
                 CategoryType.laptops,
                 CategoryType.phones,
@@ -65,7 +65,7 @@ public class ItemsRepository implements IItemsRepository {
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadItemsIfExpired() {
-        if (timerForCache.isTimeLimitReached())
+        if (timeToLiveToken.hasExpired())
             loadItems(a -> {});
     }
 
@@ -193,7 +193,7 @@ public class ItemsRepository implements IItemsRepository {
     public void loadItems(Consumer<Class<?>> onLoadedRepository) {
         allItemsRepo.clear();
         loadedCategoryItems.clear();
-        timerForCache.startTimer();
+        timeToLiveToken.reset();
 
         loadLaptopsRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
         loadPhonesRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
