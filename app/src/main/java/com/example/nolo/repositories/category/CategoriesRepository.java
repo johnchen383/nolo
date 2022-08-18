@@ -91,7 +91,7 @@ public class CategoriesRepository implements ICategoriesRepository {
      * Get Category entity by Category Type enum
      *
      * @param categoryType Specific Category Type in enum
-     * @return Category entity if exist;
+     * @return Category entity if categoryType exists;
      *         Otherwise null
      */
     @Override

@@ -44,7 +44,9 @@ public class ItemsRepository implements IItemsRepository {
         accessoriesRepo = new ArrayList<>();
         timerForCache = new TimeKeeper(RepositoryExpiredTime.TIME_LIMIT);
         loadableCategoryItems = new HashSet<>(Arrays.asList(
-                CategoryType.laptops, CategoryType.phones, CategoryType.accessories
+                CategoryType.laptops,
+                CategoryType.phones,
+                CategoryType.accessories
         ));
         loadedCategoryItems = new HashSet<>();
     }
@@ -67,15 +69,12 @@ public class ItemsRepository implements IItemsRepository {
             loadItems(a -> {});
     }
 
-    /*
+    /**
      * Load Laptop from Firebase.
      */
     private void loadLaptopsRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedLaptopsRepo) {
         laptopsRepo.clear();
 
-        /*
-         * Laptop
-         */
         db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -103,15 +102,12 @@ public class ItemsRepository implements IItemsRepository {
         });
     }
 
-    /*
+    /**
      * Load Phone from Firebase.
      */
     private void loadPhonesRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedPhonesRepo) {
         phonesRepo.clear();
 
-        /*
-         * Phone
-         */
         db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -139,15 +135,12 @@ public class ItemsRepository implements IItemsRepository {
         });
     }
 
-    /*
+    /**
      * Load Accessory from Firebase.
      */
     private void loadAccessoriesRepo(Consumer<Class<?>> loadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> loadedAccessoriesRepo) {
         accessoriesRepo.clear();
 
-        /*
-         * Accessory
-         */
         db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -175,13 +168,13 @@ public class ItemsRepository implements IItemsRepository {
         });
     }
 
-    /*
+    /**
      * When all items repository are loaded, inform that it is done
      */
     private void onLoadItemsRepoCacheComplete(Consumer<Class<?>> loadedRepository, CategoryType itemCategory) {
         loadedCategoryItems.add(itemCategory);
 
-        if (loadedRepository.equals(loadableCategoryItems)) {
+        if (loadedCategoryItems.equals(loadableCategoryItems)) {
             Log.i("Load Items From Firebase", "Success");
 
             allItemsRepo.addAll(laptopsRepo);
@@ -214,6 +207,13 @@ public class ItemsRepository implements IItemsRepository {
         return allItemsRepo;
     }
 
+    /**
+     * Get Item entity by item ID
+     *
+     * @param itemId item ID
+     * @return Item entity if itemId exists;
+     *         Otherwise null
+     */
     @Override
     public IItem getItemById(String itemId) {
         IItem result = null;
@@ -228,6 +228,13 @@ public class ItemsRepository implements IItemsRepository {
         return result;
     }
 
+    /**
+     * Get list of Items by a specific Category Type
+     *
+     * @param categoryType Specific Category Type
+     * @return List of Items if categoryType exists;
+     *         Otherwise empty list
+     */
     @Override
     public List<IItem> getCategoryItems(CategoryType categoryType) {
         List<IItem> result = new ArrayList<>();
@@ -248,6 +255,13 @@ public class ItemsRepository implements IItemsRepository {
         return result;
     }
 
+    /**
+     * Get list of Items by the search terms
+     *
+     * @param searchTerm Search terms
+     * @return List of Items if Items' names contain search term;
+     *         Otherwise empty list
+     */
     @Override
     public List<IItem> getSearchSuggestions(String searchTerm) {
         List<IItem> result = new ArrayList<>();
