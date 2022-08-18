@@ -5,9 +5,11 @@ import com.example.nolo.repositories.store.StoresRepository;
 
 public class GetStoreByIdUseCase {
     /**
+     * Get Store entity by store ID
      *
-     * @param storeId
-     * @return
+     * @param storeId store ID
+     * @return Store entity if storeId exists;
+     *         Otherwise null
      */
     public static IStore getStoreById(String storeId) {
         return StoresRepository.getInstance().getStoreById(storeId);
