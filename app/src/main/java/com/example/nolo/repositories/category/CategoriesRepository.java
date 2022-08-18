@@ -26,12 +26,11 @@ import java.util.function.Consumer;
 public class CategoriesRepository implements ICategoriesRepository {
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
-    private final List<ICategory> categoriesRepo;
+    private List<ICategory> categoriesRepo;
     private final TimeToLiveToken timeToLiveToken;
 
     private CategoriesRepository() {
         db = FirebaseFirestore.getInstance();
-        categoriesRepo = new ArrayList<>();
         timeToLiveToken = new TimeToLiveToken(RepositoryExpiredTime.TIME_LIMIT);
     }
 
@@ -58,7 +57,7 @@ public class CategoriesRepository implements ICategoriesRepository {
      */
     @Override
     public void loadCategories(Consumer<Class<?>> onLoadedRepository) {
-        categoriesRepo.clear();
+        categoriesRepo = new ArrayList<>();
         timeToLiveToken.reset();
 
         db.collection(CollectionPath.categories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

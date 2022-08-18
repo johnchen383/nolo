@@ -32,16 +32,12 @@ import java.util.function.Consumer;
 public class ItemsRepository implements IItemsRepository {
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
-    private final List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
+    private List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
     private final TimeToLiveToken timeToLiveToken;
     private final Set<CategoryType> loadableCategoryItems, loadedCategoryItems;
 
     private ItemsRepository() {
         db = FirebaseFirestore.getInstance();
-        allItemsRepo = new ArrayList<>();
-        laptopsRepo = new ArrayList<>();
-        phonesRepo = new ArrayList<>();
-        accessoriesRepo = new ArrayList<>();
         timeToLiveToken = new TimeToLiveToken(RepositoryExpiredTime.TIME_LIMIT);
         loadableCategoryItems = new HashSet<>(Arrays.asList(
                 CategoryType.laptops,
@@ -73,7 +69,7 @@ public class ItemsRepository implements IItemsRepository {
      * Load Laptop from Firebase.
      */
     private void loadLaptopsRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedLaptopsRepo) {
-        laptopsRepo.clear();
+        laptopsRepo = new ArrayList<>();
 
         db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -106,7 +102,7 @@ public class ItemsRepository implements IItemsRepository {
      * Load Phone from Firebase.
      */
     private void loadPhonesRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedPhonesRepo) {
-        phonesRepo.clear();
+        phonesRepo = new ArrayList<>();
 
         db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -139,7 +135,7 @@ public class ItemsRepository implements IItemsRepository {
      * Load Accessory from Firebase.
      */
     private void loadAccessoriesRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedAccessoriesRepo) {
-        accessoriesRepo.clear();
+        accessoriesRepo = new ArrayList<>();
 
         db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -191,7 +187,7 @@ public class ItemsRepository implements IItemsRepository {
      */
     @Override
     public void loadItems(Consumer<Class<?>> onLoadedRepository) {
-        allItemsRepo.clear();
+        allItemsRepo = new ArrayList<>();
         loadedCategoryItems.clear();
         timeToLiveToken.reset();
 

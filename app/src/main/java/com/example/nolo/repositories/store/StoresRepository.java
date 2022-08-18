@@ -25,12 +25,11 @@ import java.util.function.Consumer;
 public class StoresRepository implements IStoresRepository {
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
-    private final List<IStore> storesRepo;
+    private List<IStore> storesRepo;
     private final TimeToLiveToken timeToLiveToken;
 
     private StoresRepository() {
         db = FirebaseFirestore.getInstance();
-        storesRepo = new ArrayList<>();
         timeToLiveToken = new TimeToLiveToken(RepositoryExpiredTime.TIME_LIMIT);
     }
 
@@ -57,7 +56,7 @@ public class StoresRepository implements IStoresRepository {
      */
     @Override
     public void loadStores(Consumer<Class<?>> onLoadedRepository) {
-        storesRepo.clear();
+        storesRepo = new ArrayList<>();
         timeToLiveToken.reset();
 
         db.collection(CollectionPath.stores.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
