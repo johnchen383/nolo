@@ -1,13 +1,15 @@
 package com.example.nolo.entities.item.variant;
 
 import com.example.nolo.entities.item.colour.IColour;
+import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.enums.CategoryType;
 
 public interface IItemVariant {
     IColour getColour();
     String getItemId();
-    String getCategoryId();
+    CategoryType getCategoryType();
     String getStoreId();
     String getBranchName();
-    String getStorageSize();
-    String getRamSize();
+    ISpecsOption getStorageOption();
+    ISpecsOption getRamOption();
 }

@@ -1,35 +1,52 @@
 package com.example.nolo.entities.item.variant;
 
 import com.example.nolo.entities.item.colour.IColour;
+import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.enums.CategoryType;
 
 import java.util.Objects;
 
 public class ItemVariant implements IItemVariant {
     private IColour colour;
     private String itemId;
+    private CategoryType categoryType;
     private String storeId;
     private String branchName;
-    private String storageSize;  //TODO: replace with option
-    private String ramSize;     //TODO: replace with option
-    private String categoryId;
+    private ISpecsOption storageOption;
+    private ISpecsOption ramOption;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public ItemVariant() {}
 
-    public ItemVariant(IColour colour, String itemId, String storeId, String branchName, String storageSize, String ramSize, String categoryId) {
+    /**
+     * This constructor is for Laptop, which has storage option and ram option.
+     */
+    public ItemVariant(IColour colour, String itemId, CategoryType categoryType, String storeId, String branchName,
+                       ISpecsOption storageOption, ISpecsOption ramOption) {
         this.colour = colour;
         this.itemId = itemId;
+        this.categoryType = categoryType;
         this.storeId = storeId;
         this.branchName = branchName;
-        this.storageSize = storageSize;
-        this.ramSize = ramSize;
-        this.categoryId = categoryId;
+        this.storageOption = storageOption;
+        this.ramOption = ramOption;
     }
 
-    public ItemVariant(IColour colour, String itemId, String storeId, String branchName, String categoryId){
-        this(colour, itemId, storeId, branchName, null, null, categoryId);
+    /**
+     * This constructor is for Phone, which has storage option.
+     */
+    public ItemVariant(IColour colour, String itemId, CategoryType categoryType, String storeId, String branchName,
+                       ISpecsOption storageOption) {
+        this(colour, itemId, categoryType, storeId, branchName, storageOption, null);
+    }
+
+    /**
+     * This constructor is for Accessory.
+     */
+    public ItemVariant(IColour colour, String itemId, CategoryType categoryType, String storeId, String branchName) {
+        this(colour, itemId, categoryType, storeId, branchName, null, null);
     }
 
     @Override
@@ -43,8 +60,8 @@ public class ItemVariant implements IItemVariant {
     }
 
     @Override
-    public String getCategoryId() {
-        return categoryId;
+    public CategoryType getCategoryType() {
+        return categoryType;
     }
 
     @Override
@@ -58,13 +75,13 @@ public class ItemVariant implements IItemVariant {
     }
 
     @Override
-    public String getStorageSize() {
-        return storageSize;
+    public ISpecsOption getStorageOption() {
+        return storageOption;
     }
 
     @Override
-    public String getRamSize() {
-        return ramSize;
+    public ISpecsOption getRamOption() {
+        return ramOption;
     }
 
     @Override
@@ -72,11 +89,11 @@ public class ItemVariant implements IItemVariant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemVariant that = (ItemVariant) o;
-        return Objects.equals(colour, that.colour) && Objects.equals(itemId, that.itemId) && Objects.equals(storeId, that.storeId) && Objects.equals(branchName, that.branchName) && Objects.equals(storageSize, that.storageSize) && Objects.equals(ramSize, that.ramSize) && Objects.equals(categoryId, that.categoryId);
+        return Objects.equals(colour, that.colour) && Objects.equals(itemId, that.itemId) && Objects.equals(storeId, that.storeId) && Objects.equals(branchName, that.branchName) && Objects.equals(storageOption, that.storageOption) && Objects.equals(ramOption, that.ramOption) && Objects.equals(categoryType, that.categoryType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(colour, itemId, storeId, branchName, storageSize, ramSize, categoryId);
+        return Objects.hash(colour, itemId, storeId, branchName, storageOption, ramOption, categoryType);
     }
 }
