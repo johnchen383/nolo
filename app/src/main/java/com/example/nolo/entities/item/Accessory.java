@@ -15,7 +15,7 @@ public class Accessory extends Item {
     public Accessory() {}
 
     public Accessory(String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
-        super(name, CategoryType.accessories,brand, specs, storeVariants, imageUris);
+        super(CategoryType.accessories, name, brand, specs, storeVariants, imageUris);
     }
 
     @NonNull

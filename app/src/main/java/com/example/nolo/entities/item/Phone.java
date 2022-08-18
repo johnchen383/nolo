@@ -18,7 +18,7 @@ public class Phone extends Item {
 
     public Phone(String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants,
                  List<String> imageUris, List<String> recommendedAccessoryIds) {
-        super(name, CategoryType.phones,brand, specs, storeVariants, imageUris);
+        super(CategoryType.phones, name, brand, specs, storeVariants, imageUris);
         this.recommendedAccessoryIds = recommendedAccessoryIds;
     }
 

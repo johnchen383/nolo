@@ -18,7 +18,7 @@ public class Laptop extends Item {
 
     public Laptop(String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants,
                   List<String> imageUris, List<String> recommendedAccessoryIds) {
-        super(name, CategoryType.laptops, brand, specs, storeVariants, imageUris);
+        super(CategoryType.laptops, name, brand, specs, storeVariants, imageUris);
         this.recommendedAccessoryIds = recommendedAccessoryIds;
     }
 

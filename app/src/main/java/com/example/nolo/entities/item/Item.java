@@ -22,9 +22,9 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(String name, CategoryType categoryType, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
-        this.name = name;
+    public Item(CategoryType categoryType, String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
         this.categoryType = categoryType;
+        this.name = name;
         this.brand = brand;
         this.specs = specs;
         this.storeVariants = storeVariants;
