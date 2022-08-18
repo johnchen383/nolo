@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_top"
             android:fontFamily="@font/abeezee_regular"
-            android:paddingBottom="@dimen/login_padding_med"
+            android:paddingBottom="@dimen/login_padding_lrg"
             android:text="LOG IN"
             android:textSize="@dimen/font_h5" />
 
@@ -38,12 +38,13 @@
             android:hint="@string/input_hint_email"
             android:layout_marginLeft="@dimen/login_indent_offset" >
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:fontFamily="@font/abeezee_regular"
+                android:textSize="@dimen/font_body1"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                />
@@ -55,6 +56,7 @@
             android:layout_height="wrap_content" >
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextColor="@color/light_grey"
@@ -63,13 +65,14 @@
                 app:boxStrokeColor="@color/white"
                 android:layout_marginLeft="@dimen/login_indent_offset" >
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/password_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
                     android:background="@color/transparent"
                     android:fontFamily="@font/abeezee_regular"
+                    android:textSize="@dimen/font_body1"
                     android:inputType="textPassword"
                     android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,9 +110,11 @@
             android:id="@+id/forgot_text_view"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/touch_target_min"
+            android:layout_marginTop="@dimen/login_padding_small"
             android:paddingTop="@dimen/login_padding_med"
             android:fontFamily="@font/abeezee_regular"
             android:text="Forgot your password?"
+            android:textSize="@dimen/font_body2"
             android:textColor="@color/light_brown" />
 
         <com.google.android.material.button.MaterialButton
@@ -120,7 +125,7 @@
             android:paddingVertical="@dimen/login_button_padding"
             android:fontFamily="@font/abeezee_regular"
             android:text="LOG IN"
-            android:textSize="@dimen/font_body"
+            android:textSize="@dimen/font_body1"
             app:backgroundTint="@color/transparent"
             android:outlineSpotShadowColor="@color/transparent"
             app:cornerRadius="@dimen/login_button_radius"
@@ -136,7 +141,7 @@
             android:paddingVertical="@dimen/login_button_padding"
             android:fontFamily="@font/abeezee_regular"
             android:text="LOG IN WITH GOOGLE"
-            android:textSize="@dimen/font_body"
+            android:textSize="@dimen/font_body1"
             app:backgroundTint="@color/transparent"
             app:cornerRadius="@dimen/login_button_radius"
             app:strokeColor="@color/faint_white"
@@ -150,6 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/login_padding_small"
             android:gravity="center">
 
             <TextView
@@ -157,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/abeezee_regular"
-                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/font_body2"
                 android:text="Don't have an account? " />
 
             <RelativeLayout
@@ -173,6 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/abeezee_regular"
+                    android:textSize="@dimen/font_body2"
                     android:text="Register"
                     android:textColor="@color/light_brown" />
 

@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,8 +26,8 @@ public class LogInActivity extends BaseActivity {
     private ViewHolder vh;
 
     private class ViewHolder {
-        TextInputEditText emailInput, passwordInput;
-        TextInputLayout emailLayout;
+        EditText emailInput, passwordInput;
+        TextInputLayout emailLayout, passwordLayout;
         RelativeLayout eyeBtn, signUp;
         ImageView eyeIcon;
         TextView forgotPassword, signUpText;
@@ -36,6 +37,7 @@ public class LogInActivity extends BaseActivity {
             emailInput = findViewById(R.id.email_edit);
             emailLayout = findViewById(R.id.email_layout);
             passwordInput = findViewById(R.id.password_edit);
+            passwordLayout = findViewById(R.id.password_layout);
             eyeBtn = findViewById(R.id.eye_btn);
             eyeIcon = findViewById(R.id.eye_icon);
             forgotPassword = findViewById(R.id.forgot_text_view);
@@ -47,11 +49,11 @@ public class LogInActivity extends BaseActivity {
     }
 
     private void initStyling() {
-        vh.emailInput.setGravity(Gravity.BOTTOM);
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
         vh.emailLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
+        vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
     }
 
     private void initListeners() {
