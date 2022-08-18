@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
@@ -16,6 +17,7 @@ import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.LogInViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LogInActivity extends BaseActivity {
     private LogInViewModel logInViewModel;
@@ -24,6 +26,7 @@ public class LogInActivity extends BaseActivity {
 
     private class ViewHolder {
         TextInputEditText emailInput, passwordInput;
+        TextInputLayout emailLayout;
         RelativeLayout eyeBtn, signUp;
         ImageView eyeIcon;
         TextView forgotPassword, signUpText;
@@ -31,6 +34,7 @@ public class LogInActivity extends BaseActivity {
 
         public ViewHolder(){
             emailInput = findViewById(R.id.email_edit);
+            emailLayout = findViewById(R.id.email_layout);
             passwordInput = findViewById(R.id.password_edit);
             eyeBtn = findViewById(R.id.eye_btn);
             eyeIcon = findViewById(R.id.eye_icon);
@@ -47,6 +51,7 @@ public class LogInActivity extends BaseActivity {
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
+        vh.emailLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
     }
 
     private void initListeners() {

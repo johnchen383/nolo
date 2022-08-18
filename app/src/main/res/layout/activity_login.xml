@@ -29,6 +29,7 @@
             android:textSize="@dimen/font_h5" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/login_padding_small"
@@ -36,7 +37,7 @@
             app:hintTextColor="@color/light_grey"
             android:textColorHint="@color/light_grey"
             android:hint="@string/input_hint_email"
-            app:boxStrokeColor="@color/white"
+            app:boxStrokeColor="@android:color/holo_blue_bright"
             android:layout_marginLeft="@dimen/login_indent_offset" >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -46,7 +47,8 @@
                 android:background="@color/transparent"
                 android:fontFamily="@font/abeezee_regular"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+               />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
