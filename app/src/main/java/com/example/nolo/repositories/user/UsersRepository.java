@@ -76,10 +76,13 @@ public class UsersRepository implements IUsersRepository {
         });
     }
 
-    /*
-    * This method return the current user in User entity if the user is signed in,
-    * if the user is not signed in, it will return null.
-    */
+    /**
+     * This method return the current user in User entity if the user is signed in,
+     * if the user is not signed in, it will return null.
+     *
+     * @return Current user if signed in;
+     *         Otherwise null
+     */
     @Override
     public IUser getCurrentUser() {
         FirebaseUser currentFBUser = fAuth.getCurrentUser();
@@ -104,7 +107,7 @@ public class UsersRepository implements IUsersRepository {
         return null;
     }
 
-    /*
+    /**
      * After signing up, add user into Firestore.
      */
     private void addUserRepoAfterSignedUp(Consumer<String> userSignUp, String uid) {
@@ -139,13 +142,16 @@ public class UsersRepository implements IUsersRepository {
 
     @Override
     public void logIn(Consumer<String> userLoggedIn, String email, String password) {
-        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Log.i("Log In", "signInWithEmail:success");
-                currentUser = getCurrentUser();
-                userLoggedIn.accept(null);
-            } else {
-                userLoggedIn.accept(task.getException().getMessage());
+        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.i("Log In", "signInWithEmail:success");
+                    currentUser = getCurrentUser();
+                    userLoggedIn.accept(null);
+                } else {
+                    userLoggedIn.accept(task.getException().getMessage());
+                }
             }
         });
     }
