@@ -33,11 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/login_padding_small"
-            android:gravity="bottom"
             app:hintTextColor="@color/light_grey"
             android:textColorHint="@color/light_grey"
             android:hint="@string/input_hint_email"
-            app:boxStrokeColor="@android:color/holo_blue_bright"
             android:layout_marginLeft="@dimen/login_indent_offset" >
 
             <com.google.android.material.textfield.TextInputEditText
