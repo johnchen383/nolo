@@ -90,11 +90,17 @@ public class ItemVariant implements IItemVariant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemVariant that = (ItemVariant) o;
-        return Objects.equals(colour, that.colour) && Objects.equals(itemId, that.itemId) && Objects.equals(storeId, that.storeId) && Objects.equals(branchName, that.branchName) && Objects.equals(storageOption, that.storageOption) && Objects.equals(ramOption, that.ramOption) && Objects.equals(categoryType, that.categoryType);
+        return Objects.equals(colour, that.colour)
+                && categoryType == that.categoryType
+                && Objects.equals(itemId, that.itemId)
+                && Objects.equals(storeId, that.storeId)
+                && Objects.equals(branchName, that.branchName)
+                && Objects.equals(storageOption, that.storageOption)
+                && Objects.equals(ramOption, that.ramOption);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(colour, itemId, storeId, branchName, storageOption, ramOption, categoryType);
+        return Objects.hash(colour, categoryType, itemId, storeId, branchName, storageOption, ramOption);
     }
 }
