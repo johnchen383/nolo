@@ -43,6 +43,7 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -224,28 +225,34 @@ public class DataProvider {
      */
     private static List<IItem> generateItems() {
         List<IItem> items = new ArrayList<>();
-        List<String> imageUris = new ArrayList<>();  // TODO: Haven't added images yet
-        List<String> recommendedAccessoryIds = new ArrayList<>();  // TODO: Haven't other items yet
+        List<String> imageUris, recommendedAccessoryIds;
         ISpecs specs;
-        List<ISpecsOption> rams = new ArrayList<>();
-        List<ISpecsOption> storages = new ArrayList<>();
-        List<IItemStoreVariant> itemStoreVariant = new ArrayList<>();
-        List<IColour> colours = new ArrayList<>();
+        List<ISpecsOption> rams, storages;
+        List<IItemStoreVariant> itemStoreVariant;
+        List<IColour> colours;
 
-        colours.add(new Colour("black", "#000000"));
-        colours.add(new Colour("white", "#FFFFFF"));
-        colours.add(new Colour("red", "#FF0000"));
-        colours.add(new Colour("green", "#00FF00"));
-        colours.add(new Colour("blue", "#0000FF"));
-        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1200));
-        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1500));
-        itemStoreVariant.add(new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 900));
-        rams.add(new SpecsOption(8, 50));
-        rams.add(new SpecsOption(16, 100));
-        rams.add(new SpecsOption(32, 200));
-        storages.add(new SpecsOption(256, 200));
-        storages.add(new SpecsOption(512, 250));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 512G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        /*
+         * Laptops
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
                 "Windows 11 Home",
                 "15.6\" FHD (1920*1080) 60Hz",
                 "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
@@ -264,6 +271,14 @@ public class DataProvider {
                 "120W adapter",
                 "359 x 254 x 21.7 mm",
                 "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1.jpg",
+                "item_laptop_msi_gf63_2.jpg",
+                "item_laptop_msi_gf63_3.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
         items.add(new Laptop("MSI GF63",
                 "MSI",
                 specs,
@@ -271,19 +286,26 @@ public class DataProvider {
                 imageUris,
                 recommendedAccessoryIds));
 
-        colours = new ArrayList<>();
-        itemStoreVariant = new ArrayList<>();
-        storages = new ArrayList<>();
-        colours.add(new Colour("black", "#000000"));
-        colours.add(new Colour("white", "#FFFFFF"));
-        colours.add(new Colour("red", "#FF0000"));
-        colours.add(new Colour("green", "#00FF00"));
-        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2000));
-        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1800));
-        itemStoreVariant.add(new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2100));
-        storages.add(new SpecsOption(128, 100));
-        storages.add(new SpecsOption(256, 200));
-        storages.add(new SpecsOption(512, 250));
+
+        /*
+         * Phones
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
         specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
                 "Android 12",
                 "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
@@ -299,6 +321,26 @@ public class DataProvider {
                 "5000mAh",
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
                 specs,
@@ -306,15 +348,30 @@ public class DataProvider {
                 imageUris,
                 recommendedAccessoryIds));
 
-        colours = new ArrayList<>();
-        itemStoreVariant = new ArrayList<>();
-        colours.add(new Colour("black", "#000000"));
-        colours.add(new Colour("silver", "#C0C0C0"));
-        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 400));
-        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 500));
-        itemStoreVariant.add(new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 450));
-        itemStoreVariant.add(new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 400));
+
+        /*
+         * Accessories
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh-1000xm4_1_black.jpg",
+                "item_accessory_sony_wh-1000xm4_2_black.jpg",
+                "item_accessory_sony_wh-1000xm4_3_black.jpg",
+
+                "item_accessory_sony_wh-1000xm4_1_silver.jpg",
+                "item_accessory_sony_wh-1000xm4_2_silver.jpg",
+                "item_accessory_sony_wh-1000xm4_3_silver.jpg"
+        ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
                 specs,
