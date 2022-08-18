@@ -1,10 +1,15 @@
 package com.example.nolo.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.Selection;
+import android.text.Spannable;
 import android.view.Gravity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -62,9 +67,12 @@ public class LogInActivity extends BaseActivity {
             System.out.println(vh.passwordInput.getInputType());
             if (isHidden) {
                 vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                vh.passwordInput.getSelectionStart();
+                setCursorToEnd();
                 vh.eyeIcon.setImageResource(R.drawable.login_icon_eye_closed);
             } else {
                 vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                setCursorToEnd();
                 vh.eyeIcon.setImageResource(R.drawable.login_icon_eye_open);
             }
         });
@@ -78,6 +86,7 @@ public class LogInActivity extends BaseActivity {
         });
 
         vh.logIn.setOnClickListener(v -> {
+            hideKeyboard(v, true);
             String userEmail = vh.emailInput.getText().toString();
             String userPassword = vh.passwordInput.getText().toString();
 
@@ -97,6 +106,39 @@ public class LogInActivity extends BaseActivity {
             }, userEmail, userPassword);
         });
 
+        vh.logInGoogle.setOnClickListener(v -> {
+            hideKeyboard(v, true);
+        });
+
+        vh.emailInput.setOnFocusChangeListener((v, hasFocus) -> {
+            hideKeyboard(v, false);
+        });
+
+        vh.passwordInput.setOnFocusChangeListener((v, hasFocus) -> {
+            hideKeyboard(v, false);
+        });
+    }
+
+    public void clearFocus() {
+        vh.emailInput.clearFocus();
+        vh.passwordInput.clearFocus();
+    }
+
+    public void hideKeyboard(View view, Boolean isClearFocus) {
+        if (isClearFocus) {
+            clearFocus();
+        }
+
+        if (!vh.emailInput.hasFocus() && !vh.passwordInput.hasFocus()) {
+            InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void setCursorToEnd() {
+        CharSequence charSeq = vh.passwordInput.getText();
+        Spannable spanText = (Spannable) charSeq;
+        Selection.setSelection(spanText, charSeq.length());
     }
 
     @Override
