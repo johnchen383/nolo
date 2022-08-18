@@ -97,8 +97,8 @@ public class User implements IUser {
     /**
      * Check does the field name exist
      * @param fieldName Field name (case sensitive)
-     * @return true if it is one of the field in User class
-     *         false if it is not
+     * @return True if it is one of the field in User class;
+     *         False if it is not
      */
     @Override
     @Exclude

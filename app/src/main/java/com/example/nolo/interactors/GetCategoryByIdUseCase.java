@@ -11,6 +11,6 @@ public class GetCategoryByIdUseCase {
      * @return
      */
     public static ICategory getCategoryById(CategoryType categoryType) {
-        return CategoriesRepository.getInstance().getCategoryById(categoryType);
+        return CategoriesRepository.getInstance().getCategoryByType(categoryType);
     }
 }

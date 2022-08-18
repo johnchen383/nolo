@@ -82,8 +82,8 @@ public abstract class Item implements IItem {
      * Get the base price of the current item with the selected store ID
      *
      * @param storeId Selected store ID
-     * @return base price of the item
-     *         -1 if it is not the selected store ID is not found
+     * @return Base price of the item;
+     *         -1 if the selected store ID is not found
      */
     @Override
     @Exclude

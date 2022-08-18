@@ -26,12 +26,12 @@ import java.util.function.Consumer;
 public class CategoriesRepository implements ICategoriesRepository {
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
-    private final List<ICategory> categories;
+    private final List<ICategory> categoriesRepo;
     private final TimeKeeper timerForCache;
 
     private CategoriesRepository() {
         db = FirebaseFirestore.getInstance();
-        categories = new ArrayList<>();
+        categoriesRepo = new ArrayList<>();
         timerForCache = new TimeKeeper(RepositoryExpiredTime.TIME_LIMIT);
     }
 
@@ -58,7 +58,7 @@ public class CategoriesRepository implements ICategoriesRepository {
      */
     @Override
     public void loadCategories(Consumer<Class<?>> loadedRepository) {
-        categories.clear();
+        categoriesRepo.clear();
         timerForCache.startTimer();
 
         db.collection(CollectionPath.categories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -68,11 +68,11 @@ public class CategoriesRepository implements ICategoriesRepository {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         ICategory category = document.toObject(Category.class);
                         category.setCategoryType(CategoryType.valueOf(document.getId()));  // store document ID after getting the object
-                        categories.add(category);
+                        categoriesRepo.add(category);
                         Log.i("Load Categories From Firebase", category.toString());
                     }
 
-                    if (categories.size() > 0) {
+                    if (categoriesRepo.size() > 0) {
                         Log.i("Load Categories From Firebase", "Success");
                     } else {
                         Log.i("Load Categories From Firebase", "Categories collection is empty!");
@@ -87,10 +87,17 @@ public class CategoriesRepository implements ICategoriesRepository {
         });
     }
 
+    /**
+     * Get Category entity by Category Type enum
+     *
+     * @param categoryType Specific Category Type in enum
+     * @return Category entity if exist;
+     *         Otherwise null
+     */
     @Override
-    public ICategory getCategoryById(CategoryType categoryType) {
+    public ICategory getCategoryByType(CategoryType categoryType) {
         ICategory result = null;
-        for (ICategory category : categories) {
+        for (ICategory category : categoriesRepo) {
             if (category.getCategoryType().equals(categoryType)) {
                 result = category;
                 break;
@@ -105,7 +112,7 @@ public class CategoriesRepository implements ICategoriesRepository {
     public List<ICategory> getCategories() {
         reloadCategoriesIfExpired();
 
-        return categories;
+        return categoriesRepo;
     }
 
 

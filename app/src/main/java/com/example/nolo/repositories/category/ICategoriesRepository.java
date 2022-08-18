@@ -8,6 +8,6 @@ import java.util.function.Consumer;
 
 public interface ICategoriesRepository {
     void loadCategories(Consumer<Class<?>> loadedRepository);
-    ICategory getCategoryById(CategoryType categoryType);
+    ICategory getCategoryByType(CategoryType categoryType);
     List<ICategory> getCategories();
 }
