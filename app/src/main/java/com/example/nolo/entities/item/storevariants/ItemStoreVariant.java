@@ -9,6 +9,9 @@ public class ItemStoreVariant implements IItemStoreVariant {
     private List<IColour> colours;
     private double basePrice;
 
+    /**
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public ItemStoreVariant() {}
 
     public ItemStoreVariant(String storeId, List<IColour> colours, double basePrice) {

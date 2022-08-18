@@ -16,4 +16,5 @@ public interface IItem {
     List<IItemStoreVariant> getStoreVariants();
     List<String> getImageUris();
     List<String> getRecommendedAccessoryIds();
+    double getBasePrice(String storeId);
 }

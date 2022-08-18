@@ -93,6 +93,13 @@ public class User implements IUser {
         cart.remove(cartItem);
     }
 
+
+    /**
+     * Check does the field name exist
+     * @param fieldName Field name (case sensitive)
+     * @return true if it is one of the field in User class
+     *         false if it is not
+     */
     @Override
     @Exclude
     public boolean isFieldNameValid(String fieldName) {

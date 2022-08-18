@@ -77,4 +77,22 @@ public abstract class Item implements IItem {
     public List<String> getRecommendedAccessoryIds() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
+
+    /**
+     * Get the base price of the current item with the selected store ID
+     *
+     * @param storeId Selected store ID
+     * @return base price of the item
+     *         -1 if it is not the selected store ID is not found
+     */
+    @Override
+    @Exclude
+    public double getBasePrice(String storeId) {
+        for (IItemStoreVariant isv : storeVariants) {
+            if (isv.getStoreId().equals(storeId)) {
+                return isv.getBasePrice();
+            }
+        }
+        return -1;
+    }
 }
