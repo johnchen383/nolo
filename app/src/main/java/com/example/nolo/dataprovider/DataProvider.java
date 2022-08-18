@@ -29,6 +29,7 @@ import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
+import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -79,9 +80,9 @@ public class DataProvider {
     private static List<ICategory> generateCategories() {
         List<ICategory> categories = new ArrayList<>();
 
-        categories.add(new Category("accessories", "category_accessory.png"));
-        categories.add(new Category("phones", "category_phone.png"));
-        categories.add(new Category("laptops", "category_laptop.png"));
+        categories.add(new Category(CategoryType.laptops.name(), "category_accessory.png"));
+        categories.add(new Category(CategoryType.phones.name(), "category_phone.png"));
+        categories.add(new Category(CategoryType.accessories.name(), "category_laptop.png"));
 
         return categories;
     }
@@ -91,10 +92,10 @@ public class DataProvider {
         List<ICategory> categories = generateCategories();
 
         for (ICategory category : categories) {
-            db.collection(CollectionPath.categories.name()).document(category.getCategoryType().name()).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
+            db.collection(CollectionPath.categories.name()).document(category.getCategoryName()).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    Log.i("Add categories to Firebase", category.getCategoryType().name() + " added.");
+                    Log.i("Add categories to Firebase", category.getCategoryName() + " added.");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
