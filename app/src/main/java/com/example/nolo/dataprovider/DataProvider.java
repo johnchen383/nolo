@@ -243,7 +243,7 @@ public class DataProvider {
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
                 new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1300)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -411,9 +411,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -466,9 +467,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -521,9 +523,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -576,9 +579,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -631,9 +635,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -686,9 +691,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -741,9 +747,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1300)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -805,7 +812,8 @@ public class DataProvider {
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
                 new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1999)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -864,9 +872,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -925,9 +934,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -986,9 +996,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1047,9 +1058,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1108,9 +1120,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1169,9 +1182,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1230,9 +1244,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1291,9 +1306,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1352,9 +1368,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
