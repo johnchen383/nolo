@@ -3,6 +3,7 @@ package com.example.nolo.adaptors;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,13 @@ import androidx.annotation.Nullable;
 
 import com.example.nolo.activities.ForgotPasswordActivity;
 import com.example.nolo.activities.ListActivity;
+import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.R;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class HomeCategoryAdaptor extends ArrayAdapter {
@@ -81,9 +84,12 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         //add click listener
         vh.categoryBtn.setOnClickListener(v -> {
             Activity baseContext = (Activity) getContext();
-            baseContext.startActivity(new Intent(baseContext, ListActivity.class), Animation.Fade(baseContext).toBundle());
+            Intent intent = new Intent(baseContext, ListActivity.class);
+            intent.putExtra(baseContext.getString(R.string.extra_category), (Category) currentCategory);
+
+            baseContext.startActivity(intent, Animation.Fade(baseContext).toBundle());
         });
-        
+
         return currentListViewItem;
     }
 }

@@ -5,10 +5,12 @@ import androidx.annotation.NonNull;
 import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
+import java.io.Serializable;
+
 /**
  * {@link #categoryType} will not be in the Firestore
  */
-public class Category implements ICategory {
+public class Category implements ICategory, Serializable {
     private CategoryType categoryType;
     private String categoryName, imageUri;
 
