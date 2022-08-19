@@ -1,6 +1,8 @@
 package com.example.nolo.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import androidx.annotation.Nullable;
 
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.R;
+import com.example.nolo.util.Display;
+
 import java.util.List;
 
 public class HomeCategoryAdaptor extends ArrayAdapter {
@@ -62,6 +66,7 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
 
         //setting the category img
         vh.categoryImg.setImageResource(i);
+        vh.categoryImg.getLayoutParams().height = Display.getScreenHeight(currentListViewItem);
 
         // Setting the category label
         vh.categoryLabel.setText(currentCategory.getCategoryName());
