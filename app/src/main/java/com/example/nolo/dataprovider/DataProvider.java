@@ -275,9 +275,9 @@ public class DataProvider {
                 "359 x 254 x 21.7 mm",
                 "1.86 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1_black.jpg",
-                "item_laptop_msi_gf63_2_black.jpg",
-                "item_laptop_msi_gf63_3_black.jpg"
+                "item_laptop_msi_gf63_1_black",
+                "item_laptop_msi_gf63_2_black",
+                "item_laptop_msi_gf63_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -331,13 +331,13 @@ public class DataProvider {
                 "359.9 x 262.4 x 19.9 mm",
                 "2.49 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_legion_5_pro_16arh7_1_grey.jpg",
-                "item_laptop_legion_5_pro_16arh7_2_grey.jpg",
-                "item_laptop_legion_5_pro_16arh7_3_grey.jpg",
+                "item_laptop_legion_5_pro_16arh7_1_grey",
+                "item_laptop_legion_5_pro_16arh7_2_grey",
+                "item_laptop_legion_5_pro_16arh7_3_grey",
 
-                "item_laptop_legion_5_pro_16arh7_1_white.jpg",
-                "item_laptop_legion_5_pro_16arh7_2_white.jpg",
-                "item_laptop_legion_5_pro_16arh7_3_white.jpg"
+                "item_laptop_legion_5_pro_16arh7_1_white",
+                "item_laptop_legion_5_pro_16arh7_2_white",
+                "item_laptop_legion_5_pro_16arh7_3_white"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -395,21 +395,21 @@ public class DataProvider {
                 "304.1 x 215 x 11.3 mm",
                 "1.24 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_macbook_air_m2_1_silver.jpg",
-                "item_laptop_macbook_air_m2_2_silver.jpg",
-                "item_laptop_macbook_air_m2_3_silver.jpg",
+                "item_laptop_macbook_air_m2_1_silver",
+                "item_laptop_macbook_air_m2_2_silver",
+                "item_laptop_macbook_air_m2_3_silver",
 
-                "item_laptop_macbook_air_m2_1_starlight.jpg",
-                "item_laptop_macbook_air_m2_2_starlight.jpg",
-                "item_laptop_macbook_air_m2_3_starlight.jpg",
+                "item_laptop_macbook_air_m2_1_starlight",
+                "item_laptop_macbook_air_m2_2_starlight",
+                "item_laptop_macbook_air_m2_3_starlight",
 
-                "item_laptop_macbook_air_m2_1_grey.jpg",
-                "item_laptop_macbook_air_m2_2_grey.jpg",
-                "item_laptop_macbook_air_m2_3_grey.jpg",
+                "item_laptop_macbook_air_m2_1_grey",
+                "item_laptop_macbook_air_m2_2_grey",
+                "item_laptop_macbook_air_m2_3_grey",
 
-                "item_laptop_macbook_air_m2_1_midnight.jpg",
-                "item_laptop_macbook_air_m2_2_midnight.jpg",
-                "item_laptop_macbook_air_m2_3_midnight.jpg"
+                "item_laptop_macbook_air_m2_1_midnight",
+                "item_laptop_macbook_air_m2_2_midnight",
+                "item_laptop_macbook_air_m2_3_midnight"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -465,13 +465,13 @@ public class DataProvider {
                 "355.7 x 248.1 x 16.8 mm",
                 "2.15 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_macbook_pro_16_1_silver.jpg",
-                "item_laptop_macbook_pro_16_2_silver.jpg",
-                "item_laptop_macbook_pro_16_3_silver.jpg",
+                "item_laptop_macbook_pro_16_1_silver",
+                "item_laptop_macbook_pro_16_2_silver",
+                "item_laptop_macbook_pro_16_3_silver",
 
-                "item_laptop_macbook_pro_16_1_grey.jpg",
-                "item_laptop_macbook_pro_16_2_grey.jpg",
-                "item_laptop_macbook_pro_16_3_grey.jpg"
+                "item_laptop_macbook_pro_16_1_grey",
+                "item_laptop_macbook_pro_16_2_grey",
+                "item_laptop_macbook_pro_16_3_grey"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -525,21 +525,21 @@ public class DataProvider {
                 "308 x 223 x 14.5 mm",
                 "1.27 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_surface_laptop_4_1_black.jpg",
-                "item_laptop_surface_laptop_4_2_black.jpg",
-                "item_laptop_surface_laptop_4_3_black.jpg",
+                "item_laptop_surface_laptop_4_1_black",
+                "item_laptop_surface_laptop_4_2_black",
+                "item_laptop_surface_laptop_4_3_black",
 
-                "item_laptop_surface_laptop_4_1_blue.jpg",
-                "item_laptop_surface_laptop_4_2_blue.jpg",
-                "item_laptop_surface_laptop_4_3_blue.jpg",
+                "item_laptop_surface_laptop_4_1_blue",
+                "item_laptop_surface_laptop_4_2_blue",
+                "item_laptop_surface_laptop_4_3_blue",
 
-                "item_laptop_surface_laptop_4_1_sandstone.jpg",
-                "item_laptop_surface_laptop_4_2_sandstone.jpg",
-                "item_laptop_surface_laptop_4_3_sandstone.jpg",
+                "item_laptop_surface_laptop_4_1_sandstone",
+                "item_laptop_surface_laptop_4_2_sandstone",
+                "item_laptop_surface_laptop_4_3_sandstone",
 
-                "item_laptop_surface_laptop_4_1_platinum.jpg",
-                "item_laptop_surface_laptop_4_2_platinum.jpg",
-                "item_laptop_surface_laptop_4_3_platinum.jpg"
+                "item_laptop_surface_laptop_4_1_platinum",
+                "item_laptop_surface_laptop_4_2_platinum",
+                "item_laptop_surface_laptop_4_3_platinum"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -589,9 +589,9 @@ public class DataProvider {
                 "32.07 x 21.70 x 1.69 mm",
                 "1.50 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue.jpg",
-                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue.jpg",
-                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue.jpg"
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -640,9 +640,9 @@ public class DataProvider {
                 "395 x 260 x 19.9 mm",
                 "2.75 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_razer_blade_17_1_black.jpg",
-                "item_laptop_razer_blade_17_2_black.jpg",
-                "item_laptop_razer_blade_17_3_black.jpg"
+                "item_laptop_razer_blade_17_1_black",
+                "item_laptop_razer_blade_17_2_black",
+                "item_laptop_razer_blade_17_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
