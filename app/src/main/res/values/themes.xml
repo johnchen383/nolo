@@ -39,6 +39,8 @@
     <style name="TextInputLayout">
         <item name="android:textColorHint">@color/light_grey</item>
         <item name="android:background">@drawable/text_input_bg</item>
+        <item name="hintTextColor">@color/light_grey</item>
+        <item name="boxStrokeColor">@color/white</item>
     </style>
 
     <style name="TextInputLayout_EditText">
@@ -49,7 +51,7 @@
     </style>
 
     <!-- Material Button styles -->
-    <style name="RoundButton">
+    <style name="RoundButton" parent="Widget.MaterialComponents.Button.Icon">
         <item name="android:textSize">@dimen/font_body1</item>
         <item name="android:paddingVertical">@dimen/round_button_padding</item>
         <item name="cornerRadius">@dimen/round_button_radius</item>
@@ -57,20 +59,13 @@
         <item name="strokeWidth">@dimen/round_button_stroke_width</item>
     </style>
 
-    <style name="RoundButton.Outlined">
-        <item name="backgroundTint">@color/transparent</item>
-    </style>
+    <style name="RoundButton.Outlined" />
 
     <style name="RoundButton.Filled">
         <item name="backgroundTint">@color/white</item>
     </style>
 
-    <style name="RoundIconButton" parent="Widget.MaterialComponents.Button.Icon">
-        <item name="android:textSize">@dimen/font_body1</item>
-        <item name="android:paddingVertical">@dimen/round_button_padding</item>
-        <item name="cornerRadius">@dimen/round_button_radius</item>
-        <item name="strokeColor">@color/faint_white</item>
-        <item name="strokeWidth">@dimen/round_button_stroke_width</item>
+    <style name="RoundButton.Icon">
         <item name="iconSize">@dimen/icon_size</item>
         <item name="iconTint">@null</item>
         <item name="iconGravity">textStart</item>

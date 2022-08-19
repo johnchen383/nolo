@@ -38,9 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/padding_small"
             android:layout_marginLeft="@dimen/text_input_indent_offset"
-            app:hintTextColor="@color/light_grey"
-            android:hint="@string/input_hint_email"
-            app:boxStrokeColor="@color/white" >
+            android:hint="@string/input_hint_email" >
 
             <EditText
                 android:id="@+id/email_edit"
@@ -63,9 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/padding_med"
                 android:layout_marginLeft="@dimen/text_input_indent_offset"
-                app:hintTextColor="@color/light_grey"
-                android:hint="@string/input_hint_password"
-                app:boxStrokeColor="@color/white" >
+                android:hint="@string/input_hint_password" >
 
                 <EditText
                     android:id="@+id/password_edit"
@@ -116,7 +112,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_google_button"
-            style="@style/RoundIconButton"
+            style="@style/RoundButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:icon="@drawable/login_google"
