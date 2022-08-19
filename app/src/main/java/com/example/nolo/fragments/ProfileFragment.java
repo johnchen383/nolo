@@ -12,8 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.LogInActivity;
-import com.example.nolo.activities.SignUpActivity;
-import com.example.nolo.interactors.LogOutUseCase;
+import com.example.nolo.interactors.user.LogOutUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ProfileViewModel;
 

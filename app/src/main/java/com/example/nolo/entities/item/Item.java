@@ -1,12 +1,20 @@
 package com.example.nolo.entities.item;
 
+import com.example.nolo.entities.item.specs.ISpecs;
+import com.example.nolo.entities.item.storevariants.IItemStoreVariant;
+import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
+/**
+ * {@link #itemId} {@link #categoryType} will not be in the Firestore
+ */
 public abstract class Item implements IItem {
-    private String itemId, category, store, specs;
-    private double price;
+    private String itemId, name, brand;
+    private CategoryType categoryType;
+    private ISpecs specs;
+    private List<IItemStoreVariant> storeVariants;
     private List<String> imageUris;
 
     /**
@@ -14,38 +22,50 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(String itemId, String category, String store, String specs, double price, List<String> imageUris) {
-        this.itemId = itemId;
-        this.category = category;
-        this.store = store;
+    public Item(String name, CategoryType categoryType, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
+        this.name = name;
+        this.categoryType = categoryType;
+        this.brand = brand;
         this.specs = specs;
-        this.price = price;
+        this.storeVariants = storeVariants;
         this.imageUris = imageUris;
     }
 
     @Override
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    @Override
+    @Exclude
     public String getItemId() {
         return itemId;
     }
 
     @Override
-    public String getCategory() {
-        return category;
+    @Exclude
+    public CategoryType getCategoryType() {
+        return categoryType;
     }
 
     @Override
-    public String getStore() {
-        return store;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public String getSpecs() {
+    public String getBrand() {
+        return brand;
+    }
+
+    @Override
+    public ISpecs getSpecs() {
         return specs;
     }
 
     @Override
-    public double getPrice() {
-        return price;
+    public List<IItemStoreVariant> getStoreVariants() {
+        return storeVariants;
     }
 
     @Override
@@ -54,7 +74,25 @@ public abstract class Item implements IItem {
     }
 
     @Exclude
-    public List<String> getRecommendedAccessories() {
+    public List<String> getRecommendedAccessoryIds() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    /**
+     * Get the base price of the current item with the selected store ID
+     *
+     * @param storeId Selected store ID
+     * @return Base price of the item;
+     *         -1 if the selected store ID is not found
+     */
+    @Override
+    @Exclude
+    public double getBasePrice(String storeId) {
+        for (IItemStoreVariant isv : storeVariants) {
+            if (isv.getStoreId().equals(storeId)) {
+                return isv.getBasePrice();
+            }
+        }
+        return -1;
     }
 }

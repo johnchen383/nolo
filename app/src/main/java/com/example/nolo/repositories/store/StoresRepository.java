@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
+import com.example.nolo.enums.CollectionPath;
+import com.example.nolo.repositories.RepositoryExpiredTime;
+import com.example.nolo.util.TimeToLiveToken;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -17,24 +20,20 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
-  * This is a singleton class for Stores repository.
-  */
+ * This is a singleton class for Stores repository.
+ */
 public class StoresRepository implements IStoresRepository {
-    public static final long TIME_IN_MILLISECONDS_TEN_MINUTES = 1000*60*10;
-    public static final String COLLECTION_PATH_STORES = "stores";
-
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
-    private final List<IStore> storesRepo;
-    private long lastLoadedTime;
+    private List<IStore> storesRepo;
+    private final TimeToLiveToken timeToLiveToken;
 
     private StoresRepository() {
         db = FirebaseFirestore.getInstance();
-        storesRepo = new ArrayList<>();
-        lastLoadedTime = 0;
+        timeToLiveToken = new TimeToLiveToken(RepositoryExpiredTime.TIME_LIMIT);
     }
 
-    /*
+    /**
      * This is for singleton class.
      */
     public static StoresRepository getInstance() {
@@ -44,23 +43,23 @@ public class StoresRepository implements IStoresRepository {
         return storesRepository;
     }
 
-    /*
+    /**
      * Reload data from Firebase if the cached data is outdated/expired.
      */
     private void reloadStoresIfExpired() {
-        if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_TEN_MINUTES)
+        if (timeToLiveToken.hasExpired())
             loadStores(a -> {});
     }
 
-    /*
+    /**
      * Load data from Firebase.
      */
     @Override
-    public void loadStores(Consumer<Class<?>> loadedRepository) {
-        storesRepo.clear();
-        lastLoadedTime = System.currentTimeMillis();
+    public void loadStores(Consumer<Class<?>> onLoadedRepository) {
+        storesRepo = new ArrayList<>();
+        timeToLiveToken.reset();
 
-        db.collection(COLLECTION_PATH_STORES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection(CollectionPath.stores.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -81,11 +80,18 @@ public class StoresRepository implements IStoresRepository {
                 }
 
                 // inform this repository finished loading
-                loadedRepository.accept(StoresRepository.class);
+                onLoadedRepository.accept(StoresRepository.class);
             }
         });
     }
 
+    /**
+     * Get Store entity by store ID
+     *
+     * @param storeId store ID
+     * @return Store entity if storeId exists;
+     *         Otherwise null
+     */
     @Override
     public IStore getStoreById(String storeId) {
         IStore result = null;

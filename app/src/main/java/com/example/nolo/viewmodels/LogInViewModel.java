@@ -1,14 +1,8 @@
 package com.example.nolo.viewmodels;
 
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModel;
 
-import android.content.Intent;
-
-import com.example.nolo.activities.LogInActivity;
-import com.example.nolo.activities.MainActivity;
-import com.example.nolo.interactors.LogInUseCase;
-import com.example.nolo.util.Animation;
+import com.example.nolo.interactors.user.LogInUseCase;
 
 import java.util.function.Consumer;
 
