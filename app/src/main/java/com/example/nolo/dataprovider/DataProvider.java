@@ -1028,59 +1028,69 @@ public class DataProvider {
          * Phone 4
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("green", "#495A48"),
+                new Colour("pink", "#FBE2DD"),
+                new Colour("blue", "#447792"),
+                new Colour("midnight", "#3F464C"),
+                new Colour("starlight", "#FBF7F4"),
+                new Colour("red", "#C92435")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1428.99),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1429),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1428.99)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(256, 200),
+                new SpecsOption(512, 600)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("Apple iPhone 13",
+                "iOS 15",
+                "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
+                "A15 Bionic chip",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
                 "Yes",
                 "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "71.5 x 146.7 x 7.65mm",
+                "173g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_iphone_13_1_green",
+                "item_phone_iphone_13_2_green",
+                "item_phone_iphone_13_3_green",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_iphone_13_1_pink",
+                "item_phone_iphone_13_2_pink",
+                "item_phone_iphone_13_3_pink",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
+                "item_phone_iphone_13_1_blue",
+                "item_phone_iphone_13_2_blue",
+                "item_phone_iphone_13_3_blue",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_iphone_13_1_midnight",
+                "item_phone_iphone_13_2_midnight",
+                "item_phone_iphone_13_3_midnight",
+
+                "item_phone_iphone_13_1_starlight",
+                "item_phone_iphone_13_2_starlight",
+                "item_phone_iphone_13_3_starlight",
+
+                "item_phone_iphone_13_1_red",
+                "item_phone_iphone_13_2_red",
+                "item_phone_iphone_13_3_red"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("iPhone 13",
+                "Apple",
                 specs,
                 itemStoreVariant,
                 imageUris,
