@@ -28,11 +28,46 @@
     </style>
 
     <!-- Text input style -->
-    <style name="Widget.AppTheme.TextInputLayout.FilledBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+    <style name="Widget.AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
         <item name="errorIconDrawable">@null</item>
         <item name="errorTextColor">@color/light_brown</item>
         <item name="colorAccent">@color/light_brown</item>
         <item name="colorControlActivated">@color/light_brown</item>
+    </style>
+
+    <style name="TextInputLayout">
+        <item name="android:textColorHint">@color/light_grey</item>
+        <item name="android:background">@drawable/text_input_bg</item>
+        <item name="hintTextColor">@color/light_grey</item>
+        <item name="boxStrokeColor">@color/white</item>
+    </style>
+
+    <style name="TextInputLayout_EditText">
+        <item name="android:gravity">bottom</item>
+        <item name="android:background">@drawable/text_input_bg</item>
+        <item name="android:textSize">@dimen/font_body1</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Material Button styles -->
+    <style name="RoundButton" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:textSize">@dimen/font_body1</item>
+        <item name="android:paddingVertical">@dimen/round_button_padding</item>
+        <item name="cornerRadius">@dimen/round_button_radius</item>
+        <item name="strokeColor">@color/faint_white</item>
+        <item name="strokeWidth">@dimen/round_button_stroke_width</item>
+    </style>
+
+    <style name="RoundButton.Outlined" />
+
+    <style name="RoundButton.Filled">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="RoundButton.Icon">
+        <item name="iconSize">@dimen/icon_size</item>
+        <item name="iconTint">@null</item>
+        <item name="iconGravity">textStart</item>
     </style>
 
 </resources>
