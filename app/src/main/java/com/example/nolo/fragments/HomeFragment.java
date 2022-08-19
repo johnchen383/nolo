@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nolo.R;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.util.Display;
+import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
 
 /**
@@ -25,9 +27,11 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList;
+        LinearLayout initialView;
 
         public ViewHolder(){
             categoryList = getView().findViewById(R.id.category_list);
+            initialView = getView().findViewById(R.id.initial_home_view);
         }
     }
 
@@ -41,7 +45,15 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         vh = new ViewHolder();
 
+        //set size of initial view to be screen height
+        vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
+
+        initAdaptors();
+    }
+
+    private void initAdaptors(){
         HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, GetCategoriesUseCase.getCategories());
         vh.categoryList.setAdapter(categoriesAdaptor);
+        ListUtil.setDynamicHeight(vh.categoryList);
     }
 }
