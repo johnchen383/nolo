@@ -395,21 +395,21 @@ public class DataProvider {
                 "304.1 x 215 x 11.3 mm",
                 "1.24 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_macBook_air_m2_1_silver.jpg",
-                "item_laptop_macBook_air_m2_2_silver.jpg",
-                "item_laptop_macBook_air_m2_3_silver.jpg",
+                "item_laptop_macbook_air_m2_1_silver.jpg",
+                "item_laptop_macbook_air_m2_2_silver.jpg",
+                "item_laptop_macbook_air_m2_3_silver.jpg",
 
-                "item_laptop_macBook_air_m2_1_starlight.jpg",
-                "item_laptop_macBook_air_m2_2_starlight.jpg",
-                "item_laptop_macBook_air_m2_3_starlight.jpg",
+                "item_laptop_macbook_air_m2_1_starlight.jpg",
+                "item_laptop_macbook_air_m2_2_starlight.jpg",
+                "item_laptop_macbook_air_m2_3_starlight.jpg",
 
-                "item_laptop_macBook_air_m2_1_grey.jpg",
-                "item_laptop_macBook_air_m2_2_grey.jpg",
-                "item_laptop_macBook_air_m2_3_grey.jpg",
+                "item_laptop_macbook_air_m2_1_grey.jpg",
+                "item_laptop_macbook_air_m2_2_grey.jpg",
+                "item_laptop_macbook_air_m2_3_grey.jpg",
 
-                "item_laptop_macBook_air_m2_1_midnight.jpg",
-                "item_laptop_macBook_air_m2_2_midnight.jpg",
-                "item_laptop_macBook_air_m2_3_midnight.jpg"
+                "item_laptop_macbook_air_m2_1_midnight.jpg",
+                "item_laptop_macbook_air_m2_2_midnight.jpg",
+                "item_laptop_macbook_air_m2_3_midnight.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -465,13 +465,13 @@ public class DataProvider {
                 "355.7 x 248.1 x 16.8 mm",
                 "2.15 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_macBook_pro_16_1_silver.jpg",
-                "item_laptop_macBook_pro_16_2_silver.jpg",
-                "item_laptop_macBook_pro_16_3_silver.jpg",
+                "item_laptop_macbook_pro_16_1_silver.jpg",
+                "item_laptop_macbook_pro_16_2_silver.jpg",
+                "item_laptop_macbook_pro_16_3_silver.jpg",
 
-                "item_laptop_macBook_pro_16_1_grey.jpg",
-                "item_laptop_macBook_pro_16_2_grey.jpg",
-                "item_laptop_macBook_pro_16_3_grey.jpg"
+                "item_laptop_macbook_pro_16_1_grey.jpg",
+                "item_laptop_macbook_pro_16_2_grey.jpg",
+                "item_laptop_macbook_pro_16_3_grey.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
