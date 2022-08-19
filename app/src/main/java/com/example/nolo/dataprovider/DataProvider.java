@@ -695,9 +695,9 @@ public class DataProvider {
                 "323.5 x 217.1 x 15.95 mm",
                 "1.13 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_lenovo_thinkpad_x1_1_black.jpg",
-                "item_laptop_lenovo_thinkpad_x1_2_black.jpg",
-                "item_laptop_lenovo_thinkpad_x1_3_black.jpg"
+                "item_laptop_lenovo_thinkpad_x1_1_black",
+                "item_laptop_lenovo_thinkpad_x1_2_black",
+                "item_laptop_lenovo_thinkpad_x1_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -804,9 +804,9 @@ public class DataProvider {
                 "359 x 254 x 21.7 mm",
                 "1.86 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_msi_gf63_1",
+                "item_laptop_msi_gf63_2",
+                "item_laptop_msi_gf63_3"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -858,21 +858,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -920,21 +920,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -982,21 +982,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1044,21 +1044,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1106,21 +1106,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1168,21 +1168,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1230,21 +1230,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1292,21 +1292,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1354,21 +1354,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1416,21 +1416,21 @@ public class DataProvider {
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_black.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_black.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_white.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_white.jpg",
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_2_green.jpg",
-                "item_phone_samsung_galaxy_s22_ultra_3_green.jpg"
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -1461,13 +1461,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1490,13 +1490,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1519,13 +1519,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1548,13 +1548,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1577,13 +1577,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1606,13 +1606,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1635,13 +1635,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1664,13 +1664,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1693,13 +1693,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
@@ -1722,13 +1722,13 @@ public class DataProvider {
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black.jpg",
-                "item_accessory_sony_wh_1000xm4_2_black.jpg",
-                "item_accessory_sony_wh_1000xm4_3_black.jpg",
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_2_silver.jpg",
-                "item_accessory_sony_wh_1000xm4_3_silver.jpg"
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
