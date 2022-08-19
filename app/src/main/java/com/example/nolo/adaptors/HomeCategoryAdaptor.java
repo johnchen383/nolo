@@ -2,19 +2,24 @@ package com.example.nolo.adaptors;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.nolo.activities.ForgotPasswordActivity;
+import com.example.nolo.activities.ListActivity;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.R;
+import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 
 import java.util.List;
@@ -27,10 +32,12 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
     private class ViewHolder {
         TextView categoryLabel;
         ImageView categoryImg;
+        ImageButton categoryBtn;
 
         public ViewHolder(View currentListViewItem) {
             categoryLabel = currentListViewItem.findViewById(R.id.category_label);
             categoryImg = currentListViewItem.findViewById(R.id.category_img);
+            categoryBtn = currentListViewItem.findViewById(R.id.category_btn);
         }
     }
 
@@ -71,6 +78,12 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         // Setting the category label
         vh.categoryLabel.setText(currentCategory.getCategoryName());
 
+        //add click listener
+        vh.categoryBtn.setOnClickListener(v -> {
+            Activity baseContext = (Activity) getContext();
+            baseContext.startActivity(new Intent(baseContext, ListActivity.class), Animation.Fade(baseContext).toBundle());
+        });
+        
         return currentListViewItem;
     }
 }
