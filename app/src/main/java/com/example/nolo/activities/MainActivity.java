@@ -7,7 +7,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
-import com.example.nolo.util.DeviceLocation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends BaseActivity {
@@ -24,14 +23,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        DataProvider.clearAndAddEntity(StoresRepository.COLLECTION_PATH_STORES, (a) -> DataProvider.addStoresToFirestore());
-//        DataProvider.clearAndAddEntity(CategoriesRepository.COLLECTION_PATH_CATEGORIES, (a) -> DataProvider.addCategoriesToFirebase());
-//        DataProvider.addUsersToFirestore();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         vh = new ViewHolder();
 
@@ -45,4 +38,9 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupWithNavController(vh.navView, navController);
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+    }
 }
