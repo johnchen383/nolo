@@ -661,50 +661,49 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
         ));
         rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
+                new SpecsOption(16, 0)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
+                new SpecsOption(512, 126.5),
+                new SpecsOption(1024, 586.5),
+                new SpecsOption(2048, 1161.5)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        specs = new LaptopSpecs("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
                 "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                "14\" WUXGA (1920 x 1200), IPS, Anti-Glare, Non-Touch, 100%sRGB, 400 nits, Narrow Bezel, Low Blue Light",
+                "12th Generation Intel® Core™ i5-1240P Processor (E-cores up to 3.30 GHz P-cores up to 4.40 GHz)",
+                "Integrated Intel® Iris® Xe Graphics",
                 rams,
                 storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "FHD IR/RGB Hybrid with Microphone",
+                "Backlit, Black with Fingerprint Reader - English",
+                "Wi-Fi 6E AX211 2x2 AX & Bluetooth® 5.0",
+                "Audio jack, Two upward- and two downward-firing speakers",
                 "N/A",
+                "Fingerprint Reader",
                 "N/A",
-                "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+                "2x USB-C Thunderbolt 4 ports, 2x USB 3.2 Type-A port, 1x HDMI video output, 1x nano SIM slot",
+                "4 Cell Li-Polymer Internal Battery, 57Wh",
+                "65W adapter",
+                "323.5 x 217.1 x 15.95 mm",
+                "1.13 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_lenovo_thinkpad_x1_1_black.jpg",
+                "item_laptop_lenovo_thinkpad_x1_2_black.jpg",
+                "item_laptop_lenovo_thinkpad_x1_3_black.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
+        items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
+                "Lenovo",
                 specs,
                 itemStoreVariant,
                 imageUris,
