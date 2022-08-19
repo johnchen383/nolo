@@ -2,6 +2,7 @@ package com.example.nolo.activities;
 
 import static androidx.core.view.WindowCompat.getInsetsController;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -25,5 +26,8 @@ public class BaseActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+
+        //lock portrait
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 }
