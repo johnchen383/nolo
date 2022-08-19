@@ -4,5 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
+    <string name="input_hint_email">EMAIL</string>
+    <string name="input_hint_password">PASSWORD</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
