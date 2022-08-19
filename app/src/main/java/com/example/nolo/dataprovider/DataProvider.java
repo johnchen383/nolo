@@ -1100,59 +1100,54 @@ public class DataProvider {
          * Phone 5
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("midnight", "#3F464C"),
+                new Colour("starlight", "#FBF7F4"),
+                new Colour("red", "#C92435")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 799),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 799),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 799),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 799)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(64, 0),
+                new SpecsOption(128, 100),
+                new SpecsOption(256, 300)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("Apple iPhone SE",
+                "iOS 15",
+                "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
+                "A15 Bionic chip",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "12MP Wide camera; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
                 "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "IP67",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "67.3 x 138.4 x 7.3mm",
+                "144g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_iphone_se_1_midnight",
+                "item_phone_iphone_se_2_midnight",
+                "item_phone_iphone_se_3_midnight",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_iphone_se_1_starlight",
+                "item_phone_iphone_se_2_starlight",
+                "item_phone_iphone_se_3_starlight",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_iphone_se_1_red",
+                "item_phone_iphone_se_2_red",
+                "item_phone_iphone_se_3_red"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("iPhone SE",
+                "Apple",
                 specs,
                 itemStoreVariant,
                 imageUris,
