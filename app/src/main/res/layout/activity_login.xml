@@ -27,31 +27,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_top"
-            android:paddingBottom="@dimen/login_padding_lrg"
+            android:paddingBottom="@dimen/padding_lrg"
             android:text="LOG IN"
             android:textSize="@dimen/font_h5" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_layout"
+            android:theme="@style/Widget.AppTheme.TextInputLayout"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/login_padding_small"
-            android:background="@drawable/login_edit_text"
-            android:theme="@style/Widget.AppTheme.TextInputLayout.FilledBox.Dense"
-            app:hintTextColor="@color/light_grey"
-            android:textColorHint="@color/light_grey"
-            android:hint="@string/input_hint_email"
-            android:layout_marginLeft="@dimen/login_indent_offset" >
+            android:layout_marginVertical="@dimen/padding_small"
+            android:layout_marginLeft="@dimen/text_input_indent_offset"
+            android:hint="@string/input_hint_email" >
 
             <EditText
                 android:id="@+id/email_edit"
+                style="@style/TextInputLayout_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:background="@drawable/login_edit_text"
-                android:textSize="@dimen/font_body1"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/white" />
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
@@ -61,26 +56,20 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_layout"
+                android:theme="@style/Widget.AppTheme.TextInputLayout"
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/login_padding_med"
-                android:background="@drawable/login_edit_text"
-                android:theme="@style/Widget.AppTheme.TextInputLayout.FilledBox.Dense"
-                app:hintTextColor="@color/light_grey"
-                android:textColorHint="@color/light_grey"
-                android:hint="@string/input_hint_password"
-                app:boxStrokeColor="@color/white"
-                android:layout_marginLeft="@dimen/login_indent_offset" >
+                android:layout_marginVertical="@dimen/padding_med"
+                android:layout_marginLeft="@dimen/text_input_indent_offset"
+                android:hint="@string/input_hint_password" >
 
                 <EditText
                     android:id="@+id/password_edit"
+                    style="@style/TextInputLayout_EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:background="@drawable/login_edit_text"
-                    android:textSize="@dimen/font_body1"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white" />
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
@@ -98,17 +87,9 @@
                     android:layout_height="@dimen/icon_size"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/login_icon_eye_open" />
+                    app:srcCompat="@drawable/signin_icon_eye_open" />
 
             </RelativeLayout>
-
-            <TextView
-                android:layout_width="@dimen/touch_target_min"
-                android:layout_height="@dimen/touch_target_min"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/login_eye_margin"
-                android:background="@null" />
 
         </RelativeLayout>
 
@@ -116,49 +97,33 @@
             android:id="@+id/forgot_text_view"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/touch_target_min"
-            android:layout_marginBottom="@dimen/login_padding_med"
-            android:paddingTop="@dimen/login_padding_small"
+            android:layout_marginBottom="@dimen/padding_med"
+            android:paddingTop="@dimen/padding_small"
             android:text="Forgot your password?"
             android:textSize="@dimen/font_body2"
             android:textColor="@color/light_brown" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
+            style="@style/RoundButton.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/login_padding_small"
-            android:paddingVertical="@dimen/login_button_padding"
-            android:text="LOG IN"
-            android:textSize="@dimen/font_body1"
-            app:backgroundTint="@color/transparent"
-            android:outlineSpotShadowColor="@color/transparent"
-            app:cornerRadius="@dimen/login_button_radius"
-            app:strokeColor="@color/faint_white"
-            app:strokeWidth="@dimen/login_border" />
+            android:layout_marginVertical="@dimen/padding_small"
+            android:text="LOG IN" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.Icon"
             android:id="@+id/login_google_button"
+            style="@style/RoundButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:outlineSpotShadowColor="@color/transparent"
-            android:paddingVertical="@dimen/login_button_padding"
-            android:text="LOG IN WITH GOOGLE"
-            android:textSize="@dimen/font_body1"
-            app:backgroundTint="@color/transparent"
-            app:cornerRadius="@dimen/login_button_radius"
-            app:strokeColor="@color/faint_white"
-            app:strokeWidth="@dimen/login_border"
             app:icon="@drawable/login_google"
-            app:iconSize="@dimen/icon_size"
-            app:iconTint="@null"
-            app:iconGravity="textStart"/>
+            android:text="LOG IN WITH GOOGLE" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/login_padding_lrg"
+            android:layout_marginTop="@dimen/padding_lrg"
             android:gravity="center">
 
             <TextView

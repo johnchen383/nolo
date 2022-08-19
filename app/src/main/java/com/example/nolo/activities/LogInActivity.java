@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -24,7 +22,6 @@ import com.example.nolo.R;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.LogInViewModel;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LogInActivity extends BaseActivity {
@@ -124,7 +121,7 @@ public class LogInActivity extends BaseActivity {
 
     public void togglePassword(boolean isHidden) {
         vh.passwordInput.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        vh.eyeIcon.setImageResource(isHidden ? R.drawable.login_icon_eye_closed : R.drawable.login_icon_eye_open);
+        vh.eyeIcon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
         setCursorToEnd();
     }
 
