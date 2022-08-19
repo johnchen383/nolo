@@ -32,7 +32,7 @@ public class LogInActivity extends BaseActivity {
     private class ViewHolder {
         EditText emailInput, passwordInput;
         TextInputLayout emailLayout, passwordLayout;
-        RelativeLayout eyeBtn, signUp;
+        RelativeLayout eyeBtn, signUpBtn;
         ImageView eyeIcon;
         TextView forgotPassword, signUpText;
         MaterialButton logIn, logInGoogle;
@@ -47,7 +47,7 @@ public class LogInActivity extends BaseActivity {
             forgotPassword = findViewById(R.id.forgot_text_view);
             logIn = findViewById(R.id.login_button);
             logInGoogle = findViewById(R.id.login_google_button);
-            signUp = findViewById(R.id.register_btn);
+            signUpBtn = findViewById(R.id.register_btn);
             signUpText = findViewById(R.id.register_text);
         }
     }
@@ -88,7 +88,7 @@ public class LogInActivity extends BaseActivity {
             startActivity(new Intent(this, ForgotPasswordActivity.class), Animation.Fade(this).toBundle());
         });
 
-        vh.signUp.setOnClickListener(v -> {
+        vh.signUpBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, SignUpActivity.class), Animation.Fade(this).toBundle());
         });
 
