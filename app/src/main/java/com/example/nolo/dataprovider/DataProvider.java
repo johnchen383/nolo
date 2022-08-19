@@ -255,7 +255,7 @@ public class DataProvider {
                 new SpecsOption(512, 79),
                 new SpecsOption(1024, 129)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD",
                 "Windows 11 Home",
                 "15.6\" FHD (1920*1080) 60Hz",
                 "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
@@ -275,9 +275,9 @@ public class DataProvider {
                 "359 x 254 x 21.7 mm",
                 "1.86 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_msi_gf63_1_black.jpg",
+                "item_laptop_msi_gf63_2_black.jpg",
+                "item_laptop_msi_gf63_3_black.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
@@ -555,53 +555,49 @@ public class DataProvider {
          * Laptop 6
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
+                new Colour("blue", "#565D72")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 740.99),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 727.99)
         ));
         rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
+                new SpecsOption(4, 0),
+                new SpecsOption(8, 59)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
+                new SpecsOption(512, 99)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
                 "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)\n",
+                "Intel® UHD Graphics",
                 rams,
                 storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "720p HD camera",
+                "Backlit Chiclet Keyboard, 1.4mm Key-travel",
+                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
+                "SonicMaster, Built-in speaker, Built-in array microphone with Cortana support",
+                "Touch screen display",
+                "Fingerprint sensor integrated with Touchpad",
                 "N/A",
-                "N/A",
-                "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+                "1x USB 2.0 Type-A, 1x USB 3.2 Gen 1 Type-A, 1x USB 3.2 Gen 1 Type-C, 1x HDMI 1.4, 1x 3.5mm Combo Audio Jack, 1x DC-in, Micro SD card reader",
+                "39WHrs, 2S1P, 2-cell Li-ion",
+                "45W AC Adapter",
+                "32.07 x 21.70 x 1.69 mm",
+                "1.50 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue.jpg",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue.jpg",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
+        items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
+                "ASUS",
                 specs,
                 itemStoreVariant,
                 imageUris,
