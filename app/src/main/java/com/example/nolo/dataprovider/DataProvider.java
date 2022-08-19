@@ -610,50 +610,45 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
         ));
         rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
+                new SpecsOption(16, 0),
+                new SpecsOption(32, 300)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
+                new SpecsOption(1024, 0)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
                 "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                "17.3\" FHD 360Hz, 100% sRGB, 6mm bezels, individually factory calibrated, 3ms Response Rate",
+                "1.8GHz 14-core Intel i7-12800H processor, Turbo Boost up to 4.8GHz, with 24MB of Cache",
+                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
                 rams,
                 storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "Built-in Full HD webcam",
+                "Per-Key Backlighting, powered by Razer Chroma",
+                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az), Bluetooth® 5.2\n",
+                "3.5mm Combo-Jack, Stereo 2.0 | 8 Speakers, THX Spatial Audio, 2-Mic Array",
                 "N/A",
                 "N/A",
                 "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+                "2 x Thunderbolt™ 4 (USB-C™), 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W), 3 x USB-A 3.2 Gen 2",
+                "Built-in 82WHr rechargeable lithium-ion polymer battery",
+                "280W power adapter",
+                "395 x 260 x 19.9 mm",
+                "2.75 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_razer_blade_17_1_black.jpg",
+                "item_laptop_razer_blade_17_2_black.jpg",
+                "item_laptop_razer_blade_17_3_black.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
+        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Razer",
                 specs,
                 itemStoreVariant,
                 imageUris,
