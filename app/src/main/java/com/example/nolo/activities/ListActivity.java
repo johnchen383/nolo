@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 public class ListActivity extends BaseActivity {
     private ViewHolder vh;
-    private ICategory category;
 
     private class ViewHolder {
         TextView categoryText;
@@ -28,7 +27,7 @@ public class ListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        category = (Category) getIntent().getSerializableExtra(getString(R.string.extra_category));
+        ICategory category = (Category) getIntent().getSerializableExtra(getString(R.string.extra_category));
 
         vh = new ViewHolder();
 
