@@ -1,6 +1,7 @@
 <resources>
     <!-- Default dimensions, per the Android Design guidelines. -->
     <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="font_h2">60sp</dimen>
     <dimen name="font_h5">24sp</dimen>
     <dimen name="font_h6">20sp</dimen>
     <dimen name="font_body1">16sp</dimen>
@@ -41,5 +42,9 @@
         <!-- Signup screen dimensions -->
         <dimen name="signup_margin_horizontal">48dp</dimen>
         <dimen name="signup_margin_top">20dp</dimen>
+        
+        <!-- Category list dimensions -->
+        <dimen name="category_button_radius">10dp</dimen>
+         <dimen name="category_button_width">1dp</dimen>
 
 </resources>

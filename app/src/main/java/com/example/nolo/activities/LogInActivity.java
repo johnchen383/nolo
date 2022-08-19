@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -59,6 +60,24 @@ public class LogInActivity extends BaseActivity {
         vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
     }
 
+    private void logIn(){
+        String userEmail = vh.emailInput.getText().toString();
+        String userPassword = vh.passwordInput.getText().toString();
+
+        if (userEmail.isEmpty() || userPassword.isEmpty()) {
+            return;
+        }
+
+        logInViewModel.logIn((error) -> {
+            if (error == null) {
+                startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
+            } else {
+                //display error message
+                System.out.println("ERR: " + error);
+            }
+        }, userEmail, userPassword);
+    }
+
     private void initListeners() {
         vh.eyeBtn.setOnClickListener(v -> {
             boolean isHidden = vh.passwordInput.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -75,21 +94,7 @@ public class LogInActivity extends BaseActivity {
 
         vh.logIn.setOnClickListener(v -> {
             hideKeyboard(v, true);
-            String userEmail = vh.emailInput.getText().toString();
-            String userPassword = vh.passwordInput.getText().toString();
-
-            if (userEmail.isEmpty() || userPassword.isEmpty()) {
-                return;
-            }
-
-            logInViewModel.logIn((error) -> {
-                if (error == null) {
-                    startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
-                } else {
-                    //display error message
-                    System.out.println("ERR: " + error);
-                }
-            }, userEmail, userPassword);
+            logIn();
         });
 
         vh.logInGoogle.setOnClickListener(v -> {
@@ -102,6 +107,15 @@ public class LogInActivity extends BaseActivity {
 
         vh.passwordInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
+        });
+
+        vh.passwordInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard(v, true);
+                logIn();
+                return true;
+            }
+            return false;
         });
     }
 
