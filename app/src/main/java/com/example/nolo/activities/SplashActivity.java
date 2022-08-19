@@ -160,4 +160,9 @@ public class SplashActivity extends BaseActivity {
         anim.setDuration(ANIMATION_INTERVAL);
         anim.start();
     }
+
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }

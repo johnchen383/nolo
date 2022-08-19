@@ -2,12 +2,16 @@ package com.example.nolo.activities;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private ViewHolder vh;
@@ -42,5 +46,10 @@ public class MainActivity extends BaseActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

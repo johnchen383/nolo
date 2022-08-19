@@ -157,4 +157,9 @@ public class LogInActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        return;
+    }
+
 }

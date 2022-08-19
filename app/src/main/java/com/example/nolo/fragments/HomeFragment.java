@@ -56,4 +56,5 @@ public class HomeFragment extends Fragment {
         vh.categoryList.setAdapter(categoriesAdaptor);
         ListUtil.setDynamicHeight(vh.categoryList);
     }
+
 }
