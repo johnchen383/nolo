@@ -389,7 +389,7 @@ public class DataProvider {
                 "N/A",
                 "Touch ID",
                 "N/A",
-                "Thunderbolt 3 digital video output, Native DisplayPort output over USB‑C, ",
+                "Thunderbolt 3 digital video output, Native DisplayPort output over USB‑C",
                 "52.6-watt‑hour lithium‑polymer battery",
                 "30W USB-C Power Adapter",
                 "304.1 x 215 x 11.3 mm",
@@ -425,53 +425,59 @@ public class DataProvider {
          * Laptop 4
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
+                new Colour("silver", "#BEBEBE"),
+                new Colour("grey", "#646569")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 4299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 4199),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 4359),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 4299)
         ));
         rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
+                new SpecsOption(16, 0),
+                new SpecsOption(24, 700)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
+                new SpecsOption(512, 0),
+                new SpecsOption(1024, 350),
+                new SpecsOption(2048, 1050),
+                new SpecsOption(4096, 2100),
+                new SpecsOption(8192, 4200)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
-                "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+        specs = new LaptopSpecs("MacBook Pro 16\" models",
+                "macOS",
+                "16.2-inch (diagonal) Liquid Retina XDR display, (3456*2234)",
+                "Apple M1 Pro chip, 10-core CPU with eight performance cores and two efficiency cores",
+                "Integrated Graphics 16-core GPU",
                 rams,
                 storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "1080p FaceTime HD camera",
+                "Backlit Magic Keyboard",
+                "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology",
+                "High-fidelity six-speaker sound system with force-cancelling woofers, Wide stereo sound",
                 "N/A",
+                "Touch ID",
                 "N/A",
-                "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+                "SDXC card slot, HDMI port, 3.5-mm headphone jack, MagSafe 3 port, Three Thunderbolt 4 (USB-C) ports",
+                "100-watt-hour lithium-polymer battery",
+                "140W USB-C Power Adapter",
+                "355.7 x 248.1 x 16.8 mm",
+                "2.15 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_macBook_pro_16_1_silver.jpg",
+                "item_laptop_macBook_pro_16_2_silver.jpg",
+                "item_laptop_macBook_pro_16_3_silver.jpg",
+
+                "item_laptop_macBook_pro_16_1_grey.jpg",
+                "item_laptop_macBook_pro_16_2_grey.jpg",
+                "item_laptop_macBook_pro_16_3_grey.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
+        items.add(new Laptop("MacBook Pro 16\"",
+                "Apple",
                 specs,
                 itemStoreVariant,
                 imageUris,
