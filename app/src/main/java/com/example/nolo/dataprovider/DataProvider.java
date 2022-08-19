@@ -849,7 +849,7 @@ public class DataProvider {
                 new SpecsOption(256, 100),
                 new SpecsOption(512, 400)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra",
                 "Android 12",
                 "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
                 "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
@@ -895,58 +895,62 @@ public class DataProvider {
          * Phone 2
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("purple", "#B2A1CD"),
+                new Colour("white", "#E9E9E7"),
+                new Colour("green", "#587876"),
+                new Colour("pink", "#E3D2CF"),
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1298.99),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1299),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1299)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(256, 100)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+        specs = new PhoneSpecs("Samsung Galaxy S22",
                 "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "6.1\" Dynamic AMOLED 2X display; FHD+ (2340x1080); 120Hz refresh rate",
                 "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "Triple Rear Camera; 50MP main sensor, F1.8, OIS; 12MP Ultra-Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 30x Digital Zoom; 10MP Front camera, F2.2, Autofocus",
                 "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Duel stereo speakers",
                 "Yes",
                 "IP68",
                 "Dual SIM model",
                 "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "3700mAh",
+                "70.6 x 146 x 7.6mm",
+                "167g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_samsung_galaxy_s22_1_purple",
+                "item_phone_samsung_galaxy_s22_2_purple",
+                "item_phone_samsung_galaxy_s22_3_purple",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_samsung_galaxy_s22_1_white",
+                "item_phone_samsung_galaxy_s22_2_white",
+                "item_phone_samsung_galaxy_s22_3_white",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
+                "item_phone_samsung_galaxy_s22_1_green",
+                "item_phone_samsung_galaxy_s22_2_green",
+                "item_phone_samsung_galaxy_s22_3_green",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_samsung_galaxy_s22_1_pink",
+                "item_phone_samsung_galaxy_s22_2_pink",
+                "item_phone_samsung_galaxy_s22_3_pink",
+
+                "item_phone_samsung_galaxy_s22_1_black",
+                "item_phone_samsung_galaxy_s22_2_black",
+                "item_phone_samsung_galaxy_s22_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
+        items.add(new Phone("Samsung Galaxy S22",
                 "Samsung",
                 specs,
                 itemStoreVariant,
