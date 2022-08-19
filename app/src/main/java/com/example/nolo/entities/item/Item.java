@@ -1,14 +1,16 @@
 package com.example.nolo.entities.item;
 
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.variants.IItemStoreVariant;
+import com.example.nolo.entities.item.storevariants.IItemStoreVariant;
 import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
+/**
+ * {@link #itemId} {@link #categoryType} will not be in the Firestore
+ */
 public abstract class Item implements IItem {
-    // {itemId, categoryType} will not be in the Firestore
     private String itemId, name, brand;
     private CategoryType categoryType;
     private ISpecs specs;
@@ -74,5 +76,23 @@ public abstract class Item implements IItem {
     @Exclude
     public List<String> getRecommendedAccessoryIds() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    /**
+     * Get the base price of the current item with the selected store ID
+     *
+     * @param storeId Selected store ID
+     * @return Base price of the item;
+     *         -1 if the selected store ID is not found
+     */
+    @Override
+    @Exclude
+    public double getBasePrice(String storeId) {
+        for (IItemStoreVariant isv : storeVariants) {
+            if (isv.getStoreId().equals(storeId)) {
+                return isv.getBasePrice();
+            }
+        }
+        return -1;
     }
 }

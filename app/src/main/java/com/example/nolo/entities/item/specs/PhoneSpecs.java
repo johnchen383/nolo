@@ -9,6 +9,9 @@ public class PhoneSpecs extends Specs {
             protectionResistance, simCard, sensors, battery, dimensions, weight;
     private List<ISpecsOption> storageOptions;
 
+    /**
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public PhoneSpecs() {}
 
     public PhoneSpecs(String summary, String operatingSystem, String display, String cpu,

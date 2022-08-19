@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
+/**
+ * {@link #categoryType} will not be in the Firestore
+ */
 public class Category implements ICategory {
-    // {categoryType} will not be in the Firestore
     private CategoryType categoryType;
     private String categoryName, imageUri;
 
@@ -44,7 +46,6 @@ public class Category implements ICategory {
     @NonNull
     @Override
     public String toString() {
-        String result = "Category ID: " + categoryType;
-        return result;
+        return "Category type: " + categoryType;
     }
 }

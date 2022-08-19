@@ -10,6 +10,9 @@ public class LaptopSpecs extends Specs {
             acAdaptor, dimensions, weight;
     private List<ISpecsOption> ramOptions, storageOptions;
 
+    /**
+     * 0 argument constructor for convert Firebase data to this class
+     */
     public LaptopSpecs() {}
 
     public LaptopSpecs(String summary, String operatingSystem, String display, String cpu,
