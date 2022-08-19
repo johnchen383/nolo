@@ -80,9 +80,9 @@ public class DataProvider {
     private static List<ICategory> generateCategories() {
         List<ICategory> categories = new ArrayList<>();
 
-        categories.add(new Category(CategoryType.laptops, "category_accessory.png"));
-        categories.add(new Category(CategoryType.phones, "category_phone.png"));
-        categories.add(new Category(CategoryType.accessories, "category_laptop.png"));
+        categories.add(new Category(CategoryType.laptops, "category_laptop"));
+        categories.add(new Category(CategoryType.phones, "category_phone"));
+        categories.add(new Category(CategoryType.accessories, "category_accessory"));
 
         return categories;
     }
