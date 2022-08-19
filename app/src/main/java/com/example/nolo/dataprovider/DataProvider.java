@@ -716,50 +716,47 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1409),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1369),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1399)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
+                new SpecsOption(16, 69)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
+                new SpecsOption(512, 0)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
-                "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+        specs = new LaptopSpecs("Acer Aspire 7 A715-42G-R0EX",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz, up to 4 GHz, 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
                 rams,
                 storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone, Stereo speakers",
                 "N/A",
+                "Yes",
                 "N/A",
-                "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+                "1x HDMI, 1x USB 2.0 Ports, 2x USB 3.2 Gen 1 Type-A Ports, 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps), 1x Network (RJ-45), 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_acer_aspire_7_a715_42g_roex_1_black",
+                "item_laptop_acer_aspire_7_a715_42g_roex_2_black",
+                "item_laptop_acer_aspire_7_a715_42g_roex_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
+        items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
+                "Acer",
                 specs,
                 itemStoreVariant,
                 imageUris,
