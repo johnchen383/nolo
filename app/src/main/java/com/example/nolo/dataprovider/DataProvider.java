@@ -234,123 +234,9 @@ public class DataProvider {
         /**
          * Laptops
          */
+
         /*
          * Laptop 1
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1300)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
-        ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD",
-                "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
-                rams,
-                storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
-                "N/A",
-                "N/A",
-                "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1_black",
-                "item_laptop_msi_gf63_2_black",
-                "item_laptop_msi_gf63_3_black"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
-        ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
-                specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
-
-        /*
-         * Laptop 2
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("grey", "#787878"),
-                new Colour("white", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 3311),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 3300),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3211)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 69),
-                new SpecsOption(32, 129)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 99),
-                new SpecsOption(1024, 179)
-        ));
-        specs = new LaptopSpecs("Legion 5 Pro (16\", Gen 7) AMD",
-                "Windows 11 Home",
-                "16.0\" WQXGA (2560x1600) IPS 500nits Anti-glare, 165Hz",
-                "AMD Ryzen™ 7 6800H",
-                "NVIDIA® GeForce RTX™ 3050 Ti 4GB GDDR6",
-                rams,
-                storages,
-                "HD 720p, with E-camera shutter, fixed focus",
-                "6-row, multimedia Fn keys, numeric keypad, black keycap",
-                "802.11AX (2x2) & Bluetooth® 5.1",
-                "Stereo speakers, 2 x 2W, Nahimic Audio, Dual array mic",
-                "Non-touch",
-                "No fingerprint reader",
-                "N/A",
-                "2 x USB 3.2 Gen 1, 1 x USB 3.2 Gen 1 (Always On), 2 x USB-C 3.2 Gen 2 (support data transfer and DisplayPort™ 1.4), 1 x USB-C 3.2 Gen 2 (support data transfer, Power Delivery 135W and DisplayPort 1.4), 1 x HDMI 2.1, 1 x Ethernet (RJ-45), 1 x Headphone / mic, 1 x Power connector",
-                "4-cell (80Wh), integrated",
-                "230W Slim Tip (3-pin)",
-                "359.9 x 262.4 x 19.9 mm",
-                "2.49 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_legion_5_pro_16arh7_1_grey",
-                "item_laptop_legion_5_pro_16arh7_2_grey",
-                "item_laptop_legion_5_pro_16arh7_3_grey",
-
-                "item_laptop_legion_5_pro_16arh7_1_white",
-                "item_laptop_legion_5_pro_16arh7_2_white",
-                "item_laptop_legion_5_pro_16arh7_3_white"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
-        ));
-        items.add(new Laptop("Legion 5 Pro 16ARH7",
-                "Lenovo",
-                specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
-
-        /*
-         * Laptop 3
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("silver", "#BEBEBE"),
@@ -422,7 +308,7 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
-         * Laptop 4
+         * Laptop 2
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("silver", "#BEBEBE"),
@@ -484,7 +370,7 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
-         * Laptop 5
+         * Laptop 3
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
@@ -552,218 +438,7 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
-         * Laptop 6
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("blue", "#565D72")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 740.99),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 727.99)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(4, 0),
-                new SpecsOption(8, 59)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 99)
-        ));
-        specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
-                "Windows 11 Home",
-                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
-                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)\n",
-                "Intel® UHD Graphics",
-                rams,
-                storages,
-                "720p HD camera",
-                "Backlit Chiclet Keyboard, 1.4mm Key-travel",
-                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
-                "SonicMaster, Built-in speaker, Built-in array microphone with Cortana support",
-                "Touch screen display",
-                "Fingerprint sensor integrated with Touchpad",
-                "N/A",
-                "1x USB 2.0 Type-A, 1x USB 3.2 Gen 1 Type-A, 1x USB 3.2 Gen 1 Type-C, 1x HDMI 1.4, 1x 3.5mm Combo Audio Jack, 1x DC-in, Micro SD card reader",
-                "39WHrs, 2S1P, 2-cell Li-ion",
-                "45W AC Adapter",
-                "32.07 x 21.70 x 1.69 mm",
-                "1.50 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue",
-                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue",
-                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
-        ));
-        items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
-                "ASUS",
-                specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
-
-        /*
-         * Laptop 7
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(16, 0),
-                new SpecsOption(32, 300)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(1024, 0)
-        ));
-        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-                "Windows 11 Home",
-                "17.3\" FHD 360Hz, 100% sRGB, 6mm bezels, individually factory calibrated, 3ms Response Rate",
-                "1.8GHz 14-core Intel i7-12800H processor, Turbo Boost up to 4.8GHz, with 24MB of Cache",
-                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
-                rams,
-                storages,
-                "Built-in Full HD webcam",
-                "Per-Key Backlighting, powered by Razer Chroma",
-                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az), Bluetooth® 5.2\n",
-                "3.5mm Combo-Jack, Stereo 2.0 | 8 Speakers, THX Spatial Audio, 2-Mic Array",
-                "N/A",
-                "N/A",
-                "N/A",
-                "2 x Thunderbolt™ 4 (USB-C™), 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W), 3 x USB-A 3.2 Gen 2",
-                "Built-in 82WHr rechargeable lithium-ion polymer battery",
-                "280W power adapter",
-                "395 x 260 x 19.9 mm",
-                "2.75 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_razer_blade_17_1_black",
-                "item_laptop_razer_blade_17_2_black",
-                "item_laptop_razer_blade_17_3_black"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
-        ));
-        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-                "Razer",
-                specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
-
-        /*
-         * Laptop 8
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(16, 0)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(256, 0),
-                new SpecsOption(512, 126.5),
-                new SpecsOption(1024, 586.5),
-                new SpecsOption(2048, 1161.5)
-        ));
-        specs = new LaptopSpecs("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
-                "Windows 11 Home",
-                "14\" WUXGA (1920 x 1200), IPS, Anti-Glare, Non-Touch, 100%sRGB, 400 nits, Narrow Bezel, Low Blue Light",
-                "12th Generation Intel® Core™ i5-1240P Processor (E-cores up to 3.30 GHz P-cores up to 4.40 GHz)",
-                "Integrated Intel® Iris® Xe Graphics",
-                rams,
-                storages,
-                "FHD IR/RGB Hybrid with Microphone",
-                "Backlit, Black with Fingerprint Reader - English",
-                "Wi-Fi 6E AX211 2x2 AX & Bluetooth® 5.0",
-                "Audio jack, Two upward- and two downward-firing speakers",
-                "N/A",
-                "Fingerprint Reader",
-                "N/A",
-                "2x USB-C Thunderbolt 4 ports, 2x USB 3.2 Type-A port, 1x HDMI video output, 1x nano SIM slot",
-                "4 Cell Li-Polymer Internal Battery, 57Wh",
-                "65W adapter",
-                "323.5 x 217.1 x 15.95 mm",
-                "1.13 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_lenovo_thinkpad_x1_1_black",
-                "item_laptop_lenovo_thinkpad_x1_2_black",
-                "item_laptop_lenovo_thinkpad_x1_3_black"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
-        ));
-        items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
-                "Lenovo",
-                specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
-
-        /*
-         * Laptop 9
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1409),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1369),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1399)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(8, 0),
-                new SpecsOption(16, 69)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(512, 0)
-        ));
-        specs = new LaptopSpecs("Acer Aspire 7 A715-42G-R0EX",
-                "Windows 10 Home",
-                "39.6 cm (15.6\") LCD",
-                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz, up to 4 GHz, 8 MB Cache",
-                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
-                rams,
-                storages,
-                "Front Camera/Webcam, 1280 x 720",
-                "Backlight",
-                "802.11 ax Wi-Fi 6 + Bluetooth",
-                "Microphone, Stereo speakers",
-                "N/A",
-                "Yes",
-                "N/A",
-                "1x HDMI, 1x USB 2.0 Ports, 2x USB 3.2 Gen 1 Type-A Ports, 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps), 1x Network (RJ-45), 1x Headphone/Microphone Combo Port",
-                "3-cell Lithium Ion (Li-Ion) 48 Wh",
-                "135W adapter",
-                "363.4 x 254.5 x 22.9 mm",
-                "2.15 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_acer_aspire_7_a715_42g_roex_1_black",
-                "item_laptop_acer_aspire_7_a715_42g_roex_2_black",
-                "item_laptop_acer_aspire_7_a715_42g_roex_3_black"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
-        ));
-        items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
-                "Acer",
-                specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
-
-        /*
-         * Laptop 10
+         * Laptop 4
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("platinum", "#86888A"),
@@ -819,6 +494,332 @@ public class DataProvider {
         ));
         items.add(new Laptop("Surface Pro 8",
                 "Microsoft",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("blue", "#565D72")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 740.99),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 727.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(4, 0),
+                new SpecsOption(8, 59)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 99)
+        ));
+        specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
+                "Windows 11 Home",
+                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)\n",
+                "Intel® UHD Graphics",
+                rams,
+                storages,
+                "720p HD camera",
+                "Backlit Chiclet Keyboard, 1.4mm Key-travel",
+                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
+                "SonicMaster, Built-in speaker, Built-in array microphone with Cortana support",
+                "Touch screen display",
+                "Fingerprint sensor integrated with Touchpad",
+                "N/A",
+                "1x USB 2.0 Type-A, 1x USB 3.2 Gen 1 Type-A, 1x USB 3.2 Gen 1 Type-C, 1x HDMI 1.4, 1x 3.5mm Combo Audio Jack, 1x DC-in, Micro SD card reader",
+                "39WHrs, 2S1P, 2-cell Li-ion",
+                "45W AC Adapter",
+                "32.07 x 21.70 x 1.69 mm",
+                "1.50 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
+                "ASUS",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 126.5),
+                new SpecsOption(1024, 586.5),
+                new SpecsOption(2048, 1161.5)
+        ));
+        specs = new LaptopSpecs("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
+                "Windows 11 Home",
+                "14\" WUXGA (1920 x 1200), IPS, Anti-Glare, Non-Touch, 100%sRGB, 400 nits, Narrow Bezel, Low Blue Light",
+                "12th Generation Intel® Core™ i5-1240P Processor (E-cores up to 3.30 GHz P-cores up to 4.40 GHz)",
+                "Integrated Intel® Iris® Xe Graphics",
+                rams,
+                storages,
+                "FHD IR/RGB Hybrid with Microphone",
+                "Backlit, Black with Fingerprint Reader - English",
+                "Wi-Fi 6E AX211 2x2 AX & Bluetooth® 5.0",
+                "Audio jack, Two upward- and two downward-firing speakers",
+                "N/A",
+                "Fingerprint Reader",
+                "N/A",
+                "2x USB-C Thunderbolt 4 ports, 2x USB 3.2 Type-A port, 1x HDMI video output, 1x nano SIM slot",
+                "4 Cell Li-Polymer Internal Battery, 57Wh",
+                "65W adapter",
+                "323.5 x 217.1 x 15.95 mm",
+                "1.13 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_lenovo_thinkpad_x1_1_black",
+                "item_laptop_lenovo_thinkpad_x1_2_black",
+                "item_laptop_lenovo_thinkpad_x1_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
+                "Lenovo",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("grey", "#787878"),
+                new Colour("white", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 3311),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 3300),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3211)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 99),
+                new SpecsOption(1024, 179)
+        ));
+        specs = new LaptopSpecs("Legion 5 Pro (16\", Gen 7) AMD",
+                "Windows 11 Home",
+                "16.0\" WQXGA (2560x1600) IPS 500nits Anti-glare, 165Hz",
+                "AMD Ryzen™ 7 6800H",
+                "NVIDIA® GeForce RTX™ 3050 Ti 4GB GDDR6",
+                rams,
+                storages,
+                "HD 720p, with E-camera shutter, fixed focus",
+                "6-row, multimedia Fn keys, numeric keypad, black keycap",
+                "802.11AX (2x2) & Bluetooth® 5.1",
+                "Stereo speakers, 2 x 2W, Nahimic Audio, Dual array mic",
+                "Non-touch",
+                "No fingerprint reader",
+                "N/A",
+                "2 x USB 3.2 Gen 1, 1 x USB 3.2 Gen 1 (Always On), 2 x USB-C 3.2 Gen 2 (support data transfer and DisplayPort™ 1.4), 1 x USB-C 3.2 Gen 2 (support data transfer, Power Delivery 135W and DisplayPort 1.4), 1 x HDMI 2.1, 1 x Ethernet (RJ-45), 1 x Headphone / mic, 1 x Power connector",
+                "4-cell (80Wh), integrated",
+                "230W Slim Tip (3-pin)",
+                "359.9 x 262.4 x 19.9 mm",
+                "2.49 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_legion_5_pro_16arh7_1_grey",
+                "item_laptop_legion_5_pro_16arh7_2_grey",
+                "item_laptop_legion_5_pro_16arh7_3_grey",
+
+                "item_laptop_legion_5_pro_16arh7_1_white",
+                "item_laptop_legion_5_pro_16arh7_2_white",
+                "item_laptop_legion_5_pro_16arh7_3_white"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Legion 5 Pro 16ARH7",
+                "Lenovo",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD",
+                "Windows 11 Home",
+                "15.6\" FHD (1920*1080) 60Hz",
+                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
+                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                rams,
+                storages,
+                "HD type (30fps @ 720p)",
+                "Backlight Keyboard (Single-Color, Red)",
+                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
+                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "N/A",
+                "N/A",
+                "N/A",
+                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "3-Cell, 51 Battery (Whr)",
+                "120W adapter",
+                "359 x 254 x 21.7 mm",
+                "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1_black",
+                "item_laptop_msi_gf63_2_black",
+                "item_laptop_msi_gf63_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MSI GF63",
+                "MSI",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0),
+                new SpecsOption(32, 300)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Windows 11 Home",
+                "17.3\" FHD 360Hz, 100% sRGB, 6mm bezels, individually factory calibrated, 3ms Response Rate",
+                "1.8GHz 14-core Intel i7-12800H processor, Turbo Boost up to 4.8GHz, with 24MB of Cache",
+                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
+                rams,
+                storages,
+                "Built-in Full HD webcam",
+                "Per-Key Backlighting, powered by Razer Chroma",
+                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az), Bluetooth® 5.2\n",
+                "3.5mm Combo-Jack, Stereo 2.0 | 8 Speakers, THX Spatial Audio, 2-Mic Array",
+                "N/A",
+                "N/A",
+                "N/A",
+                "2 x Thunderbolt™ 4 (USB-C™), 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W), 3 x USB-A 3.2 Gen 2",
+                "Built-in 82WHr rechargeable lithium-ion polymer battery",
+                "280W power adapter",
+                "395 x 260 x 19.9 mm",
+                "2.75 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_razer_blade_17_1_black",
+                "item_laptop_razer_blade_17_2_black",
+                "item_laptop_razer_blade_17_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Razer",
+                specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1409),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1369),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1399)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(512, 0)
+        ));
+        specs = new LaptopSpecs("Acer Aspire 7 A715-42G-R0EX",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz, up to 4 GHz, 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
+                rams,
+                storages,
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone, Stereo speakers",
+                "N/A",
+                "Yes",
+                "N/A",
+                "1x HDMI, 1x USB 2.0 Ports, 2x USB 3.2 Gen 1 Type-A Ports, 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps), 1x Network (RJ-45), 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_acer_aspire_7_a715_42g_roex_1_black",
+                "item_laptop_acer_aspire_7_a715_42g_roex_2_black",
+                "item_laptop_acer_aspire_7_a715_42g_roex_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
+                "Acer",
                 specs,
                 itemStoreVariant,
                 imageUris,
