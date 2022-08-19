@@ -487,53 +487,65 @@ public class DataProvider {
          * Laptop 5
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
+                new Colour("black", "#000000"),
+                new Colour("blue", "#9A9CA3"),
+                new Colour("sandstone", "#79838A"),
+                new Colour("platinum", "#CBB1A0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1749),
+                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1699),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1798)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
-                new SpecsOption(16, 59),
-                new SpecsOption(32, 129)
+                new SpecsOption(16, 400)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(256, 0),
-                new SpecsOption(512, 79),
-                new SpecsOption(1024, 129)
+                new SpecsOption(512, 450)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 256G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        specs = new LaptopSpecs("Microsoft Surface Laptop 4 13.5\"",
                 "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
+                "13.5\" 2256 x 1504 (201 PPI)",
+                "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)",
+                "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics",
                 rams,
                 storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "Windows Hello face authentication camera (front-facing), 720p HD f2.0 camera (front-facing)",
+                "Backlight",
+                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology",
+                "Dual far-field Studio Mics, Omnisonic Speakers with Dolby Atmos",
+                "10 point multi-touch",
                 "N/A",
                 "N/A",
-                "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+                "1 x USB-C, 1 x USB-A, 3.5 mm headphone jack, 1 x Surface Connect port",
+                "Battery Capacity Nominal (WH) 47.4",
+                "Power Supply",
+                "308 x 223 x 14.5 mm",
+                "1.27 kg");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_msi_gf63_1.jpg",
-                "item_laptop_msi_gf63_2.jpg",
-                "item_laptop_msi_gf63_3.jpg"
+                "item_laptop_surface_laptop_4_1_black.jpg",
+                "item_laptop_surface_laptop_4_2_black.jpg",
+                "item_laptop_surface_laptop_4_3_black.jpg",
+
+                "item_laptop_surface_laptop_4_1_blue.jpg",
+                "item_laptop_surface_laptop_4_2_blue.jpg",
+                "item_laptop_surface_laptop_4_3_blue.jpg",
+
+                "item_laptop_surface_laptop_4_1_sandstone.jpg",
+                "item_laptop_surface_laptop_4_2_sandstone.jpg",
+                "item_laptop_surface_laptop_4_3_sandstone.jpg",
+
+                "item_laptop_surface_laptop_4_1_platinum.jpg",
+                "item_laptop_surface_laptop_4_2_platinum.jpg",
+                "item_laptop_surface_laptop_4_3_platinum.jpg"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Laptop("MSI GF63",
-                "MSI",
+        items.add(new Laptop("Surface Laptop 4",
+                "Microsoft",
                 specs,
                 itemStoreVariant,
                 imageUris,
