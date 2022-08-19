@@ -80,9 +80,9 @@ public class DataProvider {
     private static List<ICategory> generateCategories() {
         List<ICategory> categories = new ArrayList<>();
 
-        categories.add(new Category(CategoryType.laptops.name(), "category_accessory.png"));
-        categories.add(new Category(CategoryType.phones.name(), "category_phone.png"));
-        categories.add(new Category(CategoryType.accessories.name(), "category_laptop.png"));
+        categories.add(new Category(CategoryType.laptops, "category_accessory.png"));
+        categories.add(new Category(CategoryType.phones, "category_phone.png"));
+        categories.add(new Category(CategoryType.accessories, "category_laptop.png"));
 
         return categories;
     }
@@ -90,9 +90,10 @@ public class DataProvider {
     public static void addCategoriesToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<ICategory> categories = generateCategories();
+        int count = 1;
 
         for (ICategory category : categories) {
-            db.collection(CollectionPath.categories.name()).document(category.getCategoryName()).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
+            db.collection(CollectionPath.categories.name()).document("category " + count++).set(category).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     Log.i("Add categories to Firebase", category.getCategoryName() + " added.");

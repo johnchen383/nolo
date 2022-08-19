@@ -7,42 +7,34 @@ import com.google.firebase.firestore.Exclude;
 
 import java.io.Serializable;
 
-/**
- * {@link #categoryType} will not be in the Firestore
- */
 public class Category implements ICategory, Serializable {
     private CategoryType categoryType;
-    private String categoryName, imageUri;
+    private String imageUri;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public Category() {}
 
-    public Category(String categoryName, String imageUri) {
-        this.categoryName = categoryName;
+    public Category(CategoryType categoryType, String imageUri) {
+        this.categoryType = categoryType;
         this.imageUri = imageUri;
     }
 
     @Override
-    public void setCategoryType(CategoryType categoryType) {
-        this.categoryType = categoryType;
-    }
-
-    @Override
-    @Exclude
     public CategoryType getCategoryType() {
         return categoryType;
     }
 
     @Override
-    public String getCategoryName() {
-        return categoryName;
+    public String getImageUri() {
+        return imageUri;
     }
 
     @Override
-    public String getImageUri() {
-        return imageUri;
+    @Exclude
+    public String getCategoryName() {
+        return categoryType.name();
     }
 
     @NonNull
