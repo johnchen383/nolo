@@ -7,6 +7,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
+import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.util.DeviceLocation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
