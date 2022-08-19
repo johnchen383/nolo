@@ -24,14 +24,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        DataProvider.clearAndAddEntity(StoresRepository.COLLECTION_PATH_STORES, (a) -> DataProvider.addStoresToFirestore());
-//        DataProvider.clearAndAddEntity(CategoriesRepository.COLLECTION_PATH_CATEGORIES, (a) -> DataProvider.addCategoriesToFirebase());
-//        DataProvider.addUsersToFirestore();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         vh = new ViewHolder();
 
