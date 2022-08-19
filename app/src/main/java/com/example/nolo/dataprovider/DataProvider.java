@@ -960,11 +960,11 @@ public class DataProvider {
          * Phone 3
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("blue", "#6A4E57"),
-                new Colour("graphite", "#000000"),
-                new Colour("gold", "#FFFFFF"),
-                new Colour("silver", "#507974"),
-                new Colour("green", "#FFFFFF")
+                new Colour("green", "#576856"),
+                new Colour("silver", "#F2F3EE"),
+                new Colour("gold", "#FAEAD3"),
+                new Colour("graphite", "#5F5E5A"),
+                new Colour("blue", "#AFC6DC")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
@@ -994,25 +994,25 @@ public class DataProvider {
                 "78.1 x 160.8 x 7.65mm",
                 "238g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_iphone_13_pro_max_1_blue",
-                "item_phone_iphone_13_pro_max_2_blue",
-                "item_phone_iphone_13_pro_max_3_blue",
-
-                "item_phone_iphone_13_pro_max_1_graphite",
-                "item_phone_iphone_13_pro_max_2_graphite",
-                "item_phone_iphone_13_pro_max_3_graphite",
-
-                "item_phone_iphone_13_pro_max_1_gold",
-                "item_phone_iphone_13_pro_max_2_gold",
-                "item_phone_iphone_13_pro_max_3_gold",
+                "item_phone_iphone_13_pro_max_1_green",
+                "item_phone_iphone_13_pro_max_2_green",
+                "item_phone_iphone_13_pro_max_3_green",
 
                 "item_phone_iphone_13_pro_max_1_silver",
                 "item_phone_iphone_13_pro_max_2_silver",
                 "item_phone_iphone_13_pro_max_3_silver",
 
-                "item_phone_iphone_13_pro_max_1_green",
-                "item_phone_iphone_13_pro_max_2_green",
-                "item_phone_iphone_13_pro_max_3_green"
+                "item_phone_iphone_13_pro_max_1_gold",
+                "item_phone_iphone_13_pro_max_2_gold",
+                "item_phone_iphone_13_pro_max_3_gold",
+
+                "item_phone_iphone_13_pro_max_1_graphite",
+                "item_phone_iphone_13_pro_max_2_graphite",
+                "item_phone_iphone_13_pro_max_3_graphite",
+
+                "item_phone_iphone_13_pro_max_1_blue",
+                "item_phone_iphone_13_pro_max_2_blue",
+                "item_phone_iphone_13_pro_max_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
