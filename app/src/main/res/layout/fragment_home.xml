@@ -53,9 +53,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/featured_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PREVIOUSLY VIEWED"
+                        android:text="@string/home_featured_prev"
                         android:layout_marginLeft="16dp"
                         android:layout_gravity="left"/>
                     <androidx.recyclerview.widget.RecyclerView

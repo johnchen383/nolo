@@ -54,12 +54,14 @@ public class HomeFragment extends Fragment {
         LinearLayout initialView;
         LinearLayout searchBtn;
         RecyclerView featuredItemsList;
+        TextView featuredText;
 
         public ViewHolder() {
             categoryList = getView().findViewById(R.id.category_list);
             initialView = getView().findViewById(R.id.initial_home_view);
             searchBtn = getView().findViewById(R.id.search_layout_btn);
             featuredItemsList = getView().findViewById(R.id.featured_items_list);
+            featuredText = getView().findViewById(R.id.featured_text);
         }
     }
 
@@ -108,6 +110,10 @@ public class HomeFragment extends Fragment {
                 IItem itemToAdd = items.get(pos);
                 vHist.add((ItemVariant) itemToAdd.getDefaultItemVariant());
             }
+
+            vh.featuredText.setText(getString(R.string.home_featured_random));
+        } else {
+            vh.featuredText.setText(getString(R.string.home_featured_prev));
         }
 
         HomeFeaturedItemsAdaptor featuredItemsAdaptor = new HomeFeaturedItemsAdaptor(getActivity(), vHist);
