@@ -1626,30 +1626,23 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 8
+         * Accessory 8 - iphone se
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 89),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 89)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Lifeproof iPhone SE (3rd/2nd Gen)/8/7 Fre Case - Black Lime. WATERPROOF,DIRTPROOF,SNOWPROOF,DROPPROOF(Survives drops from 6.6 feet /2 meters)");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_lifeproof_iphone_se_case_1_black",
+                "item_accessory_lifeproof_iphone_se_case_2_black",
+                "item_accessory_lifeproof_iphone_se_case_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Lifeproof iPhone SE case",
+                "Lifeproof",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
