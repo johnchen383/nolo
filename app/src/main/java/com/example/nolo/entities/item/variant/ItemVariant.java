@@ -1,7 +1,9 @@
 package com.example.nolo.entities.item.variant;
 
+import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.enums.CategoryType;
 
 import java.util.Objects;
@@ -11,10 +13,10 @@ import java.util.Objects;
  * E.g. Items in Viewed History.
  */
 public class ItemVariant implements IItemVariant {
-    private IColour colour;
+    private Colour colour;
     private CategoryType categoryType;
     private String itemId, storeId, branchName;
-    private ISpecsOption storageOption, ramOption;
+    private SpecsOption storageOption, ramOption;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
@@ -24,8 +26,8 @@ public class ItemVariant implements IItemVariant {
     /**
      * This constructor is for Laptop, which has storage option and ram option.
      */
-    public ItemVariant(IColour colour, String itemId, CategoryType categoryType, String storeId, String branchName,
-                       ISpecsOption storageOption, ISpecsOption ramOption) {
+    public ItemVariant(Colour colour, String itemId, CategoryType categoryType, String storeId, String branchName,
+                       SpecsOption storageOption, SpecsOption ramOption) {
         this.colour = colour;
         this.itemId = itemId;
         this.categoryType = categoryType;
@@ -38,20 +40,20 @@ public class ItemVariant implements IItemVariant {
     /**
      * This constructor is for Phone, which has storage option.
      */
-    public ItemVariant(IColour colour, String itemId, CategoryType categoryType, String storeId, String branchName,
-                       ISpecsOption storageOption) {
+    public ItemVariant(Colour colour, String itemId, CategoryType categoryType, String storeId, String branchName,
+                       SpecsOption storageOption) {
         this(colour, itemId, categoryType, storeId, branchName, storageOption, null);
     }
 
     /**
      * This constructor is for Accessory.
      */
-    public ItemVariant(IColour colour, String itemId, CategoryType categoryType, String storeId, String branchName) {
+    public ItemVariant(Colour colour, String itemId, CategoryType categoryType, String storeId, String branchName) {
         this(colour, itemId, categoryType, storeId, branchName, null, null);
     }
 
     @Override
-    public IColour getColour() {
+    public Colour getColour() {
         return colour;
     }
 
@@ -76,12 +78,12 @@ public class ItemVariant implements IItemVariant {
     }
 
     @Override
-    public ISpecsOption getStorageOption() {
+    public SpecsOption getStorageOption() {
         return storageOption;
     }
 
     @Override
-    public ISpecsOption getRamOption() {
+    public SpecsOption getRamOption() {
         return ramOption;
     }
 

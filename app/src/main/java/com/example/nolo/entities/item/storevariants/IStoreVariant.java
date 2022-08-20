@@ -1,11 +1,11 @@
 package com.example.nolo.entities.item.storevariants;
 
-import com.example.nolo.entities.item.colour.IColour;
+import com.example.nolo.entities.item.colour.Colour;
 
 import java.util.List;
 
-public interface IItemStoreVariant {
+public interface IStoreVariant {
     String getStoreId();
-    List<IColour> getColours();
+    List<Colour> getColours();
     double getBasePrice();
 }

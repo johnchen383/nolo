@@ -1,7 +1,9 @@
 package com.example.nolo.entities.item;
 
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.storevariants.IItemStoreVariant;
+import com.example.nolo.entities.item.specs.Specs;
+import com.example.nolo.entities.item.storevariants.IStoreVariant;
+import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
@@ -13,8 +15,17 @@ import java.util.List;
 public abstract class Item implements IItem {
     private String itemId, name, brand;
     private CategoryType categoryType;
-    private ISpecs specs;
-    private List<IItemStoreVariant> storeVariants;
+    /**
+     * Cannot use ISpecs and IStoreVariant (interfaces),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use StoreVariant and Specs.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
+    private Specs specs;
+    private List<StoreVariant> storeVariants;
     private List<String> imageUris;
 
     /**
@@ -22,7 +33,7 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(CategoryType categoryType, String name, String brand, ISpecs specs, List<IItemStoreVariant> storeVariants, List<String> imageUris) {
+    public Item(CategoryType categoryType, String name, String brand, Specs specs, List<StoreVariant> storeVariants, List<String> imageUris) {
         this.categoryType = categoryType;
         this.name = name;
         this.brand = brand;
@@ -59,12 +70,12 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    public ISpecs getSpecs() {
+    public Specs getSpecs() {
         return specs;
     }
 
     @Override
-    public List<IItemStoreVariant> getStoreVariants() {
+    public List<StoreVariant> getStoreVariants() {
         return storeVariants;
     }
 
@@ -88,7 +99,7 @@ public abstract class Item implements IItem {
     @Override
     @Exclude
     public double getBasePrice(String storeId) {
-        for (IItemStoreVariant isv : storeVariants) {
+        for (IStoreVariant isv : storeVariants) {
             if (isv.getStoreId().equals(storeId)) {
                 return isv.getBasePrice();
             }

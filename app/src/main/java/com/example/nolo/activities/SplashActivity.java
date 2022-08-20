@@ -18,6 +18,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.nolo.R;
+import com.example.nolo.dataprovider.DataProvider;
+import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
@@ -92,6 +94,14 @@ public class SplashActivity extends BaseActivity {
         } else {
             System.out.println("CONNECTED");
         }
+
+//        DataProvider.clearAndAddEntity(CollectionPath.laptops.name(), (a) -> {
+//            DataProvider.clearAndAddEntity(CollectionPath.accessories.name(), (b) -> {
+//                DataProvider.clearAndAddEntity(CollectionPath.phones.name(), (c) -> {
+//                    DataProvider.addItemsToFirebase();
+//                });
+//            });
+//        });
 
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
             DeviceLocation.loadCurrentLocation(this);

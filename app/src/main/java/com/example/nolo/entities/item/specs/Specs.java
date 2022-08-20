@@ -1,11 +1,12 @@
 package com.example.nolo.entities.item.specs;
 
 import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
 
-public abstract class Specs implements ISpecs {
+public class Specs implements ISpecs {
     private String summary;
 
     /**
@@ -79,6 +80,7 @@ public abstract class Specs implements ISpecs {
     }
 
     @Override
+    @Exclude
     public String getWeight() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
@@ -92,7 +94,7 @@ public abstract class Specs implements ISpecs {
     }
 
     @Exclude
-    public List<ISpecsOption> getRamOptions() {
+    public List<SpecsOption> getRamOptions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 

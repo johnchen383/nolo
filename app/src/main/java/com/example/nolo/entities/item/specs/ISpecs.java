@@ -1,6 +1,7 @@
 package com.example.nolo.entities.item.specs;
 
 import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface ISpecs {
      * Laptops
      */
     String getGpu();
-    List<ISpecsOption> getRamOptions();
+    List<SpecsOption> getRamOptions();
     String getKeyboard();
     String getFingerprintReader();
     String getOpticalDrive();

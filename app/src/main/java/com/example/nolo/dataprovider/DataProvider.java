@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -14,8 +15,8 @@ import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
-import com.example.nolo.entities.item.storevariants.IItemStoreVariant;
-import com.example.nolo.entities.item.storevariants.ItemStoreVariant;
+import com.example.nolo.entities.item.storevariants.IStoreVariant;
+import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.specs.AccessorySpecs;
@@ -226,9 +227,9 @@ public class DataProvider {
     private static List<IItem> generateItems() {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris, recommendedAccessoryIds;
-        ISpecs specs;
+        Specs specs;
         List<ISpecsOption> rams, storages;
-        List<IItemStoreVariant> itemStoreVariant;
+        List<StoreVariant> itemStoreVariant;
         List<IColour> colours;
 
         /**
@@ -244,10 +245,10 @@ public class DataProvider {
                 new Colour("midnight", "#333A44")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2149),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 2499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2249),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2199)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2149),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2249),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2199)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -314,10 +315,10 @@ public class DataProvider {
                 new Colour("grey", "#646569")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 4299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 4199),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 4359),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 4299)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 4299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 4199),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 4359),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 4299)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(16, 0),
@@ -378,9 +379,9 @@ public class DataProvider {
                 new Colour("platinum", "#CBB1A0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1749),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1699),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1798)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1749),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1699),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1798)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -444,10 +445,10 @@ public class DataProvider {
                 new Colour("graphite", "#525556")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1849),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1879),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1849)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1849),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1879),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1849)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -505,8 +506,8 @@ public class DataProvider {
                 new Colour("blue", "#565D72")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 740.99),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 727.99)
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 740.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 727.99)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(4, 0),
@@ -557,10 +558,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(16, 0)
@@ -613,9 +614,9 @@ public class DataProvider {
                 new Colour("white", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 3311),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 3300),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3211)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 3311),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 3300),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3211)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -672,9 +673,9 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1300)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1300)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -727,8 +728,8 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(16, 0),
@@ -778,10 +779,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1409),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1369),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1399)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1409),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1369),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1399)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(8, 0),
@@ -838,10 +839,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1999)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1999)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -901,10 +902,10 @@ public class DataProvider {
                 new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1298.99),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1299),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1299)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1298.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1299),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1299)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -967,10 +968,10 @@ public class DataProvider {
                 new Colour("blue", "#AFC6DC")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1958.99),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1999),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1958.99)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1958.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1999),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1958.99)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1036,10 +1037,10 @@ public class DataProvider {
                 new Colour("red", "#C92435")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1428.99),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1429),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1428.99)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1428.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1429),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1428.99)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1105,10 +1106,10 @@ public class DataProvider {
                 new Colour("red", "#C92435")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 799),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 799),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 799),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 799)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 799),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 799),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 799),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 799)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(64, 0),
@@ -1161,10 +1162,10 @@ public class DataProvider {
                 new Colour("black", "#3A3A3A")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1599),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1269),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1599),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1599)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1599),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1269),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1599),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1599)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1214,10 +1215,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1276,10 +1277,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1338,10 +1339,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1400,10 +1401,10 @@ public class DataProvider {
                 new Colour("green", "#507974")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
@@ -1464,10 +1465,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1493,10 +1494,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1522,10 +1523,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1551,10 +1552,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1580,10 +1581,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1609,10 +1610,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1638,10 +1639,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1667,10 +1668,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1696,10 +1697,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
@@ -1725,10 +1726,10 @@ public class DataProvider {
                 new Colour("silver", "#C0C0C0")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
         imageUris = new ArrayList<>(Arrays.asList(
