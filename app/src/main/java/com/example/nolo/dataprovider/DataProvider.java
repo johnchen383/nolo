@@ -219,9 +219,9 @@ public class DataProvider {
     }
 
     /**
-     * ITEMS
+     * ITEMS.LAPTOPS
      */
-    private static List<IItem> generateItems() {
+    private static List<IItem> generateLaptops() {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris, recommendedAccessoryIds;
         Specs specs;
@@ -229,9 +229,6 @@ public class DataProvider {
         List<StoreVariant> itemStoreVariant;
         List<Colour> colours;
 
-        /**
-         * Laptops
-         */
         /*
          * Laptop 1
          */
@@ -842,10 +839,20 @@ public class DataProvider {
                 imageUris,
                 recommendedAccessoryIds));
 
+        return items;
+    }
 
-        /**
-         * Phones
-         */
+    /**
+     * ITEMS.PHONES
+     */
+    private static List<IItem> generatePhones() {
+        List<IItem> items = new ArrayList<>();
+        List<String> imageUris, recommendedAccessoryIds;
+        Specs specs;
+        List<SpecsOption> storages;
+        List<StoreVariant> itemStoreVariant;
+        List<Colour> colours;
+
         /*
          * Phone 1
          */
@@ -1449,10 +1456,19 @@ public class DataProvider {
                 imageUris,
                 recommendedAccessoryIds));
 
+        return items;
+    }
 
-        /**
-         * Accessories
-         */
+    /**
+     * ITEMS.ACCESSORIES
+     */
+    private static List<IItem> generateAccessories() {
+        List<IItem> items = new ArrayList<>();
+        List<String> imageUris;
+        Specs specs;
+        List<StoreVariant> itemStoreVariant;
+        List<Colour> colours;
+
         /*
          * Accessory 1 - all - Sony WH-1000XM4
          */
@@ -1737,7 +1753,12 @@ public class DataProvider {
 
     public static void addItemsToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        List<IItem> items = generateItems();
+        List<IItem> laptops = generateLaptops();
+        List<IItem> phones = generatePhones();
+        List<IItem> accessories = generateAccessories();
+        List<IItem> items = new ArrayList<>();
+        items.addAll(laptops);
+        items.addAll(phones);
         String collectionPath;
 
         // TODO: populate accessories first, and then grab the id and the add them to recommended
