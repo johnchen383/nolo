@@ -11,6 +11,15 @@ import java.util.Objects;
  * E.g. Items in Viewed History.
  */
 public class ItemVariant implements IItemVariant {
+    /**
+     * Cannot use IColour and ISpecsOption (interfaces),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use StoreVariant and Specs.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     private Colour colour;
     private CategoryType categoryType;
     private String itemId, storeId, branchName;
