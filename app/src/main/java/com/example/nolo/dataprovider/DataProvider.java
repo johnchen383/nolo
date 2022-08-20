@@ -1414,7 +1414,7 @@ public class DataProvider {
          * Accessories
          */
         /*
-         * Accessory 1 - all
+         * Accessory 1 - all - Sony WH-1000XM4
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
@@ -1443,7 +1443,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 2 - gaming laptop
+         * Accessory 2 - gaming laptop - Logitech Pro X DTS Headphone
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -1466,7 +1466,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 3 - all
+         * Accessory 3 - all - Apple AirPods Pro
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("white", "#FFFFFF")
@@ -1490,7 +1490,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 4 - all
+         * Accessory 4 - all - BOOM 3 Bluetooth Speaker
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
@@ -1534,7 +1534,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 5 - gaming laptop
+         * Accessory 5 - gaming laptop - HyperX QuadCast S Standalone Microphone
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -1549,14 +1549,14 @@ public class DataProvider {
                 "item_accessory_hyperx_quadcast_s_2_black",
                 "item_accessory_hyperx_quadcast_s_3_black"
         ));
-        items.add(new Accessory("HyperX QuadCast S",
+        items.add(new Accessory("HyperX QuadCast S Standalone Microphone",
                 "HyperX",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 6 - phone
+         * Accessory 6 - phone - Xiaomi Mi 20000mAh 50W Fast Charging Power Bank
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -1579,7 +1579,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 7 - iphone 13 pro max
+         * Accessory 7 - iphone 13 pro max - Apple iPhone 13 Pro Max Leather Case with MagSafe
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("brown", "#D17B42"),
@@ -1623,7 +1623,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 8 - iphone se
+         * Accessory 8 - iphone se - Lifeproof iPhone SE case
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -1645,7 +1645,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 9 - galaxy s22 ultra
+         * Accessory 9 - galaxy s22 ultra - Urban Armor Gear - Galaxy S22 Ultra 5G
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("ash", "#7E8082"),
@@ -1672,7 +1672,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 10 - oneplus 10 pro
+         * Accessory 10 - oneplus 10 pro - Spigen Oneplus 10 Pro Hybrid Case
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
