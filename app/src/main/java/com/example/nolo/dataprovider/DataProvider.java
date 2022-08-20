@@ -1469,30 +1469,25 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 3
+         * Accessory 3 - all
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("white", "#FFFFFF")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 438.99),
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 454.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Apple AirPods Pro Noise Cancelling True Wireless Headphones - with MagSafe charging case");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_apple_airpods_pro_1_white",
+                "item_accessory_apple_airpods_pro_2_white",
+                "item_accessory_apple_airpods_pro_3_white"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Apple AirPods Pro",
+                "Apple",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
