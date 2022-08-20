@@ -1,13 +1,13 @@
 package com.example.nolo.entities.item.specs;
 
-import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 
 import java.util.List;
 
 public class PhoneSpecs extends Specs {
     private String operatingSystem, display, cpu, camera, connectivity, audio, touchscreen,
             protectionResistance, simCard, sensors, battery, dimensions, weight;
-    private List<ISpecsOption> storageOptions;
+    private List<SpecsOption> storageOptions;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
@@ -15,7 +15,7 @@ public class PhoneSpecs extends Specs {
     public PhoneSpecs() {}
 
     public PhoneSpecs(String summary, String operatingSystem, String display, String cpu,
-                      List<ISpecsOption> storageOptions, String camera, String connectivity, String audio,
+                      List<SpecsOption> storageOptions, String camera, String connectivity, String audio,
                       String touchscreen, String protectionResistance, String simCard,
                       String sensors, String battery, String dimensions, String weight) {
         super(summary);
@@ -51,7 +51,7 @@ public class PhoneSpecs extends Specs {
     }
 
     @Override
-    public List<ISpecsOption> getStorageOptions() {
+    public List<SpecsOption> getStorageOptions() {
         return storageOptions;
     }
 
