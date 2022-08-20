@@ -104,7 +104,7 @@ public class User implements IUser {
     @Exclude
     public boolean isFieldNameValid(String fieldName) {
         try {
-            User.class.getField(fieldName);
+            User.class.getDeclaredField(fieldName);
             return true;
         } catch (NoSuchFieldException e) {
             return false;
