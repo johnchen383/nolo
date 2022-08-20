@@ -1538,30 +1538,45 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 6
+         * Accessory 6 - all
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("blue", "#3C5780"),
+                new Colour("purple", "#705A8F"),
+                new Colour("red", "#A83D4A"),
+                new Colour("peach", "#D0D0EB")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 258.99),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 259.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 259.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 258.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Ultimate Ears UE BOOM 3 Wireless Portable Bluetooth Speaker");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
+                "item_accessory_boom3_1_black",
+                "item_accessory_boom3_2_black",
+                "item_accessory_boom3_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_boom3_1_blue",
+                "item_accessory_boom3_2_blue",
+                "item_accessory_boom3_3_blue",
+
+                "item_accessory_boom3_1_purple",
+                "item_accessory_boom3_2_purple",
+                "item_accessory_boom3_3_purple",
+
+                "item_accessory_boom3_1_red",
+                "item_accessory_boom3_2_red",
+                "item_accessory_boom3_3_red",
+
+                "item_accessory_boom3_1_peach",
+                "item_accessory_boom3_2_peach",
+                "item_accessory_boom3_3_peach"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("BOOM 3 Bluetooth Speaker",
+                "Ultimate Ears",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
@@ -1690,6 +1705,7 @@ public class DataProvider {
         List<IItem> items = generateItems();
         String collectionPath;
 
+        // TODO: populate accessories first, and then grab the id and the add them to recommended
         for (IItem item : items) {
             switch (item.getCategoryType()) {
                 case laptops:
