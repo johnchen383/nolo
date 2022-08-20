@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -79,6 +80,36 @@ public class SignUpActivity extends BaseActivity {
         vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
     }
 
+    private void signUp() {
+        String userEmail = vh.emailInput.getText().toString();
+        String userPassword = vh.passwordInput.getText().toString();
+        String userRepeatPassword = vh.repeatPasswordInput.getText().toString();
+
+        // @TODO validation for input errors
+        if (userEmail.isEmpty()) {
+            System.out.println("Please enter an email address.");
+            return;
+        } else if (userPassword.isEmpty() && userRepeatPassword.isEmpty()) {
+            System.out.println("Please enter a password.");
+            return;
+        } else if (!userPassword.equals(userRepeatPassword)) {
+            System.out.println("The passwords do not match.");
+            return;
+        } else if (!vh.checkbox.isChecked()) {
+            System.out.println("Please read and accept the Terms of Use and Privacy Policy.");
+            return;
+        }
+
+        signUpViewModel.signUp((error) -> {
+            if (error == null) {
+                startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
+            } else {
+                //display error message
+                System.out.println("ERR: " + error);
+            }
+        }, userEmail, userPassword);
+    }
+
     private void initListeners() {
         vh.eyeBtn.setOnClickListener(v -> {
             togglePassword(vh.passwordInput, vh.eyeIcon);
@@ -110,33 +141,7 @@ public class SignUpActivity extends BaseActivity {
 
         vh.signUp.setOnClickListener(v -> {
             hideKeyboard(v, true);
-            String userEmail = vh.emailInput.getText().toString();
-            String userPassword = vh.passwordInput.getText().toString();
-            String userRepeatPassword = vh.repeatPasswordInput.getText().toString();
-
-            // @TODO validation for input errors
-            if (userEmail.isEmpty()) {
-                System.out.println("Please enter an email address.");
-                return;
-            } else if (userPassword.isEmpty() && userRepeatPassword.isEmpty()) {
-                System.out.println("Please enter a password.");
-                return;
-            } else if (!userPassword.equals(userRepeatPassword)) {
-                System.out.println("The passwords do not match.");
-                return;
-            } else if (!vh.checkbox.isChecked()) {
-                System.out.println("Please read and accept the Terms of Use and Privacy Policy.");
-                return;
-            }
-
-            signUpViewModel.signUp((error) -> {
-                if (error == null) {
-                    startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
-                } else {
-                    //display error message
-                    System.out.println("ERR: " + error);
-                }
-            }, userEmail, userPassword);
+            signUp();
         });
 
         vh.signUpGoogle.setOnClickListener(v -> {
@@ -153,6 +158,15 @@ public class SignUpActivity extends BaseActivity {
 
         vh.repeatPasswordInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
+        });
+
+        vh.repeatPasswordInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard(v, true);
+                signUp();
+                return true;
+            }
+            return false;
         });
     }
 
@@ -173,7 +187,7 @@ public class SignUpActivity extends BaseActivity {
         if (isClearFocus) {
             clearFocus();
         }
-        if (!vh.emailInput.hasFocus() && !vh.passwordInput.hasFocus()) {
+        if (!vh.emailInput.hasFocus() && !vh.passwordInput.hasFocus() && !vh.repeatPasswordInput.hasFocus()) {
             InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
