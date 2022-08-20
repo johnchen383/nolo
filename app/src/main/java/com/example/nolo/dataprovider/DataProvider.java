@@ -1493,7 +1493,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 4
+         * Accessory 4 - gaming laptop
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -1515,30 +1515,24 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 5
+         * Accessory 5 - phone
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 120),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 118.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 118.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank - Black. Max 50W output,Support Apple, Samsung, Xiaomi Smart phones' & Nintendo Switch Fast Charging , Charge three devices simultaneously, Support Laptop with USB-C Charging Port");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_xiaomi_mi_20000mah_1_black",
+                "item_accessory_xiaomi_mi_20000mah_2_black",
+                "item_accessory_xiaomi_mi_20000mah_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Xiaomi",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
