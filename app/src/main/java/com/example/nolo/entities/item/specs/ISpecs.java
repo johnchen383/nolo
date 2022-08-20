@@ -17,7 +17,7 @@ public interface ISpecs {
     String getOperatingSystem();
     String getDisplay();
     String getCpu();
-    List<ISpecsOption> getStorageOptions();
+    List<SpecsOption> getStorageOptions();
     String getCamera();
     String getCommunication();
     String getAudio();

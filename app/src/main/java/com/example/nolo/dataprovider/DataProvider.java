@@ -14,7 +14,6 @@ import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.Laptop;
@@ -886,7 +885,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -952,7 +951,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22",
                 "Samsung",
-                specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1020,7 +1019,7 @@ public class DataProvider {
         ));
         items.add(new Phone("iPhone 13 Pro Max",
                 "Apple",
-                specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1092,7 +1091,7 @@ public class DataProvider {
         ));
         items.add(new Phone("iPhone 13",
                 "Apple",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1149,7 +1148,7 @@ public class DataProvider {
         ));
         items.add(new Phone("iPhone SE",
                 "Apple",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1200,7 +1199,7 @@ public class DataProvider {
         ));
         items.add(new Phone("OnePlus 10 Pro",
                 "OnePlus",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1251,7 +1250,7 @@ public class DataProvider {
         ));
         items.add(new Phone("HUAWEI P40 Pro",
                 "HUAWEI",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1313,7 +1312,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1375,7 +1374,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1437,7 +1436,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                specs,
+                (PhoneSpecs)specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1471,7 +1470,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1500,7 +1499,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1529,7 +1528,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1558,7 +1557,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1587,7 +1586,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1616,7 +1615,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1645,7 +1644,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1674,7 +1673,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1703,7 +1702,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
@@ -1732,7 +1731,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 

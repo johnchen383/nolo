@@ -66,8 +66,6 @@ public class CategoriesRepository implements ICategoriesRepository {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         ICategory category = document.toObject(Category.class);
-                        System.err.println("CAT" + category);
-//                        category.setCategoryType(CategoryType.valueOf(category.getCategoryName())); TODO: buggy as heck
                         categoriesRepo.add(category);
                         Log.i("Load Categories From Firebase", category.toString());
                     }

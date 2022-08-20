@@ -68,7 +68,7 @@ public class LaptopSpecs extends Specs {
     }
 
     @Override
-    public List<ISpecsOption> getStorageOptions() {
+    public List<SpecsOption> getStorageOptions() {
         return storageOptions;
     }
 

@@ -45,7 +45,7 @@ public class Specs implements ISpecs {
     }
 
     @Exclude
-    public List<ISpecsOption> getStorageOptions() {
+    public List<SpecsOption> getStorageOptions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
