@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         vh.featuredItemsList.setLayoutManager(layoutManager);
 
-        List<IItemVariant> vHist = GetRecentViewedItemsUseCase.getRecentViewedItems();
+        List<ItemVariant> vHist = GetRecentViewedItemsUseCase.getRecentViewedItems();
 
         if (vHist.size() <= 0){
             //replace with random selection and update text
@@ -103,10 +103,10 @@ public class HomeFragment extends Fragment {
             List<IItem> items = GetAllItemsUseCase.getAllItems();
             int increment = items.size() / (User.MAX_VIEWED + 2);
             int seedPosition = (int)(Math.random() * items.size());
-
             for (int i = 0; i < User.MAX_VIEWED; i++){
-                IItem itemToAdd = items.get((seedPosition + (i * increment)) % items.size());
-                vHist.add(itemToAdd.getDefaultItemVariant());
+                int pos = (seedPosition + (i * increment)) % items.size();
+                IItem itemToAdd = items.get(pos);
+                vHist.add((ItemVariant) itemToAdd.getDefaultItemVariant());
             }
         }
 

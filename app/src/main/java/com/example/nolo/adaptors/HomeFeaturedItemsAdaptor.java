@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedItemsAdaptor.ViewHolder>{
-    private List<IItemVariant> featuredItems;
+    private List<ItemVariant> featuredItems;
     private Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -43,7 +43,7 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
         }
     }
 
-    public HomeFeaturedItemsAdaptor(@NonNull Context context, List<IItemVariant> featuredItems){
+    public HomeFeaturedItemsAdaptor(@NonNull Context context, List<ItemVariant> featuredItems){
         this.featuredItems = featuredItems;
         this.mContext = context;
     }
@@ -60,32 +60,14 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         IItemVariant variant = featuredItems.get(position);
-        String itemId = variant.getItemId();
-        String storeId = variant.getStoreId();
 
-        //display title
-        IItem item = GetItemByIdUseCase.getItemById(itemId);
-        holder.title.setText(item.getName());
+        holder.title.setText(variant.getTitle());
 
-        //display price
-        double displayPrice = item.getBasePrice(storeId);
+        holder.price.setText(variant.getDisplayPrice());
 
-        if (variant.getRamOption() != null){
-            displayPrice += variant.getRamOption().getAdditionalPrice();
-        }
-
-        if (variant.getStorageOption() != null){
-            displayPrice += variant.getStorageOption().getAdditionalPrice();
-        }
-
-        holder.price.setText("$" + displayPrice);
-
-        //display image
-        
         int i = mContext.getResources().getIdentifier(
-                item.getImageUris().get(0), "drawable",
+                variant.getDisplayImage(), "drawable",
                 mContext.getPackageName());
-
         holder.img.setImageResource(i);
 
         holder.itemClickable.setOnClickListener(v -> {
