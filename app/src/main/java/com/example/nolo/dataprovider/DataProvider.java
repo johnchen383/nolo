@@ -1315,59 +1315,45 @@ public class DataProvider {
          * Phone 9
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("blue", "#6A4E57"),
+                new Colour("dusk", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 299)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(128, 0)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("Nokia G21",
+                "Android 11",
+                "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate",
+                "Unisoc T606",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Front camera:8 MP; Rear camera:50 MP Main 1/2.76“ CMOS, 0.64um, 5P lens, f/1.8 + 2 MP Macro + 2 MP Depth; Rear flash LED",
+                "4G; Wi-Fi 802.11 a/b/g/n/ac; Bluetooth 5.0",
+                "OZO Spatial Audio capture. FM Radio (Headset required); Microphone",
                 "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "N/A",
+                "Nano SIM",
+                "Fingerprint sensor: Side Power key; Face Unlock; Accelerometer (G-sensor); Ambient light sensor; Proximity sensor",
+                "5050mAh",
+                "75.9 x 164.6 x 8.5mm",
+                "190g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_samsung_nokia_g21_1_blue",
+                "item_phone_samsung_nokia_g21_2_blue",
+                "item_phone_samsung_nokia_g21_3_blue",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_samsung_nokia_g21_1_dusk",
+                "item_phone_samsung_nokia_g21_2_dusk",
+                "item_phone_samsung_nokia_g21_3_dusk"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("Nokia G21",
+                "Nokia",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
