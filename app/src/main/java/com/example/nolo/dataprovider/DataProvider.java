@@ -1209,59 +1209,55 @@ public class DataProvider {
          * Phone 7
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("silver", "#6A4E57"),
+                new Colour("blue", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
+<<<<<<< HEAD
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
                 new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+=======
+                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1075.99),
+                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1184),
+                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1075.99)
+>>>>>>> bd1eba247e34bb2ee7f4c7943d1204c6e3086045
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
                 new SpecsOption(256, 100),
                 new SpecsOption(512, 400)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("HUAWEI P40 Pro",
+                "EMUI 10.1(Based on Android 10)",
+                "6.58 inches; OLED, up to 90 Hz frame refresh rate; 2640 x 1200 Pixels",
+                "HUAWEI Kirin 990 5G; Octa-core",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "Rear Camera; 50 MP Ultra Vision Camera + 40 MP Cine Camera + 3D Depth Sensing Camera",
                 "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Stereo speakers; Audio playback format",
                 "Yes",
                 "IP68",
                 "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "Gesture Sensor; Gravity Sensor; Infrared Sensor; Fingerprint Sensor; Hall Sensor; Gyroscope; Compass; Ambient Light Sensor; Proximity Sensor; Colour Temperature Sensor",
+                "4200 mAh",
+                "72.6 x 158.2 x 8.95mm",
+                "209g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_huawei_p40_pro_1_silver",
+                "item_phone_huawei_p40_pro_2_silver",
+                "item_phone_huawei_p40_pro_3_silver",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_huawei_p40_pro_1_blue",
+                "item_phone_huawei_p40_pro_2_blue",
+                "item_phone_huawei_p40_pro_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("HUAWEI P40 Pro",
+                "HUAWEI",
                 specs,
                 itemStoreVariant,
                 imageUris,
