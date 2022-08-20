@@ -1213,16 +1213,9 @@ public class DataProvider {
                 new Colour("blue", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-<<<<<<< HEAD
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
-=======
                 new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1075.99),
                 new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1184),
                 new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1075.99)
->>>>>>> bd1eba247e34bb2ee7f4c7943d1204c6e3086045
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
