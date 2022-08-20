@@ -48,11 +48,20 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/home_logo"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="previously viewed"
-                    android:layout_gravity="center"/>
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PREVIOUSLY VIEWED"
+                        android:layout_gravity="left"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/featured_items_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
             </LinearLayout>
 
