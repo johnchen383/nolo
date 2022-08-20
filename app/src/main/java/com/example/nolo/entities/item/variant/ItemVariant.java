@@ -1,16 +1,29 @@
 package com.example.nolo.entities.item.variant;
 
+import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.interactors.item.GetItemByIdUseCase;
+import com.google.firebase.firestore.Exclude;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * This class is for the selected Item.
  * E.g. Items in Viewed History.
  */
-public class ItemVariant implements IItemVariant {
+public class ItemVariant implements IItemVariant, Serializable {
+    /**
+     * Cannot use IColour and ISpecsOption (interfaces),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use StoreVariant and Specs.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     private Colour colour;
     private CategoryType categoryType;
     private String itemId, storeId, branchName;
@@ -83,6 +96,49 @@ public class ItemVariant implements IItemVariant {
     @Override
     public SpecsOption getRamOption() {
         return ramOption;
+    }
+
+    @Override
+    @Exclude
+    public String getTitle(){
+        return GetItemByIdUseCase.getItemById(itemId).getName();
+    }
+
+    @Override
+    @Exclude
+    public String getDisplayPrice(){
+        IItem item = GetItemByIdUseCase.getItemById(itemId);
+
+        double displayPrice = item.getBasePrice(storeId);
+
+        if (this.ramOption != null){
+            displayPrice += this.ramOption.getAdditionalPrice();
+        }
+
+        if (this.storageOption != null){
+            displayPrice += this.storageOption.getAdditionalPrice();
+        }
+
+        return String.format("$%.2f", displayPrice);
+    }
+
+    @Override
+    @Exclude
+    public String getDisplayImage(){
+        IItem item = GetItemByIdUseCase.getItemById(itemId);
+
+        for (String uri : item.getImageUris()){
+            //find suffix which indicates colour
+            String[] parts = uri.split("_");
+            String suffix = parts[parts.length - 1];
+
+            if (suffix.equals(colour.getName())){
+                return uri;
+            }
+        }
+
+        System.err.println("No image matched!");
+        return item.getImageUris().get(0);
     }
 
     @Override

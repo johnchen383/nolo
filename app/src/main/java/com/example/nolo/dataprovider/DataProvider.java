@@ -6,24 +6,21 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
-import com.example.nolo.entities.item.specs.Specs;
-import com.example.nolo.entities.item.variant.IItemVariant;
-import com.example.nolo.entities.item.purchasable.IPurchasable;
-import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.storevariants.IStoreVariant;
-import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
+import com.example.nolo.entities.item.colour.Colour;
+import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.specs.AccessorySpecs;
-import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.LaptopSpecs;
 import com.example.nolo.entities.item.specs.PhoneSpecs;
+import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
+import com.example.nolo.entities.item.storevariants.StoreVariant;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
@@ -44,7 +41,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 
 public class DataProvider {
@@ -173,8 +174,8 @@ public class DataProvider {
      */
     private static List<IUser> generateUsers() {
         List<IUser> users = new ArrayList<>();
-        List<IItemVariant> history = new ArrayList<>();
-        List<IPurchasable> cart = new ArrayList<>();
+        List<ItemVariant> history = new ArrayList<>();
+        List<Purchasable> cart = new ArrayList<>();
         IUser u;
 
         history.add(new ItemVariant());
@@ -222,9 +223,9 @@ public class DataProvider {
     }
 
     /**
-     * ITEMS
+     * ITEMS.LAPTOPS
      */
-    private static List<IItem> generateItems() {
+    private static List<IItem> generateLaptops() {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris, recommendedAccessoryIds;
         Specs specs;
@@ -232,9 +233,6 @@ public class DataProvider {
         List<StoreVariant> itemStoreVariant;
         List<Colour> colours;
 
-        /**
-         * Laptops
-         */
         /*
          * Laptop 1
          */
@@ -298,7 +296,9 @@ public class DataProvider {
                 "item_laptop_macbook_air_m2_3_midnight"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "BOOM 3 Bluetooth Speaker"
         ));
         items.add(new Laptop("MacBook Air (M2)",
                 "Apple",
@@ -360,7 +360,9 @@ public class DataProvider {
                 "item_laptop_macbook_pro_16_3_grey"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "BOOM 3 Bluetooth Speaker"
         ));
         items.add(new Laptop("MacBook Pro 16\"",
                 "Apple",
@@ -428,7 +430,9 @@ public class DataProvider {
                 "item_laptop_surface_laptop_4_3_platinum"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Surface Laptop 4",
                 "Microsoft",
@@ -490,7 +494,9 @@ public class DataProvider {
                 "item_laptop_surface_pro_8_3_graphite"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Surface Pro 8",
                 "Microsoft",
@@ -542,7 +548,9 @@ public class DataProvider {
                 "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
                 "ASUS",
@@ -597,7 +605,9 @@ public class DataProvider {
                 "item_laptop_lenovo_thinkpad_x1_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
                 "Lenovo",
@@ -657,7 +667,9 @@ public class DataProvider {
                 "item_laptop_legion_5_pro_16arh7_3_white"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Legion 5 Pro 16ARH7",
                 "Lenovo",
@@ -712,7 +724,9 @@ public class DataProvider {
                 "item_laptop_msi_gf63_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("MSI GF63",
                 "MSI",
@@ -763,7 +777,9 @@ public class DataProvider {
                 "item_laptop_razer_blade_17_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
                 "Razer",
@@ -816,7 +832,9 @@ public class DataProvider {
                 "item_laptop_acer_aspire_7_a715_42g_roex_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
                 "Acer",
@@ -825,10 +843,20 @@ public class DataProvider {
                 imageUris,
                 recommendedAccessoryIds));
 
+        return items;
+    }
 
-        /**
-         * Phones
-         */
+    /**
+     * ITEMS.PHONES
+     */
+    private static List<IItem> generatePhones() {
+        List<IItem> items = new ArrayList<>();
+        List<String> imageUris, recommendedAccessoryIds;
+        Specs specs;
+        List<SpecsOption> storages;
+        List<StoreVariant> itemStoreVariant;
+        List<Colour> colours;
+
         /*
          * Phone 1
          */
@@ -882,7 +910,9 @@ public class DataProvider {
                 "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Urban Armor Gear - Galaxy S22 Ultra 5G",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Sony WH-1000XM4"
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
@@ -948,7 +978,9 @@ public class DataProvider {
                 "item_phone_samsung_galaxy_s22_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Sony WH-1000XM4"
         ));
         items.add(new Phone("Samsung Galaxy S22",
                 "Samsung",
@@ -1016,7 +1048,9 @@ public class DataProvider {
                 "item_phone_iphone_13_pro_max_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Apple iPhone 13 Pro Max Leather Case with MagSafe",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("iPhone 13 Pro Max",
                 "Apple",
@@ -1088,7 +1122,9 @@ public class DataProvider {
                 "item_phone_iphone_13_3_red"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("iPhone 13",
                 "Apple",
@@ -1145,7 +1181,9 @@ public class DataProvider {
                 "item_phone_iphone_se_3_red"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Lifeproof iPhone SE case",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("iPhone SE",
                 "Apple",
@@ -1196,7 +1234,9 @@ public class DataProvider {
                 "item_phone_oneplus_10_pro_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Spigen Oneplus 10 Pro Hybrid Case",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("OnePlus 10 Pro",
                 "OnePlus",
@@ -1247,7 +1287,9 @@ public class DataProvider {
                 "item_phone_huawei_p40_pro_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("HUAWEI P40 Pro",
                 "HUAWEI",
@@ -1260,59 +1302,54 @@ public class DataProvider {
          * Phone 8
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("blue", "#A8C9DE"),
+                new Colour("purple", "#E2D0E4"),
+                new Colour("grey", "#525964")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1149),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1129),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1129),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1149)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(256, 0)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+        specs = new PhoneSpecs("Xiaomi 12 Pro",
                 "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                "WQHD+ 6.73\" AMOLED DotDisplay; 3200 x 1440; 552ppi; 480Hz",
+                "Snapdragon® 8 Gen 1",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Pro-grade 50MP triple camera array; 50MP wide angle camera + 50MP ultra-wide angle camera + 50MP telephoto camera; 32MP in-display selfie camera",
+                "5G; LTE; Wi-Fi 6 / Wi-Fi 6E; Bluetooth v5.2",
+                "Quad speakers; Dolby Atmos®; SOUND BY Harman Kardon",
                 "Yes",
                 "IP68",
                 "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "In-screen fingerprint sensor; AI face unlock; Proximity sensor | Ambient light sensor | Accelerometer | Gyroscope | Electronic compass | Linear motor | IR blaster | Barometer | Flicker sensor",
+                "4600mAh",
+                "74.6 x 163.6 x 8.16mm",
+                "205g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_xiaomi_12_pro_1_blue",
+                "item_phone_xiaomi_12_pro_2_blue",
+                "item_phone_xiaomi_12_pro_3_blue",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_xiaomi_12_pro_1_purple",
+                "item_phone_xiaomi_12_pro_2_purple",
+                "item_phone_xiaomi_12_pro_3_purple",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_xiaomi_12_pro_1_grey",
+                "item_phone_xiaomi_12_pro_2_grey",
+                "item_phone_xiaomi_12_pro_3_grey"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4"
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("Xiaomi 12 Pro",
+                "Xiaomi",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
@@ -1322,59 +1359,47 @@ public class DataProvider {
          * Phone 9
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("blue", "#4E8EA0"),
+                new Colour("dusk", "#A09591")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 299)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(128, 0)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("Nokia G21",
+                "Android 11",
+                "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate",
+                "Unisoc T606",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Front camera: 8 MP; Rear camera: 50 MP Main 1/2.76“ CMOS, 0.64um, 5P lens, f/1.8 + 2 MP Macro + 2 MP Depth; Rear flash LED",
+                "4G; Wi-Fi 802.11 a/b/g/n/ac; Bluetooth 5.0",
+                "OZO Spatial Audio capture. FM Radio (Headset required); Microphone",
                 "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "N/A",
+                "Nano SIM",
+                "Fingerprint sensor: Side Power key; Face Unlock; Accelerometer (G-sensor); Ambient light sensor; Proximity sensor",
+                "5050mAh",
+                "75.9 x 164.6 x 8.5mm",
+                "190g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_nokia_g21_1_blue",
+                "item_phone_nokia_g21_2_blue",
+                "item_phone_nokia_g21_3_blue",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_nokia_g21_1_dusk",
+                "item_phone_nokia_g21_2_dusk",
+                "item_phone_nokia_g21_3_dusk"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("Nokia G21",
+                "Nokia",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
@@ -1384,70 +1409,72 @@ public class DataProvider {
          * Phone 10
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("black", "#242424"),
+                new Colour("sand", "#B3856D"),
+                new Colour("blue", "#294970")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 96.58),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 94.96)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(2, 0)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("Nokia 225 4G",
+                "S30+",
+                "2.4 inch; QVGA resolution",
+                "Unisoc T117",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
-                "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "Rear camera: 0.3 MP",
+                "4G; Bluetooth 5.0",
+                "FM Radio (Wired & Wireless dual mode); MP3 player",
+                "No",
+                "It's a brick",
+                "Nano SIM",
+                "N/A",
+                "1150mAh",
+                "51 x 124.7 x 13.7mm",
+                "90.1g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_nokia_225_4g_1_black",
+                "item_phone_nokia_225_4g_2_black",
+                "item_phone_nokia_225_4g_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_nokia_225_4g_1_sand",
+                "item_phone_nokia_225_4g_2_sand",
+                "item_phone_nokia_225_4g_3_sand",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_nokia_225_4g_1_blue",
+                "item_phone_nokia_225_4g_2_blue",
+                "item_phone_nokia_225_4g_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("Nokia 225 4G",
+                "Nokia",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
 
+        return items;
+    }
 
-        /**
-         * Accessories
-         */
+    /**
+     * ITEMS.ACCESSORIES
+     */
+    private static List<IItem> generateAccessories() {
+        List<IItem> items = new ArrayList<>();
+        List<String> imageUris;
+        Specs specs;
+        List<StoreVariant> itemStoreVariant;
+        List<Colour> colours;
+
         /*
-         * Accessory 1
+         * Accessory 1 - all - Sony WH-1000XM4
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
@@ -1476,262 +1503,251 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 2
+         * Accessory 2 - gaming laptop - Logitech Pro X DTS Headphone
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 299),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 299),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 299)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Logitech Pro X DTS Headphone: X 2.0 Gaming Headset With Blue Vo!ce");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_logitech_pro_x_dts_1_black",
+                "item_accessory_logitech_pro_x_dts_2_black",
+                "item_accessory_logitech_pro_x_dts_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Logitech Pro X DTS Headphone",
+                "Logitech",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 3
+         * Accessory 3 - all - Apple AirPods Pro
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("white", "#FFFFFF")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 438.99),
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 454.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Apple AirPods Pro Noise Cancelling True Wireless Headphones - with MagSafe charging case");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_apple_airpods_pro_1_white",
+                "item_accessory_apple_airpods_pro_2_white",
+                "item_accessory_apple_airpods_pro_3_white"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Apple AirPods Pro",
+                "Apple",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 4
+         * Accessory 4 - all - BOOM 3 Bluetooth Speaker
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("blue", "#3C5780"),
+                new Colour("purple", "#705A8F"),
+                new Colour("red", "#A83D4A"),
+                new Colour("peach", "#D0D0EB")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 258.99),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 259.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 259.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 258.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Ultimate Ears UE BOOM 3 Wireless Portable Bluetooth Speaker");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
+                "item_accessory_boom3_1_black",
+                "item_accessory_boom3_2_black",
+                "item_accessory_boom3_3_black",
 
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_boom3_1_blue",
+                "item_accessory_boom3_2_blue",
+                "item_accessory_boom3_3_blue",
+
+                "item_accessory_boom3_1_purple",
+                "item_accessory_boom3_2_purple",
+                "item_accessory_boom3_3_purple",
+
+                "item_accessory_boom3_1_red",
+                "item_accessory_boom3_2_red",
+                "item_accessory_boom3_3_red",
+
+                "item_accessory_boom3_1_peach",
+                "item_accessory_boom3_2_peach",
+                "item_accessory_boom3_3_peach"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("BOOM 3 Bluetooth Speaker",
+                "Ultimate Ears",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 5
+         * Accessory 5 - gaming laptop - HyperX QuadCast S Standalone Microphone
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 348.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 348.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("HyperX QuadCast S Standalone Microphone - Customizable RGB Lighting, Anti-Vibration, Four Polar Patterns");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_hyperx_quadcast_s_1_black",
+                "item_accessory_hyperx_quadcast_s_2_black",
+                "item_accessory_hyperx_quadcast_s_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("HyperX QuadCast S Standalone Microphone",
+                "HyperX",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 6
+         * Accessory 6 - phone - Xiaomi Mi 20000mAh 50W Fast Charging Power Bank
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 120),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 118.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 118.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank - Black. Max 50W output,Support Apple, Samsung, Xiaomi Smart phones' & Nintendo Switch Fast Charging , Charge three devices simultaneously, Support Laptop with USB-C Charging Port");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_xiaomi_mi_20000mah_1_black",
+                "item_accessory_xiaomi_mi_20000mah_2_black",
+                "item_accessory_xiaomi_mi_20000mah_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Xiaomi",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 7
+         * Accessory 7 - iphone 13 pro max - Apple iPhone 13 Pro Max Leather Case with MagSafe
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("brown", "#D17B42"),
+                new Colour("green", "#303D2F"),
+                new Colour("midnight", "#34363A"),
+                new Colour("wisteria", "#797697"),
+                new Colour("cherry", "#472B3B")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 109),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 109),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 109),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 109)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Apple iPhone 13 Pro Max Leather Case with MagSafe - Made with high-quality and supple leather");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_brown",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_brown",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_brown",
 
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_green",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_green",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_green",
+
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_midnight",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_midnight",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_midnight",
+
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_wisteria",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_wisteria",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_wisteria",
+
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_cherry",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_cherry",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_cherry"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Apple iPhone 13 Pro Max Leather Case with MagSafe",
+                "Apple",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 8
+         * Accessory 8 - iphone se - Lifeproof iPhone SE case
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 89),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 89)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Lifeproof iPhone SE (3rd/2nd Gen)/8/7 Fre Case - Black Lime. WATERPROOF,DIRTPROOF,SNOWPROOF,DROPPROOF(Survives drops from 6.6 feet /2 meters)");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_lifeproof_iphone_se_case_1_black",
+                "item_accessory_lifeproof_iphone_se_case_2_black",
+                "item_accessory_lifeproof_iphone_se_case_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Lifeproof iPhone SE case",
+                "Lifeproof",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 9
+         * Accessory 9 - galaxy s22 ultra - Urban Armor Gear - Galaxy S22 Ultra 5G
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("ash", "#7E8082"),
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 65),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 65)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Urban Armor Gear - Galaxy S22 Ultra 5G");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_1_ash",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_2_ash",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_3_ash",
 
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_1_black",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_2_black",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Urban Armor Gear - Galaxy S22 Ultra 5G",
+                "Urban Armor Gear",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
         /*
-         * Accessory 10
+         * Accessory 10 - oneplus 10 pro - Spigen Oneplus 10 Pro Hybrid Case
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 39)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Spigen Oneplus 10 Pro Hybrid Case - Matte Black, Certified Military-Grade Protection, Clear Durable Back Panel + TPU bumper, ACS04429");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_spigen_oneplus_10_pro_hybrid_case_1_black",
+                "item_accessory_spigen_oneplus_10_pro_hybrid_case_2_black",
+                "item_accessory_spigen_oneplus_10_pro_hybrid_case_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Spigen Oneplus 10 Pro Hybrid Case",
+                "Spigen",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
@@ -1739,33 +1755,69 @@ public class DataProvider {
         return items;
     }
 
+    private static Set<IItem> loadedAccessories, loadableAccessories;
+    private static Map<String, String> itemNameToId = new HashMap<>();
+
+    private static void onAddAccessoryComplete(IItem it) {
+        loadedAccessories.add(it);
+
+        if (loadedAccessories.equals(loadableAccessories)) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            List<IItem> items = new ArrayList<>();
+            items.addAll(generateLaptops());
+            items.addAll(generatePhones());
+            String collectionPath;
+
+            for (IItem item : items) {
+                switch (item.getCategoryType()) {
+                    case laptops:
+                        collectionPath = CollectionPath.laptops.name();
+                        break;
+                    case phones:
+                        collectionPath = CollectionPath.phones.name();
+                        break;
+                    default:
+                        collectionPath = CollectionPath.accessories.name();
+                        break;
+                }
+
+                for (int i = 0; i < item.getRecommendedAccessoryIds().size(); i++) {
+                    String itemName = item.getRecommendedAccessoryIds().get(i);
+                    item.getRecommendedAccessoryIds().set(i, itemNameToId.get(itemName));
+                }
+
+                db.collection(collectionPath).add(item).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+                            Log.i("Add items to Firebase", item + " added.");
+                        } else {
+                            Log.i("Add items to Firebase", item + " NOT added.");
+                        }
+                    }
+                });
+            }
+        }
+    }
+
     public static void addItemsToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        List<IItem> items = generateItems();
-        String collectionPath;
+        loadableAccessories = new HashSet<>(generateAccessories());
+        loadedAccessories = new HashSet<>();
 
-        for (IItem item : items) {
-            switch (item.getCategoryType()) {
-                case laptops:
-                    collectionPath = CollectionPath.laptops.name();
-                    break;
-                case phones:
-                    collectionPath = CollectionPath.phones.name();
-                    break;
-                default:
-                    collectionPath = CollectionPath.accessories.name();
-                    break;
-            }
+        for (IItem acc : loadableAccessories) {
+            db.collection(CollectionPath.accessories.name()).add(acc).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentReference> task) {
+                    if (task.isSuccessful()) {
+                        Log.i("Add items to Firebase", acc + " added.");
+                    } else {
+                        Log.i("Add items to Firebase", acc + " NOT added.");
+                    }
 
-            db.collection(collectionPath).add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.i("Add items to Firebase", item + " added.");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.i("Add items to Firebase", item + " NOT added.");
+                    itemNameToId.put(acc.getName(), task.getResult().getId());
+
+                    onAddAccessoryComplete(acc);
                 }
             });
         }

@@ -1,7 +1,9 @@
 package com.example.nolo.repositories.user;
 
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.user.IUser;
 
 import java.util.List;
@@ -14,8 +16,8 @@ public interface IUsersRepository {
     void logIn(Consumer<String> onUserLoggedIn, String email, String password);
     void logOut();
     void addViewHistory(IItemVariant item);
-    List<IItemVariant> getViewHistory();
+    List<ItemVariant> getViewHistory();
     void addCart(IPurchasable cartItem);
     void removeCart(IPurchasable cartItem);
-    List<IPurchasable> getCart();
+    List<Purchasable> getCart();
 }

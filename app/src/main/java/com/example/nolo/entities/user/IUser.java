@@ -1,8 +1,9 @@
 package com.example.nolo.entities.user;
 
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
-import com.google.firebase.firestore.Exclude;
+import com.example.nolo.entities.item.variant.ItemVariant;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public interface IUser {
     String getUserAuthUid();
     void setEmail(String email);
     String getEmail();
-    List<IItemVariant> getViewHistory();
+    List<ItemVariant> getViewHistory();
     void addViewHistory(IItemVariant item);
-    List<IPurchasable> getCart();
+    List<Purchasable> getCart();
     void addCart(IPurchasable cartItem);
     void removeCart(IPurchasable cartItem);
     boolean isFieldNameValid(String fieldName);
