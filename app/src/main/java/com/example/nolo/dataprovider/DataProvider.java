@@ -1496,27 +1496,20 @@ public class DataProvider {
          * Accessory 4
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 348.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 348.99)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("HyperX QuadCast S Standalone Microphone - Customizable RGB Lighting, Anti-Vibration, Four Polar Patterns");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_hyperx_quadcast_s_1_black",
+                "item_accessory_hyperx_quadcast_s_2_black",
+                "item_accessory_hyperx_quadcast_s_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("HyperX QuadCast S",
+                "HyperX",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
