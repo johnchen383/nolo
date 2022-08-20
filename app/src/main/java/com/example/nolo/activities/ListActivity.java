@@ -15,6 +15,8 @@ import android.widget.TextView;
 public class ListActivity extends BaseActivity {
     private ViewHolder vh;
 
+    //something
+
     private class ViewHolder {
         TextView categoryText;
 
