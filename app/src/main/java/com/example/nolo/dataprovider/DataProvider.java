@@ -228,9 +228,9 @@ public class DataProvider {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris, recommendedAccessoryIds;
         Specs specs;
-        List<ISpecsOption> rams, storages;
+        List<SpecsOption> rams, storages;
         List<StoreVariant> itemStoreVariant;
-        List<IColour> colours;
+        List<Colour> colours;
 
         /**
          * Laptops
@@ -1213,9 +1213,9 @@ public class DataProvider {
                 new Colour("blue", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1075.99),
-                new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1184),
-                new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1075.99)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1075.99),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1184),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1075.99)
         ));
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0),
