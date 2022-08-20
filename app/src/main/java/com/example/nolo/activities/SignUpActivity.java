@@ -124,10 +124,6 @@ public class SignUpActivity extends BaseActivity {
         });
 
         vh.termsBtn.setOnClickListener(v -> {
-//            System.out.println(Environment.getExternalStorageDirectory().getAbsolutePath());
-//            Uri fileUri = FileProvider.getUriForFile(this,
-//                    BuildConfig.APPLICATION_ID + ".provider", new File("../../../res/terms.pdf"));
-
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"), "application/pdf");
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
