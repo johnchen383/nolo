@@ -54,6 +54,7 @@ public class ProfileFragment extends Fragment {
         vh = new ViewHolder();
         initListeners();
 
+        System.out.println(GetCurrentUserUseCase.getCurrentUser().toString());
         String email = GetCurrentUserUseCase.getCurrentUser().getEmail();
         vh.emailText.setText(email);
     }

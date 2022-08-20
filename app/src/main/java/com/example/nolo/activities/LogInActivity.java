@@ -89,7 +89,7 @@ public class LogInActivity extends BaseActivity {
         });
 
         vh.signUpBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, SignUpActivity.class), Animation.Fade(this).toBundle());
+            startActivity(new Intent(this, SignUpActivity.class));
         });
 
         vh.logIn.setOnClickListener(v -> {

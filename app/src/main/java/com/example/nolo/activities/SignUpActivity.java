@@ -104,7 +104,8 @@ public class SignUpActivity extends BaseActivity {
         });
 
         vh.logInBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, LogInActivity.class), Animation.Fade(this).toBundle());
+            startActivity(new Intent(this, LogInActivity.class));
+//            overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
         });
 
         vh.signUp.setOnClickListener(v -> {
@@ -165,6 +166,7 @@ public class SignUpActivity extends BaseActivity {
     public void clearFocus() {
         vh.emailInput.clearFocus();
         vh.passwordInput.clearFocus();
+        vh.repeatPasswordInput.clearFocus();
     }
 
     public void hideKeyboard(View view, Boolean isClearFocus) {

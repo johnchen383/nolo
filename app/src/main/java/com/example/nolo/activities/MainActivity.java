@@ -41,6 +41,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+//        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
     }
 }
