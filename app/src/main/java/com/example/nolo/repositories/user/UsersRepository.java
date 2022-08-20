@@ -116,6 +116,9 @@ public class UsersRepository implements IUsersRepository {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.i("Add users to Firebase", uid + " added.");
+                    IUser usr = new User();
+                    usr.setUserAuthUid(uid);
+                    usersRepo.add(usr);
                     onUserSignUp.accept(null);
                 } else {
                     onUserSignUp.accept(task.getException().getMessage());
@@ -132,7 +135,15 @@ public class UsersRepository implements IUsersRepository {
                 if (task.isSuccessful()) {
                     Log.i("Sign Up", "createUserWithEmail:success");
                     // after signing up, add user into Firestore
-                    addUserRepoAfterSignedUp((err) -> onUserSignedUp.accept(err), task.getResult().getUser().getUid());
+                    addUserRepoAfterSignedUp((addFirebaseErr) -> {
+                        logIn((logInErr) -> {
+                            if (logInErr != null) {
+                                onUserSignedUp.accept(logInErr);
+                            } else {
+                                onUserSignedUp.accept(addFirebaseErr);
+                            }
+                        }, email, password);
+                    }, task.getResult().getUser().getUid());
                 } else {
                     onUserSignedUp.accept(task.getException().getMessage());
                 }
