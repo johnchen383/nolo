@@ -5,6 +5,15 @@ import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import java.util.List;
 
 public class LaptopSpecs extends Specs {
+    /**
+     * Cannot use ISpecsOption (interface),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use StoreVariant and Specs.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     private String operatingSystem, display, cpu, gpu, camera, keyboard,
             communication, audio, touchscreen, fingerprintReader, opticalDrive, ports, battery,
             acAdaptor, dimensions, weight;
