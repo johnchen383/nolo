@@ -41,7 +41,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 
 public class DataProvider {
@@ -1751,39 +1755,68 @@ public class DataProvider {
         return items;
     }
 
+    private static Set<IItem> loadedAccessories, loadableAccessories;
+    private static Map<String, String> itemNameToId = new HashMap<>();
+
+    private static void onAddAccessoryComplete(IItem it) {
+        loadedAccessories.add(it);
+
+        if (loadedAccessories.equals(loadableAccessories)) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            List<IItem> items = new ArrayList<>();
+            items.addAll(generateLaptops());
+            items.addAll(generatePhones());
+            String collectionPath;
+
+            for (IItem item : items) {
+                switch (item.getCategoryType()) {
+                    case laptops:
+                        collectionPath = CollectionPath.laptops.name();
+                        break;
+                    case phones:
+                        collectionPath = CollectionPath.phones.name();
+                        break;
+                    default:
+                        collectionPath = CollectionPath.accessories.name();
+                        break;
+                }
+
+                for (int i = 0; i < item.getRecommendedAccessoryIds().size(); i++) {
+                    String itemName = item.getRecommendedAccessoryIds().get(i);
+                    item.getRecommendedAccessoryIds().set(i, itemNameToId.get(itemName));
+                }
+
+                db.collection(collectionPath).add(item).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+                            Log.i("Add items to Firebase", item + " added.");
+                        } else {
+                            Log.i("Add items to Firebase", item + " NOT added.");
+                        }
+                    }
+                });
+            }
+        }
+    }
+
     public static void addItemsToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        List<IItem> laptops = generateLaptops();
-        List<IItem> phones = generatePhones();
-        List<IItem> accessories = generateAccessories();
-        List<IItem> items = new ArrayList<>();
-        items.addAll(laptops);
-        items.addAll(phones);
-        String collectionPath;
+        loadableAccessories = new HashSet<>(generateAccessories());
 
-        // TODO: populate accessories first, and then grab the id and the add them to recommended
-        for (IItem item : items) {
-            switch (item.getCategoryType()) {
-                case laptops:
-                    collectionPath = CollectionPath.laptops.name();
-                    break;
-                case phones:
-                    collectionPath = CollectionPath.phones.name();
-                    break;
-                default:
-                    collectionPath = CollectionPath.accessories.name();
-                    break;
-            }
+        for (IItem acc : loadableAccessories) {
+            db.collection(CollectionPath.accessories.name()).add(acc).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentReference> task) {
+                    if (task.isSuccessful()) {
+                        Log.i("Add items to Firebase", acc + " added.");
+                    } else {
+                        Log.i("Add items to Firebase", acc + " NOT added.");
+                    }
 
-            db.collection(collectionPath).add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.i("Add items to Firebase", item + " added.");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.i("Add items to Firebase", item + " NOT added.");
+                    itemNameToId.put(acc.getName(), task.getResult().getId());
+
+                    onAddAccessoryComplete(acc);
                 }
             });
         }
