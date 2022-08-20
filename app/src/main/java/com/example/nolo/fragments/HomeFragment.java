@@ -25,6 +25,7 @@ import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.entities.user.User;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetAllItemsUseCase;
@@ -35,6 +36,10 @@ import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Fragment to house the home 'tab' on the main activity
@@ -76,34 +81,36 @@ public class HomeFragment extends Fragment {
     }
 
     private void initAdaptors() {
+        /**
+         * CATEGORY ADAPTOR
+         */
         HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, GetCategoriesUseCase.getCategories());
         vh.categoryList.setAdapter(categoriesAdaptor);
         ListUtil.setDynamicHeight(vh.categoryList);
 
-        //populate
-        IItem item = GetAllItemsUseCase.getAllItems().get(0);
-        String ite1 = item.getItemId();
-        String str1 = item.getStoreVariants().get(0).getStoreId();
-        IItemVariant i1 = new ItemVariant(null, ite1, CategoryType.laptops, str1, null, null, null);
-
-
-        IItem item2 = GetAllItemsUseCase.getAllItems().get(1);
-        String ite2 = item2.getItemId();
-        String str2 = item2.getStoreVariants().get(0).getStoreId();
-        IItemVariant i2 = new ItemVariant(null, ite2, CategoryType.laptops, str2, null, null, null);
-
-        IItem item3 = GetAllItemsUseCase.getAllItems().get(2);
-        String ite3 = item3.getItemId();
-        String str3 = item3.getStoreVariants().get(0).getStoreId();
-        IItemVariant i3 = new ItemVariant(null, ite3, CategoryType.laptops, str3, null, null, null);
-
-        AddViewedItemUseCase.addViewHistory(i1);
-        AddViewedItemUseCase.addViewHistory(i2);
-        AddViewedItemUseCase.addViewHistory(i3);
-
+        /**
+         * FEATURED ITEMS ADAPTOR
+         */
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         vh.featuredItemsList.setLayoutManager(layoutManager);
-        HomeFeaturedItemsAdaptor featuredItemsAdaptor = new HomeFeaturedItemsAdaptor(getActivity(), GetRecentViewedItemsUseCase.getRecentViewedItems());
+
+        List<IItemVariant> vHist = GetRecentViewedItemsUseCase.getRecentViewedItems();
+
+        if (vHist.size() <= 0){
+            //replace with random selection and update text
+            vHist = new ArrayList<>();
+
+            List<IItem> items = GetAllItemsUseCase.getAllItems();
+            int increment = items.size() / (User.MAX_VIEWED + 2);
+            int seedPosition = (int)(Math.random() * items.size());
+
+            for (int i = 0; i < User.MAX_VIEWED; i++){
+                IItem itemToAdd = items.get((seedPosition + (i * increment)) % items.size());
+                vHist.add(itemToAdd.getDefaultItemVariant());
+            }
+        }
+
+        HomeFeaturedItemsAdaptor featuredItemsAdaptor = new HomeFeaturedItemsAdaptor(getActivity(), vHist);
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 

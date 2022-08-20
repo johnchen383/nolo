@@ -63,10 +63,25 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
         String itemId = variant.getItemId();
         String storeId = variant.getStoreId();
 
+        //display title
         IItem item = GetItemByIdUseCase.getItemById(itemId);
         holder.title.setText(item.getName());
-        holder.price.setText("$" + item.getBasePrice(storeId));
 
+        //display price
+        double displayPrice = item.getBasePrice(storeId);
+
+        if (variant.getRamOption() != null){
+            displayPrice += variant.getRamOption().getAdditionalPrice();
+        }
+
+        if (variant.getStorageOption() != null){
+            displayPrice += variant.getStorageOption().getAdditionalPrice();
+        }
+
+        holder.price.setText("$" + displayPrice);
+
+        //display image
+        
         int i = mContext.getResources().getIdentifier(
                 item.getImageUris().get(0), "drawable",
                 mContext.getPackageName());

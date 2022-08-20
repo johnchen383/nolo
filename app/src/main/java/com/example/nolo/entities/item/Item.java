@@ -1,9 +1,14 @@
 package com.example.nolo.entities.item;
 
+import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.entities.store.IBranch;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.List;
@@ -104,5 +109,15 @@ public abstract class Item implements IItem {
             }
         }
         return -1;
+    }
+
+    @Override
+    @Exclude
+    public IItemVariant getDefaultItemVariant(){
+        IStoreVariant sVariant = this.storeVariants.get(0);
+        IBranch branch = GetStoreByIdUseCase.getStoreById(sVariant.getStoreId()).getBranches().get(0);
+        Colour colour = sVariant.getColours().get(0);
+
+        return new ItemVariant(colour, this.itemId, this.categoryType, sVariant.getStoreId(), branch.getBranchName(), null, null);
     }
 }

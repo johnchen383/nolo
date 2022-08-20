@@ -13,7 +13,7 @@ import java.util.List;
  * {@link #userAuthUid} {@link #email} will not be in the Firestore
  */
 public class User implements IUser {
-    private static final int MAX_VIEWED = 5;
+    public static final int MAX_VIEWED = 5;
     private String userAuthUid, email;
     private List<IItemVariant> viewHistory = new ArrayList<>();
     private List<IPurchasable> cart = new ArrayList<>();
