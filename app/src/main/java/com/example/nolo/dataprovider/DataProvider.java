@@ -1493,52 +1493,7 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 4 - gaming laptop
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 348.99),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 348.99)
-        ));
-        specs = new AccessorySpecs("HyperX QuadCast S Standalone Microphone - Customizable RGB Lighting, Anti-Vibration, Four Polar Patterns");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_hyperx_quadcast_s_1_black",
-                "item_accessory_hyperx_quadcast_s_2_black",
-                "item_accessory_hyperx_quadcast_s_3_black"
-        ));
-        items.add(new Accessory("HyperX QuadCast S",
-                "HyperX",
-                (AccessorySpecs) specs,
-                itemStoreVariant,
-                imageUris));
-
-        /*
-         * Accessory 5 - phone
-         */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 120),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 118.99),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 118.99)
-        ));
-        specs = new AccessorySpecs("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank - Black. Max 50W output,Support Apple, Samsung, Xiaomi Smart phones' & Nintendo Switch Fast Charging , Charge three devices simultaneously, Support Laptop with USB-C Charging Port");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_xiaomi_mi_20000mah_1_black",
-                "item_accessory_xiaomi_mi_20000mah_2_black",
-                "item_accessory_xiaomi_mi_20000mah_3_black"
-        ));
-        items.add(new Accessory("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
-                "Xiaomi",
-                (AccessorySpecs) specs,
-                itemStoreVariant,
-                imageUris));
-
-        /*
-         * Accessory 6 - all
+         * Accessory 4 - all
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
@@ -1577,6 +1532,51 @@ public class DataProvider {
         ));
         items.add(new Accessory("BOOM 3 Bluetooth Speaker",
                 "Ultimate Ears",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 5 - gaming laptop
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 348.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 348.99)
+        ));
+        specs = new AccessorySpecs("HyperX QuadCast S Standalone Microphone - Customizable RGB Lighting, Anti-Vibration, Four Polar Patterns");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_hyperx_quadcast_s_1_black",
+                "item_accessory_hyperx_quadcast_s_2_black",
+                "item_accessory_hyperx_quadcast_s_3_black"
+        ));
+        items.add(new Accessory("HyperX QuadCast S",
+                "HyperX",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 6 - phone
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 120),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 118.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 118.99)
+        ));
+        specs = new AccessorySpecs("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank - Black. Max 50W output,Support Apple, Samsung, Xiaomi Smart phones' & Nintendo Switch Fast Charging , Charge three devices simultaneously, Support Laptop with USB-C Charging Port");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_xiaomi_mi_20000mah_1_black",
+                "item_accessory_xiaomi_mi_20000mah_2_black",
+                "item_accessory_xiaomi_mi_20000mah_3_black"
+        ));
+        items.add(new Accessory("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Xiaomi",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
