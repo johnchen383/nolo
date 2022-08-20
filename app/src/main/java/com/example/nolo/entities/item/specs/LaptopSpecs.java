@@ -1,6 +1,6 @@
 package com.example.nolo.entities.item.specs;
 
-import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
+import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class LaptopSpecs extends Specs {
     private String operatingSystem, display, cpu, gpu, camera, keyboard,
             communication, audio, touchscreen, fingerprintReader, opticalDrive, ports, battery,
             acAdaptor, dimensions, weight;
-    private List<ISpecsOption> ramOptions, storageOptions;
+    private List<SpecsOption> ramOptions, storageOptions;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
@@ -16,7 +16,7 @@ public class LaptopSpecs extends Specs {
     public LaptopSpecs() {}
 
     public LaptopSpecs(String summary, String operatingSystem, String display, String cpu,
-                       String gpu, List<ISpecsOption> ramOptions, List<ISpecsOption> storageOptions, String camera,
+                       String gpu, List<SpecsOption> ramOptions, List<SpecsOption> storageOptions, String camera,
                        String keyboard, String communication, String audio, String touchscreen,
                        String fingerprintReader, String opticalDrive, String ports, String battery,
                        String acAdaptor, String dimensions, String weight) {
@@ -62,12 +62,12 @@ public class LaptopSpecs extends Specs {
     }
 
     @Override
-    public List<ISpecsOption> getRamOptions() {
+    public List<SpecsOption> getRamOptions() {
         return ramOptions;
     }
 
     @Override
-    public List<ISpecsOption> getStorageOptions() {
+    public List<SpecsOption> getStorageOptions() {
         return storageOptions;
     }
 

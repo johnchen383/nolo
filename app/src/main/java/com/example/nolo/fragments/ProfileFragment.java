@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.LogInActivity;
+import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.user.LogOutUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ProfileViewModel;
@@ -25,11 +26,12 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
 
     private class ViewHolder {
-        TextView textView;
+        TextView textView, emailText;
         Button signOutBtn;
 
         public ViewHolder() {
             textView = getView().findViewById(R.id.text_profile);
+            emailText = getView().findViewById(R.id.text_email);
             signOutBtn = getView().findViewById(R.id.sign_out_button);
         }
     }
@@ -51,5 +53,9 @@ public class ProfileFragment extends Fragment {
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         vh = new ViewHolder();
         initListeners();
+
+        System.out.println(GetCurrentUserUseCase.getCurrentUser().toString());
+        String email = GetCurrentUserUseCase.getCurrentUser().getEmail();
+        vh.emailText.setText(email);
     }
 }

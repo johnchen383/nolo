@@ -95,6 +95,14 @@ public class SplashActivity extends BaseActivity {
             System.out.println("CONNECTED");
         }
 
+//        DataProvider.clearAndAddEntity(CollectionPath.laptops.name(), (a) -> {
+//            DataProvider.clearAndAddEntity(CollectionPath.accessories.name(), (b) -> {
+//                DataProvider.clearAndAddEntity(CollectionPath.phones.name(), (c) -> {
+//                    DataProvider.addItemsToFirebase();
+//                });
+//            });
+//        });
+
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
             DeviceLocation.loadCurrentLocation(this);
             loadAllRepositories();
