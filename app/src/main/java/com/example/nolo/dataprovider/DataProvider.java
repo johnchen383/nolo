@@ -295,7 +295,9 @@ public class DataProvider {
                 "item_laptop_macbook_air_m2_3_midnight"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "BOOM 3 Bluetooth Speaker"
         ));
         items.add(new Laptop("MacBook Air (M2)",
                 "Apple",
@@ -357,7 +359,9 @@ public class DataProvider {
                 "item_laptop_macbook_pro_16_3_grey"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "BOOM 3 Bluetooth Speaker"
         ));
         items.add(new Laptop("MacBook Pro 16\"",
                 "Apple",
@@ -425,7 +429,9 @@ public class DataProvider {
                 "item_laptop_surface_laptop_4_3_platinum"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Surface Laptop 4",
                 "Microsoft",
@@ -487,7 +493,9 @@ public class DataProvider {
                 "item_laptop_surface_pro_8_3_graphite"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Surface Pro 8",
                 "Microsoft",
@@ -539,7 +547,9 @@ public class DataProvider {
                 "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
                 "ASUS",
@@ -594,7 +604,9 @@ public class DataProvider {
                 "item_laptop_lenovo_thinkpad_x1_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
                 "Lenovo",
@@ -654,7 +666,9 @@ public class DataProvider {
                 "item_laptop_legion_5_pro_16arh7_3_white"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Legion 5 Pro 16ARH7",
                 "Lenovo",
@@ -709,7 +723,9 @@ public class DataProvider {
                 "item_laptop_msi_gf63_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("MSI GF63",
                 "MSI",
@@ -760,7 +776,9 @@ public class DataProvider {
                 "item_laptop_razer_blade_17_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
                 "Razer",
@@ -813,7 +831,9 @@ public class DataProvider {
                 "item_laptop_acer_aspire_7_a715_42g_roex_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
                 "Acer",
@@ -879,7 +899,9 @@ public class DataProvider {
                 "item_phone_samsung_galaxy_s22_ultra_3_green"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Urban Armor Gear - Galaxy S22 Ultra 5G",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Sony WH-1000XM4"
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
@@ -945,7 +967,9 @@ public class DataProvider {
                 "item_phone_samsung_galaxy_s22_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "Sony WH-1000XM4"
         ));
         items.add(new Phone("Samsung Galaxy S22",
                 "Samsung",
@@ -1013,7 +1037,9 @@ public class DataProvider {
                 "item_phone_iphone_13_pro_max_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Apple iPhone 13 Pro Max Leather Case with MagSafe",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("iPhone 13 Pro Max",
                 "Apple",
@@ -1085,7 +1111,9 @@ public class DataProvider {
                 "item_phone_iphone_13_3_red"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("iPhone 13",
                 "Apple",
@@ -1142,7 +1170,9 @@ public class DataProvider {
                 "item_phone_iphone_se_3_red"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Lifeproof iPhone SE case",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("iPhone SE",
                 "Apple",
@@ -1193,7 +1223,9 @@ public class DataProvider {
                 "item_phone_oneplus_10_pro_3_black"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Spigen Oneplus 10 Pro Hybrid Case",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("OnePlus 10 Pro",
                 "OnePlus",
@@ -1244,7 +1276,9 @@ public class DataProvider {
                 "item_phone_huawei_p40_pro_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("HUAWEI P40 Pro",
                 "HUAWEI",
@@ -1299,7 +1333,9 @@ public class DataProvider {
                 "item_phone_xiaomi_12_pro_3_grey"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4"
         ));
         items.add(new Phone("Xiaomi 12 Pro",
                 "Xiaomi",
@@ -1338,16 +1374,18 @@ public class DataProvider {
                 "75.9 x 164.6 x 8.5mm",
                 "190g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_nokia_g21_1_blue",
-                "item_phone_samsung_nokia_g21_2_blue",
-                "item_phone_samsung_nokia_g21_3_blue",
+                "item_phone_nokia_g21_1_blue",
+                "item_phone_nokia_g21_2_blue",
+                "item_phone_nokia_g21_3_blue",
 
-                "item_phone_samsung_nokia_g21_1_dusk",
-                "item_phone_samsung_nokia_g21_2_dusk",
-                "item_phone_samsung_nokia_g21_3_dusk"
+                "item_phone_nokia_g21_1_dusk",
+                "item_phone_nokia_g21_2_dusk",
+                "item_phone_nokia_g21_3_dusk"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("Nokia G21",
                 "Nokia",
@@ -1387,20 +1425,22 @@ public class DataProvider {
                 "51 x 124.7 x 13.7mm",
                 "90.1g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_nokia_225_4g_1_black",
-                "item_phone_samsung_nokia_225_4g_2_black",
-                "item_phone_samsung_nokia_225_4g_3_black",
+                "item_phone_nokia_225_4g_1_black",
+                "item_phone_nokia_225_4g_2_black",
+                "item_phone_nokia_225_4g_3_black",
 
-                "item_phone_samsung_nokia_225_4g_1_sand",
-                "item_phone_samsung_nokia_225_4g_2_sand",
-                "item_phone_samsung_nokia_225_4g_3_sand",
+                "item_phone_nokia_225_4g_1_sand",
+                "item_phone_nokia_225_4g_2_sand",
+                "item_phone_nokia_225_4g_3_sand",
 
-                "item_phone_samsung_nokia_225_4g_1_blue",
-                "item_phone_samsung_nokia_225_4g_2_blue",
-                "item_phone_samsung_nokia_225_4g_3_blue"
+                "item_phone_nokia_225_4g_1_blue",
+                "item_phone_nokia_225_4g_2_blue",
+                "item_phone_nokia_225_4g_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                // TODO: need to add accessories first
+                "BOOM 3 Bluetooth Speaker",
+                "Sony WH-1000XM4",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("Nokia 225 4G",
                 "Nokia",
