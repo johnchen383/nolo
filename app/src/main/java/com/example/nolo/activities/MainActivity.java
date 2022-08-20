@@ -2,6 +2,8 @@ package com.example.nolo.activities;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,6 +13,8 @@ import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.util.DeviceLocation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private ViewHolder vh;
@@ -34,8 +38,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         vh = new ViewHolder();
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -48,4 +50,14 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupWithNavController(vh.navView, navController);
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }
