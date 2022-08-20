@@ -24,4 +24,13 @@
         android:text="yo"
         />
 
+    <Button
+        android:id="@+id/details_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="DETAILS"
+        android:backgroundTint="@color/light_brown" />
+
 </LinearLayout>

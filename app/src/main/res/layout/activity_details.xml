@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.DetailsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/navy">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/details_container_margin_top"
+        android:paddingHorizontal="@dimen/padding_xlrg"
+        android:background="@color/navy"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/padding_med">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="@dimen/details_color_size"
+                android:layout_height="@dimen/details_color_size"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:backgroundTint="@color/light_brown"
+                app:cornerRadius="20dp" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="@dimen/details_color_size"
+                android:layout_height="@dimen/details_color_size"
+                android:layout_marginHorizontal="@dimen/padding_med"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:backgroundTint="@color/light_brown"
+                app:cornerRadius="20dp" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="@dimen/details_color_size"
+                android:layout_height="@dimen/details_color_size"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:backgroundTint="@color/light_brown"
+                app:cornerRadius="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_med"
+                android:layout_gravity="center"
+                android:text="Colour"
+                android:fontFamily="@font/abeezee_italic"
+                android:textSize="@dimen/font_caption"
+                android:textColor="@color/light_grey"
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
