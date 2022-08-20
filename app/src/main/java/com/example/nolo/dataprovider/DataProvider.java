@@ -1758,7 +1758,9 @@ public class DataProvider {
     private static Set<IItem> loadedAccessories, loadableAccessories;
     private static Map<String, String> itemNameToId = new HashMap<>();
 
+
     private static void onAddAccessoryComplete(IItem it) {
+
         loadedAccessories.add(it);
 
         if (loadedAccessories.equals(loadableAccessories)) {
@@ -1803,6 +1805,7 @@ public class DataProvider {
     public static void addItemsToFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         loadableAccessories = new HashSet<>(generateAccessories());
+        loadedAccessories = new HashSet<>();
 
         for (IItem acc : loadableAccessories) {
             db.collection(CollectionPath.accessories.name()).add(acc).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
