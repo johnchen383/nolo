@@ -4,13 +4,14 @@ import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.enums.CategoryType;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * This class is for the selected Item.
  * E.g. Items in Viewed History.
  */
-public class ItemVariant implements IItemVariant {
+public class ItemVariant implements IItemVariant, Serializable {
     private Colour colour;
     private CategoryType categoryType;
     private String itemId, storeId, branchName;

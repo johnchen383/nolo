@@ -1,16 +1,23 @@
 package com.example.nolo.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import com.example.nolo.R;
+import com.example.nolo.activities.ListActivity;
+import com.example.nolo.activities.SearchActivity;
+import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,12 +32,14 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
         ImageView img;
         TextView title;
         TextView price;
+        LinearLayout itemClickable;
 
         public ViewHolder(View view) {
             super(view);
             img = view.findViewById(R.id.item_img);
             title = view.findViewById(R.id.item_title);
             price = view.findViewById(R.id.item_price);
+            itemClickable = view.findViewById(R.id.item_clickable);
         }
     }
 
@@ -50,8 +59,10 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String itemId = featuredItems.get(position).getItemId();
-        String storeId = featuredItems.get(position).getStoreId();
+        IItemVariant variant = featuredItems.get(position);
+        String itemId = variant.getItemId();
+        String storeId = variant.getStoreId();
+
         IItem item = GetItemByIdUseCase.getItemById(itemId);
         holder.title.setText(item.getName());
         holder.price.setText("$" + item.getBasePrice(storeId));
@@ -61,6 +72,13 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
                 mContext.getPackageName());
 
         holder.img.setImageResource(i);
+
+        holder.itemClickable.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, SearchActivity.class); //TODO: change to details activity
+            intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
+
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
