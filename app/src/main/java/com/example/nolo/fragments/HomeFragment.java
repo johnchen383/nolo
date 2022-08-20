@@ -96,27 +96,16 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         vh.featuredItemsList.setLayoutManager(layoutManager);
 
-        List<ItemVariant> vHist = GetRecentViewedItemsUseCase.getRecentViewedItems();
+        List<ItemVariant> displayVariants = homeViewModel.getRecentlyViewedItemVariants();
 
-        if (vHist.size() <= 0){
-            //replace with random selection and update text
-            vHist = new ArrayList<>();
-
-            List<IItem> items = GetAllItemsUseCase.getAllItems();
-            int increment = items.size() / (User.MAX_VIEWED + 2);
-            int seedPosition = (int)(Math.random() * items.size());
-            for (int i = 0; i < User.MAX_VIEWED; i++){
-                int pos = (seedPosition + (i * increment)) % items.size();
-                IItem itemToAdd = items.get(pos);
-                vHist.add((ItemVariant) itemToAdd.getDefaultItemVariant());
-            }
-
+        if (displayVariants.size() <= 0) {
             vh.featuredText.setText(getString(R.string.home_featured_random));
+            displayVariants = homeViewModel.generateRandomViewedItemVariants();
         } else {
             vh.featuredText.setText(getString(R.string.home_featured_prev));
         }
 
-        HomeFeaturedItemsAdaptor featuredItemsAdaptor = new HomeFeaturedItemsAdaptor(getActivity(), vHist);
+        HomeFeaturedItemsAdaptor featuredItemsAdaptor = new HomeFeaturedItemsAdaptor(getActivity(), displayVariants);
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 
