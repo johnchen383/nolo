@@ -1675,30 +1675,22 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 10
+         * Accessory 10 - oneplus 10 pro
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 39)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Spigen Oneplus 10 Pro Hybrid Case - Matte Black, Certified Military-Grade Protection, Clear Durable Back Panel + TPU bumper, ACS04429");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
-
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_spigen_oneplus_10_pro_hybrid_case_1_black",
+                "item_accessory_spigen_oneplus_10_pro_hybrid_case_2_black",
+                "item_accessory_spigen_oneplus_10_pro_hybrid_case_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Spigen Oneplus 10 Pro Hybrid Case",
+                "Spigen",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
