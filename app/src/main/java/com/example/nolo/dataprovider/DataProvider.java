@@ -1315,8 +1315,8 @@ public class DataProvider {
          * Phone 9
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("blue", "#6A4E57"),
-                new Colour("dusk", "#000000")
+                new Colour("blue", "#4E8EA0"),
+                new Colour("dusk", "#A09591")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 299),
@@ -1330,7 +1330,7 @@ public class DataProvider {
                 "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate",
                 "Unisoc T606",
                 storages,
-                "Front camera:8 MP; Rear camera:50 MP Main 1/2.76“ CMOS, 0.64um, 5P lens, f/1.8 + 2 MP Macro + 2 MP Depth; Rear flash LED",
+                "Front camera: 8 MP; Rear camera: 50 MP Main 1/2.76“ CMOS, 0.64um, 5P lens, f/1.8 + 2 MP Macro + 2 MP Depth; Rear flash LED",
                 "4G; Wi-Fi 802.11 a/b/g/n/ac; Bluetooth 5.0",
                 "OZO Spatial Audio capture. FM Radio (Headset required); Microphone",
                 "Yes",
@@ -1363,59 +1363,50 @@ public class DataProvider {
          * Phone 10
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("black", "#242424"),
+                new Colour("sand", "#B3856D"),
+                new Colour("blue", "#294970")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 96.58),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 94.96)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(2, 0)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
-                "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+        specs = new PhoneSpecs("Nokia 225 4G",
+                "S30+",
+                "2.4 inch; QVGA resolution",
+                "Unisoc T117",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
-                "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "Rear camera: 0.3 MP",
+                "4G; Bluetooth 5.0",
+                "FM Radio (Wired & Wireless dual mode); MP3 player",
+                "No",
+                "It's a brick",
+                "Nano SIM",
+                "N/A",
+                "1150mAh",
+                "51 x 124.7 x 13.7mm",
+                "90.1g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_samsung_nokia_225_4g_1_black",
+                "item_phone_samsung_nokia_225_4g_2_black",
+                "item_phone_samsung_nokia_225_4g_3_black",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_samsung_nokia_225_4g_1_sand",
+                "item_phone_samsung_nokia_225_4g_2_sand",
+                "item_phone_samsung_nokia_225_4g_3_sand",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_samsung_nokia_225_4g_1_blue",
+                "item_phone_samsung_nokia_225_4g_2_blue",
+                "item_phone_samsung_nokia_225_4g_3_blue"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("Nokia 225 4G",
+                "Nokia",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
