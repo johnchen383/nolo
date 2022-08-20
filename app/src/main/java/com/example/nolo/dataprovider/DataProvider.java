@@ -1648,30 +1648,28 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 9
+         * Accessory 9 - galaxy s22 ultra
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("ash", "#7E8082"),
+                new Colour("black", "#000000")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 65),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 65)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Urban Armor Gear - Galaxy S22 Ultra 5G");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_1_ash",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_2_ash",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_3_ash",
 
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_1_black",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_2_black",
+                "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_3_black"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Urban Armor Gear - Galaxy S22 Ultra 5G",
+                "Urban Armor Gear",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
