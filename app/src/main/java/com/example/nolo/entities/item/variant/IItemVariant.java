@@ -12,4 +12,7 @@ public interface IItemVariant {
     String getBranchName();
     SpecsOption getStorageOption();
     SpecsOption getRamOption();
+    String getTitle();
+    String getDisplayPrice();
+    String getDisplayImage();
 }
