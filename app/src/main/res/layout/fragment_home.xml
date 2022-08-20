@@ -21,11 +21,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
+                <LinearLayout
+                    android:id="@+id/search_layout_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="search"
-                    android:layout_gravity="center"/>
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/nav_icon_search"/>
+                    <TextView
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="SEARCH"
+                        android:textSize="@dimen/font_body1"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="wrap_content"

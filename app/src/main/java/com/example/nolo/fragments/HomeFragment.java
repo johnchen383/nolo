@@ -1,6 +1,8 @@
 package com.example.nolo.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -9,10 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.MainActivity;
+import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
@@ -28,10 +34,12 @@ public class HomeFragment extends Fragment {
     private class ViewHolder {
         ListView categoryList;
         LinearLayout initialView;
+        LinearLayout searchBtn;
 
         public ViewHolder(){
             categoryList = getView().findViewById(R.id.category_list);
             initialView = getView().findViewById(R.id.initial_home_view);
+            searchBtn = getView().findViewById(R.id.search_layout_btn);
         }
     }
 
@@ -41,14 +49,15 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        vh = new ViewHolder();
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-        vh = new ViewHolder();
 
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
         initAdaptors();
+        initListeners();
     }
 
     private void initAdaptors(){
@@ -57,4 +66,9 @@ public class HomeFragment extends Fragment {
         ListUtil.setDynamicHeight(vh.categoryList);
     }
 
+    private void initListeners(){
+        vh.searchBtn.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), SearchActivity.class), Animation.Fade(getActivity()).toBundle());
+        });
+    }
 }
