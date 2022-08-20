@@ -1,6 +1,7 @@
 package com.example.nolo.activities;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,6 +29,15 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private void displaySignUpToast() {
+        String toastText = getIntent().getStringExtra("SignUpMessage");
+        if (toastText == null) {
+            return;
+        }
+
+        Toast.makeText(this, toastText, Toast.LENGTH_LONG).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,6 +47,7 @@ public class MainActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        displaySignUpToast();
 
         vh = new ViewHolder();
 
