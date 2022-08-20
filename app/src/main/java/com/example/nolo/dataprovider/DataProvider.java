@@ -1758,9 +1758,7 @@ public class DataProvider {
     private static Set<IItem> loadedAccessories, loadableAccessories;
     private static Map<String, String> itemNameToId = new HashMap<>();
 
-
     private static void onAddAccessoryComplete(IItem it) {
-
         loadedAccessories.add(it);
 
         if (loadedAccessories.equals(loadableAccessories)) {
