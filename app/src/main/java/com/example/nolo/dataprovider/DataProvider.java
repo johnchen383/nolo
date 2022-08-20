@@ -173,8 +173,8 @@ public class DataProvider {
      */
     private static List<IUser> generateUsers() {
         List<IUser> users = new ArrayList<>();
-        List<IItemVariant> history = new ArrayList<>();
-        List<IPurchasable> cart = new ArrayList<>();
+        List<ItemVariant> history = new ArrayList<>();
+        List<Purchasable> cart = new ArrayList<>();
         IUser u;
 
         history.add(new ItemVariant());
