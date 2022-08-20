@@ -1,6 +1,5 @@
 package com.example.nolo.entities.item.specs;
 
-import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 
 import java.util.List;

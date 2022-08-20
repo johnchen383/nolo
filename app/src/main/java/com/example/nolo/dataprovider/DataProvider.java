@@ -301,7 +301,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("MacBook Air (M2)",
                 "Apple",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -363,7 +363,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("MacBook Pro 16\"",
                 "Apple",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -431,7 +431,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Surface Laptop 4",
                 "Microsoft",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -493,7 +493,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Surface Pro 8",
                 "Microsoft",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -545,7 +545,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
                 "ASUS",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -600,7 +600,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
                 "Lenovo",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -660,7 +660,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Legion 5 Pro 16ARH7",
                 "Lenovo",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -715,7 +715,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("MSI GF63",
                 "MSI",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -766,7 +766,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
                 "Razer",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -819,7 +819,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
                 "Acer",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1091,7 +1091,7 @@ public class DataProvider {
         ));
         items.add(new Phone("iPhone 13",
                 "Apple",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1148,7 +1148,7 @@ public class DataProvider {
         ));
         items.add(new Phone("iPhone SE",
                 "Apple",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1199,7 +1199,7 @@ public class DataProvider {
         ));
         items.add(new Phone("OnePlus 10 Pro",
                 "OnePlus",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1250,7 +1250,7 @@ public class DataProvider {
         ));
         items.add(new Phone("HUAWEI P40 Pro",
                 "HUAWEI",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1312,7 +1312,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1374,7 +1374,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1436,7 +1436,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                (PhoneSpecs)specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));

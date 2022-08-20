@@ -1,6 +1,5 @@
 package com.example.nolo.entities.item;
 
-import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.enums.CategoryType;

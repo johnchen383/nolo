@@ -1,6 +1,5 @@
 package com.example.nolo.entities.item.specs;
 
-import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.google.firebase.firestore.Exclude;
 
@@ -29,51 +28,61 @@ public class Specs implements ISpecs {
     /**
      * Laptops & Phones
      */
+    @Override
     @Exclude
     public String getOperatingSystem() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getDisplay() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getCpu() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public List<SpecsOption> getStorageOptions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getCamera() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getCommunication() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getAudio() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getTouchscreen() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getBattery() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getDimensions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
@@ -88,36 +97,43 @@ public class Specs implements ISpecs {
     /**
      * Laptops
      */
+    @Override
     @Exclude
     public String getGpu() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public List<SpecsOption> getRamOptions() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getKeyboard() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getFingerprintReader() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getOpticalDrive() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getPorts() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getAcAdaptor() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
@@ -126,16 +142,19 @@ public class Specs implements ISpecs {
     /**
      * Phones
      */
+    @Override
     @Exclude
     public String getProtectionResistance() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getSimCard() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
     @Exclude
     public String getSensors() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
