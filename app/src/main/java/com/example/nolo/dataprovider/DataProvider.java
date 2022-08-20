@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -13,9 +14,8 @@ import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
-import com.example.nolo.entities.item.storevariants.IItemStoreVariant;
-import com.example.nolo.entities.item.storevariants.ItemStoreVariant;
+import com.example.nolo.entities.item.storevariants.IStoreVariant;
+import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.specs.AccessorySpecs;
@@ -43,6 +43,7 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -225,28 +226,468 @@ public class DataProvider {
      */
     private static List<IItem> generateItems() {
         List<IItem> items = new ArrayList<>();
-        List<String> imageUris = new ArrayList<>();  // TODO: Haven't added images yet
-        List<String> recommendedAccessoryIds = new ArrayList<>();  // TODO: Haven't other items yet
-        ISpecs specs;
-        List<ISpecsOption> rams = new ArrayList<>();
-        List<ISpecsOption> storages = new ArrayList<>();
-        List<IItemStoreVariant> itemStoreVariant = new ArrayList<>();
-        List<IColour> colours = new ArrayList<>();
+        List<String> imageUris, recommendedAccessoryIds;
+        Specs specs;
+        List<SpecsOption> rams, storages;
+        List<StoreVariant> itemStoreVariant;
+        List<Colour> colours;
 
-        colours.add(new Colour("black", "#000000"));
-        colours.add(new Colour("white", "#FFFFFF"));
-        colours.add(new Colour("red", "#FF0000"));
-        colours.add(new Colour("green", "#00FF00"));
-        colours.add(new Colour("blue", "#0000FF"));
-        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1200));
-        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1500));
-        itemStoreVariant.add(new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 900));
-        rams.add(new SpecsOption(8, 50));
-        rams.add(new SpecsOption(16, 100));
-        rams.add(new SpecsOption(32, 200));
-        storages.add(new SpecsOption(256, 200));
-        storages.add(new SpecsOption(512, 250));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD Intel i5-11400H+HM570 8G 512G NVMe SSD GTX1650 Max-Q 4G Graphics Win11Home 1yr Warranty -WiFi6 + BT5.1, Backlight Keyboard(Red)",
+        /**
+         * Laptops
+         */
+        /*
+         * Laptop 1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("silver", "#BEBEBE"),
+                new Colour("starlight", "#D6CEC3"),
+                new Colour("grey", "#646569"),
+                new Colour("midnight", "#333A44")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2149),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2249),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2199)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 350),
+                new SpecsOption(24, 700)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 350),
+                new SpecsOption(1024, 700),
+                new SpecsOption(2048, 1400)
+        ));
+        specs = new LaptopSpecs("MacBook Air M2 chip model",
+                "macOS",
+                "13.6-inch (diagonal) LED-backlit display with IPS technology; (2560*1664), Liquid Retina display",
+                "Apple M2 chip; 8-core CPU with four performance cores and four efficiency cores",
+                "Integrated Graphics 8-core GPU",
+                rams,
+                storages,
+                "1080p FaceTime HD camera",
+                "Backlit Magic Keyboard",
+                "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology",
+                "Four-speaker sound system; Wide stereo sound",
+                "N/A",
+                "Touch ID",
+                "N/A",
+                "Thunderbolt 3 digital video output; Native DisplayPort output over USB‑C",
+                "52.6-watt‑hour lithium‑polymer battery",
+                "30W USB-C Power Adapter",
+                "304.1 x 215 x 11.3 mm",
+                "1.24 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_macbook_air_m2_1_silver",
+                "item_laptop_macbook_air_m2_2_silver",
+                "item_laptop_macbook_air_m2_3_silver",
+
+                "item_laptop_macbook_air_m2_1_starlight",
+                "item_laptop_macbook_air_m2_2_starlight",
+                "item_laptop_macbook_air_m2_3_starlight",
+
+                "item_laptop_macbook_air_m2_1_grey",
+                "item_laptop_macbook_air_m2_2_grey",
+                "item_laptop_macbook_air_m2_3_grey",
+
+                "item_laptop_macbook_air_m2_1_midnight",
+                "item_laptop_macbook_air_m2_2_midnight",
+                "item_laptop_macbook_air_m2_3_midnight"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MacBook Air (M2)",
+                "Apple",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("silver", "#BEBEBE"),
+                new Colour("grey", "#646569")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 4299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 4199),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 4359),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 4299)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0),
+                new SpecsOption(24, 700)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(512, 0),
+                new SpecsOption(1024, 350),
+                new SpecsOption(2048, 1050),
+                new SpecsOption(4096, 2100),
+                new SpecsOption(8192, 4200)
+        ));
+        specs = new LaptopSpecs("MacBook Pro 16\" models",
+                "macOS",
+                "16.2-inch (diagonal) Liquid Retina XDR display, (3456*2234)",
+                "Apple M1 Pro chip; 10-core CPU with eight performance cores and two efficiency cores",
+                "Integrated Graphics 16-core GPU",
+                rams,
+                storages,
+                "1080p FaceTime HD camera",
+                "Backlit Magic Keyboard",
+                "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology",
+                "High-fidelity six-speaker sound system with force-cancelling woofers; Wide stereo sound",
+                "N/A",
+                "Touch ID",
+                "N/A",
+                "SDXC card slot; HDMI port; 3.5-mm headphone jack; MagSafe 3 port; Three Thunderbolt 4 (USB-C) ports",
+                "100-watt-hour lithium-polymer battery",
+                "140W USB-C Power Adapter",
+                "355.7 x 248.1 x 16.8 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_macbook_pro_16_1_silver",
+                "item_laptop_macbook_pro_16_2_silver",
+                "item_laptop_macbook_pro_16_3_silver",
+
+                "item_laptop_macbook_pro_16_1_grey",
+                "item_laptop_macbook_pro_16_2_grey",
+                "item_laptop_macbook_pro_16_3_grey"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("MacBook Pro 16\"",
+                "Apple",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 3
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("blue", "#9A9CA3"),
+                new Colour("sandstone", "#79838A"),
+                new Colour("platinum", "#CBB1A0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1749),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1699),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1798)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 400)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 450)
+        ));
+        specs = new LaptopSpecs("Microsoft Surface Laptop 4 13.5\"",
+                "Windows 11 Home",
+                "13.5\" 2256 x 1504 (201 PPI)",
+                "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)",
+                "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics",
+                rams,
+                storages,
+                "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)",
+                "Backlight",
+                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology",
+                "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos",
+                "10 point multi-touch",
+                "N/A",
+                "N/A",
+                "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port",
+                "Battery Capacity Nominal (WH) 47.4",
+                "Power Supply",
+                "308 x 223 x 14.5 mm",
+                "1.27 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_surface_laptop_4_1_black",
+                "item_laptop_surface_laptop_4_2_black",
+                "item_laptop_surface_laptop_4_3_black",
+
+                "item_laptop_surface_laptop_4_1_blue",
+                "item_laptop_surface_laptop_4_2_blue",
+                "item_laptop_surface_laptop_4_3_blue",
+
+                "item_laptop_surface_laptop_4_1_sandstone",
+                "item_laptop_surface_laptop_4_2_sandstone",
+                "item_laptop_surface_laptop_4_3_sandstone",
+
+                "item_laptop_surface_laptop_4_1_platinum",
+                "item_laptop_surface_laptop_4_2_platinum",
+                "item_laptop_surface_laptop_4_3_platinum"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Surface Laptop 4",
+                "Microsoft",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 4
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("platinum", "#86888A"),
+                new Colour("graphite", "#525556")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1849),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1879),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1849)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 180),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 180),
+                new SpecsOption(512, 320),
+                new SpecsOption(1024, 520)
+        ));
+        specs = new LaptopSpecs("Microsoft Surface Pro 8",
+                "Windows 11 Home",
+                "13\" 2880 x 1920 (267 PPI) 120Hz",
+                "Quad-core 11th Gen Intel® Core™ i5-1135G7 Processor, designed on the Intel® Evo™ platform",
+                "Integrated Graphics",
+                rams,
+                storages,
+                "Windows Hello face authentication camera (front-facing); 5.0MP front-facing camera with 1080p full HD video; 10.0MP rear-facing autofocus camera with 1080p HD and 4k video",
+                "Backlight",
+                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.1 technology",
+                "Dual far-field Studio Mics; 2W stereo speakers with Dolby Atmos",
+                "10 point multi-touch",
+                "N/A",
+                "N/A",
+                "2 x USB-C® with USB 4.0/Thunderbolt™ 4; 3.5mm headphone jack; 1 × Surface Connect port; Surface Type Cover port",
+                "Battery Capacity Nominal (WH) 51.5Wh",
+                "Power Supply",
+                "287 x 208 x 9.3 mm",
+                "891 g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_surface_pro_8_1_platinum",
+                "item_laptop_surface_pro_8_2_platinum",
+                "item_laptop_surface_pro_8_3_platinum",
+
+                "item_laptop_surface_pro_8_1_graphite",
+                "item_laptop_surface_pro_8_2_graphite",
+                "item_laptop_surface_pro_8_3_graphite"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Surface Pro 8",
+                "Microsoft",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("blue", "#565D72")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 740.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 727.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(4, 0),
+                new SpecsOption(8, 59)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 99)
+        ));
+        specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
+                "Windows 11 Home",
+                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)\n",
+                "Intel® UHD Graphics",
+                rams,
+                storages,
+                "720p HD camera",
+                "Backlit Chiclet Keyboard; 1.4mm Key-travel",
+                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
+                "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support",
+                "Touch screen display",
+                "Fingerprint sensor integrated with Touchpad",
+                "N/A",
+                "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader",
+                "39WHrs, 2S1P, 2-cell Li-ion",
+                "45W AC Adapter",
+                "32.07 x 21.70 x 1.69 mm",
+                "1.50 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue",
+                "item_laptop_asus_vivobook_go_14_flip_tp1400ka_3_blue"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
+                "ASUS",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 126.5),
+                new SpecsOption(1024, 586.5),
+                new SpecsOption(2048, 1161.5)
+        ));
+        specs = new LaptopSpecs("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
+                "Windows 11 Home",
+                "14\" WUXGA (1920 x 1200); IPS; Anti-Glare; Non-Touch; 100%sRGB; 400 nits; Narrow Bezel; Low Blue Light",
+                "12th Generation Intel® Core™ i5-1240P Processor (E-cores up to 3.30 GHz P-cores up to 4.40 GHz)",
+                "Integrated Intel® Iris® Xe Graphics",
+                rams,
+                storages,
+                "FHD IR/RGB Hybrid with Microphone",
+                "Backlit; Black with Fingerprint Reader - English",
+                "Wi-Fi 6E AX211 2x2 AX & Bluetooth® 5.0",
+                "Audio jack; Two upward- and two downward-firing speakers",
+                "N/A",
+                "Fingerprint Reader",
+                "N/A",
+                "2x USB-C Thunderbolt 4 ports; 2x USB 3.2 Type-A port; 1x HDMI video output; 1x nano SIM slot",
+                "4 Cell Li-Polymer Internal Battery, 57Wh",
+                "65W adapter",
+                "323.5 x 217.1 x 15.95 mm",
+                "1.13 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_lenovo_thinkpad_x1_1_black",
+                "item_laptop_lenovo_thinkpad_x1_2_black",
+                "item_laptop_lenovo_thinkpad_x1_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
+                "Lenovo",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("grey", "#787878"),
+                new Colour("white", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 3311),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 3300),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3211)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 99),
+                new SpecsOption(1024, 179)
+        ));
+        specs = new LaptopSpecs("Legion 5 Pro (16\", Gen 7) AMD",
+                "Windows 11 Home",
+                "16.0\" WQXGA (2560x1600) IPS 500nits Anti-glare; 165Hz",
+                "AMD Ryzen™ 7 6800H",
+                "NVIDIA® GeForce RTX™ 3050 Ti 4GB GDDR6",
+                rams,
+                storages,
+                "HD 720p, with E-camera shutter, fixed focus",
+                "6-row, multimedia Fn keys, numeric keypad, black keycap",
+                "802.11AX (2x2) & Bluetooth® 5.1",
+                "Stereo speakers; 2 x 2W, Nahimic Audio; Dual array mic",
+                "Non-touch",
+                "No fingerprint reader",
+                "N/A",
+                "2 x USB 3.2 Gen 1; 1 x USB 3.2 Gen 1 (Always On); 2 x USB-C 3.2 Gen 2 (support data transfer and DisplayPort™ 1.4); 1 x USB-C 3.2 Gen 2 (support data transfer; Power Delivery 135W and DisplayPort 1.4); 1 x HDMI 2.1; 1 x Ethernet (RJ-45); 1 x Headphone / mic; 1 x Power connector",
+                "4-cell (80Wh), integrated",
+                "230W Slim Tip (3-pin)",
+                "359.9 x 262.4 x 19.9 mm",
+                "2.49 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_legion_5_pro_16arh7_1_grey",
+                "item_laptop_legion_5_pro_16arh7_2_grey",
+                "item_laptop_legion_5_pro_16arh7_3_grey",
+
+                "item_laptop_legion_5_pro_16arh7_1_white",
+                "item_laptop_legion_5_pro_16arh7_2_white",
+                "item_laptop_legion_5_pro_16arh7_3_white"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Legion 5 Pro 16ARH7",
+                "Lenovo",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1322),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1300)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 59),
+                new SpecsOption(32, 129)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 79),
+                new SpecsOption(1024, 129)
+        ));
+        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD",
                 "Windows 11 Home",
                 "15.6\" FHD (1920*1080) 60Hz",
                 "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
@@ -256,35 +697,585 @@ public class DataProvider {
                 "HD type (30fps @ 720p)",
                 "Backlight Keyboard (Single-Color, Red)",
                 "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker, 1x Mic-in, 1x Headphone-out",
+                "2x 2W Speaker; 1x Mic-in; 1x Headphone-out",
                 "N/A",
                 "N/A",
                 "N/A",
-                "1x RJ45, 1x (4K @ 30Hz) HDMI, 1x Type-C USB3.2 Gen1, 3x Type-A USB3.2 Gen1",
+                "1x RJ45; 1x (4K @ 30Hz) HDMI; 1x Type-C USB3.2 Gen1; 3x Type-A USB3.2 Gen1",
                 "3-Cell, 51 Battery (Whr)",
                 "120W adapter",
                 "359 x 254 x 21.7 mm",
                 "1.86 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_msi_gf63_1_black",
+                "item_laptop_msi_gf63_2_black",
+                "item_laptop_msi_gf63_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
         items.add(new Laptop("MSI GF63",
                 "MSI",
-                specs,
+                (LaptopSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
 
-        colours = new ArrayList<>();
-        itemStoreVariant = new ArrayList<>();
-        storages = new ArrayList<>();
-        colours.add(new Colour("black", "#000000"));
-        colours.add(new Colour("white", "#FFFFFF"));
-        colours.add(new Colour("red", "#FF0000"));
-        colours.add(new Colour("green", "#00FF00"));
-        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2000));
-        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 1800));
-        itemStoreVariant.add(new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2100));
-        storages.add(new SpecsOption(128, 100));
-        storages.add(new SpecsOption(256, 200));
-        storages.add(new SpecsOption(512, 250));
+        /*
+         * Laptop 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0),
+                new SpecsOption(32, 300)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Windows 11 Home",
+                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
+                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
+                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
+                rams,
+                storages,
+                "Built-in Full HD webcam",
+                "Per-Key Backlighting, powered by Razer Chroma",
+                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
+                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
+                "N/A",
+                "N/A",
+                "N/A",
+                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
+                "Built-in 82WHr rechargeable lithium-ion polymer battery",
+                "280W power adapter",
+                "395 x 260 x 19.9 mm",
+                "2.75 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_razer_blade_17_1_black",
+                "item_laptop_razer_blade_17_2_black",
+                "item_laptop_razer_blade_17_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Razer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1409),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1369),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1399)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(512, 0)
+        ));
+        specs = new LaptopSpecs("Acer Aspire 7 A715-42G-R0EX",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
+                rams,
+                storages,
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone; Stereo speakers",
+                "N/A",
+                "Yes",
+                "N/A",
+                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_acer_aspire_7_a715_42g_roex_1_black",
+                "item_laptop_acer_aspire_7_a715_42g_roex_2_black",
+                "item_laptop_acer_aspire_7_a715_42g_roex_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
+                "Acer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+
+        /**
+         * Phones
+         */
+        /*
+         * Phone 1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1899),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2099),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1999)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("purple", "#B2A1CD"),
+                new Colour("white", "#E9E9E7"),
+                new Colour("green", "#587876"),
+                new Colour("pink", "#E3D2CF"),
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1299),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1298.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1299),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1299)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22",
+                "Android 12",
+                "6.1\" Dynamic AMOLED 2X display; FHD+ (2340x1080); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Triple Rear Camera; 50MP main sensor, F1.8, OIS; 12MP Ultra-Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 30x Digital Zoom; 10MP Front camera, F2.2, Autofocus",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Duel stereo speakers",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "3700mAh",
+                "70.6 x 146 x 7.6mm",
+                "167g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_1_purple",
+                "item_phone_samsung_galaxy_s22_2_purple",
+                "item_phone_samsung_galaxy_s22_3_purple",
+
+                "item_phone_samsung_galaxy_s22_1_white",
+                "item_phone_samsung_galaxy_s22_2_white",
+                "item_phone_samsung_galaxy_s22_3_white",
+
+                "item_phone_samsung_galaxy_s22_1_green",
+                "item_phone_samsung_galaxy_s22_2_green",
+                "item_phone_samsung_galaxy_s22_3_green",
+
+                "item_phone_samsung_galaxy_s22_1_pink",
+                "item_phone_samsung_galaxy_s22_2_pink",
+                "item_phone_samsung_galaxy_s22_3_pink",
+
+                "item_phone_samsung_galaxy_s22_1_black",
+                "item_phone_samsung_galaxy_s22_2_black",
+                "item_phone_samsung_galaxy_s22_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22",
+                "Samsung",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 3
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("green", "#576856"),
+                new Colour("silver", "#F2F3EE"),
+                new Colour("gold", "#FAEAD3"),
+                new Colour("graphite", "#5F5E5A"),
+                new Colour("blue", "#AFC6DC")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1999),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1958.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1999),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1958.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 200),
+                new SpecsOption(512, 600),
+                new SpecsOption(1024, 1000)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 13 Pro Max",
+                "iOS 15",
+                "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
+                "A15 Bionic chip",
+                storages,
+                "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP68",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "78.1 x 160.8 x 7.65mm",
+                "238g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_13_pro_max_1_green",
+                "item_phone_iphone_13_pro_max_2_green",
+                "item_phone_iphone_13_pro_max_3_green",
+
+                "item_phone_iphone_13_pro_max_1_silver",
+                "item_phone_iphone_13_pro_max_2_silver",
+                "item_phone_iphone_13_pro_max_3_silver",
+
+                "item_phone_iphone_13_pro_max_1_gold",
+                "item_phone_iphone_13_pro_max_2_gold",
+                "item_phone_iphone_13_pro_max_3_gold",
+
+                "item_phone_iphone_13_pro_max_1_graphite",
+                "item_phone_iphone_13_pro_max_2_graphite",
+                "item_phone_iphone_13_pro_max_3_graphite",
+
+                "item_phone_iphone_13_pro_max_1_blue",
+                "item_phone_iphone_13_pro_max_2_blue",
+                "item_phone_iphone_13_pro_max_3_blue"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("iPhone 13 Pro Max",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 4
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("green", "#495A48"),
+                new Colour("pink", "#FBE2DD"),
+                new Colour("blue", "#447792"),
+                new Colour("midnight", "#3F464C"),
+                new Colour("starlight", "#FBF7F4"),
+                new Colour("red", "#C92435")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1429),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1428.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1429),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1428.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 200),
+                new SpecsOption(512, 600)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 13",
+                "iOS 15",
+                "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
+                "A15 Bionic chip",
+                storages,
+                "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP68",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "71.5 x 146.7 x 7.65mm",
+                "173g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_13_1_green",
+                "item_phone_iphone_13_2_green",
+                "item_phone_iphone_13_3_green",
+
+                "item_phone_iphone_13_1_pink",
+                "item_phone_iphone_13_2_pink",
+                "item_phone_iphone_13_3_pink",
+
+                "item_phone_iphone_13_1_blue",
+                "item_phone_iphone_13_2_blue",
+                "item_phone_iphone_13_3_blue",
+
+                "item_phone_iphone_13_1_midnight",
+                "item_phone_iphone_13_2_midnight",
+                "item_phone_iphone_13_3_midnight",
+
+                "item_phone_iphone_13_1_starlight",
+                "item_phone_iphone_13_2_starlight",
+                "item_phone_iphone_13_3_starlight",
+
+                "item_phone_iphone_13_1_red",
+                "item_phone_iphone_13_2_red",
+                "item_phone_iphone_13_3_red"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("iPhone 13",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("midnight", "#3F464C"),
+                new Colour("starlight", "#FBF7F4"),
+                new Colour("red", "#C92435")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 799),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 799),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 799),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 799)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(64, 0),
+                new SpecsOption(128, 100),
+                new SpecsOption(256, 300)
+        ));
+        specs = new PhoneSpecs("Apple iPhone SE",
+                "iOS 15",
+                "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
+                "A15 Bionic chip",
+                storages,
+                "12MP Wide camera; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP67",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "67.3 x 138.4 x 7.3mm",
+                "144g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_se_1_midnight",
+                "item_phone_iphone_se_2_midnight",
+                "item_phone_iphone_se_3_midnight",
+
+                "item_phone_iphone_se_1_starlight",
+                "item_phone_iphone_se_2_starlight",
+                "item_phone_iphone_se_3_starlight",
+
+                "item_phone_iphone_se_1_red",
+                "item_phone_iphone_se_2_red",
+                "item_phone_iphone_se_3_red"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("iPhone SE",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("emerald", "#4F8D78"),
+                new Colour("black", "#3A3A3A")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1599),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1269),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1599),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1599)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100)
+        ));
+        specs = new PhoneSpecs("OnePlus 10 Pro",
+                "Android 12",
+                "17.02 centimeters (6.7 inches) (measured diagonally from corner to corner); 3216 X 1440 pixels 525 ppi; 120 Hz Fluid AMOLED with LTPO",
+                "Snapdragon® 8 Gen 1 Mobile Platform",
+                storages,
+                "Main Camera; Ultra-Wide Camera; Telephoto Camera",
+                "5G; LTE; Wi-Fi 802.11a/b/g/n/ac/ax; Bluetooth v5.2",
+                "Dual Stereo Speakers; Noise cancellation support; Dolby Atmos",
+                "Yes",
+                "IP68",
+                "Dual nano-SIM slot",
+                "In-display Fingerprint Sensor; Accelerometer; Electronic Compass; Gyroscope; Ambient Light Sensor; Proximity Sensor; Sensor Core; Flicker-detect Sensor; Front RGB sensor",
+                "5000mAh (2S1P 2,500 mAh, non-removable)",
+                "73.9 x 163.0 x 8.55mm",
+                "200.5g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_oneplus_10_pro_1_emerald",
+                "item_phone_oneplus_10_pro_2_emerald",
+                "item_phone_oneplus_10_pro_3_emerald",
+
+                "item_phone_oneplus_10_pro_1_black",
+                "item_phone_oneplus_10_pro_2_black",
+                "item_phone_oneplus_10_pro_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("OnePlus 10 Pro",
+                "OnePlus",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("silver", "#6A4E57"),
+                new Colour("blue", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1075.99),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1184),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1075.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("HUAWEI P40 Pro",
+                "EMUI 10.1(Based on Android 10)",
+                "6.58 inches; OLED, up to 90 Hz frame refresh rate; 2640 x 1200 Pixels",
+                "HUAWEI Kirin 990 5G; Octa-core",
+                storages,
+                "Rear Camera; 50 MP Ultra Vision Camera + 40 MP Cine Camera + 3D Depth Sensing Camera",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Gesture Sensor; Gravity Sensor; Infrared Sensor; Fingerprint Sensor; Hall Sensor; Gyroscope; Compass; Ambient Light Sensor; Proximity Sensor; Colour Temperature Sensor",
+                "4200 mAh",
+                "72.6 x 158.2 x 8.95mm",
+                "209g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_huawei_p40_pro_1_silver",
+                "item_phone_huawei_p40_pro_2_silver",
+                "item_phone_huawei_p40_pro_3_silver",
+
+                "item_phone_huawei_p40_pro_1_blue",
+                "item_phone_huawei_p40_pro_2_blue",
+                "item_phone_huawei_p40_pro_3_blue"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("HUAWEI P40 Pro",
+                "HUAWEI",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
         specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
                 "Android 12",
                 "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
@@ -300,25 +1291,448 @@ public class DataProvider {
                 "5000mAh",
                 "77.9 x 163.3 x 8.9mm",
                 "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                specs,
+                (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
 
-        colours = new ArrayList<>();
-        itemStoreVariant = new ArrayList<>();
-        colours.add(new Colour("black", "#000000"));
-        colours.add(new Colour("silver", "#C0C0C0"));
-        itemStoreVariant.add(new ItemStoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 400));
-        itemStoreVariant.add(new ItemStoreVariant("8skfdAsUs7avRyCATgRp", colours, 500));
-        itemStoreVariant.add(new ItemStoreVariant("MmfBo1187Agt0n9cCl0d", colours, 450));
-        itemStoreVariant.add(new ItemStoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 400));
+        /*
+         * Phone 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 10
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("burgundy", "#6A4E57"),
+                new Colour("black", "#000000"),
+                new Colour("white", "#FFFFFF"),
+                new Colour("green", "#507974")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 100),
+                new SpecsOption(512, 400)
+        ));
+        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+                "Android 12",
+                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
+                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                storages,
+                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
+                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
+                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Yes",
+                "IP68",
+                "Dual SIM model",
+                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
+                "5000mAh",
+                "77.9 x 163.3 x 8.9mm",
+                "228g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
+                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_black",
+                "item_phone_samsung_galaxy_s22_ultra_2_black",
+                "item_phone_samsung_galaxy_s22_ultra_3_black",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_white",
+                "item_phone_samsung_galaxy_s22_ultra_2_white",
+                "item_phone_samsung_galaxy_s22_ultra_3_white",
+
+                "item_phone_samsung_galaxy_s22_ultra_1_green",
+                "item_phone_samsung_galaxy_s22_ultra_2_green",
+                "item_phone_samsung_galaxy_s22_ultra_3_green"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                // TODO: need to add accessories first
+        ));
+        items.add(new Phone("Samsung Galaxy S22 Ultra",
+                "Samsung",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+
+        /**
+         * Accessories
+         */
+        /*
+         * Accessory 1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
         specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                specs,
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 3
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 4
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 6
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 7
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 8
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 9
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
+                itemStoreVariant,
+                imageUris));
+
+        /*
+         * Accessory 10
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+        ));
+        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_accessory_sony_wh_1000xm4_1_black",
+                "item_accessory_sony_wh_1000xm4_2_black",
+                "item_accessory_sony_wh_1000xm4_3_black",
+
+                "item_accessory_sony_wh_1000xm4_1_silver",
+                "item_accessory_sony_wh_1000xm4_2_silver",
+                "item_accessory_sony_wh_1000xm4_3_silver"
+        ));
+        items.add(new Accessory("Sony WH-1000XM4",
+                "Sony",
+                (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
 
