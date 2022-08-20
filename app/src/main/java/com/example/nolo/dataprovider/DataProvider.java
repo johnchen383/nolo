@@ -1582,30 +1582,45 @@ public class DataProvider {
                 imageUris));
 
         /*
-         * Accessory 7
+         * Accessory 7 - iphone 13 pro max
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000"),
-                new Colour("silver", "#C0C0C0")
+                new Colour("brown", "#D17B42"),
+                new Colour("green", "#303D2F"),
+                new Colour("midnight", "#34363A"),
+                new Colour("wisteria", "#797697"),
+                new Colour("cherry", "#472B3B")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 109),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 109),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 109),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 109)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        specs = new AccessorySpecs("Apple iPhone 13 Pro Max Leather Case with MagSafe - Made with high-quality and supple leather");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_accessory_sony_wh_1000xm4_1_black",
-                "item_accessory_sony_wh_1000xm4_2_black",
-                "item_accessory_sony_wh_1000xm4_3_black",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_brown",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_brown",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_brown",
 
-                "item_accessory_sony_wh_1000xm4_1_silver",
-                "item_accessory_sony_wh_1000xm4_2_silver",
-                "item_accessory_sony_wh_1000xm4_3_silver"
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_green",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_green",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_green",
+
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_midnight",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_midnight",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_midnight",
+
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_wisteria",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_wisteria",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_wisteria",
+
+                "item_accessory_apple_iphone_13_pro_max_leather_case_1_cherry",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_2_cherry",
+                "item_accessory_apple_iphone_13_pro_max_leather_case_3_cherry"
         ));
-        items.add(new Accessory("Sony WH-1000XM4",
-                "Sony",
+        items.add(new Accessory("Apple iPhone 13 Pro Max Leather Case with MagSafe",
+                "Apple",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
                 imageUris));
