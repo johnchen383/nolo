@@ -1260,59 +1260,52 @@ public class DataProvider {
          * Phone 8
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("burgundy", "#6A4E57"),
-                new Colour("black", "#000000"),
-                new Colour("white", "#FFFFFF"),
-                new Colour("green", "#507974")
+                new Colour("blue", "#A8C9DE"),
+                new Colour("purple", "#E2D0E4"),
+                new Colour("grey", "#525964")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 459),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 499),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1149),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1129),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1129),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1149)
         ));
         storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(128, 0),
-                new SpecsOption(256, 100),
-                new SpecsOption(512, 400)
+                new SpecsOption(256, 0)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra 5G Dual SIM Smartphone 8GB+128GB - Black (Wall Charger & Headset sold separately)",
+        specs = new PhoneSpecs("Xiaomi 12 Pro",
                 "Android 12",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
+                "WQHD+ 6.73\" AMOLED DotDisplay; 3200 x 1440; 552ppi; 480Hz",
+                "Snapdragon® 8 Gen 1",
                 storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
+                "Pro-grade 50MP triple camera array; 50MP wide angle camera + 50MP ultra-wide angle camera + 50MP telephoto camera; 32MP in-display selfie camera",
+                "5G; LTE; Wi-Fi 6 / Wi-Fi 6E; Bluetooth v5.2",
+                "Quad speakers; Dolby Atmos®; SOUND BY Harman Kardon",
                 "Yes",
                 "IP68",
                 "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+                "In-screen fingerprint sensor; AI face unlock; Proximity sensor | Ambient light sensor | Accelerometer | Gyroscope | Electronic compass | Linear motor | IR blaster | Barometer | Flicker sensor",
+                "4600mAh",
+                "74.6 x 163.6 x 8.16mm",
+                "205g");
         imageUris = new ArrayList<>(Arrays.asList(
-                "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
-                "item_phone_samsung_galaxy_s22_ultra_3_burgundy",
+                "item_phone_xiaomi_12_pro_1_blue",
+                "item_phone_xiaomi_12_pro_2_blue",
+                "item_phone_xiaomi_12_pro_3_blue",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_black",
-                "item_phone_samsung_galaxy_s22_ultra_2_black",
-                "item_phone_samsung_galaxy_s22_ultra_3_black",
+                "item_phone_xiaomi_12_pro_1_purple",
+                "item_phone_xiaomi_12_pro_2_purple",
+                "item_phone_xiaomi_12_pro_3_purple",
 
-                "item_phone_samsung_galaxy_s22_ultra_1_white",
-                "item_phone_samsung_galaxy_s22_ultra_2_white",
-                "item_phone_samsung_galaxy_s22_ultra_3_white",
-
-                "item_phone_samsung_galaxy_s22_ultra_1_green",
-                "item_phone_samsung_galaxy_s22_ultra_2_green",
-                "item_phone_samsung_galaxy_s22_ultra_3_green"
+                "item_phone_xiaomi_12_pro_1_grey",
+                "item_phone_xiaomi_12_pro_2_grey",
+                "item_phone_xiaomi_12_pro_3_grey"
         ));
         recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
                 // TODO: need to add accessories first
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
-                "Samsung",
+        items.add(new Phone("Xiaomi 12 Pro",
+                "Xiaomi",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
                 imageUris,
