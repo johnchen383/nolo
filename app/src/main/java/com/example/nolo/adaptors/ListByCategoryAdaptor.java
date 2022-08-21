@@ -94,7 +94,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             defVariants.add((ItemVariant) item.getDefaultItemVariant());
         }
 
-        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, 0.45);
+        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, 0.48);
         vh.childItemsList.setAdapter(categoryListAdaptor);
 
         return currentListViewItem;
