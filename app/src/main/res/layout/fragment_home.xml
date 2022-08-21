@@ -1,93 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/navy"
     tools:context=".fragments.HomeFragment">
 
-
-
-    <ScrollView
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:orientation="vertical">
+        <ScrollView
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="match_parent">
             <LinearLayout
-                android:id="@+id/initial_home_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/search_layout_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="32dp">
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/nav_icon_search"/>
-                    <EditText
-                        android:id="@+id/search_edittext"
-                        android:layout_marginLeft="8dp"
+                    android:id="@+id/initial_home_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/search_layout_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="SEARCH"
-                        android:singleLine="true"
-                        android:textSize="@dimen/font_body1"
-                        android:textColor="@color/faint_white"
-                        android:textColorHint="@color/faint_white"
-                        android:backgroundTint="@color/transparent"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="32dp">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/nav_icon_search"/>
+                        <EditText
+                            android:id="@+id/search_edittext"
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="SEARCH"
+                            android:singleLine="true"
+                            android:textSize="@dimen/font_body1"
+                            android:textColor="@color/faint_white"
+                            android:textColorHint="@color/faint_white"
+                            android:backgroundTint="@color/transparent"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/home_logo"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_logo"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/featured_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_featured_prev"
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="left"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/featured_items_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <ListView
-                    android:id="@+id/search_suggestions_list"
+                    android:id="@+id/category_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/font_h5"
-                    android:layout_marginRight="@dimen/font_h5"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical"/>
+                    android:layout_height="match_parent"
+                    >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/featured_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_featured_prev"
-                        android:layout_marginLeft="16dp"
-                        android:layout_gravity="left"/>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/featured_items_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
+                </ListView>
             </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/category_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-            </ListView>
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        <ListView
+            android:id="@+id/search_suggestions_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/font_h5"
+            android:layout_marginRight="@dimen/font_h5"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"/>
+    </LinearLayout>
+</FrameLayout>
