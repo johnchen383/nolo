@@ -6,8 +6,10 @@ import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
 import com.example.nolo.interactors.user.AddViewedItemUseCase;
@@ -31,6 +33,14 @@ public class DetailsViewModel extends ViewModel {
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
     }
 
+    public IItemVariant getItemVariant() {
+        return itemVariant;
+    }
+
+    public void setItemVariant(IItemVariant itemVariant) {
+        this.itemVariant = itemVariant;
+    }
+
     public String getItemName() {
         return item.getName();
     }
@@ -43,16 +53,26 @@ public class DetailsViewModel extends ViewModel {
         return itemVariant.getColour();
     }
 
-    public IItemVariant getItemVariant() {
-        return itemVariant;
+    public CategoryType getItemCategory() { return itemVariant.getCategoryType(); }
+
+    public List<SpecsOption> getStorageOptions() {
+        System.out.println(itemVariant.toString());
+        if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
+            System.out.println("hi" + item.getSpecs().getStorageOptions());
+            return item.getSpecs().getStorageOptions();
+        } else {
+            System.err.println("Storage options not available");
+            return null;
+        }
     }
 
-    public void setVariantColour(Colour colour) {
-        itemVariant.setColour(colour);
-    }
-
-    public void setItemVariant(IItemVariant itemVariant) {
-        this.itemVariant = itemVariant;
+    public List<SpecsOption> getRamOptions() {
+        if (getItemCategory() == CategoryType.laptops) {
+            return item.getSpecs().getRamOptions();
+        } else {
+            System.err.println("RAM options not available");
+            return null;
+        }
     }
 
     public void addCart(IPurchasable cartItem) {

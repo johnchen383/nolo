@@ -106,6 +106,7 @@
                     android:textSize="@dimen/font_body1" />
 
                 <LinearLayout
+                    android:id="@+id/ram_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="15dp">
@@ -116,7 +117,7 @@
                         android:layout_marginRight="24dp"
                         android:text="Unified \nMemory" />
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/customisations_list"
+                        android:id="@+id/ram_list"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
                     <com.google.android.material.button.MaterialButton
@@ -129,7 +130,32 @@
                         android:textColor="@color/navy"
                         android:textSize="@dimen/font_caption"
                         app:cornerRadius="8dp" />
-
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/storage_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp">
+                    <TextView
+                        style="@style/TextStroke.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="24dp"
+                        android:text="Storage" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/storage_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:backgroundTint="@color/white"
+                        android:text="8GB RAM"
+                        android:textColor="@color/navy"
+                        android:textSize="@dimen/font_caption"
+                        app:cornerRadius="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,6 +177,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/decrement_btn"
                                 style="@style/TextStroke.Brown"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -158,6 +185,7 @@
                                 android:paddingHorizontal="6dp"
                                 android:textColor="@color/light_brown" />
                             <TextView
+                                android:id="@+id/quantity_text"
                                 style="@style/TextStroke.Brown"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -165,6 +193,7 @@
                                 android:paddingHorizontal="2dp"
                                 android:textColor="@color/light_brown" />
                             <TextView
+                                android:id="@+id/increment_btn"
                                 style="@style/TextStroke.Brown"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
