@@ -84,7 +84,7 @@ public class ListActivity extends BaseActivity {
                 break;
             case phones:
                 items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(PhoneOs.android);
-                categoryListAdaptor = new ListByCategoryAdaptor(this, null, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone, items);
                 break;
             default:
                 System.err.println("No adaptor created for this category");

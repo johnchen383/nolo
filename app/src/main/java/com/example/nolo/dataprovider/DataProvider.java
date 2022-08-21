@@ -947,7 +947,7 @@ public class DataProvider {
                 new SpecsOption(512, 400)
         ));
         specs = new PhoneSpecs("Samsung Galaxy S22 Ultra",
-                "Android 12",
+                "android",
                 "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
                 "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
                 storages,
@@ -1011,7 +1011,7 @@ public class DataProvider {
                 new SpecsOption(256, 100)
         ));
         specs = new PhoneSpecs("Samsung Galaxy S22",
-                "Android 12",
+                "android",
                 "6.1\" Dynamic AMOLED 2X display; FHD+ (2340x1080); 120Hz refresh rate",
                 "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
                 storages,
@@ -1081,7 +1081,7 @@ public class DataProvider {
                 new SpecsOption(1024, 1000)
         ));
         specs = new PhoneSpecs("Apple iPhone 13 Pro Max",
-                "iOS 15",
+                "ios",
                 "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
                 "A15 Bionic chip",
                 storages,
@@ -1151,7 +1151,7 @@ public class DataProvider {
                 new SpecsOption(512, 600)
         ));
         specs = new PhoneSpecs("Apple iPhone 13",
-                "iOS 15",
+                "ios",
                 "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
                 "A15 Bionic chip",
                 storages,
@@ -1222,7 +1222,7 @@ public class DataProvider {
                 new SpecsOption(256, 300)
         ));
         specs = new PhoneSpecs("Apple iPhone SE",
-                "iOS 15",
+                "ios",
                 "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
                 "A15 Bionic chip",
                 storages,
@@ -1279,7 +1279,7 @@ public class DataProvider {
                 new SpecsOption(256, 100)
         ));
         specs = new PhoneSpecs("OnePlus 10 Pro",
-                "Android 12",
+                "android",
                 "17.02 centimeters (6.7 inches) (measured diagonally from corner to corner); 3216 X 1440 pixels 525 ppi; 120 Hz Fluid AMOLED with LTPO",
                 "Snapdragon® 8 Gen 1 Mobile Platform",
                 storages,
@@ -1332,7 +1332,7 @@ public class DataProvider {
                 new SpecsOption(512, 400)
         ));
         specs = new PhoneSpecs("HUAWEI P40 Pro",
-                "EMUI 10.1(Based on Android 10)",
+                "android",
                 "6.58 inches; OLED, up to 90 Hz frame refresh rate; 2640 x 1200 Pixels",
                 "HUAWEI Kirin 990 5G; Octa-core",
                 storages,
@@ -1385,7 +1385,7 @@ public class DataProvider {
                 new SpecsOption(256, 0)
         ));
         specs = new PhoneSpecs("Xiaomi 12 Pro",
-                "Android 12",
+                "android",
                 "WQHD+ 6.73\" AMOLED DotDisplay; 3200 x 1440; 552ppi; 480Hz",
                 "Snapdragon® 8 Gen 1",
                 storages,
@@ -1439,7 +1439,7 @@ public class DataProvider {
                 new SpecsOption(128, 0)
         ));
         specs = new PhoneSpecs("Nokia G21",
-                "Android 11",
+                "android",
                 "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate",
                 "Unisoc T606",
                 storages,
@@ -1490,7 +1490,7 @@ public class DataProvider {
                 new SpecsOption(2, 0)
         ));
         specs = new PhoneSpecs("Nokia 225 4G",
-                "S30+ (Android)",
+                "android",
                 "2.4 inch; QVGA resolution",
                 "Unisoc T117",
                 storages,

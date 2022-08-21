@@ -1,6 +1,10 @@
 package com.example.nolo.entities.item;
 
 import com.example.nolo.entities.item.colour.Colour;
+import com.example.nolo.entities.item.specs.AccessorySpecs;
+import com.example.nolo.entities.item.specs.ISpecs;
+import com.example.nolo.entities.item.specs.LaptopSpecs;
+import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
@@ -28,7 +32,6 @@ public abstract class Item implements IItem {
      * our team decided to use StoreVariant and Specs.
      * So it is a reasonable excuse to violate the SOLID principle.
      */
-    private Specs specs;
     private List<StoreVariant> storeVariants;
     private List<String> imageUris;
 
@@ -37,11 +40,10 @@ public abstract class Item implements IItem {
      */
     public Item() {}
 
-    public Item(CategoryType categoryType, String name, String brand, Specs specs, List<StoreVariant> storeVariants, List<String> imageUris) {
+    public Item(CategoryType categoryType, String name, String brand, List<StoreVariant> storeVariants, List<String> imageUris) {
         this.categoryType = categoryType;
         this.name = name;
         this.brand = brand;
-        this.specs = specs;
         this.storeVariants = storeVariants;
         this.imageUris = imageUris;
     }
@@ -74,8 +76,27 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    public Specs getSpecs() {
-        return specs;
+    @Exclude
+    public ISpecs getSpecs(){
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    @Override
+    @Exclude
+    public PhoneSpecs getPhoneSpecs(){
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    @Exclude
+    @Override
+    public LaptopSpecs getLaptopSpecs() {
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    @Exclude
+    @Override
+    public AccessorySpecs getAccessorySpecs() {
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
     @Override
@@ -88,6 +109,7 @@ public abstract class Item implements IItem {
         return imageUris;
     }
 
+    @Override
     @Exclude
     public List<String> getRecommendedAccessoryIds() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");

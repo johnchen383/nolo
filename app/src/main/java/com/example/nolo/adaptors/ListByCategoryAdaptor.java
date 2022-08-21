@@ -43,7 +43,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public class LaptopsViewHolder extends {
+    public class LaptopsViewHolder {
         RecyclerView childItemsList;
         TextView brandName;
 
@@ -90,14 +90,15 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
     private View populatePhoneItemsByOs(List<IItem> osItems, View currentListViewItem){
         PhoneViewHolder vh = new PhoneViewHolder(currentListViewItem);
 
+        setUpChildRecyclerView(vh.childItemsList, osItems, 0.48);
 
+        return currentListViewItem;
     }
 
     private View populateLaptopItemsByBrand(List<IItem> items, View currentListViewItem){
         LaptopsViewHolder vh = new LaptopsViewHolder(currentListViewItem);
 
         vh.brandName.setText(items.get(0).getBrand().toUpperCase());
-
         setUpChildRecyclerView(vh.childItemsList, items, 0.48);
 
         return currentListViewItem;
