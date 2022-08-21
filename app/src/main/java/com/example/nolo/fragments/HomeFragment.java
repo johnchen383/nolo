@@ -1,8 +1,6 @@
 package com.example.nolo.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,29 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.MainActivity;
-import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.HomeFeaturedItemsAdaptor;
 import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
-import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
-import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.entities.user.User;
-import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.interactors.item.GetAllItemsUseCase;
-import com.example.nolo.interactors.store.GetStoreByIdUseCase;
-import com.example.nolo.interactors.user.AddViewedItemUseCase;
-import com.example.nolo.interactors.user.GetRecentViewedItemsUseCase;
-import com.example.nolo.util.Animation;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
@@ -54,13 +38,11 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
     private class ViewHolder {
-        ListView categoryList;
-        LinearLayout initialView;
-        LinearLayout searchBtn;
+        ListView categoryList, searchSuggestionsList;
+        LinearLayout initialView, searchBtn;
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchEditText;
-        ListView searchSuggestionsList;
 
         public ViewHolder() {
             categoryList = getView().findViewById(R.id.category_list);
@@ -117,7 +99,7 @@ public class HomeFragment extends Fragment {
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 
-    private void initSearchSuggestionsAdaptor(String searchTerm) {
+    private void resetSearchSuggestionsAdaptor(String searchTerm) {
         /**
          * SEARCH SUGGESTION ADAPTOR
          */
@@ -128,6 +110,7 @@ public class HomeFragment extends Fragment {
             homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, new ArrayList<>());
         }
         vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
+        ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
 
     private void initListeners() {
@@ -144,7 +127,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                initSearchSuggestionsAdaptor(s.toString());
+                resetSearchSuggestionsAdaptor(s.toString());
             }
         });
 
@@ -157,7 +140,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                initSearchSuggestionsAdaptor(s.toString());
+                resetSearchSuggestionsAdaptor(s.toString());
             }
         });
     }
