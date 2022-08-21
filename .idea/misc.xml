@@ -43,9 +43,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/details_colour.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.30512820512820515" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3104166666666667" />
+        <entry key="app/src/main/res/layout/item_details_colour.xml" value="0.8689722131799771" />
+        <entry key="app/src/main/res/layout/item_home_category.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/layout/item_home_featured.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.30512820512820515" />
         <entry key="app/src/main/res/xml/provider_paths.xml" value="0.25729166666666664" />
