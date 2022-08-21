@@ -23,5 +23,9 @@
         android:layout_gravity="center"
         android:text="yo"
         />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_item_parent_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

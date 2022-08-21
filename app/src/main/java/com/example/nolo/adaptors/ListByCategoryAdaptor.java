@@ -20,10 +20,11 @@ import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.util.Display;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAdaptor.ViewHolder>{
-    private List<IItem> categoryItems;
+    private List<List<IItem>> categoryItems;
     private Context mContext;
     private CategoryType categoryType;
 
@@ -43,7 +44,7 @@ public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAd
     }
 
     public class LaptopsViewHolder extends ViewHolder {
-        ImageView iconImageView;
+//        ImageView iconImageView;
 
         public LaptopsViewHolder(View currentListViewItem) {
             super(currentListViewItem);
@@ -51,20 +52,20 @@ public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAd
         }
     }
 
-    public ListByCategoryAdaptor(@NonNull Context context, List<IItem> categoryItems){
+    public ListByCategoryAdaptor(@NonNull Context context, List<List<IItem>> categoryItems, CategoryType categoryType){
         this.categoryItems = categoryItems;
         this.mContext = context;
-        this.categoryType = categoryItems.get(0).getCategoryType();
+        this.categoryType = categoryType;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_compact, parent, false);
-
         switch (categoryType){
             case laptops:
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_compact, parent, false);
+
                 return new LaptopsViewHolder(view);
             default:
                 System.err.println("No adaptor created for this category");
@@ -74,11 +75,11 @@ public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        IItem item = categoryItems.get(position);
-
         switch (categoryType){
             case laptops:
-                populateLaptopItemsByBrand((LaptopsViewHolder) holder, item);
+                List<IItem> items = categoryItems.get(position);
+
+                populateLaptopItemsByBrand((LaptopsViewHolder) holder, items);
                 break;
             default:
                 System.err.println("No adaptor created for this category");
@@ -87,8 +88,8 @@ public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAd
 
     }
 
-    private void populateLaptopItemsByBrand(@NonNull LaptopsViewHolder holder, IItem item){
-
+    private void populateLaptopItemsByBrand(@NonNull LaptopsViewHolder holder, List<IItem> items){
+        holder.title.setText(items.toString());
     }
 
     @Override
