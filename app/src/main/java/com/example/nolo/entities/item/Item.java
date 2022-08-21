@@ -82,24 +82,6 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    @Exclude
-    public PhoneSpecs getPhoneSpecs(){
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @Exclude
-    @Override
-    public LaptopSpecs getLaptopSpecs() {
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @Exclude
-    @Override
-    public AccessorySpecs getAccessorySpecs() {
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @Override
     public List<StoreVariant> getStoreVariants() {
         return storeVariants;
     }

@@ -32,8 +32,7 @@ public class Accessory extends Item {
                 '}';
     }
 
-    @Override
-    public AccessorySpecs getAccessorySpecs(){
+    private AccessorySpecs getAccessorySpecs(){
         return accessorySpecs;
     }
 

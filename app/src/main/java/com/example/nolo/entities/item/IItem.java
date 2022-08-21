@@ -23,7 +23,4 @@ public interface IItem {
     List<String> getRecommendedAccessoryIds();
     double getBasePrice(String storeId);
     IItemVariant getDefaultItemVariant();
-    PhoneSpecs getPhoneSpecs();
-    LaptopSpecs getLaptopSpecs();
-    AccessorySpecs getAccessorySpecs();
 }

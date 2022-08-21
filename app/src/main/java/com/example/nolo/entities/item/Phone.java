@@ -39,8 +39,7 @@ public class Phone extends Item {
                 '}';
     }
 
-    @Override
-    public PhoneSpecs getPhoneSpecs(){
+    private PhoneSpecs getPhoneSpecs(){
         return phoneSpecs;
     }
 

@@ -40,8 +40,7 @@ public class Laptop extends Item {
                 '}';
     }
 
-    @Override
-    public LaptopSpecs getLaptopSpecs(){
+    private LaptopSpecs getLaptopSpecs(){
         return laptopSpecs;
     }
 
