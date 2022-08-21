@@ -23,6 +23,7 @@ import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.ListViewModel;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -135,6 +136,11 @@ public class ListActivity extends BaseActivity {
                     items.add(l);
                 }
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_accessory, items);
+
+                ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.white));
+                vh.categoryItemsParentList.setDivider(whiteDivider);
+                vh.categoryItemsParentList.setDividerHeight(1);
+                vh.categoryItemsParentList.setPadding(32, 32, 32, 32);
                 break;
             default:
                 System.err.println("No adaptor created for this category");
