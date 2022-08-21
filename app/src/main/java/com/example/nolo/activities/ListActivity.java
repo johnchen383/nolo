@@ -21,6 +21,7 @@ import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.util.ListUtil;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,10 +35,12 @@ public class ListActivity extends BaseActivity {
     private class ViewHolder {
         ListView categoryItemsParentList;
         ImageView categoryHeader;
+        ImageButton backButton;
 
         public ViewHolder(){
             categoryItemsParentList = findViewById(R.id.category_item_parent_list);
             categoryHeader = findViewById(R.id.category_header);
+            backButton = findViewById(R.id.back_btn);
         }
     }
 
@@ -51,6 +54,13 @@ public class ListActivity extends BaseActivity {
 
         initStyling(category);
         initAdaptor(category.getCategoryType());
+        initListeners();
+    }
+
+    private void initListeners(){
+        vh.backButton.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private void initStyling(ICategory category){
