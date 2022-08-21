@@ -121,9 +121,9 @@ public class HomeFragment extends Fragment {
             List<IItem> firstNItems = searchSuggestions.stream().limit(NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
 
             // and then display them
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, firstNItems);
+            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems);
         } else {
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, new ArrayList<>());
+            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, new ArrayList<>());
         }
         vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
