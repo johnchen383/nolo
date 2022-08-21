@@ -2,6 +2,8 @@
     <!-- Default dimensions, per the Android Design guidelines. -->
     <dimen name="touch_target_min">48dp</dimen>
     <dimen name="font_h2">60sp</dimen>
+    <dimen name="font_h3">48sp</dimen>
+    <dimen name="font_h4">34sp</dimen>
     <dimen name="font_h5">24sp</dimen>
     <dimen name="font_h6">20sp</dimen>
     <dimen name="font_body1">16sp</dimen>

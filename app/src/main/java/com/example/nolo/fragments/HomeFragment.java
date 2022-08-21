@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,19 +40,22 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchBtn;
+        LinearLayout initialView, searchLayoutBtn, searchContainer;
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchEditText;
+        ImageView searchImageBtn;
 
         public ViewHolder() {
             categoryList = getView().findViewById(R.id.category_list);
             initialView = getView().findViewById(R.id.initial_home_view);
-            searchBtn = getView().findViewById(R.id.search_layout_btn);
+            searchLayoutBtn = getView().findViewById(R.id.search_layout_btn);
             featuredItemsList = getView().findViewById(R.id.featured_items_list);
             featuredText = getView().findViewById(R.id.featured_text);
             searchEditText = getView().findViewById(R.id.search_edittext);
             searchSuggestionsList = getView().findViewById(R.id.search_suggestions_list);
+            searchContainer = getView().findViewById(R.id.search_container);
+            searchImageBtn = getView().findViewById(R.id.search_image_btn);
         }
     }
 
@@ -114,7 +118,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initListeners() {
-        vh.searchBtn.setOnClickListener(v -> {
+        vh.searchLayoutBtn.setOnClickListener(v -> {
+            showSearchContainer(true);
+            vh.searchEditText.requestFocus();
+//            vh.searchEditText.setSelection(vh.searchEditText.getText().length());
 //            startActivity(new Intent(getActivity(), SearchActivity.class), Animation.Fade(getActivity()).toBundle());
         });
 
@@ -143,5 +150,13 @@ public class HomeFragment extends Fragment {
                 resetSearchSuggestionsAdaptor(s.toString());
             }
         });
+    }
+
+    private void showSearchContainer(boolean show) {
+        if (show) {
+            vh.searchContainer.setVisibility(View.VISIBLE);
+        } else {
+            vh.searchContainer.setVisibility(View.GONE);
+        }
     }
 }

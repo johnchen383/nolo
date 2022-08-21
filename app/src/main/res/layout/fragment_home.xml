@@ -34,18 +34,14 @@
                             android:layout_height="16dp"
                             android:layout_gravity="center"
                             android:src="@drawable/nav_icon_search"/>
-                        <EditText
-                            android:id="@+id/search_edittext"
+                        <TextView
                             android:layout_marginLeft="8dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:hint="SEARCH"
-                            android:singleLine="true"
+                            android:text="@string/title_search"
                             android:textSize="@dimen/font_body1"
-                            android:textColor="@color/faint_white"
-                            android:textColorHint="@color/faint_white"
-                            android:backgroundTint="@color/transparent"
+                            android:textAllCaps="true"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -84,16 +80,45 @@
         </ScrollView>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/search_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="@dimen/font_h3"
+        android:paddingEnd="@dimen/font_h3"
+        android:paddingTop="22dp"
+        android:background="@color/navy"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <EditText
+                android:id="@+id/search_edittext"
+                android:layout_marginLeft="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/home_search_bar"
+                android:textAllCaps="true"
+                android:singleLine="true"
+                android:textSize="@dimen/font_body1"
+                android:textColor="@color/faint_white"
+                android:textColorHint="@color/faint_white"
+                android:backgroundTint="@color/faint_white"/>
+            <ImageView
+                android:id="@+id/search_image_btn"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/nav_icon_search"/>
+        </RelativeLayout>
 
         <ListView
             android:id="@+id/search_suggestions_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/font_h5"
-            android:layout_marginRight="@dimen/font_h5"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"/>
     </LinearLayout>
