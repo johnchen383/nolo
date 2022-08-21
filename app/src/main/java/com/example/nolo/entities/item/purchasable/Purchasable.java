@@ -2,7 +2,7 @@ package com.example.nolo.entities.item.purchasable;
 
 import android.util.Log;
 
-import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 
 import java.util.Objects;
 
@@ -11,7 +11,16 @@ import java.util.Objects;
  * E.g. Items in Cart.
  */
 public class Purchasable implements IPurchasable {
-    private IItemVariant itemVariant;
+    /**
+     * Cannot use IItemVariant (interface),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use StoreVariant and Specs.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
+    private ItemVariant itemVariant;
     private int quantity;
 
     /**
@@ -19,13 +28,13 @@ public class Purchasable implements IPurchasable {
      */
     public Purchasable(){}
 
-    public Purchasable(IItemVariant itemVariant, int quantity){
+    public Purchasable(ItemVariant itemVariant, int quantity){
         this.itemVariant = itemVariant;
         this.quantity = quantity;
     }
 
     @Override
-    public IItemVariant getItemVariant() {
+    public ItemVariant getItemVariant() {
         return itemVariant;
     }
 

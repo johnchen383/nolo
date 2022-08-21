@@ -3,7 +3,9 @@ package com.example.nolo.entities.user;
 import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
@@ -13,17 +15,17 @@ import java.util.List;
  * {@link #userAuthUid} {@link #email} will not be in the Firestore
  */
 public class User implements IUser {
-    private static final int MAX_VIEWED = 5;
+    public static final int MAX_VIEWED = 5;
     private String userAuthUid, email;
-    private List<IItemVariant> viewHistory = new ArrayList<>();
-    private List<IPurchasable> cart = new ArrayList<>();
+    private List<ItemVariant> viewHistory = new ArrayList<>();
+    private List<Purchasable> cart = new ArrayList<>();
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public User() {}
 
-    public User(List<IItemVariant> viewHistory, List<IPurchasable> cart) {
+    public User(List<ItemVariant> viewHistory, List<Purchasable> cart) {
         this.viewHistory = viewHistory;
         this.cart = cart;
     }
@@ -51,7 +53,7 @@ public class User implements IUser {
     }
 
     @Override
-    public List<IItemVariant> getViewHistory() {
+    public List<ItemVariant> getViewHistory() {
         return viewHistory;
     }
 
@@ -60,7 +62,7 @@ public class User implements IUser {
         viewHistory.removeIf(viewedItem -> viewedItem.getItemId().equals(item.getItemId()));
 
         //add item to start of list
-        viewHistory.add(0, item);
+        viewHistory.add(0, (ItemVariant) item);
 
         //truncate list if greater than MAX_VIEWED
         while (viewHistory.size() > MAX_VIEWED){
@@ -69,7 +71,7 @@ public class User implements IUser {
     }
 
     @Override
-    public List<IPurchasable> getCart() {
+    public List<Purchasable> getCart() {
         return cart;
     }
 
@@ -84,7 +86,7 @@ public class User implements IUser {
         }
 
         //else, add to cart
-        cart.add(cartItem);
+        cart.add((Purchasable) cartItem);
     }
 
     @Override
@@ -104,7 +106,7 @@ public class User implements IUser {
     @Exclude
     public boolean isFieldNameValid(String fieldName) {
         try {
-            User.class.getField(fieldName);
+            User.class.getDeclaredField(fieldName);
             return true;
         } catch (NoSuchFieldException e) {
             return false;
