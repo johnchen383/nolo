@@ -49,13 +49,14 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center" />
                     <TextView
+                        android:id="@+id/colour_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_med"
                         android:layout_gravity="center"
                         android:text="Colour"
                         android:fontFamily="@font/abeezee_italic"
-                        android:textSize="@dimen/font_caption"
+                        android:textSize="@dimen/font_body2"
                         android:textColor="@color/light_grey" />
                 </LinearLayout>
 

@@ -9,7 +9,8 @@ import android.graphics.Color;
         import android.view.ViewGroup;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
-        import android.widget.TextView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
         import androidx.annotation.NonNull;
         import com.example.nolo.R;
@@ -35,11 +36,13 @@ public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdapto
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        MaterialButton colourBtn, colourOutline;
+        RelativeLayout colourBtn;
+        MaterialButton colourCircle, colourOutline;
 
         public ViewHolder(View view) {
             super(view);
             colourBtn = view.findViewById(R.id.colour_btn);
+            colourCircle = view.findViewById(R.id.colour_circle);
             colourOutline = view.findViewById(R.id.colour_outline);
         }
     }
@@ -63,20 +66,28 @@ public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdapto
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         IColour colour = colours.get(position);
-        holder.colourBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colour.getHexCode())));
+        holder.colourCircle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colour.getHexCode())));
         holder.colourOutline.setVisibility(itemVariant.getColour().getHexCode().equals(colour.getHexCode()) ? View.VISIBLE : View.INVISIBLE);
 
         holder.colourBtn.setOnClickListener(v -> {
-            String hexCode = String.format("#%06X", (0xFFFFFF & holder.colourBtn.getBackgroundTintList().getDefaultColor()));
-            System.out.println(hexCode);
-            itemVariant.setColour(getColourFromHex(hexCode));
-            updateItemVariant.accept(itemVariant);
+            onClickColour(holder);
+        });
+
+        holder.colourCircle.setOnClickListener(v -> {
+            onClickColour(holder);
         });
     }
 
     @Override
     public int getItemCount() {
         return colours.size();
+    }
+
+    private void onClickColour(ViewHolder holder) {
+        String hexCode = String.format("#%06X", (0xFFFFFF & holder.colourCircle.getBackgroundTintList().getDefaultColor()));
+        System.out.println(getColourFromHex(hexCode).toString());
+        itemVariant.setColour(getColourFromHex(hexCode));
+        updateItemVariant.accept(itemVariant);
     }
 
     private Colour getColourFromHex(String hexCode) {

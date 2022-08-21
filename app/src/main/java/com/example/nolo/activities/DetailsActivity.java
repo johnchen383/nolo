@@ -25,7 +25,7 @@ public class DetailsActivity extends BaseActivity {
 
     private class ViewHolder {
         LinearLayout transparentContainer, detailsContainer;
-        TextView itemTitle;
+        TextView itemTitle, colourTitle;
         RecyclerView coloursList;
         MaterialButton addCartBtn;
 
@@ -33,6 +33,7 @@ public class DetailsActivity extends BaseActivity {
             transparentContainer = findViewById(R.id.transparent_container);
             detailsContainer = findViewById(R.id.details_container);
             itemTitle = findViewById(R.id.item_title);
+            colourTitle = findViewById(R.id.colour_title);
             coloursList = findViewById(R.id.colours_list);
             addCartBtn = findViewById(R.id.add_cart_btn);
         }
@@ -54,6 +55,11 @@ public class DetailsActivity extends BaseActivity {
         vh.transparentContainer.setMinimumHeight((int) (0.45 * (Display.getScreenHeight(vh.transparentContainer))));
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
+        setDynamicStyling();
+    }
+
+    private void setDynamicStyling() {
+        vh.colourTitle.setText(capitaliseFirst(detailsViewModel.getVariantColour().getName()));
     }
 
     private void initListeners() {
@@ -63,6 +69,11 @@ public class DetailsActivity extends BaseActivity {
     private void updateAdaptor(IItemVariant itemVariant) {
         detailsViewModel.setItemVariant(itemVariant);
         initAdaptors();
+        setDynamicStyling();
+    }
+
+    private String capitaliseFirst(String string) {
+        return string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 
     @Override
