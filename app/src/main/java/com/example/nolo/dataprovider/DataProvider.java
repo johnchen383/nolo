@@ -1421,7 +1421,7 @@ public class DataProvider {
                 new SpecsOption(2, 0)
         ));
         specs = new PhoneSpecs("Nokia 225 4G",
-                "S30+",
+                "S30+ (Android)",
                 "2.4 inch; QVGA resolution",
                 "Unisoc T117",
                 storages,
