@@ -59,7 +59,7 @@ public class Purchasable implements IPurchasable {
         if (isIncrement) {
             this.quantity++;
         } else {
-            if (this.quantity < 0) {
+            if (this.quantity > 1) {
                 this.quantity--;
             }
         }

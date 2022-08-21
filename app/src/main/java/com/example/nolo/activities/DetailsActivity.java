@@ -88,13 +88,13 @@ public class DetailsActivity extends BaseActivity {
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
 
-        switch (detailsViewModel.getItemCategory()) {
-            case phones:
-                vh.ramContainer.setVisibility(View.INVISIBLE);
-            case accessories:
-                vh.ramContainer.setVisibility(View.INVISIBLE);
-                vh.storageContainer.setVisibility(View.INVISIBLE);
-        }
+//        switch (detailsViewModel.getItemCategory()) {
+//            case phones:
+//                vh.ramContainer.setVisibility(View.INVISIBLE);
+//            case accessories:
+//                vh.ramContainer.setVisibility(View.INVISIBLE);
+//                vh.storageContainer.setVisibility(View.INVISIBLE);
+//        }
 
         setDynamicStyling();
     }
@@ -106,12 +106,16 @@ public class DetailsActivity extends BaseActivity {
     private void initListeners() {
         vh.decrementBtn.setOnClickListener(v -> {
             detailsViewModel.getPurchasable().incrementOrDecrementQuantity(false);
-            vh.quantityText.setText(detailsViewModel.getPurchasable().getQuantity());
+            vh.quantityText.setText(String.valueOf(detailsViewModel.getPurchasable().getQuantity()));
         });
 
         vh.incrementBtn.setOnClickListener(v -> {
             detailsViewModel.getPurchasable().incrementOrDecrementQuantity(true);
-            vh.quantityText.setText(detailsViewModel.getPurchasable().getQuantity());
+            vh.quantityText.setText(String.valueOf(detailsViewModel.getPurchasable().getQuantity()));
+        });
+
+        vh.addCartBtn.setOnClickListener(v -> {
+            detailsViewModel.addCart();
         });
     }
 
