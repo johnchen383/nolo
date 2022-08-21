@@ -328,8 +328,7 @@ public class DataProvider {
                 new SpecsOption(512, 0),
                 new SpecsOption(1024, 350),
                 new SpecsOption(2048, 1050),
-                new SpecsOption(4096, 2100),
-                new SpecsOption(8192, 4200)
+                new SpecsOption(4096, 2100)
         ));
         specs = new LaptopSpecs("MacBook Pro 16\" models",
                 "macOS",
