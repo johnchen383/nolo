@@ -53,6 +53,15 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/home_logo"/>
 
+                <ListView
+                    android:id="@+id/search_suggestions_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/font_h5"
+                    android:layout_marginRight="@dimen/font_h5"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
