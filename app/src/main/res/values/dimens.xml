@@ -50,4 +50,6 @@
         <dimen name="category_button_radius">10dp</dimen>
          <dimen name="category_button_width">1dp</dimen>
 
+    <dimen name="list_toggle_radius">5dp</dimen>
+
 </resources>
