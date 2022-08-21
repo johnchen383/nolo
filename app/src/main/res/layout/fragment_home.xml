@@ -74,8 +74,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@null">
-                    >
-
                 </ListView>
             </LinearLayout>
         </ScrollView>
@@ -84,6 +82,7 @@
         android:id="@+id/outside_search_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:orientation="vertical"
         android:visibility="gone"/>
     <LinearLayout
