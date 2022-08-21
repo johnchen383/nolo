@@ -105,7 +105,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/home_search_bar"
+                android:hint="@string/search_bar"
                 android:textAllCaps="true"
                 android:singleLine="true"
                 android:textSize="@dimen/font_body1"
