@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nolo.R;
 import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
@@ -53,6 +54,17 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
     }
 
+    public class AccessoryViewHolder {
+        TextView title, price;
+        ImageView img;
+
+        public AccessoryViewHolder(View currentListViewItem) {
+            title = currentListViewItem.findViewById(R.id.title);
+            price = currentListViewItem.findViewById(R.id.price);
+            img = currentListViewItem.findViewById(R.id.item_img);
+        }
+    }
+
     public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems){
         super(context, resource, categoryItems);
         this.categoryItems = categoryItems;
@@ -83,8 +95,29 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             return populatePhoneItemsByOs(osItems, currentListViewItem);
         }
 
+        //accessories
+        if (Accessory.class.equals(categoryItems.get(0).get(0).getClass())){
+            IItem displayItem = categoryItems.get(position).get(0);
+            return populateAccessory(displayItem, currentListViewItem);
+        }
+
         System.err.println("No adaptor created for this category");
         return null;
+    }
+
+    private View populateAccessory(IItem item, View currentListViewItem){
+        AccessoryViewHolder vh = new AccessoryViewHolder(currentListViewItem);
+
+        vh.title.setText(item.getName());
+        vh.price.setText(item.getDefaultItemVariant().getDisplayPrice());
+
+        int i = mContext.getResources().getIdentifier(
+                item.getDefaultItemVariant().getDisplayImage(), "drawable",
+                mContext.getPackageName());
+
+        vh.img.setImageResource(i);
+
+        return currentListViewItem;
     }
 
     private View populatePhoneItemsByOs(List<IItem> osItems, View currentListViewItem){
