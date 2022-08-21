@@ -43,6 +43,9 @@ public class DetailsActivity extends BaseActivity {
             coloursList = findViewById(R.id.colours_list);
             ramList = findViewById(R.id.ram_list);
             storageList = findViewById(R.id.storage_list);
+            quantityText = findViewById(R.id.quantity_text);
+            decrementBtn = findViewById(R.id.decrement_btn);
+            incrementBtn = findViewById(R.id.increment_btn);
             addCartBtn = findViewById(R.id.add_cart_btn);
         }
     }
@@ -101,7 +104,15 @@ public class DetailsActivity extends BaseActivity {
     }
 
     private void initListeners() {
+        vh.decrementBtn.setOnClickListener(v -> {
+            detailsViewModel.getPurchasable().incrementOrDecrementQuantity(false);
+            vh.quantityText.setText(detailsViewModel.getPurchasable().getQuantity());
+        });
 
+        vh.incrementBtn.setOnClickListener(v -> {
+            detailsViewModel.getPurchasable().incrementOrDecrementQuantity(true);
+            vh.quantityText.setText(detailsViewModel.getPurchasable().getQuantity());
+        });
     }
 
     private void updateAdaptor(IItemVariant itemVariant) {

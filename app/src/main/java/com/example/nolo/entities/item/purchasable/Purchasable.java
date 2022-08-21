@@ -2,6 +2,7 @@ package com.example.nolo.entities.item.purchasable;
 
 import android.util.Log;
 
+import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class Purchasable implements IPurchasable {
      * our team decided to use StoreVariant and Specs.
      * So it is a reasonable excuse to violate the SOLID principle.
      */
-    private ItemVariant itemVariant;
+    private IItemVariant itemVariant;
     private int quantity;
 
     /**
@@ -28,13 +29,13 @@ public class Purchasable implements IPurchasable {
      */
     public Purchasable(){}
 
-    public Purchasable(ItemVariant itemVariant, int quantity){
+    public Purchasable(IItemVariant itemVariant, int quantity){
         this.itemVariant = itemVariant;
         this.quantity = quantity;
     }
 
     @Override
-    public ItemVariant getItemVariant() {
+    public IItemVariant getItemVariant() {
         return itemVariant;
     }
 
@@ -44,13 +45,24 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public void incrementQuantity(int increment){
-        if (increment < 0) {
+    public void addToQuantity(int quantity){
+        if (quantity < 0) {
             Log.i("Err", "Invalid increment");
             return;
         }
 
-        quantity += increment;
+        this.quantity += quantity;
+    }
+
+    @Override
+    public void incrementOrDecrementQuantity(boolean isIncrement) {
+        if (isIncrement) {
+            this.quantity++;
+        } else {
+            if (this.quantity < 0) {
+                this.quantity--;
+            }
+        }
     }
 
     @Override

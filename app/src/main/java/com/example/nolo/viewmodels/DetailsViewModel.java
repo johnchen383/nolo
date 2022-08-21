@@ -6,6 +6,7 @@ import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
@@ -19,6 +20,7 @@ import java.util.List;
 public class DetailsViewModel extends ViewModel {
     private IItemVariant itemVariant;
     private IItem item;
+    private IPurchasable purchasable;
 
     private StoreVariant getStoreVariant() {
         String variantStoreId = itemVariant.getStoreId();
@@ -31,6 +33,7 @@ public class DetailsViewModel extends ViewModel {
     public DetailsViewModel(IItemVariant itemVariant) {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
+        this.purchasable = new Purchasable(this.itemVariant, 0);
     }
 
     public IItemVariant getItemVariant() {
@@ -75,12 +78,16 @@ public class DetailsViewModel extends ViewModel {
         }
     }
 
-    public void addCart(IPurchasable cartItem) {
-        AddCartItemUseCase.addCart(cartItem);
+    public IPurchasable getPurchasable() {
+        return purchasable;
     }
 
-    public void addViewHistory(IItemVariant item) {
-        AddViewedItemUseCase.addViewHistory(item);
+    public void addCart() {
+        AddCartItemUseCase.addCart(this.purchasable);
+    }
+
+    public void addViewHistory() {
+        AddViewedItemUseCase.addViewHistory(this.itemVariant);
     }
 
 
