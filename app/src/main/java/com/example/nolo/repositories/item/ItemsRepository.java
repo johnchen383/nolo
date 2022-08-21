@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
@@ -68,7 +67,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * Load Laptop from Firebase.
      */
-    private void loadLaptopsRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedLaptopsRepo) {
+    private void loadLaptopsRepo(Consumer<Class<?>> onLoadedRepository) {
         laptopsRepo = new ArrayList<>();
 
         db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -93,7 +92,7 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform laptops repository finished loading
-                onLoadedLaptopsRepo.accept(onLoadedRepository, CategoryType.laptops);
+                onLoadItemsRepoCacheComplete(onLoadedRepository, CategoryType.laptops);
             }
         });
     }
@@ -101,7 +100,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * Load Phone from Firebase.
      */
-    private void loadPhonesRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedPhonesRepo) {
+    private void loadPhonesRepo(Consumer<Class<?>> onLoadedRepository) {
         phonesRepo = new ArrayList<>();
 
         db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -126,7 +125,7 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform phones repository finished loading
-                onLoadedPhonesRepo.accept(onLoadedRepository, CategoryType.phones);
+                onLoadItemsRepoCacheComplete(onLoadedRepository, CategoryType.phones);
             }
         });
     }
@@ -134,7 +133,7 @@ public class ItemsRepository implements IItemsRepository {
     /**
      * Load Accessory from Firebase.
      */
-    private void loadAccessoriesRepo(Consumer<Class<?>> onLoadedRepository, BiConsumer<Consumer<Class<?>>, CategoryType> onLoadedAccessoriesRepo) {
+    private void loadAccessoriesRepo(Consumer<Class<?>> onLoadedRepository) {
         accessoriesRepo = new ArrayList<>();
 
         db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -159,7 +158,7 @@ public class ItemsRepository implements IItemsRepository {
                 }
 
                 // inform this accessories finished loading
-                onLoadedAccessoriesRepo.accept(onLoadedRepository, CategoryType.accessories);
+                onLoadItemsRepoCacheComplete(onLoadedRepository, CategoryType.accessories);
             }
         });
     }
@@ -191,9 +190,9 @@ public class ItemsRepository implements IItemsRepository {
         loadedCategoryItems.clear();
         timeToLiveToken.reset();
 
-        loadLaptopsRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
-        loadPhonesRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
-        loadAccessoriesRepo(onLoadedRepository, this::onLoadItemsRepoCacheComplete);
+        loadLaptopsRepo(onLoadedRepository);
+        loadPhonesRepo(onLoadedRepository);
+        loadAccessoriesRepo(onLoadedRepository);
     }
 
     @Override
