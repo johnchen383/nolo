@@ -33,13 +33,18 @@
                         android:layout_height="16dp"
                         android:layout_gravity="center"
                         android:src="@drawable/nav_icon_search"/>
-                    <TextView
+                    <EditText
+                        android:id="@+id/search_edittext"
                         android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="SEARCH"
+                        android:hint="SEARCH"
+                        android:singleLine="true"
                         android:textSize="@dimen/font_body1"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_white"
+                        android:backgroundTint="@color/transparent"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
