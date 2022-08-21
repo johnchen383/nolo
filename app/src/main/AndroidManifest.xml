@@ -13,6 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_nolo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nolo">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAXx3Pq6MX-jJRzSInsQLRso515VO8F8Es" />
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.SearchActivity"
             android:exported="false" />

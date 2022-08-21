@@ -103,10 +103,12 @@ public class SplashActivity extends BaseActivity {
 //            });
 //        });
 
-        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
-            DeviceLocation.loadCurrentLocation(this);
-            loadAllRepositories();
-        }));
+        startActivity(new Intent(this, MapActivity.class));
+
+//        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
+//            DeviceLocation.loadCurrentLocation(this);
+//            loadAllRepositories();
+//        }));
     }
 
     private void showConnectivityPopup(){
