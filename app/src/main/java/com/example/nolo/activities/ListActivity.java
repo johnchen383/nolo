@@ -68,12 +68,12 @@ public class ListActivity extends BaseActivity {
         switch (categoryType){
             case laptops:
                 items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, CategoryType.laptops);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
                 break;
             default:
                 System.err.println("No adaptor created for this category");
                 items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, CategoryType.laptops);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
         }
 
         vh.categoryItemsParentList.setAdapter(categoryListAdaptor);

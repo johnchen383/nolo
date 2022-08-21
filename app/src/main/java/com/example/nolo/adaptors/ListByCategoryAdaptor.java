@@ -19,6 +19,7 @@ import com.example.nolo.R;
 import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
@@ -31,7 +32,6 @@ import java.util.List;
 public class ListByCategoryAdaptor extends ArrayAdapter {
     private List<List<IItem>> categoryItems;
     private Context mContext;
-    private CategoryType categoryType;
     private int mLayoutID;
 
     public class ViewHolder {
@@ -51,12 +51,11 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems, CategoryType categoryType){
+    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems){
         super(context, resource, categoryItems);
         this.categoryItems = categoryItems;
         this.mContext = context;
         this.mLayoutID = resource;
-        this.categoryType = categoryType;
     }
 
     @NonNull
@@ -70,14 +69,14 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             currentListViewItem = LayoutInflater.from(getContext()).inflate(mLayoutID, parent, false);
         }
 
-        switch (categoryType){
-            case laptops:
-                List<IItem> brandItems = categoryItems.get(position);
-                return populateLaptopItemsByBrand(brandItems, currentListViewItem);
-            default:
-                System.err.println("No adaptor created for this category");
-                return null;
+        //laptops
+        if (Laptop.class.equals(categoryItems.get(0).get(0).getClass())) {
+            List<IItem> brandItems = categoryItems.get(position);
+            return populateLaptopItemsByBrand(brandItems, currentListViewItem);
         }
+
+        System.err.println("No adaptor created for this category");
+        return null;
     }
 
     private View populateLaptopItemsByBrand(List<IItem> items, View currentListViewItem){
