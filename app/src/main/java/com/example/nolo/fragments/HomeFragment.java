@@ -109,6 +109,7 @@ public class HomeFragment extends Fragment {
         /**
          * SEARCH SUGGESTION ADAPTOR
          */
+        // TODO: only show limited number of items
         HomeSearchItemsAdaptor homeSearchItemsAdaptor;
         if (!searchTerm.isEmpty()) {
             homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm));
