@@ -5,12 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.nolo.R;
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.IItem;
+import com.example.nolo.enums.CategoryType;
 import com.example.nolo.fragments.HomeFragment;
+import com.example.nolo.interactors.item.GetAllItemsUseCase;
+import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class ListActivity extends BaseActivity {
     private ViewHolder vh;
@@ -33,6 +40,11 @@ public class ListActivity extends BaseActivity {
 
         vh = new ViewHolder();
 
-        vh.categoryText.setText(category.getCategoryName());
+        List<IItem> items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
+
+        vh.categoryText.setText(items.toString());
+
+
+        System.out.println(items);
     }
 }

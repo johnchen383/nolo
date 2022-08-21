@@ -88,7 +88,7 @@ public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAd
     }
 
     private void populateLaptopItemsByBrand(@NonNull LaptopsViewHolder holder, IItem item){
-        
+
     }
 
     @Override

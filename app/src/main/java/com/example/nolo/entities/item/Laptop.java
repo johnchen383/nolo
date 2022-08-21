@@ -31,7 +31,7 @@ public class Laptop extends Item {
     @Override
     public String toString() {
         return "Laptop{" +
-                "itemId=" + getItemId() +
+                "brand=" + getBrand() +
                 '}';
     }
 }
