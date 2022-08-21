@@ -26,26 +26,4 @@ public class ListUtil {
         mListView.setLayoutParams(params);
         mListView.requestLayout();
     }
-
-//    public static void setDynamicHeight(RecyclerView mRecyclerView) {
-//        RecyclerView.Adapter mListAdapter = mRecyclerView.getAdapter();
-//        if (mListAdapter == null) {
-//            // when adapter is null
-//            return;
-//        }
-//        int height = 0;
-//        int desiredWidth = View.MeasureSpec.makeMeasureSpec(mRecyclerView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-//
-//        for (int i = 0; i < mListAdapter.getItemCount(); i++) {
-//            View listItem = mListAdapter.view;
-//            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-//            height += listItem.getMeasuredHeight();
-//        }
-//
-//        ViewGroup.LayoutParams params = mRecyclerView.getLayoutParams();
-//        params.height = height;
-////        params.height = height + (mRecyclerView.get * (mListAdapter.getItemCount() - 1));
-//        mRecyclerView.setLayoutParams(params);
-//        mRecyclerView.requestLayout();
-//    }
 }

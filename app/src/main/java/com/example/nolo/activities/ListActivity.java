@@ -31,11 +31,9 @@ public class ListActivity extends BaseActivity {
     private ViewHolder vh;
 
     private class ViewHolder {
-        TextView categoryText;
         ListView categoryItemsParentList;
 
         public ViewHolder(){
-            categoryText = findViewById(R.id.category_text);
             categoryItemsParentList = findViewById(R.id.category_item_parent_list);
         }
     }
@@ -48,18 +46,25 @@ public class ListActivity extends BaseActivity {
 
         vh = new ViewHolder();
 
-
-
-//        vh.categoryText.setText(items.toString());
         initAdaptor(category.getCategoryType());
     }
 
     private void initAdaptor(CategoryType categoryType) {
-        List<List<IItem>> items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
+        ListByCategoryAdaptor categoryListAdaptor;
+        List<List<IItem>> items;
 
-        ListByCategoryAdaptor categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, CategoryType.laptops);
+        switch (categoryType){
+            case laptops:
+                items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, CategoryType.laptops);
+                break;
+            default:
+                System.err.println("No adaptor created for this category");
+                items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, CategoryType.laptops);
+        }
+
         vh.categoryItemsParentList.setAdapter(categoryListAdaptor);
-
         ListUtil.setDynamicHeight(vh.categoryItemsParentList);
     }
 }
