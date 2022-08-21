@@ -85,9 +85,13 @@ public class SearchFragment extends Fragment {
     }
 
     private void initListeners() {
-        vh.outsideSearchContainer.setOnClickListener(v -> showSearchLogo(true));
+//        vh.outsideSearchContainer.setOnClickListener(v -> showSearchLogo(true));
 
-        vh.searchEditText.setOnClickListener(v -> showSearchLogo(false));
+        vh.searchEditText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                showSearchLogo(false);
+            }
+        });
 
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
