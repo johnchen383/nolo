@@ -56,6 +56,13 @@ public class HomeSearchItemsAdaptor extends ArrayAdapter {
 
         vh.searchSuggestText.setText(currentItem.getName());
 
+        vh.searchSuggestText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: when item in search suggestion is clicked, go to detail page
+            }
+        });
+
         return currentListViewItem;
     }
 }

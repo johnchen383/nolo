@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.example.nolo.R;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.HomeFeaturedItemsAdaptor;
 import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
+import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
@@ -148,6 +150,26 @@ public class HomeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 resetSearchSuggestionsAdaptor(s.toString());
+            }
+        });
+
+        vh.searchImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Search bar is empty
+                if (vh.searchEditText.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+                } else {
+                    String searchTerm = vh.searchEditText.getText().toString();
+                    List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
+
+                    // Search suggestion is empty
+                    if (searchSuggestions.size() <= 0) {
+                        Toast.makeText(getActivity(), "Search suggestion is empty!", Toast.LENGTH_LONG).show();
+                    } else {
+                        // TODO: go to list view of the search suggestion
+                    }
+                }
             }
         });
     }
