@@ -25,10 +25,14 @@ import android.graphics.Color;
         import androidx.recyclerview.widget.RecyclerView;
 
         import java.util.List;
+import java.util.function.Consumer;
 
 public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdaptor.ViewHolder>{
-    private List<Colour> colours;
     private Context mContext;
+    private List<Colour> colours;
+    private IItemVariant itemVariant;
+    private Consumer<IItemVariant> updateItemVariant;
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         MaterialButton colourBtn, colourOutline;
@@ -40,9 +44,11 @@ public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdapto
         }
     }
 
-    public DetailsColorAdaptor(@NonNull Context context, List<Colour> colours){
+    public DetailsColorAdaptor(@NonNull Context context, List<Colour> colours, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant){
         this.colours = colours;
         this.mContext = context;
+        this.itemVariant = itemVariant;
+        this.updateItemVariant = updateItemVariant;
     }
 
     @NonNull
@@ -58,14 +64,25 @@ public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdapto
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         IColour colour = colours.get(position);
         holder.colourBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colour.getHexCode())));
+        holder.colourOutline.setVisibility(itemVariant.getColour().getHexCode().equals(colour.getHexCode()) ? View.VISIBLE : View.INVISIBLE);
 
         holder.colourBtn.setOnClickListener(v -> {
-            holder.colourOutline.setVisibility(View.VISIBLE);
+            String hexCode = String.format("#%06X", (0xFFFFFF & holder.colourBtn.getBackgroundTintList().getDefaultColor()));
+            System.out.println(hexCode);
+            itemVariant.setColour(getColourFromHex(hexCode));
+            updateItemVariant.accept(itemVariant);
         });
     }
 
     @Override
     public int getItemCount() {
         return colours.size();
+    }
+
+    private Colour getColourFromHex(String hexCode) {
+        return colours.stream()
+                .filter(o -> o.getHexCode().equals(hexCode))
+                .findFirst()
+                .get();
     }
 }

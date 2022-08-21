@@ -1,7 +1,5 @@
 package com.example.nolo.activities;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -11,14 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
 import com.example.nolo.adaptors.DetailsColorAdaptor;
-import com.example.nolo.adaptors.HomeCategoryAdaptor;
-import com.example.nolo.adaptors.HomeFeaturedItemsAdaptor;
 import com.example.nolo.entities.item.colour.Colour;
+import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.variant.IItemVariant;
-import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.util.Display;
-import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 
@@ -51,8 +45,8 @@ public class DetailsActivity extends BaseActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         vh.coloursList.setLayoutManager(layoutManager);
 
-        List<Colour> colours =  detailsViewModel.getColours();
-        DetailsColorAdaptor categoriesAdaptor = new DetailsColorAdaptor(this, colours);
+        List<Colour> colours =  detailsViewModel.getItemColours();
+        DetailsColorAdaptor categoriesAdaptor = new DetailsColorAdaptor(this, colours, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
         vh.coloursList.setAdapter(categoriesAdaptor);
     }
 
@@ -60,6 +54,15 @@ public class DetailsActivity extends BaseActivity {
         vh.transparentContainer.setMinimumHeight((int) (0.45 * (Display.getScreenHeight(vh.transparentContainer))));
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
+    }
+
+    private void initListeners() {
+
+    }
+
+    private void updateAdaptor(IItemVariant itemVariant) {
+        detailsViewModel.setItemVariant(itemVariant);
+        initAdaptors();
     }
 
     @Override
@@ -72,6 +75,7 @@ public class DetailsActivity extends BaseActivity {
 
         initAdaptors();
         initStyling();
+        initListeners();
 
     }
 }

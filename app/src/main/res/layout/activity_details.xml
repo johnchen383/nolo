@@ -46,22 +46,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/colours_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="@dimen/details_color_size"
-                        android:layout_height="@dimen/details_color_size"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:backgroundTint="@color/light_brown"
-                        app:cornerRadius="20dp" />
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="@dimen/details_color_size"
-                        android:layout_height="@dimen/details_color_size"
-                        android:layout_marginHorizontal="@dimen/padding_med"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:backgroundTint="@color/light_brown"
-                        app:cornerRadius="20dp" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,6 +114,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="24dp"
                         android:text="Unified \nMemory" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/customisations_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -69,6 +69,9 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
+    public void setColour(Colour colour) { this.colour = colour; }
+
+    @Override
     public String getItemId() {
         return itemId;
     }
