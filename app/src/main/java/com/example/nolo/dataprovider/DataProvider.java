@@ -442,6 +442,76 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
+         * Laptop 3.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("blue", "#9A9CA3"),
+                new Colour("sandstone", "#79838A"),
+                new Colour("platinum", "#CBB1A0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1549),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1599),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1598)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 400)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 450)
+        ));
+        specs = new LaptopSpecs("Microsoft Surface Laptop 3 13.5\"",
+                "Windows 11 Home",
+                "13.5\" 2256 x 1504 (201 PPI)",
+                "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)",
+                "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics",
+                rams,
+                storages,
+                "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)",
+                "Backlight",
+                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology",
+                "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos",
+                "10 point multi-touch",
+                "N/A",
+                "N/A",
+                "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port",
+                "Battery Capacity Nominal (WH) 47.4",
+                "Power Supply",
+                "308 x 223 x 14.5 mm",
+                "1.27 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_surface_laptop_4_1_black",
+                "item_laptop_surface_laptop_4_2_black",
+                "item_laptop_surface_laptop_4_3_black",
+
+                "item_laptop_surface_laptop_4_1_blue",
+                "item_laptop_surface_laptop_4_2_blue",
+                "item_laptop_surface_laptop_4_3_blue",
+
+                "item_laptop_surface_laptop_4_1_sandstone",
+                "item_laptop_surface_laptop_4_2_sandstone",
+                "item_laptop_surface_laptop_4_3_sandstone",
+
+                "item_laptop_surface_laptop_4_1_platinum",
+                "item_laptop_surface_laptop_4_2_platinum",
+                "item_laptop_surface_laptop_4_3_platinum"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
+        ));
+        items.add(new Laptop("Microsoft Surface Laptop 3",
+                "Microsoft",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
          * Laptop 4
          */
         colours = new ArrayList<>(Arrays.asList(
