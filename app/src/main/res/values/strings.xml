@@ -6,6 +6,7 @@
     <string name="title_profile">Profile</string>
     <string name="home_featured_random">FEATURED PRODUCTS</string>
     <string name="home_featured_prev">PREVIOUSLY VIEWED</string>
+    <string name="home_search_bar">ENTER SEARCH TERMS</string>
     <string name="input_hint_email">EMAIL</string>
     <string name="input_hint_password">PASSWORD</string>
     <string name="category_header_append">_header</string>
