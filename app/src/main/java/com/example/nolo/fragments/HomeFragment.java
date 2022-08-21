@@ -20,6 +20,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.SearchActivity;
+import com.example.nolo.adaptors.HomeCategoryAdaptor;
+import com.example.nolo.adaptors.ItemsCompactAdaptor;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.HomeFeaturedItemsAdaptor;
 import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
@@ -31,7 +37,6 @@ import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -106,7 +111,7 @@ public class HomeFragment extends Fragment {
             vh.featuredText.setText(getString(R.string.home_featured_prev));
         }
 
-        HomeFeaturedItemsAdaptor featuredItemsAdaptor = new HomeFeaturedItemsAdaptor(getActivity(), displayVariants);
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43);
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 

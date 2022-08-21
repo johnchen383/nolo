@@ -17,6 +17,7 @@
     <dimen name="padding_lrg">16dp</dimen>
     <dimen name="padding_xlrg">32dp</dimen>
     <dimen name="icon_size">20dp</dimen>
+    <dimen name="header_indent">16dp</dimen>
 
         <!-- Round button dimensions -->
         <dimen name="round_button_padding">14dp</dimen>

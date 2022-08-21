@@ -59,7 +59,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/home_featured_prev"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="@dimen/header_indent"                        
                             android:layout_gravity="left"/>
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/featured_items_list"
@@ -73,6 +73,7 @@
                     android:id="@+id/category_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:divider="@null">
                     >
 
                 </ListView>
