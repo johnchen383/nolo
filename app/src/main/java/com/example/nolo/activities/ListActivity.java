@@ -21,6 +21,7 @@ import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.util.ListUtil;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,9 +33,11 @@ public class ListActivity extends BaseActivity {
 
     private class ViewHolder {
         ListView categoryItemsParentList;
+        ImageView categoryHeader;
 
         public ViewHolder(){
             categoryItemsParentList = findViewById(R.id.category_item_parent_list);
+            categoryHeader = findViewById(R.id.category_header);
         }
     }
 
@@ -46,7 +49,16 @@ public class ListActivity extends BaseActivity {
 
         vh = new ViewHolder();
 
+        initStyling(category);
         initAdaptor(category.getCategoryType());
+    }
+
+    private void initStyling(ICategory category){
+        int i = this.getResources().getIdentifier(
+                category.getImageUri() + getString(R.string.category_header_append), "drawable",
+                this.getPackageName());
+
+        vh.categoryHeader.setImageResource(i);
     }
 
     private void initAdaptor(CategoryType categoryType) {

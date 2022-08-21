@@ -8,6 +8,7 @@
     <string name="home_featured_prev">PREVIOUSLY VIEWED</string>
     <string name="input_hint_email">EMAIL</string>
     <string name="input_hint_password">PASSWORD</string>
+    <string name="category_header_append">_header</string>
     <string name="extra_category">CATEGORY</string>
     <string name="extra_item_variant">ITEM_VARIANT</string>
     <!-- TODO: Remove or change this placeholder text -->
