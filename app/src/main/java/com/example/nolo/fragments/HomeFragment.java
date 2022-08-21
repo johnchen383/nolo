@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,7 +46,7 @@ import java.util.stream.Collectors;
  * Used for viewing featured items, browsing categories, and navigation to search
  */
 public class HomeFragment extends Fragment {
-    private final int NUMBER_OF_SEARCH_SUGGESTIONS = 6;
+    private final int MAX_NUMBER_OF_SEARCH_SUGGESTIONS = 6;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
 
@@ -123,12 +124,16 @@ public class HomeFragment extends Fragment {
         if (!searchTerm.isEmpty()) {
             // First limit the number of items showing in the list
             List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-            List<IItem> firstNItems = searchSuggestions.stream().limit(NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
+            List<IItem> firstNItems = searchSuggestions.stream().limit(MAX_NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
 
             // and then display them
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems);
+            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
+                    searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
+                    "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
         } else {
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, new ArrayList<>());
+            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, new ArrayList<>(),
+                    searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
+                    "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
         }
         vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);

@@ -23,7 +23,7 @@ public class SearchFragment extends Fragment {
         TextView textView;
 
         public ViewHolder(){
-            textView = getView().findViewById(R.id.text_search);
+
         }
     }
 
