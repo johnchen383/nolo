@@ -4,7 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
-    <string name="home_featured_random">CHECK THESE OUT</string>
+    <string name="home_featured_random">FEATURED PRODUCTS</string>
     <string name="home_featured_prev">PREVIOUSLY VIEWED</string>
     <string name="input_hint_email">EMAIL</string>
     <string name="input_hint_password">PASSWORD</string>
