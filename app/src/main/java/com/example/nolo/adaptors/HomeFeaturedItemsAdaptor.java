@@ -1,6 +1,5 @@
 package com.example.nolo.adaptors;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,10 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import com.example.nolo.R;
-import com.example.nolo.activities.ListActivity;
-import com.example.nolo.activities.SearchActivity;
-import com.example.nolo.entities.category.Category;
-import com.example.nolo.entities.item.IItem;
+import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
@@ -71,7 +67,7 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
         holder.img.setImageResource(i);
 
         holder.itemClickable.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, SearchActivity.class); //TODO: change to details activity
+            Intent intent = new Intent(mContext, DetailsActivity.class); //TODO: change to details activity
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
             mContext.startActivity(intent);

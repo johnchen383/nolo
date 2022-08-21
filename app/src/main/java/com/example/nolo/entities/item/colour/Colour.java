@@ -2,9 +2,10 @@ package com.example.nolo.entities.item.colour;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Colour implements IColour{
+public class Colour implements IColour, Serializable {
     private String name, hexCode;
 
     /**

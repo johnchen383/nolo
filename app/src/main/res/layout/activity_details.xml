@@ -12,52 +12,204 @@
         android:layout_height="match_parent"
         android:background="@color/white" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/details_container_margin_top"
-        android:paddingHorizontal="@dimen/padding_xlrg"
-        android:background="@color/navy"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/padding_med">
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="@dimen/details_color_size"
-                android:layout_height="@dimen/details_color_size"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:backgroundTint="@color/light_brown"
-                app:cornerRadius="20dp" />
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="@dimen/details_color_size"
-                android:layout_height="@dimen/details_color_size"
-                android:layout_marginHorizontal="@dimen/padding_med"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:backgroundTint="@color/light_brown"
-                app:cornerRadius="20dp" />
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="@dimen/details_color_size"
-                android:layout_height="@dimen/details_color_size"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:backgroundTint="@color/light_brown"
-                app:cornerRadius="20dp" />
-            <TextView
-                android:layout_width="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:id="@+id/transparent_container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/padding_med"
-                android:layout_gravity="center"
-                android:text="Colour"
-                android:fontFamily="@font/abeezee_italic"
-                android:textSize="@dimen/font_caption"
-                android:textColor="@color/light_grey"
+                android:orientation="vertical"
+                android:background="@null" />
+            <LinearLayout
+                android:id="@+id/details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="490dp"
+                android:paddingHorizontal="27dp"
+                android:background="@color/navy"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/details_bar" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/padding_med">
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="@dimen/details_color_size"
+                        android:layout_height="@dimen/details_color_size"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:backgroundTint="@color/light_brown"
+                        app:cornerRadius="20dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="@dimen/details_color_size"
+                        android:layout_height="@dimen/details_color_size"
+                        android:layout_marginHorizontal="@dimen/padding_med"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:backgroundTint="@color/light_brown"
+                        app:cornerRadius="20dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="@dimen/details_color_size"
+                        android:layout_height="@dimen/details_color_size"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:backgroundTint="@color/light_brown"
+                        app:cornerRadius="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/padding_med"
+                        android:layout_gravity="center"
+                        android:text="Colour"
+                        android:fontFamily="@font/abeezee_italic"
+                        android:textSize="@dimen/font_caption"
+                        android:textColor="@color/light_grey" />
+                </LinearLayout>
 
+                <TextView
+                    android:id="@+id/item_title"
+                    style="@style/TextStroke.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_med"
+                    android:layout_marginBottom="@dimen/padding_small"
+                    android:text='Apple 13" MacBook Pro: M1 Chip'
+                    android:textSize="@dimen/font_h6"
+                    android:lineHeight="26dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:layout_marginBottom="24dp" >
+                    <TextView
+                        android:id="@+id/spec_tag_chip"
+                        style="@style/DetailsSpecTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apple M1 Chip" />
+                    <TextView
+                        android:id="@+id/spec_tag_cpu"
+                        style="@style/DetailsSpecTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:text="8-core CPU" />
+                    <TextView
+                        android:id="@+id/spec_tag_gpu"
+                        style="@style/DetailsSpecTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:text="7-core GPU" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:text="1749.00 NZD"
+                    android:textSize="@dimen/font_body1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp">
+                    <TextView
+                        style="@style/TextStroke.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="24dp"
+                        android:text="Unified \nMemory" />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:backgroundTint="@color/white"
+                        android:text="8GB RAM"
+                        android:textColor="@color/navy"
+                        android:textSize="@dimen/font_caption"
+                        app:cornerRadius="8dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="23dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/padding_small"
+                            android:text="QUANTITY"
+                            android:textSize="@dimen/font_caption" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                style="@style/TextStroke.Brown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="–"
+                                android:paddingHorizontal="6dp"
+                                android:textColor="@color/light_brown" />
+                            <TextView
+                                style="@style/TextStroke.Brown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:paddingHorizontal="2dp"
+                                android:textColor="@color/light_brown" />
+                            <TextView
+                                style="@style/TextStroke.Brown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+"
+                                android:paddingHorizontal="6dp"
+                                android:textColor="@color/light_brown" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/RoundButton.Filled"
+                        android:layout_width="fill_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:paddingVertical="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="ADD TO CART"
+                        android:textSize="@dimen/font_caption"/>
+
+                </LinearLayout>
+                <TextView
+                    style="@style/TextStroke.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SPECIFICATIONS"
+                    android:textSize="@dimen/font_body1" />
+
+
+
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
