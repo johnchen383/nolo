@@ -33,12 +33,14 @@ import com.example.nolo.viewmodels.HomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Fragment to house the home 'tab' on the main activity
  * Used for viewing featured items, browsing categories, and navigation to search
  */
 public class HomeFragment extends Fragment {
+    private final int NUMBER_OF_SEARCH_SUGGESTIONS = 6;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
 
@@ -112,10 +114,14 @@ public class HomeFragment extends Fragment {
         /**
          * SEARCH SUGGESTION ADAPTOR
          */
-        // TODO: only show limited number of items
         HomeSearchItemsAdaptor homeSearchItemsAdaptor;
         if (!searchTerm.isEmpty()) {
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm));
+            // First limit the number of items showing in the list
+            List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
+            List<IItem> firstNItems = searchSuggestions.stream().limit(NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
+
+            // and then display them
+            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, firstNItems);
         } else {
             homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_home_search_suggestion, new ArrayList<>());
         }
@@ -131,8 +137,6 @@ public class HomeFragment extends Fragment {
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
             vh.searchEditText.requestFocus();
-//            vh.searchEditText.setSelection(vh.searchEditText.getText().length());
-//            startActivity(new Intent(getActivity(), SearchActivity.class), Animation.Fade(getActivity()).toBundle());
         });
 
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
@@ -164,31 +168,43 @@ public class HomeFragment extends Fragment {
         vh.searchImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Search bar is empty
+                // Check if Search bar is empty
                 if (vh.searchEditText.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
                 } else {
                     String searchTerm = vh.searchEditText.getText().toString();
                     List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
 
-                    // Search suggestion is empty
+                    // Check if Search suggestion is empty
                     if (searchSuggestions.size() <= 0) {
                         Toast.makeText(getActivity(), "Search suggestion is empty!", Toast.LENGTH_LONG).show();
                     } else {
-                        // TODO: go to list view of the search suggestion
+                        // TODO: When search button on the right is pressed,
+                        //  go to list view of the search suggestion
                     }
                 }
             }
         });
     }
 
+    /**
+     * Show/hide the search bar, search suggestions and keyboard
+     *
+     * @param show boolean - True to go search bar and show keyboard
+     *                       False to go back the original page and hide keyboard
+     */
     private void showSearchContainer(boolean show) {
         if (show) {
             vh.searchContainer.setVisibility(View.VISIBLE);
             vh.outsideSearchContainer.setVisibility(View.VISIBLE);
+
+            // Show the keyboard
+            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
+                    .toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         } else {
             vh.searchContainer.setVisibility(View.GONE);
             vh.outsideSearchContainer.setVisibility(View.GONE);
+
             // Hide the keyboard
             ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
                     .hideSoftInputFromWindow(getView().getWindowToken(), 0);
