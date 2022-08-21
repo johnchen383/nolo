@@ -300,7 +300,7 @@ public class DataProvider {
                 "Apple AirPods Pro",
                 "BOOM 3 Bluetooth Speaker"
         ));
-        items.add(new Laptop("MacBook Air (M2)",
+        items.add(new Laptop("Apple MacBook Air (M2)",
                 "Apple",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -364,7 +364,7 @@ public class DataProvider {
                 "Apple AirPods Pro",
                 "BOOM 3 Bluetooth Speaker"
         ));
-        items.add(new Laptop("MacBook Pro 16\"",
+        items.add(new Laptop("Apple MacBook Pro 16\"",
                 "Apple",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -434,7 +434,7 @@ public class DataProvider {
                 "BOOM 3 Bluetooth Speaker",
                 "Logitech Pro X DTS Headphone"
         ));
-        items.add(new Laptop("Surface Laptop 4",
+        items.add(new Laptop("Microsoft Surface Laptop 4",
                 "Microsoft",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -498,7 +498,7 @@ public class DataProvider {
                 "BOOM 3 Bluetooth Speaker",
                 "Logitech Pro X DTS Headphone"
         ));
-        items.add(new Laptop("Surface Pro 8",
+        items.add(new Laptop("Microsoft Surface Pro 8",
                 "Microsoft",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -671,7 +671,7 @@ public class DataProvider {
                 "HyperX QuadCast S Standalone Microphone",
                 "Sony WH-1000XM4"
         ));
-        items.add(new Laptop("Legion 5 Pro 16ARH7",
+        items.add(new Laptop("Lenovo Legion 5 Pro 16ARH7",
                 "Lenovo",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -1052,7 +1052,7 @@ public class DataProvider {
                 "Apple AirPods Pro",
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
-        items.add(new Phone("iPhone 13 Pro Max",
+        items.add(new Phone("Apple iPhone 13 Pro Max",
                 "Apple",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
@@ -1126,7 +1126,7 @@ public class DataProvider {
                 "Apple AirPods Pro",
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
-        items.add(new Phone("iPhone 13",
+        items.add(new Phone("Apple iPhone 13",
                 "Apple",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
@@ -1185,7 +1185,7 @@ public class DataProvider {
                 "Apple AirPods Pro",
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
-        items.add(new Phone("iPhone SE",
+        items.add(new Phone("Apple iPhone SE",
                 "Apple",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
@@ -1587,7 +1587,7 @@ public class DataProvider {
                 "item_accessory_boom3_2_peach",
                 "item_accessory_boom3_3_peach"
         ));
-        items.add(new Accessory("BOOM 3 Bluetooth Speaker",
+        items.add(new Accessory("Ultimate Ears BOOM 3 Bluetooth Speaker",
                 "Ultimate Ears",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
