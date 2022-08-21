@@ -82,7 +82,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
     private View populateLaptopItemsByBrand(List<IItem> items, View currentListViewItem){
         LaptopsViewHolder vh = new LaptopsViewHolder(currentListViewItem);
 
-        vh.brandName.setText(items.get(0).getBrand());
+        vh.brandName.setText(items.get(0).getBrand().toUpperCase());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         vh.childItemsList.setLayoutManager(layoutManager);
