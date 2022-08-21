@@ -13,11 +13,13 @@ import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.PhoneOs;
 import com.example.nolo.fragments.HomeFragment;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetAllItemsUseCase;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
+import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
 import com.example.nolo.util.ListUtil;
 
 import android.os.Bundle;
@@ -79,6 +81,10 @@ public class ListActivity extends BaseActivity {
             case laptops:
                 items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
+                break;
+            case phones:
+                items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(PhoneOs.android);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, null, items);
                 break;
             default:
                 System.err.println("No adaptor created for this category");
