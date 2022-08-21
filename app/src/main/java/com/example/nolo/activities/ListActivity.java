@@ -21,8 +21,10 @@ import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.viewmodels.ListViewModel;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,16 +35,22 @@ import java.util.List;
 
 public class ListActivity extends BaseActivity {
     private ViewHolder vh;
+    private ListViewModel listViewModel;
 
     private class ViewHolder {
         ListView categoryItemsParentList;
         ImageView categoryHeader;
         ImageButton backButton;
+        LinearLayout phoneToggle;
+        TextView appleBtn, androidBtn;
 
         public ViewHolder(){
             categoryItemsParentList = findViewById(R.id.category_item_parent_list);
             categoryHeader = findViewById(R.id.category_header);
             backButton = findViewById(R.id.back_btn);
+            phoneToggle = findViewById(R.id.phone_toggle);
+            appleBtn = findViewById(R.id.apple_btn);
+            androidBtn = findViewById(R.id.android_btn);
         }
     }
 
@@ -51,11 +59,12 @@ public class ListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ICategory category = (Category) getIntent().getSerializableExtra(getString(R.string.extra_category));
+        listViewModel = new ListViewModel(category);
 
         vh = new ViewHolder();
 
-        initStyling(category);
-        initAdaptor(category.getCategoryType());
+        initStyling();
+        establishAdaptor();
         initListeners();
     }
 
@@ -65,15 +74,46 @@ public class ListActivity extends BaseActivity {
         });
     }
 
-    private void initStyling(ICategory category){
+    private void initPhoneListeners(){
+        vh.androidBtn.setOnClickListener(v -> {
+            vh.androidBtn.setBackground(getDrawable(R.drawable.toggle_fill));
+            vh.androidBtn.setTextColor(getColor(R.color.navy));
+            vh.appleBtn.setBackground(null);
+            vh.appleBtn.setTextColor(getColor(R.color.white));
+            listViewModel.setPhoneOs(PhoneOs.android);
+            establishAdaptor();
+        });
+
+        vh.appleBtn.setOnClickListener(v -> {
+            vh.appleBtn.setBackground(getDrawable(R.drawable.toggle_fill));
+            vh.appleBtn.setTextColor(getColor(R.color.navy));
+            vh.androidBtn.setBackground(null);
+            vh.androidBtn.setTextColor(getColor(R.color.white));
+            listViewModel.setPhoneOs(PhoneOs.ios);
+            establishAdaptor();
+        });
+    }
+
+    private void initStyling(){
+        ICategory category = listViewModel.getCategory();
+
         int i = this.getResources().getIdentifier(
                 category.getImageUri() + getString(R.string.category_header_append), "drawable",
                 this.getPackageName());
 
+        if (category.getCategoryType().equals(CategoryType.phones)){
+            vh.phoneToggle.setVisibility(View.VISIBLE);
+            initPhoneListeners();
+        } else {
+            vh.phoneToggle.setVisibility(View.GONE);
+        }
+
         vh.categoryHeader.setImageResource(i);
     }
 
-    private void initAdaptor(CategoryType categoryType) {
+    private void establishAdaptor() {
+        CategoryType categoryType = listViewModel.getCategory().getCategoryType();
+
         ListByCategoryAdaptor categoryListAdaptor;
         List<List<IItem>> items;
 
@@ -83,7 +123,7 @@ public class ListActivity extends BaseActivity {
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
                 break;
             case phones:
-                items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(PhoneOs.android);
+                items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(listViewModel.getPhoneOs());
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone, items);
                 break;
             default:

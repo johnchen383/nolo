@@ -23,6 +23,37 @@
             android:layout_height="240dp"
             android:src="@drawable/category_laptop_header"
             />
+            <LinearLayout
+                android:id="@+id/phone_toggle"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/toggle_border"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/android_btn"
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="ANDROID"
+                    android:textSize="@dimen/font_h6"
+                    android:textColor="@color/navy"
+                    android:background="@drawable/toggle_fill"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/apple_btn"
+                    android:padding="5dp"
+                    android:background="@android:color/transparent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:textSize="@dimen/font_h6"
+                    android:text="APPLE"
+                    android:gravity="center"/>
+        </LinearLayout>
         <ListView
             android:id="@+id/category_item_parent_list"
             android:layout_width="match_parent"
