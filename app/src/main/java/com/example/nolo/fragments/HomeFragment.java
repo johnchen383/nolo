@@ -1,9 +1,11 @@
 package com.example.nolo.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,7 +44,7 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchLayoutBtn, searchContainer;
+        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer;
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchEditText;
@@ -57,6 +59,7 @@ public class HomeFragment extends Fragment {
             searchEditText = getView().findViewById(R.id.search_edittext);
             searchSuggestionsList = getView().findViewById(R.id.search_suggestions_list);
             searchContainer = getView().findViewById(R.id.search_container);
+            outsideSearchContainer = getView().findViewById(R.id.outside_search_container);
             searchImageBtn = getView().findViewById(R.id.search_image_btn);
         }
     }
@@ -121,6 +124,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initListeners() {
+        vh.outsideSearchContainer.setOnClickListener(v -> {
+            showSearchContainer(false);
+        });
+
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
             vh.searchEditText.requestFocus();
@@ -178,8 +185,13 @@ public class HomeFragment extends Fragment {
     private void showSearchContainer(boolean show) {
         if (show) {
             vh.searchContainer.setVisibility(View.VISIBLE);
+            vh.outsideSearchContainer.setVisibility(View.VISIBLE);
         } else {
             vh.searchContainer.setVisibility(View.GONE);
+            vh.outsideSearchContainer.setVisibility(View.GONE);
+            // Hide the keyboard
+            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
+                    .hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
     }
 }
