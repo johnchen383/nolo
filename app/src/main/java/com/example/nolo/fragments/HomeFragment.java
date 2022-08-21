@@ -27,7 +27,6 @@ import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
-import com.example.nolo.adaptors.HomeFeaturedItemsAdaptor;
 import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -37,6 +36,7 @@ import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
