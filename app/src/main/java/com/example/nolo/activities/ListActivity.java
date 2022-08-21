@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends BaseActivity {
@@ -44,7 +45,7 @@ public class ListActivity extends BaseActivity {
         LinearLayout phoneToggle;
         TextView appleBtn, androidBtn;
 
-        public ViewHolder(){
+        public ViewHolder() {
             categoryItemsParentList = findViewById(R.id.category_item_parent_list);
             categoryHeader = findViewById(R.id.category_header);
             backButton = findViewById(R.id.back_btn);
@@ -68,13 +69,13 @@ public class ListActivity extends BaseActivity {
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
         vh.backButton.setOnClickListener(v -> {
             finish();
         });
     }
 
-    private void initPhoneListeners(){
+    private void initPhoneListeners() {
         vh.androidBtn.setOnClickListener(v -> {
             vh.androidBtn.setBackground(getDrawable(R.drawable.toggle_fill));
             vh.androidBtn.setTextColor(getColor(R.color.navy));
@@ -94,14 +95,14 @@ public class ListActivity extends BaseActivity {
         });
     }
 
-    private void initStyling(){
+    private void initStyling() {
         ICategory category = listViewModel.getCategory();
 
         int i = this.getResources().getIdentifier(
                 category.getImageUri() + getString(R.string.category_header_append), "drawable",
                 this.getPackageName());
 
-        if (category.getCategoryType().equals(CategoryType.phones)){
+        if (category.getCategoryType().equals(CategoryType.phones)) {
             vh.phoneToggle.setVisibility(View.VISIBLE);
             initPhoneListeners();
         } else {
@@ -115,9 +116,9 @@ public class ListActivity extends BaseActivity {
         CategoryType categoryType = listViewModel.getCategory().getCategoryType();
 
         ListByCategoryAdaptor categoryListAdaptor;
-        List<List<IItem>> items;
+        List<List<IItem>> items = new ArrayList<>();
 
-        switch (categoryType){
+        switch (categoryType) {
             case laptops:
                 items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
@@ -125,6 +126,15 @@ public class ListActivity extends BaseActivity {
             case phones:
                 items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(listViewModel.getPhoneOs());
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone, items);
+                break;
+            case accessories:
+                List<IItem> tempItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories);
+                for (IItem tempItem : tempItems) {
+                    List<IItem> l = new ArrayList<>();
+                    l.add(tempItem);
+                    items.add(l);
+                }
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_accessory, items);
                 break;
             default:
                 System.err.println("No adaptor created for this category");
