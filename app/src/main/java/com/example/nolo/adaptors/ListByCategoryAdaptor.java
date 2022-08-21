@@ -5,95 +5,98 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.SearchActivity;
+import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.util.Display;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListByCategoryAdaptor extends RecyclerView.Adapter<ListByCategoryAdaptor.ViewHolder>{
+public class ListByCategoryAdaptor extends ArrayAdapter {
     private List<List<IItem>> categoryItems;
     private Context mContext;
     private CategoryType categoryType;
+    private int mLayoutID;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView title;
-        TextView price;
-        LinearLayout itemClickable;
+    public class ViewHolder {
+        RecyclerView childItemsList;
 
-        public ViewHolder(View view) {
-            super(view);
-            img = view.findViewById(R.id.item_img);
-            title = view.findViewById(R.id.item_title);
-            price = view.findViewById(R.id.item_price);
-            itemClickable = view.findViewById(R.id.item_clickable);
+        public ViewHolder(View currentListViewItem) {
+            childItemsList = currentListViewItem.findViewById(R.id.child_items_list);
         }
     }
 
     public class LaptopsViewHolder extends ViewHolder {
-//        ImageView iconImageView;
+        TextView brandName;
 
         public LaptopsViewHolder(View currentListViewItem) {
             super(currentListViewItem);
-//            iconImageView = currentListViewItem.findViewById(R.id.icon_image_view);
+            brandName = currentListViewItem.findViewById(R.id.brand_name);
         }
     }
 
-    public ListByCategoryAdaptor(@NonNull Context context, List<List<IItem>> categoryItems, CategoryType categoryType){
+    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems, CategoryType categoryType){
+        super(context, resource, categoryItems);
         this.categoryItems = categoryItems;
         this.mContext = context;
+        this.mLayoutID = resource;
         this.categoryType = categoryType;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        //Get a reference to the current ListView item
+        View currentListViewItem = convertView;
+
+        // Check if the existing view is being reused, otherwise inflate the view
+        if (currentListViewItem == null) {
+            currentListViewItem = LayoutInflater.from(getContext()).inflate(mLayoutID, parent, false);
+        }
+
         switch (categoryType){
             case laptops:
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_compact, parent, false);
-
-                return new LaptopsViewHolder(view);
+                List<IItem> brandItems = categoryItems.get(position);
+                return populateLaptopItemsByBrand(brandItems, currentListViewItem);
             default:
                 System.err.println("No adaptor created for this category");
                 return null;
         }
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        switch (categoryType){
-            case laptops:
-                List<IItem> items = categoryItems.get(position);
+    private View populateLaptopItemsByBrand(List<IItem> items, View currentListViewItem){
+        LaptopsViewHolder vh = new LaptopsViewHolder(currentListViewItem);
 
-                populateLaptopItemsByBrand((LaptopsViewHolder) holder, items);
-                break;
-            default:
-                System.err.println("No adaptor created for this category");
-                return;
+        vh.brandName.setText(items.get(0).getBrand());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+        vh.childItemsList.setLayoutManager(layoutManager);
+
+        List<ItemVariant> defVariants = new ArrayList<>();
+
+        for (IItem item : items){
+            defVariants.add((ItemVariant) item.getDefaultItemVariant());
         }
 
-    }
+        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, 0.45);
+        vh.childItemsList.setAdapter(categoryListAdaptor);
 
-    private void populateLaptopItemsByBrand(@NonNull LaptopsViewHolder holder, List<IItem> items){
-        holder.title.setText(items.toString());
-    }
-
-    @Override
-    public int getItemCount() {
-        return categoryItems.size();
+        return currentListViewItem;
     }
 }

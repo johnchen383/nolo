@@ -32,7 +32,7 @@ public class ListActivity extends BaseActivity {
 
     private class ViewHolder {
         TextView categoryText;
-        RecyclerView categoryItemsParentList;
+        ListView categoryItemsParentList;
 
         public ViewHolder(){
             categoryText = findViewById(R.id.category_text);
@@ -51,19 +51,15 @@ public class ListActivity extends BaseActivity {
 
 
 //        vh.categoryText.setText(items.toString());
-        initAdaptors();
+        initAdaptor(category.getCategoryType());
     }
 
-    private void initAdaptors() {
-        /**
-         * FEATURED ITEMS ADAPTOR
-         */
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        vh.categoryItemsParentList.setLayoutManager(layoutManager);
-
+    private void initAdaptor(CategoryType categoryType) {
         List<List<IItem>> items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
 
-        ListByCategoryAdaptor categoryListAdaptor = new ListByCategoryAdaptor(this, items, CategoryType.laptops);
+        ListByCategoryAdaptor categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, CategoryType.laptops);
         vh.categoryItemsParentList.setAdapter(categoryListAdaptor);
+
+        ListUtil.setDynamicHeight(vh.categoryItemsParentList);
     }
 }
