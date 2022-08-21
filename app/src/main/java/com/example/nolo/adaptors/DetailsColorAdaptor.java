@@ -1,8 +1,9 @@
 package com.example.nolo.adaptors;
 
-        import android.content.Context;
+import android.content.Context;
         import android.content.Intent;
-        import android.graphics.Color;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -56,8 +57,7 @@ public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdapto
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         IColour colour = colours.get(position);
-
-        holder.colourBtn.setBackgroundColor(Color.parseColor(colour.getHexCode()));
+        holder.colourBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colour.getHexCode())));
 
         holder.colourBtn.setOnClickListener(v -> {
             holder.colourOutline.setVisibility(View.VISIBLE);

@@ -14,7 +14,6 @@ import com.example.nolo.R;
 import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.interactors.item.GetItemByIdUseCase;
 
 import androidx.recyclerview.widget.RecyclerView;
 

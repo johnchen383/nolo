@@ -43,6 +43,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/padding_med">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/colours_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="@dimen/details_color_size"
                         android:layout_height="@dimen/details_color_size"
@@ -54,13 +58,6 @@
                         android:layout_width="@dimen/details_color_size"
                         android:layout_height="@dimen/details_color_size"
                         android:layout_marginHorizontal="@dimen/padding_med"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:backgroundTint="@color/light_brown"
-                        app:cornerRadius="20dp" />
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="@dimen/details_color_size"
-                        android:layout_height="@dimen/details_color_size"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:backgroundTint="@color/light_brown"
@@ -188,6 +185,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_cart_btn"
                         style="@style/RoundButton.Filled"
                         android:layout_width="fill_parent"
                         android:layout_height="35dp"
