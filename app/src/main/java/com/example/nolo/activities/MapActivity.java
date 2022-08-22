@@ -124,14 +124,14 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         IBranch centredBranch = null;
 
-        for (IBranch branch : GetStoreByIdUseCase.getStoreById(variant.getStoreId()).getBranches()){
-            if (branch.getBranchName().equals(variant.getBranchName())){
+        for (IBranch branch : GetStoreByIdUseCase.getStoreById(variant.getStoreId()).getBranches()) {
+            if (branch.getBranchName().equals(variant.getBranchName())) {
                 centredBranch = branch;
                 break;
             }
         }
 
-        if (centredBranch != null){
+        if (centredBranch != null) {
             LatLng centredLoc = LocationUtil.getLatLngFromGeoPoint(centredBranch.getGeoPoint());
             mMap.moveCamera(CameraUpdateFactory.newLatLng(centredLoc));
         }
@@ -140,21 +140,24 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         updateCheapestIcon();
     }
 
-    private void updateCheapestIcon(){
+    private void updateCheapestIcon() {
         List<Marker> cheapestMarkers = new ArrayList<>();
         double price = Double.MAX_VALUE;
 
-        for (Marker marker : markers){
+        for (Marker marker : markers) {
             String storeId = getStoreIdFromMarkerTag((String) marker.getTag());
 
-            for (IStoreVariant storeVariant : storeVariants){
-                if (storeVariant.getStoreId().equals(storeId)){
+            for (IStoreVariant storeVariant : storeVariants) {
+                if (storeVariant.getStoreId().equals(storeId)) {
                     marker.setIcon(BitmapDescriptorFactory.fromBitmap(
                             createMapIcon(getDisplayPrice(storeVariant.getBasePrice())))
                     );
 
-                    if (storeVariant.getBasePrice() < price){
+                    if (storeVariant.getBasePrice() < price) {
                         price = storeVariant.getBasePrice();
+                        cheapestMarkers = new ArrayList<>();
+                        cheapestMarkers.add(marker);
+                    } else if (storeVariant.getBasePrice() == price) {
                         cheapestMarkers.add(marker);
                     }
                     break;
@@ -162,20 +165,21 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             }
         }
 
-//        if (cheapestMarker == null) return;
-
-//        cheapestMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
-//                createMapIcon(getDisplayPrice(price), getColor(R.color.light_brown)))
-//        );
+        for (Marker cheapestMarker : cheapestMarkers) {
+            cheapestMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                    createMapIcon(getDisplayPrice(price), getColor(R.color.green)))
+            );
+        }
     }
 
-    private String getDisplayPrice(double basePrice){
+    private String getDisplayPrice(double basePrice) {
         return String.format("$%.0f", basePrice);
     }
 
     private Bitmap createMapIcon(String price) {
         return createMapIcon(price, getColor(R.color.white));
     }
+
     private Bitmap createMapIcon(String price, int colour) {
         final int WIDTH = 160;
         final int HEIGHT = 150;
@@ -220,12 +224,13 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         return tag.split(TAG_DIVIDER)[1];
     }
 
-    private void updateFields(){
+    private void updateFields() {
         IStore variantStore = GetStoreByIdUseCase.getStoreById(variant.getStoreId());
         vh.modalHeader.setText(variantStore.getStoreName() + " " + variant.getBranchName());
     }
+
     private boolean onMarkerClick(final Marker marker) {
-        if (!isModalOpen){
+        if (!isModalOpen) {
             toggleModal();
         }
 
@@ -246,7 +251,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private void toggleModal() {
         float old, target;
 
-        if (isModalOpen){
+        if (isModalOpen) {
             //if open, then close
             old = 0.6f;
             target = 0.9f;

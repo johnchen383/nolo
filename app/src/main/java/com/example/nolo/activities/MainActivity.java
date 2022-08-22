@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
 
         vh = new ViewHolder();
 
-        List<IItem> items = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
+//        List<IItem> items = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
 //        vh.navView.setBackground(new ColorDrawable(0));
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
