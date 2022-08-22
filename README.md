@@ -31,6 +31,7 @@ Refer to the Azure board for tickets. Branch off `main` with your associated tic
     |       |       ├── java/com/example/nolo 
     |       |       |        ├── ...
     |       |       |        ├── activities            #all full screen UI elements
+    |       |       |        ├── enums                 #enumerations
     |       |       |        ├── fragments             #all partial screen elements, including bottom nav fragments
     |       |       |        ├── viewmodels            #associated view models to activities + fragments
     |       |       |        ├── dataprovider          #for loading data to firebase

@@ -18,15 +18,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.nolo.R;
-import com.example.nolo.dataprovider.DataProvider;
-import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
 import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
 import com.example.nolo.util.Connectivity;
-import com.example.nolo.util.DeviceLocation;
+import com.example.nolo.util.LocationUtil;
 import com.example.nolo.viewmodels.SplashViewModel;
 import java.util.function.Consumer;
 
@@ -103,8 +101,10 @@ public class SplashActivity extends BaseActivity {
 //            });
 //        });
 
+
+
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
-            DeviceLocation.loadCurrentLocation(this);
+            LocationUtil.loadCurrentLocation(this);
             loadAllRepositories();
         }));
     }
@@ -125,7 +125,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void checkLocationPermissionsAndContinue(Consumer<Void> func) {
-        if (!DeviceLocation.hasLocationPermissions(this)) {
+        if (!LocationUtil.hasLocationPermissions(this)) {
             promptLocationPermissionsDialog((a) -> func.accept(null));
         } else {
             func.accept(null);

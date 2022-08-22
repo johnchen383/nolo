@@ -12,5 +12,6 @@
     <string name="category_header_append">_header</string>
     <string name="extra_category">CATEGORY</string>
     <string name="extra_item_variant">ITEM_VARIANT</string>
+    <string name="google_maps_key"></string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
