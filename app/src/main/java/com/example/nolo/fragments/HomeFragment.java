@@ -1,6 +1,7 @@
 package com.example.nolo.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,13 +28,13 @@ import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.util.Animation;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
@@ -49,6 +50,7 @@ import java.util.stream.Collectors;
 public class HomeFragment extends Fragment {
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
+    private View currentView;
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
@@ -59,17 +61,17 @@ public class HomeFragment extends Fragment {
         EditText searchEditText;
         ImageView searchImageBtn;
 
-        public ViewHolder() {
-            categoryList = getView().findViewById(R.id.category_list);
-            initialView = getView().findViewById(R.id.initial_home_view);
-            searchLayoutBtn = getView().findViewById(R.id.search_layout_btn);
-            featuredItemsList = getView().findViewById(R.id.featured_items_list);
-            featuredText = getView().findViewById(R.id.featured_text);
-            searchEditText = getView().findViewById(R.id.search_edittext);
-            searchSuggestionsList = getView().findViewById(R.id.search_suggestions_list);
-            searchContainer = getView().findViewById(R.id.search_container);
-            outsideSearchContainer = getView().findViewById(R.id.outside_search_container);
-            searchImageBtn = getView().findViewById(R.id.search_image_btn);
+        public ViewHolder(View view) {
+            categoryList = view.findViewById(R.id.category_list);
+            initialView = view.findViewById(R.id.initial_home_view);
+            searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
+            featuredItemsList = view.findViewById(R.id.featured_items_list);
+            featuredText = view.findViewById(R.id.featured_text);
+            searchEditText = view.findViewById(R.id.search_edittext);
+            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
+            searchContainer = view.findViewById(R.id.search_container);
+            outsideSearchContainer = view.findViewById(R.id.outside_search_container);
+            searchImageBtn = view.findViewById(R.id.search_image_btn);
         }
     }
 
@@ -79,7 +81,8 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        vh = new ViewHolder();
+        currentView = view;
+        vh = new ViewHolder(view);
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -188,8 +191,9 @@ public class HomeFragment extends Fragment {
                     if (searchSuggestions.size() <= 0) {
                         Toast.makeText(getActivity(), "Search suggestion is empty!", Toast.LENGTH_LONG).show();
                     } else {
-                        // TODO: When search button on the right is pressed,
-                        //  go to list view of the search suggestion
+                        Intent intent = new Intent(getActivity(), SearchActivity.class);
+                        intent.putExtra(getString(R.string.search_term), searchTerm);
+                        startActivity(intent, Animation.Fade(getActivity()).toBundle());
                     }
                 }
             }
@@ -216,11 +220,11 @@ public class HomeFragment extends Fragment {
 
             // Hide the keyboard
             ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                    .hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                    .hideSoftInputFromWindow(currentView.getWindowToken(), 0);
         }
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(getView()) / 2 / 120;
+        return Display.getScreenHeight(currentView) / 2 / 120;
     }
 }

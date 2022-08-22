@@ -14,5 +14,6 @@
     <string name="extra_item_variant">ITEM_VARIANT</string>
     <string name="google_maps_key"></string>
     <string name="search_results_found">results found</string>
+    <string name="search_term">SEARCH_TERM</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

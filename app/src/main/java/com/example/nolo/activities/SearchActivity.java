@@ -42,7 +42,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void initAdaptors() {
-        // TODO: Result list at the start of the activity
+        resetSearchResults(getIntent().getExtras().getString(getString(R.string.search_term)));
     }
 
     private void resetSearchResults(String searchTerm) {
