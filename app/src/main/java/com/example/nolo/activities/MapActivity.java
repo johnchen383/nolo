@@ -116,7 +116,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         });
 
         vh.branchBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SearchActivity.class); //TODO: change to details activity
+            Intent intent = new Intent(this, DetailsActivity.class);
             intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) variant);
 
             startActivity(intent);

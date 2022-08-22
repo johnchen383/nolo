@@ -1,6 +1,9 @@
 package com.example.nolo.entities.item.specs.specsoption;
 
+import com.example.nolo.entities.item.variant.ItemVariant;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class SpecsOption implements ISpecsOption, Serializable {
     private int size;
@@ -24,5 +27,14 @@ public class SpecsOption implements ISpecsOption, Serializable {
     @Override
     public double getAdditionalPrice() {
         return additionalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SpecsOption that = (SpecsOption) o;
+        return Objects.equals(size, that.size)
+                && Objects.equals(additionalPrice, that.additionalPrice);
     }
 }
