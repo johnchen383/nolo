@@ -2,7 +2,13 @@ package com.example.nolo.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,6 +29,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,12 +45,13 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment;
         ImageButton backBtn;
 
-        public ViewHolder(){
+        public ViewHolder() {
             mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             backBtn = findViewById(R.id.back_btn);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +61,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         vh.mapFragment.getMapAsync(this);
     }
 
-    private void initListeners(){
+    private void initListeners() {
         vh.backBtn.setOnClickListener(v -> {
             finish();
         });
@@ -76,7 +84,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             IStore store = GetStoreByIdUseCase.getStoreById(v.getStoreId());
             for (IBranch branch : store.getBranches()) {
                 currLoc = LocationUtil.getLatLngFromGeoPoint(branch.getGeoPoint());
-                Marker marker = mMap.addMarker(new MarkerOptions().position(currLoc).title(branch.getBranchName()));
+
+                Bitmap iconBmp = createMapIcon(getDisplayPrice(v.getBasePrice()));
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(currLoc)
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconBmp))
+                        .anchor(0.5f, 1));
                 marker.setTag(createMarkerTag(store.getStoreId(), branch.getBranchName()));
 
             }
@@ -89,15 +102,53 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         mMap.setOnMarkerClickListener(marker -> onMarkerClick(marker));
     }
 
-    private String createMarkerTag(String storeId, String branchName){
+    private String getDisplayPrice(double basePrice){
+        return String.format("$%.0f", basePrice);
+    }
+
+    private Bitmap createMapIcon(String price) {
+        final int WIDTH = 160;
+        final int HEIGHT = 150;
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        Bitmap bmp = Bitmap.createBitmap(WIDTH, HEIGHT, conf);
+        Canvas canvas = new Canvas(bmp);
+
+
+
+        //icon
+        Bitmap mBackground = BitmapFactory.decodeResource(getResources(), R.drawable.marker_img);
+        // scale bitmap
+        int h = 92; // height in pixels
+        int w = 80; // width in pixels
+        Bitmap scaledBg = Bitmap.createScaledBitmap(mBackground, w, h, true);
+        canvas.drawBitmap(scaledBg, (WIDTH - w) / 2, HEIGHT - h, null);
+
+        //rectangle
+        int margin = 5;
+        int radius = 10;
+        Paint color = new Paint();
+        color.setColor(getColor(R.color.white));
+        canvas.drawRoundRect(new RectF(0, 0, WIDTH, HEIGHT - h - margin), radius, radius, color);
+
+        //text
+        color = new Paint();
+        color.setTextSize(35);
+        color.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        color.setColor(getColor(R.color.navy));
+        canvas.drawText(price, 30, 40, color);
+
+        return bmp;
+    }
+
+    private String createMarkerTag(String storeId, String branchName) {
         return storeId + TAG_DIVIDER + branchName;
     }
 
-    private String getStoreIdFromMarkerTag(String tag){
+    private String getStoreIdFromMarkerTag(String tag) {
         return tag.split(TAG_DIVIDER)[0];
     }
 
-    private String getBranchNameFromMarkerTag(String tag){
+    private String getBranchNameFromMarkerTag(String tag) {
         return tag.split(TAG_DIVIDER)[1];
     }
 
