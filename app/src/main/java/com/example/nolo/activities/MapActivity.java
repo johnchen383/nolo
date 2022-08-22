@@ -2,6 +2,7 @@ package com.example.nolo.activities;
 
 import android.Manifest;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,7 @@ import com.example.nolo.R;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IBranch;
 import com.example.nolo.entities.store.IStore;
@@ -111,6 +113,13 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         vh.modalHeader.setOnClickListener(v -> {
             toggleModal();
+        });
+
+        vh.branchBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MapActivity.class); //TODO: change to details activity
+            intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) variant);
+
+            startActivity(intent);
         });
     }
 
