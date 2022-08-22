@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
@@ -86,7 +87,8 @@ public class LogInActivity extends BaseActivity {
         });
 
         vh.forgotPassword.setOnClickListener(v -> {
-            startActivity(new Intent(this, ForgotPasswordActivity.class), Animation.Fade(this).toBundle());
+//            startActivity(new Intent(this, ForgotPasswordActivity.class), Animation.Fade(this).toBundle());
+            Toast.makeText(this, "Password Reset!", Toast.LENGTH_SHORT).show();
         });
 
         vh.signUpBtn.setOnClickListener(v -> {
