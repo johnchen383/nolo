@@ -37,6 +37,7 @@ import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
+import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
 
@@ -157,9 +158,7 @@ public class HomeFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // When Enter key pressed, go to search list
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    Intent intent = new Intent(getActivity(), SearchActivity.class);
-                    intent.putExtra(getString(R.string.search_term), vh.searchEditText.getText().toString());
-                    startActivity(intent, Animation.Fade(getActivity()).toBundle());
+                    goToSearchActivity(vh.searchEditText.getText().toString());
 
                 // When Back key pressed, hide the search bar
                 } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
@@ -210,9 +209,7 @@ public class HomeFragment extends Fragment {
                     if (searchSuggestions.size() <= 0) {
                         Toast.makeText(getActivity(), "Search suggestion is empty!", Toast.LENGTH_LONG).show();
                     } else {
-                        Intent intent = new Intent(getActivity(), SearchActivity.class);
-                        intent.putExtra(getString(R.string.search_term), searchTerm);
-                        startActivity(intent, Animation.Fade(getActivity()).toBundle());
+                        goToSearchActivity(searchTerm);
                     }
                 }
             }
@@ -231,19 +228,26 @@ public class HomeFragment extends Fragment {
             vh.outsideSearchContainer.setVisibility(View.VISIBLE);
 
             // Show the keyboard
-            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                    .toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            Keyboard.show(getActivity());
         } else {
             vh.searchContainer.setVisibility(View.GONE);
             vh.outsideSearchContainer.setVisibility(View.GONE);
 
             // Hide the keyboard
-            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                    .hideSoftInputFromWindow(currentView.getWindowToken(), 0);
+            Keyboard.hide(getActivity(), currentView);
         }
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
         return Display.getScreenHeight(currentView) / 2 / 120;
+    }
+
+    private void goToSearchActivity(String searchTerm) {
+        // Hide the keyboard
+        Keyboard.hide(getActivity(), currentView);
+
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        intent.putExtra(getString(R.string.search_term), searchTerm);
+        startActivity(intent, Animation.Fade(getActivity()).toBundle());
     }
 }
