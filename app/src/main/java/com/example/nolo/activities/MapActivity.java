@@ -58,6 +58,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ViewHolder vh;
     private boolean isModalOpen;
+    private Marker activeMarker;
 
     private class ViewHolder {
         SupportMapFragment mapFragment;
@@ -139,6 +140,15 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                         .anchor(0.5f, 1));
                 marker.setTag(createMarkerTag(store.getStoreId(), branch.getBranchName()));
                 markers.add(marker);
+
+                if (branch.getBranchName().equals(variant.getBranchName()) && store.getStoreId().equals(variant.getStoreId())){
+                    activeMarker = marker;
+                    marker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                            createMapIcon(
+                                    getDisplayPrice(v.getBasePrice()), R.drawable.marker_img_red)
+                            )
+                    );
+                }
             }
         }
 
@@ -158,7 +168,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(centredLoc));
         }
 
-        updateFields();
+        updateFields(null);
         updateCheapestIcon();
     }
 
@@ -171,10 +181,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
             for (IStoreVariant storeVariant : storeVariants) {
                 if (storeVariant.getStoreId().equals(storeId)) {
-                    marker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                            createMapIcon(getDisplayPrice(storeVariant.getBasePrice())))
-                    );
-
                     if (storeVariant.getBasePrice() < price) {
                         price = storeVariant.getBasePrice();
                         cheapestMarkers = new ArrayList<>();
@@ -188,8 +194,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         }
 
         for (Marker cheapestMarker : cheapestMarkers) {
+            if (cheapestMarker.equals(activeMarker)) continue;
+
             cheapestMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                    createMapIcon(getDisplayPrice(price), getColor(R.color.green)))
+                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img_green))
             );
         }
     }
@@ -199,10 +207,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     }
 
     private Bitmap createMapIcon(String price) {
-        return createMapIcon(price, getColor(R.color.white));
+        return createMapIcon(price, R.drawable.marker_img);
     }
 
-    private Bitmap createMapIcon(String price, int colour) {
+    private Bitmap createMapIcon(String price, int markerImg) {
         final int WIDTH = 160;
         final int HEIGHT = 150;
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
@@ -210,7 +218,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         Canvas canvas = new Canvas(bmp);
 
         //icon
-        Bitmap mBackground = BitmapFactory.decodeResource(getResources(), R.drawable.marker_img);
+        Bitmap mBackground = BitmapFactory.decodeResource(getResources(), markerImg);
         // scale bitmap
         int h = 92; // height in pixels
         int w = 80; // width in pixels
@@ -221,7 +229,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         int margin = 5;
         int radius = 10;
         Paint color = new Paint();
-        color.setColor(colour);
+        color.setColor(getColor(R.color.white));
         canvas.drawRoundRect(new RectF(0, 0, WIDTH, HEIGHT - h - margin), radius, radius, color);
 
         //text
@@ -246,7 +254,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         return tag.split(TAG_DIVIDER)[1];
     }
 
-    private void updateFields() {
+    private void updateFields(Marker marker) {
         IStore variantStore = GetStoreByIdUseCase.getStoreById(variant.getStoreId());
         vh.modalHeader.setText(variantStore.getStoreName() + " " + variant.getBranchName());
 
@@ -262,6 +270,23 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         for (IStoreVariant storeVariant : storeVariants) {
             if (storeVariant.getStoreId().equals(variant.getStoreId())) {
                 vh.price.setText(getDisplayPrice(storeVariant.getBasePrice()));
+
+                if (marker == null) break;
+
+                activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                        createMapIcon(
+                                getDisplayPrice(storeVariant.getBasePrice()), R.drawable.marker_img)
+                        )
+                );
+
+                marker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                        createMapIcon(
+                                getDisplayPrice(storeVariant.getBasePrice()), R.drawable.marker_img_red)
+                        )
+                );
+
+                activeMarker = marker;
+                updateCheapestIcon();
                 break;
             }
         }
@@ -280,7 +305,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             variant.setBranchName(branchName);
             variant.setStoreId(storeId);
 
-            updateFields();
+            updateFields(marker);
         }
 
         return false;
