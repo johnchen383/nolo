@@ -1,16 +1,16 @@
 package com.example.nolo.activities;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
+import com.example.nolo.entities.item.IItem;
+import com.example.nolo.enums.CategoryType;
+import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity {
 
         vh = new ViewHolder();
 
+//        List<IItem> items = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
 //        vh.navView.setBackground(new ColorDrawable(0));
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
