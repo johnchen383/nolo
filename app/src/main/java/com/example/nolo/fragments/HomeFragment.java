@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -52,7 +53,8 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer;
+        CardView searchContainer;
+        LinearLayout initialView, searchLayoutBtn, outsideSearchContainer;
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchEditText;
