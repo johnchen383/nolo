@@ -76,6 +76,7 @@ public class ItemsRepository implements IItemsRepository {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         IItem item = document.toObject(Laptop.class);
+                        item.setCategoryType(CategoryType.laptops);
                         item.setItemId(document.getId());  // store document ID after getting the object
                         laptopsRepo.add(item);
 
@@ -109,6 +110,7 @@ public class ItemsRepository implements IItemsRepository {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         IItem item = document.toObject(Phone.class);
+                        item.setCategoryType(CategoryType.phones);
                         item.setItemId(document.getId());  // store document ID after getting the object
                         phonesRepo.add(item);
 
@@ -142,6 +144,7 @@ public class ItemsRepository implements IItemsRepository {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         IItem item = document.toObject(Accessory.class);
+                        item.setCategoryType(CategoryType.accessories);
                         item.setItemId(document.getId());  // store document ID after getting the object
                         accessoriesRepo.add(item);
 
