@@ -1,22 +1,14 @@
 package com.example.nolo.activities;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
-import com.example.nolo.dataprovider.DataProvider;
-import com.example.nolo.enums.CollectionPath;
-import com.example.nolo.util.DeviceLocation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private ViewHolder vh;
@@ -34,6 +26,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startActivity(new Intent(this, MapActivity.class));
 
         vh = new ViewHolder();
 
