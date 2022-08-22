@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -41,7 +42,7 @@ import java.util.List;
 
 public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private final String TAG_DIVIDER = "___";
-    private final int ANIMATION_INTERVAL = 1000;
+    private final int ANIMATION_INTERVAL = 200;
 
     private GoogleMap mMap;
     private ViewHolder vh;
@@ -51,12 +52,14 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment;
         ImageButton backBtn;
         FrameLayout mapContainer;
+        TextView modalHeader;
 
         public ViewHolder() {
             mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             backBtn = findViewById(R.id.back_btn);
             mapContainer = findViewById(R.id.map_container);
+            modalHeader = findViewById(R.id.modal_header);
         }
     }
 
@@ -74,6 +77,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private void initListeners() {
         vh.backBtn.setOnClickListener(v -> {
             finish();
+        });
+
+        vh.modalHeader.setOnClickListener(v -> {
+            toggleModal();
         });
     }
 
