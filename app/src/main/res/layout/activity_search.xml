@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_scroll_view"
     android:layout_width="match_parent"
     android:background="@color/navy"
     android:layout_height="match_parent"
@@ -24,15 +25,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/home_categories_btn"
-                        android:rotation="180"
-                        android:layout_marginStart="@dimen/padding_xlrg"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -41,18 +33,29 @@
                         android:layout_alignParentEnd="true"/>
                 </RelativeLayout>
 
-                <EditText
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/font_h2"
                     android:layout_marginEnd="@dimen/font_h2"
-                    android:hint="@string/search_bar"
-                    android:textAllCaps="true"
-                    android:singleLine="true"
-                    android:textSize="@dimen/font_body1"
-                    android:textColor="@color/faint_white"
-                    android:textColorHint="@color/light_grey"
-                    android:backgroundTint="@color/faint_white"/>
+                    android:layout_gravity="center">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_bar"
+                        android:textAllCaps="true"
+                        android:singleLine="true"
+                        android:textSize="@dimen/font_body1"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/light_grey"
+                        android:backgroundTint="@color/faint_white"/>
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/nav_icon_search"/>
+                </RelativeLayout>
             </LinearLayout>
 
             <ListView
@@ -78,6 +81,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/outside_search_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent_grey"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -88,10 +99,9 @@
 
                 <ImageView
                     android:id="@+id/back_btn"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/home_categories_btn"
-                    android:rotation="180"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back_arrow_hollow"
                     android:layout_marginStart="@dimen/padding_xlrg"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"/>
@@ -103,19 +113,31 @@
                     android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
-            <EditText
-                android:id="@+id/search_edittext"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/font_h2"
                 android:layout_marginEnd="@dimen/font_h2"
-                android:hint="@string/search_bar"
-                android:textAllCaps="true"
-                android:singleLine="true"
-                android:textSize="@dimen/font_body1"
-                android:textColor="@color/faint_white"
-                android:textColorHint="@color/light_grey"
-                android:backgroundTint="@color/faint_white"/>
+                android:layout_gravity="center">
+                <EditText
+                    android:id="@+id/search_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/search_bar"
+                    android:textAllCaps="true"
+                    android:singleLine="true"
+                    android:textSize="@dimen/font_body1"
+                    android:textColor="@color/faint_white"
+                    android:textColorHint="@color/light_grey"
+                    android:backgroundTint="@color/faint_white"/>
+                <ImageView
+                    android:id="@+id/search_image_btn"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/nav_icon_search"/>
+            </RelativeLayout>
             <ListView
                 android:id="@+id/search_suggestions_list"
                 android:layout_width="match_parent"

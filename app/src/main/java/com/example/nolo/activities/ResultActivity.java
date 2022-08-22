@@ -8,8 +8,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -23,23 +26,27 @@ import com.example.nolo.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ResultActivity extends BaseActivity {
     private ViewHolder vh;
 
     private class ViewHolder {
+        ScrollView homeScrollView;
+        LinearLayout outsideSearchContainer;
         EditText searchBarText;
         ListView searchResultList, searchSuggestionsList;
         TextView numOfResultFound;
-        ImageView backBtn;
+        ImageView backBtn, searchBtn;
 
         public ViewHolder() {
+            homeScrollView = findViewById(R.id.home_scroll_view);
+            outsideSearchContainer = findViewById(R.id.outside_search_container);
             searchBarText = findViewById(R.id.search_edittext);
             searchResultList = findViewById(R.id.search_results_list);
             searchSuggestionsList = findViewById(R.id.search_suggestions_list);
             numOfResultFound = findViewById(R.id.number_results_found);
             backBtn = findViewById(R.id.back_btn);
+            searchBtn = findViewById(R.id.search_image_btn);
         }
     }
 
@@ -50,10 +57,14 @@ public class ResultActivity extends BaseActivity {
         String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
         vh = new ViewHolder();
-        vh.searchBarText.setText(searchTerm);
 
+        initStyle(searchTerm);
         initAdaptors(searchTerm);
         initListeners();
+    }
+
+    private void initStyle(String searchTerm) {
+        vh.searchBarText.setText(searchTerm);
     }
 
     private void initAdaptors(String searchTerm) {
@@ -64,6 +75,7 @@ public class ResultActivity extends BaseActivity {
      * SEARCH RESULT ADAPTOR
      */
     private void resetSearchResults(String searchTerm) {
+        vh.homeScrollView.fullScroll(ScrollView.FOCUS_UP);
         List<IItem> searchResult = new ArrayList<>();
 
         if (!searchTerm.isEmpty()) {
@@ -103,27 +115,27 @@ public class ResultActivity extends BaseActivity {
     private void initListeners() {
         Activity currentActivity = this;
 
+        // When enter is pressed in search bar, refresh search result
         vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // When enter is pressed
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    showSearchSuggestionsList(false, v);
                     resetSearchResults(vh.searchBarText.getText().toString());
-                    Keyboard.hide(currentActivity, v);
                 }
                 return false;
             }
         });
 
+        // When search bar has focus, show search suggestions, otherwise no
         vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    vh.searchSuggestionsList.setVisibility(View.VISIBLE);
+                    showSearchSuggestionsList(true, v);
                     resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
                 } else {
-                    vh.searchSuggestionsList.setVisibility(View.GONE);
-                    Keyboard.hide(currentActivity, v);
+                    showSearchSuggestionsList(false, v);
                 }
             }
         });
@@ -154,6 +166,24 @@ public class ResultActivity extends BaseActivity {
             }
         });
 
+        // When outside box is clicked, hide the search suggestions
+        vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSearchSuggestionsList(false, v);
+            }
+        });
+
+        // When search button is clicked, show search results
+        vh.searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSearchSuggestionsList(false, v);
+                resetSearchResults(vh.searchBarText.getText().toString());
+            }
+        });
+
+        // When back button is clicked, go back to previous activity
         vh.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,5 +194,29 @@ public class ResultActivity extends BaseActivity {
 
     private String getColourInHexFromResourceId(int rId) {
         return "#" + Integer.toHexString(ContextCompat.getColor(this, rId) & 0x00ffffff);
+    }
+
+    /**
+     * Show/hide the search bar, search suggestions and keyboard
+     *
+     * @param show boolean - True to show search suggestions and show keyboard
+     *                       False to hide search suggestions and hide keyboard
+     * @param v view
+     */
+    private void showSearchSuggestionsList(boolean show, View v) {
+        if (show) {
+            vh.searchSuggestionsList.setVisibility(View.VISIBLE);
+            vh.outsideSearchContainer.setVisibility(View.VISIBLE);
+
+            // Show the keyboard
+            Keyboard.show(this);
+        } else {
+            vh.searchBarText.clearFocus();
+            vh.searchSuggestionsList.setVisibility(View.GONE);
+            vh.outsideSearchContainer.setVisibility(View.GONE);
+
+            // Hide the keyboard
+            Keyboard.hide(this, v);
+        }
     }
 }
