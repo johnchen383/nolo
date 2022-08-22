@@ -143,11 +143,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
                 if (branch.getBranchName().equals(variant.getBranchName()) && store.getStoreId().equals(variant.getStoreId())){
                     activeMarker = marker;
-                    marker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                            createMapIcon(
-                                    getDisplayPrice(v.getBasePrice()), R.drawable.marker_img_red)
-                            )
-                    );
                 }
             }
         }
@@ -168,11 +163,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(centredLoc));
         }
 
-        updateFields(null);
-        updateCheapestIcon();
+        updateFields();
+        updateMarkers();
     }
 
-    private void updateCheapestIcon() {
+    private void updateMarkers() {
         List<Marker> cheapestMarkers = new ArrayList<>();
         double price = Double.MAX_VALUE;
 
@@ -181,6 +176,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
             for (IStoreVariant storeVariant : storeVariants) {
                 if (storeVariant.getStoreId().equals(storeId)) {
+                    marker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                            createMapIcon(getDisplayPrice(storeVariant.getBasePrice()), R.drawable.marker_img, R.color.white))
+                    );
+
                     if (storeVariant.getBasePrice() < price) {
                         price = storeVariant.getBasePrice();
                         cheapestMarkers = new ArrayList<>();
@@ -193,11 +192,26 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             }
         }
 
+        boolean isActiveCheap = false;
+
         for (Marker cheapestMarker : cheapestMarkers) {
-            if (cheapestMarker.equals(activeMarker)) continue;
+            if (cheapestMarker.equals(activeMarker)) {
+                isActiveCheap = true;
+                continue;
+            }
 
             cheapestMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img_green))
+                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img, R.color.green))
+            );
+        }
+
+        if (isActiveCheap){
+            activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img_red, R.color.green))
+            );
+        } else {
+            activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img_red, R.color.white))
             );
         }
     }
@@ -207,10 +221,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     }
 
     private Bitmap createMapIcon(String price) {
-        return createMapIcon(price, R.drawable.marker_img);
+        return createMapIcon(price, R.drawable.marker_img, R.color.white);
     }
 
-    private Bitmap createMapIcon(String price, int markerImg) {
+    private Bitmap createMapIcon(String price, int markerImg, int colour) {
         final int WIDTH = 160;
         final int HEIGHT = 150;
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
@@ -229,7 +243,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         int margin = 5;
         int radius = 10;
         Paint color = new Paint();
-        color.setColor(getColor(R.color.white));
+        color.setColor(getColor(colour));
         canvas.drawRoundRect(new RectF(0, 0, WIDTH, HEIGHT - h - margin), radius, radius, color);
 
         //text
@@ -254,7 +268,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         return tag.split(TAG_DIVIDER)[1];
     }
 
-    private void updateFields(Marker marker) {
+    private void updateFields() {
         IStore variantStore = GetStoreByIdUseCase.getStoreById(variant.getStoreId());
         vh.modalHeader.setText(variantStore.getStoreName() + " " + variant.getBranchName());
 
@@ -270,24 +284,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         for (IStoreVariant storeVariant : storeVariants) {
             if (storeVariant.getStoreId().equals(variant.getStoreId())) {
                 vh.price.setText(getDisplayPrice(storeVariant.getBasePrice()));
-
-                if (marker == null) break;
-
-                activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                        createMapIcon(
-                                getDisplayPrice(storeVariant.getBasePrice()), R.drawable.marker_img)
-                        )
-                );
-
-                marker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                        createMapIcon(
-                                getDisplayPrice(storeVariant.getBasePrice()), R.drawable.marker_img_red)
-                        )
-                );
-
-                activeMarker = marker;
-                updateCheapestIcon();
-                break;
             }
         }
     }
@@ -305,7 +301,9 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             variant.setBranchName(branchName);
             variant.setStoreId(storeId);
 
-            updateFields(marker);
+            updateFields();
+            activeMarker = marker;
+            updateMarkers();
         }
 
         return false;
