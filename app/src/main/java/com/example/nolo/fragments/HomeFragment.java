@@ -47,7 +47,6 @@ import java.util.stream.Collectors;
  * Used for viewing featured items, browsing categories, and navigation to search
  */
 public class HomeFragment extends Fragment {
-    private final int MAX_NUMBER_OF_SEARCH_SUGGESTIONS = 6;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
 
@@ -128,7 +127,7 @@ public class HomeFragment extends Fragment {
         if (!searchTerm.isEmpty()) {
             // First limit the number of items showing in the list
             List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-            firstNItems = searchSuggestions.stream().limit(MAX_NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
+            firstNItems = searchSuggestions.stream().limit(getMaxNumberOfSearchSuggestionsInList()).collect(Collectors.toList());
         }
 
         // Create and Set the adaptor
@@ -219,5 +218,9 @@ public class HomeFragment extends Fragment {
             ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
                     .hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
+    }
+
+    private int getMaxNumberOfSearchSuggestionsInList() {
+        return Display.getScreenHeight(getView()) / 2 / 120;
     }
 }
