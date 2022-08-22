@@ -18,6 +18,7 @@ import com.example.nolo.R;
 import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.SearchViewModel;
 
@@ -30,7 +31,6 @@ import java.util.stream.Collectors;
  * Used to search for a given item by search query. Filtering of search results is also supported
  */
 public class SearchFragment extends Fragment {
-    private final int MAX_NUMBER_OF_SEARCH_SUGGESTIONS = 10;
     private ViewHolder vh;
     private SearchViewModel searchViewModel;
 
@@ -66,20 +66,18 @@ public class SearchFragment extends Fragment {
          * SEARCH SUGGESTION ADAPTOR
          */
         HomeSearchItemsAdaptor homeSearchItemsAdaptor;
+        List<IItem> firstNItems = new ArrayList<>();
+
         if (!searchTerm.isEmpty()) {
             // First limit the number of items showing in the list
             List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-            List<IItem> firstNItems = searchSuggestions.stream().limit(MAX_NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
-
-            // and then display them
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
-                    searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
-                    "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
-        } else {
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, new ArrayList<>(),
-                    searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
-                    "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
+            firstNItems = searchSuggestions.stream().limit(getMaxNumberOfSearchSuggestionsInList()).collect(Collectors.toList());
         }
+
+        // Create and Set the adaptor
+        homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
+                searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
+                "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
         vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
@@ -134,5 +132,9 @@ public class SearchFragment extends Fragment {
             vh.searchLogo.setVisibility(View.GONE);
             vh.outsideSearchContainer.setVisibility(View.VISIBLE);
         }
+    }
+
+    private int getMaxNumberOfSearchSuggestionsInList() {
+        return Display.getScreenHeight(getView()) / 2 / 100;
     }
 }
