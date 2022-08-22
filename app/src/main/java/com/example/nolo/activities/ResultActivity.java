@@ -53,20 +53,20 @@ public class ResultActivity extends BaseActivity {
         resetSearchResults(searchTerm);
     }
 
+    /**
+     * SEARCH RESULT ADAPTOR
+     */
     private void resetSearchResults(String searchTerm) {
-        /**
-         * SEARCH SUGGESTION ADAPTOR
-         */
-        SearchItemResultAdaptor searchItemResultAdaptor;
         List<IItem> searchResult = new ArrayList<>();
 
         if (!searchTerm.isEmpty()) {
-            // First limit the number of items showing in the list
             searchResult = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
         }
 
+        // TODO: change the R.layout.(list itme), use the same xml as the accessory list
         // Create and Set the adaptor
-        searchItemResultAdaptor = new SearchItemResultAdaptor(this, R.layout.item_search_list, searchResult);
+        SearchItemResultAdaptor searchItemResultAdaptor =
+                new SearchItemResultAdaptor(this, R.layout.item_search_list, searchResult);
         vh.searchResultList.setAdapter(searchItemResultAdaptor);
         ListUtil.setDynamicHeight(vh.searchResultList);
 

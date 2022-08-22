@@ -122,11 +122,10 @@ public class HomeFragment extends Fragment {
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 
+    /**
+     * SEARCH SUGGESTION ADAPTOR
+     */
     private void resetSearchSuggestionsAdaptor(String searchTerm) {
-        /**
-         * SEARCH SUGGESTION ADAPTOR
-         */
-        HomeSearchItemsAdaptor homeSearchItemsAdaptor;
         List<IItem> firstNItems = new ArrayList<>();
 
         if (!searchTerm.isEmpty()) {
@@ -136,9 +135,9 @@ public class HomeFragment extends Fragment {
         }
 
         // Create and Set the adaptor
-        homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
-                searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
-                "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
+        HomeSearchItemsAdaptor homeSearchItemsAdaptor =
+                new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems, searchTerm,
+                        getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
         vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
@@ -234,9 +233,12 @@ public class HomeFragment extends Fragment {
         return Display.getScreenHeight(currentView) / 2 / 120;
     }
 
+    private String getColourInHexFromResourceId(int rId) {
+        return "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), rId) & 0x00ffffff);
+    }
+
     private void goToSearchActivity(String searchTerm) {
-        // Hide the keyboard
-        Keyboard.hide(getActivity(), currentView);
+        showSearchContainer(false);
 
         Intent intent = new Intent(getActivity(), ResultActivity.class);
         intent.putExtra(getString(R.string.search_term), searchTerm);
