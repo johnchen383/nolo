@@ -69,6 +69,9 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
+    public void setColour(Colour colour) { this.colour = colour; }
+
+    @Override
     public String getItemId() {
         return itemId;
     }
@@ -139,6 +142,16 @@ public class ItemVariant implements IItemVariant, Serializable {
 
         System.err.println("No image matched!");
         return item.getImageUris().get(0);
+    }
+
+    @Override
+    public void setStoreId(String id){
+        this.storeId = id;
+    }
+
+    @Override
+    public void setBranchName(String name){
+        this.branchName = name;
     }
 
     @Override

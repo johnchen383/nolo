@@ -15,6 +15,7 @@ public interface IItem {
     void setItemId(String itemId);
     String getItemId();
     CategoryType getCategoryType();
+    void setCategoryType(CategoryType type);
     String getName();
     String getBrand();
     ISpecs getSpecs();

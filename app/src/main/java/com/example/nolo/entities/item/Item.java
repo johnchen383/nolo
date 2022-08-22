@@ -66,6 +66,9 @@ public abstract class Item implements IItem {
     }
 
     @Override
+    public void setCategoryType(CategoryType type) {this.categoryType = type;}
+
+    @Override
     public String getName() {
         return name;
     }

@@ -1,6 +1,8 @@
 package com.example.nolo.entities.item.specs.specsoption;
 
-public class SpecsOption implements ISpecsOption {
+import java.io.Serializable;
+
+public class SpecsOption implements ISpecsOption, Serializable {
     private int size;
     private double additionalPrice;
 

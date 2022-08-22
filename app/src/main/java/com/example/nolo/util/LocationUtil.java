@@ -11,14 +11,15 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.firestore.GeoPoint;
 
 import java.util.function.Consumer;
 
-public class DeviceLocation {
+public class LocationUtil {
     public static final long TIME_IN_MILLISECONDS_FIVE_MINUTES = 1000*60*5;
     private static FusedLocationProviderClient fusedLocationClient;
-    private static Location cachedLocation = null;
+    private static android.location.Location cachedLocation = null;
     private static long lastLoadedTime = 0;
     private static android.content.Context ctx;
 
@@ -40,18 +41,18 @@ public class DeviceLocation {
                 .addOnSuccessListener(location -> cachedLocation = location);
     }
 
-    public static Location getCurrentLocation(){
+    public static android.location.Location getCurrentLocation(){
         reloadCurrentLocationIfExpired();
 
         return cachedLocation;
     }
 
     public static float getDistanceBetweenLocationAndGeoPoint(GeoPoint gp){
-        Location loc = getCurrentLocation();
+        android.location.Location loc = getCurrentLocation();
 
         if (loc == null) return -1;
 
-        Location gpLoc = new Location("");
+        android.location.Location gpLoc = new android.location.Location("");
         gpLoc.setLatitude(gp.getLatitude());
         gpLoc.setLongitude(gp.getLongitude());
 
@@ -61,5 +62,9 @@ public class DeviceLocation {
     private static void reloadCurrentLocationIfExpired() {
         if (System.currentTimeMillis() - lastLoadedTime > TIME_IN_MILLISECONDS_FIVE_MINUTES)
             loadCurrentLocation(ctx);
+    }
+
+    public static LatLng getLatLngFromGeoPoint(GeoPoint gp){
+        return new LatLng(gp.getLatitude(), gp.getLongitude());
     }
 }
