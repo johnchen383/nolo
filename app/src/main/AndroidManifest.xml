@@ -22,7 +22,7 @@
             android:name=".activities.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SearchActivity"
+            android:name=".activities.ResultActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashActivity"

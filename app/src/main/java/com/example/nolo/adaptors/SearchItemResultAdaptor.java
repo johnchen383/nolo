@@ -42,8 +42,6 @@ public class SearchItemResultAdaptor extends ArrayAdapter {
         mItems = objects;
     }
 
-
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

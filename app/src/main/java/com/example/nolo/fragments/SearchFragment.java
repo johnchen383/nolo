@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
+import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Display;
@@ -33,6 +33,7 @@ import java.util.stream.Collectors;
 public class SearchFragment extends Fragment {
     private ViewHolder vh;
     private SearchViewModel searchViewModel;
+    private View currentView;
 
     private class ViewHolder {
         LinearLayout outsideSearchContainer;
@@ -40,11 +41,11 @@ public class SearchFragment extends Fragment {
         EditText searchEditText;
         ListView searchSuggestionsList;
 
-        public ViewHolder(){
-            outsideSearchContainer = getView().findViewById(R.id.search_fragment_outside_search_container);
-            searchLogo = getView().findViewById(R.id.search_logo);
-            searchEditText = getView().findViewById(R.id.search_fragment_edittext);
-            searchSuggestionsList = getView().findViewById(R.id.search_fragment_suggestions_list);
+        public ViewHolder(View view){
+            outsideSearchContainer = view.findViewById(R.id.search_fragment_outside_search_container);
+            searchLogo = view.findViewById(R.id.search_logo);
+            searchEditText = view.findViewById(R.id.search_fragment_edittext);
+            searchSuggestionsList = view.findViewById(R.id.search_fragment_suggestions_list);
         }
     }
 
@@ -54,18 +55,18 @@ public class SearchFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        vh = new ViewHolder();
+        currentView = view;
+        vh = new ViewHolder(view);
         searchViewModel =
                 new ViewModelProvider(this).get(SearchViewModel.class);
 
         initListeners();
     }
 
+    /**
+     * SEARCH SUGGESTION ADAPTOR
+     */
     private void resetSearchSuggestionsAdaptor(String searchTerm) {
-        /**
-         * SEARCH SUGGESTION ADAPTOR
-         */
-        HomeSearchItemsAdaptor homeSearchItemsAdaptor;
         List<IItem> firstNItems = new ArrayList<>();
 
         if (!searchTerm.isEmpty()) {
@@ -75,22 +76,14 @@ public class SearchFragment extends Fragment {
         }
 
         // Create and Set the adaptor
-        homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
-                searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
-                "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
-        vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
+        SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
+                new SearchItemSuggestionAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems, searchTerm,
+                        getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
+        vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
 
     private void initListeners() {
-//        vh.outsideSearchContainer.setOnClickListener(v -> showSearchLogo(true));
-
-        vh.searchEditText.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                showSearchLogo(false);
-            }
-        });
-
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -118,23 +111,11 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    /**
-     * Show/hide the search bar, search suggestions and keyboard
-     *
-     * @param show boolean - True to go search bar and show keyboard
-     *                       False to go back the original page and hide keyboard
-     */
-    private void showSearchLogo(boolean show) {
-        if (show) {
-            vh.searchLogo.setVisibility(View.VISIBLE);
-            vh.outsideSearchContainer.setVisibility(View.GONE);
-        } else {
-            vh.searchLogo.setVisibility(View.GONE);
-            vh.outsideSearchContainer.setVisibility(View.VISIBLE);
-        }
+    private int getMaxNumberOfSearchSuggestionsInList() {
+        return Display.getScreenHeight(currentView) / 2 / 100;
     }
 
-    private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(getView()) / 2 / 100;
+    private String getColourInHexFromResourceId(int rId) {
+        return "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), rId) & 0x00ffffff);
     }
 }

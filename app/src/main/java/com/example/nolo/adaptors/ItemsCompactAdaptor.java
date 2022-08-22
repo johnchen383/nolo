@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.nolo.R;
 import com.example.nolo.activities.MapActivity;
-import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Display;

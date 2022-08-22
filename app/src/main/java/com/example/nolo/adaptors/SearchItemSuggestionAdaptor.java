@@ -16,7 +16,7 @@ import com.example.nolo.entities.item.IItem;
 
 import java.util.List;
 
-public class HomeSearchItemsAdaptor extends ArrayAdapter {
+public class SearchItemSuggestionAdaptor extends ArrayAdapter {
     private int mLayoutID;
     private List<IItem> mItems;
     private Context mContext;
@@ -30,8 +30,8 @@ public class HomeSearchItemsAdaptor extends ArrayAdapter {
         }
     }
     
-    public HomeSearchItemsAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects,
-                                  String searchTerm, String promptColour, String normalColour) {
+    public SearchItemSuggestionAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects,
+                                       String searchTerm, String promptColour, String normalColour) {
         super(context, resource, objects);
         mLayoutID = resource;
         mContext = context;
