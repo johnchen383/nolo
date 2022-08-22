@@ -9,10 +9,11 @@
     android:background="@android:color/transparent"
     tools:context=".activities.MapActivity">
     <FrameLayout
+        android:id="@+id/map_container"
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6">
+        android:layout_weight="0.9">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -21,8 +22,8 @@
         <ImageButton
             android:id="@+id/back_btn"
             android:background="@color/transparent"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:src="@drawable/back_arrow_filled"
             android:scaleType="centerCrop"/>
     </FrameLayout>
@@ -31,5 +32,16 @@
         android:layout_height="0dp"
         android:layout_weight="0.4"
         android:orientation="vertical"
-        android:background="@color/navy"/>
+        android:weightSum="1"
+        android:background="@color/navy">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="@dimen/header_indent"
+            android:gravity="center_vertical|left"
+            android:textSize="@dimen/font_body1"
+            android:layout_weight="0.25"
+            android:text="Harvey Normal Mt Wellington"/>
+    </LinearLayout>
 </LinearLayout>

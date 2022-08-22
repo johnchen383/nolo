@@ -1,6 +1,7 @@
 package com.example.nolo.activities;
 
 import android.Manifest;
+import android.animation.ValueAnimator;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +12,9 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -37,18 +40,23 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 public class MapActivity extends BaseActivity implements OnMapReadyCallback {
-    private GoogleMap mMap;
     private final String TAG_DIVIDER = "___";
+    private final int ANIMATION_INTERVAL = 1000;
+
+    private GoogleMap mMap;
     private ViewHolder vh;
+    private boolean isModalOpen;
 
     private class ViewHolder {
         SupportMapFragment mapFragment;
         ImageButton backBtn;
+        FrameLayout mapContainer;
 
         public ViewHolder() {
             mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             backBtn = findViewById(R.id.back_btn);
+            mapContainer = findViewById(R.id.map_container);
         }
     }
 
@@ -57,8 +65,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         vh = new ViewHolder();
+        isModalOpen = false;
         initListeners();
         vh.mapFragment.getMapAsync(this);
+
     }
 
     private void initListeners() {
@@ -113,8 +123,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         Bitmap bmp = Bitmap.createBitmap(WIDTH, HEIGHT, conf);
         Canvas canvas = new Canvas(bmp);
 
-
-
         //icon
         Bitmap mBackground = BitmapFactory.decodeResource(getResources(), R.drawable.marker_img);
         // scale bitmap
@@ -153,7 +161,9 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     }
 
     private boolean onMarkerClick(final Marker marker) {
-
+        if (!isModalOpen){
+            toggleModal();
+        }
         // Retrieve the data from the marker.
         String branchName = getBranchNameFromMarkerTag((String) marker.getTag());
 
@@ -167,5 +177,32 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         // for the default behavior to occur (which is for the camera to move such that the
         // marker is centered and for the marker's info window to open, if it has one).
         return false;
+    }
+
+    private void toggleModal() {
+        float old, target;
+
+        if (isModalOpen){
+            //if open, then close
+            old = 0.6f;
+            target = 0.9f;
+            isModalOpen = false;
+        } else {
+            //if closed, then open
+            old = 0.9f;
+            target = 0.6f;
+            isModalOpen = true;
+        }
+
+        ValueAnimator anim = ValueAnimator.ofFloat(old, target);
+        anim.addUpdateListener(valueAnimator -> {
+            float val = (Float) valueAnimator.getAnimatedValue();
+            LinearLayout.LayoutParams newParams = (LinearLayout.LayoutParams) vh.mapContainer.getLayoutParams();
+            newParams.weight = val;
+            vh.mapContainer.setLayoutParams(newParams);
+        });
+
+        anim.setDuration(ANIMATION_INTERVAL);
+        anim.start();
     }
 }
