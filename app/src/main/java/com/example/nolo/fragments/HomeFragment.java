@@ -123,20 +123,18 @@ public class HomeFragment extends Fragment {
          * SEARCH SUGGESTION ADAPTOR
          */
         HomeSearchItemsAdaptor homeSearchItemsAdaptor;
+        List<IItem> firstNItems = new ArrayList<>();
+
         if (!searchTerm.isEmpty()) {
             // First limit the number of items showing in the list
             List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-            List<IItem> firstNItems = searchSuggestions.stream().limit(MAX_NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
-
-            // and then display them
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
-                    searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
-                    "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
-        } else {
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, new ArrayList<>(),
-                    searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
-                    "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
+            firstNItems = searchSuggestions.stream().limit(MAX_NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
         }
+
+        // Create and Set the adaptor
+        homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems,
+                searchTerm, "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.faint_white) & 0x00ffffff),
+                "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), R.color.light_grey) & 0x00ffffff));
         vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
