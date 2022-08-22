@@ -47,7 +47,7 @@
             android:id="@+id/number_results_found"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="results found"
+            android:text="@string/search_results_found"
             android:textAllCaps="true"
             android:textColor="@color/light_grey"
             android:layout_gravity="center"/>
