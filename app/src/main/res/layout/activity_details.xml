@@ -124,7 +124,7 @@
                 <LinearLayout
                     android:id="@+id/ram_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/touch_target_min"
                     android:layout_marginVertical="15dp">
 
                     <TextView
@@ -132,6 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="24dp"
+                        android:layout_gravity="center"
                         android:text="Unified \nMemory" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -154,7 +155,7 @@
                 <LinearLayout
                     android:id="@+id/storage_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/touch_target_min"
                     android:layout_marginVertical="15dp">
 
                     <TextView
@@ -162,6 +163,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="24dp"
+                        android:layout_gravity="center"
                         android:text="Storage" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -184,51 +186,70 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="23dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-15dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/padding_small"
                             android:text="QUANTITY"
-                            android:textSize="@dimen/font_caption" />
+                            android:textSize="@dimen/font_body2" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-8dp"
+                            android:background="@color/transparent">
+                            <RelativeLayout
                                 android:id="@+id/decrement_btn"
-                                style="@style/TextStroke.Brown"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingHorizontal="6dp"
-                                android:text="–"
-                                android:textColor="@color/light_brown" />
+                                android:layout_width="@dimen/touch_target_min"
+                                android:layout_height="@dimen/touch_target_min"
+                                android:layout_marginRight="-5dp"
+                                android:background="@color/transparent">>
 
+                                <TextView
+                                    style="@style/TextStroke.Brown"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:paddingHorizontal="6dp"
+                                    android:text="–"
+                                    android:textColor="@color/light_brown"
+                                    android:textSize="@dimen/font_h6" />
+                            </RelativeLayout>
                             <TextView
                                 android:id="@+id/quantity_text"
                                 style="@style/TextStroke.Brown"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingHorizontal="2dp"
+                                android:layout_gravity="center"
                                 android:text="1"
-                                android:textColor="@color/light_brown" />
-
-                            <TextView
+                                android:textColor="@color/light_brown"
+                                android:textSize="@dimen/font_h6"/>
+                            <RelativeLayout
                                 android:id="@+id/increment_btn"
-                                style="@style/TextStroke.Brown"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingHorizontal="6dp"
-                                android:text="+"
-                                android:textColor="@color/light_brown" />
+                                android:layout_width="@dimen/touch_target_min"
+                                android:layout_height="@dimen/touch_target_min"
+                                android:layout_marginLeft="-5dp"
+                                android:background="@color/transparent">>
+
+                                <TextView
+                                    style="@style/TextStroke.Brown"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:paddingHorizontal="6dp"
+                                    android:text="+"
+                                    android:textColor="@color/light_brown"
+                                    android:textSize="@dimen/font_h6" />
+                            </RelativeLayout>
                         </LinearLayout>
 
                     </LinearLayout>
@@ -237,8 +258,9 @@
                         android:id="@+id/add_cart_btn"
                         style="@style/RoundButton.Filled"
                         android:layout_width="fill_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="top"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:paddingVertical="0dp"

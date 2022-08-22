@@ -21,6 +21,7 @@ import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.google.android.material.button.MaterialButton;
 
@@ -33,6 +34,7 @@ import java.util.function.Consumer;
 public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCustomisationAdaptor.ViewHolder>{
     private Context mContext;
     private List<SpecsOption> specsOptions;
+    private SpecsOptionType specType;
     private IItemVariant itemVariant;
     private Consumer<IItemVariant> updateItemVariant;
 
@@ -49,8 +51,9 @@ public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCus
         }
     }
 
-    public DetailsCustomisationAdaptor(@NonNull Context context, List<SpecsOption> specsOptions, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant){
+    public DetailsCustomisationAdaptor(@NonNull Context context, List<SpecsOption> specsOptions, SpecsOptionType specType, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant){
         this.specsOptions = specsOptions;
+        this.specType = specType;
         this.mContext = context;
         this.itemVariant = itemVariant;
         this.updateItemVariant = updateItemVariant;
@@ -69,10 +72,10 @@ public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCus
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ISpecsOption specsOption = specsOptions.get(position);
         System.out.println(specsOption.toString());
-        holder.optionText.setText(String.valueOf(specsOption.getSize()) + "GB RAM");
+        holder.optionText.setText(String.valueOf(specsOption.getSize()) + "GB " + specType.getUnits());
 
         if (specsOption.getAdditionalPrice() != 0) {
-            holder.priceText.setText("+$" + String.valueOf(specsOption.getAdditionalPrice()) + ".00");
+            holder.priceText.setText("+$" + String.valueOf(specsOption.getAdditionalPrice()) + "0");
         } else {
             holder.priceText.setVisibility(View.GONE);
         }

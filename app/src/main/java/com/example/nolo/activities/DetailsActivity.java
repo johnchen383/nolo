@@ -3,6 +3,7 @@ package com.example.nolo.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.util.Display;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
@@ -29,7 +31,8 @@ public class DetailsActivity extends BaseActivity {
 
     private class ViewHolder {
         LinearLayout transparentContainer, detailsContainer, ramContainer, storageContainer;
-        TextView itemTitle, colourTitle, quantityText, decrementBtn, incrementBtn, storeName, priceText;
+        TextView itemTitle, colourTitle, quantityText, storeName, priceText;
+        RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList;
         MaterialButton addCartBtn;
 
@@ -72,7 +75,7 @@ public class DetailsActivity extends BaseActivity {
         List<SpecsOption> storageOptions = detailsViewModel.getStorageOptions();
         System.out.println(storageOptions);
         if (storageOptions != null) {
-            DetailsCustomisationAdaptor storageAdaptor = new DetailsCustomisationAdaptor(this, storageOptions, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
+            DetailsCustomisationAdaptor storageAdaptor = new DetailsCustomisationAdaptor(this, storageOptions, SpecsOptionType.storage, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
             vh.storageList.setAdapter(storageAdaptor);
         }
 
@@ -80,8 +83,8 @@ public class DetailsActivity extends BaseActivity {
         vh.ramList.setLayoutManager(ramLayoutManager);
         List<SpecsOption> ramOptions = detailsViewModel.getRamOptions();
         if (ramOptions != null) {
-            DetailsCustomisationAdaptor ramAdaptor = new DetailsCustomisationAdaptor(this, ramOptions, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
-            vh.storageList.setAdapter(ramAdaptor);
+            DetailsCustomisationAdaptor ramAdaptor = new DetailsCustomisationAdaptor(this, ramOptions, SpecsOptionType.ram, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
+            vh.ramList.setAdapter(ramAdaptor);
         }
     }
 
@@ -95,11 +98,12 @@ public class DetailsActivity extends BaseActivity {
         switch (detailsViewModel.getItemCategory()) {
             case phones:
                 System.out.println("phones!");
-                vh.storageContainer.setVisibility(View.VISIBLE);
                 vh.ramContainer.setVisibility(View.INVISIBLE);
+                return;
             case accessories:
                 vh.ramContainer.setVisibility(View.INVISIBLE);
                 vh.storageContainer.setVisibility(View.INVISIBLE);
+                return;
         }
 
         setDynamicStyling();

@@ -38,8 +38,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<IItem> laptops = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
-
         vh = new ViewHolder();
 
 //        List<IItem> items = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);

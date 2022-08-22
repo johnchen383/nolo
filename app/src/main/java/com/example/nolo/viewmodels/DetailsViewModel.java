@@ -35,7 +35,7 @@ public class DetailsViewModel extends ViewModel {
     public DetailsViewModel(IItemVariant itemVariant) {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
-        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, 0);
+        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, 1);
     }
 
     public IItemVariant getItemVariant() {

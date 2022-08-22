@@ -13,7 +13,7 @@
             android:backgroundTint="@color/navy"
             app:cornerRadius="20dp"
             app:strokeColor="@color/white"
-            app:strokeWidth="0.9dp"
+            app:strokeWidth="1dp"
             android:outlineSpotShadowColor="@color/transparent"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/colour_circle"
