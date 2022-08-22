@@ -27,7 +27,9 @@ import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.store.IBranch;
 import com.example.nolo.entities.store.IStore;
+import com.example.nolo.entities.store.Store;
 import com.example.nolo.interactors.item.GetAllItemsUseCase;
+import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.util.LocationUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,13 +41,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private final String TAG_DIVIDER = "___";
     private final int ANIMATION_INTERVAL = 200;
 
-    private IItemVariant entryVariant;
+    private List<Marker> markers = new ArrayList<>();
+    private List<IStoreVariant> storeVariants = new ArrayList<>();
+    private IItemVariant variant;
     private GoogleMap mMap;
     private ViewHolder vh;
     private boolean isModalOpen;
@@ -71,10 +76,9 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
         vh = new ViewHolder();
         isModalOpen = false;
-        entryVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
+        variant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
         initListeners();
         vh.mapFragment.getMapAsync(this);
-
     }
 
     private void initListeners() {
@@ -97,13 +101,14 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             mMap.setMyLocationEnabled(true);
         }
 
-        List<StoreVariant> vars = GetAllItemsUseCase.getAllItems().get(0).getStoreVariants();
+        List<StoreVariant> vars = GetItemByIdUseCase.getItemById(variant.getItemId()).getStoreVariants();
 
-        LatLng loc = null;
         for (IStoreVariant v : vars) {
             IStore store = GetStoreByIdUseCase.getStoreById(v.getStoreId());
+            storeVariants.add(v);
+
             for (IBranch branch : store.getBranches()) {
-                loc = LocationUtil.getLatLngFromGeoPoint(branch.getGeoPoint());
+                LatLng loc = LocationUtil.getLatLngFromGeoPoint(branch.getGeoPoint());
 
                 Bitmap iconBmp = createMapIcon(getDisplayPrice(v.getBasePrice()));
                 Marker marker = mMap.addMarker(new MarkerOptions()
@@ -111,21 +116,16 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                         .icon(BitmapDescriptorFactory.fromBitmap(iconBmp))
                         .anchor(0.5f, 1));
                 marker.setTag(createMarkerTag(store.getStoreId(), branch.getBranchName()));
-
+                markers.add(marker);
             }
         }
 
         mMap.setOnMarkerClickListener(marker -> onMarkerClick(marker));
 
-        if (entryVariant == null && loc != null) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-            return;
-        }
-
         IBranch centredBranch = null;
 
-        for (IBranch branch : GetStoreByIdUseCase.getStoreById(entryVariant.getStoreId()).getBranches()){
-            if (branch.getBranchName().equals(entryVariant.getBranchName())){
+        for (IBranch branch : GetStoreByIdUseCase.getStoreById(variant.getStoreId()).getBranches()){
+            if (branch.getBranchName().equals(variant.getBranchName())){
                 centredBranch = branch;
                 break;
             }
@@ -135,6 +135,38 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             LatLng centredLoc = LocationUtil.getLatLngFromGeoPoint(centredBranch.getGeoPoint());
             mMap.moveCamera(CameraUpdateFactory.newLatLng(centredLoc));
         }
+
+        updateFields();
+        updateCheapestIcon();
+    }
+
+    private void updateCheapestIcon(){
+        List<Marker> cheapestMarkers = new ArrayList<>();
+        double price = Double.MAX_VALUE;
+
+        for (Marker marker : markers){
+            String storeId = getStoreIdFromMarkerTag((String) marker.getTag());
+
+            for (IStoreVariant storeVariant : storeVariants){
+                if (storeVariant.getStoreId().equals(storeId)){
+                    marker.setIcon(BitmapDescriptorFactory.fromBitmap(
+                            createMapIcon(getDisplayPrice(storeVariant.getBasePrice())))
+                    );
+
+                    if (storeVariant.getBasePrice() < price){
+                        price = storeVariant.getBasePrice();
+                        cheapestMarkers.add(marker);
+                    }
+                    break;
+                }
+            }
+        }
+
+//        if (cheapestMarker == null) return;
+
+//        cheapestMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
+//                createMapIcon(getDisplayPrice(price), getColor(R.color.light_brown)))
+//        );
     }
 
     private String getDisplayPrice(double basePrice){
@@ -142,6 +174,9 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     }
 
     private Bitmap createMapIcon(String price) {
+        return createMapIcon(price, getColor(R.color.white));
+    }
+    private Bitmap createMapIcon(String price, int colour) {
         final int WIDTH = 160;
         final int HEIGHT = 150;
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
@@ -160,7 +195,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         int margin = 5;
         int radius = 10;
         Paint color = new Paint();
-        color.setColor(getColor(R.color.white));
+        color.setColor(colour);
         canvas.drawRoundRect(new RectF(0, 0, WIDTH, HEIGHT - h - margin), radius, radius, color);
 
         //text
@@ -185,22 +220,26 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         return tag.split(TAG_DIVIDER)[1];
     }
 
+    private void updateFields(){
+        IStore variantStore = GetStoreByIdUseCase.getStoreById(variant.getStoreId());
+        vh.modalHeader.setText(variantStore.getStoreName() + " " + variant.getBranchName());
+    }
     private boolean onMarkerClick(final Marker marker) {
         if (!isModalOpen){
             toggleModal();
         }
+
         // Retrieve the data from the marker.
         String branchName = getBranchNameFromMarkerTag((String) marker.getTag());
+        String storeId = getStoreIdFromMarkerTag((String) marker.getTag());
 
-        System.out.println(branchName);
-        // Check if a click count was set, then display the click count.
-        if (branchName != null) {
-            Toast.makeText(this, branchName, Toast.LENGTH_LONG).show();
+        if (branchName != null && storeId != null) {
+            variant.setBranchName(branchName);
+            variant.setStoreId(storeId);
+
+            updateFields();
         }
 
-        // Return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
         return false;
     }
 

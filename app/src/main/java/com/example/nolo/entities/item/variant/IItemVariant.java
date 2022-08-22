@@ -15,4 +15,6 @@ public interface IItemVariant {
     String getTitle();
     String getDisplayPrice();
     String getDisplayImage();
+    void setStoreId(String id);
+    void setBranchName(String name);
 }

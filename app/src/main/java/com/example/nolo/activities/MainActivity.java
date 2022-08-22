@@ -8,7 +8,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
+import com.example.nolo.entities.item.IItem;
+import com.example.nolo.enums.CategoryType;
+import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private ViewHolder vh;
@@ -27,10 +32,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivity(new Intent(this, MapActivity.class));
-
         vh = new ViewHolder();
 
+        List<IItem> items = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
 //        vh.navView.setBackground(new ColorDrawable(0));
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
