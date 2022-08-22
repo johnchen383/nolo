@@ -90,19 +90,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="@dimen/font_h3"
-        android:paddingEnd="@dimen/font_h3"
-        android:paddingTop="22dp"
+        android:layout_marginStart="@dimen/font_h3"
+        android:layout_marginEnd="@dimen/font_h3"
+        android:layout_marginTop="22dp"
         android:background="@color/navy"
         android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
             <EditText
                 android:id="@+id/search_edittext"
-                android:layout_marginLeft="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/search_bar"
