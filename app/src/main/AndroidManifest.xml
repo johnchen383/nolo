@@ -37,7 +37,8 @@
         <activity android:name=".activities.LogInActivity" />
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.ListActivity" />
         <activity android:name=".activities.DetailsActivity" />
     </application>
