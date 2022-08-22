@@ -10,6 +10,7 @@ import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
@@ -33,7 +34,7 @@ public class DetailsViewModel extends ViewModel {
     public DetailsViewModel(IItemVariant itemVariant) {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
-        this.purchasable = new Purchasable(this.itemVariant, 0);
+        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, 0);
     }
 
     public IItemVariant getItemVariant() {

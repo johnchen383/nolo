@@ -8,4 +8,5 @@
     <color name="light_brown">#BCAAA4</color>
     <color name="light_blue">#7D8E96</color>
     <color name="transparent">@android:color/transparent</color>
+    <color name="red">#F44336</color>
 </resources>
