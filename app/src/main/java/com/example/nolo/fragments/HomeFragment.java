@@ -202,15 +202,7 @@ public class HomeFragment extends Fragment {
                 if (vh.searchEditText.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
                 } else {
-                    String searchTerm = vh.searchEditText.getText().toString();
-                    List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-
-                    // Check if Search suggestion is empty
-                    if (searchSuggestions.size() <= 0) {
-                        Toast.makeText(getActivity(), "Search suggestion is empty!", Toast.LENGTH_LONG).show();
-                    } else {
-                        goToSearchActivity(searchTerm);
-                    }
+                    goToSearchActivity(vh.searchEditText.getText().toString());
                 }
             }
         });

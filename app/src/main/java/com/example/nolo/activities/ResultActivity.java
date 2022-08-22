@@ -1,9 +1,11 @@
 package com.example.nolo.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,6 +13,7 @@ import com.example.nolo.R;
 import com.example.nolo.adaptors.SearchItemResultAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 
 import java.util.ArrayList;
@@ -23,11 +26,13 @@ public class ResultActivity extends BaseActivity {
         EditText searchBarText;
         ListView searchResultList;
         TextView numOfResultFound;
+        ImageView backBtn;
 
         public ViewHolder() {
             searchBarText = findViewById(R.id.search_edittext);
             searchResultList = findViewById(R.id.search_results_list);
             numOfResultFound = findViewById(R.id.number_results_found);
+            backBtn = findViewById(R.id.back_btn);
         }
     }
 
@@ -71,29 +76,24 @@ public class ResultActivity extends BaseActivity {
     }
 
     private void initListeners() {
-        vh.searchBarText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        Activity currentActivity = this;
 
+        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                resetSearchResults(s.toString());
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // When enter is pressed
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    resetSearchResults(vh.searchBarText.getText().toString());
+                    Keyboard.hide(currentActivity, v);
+                }
+                return false;
             }
         });
 
-        vh.searchBarText.removeTextChangedListener(new TextWatcher() {
+        vh.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                resetSearchResults(s.toString());
+            public void onClick(View v) {
+                finish();
             }
         });
     }
