@@ -2,6 +2,8 @@
     <!-- Default dimensions, per the Android Design guidelines. -->
     <dimen name="touch_target_min">48dp</dimen>
     <dimen name="font_h2">60sp</dimen>
+    <dimen name="font_h3">48sp</dimen>
+    <dimen name="font_h4">34sp</dimen>
     <dimen name="font_h5">24sp</dimen>
     <dimen name="font_h6">20sp</dimen>
     <dimen name="font_body1">16sp</dimen>
@@ -15,6 +17,7 @@
     <dimen name="padding_lrg">16dp</dimen>
     <dimen name="padding_xlrg">32dp</dimen>
     <dimen name="icon_size">20dp</dimen>
+    <dimen name="header_indent">16dp</dimen>
 
         <!-- Round button dimensions -->
         <dimen name="round_button_padding">14dp</dimen>
@@ -50,5 +53,7 @@
         <!-- Details list dimensions -->
         <dimen name="details_container_margin_top">500dp</dimen>
         <dimen name="details_color_size">14dp</dimen>
+
+    <dimen name="list_toggle_radius">5dp</dimen>
 
 </resources>

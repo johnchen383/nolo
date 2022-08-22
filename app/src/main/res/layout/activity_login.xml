@@ -8,8 +8,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:clickable="true"
-    android:background="@color/navy">
+    android:clickable="true">
 
     <ImageView
         android:layout_width="match_parent"

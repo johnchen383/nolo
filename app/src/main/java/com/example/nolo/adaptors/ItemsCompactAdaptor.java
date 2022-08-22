@@ -11,17 +11,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import com.example.nolo.R;
-import com.example.nolo.activities.DetailsActivity;
+import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.util.Display;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedItemsAdaptor.ViewHolder>{
+public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdaptor.ViewHolder>{
     private List<ItemVariant> featuredItems;
     private Context mContext;
+    private double widthFactor;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
@@ -38,16 +40,17 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
         }
     }
 
-    public HomeFeaturedItemsAdaptor(@NonNull Context context, List<ItemVariant> featuredItems){
+    public ItemsCompactAdaptor(@NonNull Context context, List<ItemVariant> featuredItems, double widthFactor){
         this.featuredItems = featuredItems;
         this.mContext = context;
+        this.widthFactor = widthFactor;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_home_featured, parent, false);
+                .inflate(R.layout.item_compact, parent, false);
 
         return new ViewHolder(view);
     }
@@ -65,8 +68,19 @@ public class HomeFeaturedItemsAdaptor extends RecyclerView.Adapter<HomeFeaturedI
                 mContext.getPackageName());
         holder.img.setImageResource(i);
 
+        double width = Display.getScreenWidth(holder.itemClickable) * widthFactor;
+
+        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) holder.itemClickable.getLayoutParams();
+        layoutParams.width = (int) width;
+
+        LinearLayout.LayoutParams ivLayoutParams = (LinearLayout.LayoutParams) holder.img.getLayoutParams();
+        ivLayoutParams.height = (int) (0.75 * width);
+
+        holder.itemClickable.setLayoutParams(layoutParams);
+        holder.img.setLayoutParams(ivLayoutParams);
+
         holder.itemClickable.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, DetailsActivity.class); //TODO: change to details activity
+            Intent intent = new Intent(mContext, SearchActivity.class); //TODO: change to details activity
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
             mContext.startActivity(intent);

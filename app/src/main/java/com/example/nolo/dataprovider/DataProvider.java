@@ -328,8 +328,7 @@ public class DataProvider {
                 new SpecsOption(512, 0),
                 new SpecsOption(1024, 350),
                 new SpecsOption(2048, 1050),
-                new SpecsOption(4096, 2100),
-                new SpecsOption(8192, 4200)
+                new SpecsOption(4096, 2100)
         ));
         specs = new LaptopSpecs("MacBook Pro 16\" models",
                 "macOS",
@@ -435,6 +434,76 @@ public class DataProvider {
                 "Logitech Pro X DTS Headphone"
         ));
         items.add(new Laptop("Microsoft Surface Laptop 4",
+                "Microsoft",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 3.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000"),
+                new Colour("blue", "#9A9CA3"),
+                new Colour("sandstone", "#79838A"),
+                new Colour("platinum", "#CBB1A0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1549),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1599),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1598)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 400)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 450)
+        ));
+        specs = new LaptopSpecs("Microsoft Surface Laptop 3 13.5\"",
+                "Windows 11 Home",
+                "13.5\" 2256 x 1504 (201 PPI)",
+                "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)",
+                "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics",
+                rams,
+                storages,
+                "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)",
+                "Backlight",
+                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology",
+                "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos",
+                "10 point multi-touch",
+                "N/A",
+                "N/A",
+                "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port",
+                "Battery Capacity Nominal (WH) 47.4",
+                "Power Supply",
+                "308 x 223 x 14.5 mm",
+                "1.27 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_surface_laptop_4_1_black",
+                "item_laptop_surface_laptop_4_2_black",
+                "item_laptop_surface_laptop_4_3_black",
+
+                "item_laptop_surface_laptop_4_1_blue",
+                "item_laptop_surface_laptop_4_2_blue",
+                "item_laptop_surface_laptop_4_3_blue",
+
+                "item_laptop_surface_laptop_4_1_sandstone",
+                "item_laptop_surface_laptop_4_2_sandstone",
+                "item_laptop_surface_laptop_4_3_sandstone",
+
+                "item_laptop_surface_laptop_4_1_platinum",
+                "item_laptop_surface_laptop_4_2_platinum",
+                "item_laptop_surface_laptop_4_3_platinum"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
+        ));
+        items.add(new Laptop("Microsoft Surface Laptop 3",
                 "Microsoft",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -738,55 +807,55 @@ public class DataProvider {
         /*
          * Laptop 9
          */
-        colours = new ArrayList<>(Arrays.asList(
-                new Colour("black", "#000000")
-        ));
-        itemStoreVariant = new ArrayList<>(Arrays.asList(
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
-        ));
-        rams = new ArrayList<>(Arrays.asList(
-                new SpecsOption(16, 0),
-                new SpecsOption(32, 300)
-        ));
-        storages = new ArrayList<>(Arrays.asList(
-                new SpecsOption(1024, 0)
-        ));
-        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-                "Windows 11 Home",
-                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
-                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
-                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
-                rams,
-                storages,
-                "Built-in Full HD webcam",
-                "Per-Key Backlighting, powered by Razer Chroma",
-                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
-                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
-                "N/A",
-                "N/A",
-                "N/A",
-                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
-                "Built-in 82WHr rechargeable lithium-ion polymer battery",
-                "280W power adapter",
-                "395 x 260 x 19.9 mm",
-                "2.75 kg");
-        imageUris = new ArrayList<>(Arrays.asList(
-                "item_laptop_razer_blade_17_1_black",
-                "item_laptop_razer_blade_17_2_black",
-                "item_laptop_razer_blade_17_3_black"
-        ));
-        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-                "Logitech Pro X DTS Headphone",
-                "HyperX QuadCast S Standalone Microphone",
-                "Sony WH-1000XM4"
-        ));
-        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-                "Razer",
-                (LaptopSpecs) specs,
-                itemStoreVariant,
-                imageUris,
-                recommendedAccessoryIds));
+//        colours = new ArrayList<>(Arrays.asList(
+//                new Colour("black", "#000000")
+//        ));
+//        itemStoreVariant = new ArrayList<>(Arrays.asList(
+//                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+//                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
+//        ));
+//        rams = new ArrayList<>(Arrays.asList(
+//                new SpecsOption(16, 0),
+//                new SpecsOption(32, 300)
+//        ));
+//        storages = new ArrayList<>(Arrays.asList(
+//                new SpecsOption(1024, 0)
+//        ));
+//        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+//                "Windows 11 Home",
+//                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
+//                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
+//                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
+//                rams,
+//                storages,
+//                "Built-in Full HD webcam",
+//                "Per-Key Backlighting, powered by Razer Chroma",
+//                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
+//                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
+//                "N/A",
+//                "N/A",
+//                "N/A",
+//                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
+//                "Built-in 82WHr rechargeable lithium-ion polymer battery",
+//                "280W power adapter",
+//                "395 x 260 x 19.9 mm",
+//                "2.75 kg");
+//        imageUris = new ArrayList<>(Arrays.asList(
+//                "item_laptop_razer_blade_17_1_black",
+//                "item_laptop_razer_blade_17_2_black",
+//                "item_laptop_razer_blade_17_3_black"
+//        ));
+//        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+//                "Logitech Pro X DTS Headphone",
+//                "HyperX QuadCast S Standalone Microphone",
+//                "Sony WH-1000XM4"
+//        ));
+//        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+//                "Razer",
+//                (LaptopSpecs) specs,
+//                itemStoreVariant,
+//                imageUris,
+//                recommendedAccessoryIds));
 
         /*
          * Laptop 10
@@ -878,7 +947,7 @@ public class DataProvider {
                 new SpecsOption(512, 400)
         ));
         specs = new PhoneSpecs("Samsung Galaxy S22 Ultra",
-                "Android 12",
+                "android",
                 "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
                 "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
                 storages,
@@ -942,7 +1011,7 @@ public class DataProvider {
                 new SpecsOption(256, 100)
         ));
         specs = new PhoneSpecs("Samsung Galaxy S22",
-                "Android 12",
+                "android",
                 "6.1\" Dynamic AMOLED 2X display; FHD+ (2340x1080); 120Hz refresh rate",
                 "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
                 storages,
@@ -1012,7 +1081,7 @@ public class DataProvider {
                 new SpecsOption(1024, 1000)
         ));
         specs = new PhoneSpecs("Apple iPhone 13 Pro Max",
-                "iOS 15",
+                "ios",
                 "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
                 "A15 Bionic chip",
                 storages,
@@ -1082,7 +1151,7 @@ public class DataProvider {
                 new SpecsOption(512, 600)
         ));
         specs = new PhoneSpecs("Apple iPhone 13",
-                "iOS 15",
+                "ios",
                 "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
                 "A15 Bionic chip",
                 storages,
@@ -1153,7 +1222,7 @@ public class DataProvider {
                 new SpecsOption(256, 300)
         ));
         specs = new PhoneSpecs("Apple iPhone SE",
-                "iOS 15",
+                "ios",
                 "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
                 "A15 Bionic chip",
                 storages,
@@ -1210,7 +1279,7 @@ public class DataProvider {
                 new SpecsOption(256, 100)
         ));
         specs = new PhoneSpecs("OnePlus 10 Pro",
-                "Android 12",
+                "android",
                 "17.02 centimeters (6.7 inches) (measured diagonally from corner to corner); 3216 X 1440 pixels 525 ppi; 120 Hz Fluid AMOLED with LTPO",
                 "Snapdragon® 8 Gen 1 Mobile Platform",
                 storages,
@@ -1263,7 +1332,7 @@ public class DataProvider {
                 new SpecsOption(512, 400)
         ));
         specs = new PhoneSpecs("HUAWEI P40 Pro",
-                "EMUI 10.1(Based on Android 10)",
+                "android",
                 "6.58 inches; OLED, up to 90 Hz frame refresh rate; 2640 x 1200 Pixels",
                 "HUAWEI Kirin 990 5G; Octa-core",
                 storages,
@@ -1316,7 +1385,7 @@ public class DataProvider {
                 new SpecsOption(256, 0)
         ));
         specs = new PhoneSpecs("Xiaomi 12 Pro",
-                "Android 12",
+                "android",
                 "WQHD+ 6.73\" AMOLED DotDisplay; 3200 x 1440; 552ppi; 480Hz",
                 "Snapdragon® 8 Gen 1",
                 storages,
@@ -1370,7 +1439,7 @@ public class DataProvider {
                 new SpecsOption(128, 0)
         ));
         specs = new PhoneSpecs("Nokia G21",
-                "Android 11",
+                "android",
                 "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate",
                 "Unisoc T606",
                 storages,
@@ -1421,7 +1490,7 @@ public class DataProvider {
                 new SpecsOption(2, 0)
         ));
         specs = new PhoneSpecs("Nokia 225 4G",
-                "S30+",
+                "android",
                 "2.4 inch; QVGA resolution",
                 "Unisoc T117",
                 storages,

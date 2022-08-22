@@ -1,5 +1,7 @@
 package com.example.nolo.activities;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,15 +32,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-//        DataProvider.clearAndAddEntity(CategoriesRepository.COLLECTION_PATH_CATEGORIES, (a) -> DataProvider.addCategoriesToFirebase());
-//        DataProvider.addUsersToFirestore();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         vh = new ViewHolder();
+
+//        vh.navView.setBackground(new ColorDrawable(0));
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile)
