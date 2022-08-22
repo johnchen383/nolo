@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.nolo.R;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
+import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.store.IBranch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.interactors.item.GetAllItemsUseCase;
@@ -44,6 +45,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private final String TAG_DIVIDER = "___";
     private final int ANIMATION_INTERVAL = 200;
 
+    private IItemVariant entryVariant;
     private GoogleMap mMap;
     private ViewHolder vh;
     private boolean isModalOpen;
@@ -69,6 +71,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
         vh = new ViewHolder();
         isModalOpen = false;
+        entryVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
         initListeners();
         vh.mapFragment.getMapAsync(this);
 
@@ -95,16 +98,16 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         }
 
         List<StoreVariant> vars = GetAllItemsUseCase.getAllItems().get(0).getStoreVariants();
-        LatLng currLoc = null;
 
+        LatLng loc = null;
         for (IStoreVariant v : vars) {
             IStore store = GetStoreByIdUseCase.getStoreById(v.getStoreId());
             for (IBranch branch : store.getBranches()) {
-                currLoc = LocationUtil.getLatLngFromGeoPoint(branch.getGeoPoint());
+                loc = LocationUtil.getLatLngFromGeoPoint(branch.getGeoPoint());
 
                 Bitmap iconBmp = createMapIcon(getDisplayPrice(v.getBasePrice()));
                 Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(currLoc)
+                        .position(loc)
                         .icon(BitmapDescriptorFactory.fromBitmap(iconBmp))
                         .anchor(0.5f, 1));
                 marker.setTag(createMarkerTag(store.getStoreId(), branch.getBranchName()));
@@ -112,11 +115,26 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             }
         }
 
-        // Add a marker in Sydney and move the camera
-
-        if (currLoc != null) mMap.moveCamera(CameraUpdateFactory.newLatLng(currLoc));
-
         mMap.setOnMarkerClickListener(marker -> onMarkerClick(marker));
+
+        if (entryVariant == null && loc != null) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            return;
+        }
+
+        IBranch centredBranch = null;
+
+        for (IBranch branch : GetStoreByIdUseCase.getStoreById(entryVariant.getStoreId()).getBranches()){
+            if (branch.getBranchName().equals(entryVariant.getBranchName())){
+                centredBranch = branch;
+                break;
+            }
+        }
+
+        if (centredBranch != null){
+            LatLng centredLoc = LocationUtil.getLatLngFromGeoPoint(centredBranch.getGeoPoint());
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(centredLoc));
+        }
     }
 
     private String getDisplayPrice(double basePrice){
