@@ -14,7 +14,7 @@
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6">
+        android:layout_weight="0.9">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,11 +39,10 @@
         <TextView
             android:id="@+id/modal_header"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="80dp"
             android:paddingLeft="48dp"
             android:gravity="center_vertical|left"
-            android:textSize="@dimen/font_body1"
-            android:layout_weight="1"
+            android:textSize="@dimen/font_h6"
             android:text="Harvey Normal Mt Wellington"/>
         <TextView
             android:id="@+id/address"
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="48dp"
             android:gravity="center_vertical|left"
-            android:textSize="@dimen/font_overline"
+            android:textSize="@dimen/font_body2"
             android:text="addy"/>
         <TextView
             android:id="@+id/price"
@@ -59,7 +58,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="48dp"
             android:gravity="center_vertical|left"
-            android:textSize="@dimen/font_body2"
+            android:textSize="@dimen/font_h6"
+            android:textColor="@color/light_brown"
             android:text="$011"/>
         <LinearLayout
             android:layout_marginTop="8dp"
@@ -75,8 +75,8 @@
                 <ImageView
                     android:layout_margin="8dp"
                     android:id="@+id/item_img"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/item_accessory_sony_wh_1000xm4_1_black" />
             </LinearLayout>
@@ -92,19 +92,12 @@
                     android:layout_height="wrap_content"
                     android:text="title"/>
                 <TextView
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:textSize="@dimen/font_body2"
                     android:paddingLeft="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="In Stock"/>
-                <TextView
-                    android:layout_marginTop="32dp"
-                    android:textSize="@dimen/font_body2"
-                    android:paddingLeft="32dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Available in"/>
             </LinearLayout>
 
         </LinearLayout>

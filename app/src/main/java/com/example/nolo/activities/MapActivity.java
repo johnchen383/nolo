@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +26,14 @@ import com.example.nolo.R;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IBranch;
 import com.example.nolo.entities.store.IStore;
 import com.example.nolo.entities.store.Store;
 import com.example.nolo.interactors.item.GetAllItemsUseCase;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.LocationUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,6 +43,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +64,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         ImageButton backBtn;
         FrameLayout mapContainer;
         TextView modalHeader;
+        TextView address;
+        TextView price;
+        ImageView img;
+        TextView title;
+        MaterialButton branchBtn;
 
         public ViewHolder() {
             mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -67,6 +76,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             backBtn = findViewById(R.id.back_btn);
             mapContainer = findViewById(R.id.map_container);
             modalHeader = findViewById(R.id.modal_header);
+            address = findViewById(R.id.address);
+            price = findViewById(R.id.price);
+            img = findViewById(R.id.item_img);
+            title = findViewById(R.id.title);
+            branchBtn = findViewById(R.id.branch_btn);
         }
     }
 
@@ -79,6 +93,14 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         variant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
         initListeners();
         vh.mapFragment.getMapAsync(this);
+
+        int i = getResources().getIdentifier(
+                variant.getDisplayImage(), "drawable",
+                getPackageName());
+        vh.img.setImageResource(i);
+        vh.title.setText(variant.getTitle());
+
+        vh.modalHeader.getLayoutParams().height = (int)(Display.getScreenHeight(vh.modalHeader) * 0.1);
     }
 
     private void initListeners() {
@@ -227,6 +249,22 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private void updateFields() {
         IStore variantStore = GetStoreByIdUseCase.getStoreById(variant.getStoreId());
         vh.modalHeader.setText(variantStore.getStoreName() + " " + variant.getBranchName());
+
+        List<Branch> branches = variantStore.getBranches();
+
+        for (Branch branch : branches){
+            if (branch.getBranchName().equals(variant.getBranchName())){
+                vh.address.setText(branch.getAddress());
+                break;
+            }
+        }
+
+        for (IStoreVariant storeVariant : storeVariants) {
+            if (storeVariant.getStoreId().equals(variant.getStoreId())) {
+                vh.price.setText(getDisplayPrice(storeVariant.getBasePrice()));
+                break;
+            }
+        }
     }
 
     private boolean onMarkerClick(final Marker marker) {
