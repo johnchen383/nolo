@@ -1,7 +1,9 @@
 package com.example.nolo.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.util.Display;
@@ -34,6 +37,7 @@ public class DetailsActivity extends BaseActivity {
         TextView itemTitle, colourTitle, quantityText, storeName, priceText;
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList;
+        ImageView storesBtn;
         MaterialButton addCartBtn;
 
         public ViewHolder() {
@@ -52,6 +56,7 @@ public class DetailsActivity extends BaseActivity {
             addCartBtn = findViewById(R.id.add_cart_btn);
             storeName = findViewById(R.id.store_name);
             priceText = findViewById(R.id.price_text);
+            storesBtn = findViewById(R.id.store_btn);
         }
     }
 
@@ -97,7 +102,6 @@ public class DetailsActivity extends BaseActivity {
         System.out.print("category: " + detailsViewModel.getItemCategory().toString());
         switch (detailsViewModel.getItemCategory()) {
             case phones:
-                System.out.println("phones!");
                 vh.ramContainer.setVisibility(View.INVISIBLE);
                 return;
             case accessories:
@@ -111,6 +115,7 @@ public class DetailsActivity extends BaseActivity {
 
     private void setDynamicStyling() {
         vh.colourTitle.setText(capitaliseFirst(detailsViewModel.getVariantColour().getName()));
+        vh.priceText.setText(detailsViewModel.getItemVariant().getDisplayPrice() + " NZD");
     }
 
     private void initListeners() {
@@ -122,6 +127,12 @@ public class DetailsActivity extends BaseActivity {
         vh.incrementBtn.setOnClickListener(v -> {
             detailsViewModel.getPurchasable().incrementOrDecrementQuantity(true);
             vh.quantityText.setText(String.valueOf(detailsViewModel.getPurchasable().getQuantity()));
+        });
+
+        vh.storesBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MapActivity.class);
+            intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) detailsViewModel.getItemVariant());
+            startActivity(intent);
         });
 
         vh.addCartBtn.setOnClickListener(v -> {
