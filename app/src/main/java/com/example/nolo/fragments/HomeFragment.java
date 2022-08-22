@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -149,6 +150,24 @@ public class HomeFragment extends Fragment {
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
             vh.searchEditText.requestFocus();
+        });
+
+        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // When Enter key pressed, go to search list
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    Intent intent = new Intent(getActivity(), SearchActivity.class);
+                    intent.putExtra(getString(R.string.search_term), vh.searchEditText.getText().toString());
+                    startActivity(intent, Animation.Fade(getActivity()).toBundle());
+
+                // When Back key pressed, hide the search bar
+                } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    showSearchContainer(false);
+                }
+
+                return false;
+            }
         });
 
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
