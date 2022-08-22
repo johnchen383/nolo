@@ -11,6 +11,12 @@ import com.example.nolo.R;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.dataprovider.DataProvider;
+import com.example.nolo.entities.item.IItem;
+import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.CollectionPath;
+import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.util.DeviceLocation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -31,6 +37,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        List<IItem> laptops = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
 
         vh = new ViewHolder();
 

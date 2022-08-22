@@ -13,6 +13,7 @@ import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
+import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
 import com.example.nolo.interactors.user.AddViewedItemUseCase;
 
@@ -57,12 +58,18 @@ public class DetailsViewModel extends ViewModel {
         return itemVariant.getColour();
     }
 
+    public String getStoreBranchName() {
+        String branchName = itemVariant.getBranchName();
+        String storeName = GetStoreByIdUseCase.getStoreById(itemVariant.getStoreId()).getStoreName();
+
+        return storeName + " " + branchName;
+    }
+
     public CategoryType getItemCategory() { return itemVariant.getCategoryType(); }
 
     public List<SpecsOption> getStorageOptions() {
-        System.out.println(itemVariant.toString());
         if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
-            System.out.println("hi" + item.getSpecs().getStorageOptions());
+            System.out.println(item.getSpecs().toString());
             return item.getSpecs().getStorageOptions();
         } else {
             System.err.println("Storage options not available");
