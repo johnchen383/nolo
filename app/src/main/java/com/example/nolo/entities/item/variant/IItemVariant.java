@@ -6,6 +6,7 @@ import com.example.nolo.enums.CategoryType;
 
 public interface IItemVariant {
     Colour getColour();
+    void setColour(Colour colour);
     String getItemId();
     CategoryType getCategoryType();
     String getStoreId();

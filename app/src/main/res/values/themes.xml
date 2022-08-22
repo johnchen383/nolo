@@ -63,12 +63,39 @@
 
     <style name="RoundButton.Filled">
         <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">@null</item>
+        <item name="strokeWidth">@null</item>
+        <item name="android:textColor">@color/navy</item>
     </style>
 
     <style name="RoundButton.Icon">
         <item name="iconSize">@dimen/icon_size</item>
         <item name="iconTint">@null</item>
         <item name="iconGravity">textStart</item>
+    </style>
+
+    <!-- Details spec tag styles -->
+    <style name="DetailsSpecTag">
+        <item name="android:paddingVertical">5dp</item>
+        <item name="android:paddingHorizontal">7dp</item>
+        <item name="android:background">@drawable/details_spec_tag</item>
+        <item name="android:textColor">@color/faint_white</item>
+        <item name="android:textSize">@dimen/font_overline</item>
+    </style>
+
+    <!-- Text stroke styles -->
+    <style name="TextStroke">
+        <item name="android:shadowDx">1.5</item>
+        <item name="android:shadowDy">1.3</item>
+        <item name="android:shadowRadius">1.6</item>
+    </style>
+
+    <style name="TextStroke.White">
+        <item name="android:shadowColor">@color/white</item>
+    </style>
+
+    <style name="TextStroke.Brown">
+        <item name="android:shadowColor">@color/light_brown</item>
     </style>
 
     <!-- Touch target container styles -->
