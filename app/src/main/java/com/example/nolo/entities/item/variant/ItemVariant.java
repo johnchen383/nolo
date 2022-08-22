@@ -145,6 +145,16 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
+    public void setStoreId(String id){
+        this.storeId = id;
+    }
+
+    @Override
+    public void setBranchName(String name){
+        this.branchName = name;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

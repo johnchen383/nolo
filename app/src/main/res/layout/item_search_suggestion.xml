@@ -3,6 +3,7 @@
     android:id="@+id/search_suggestion_item_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/navy"
     android:text="item name"
     android:textSize="@dimen/font_body1"
     android:maxLines="1"
