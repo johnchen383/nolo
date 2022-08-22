@@ -15,7 +15,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/list_back_arrow"
+            android:src="@drawable/back_arrow_hollow"
             android:background="@color/transparent"/>
         <ImageView
             android:id="@+id/category_header"

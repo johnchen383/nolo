@@ -2,11 +2,14 @@ package com.example.nolo.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.nolo.R;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
@@ -29,18 +32,31 @@ import java.util.List;
 public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private final String TAG_DIVIDER = "___";
+    private ViewHolder vh;
 
+    private class ViewHolder {
+        SupportMapFragment mapFragment;
+        ImageButton backBtn;
+
+        public ViewHolder(){
+            mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            backBtn = findViewById(R.id.back_btn);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        vh = new ViewHolder();
+        initListeners();
+        vh.mapFragment.getMapAsync(this);
+    }
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-
-        mapFragment.getView().setBackgroundColor(getColor(R.color.white));
-        mapFragment.getMapAsync(this);
+    private void initListeners(){
+        vh.backBtn.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     @Override
@@ -71,17 +87,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         if (currLoc != null) mMap.moveCamera(CameraUpdateFactory.newLatLng(currLoc));
 
         mMap.setOnMarkerClickListener(marker -> onMarkerClick(marker));
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                return null;
-            }
-        });
     }
 
     private String createMarkerTag(String storeId, String branchName){
