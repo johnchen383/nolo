@@ -30,7 +30,7 @@ import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
-import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
+import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
@@ -135,10 +135,10 @@ public class HomeFragment extends Fragment {
         }
 
         // Create and Set the adaptor
-        HomeSearchItemsAdaptor homeSearchItemsAdaptor =
-                new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems, searchTerm,
+        SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
+                new SearchItemSuggestionAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems, searchTerm,
                         getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
-        vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
+        vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
 
