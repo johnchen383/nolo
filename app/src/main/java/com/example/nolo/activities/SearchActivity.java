@@ -35,14 +35,17 @@ public class SearchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
         vh = new ViewHolder();
-        initAdaptors();
+        vh.searchBarText.setText(searchTerm);
+
+        initAdaptors(searchTerm);
         initListeners();
     }
 
-    private void initAdaptors() {
-        resetSearchResults(getIntent().getExtras().getString(getString(R.string.search_term)));
+    private void initAdaptors(String searchTerm) {
+        resetSearchResults(searchTerm);
     }
 
     private void resetSearchResults(String searchTerm) {
