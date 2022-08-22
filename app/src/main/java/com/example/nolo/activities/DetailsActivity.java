@@ -37,7 +37,7 @@ public class DetailsActivity extends BaseActivity {
         TextView itemTitle, colourTitle, quantityText, storeName, priceText;
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList;
-        ImageView storesBtn;
+        ImageView closeBtn, storesBtn;
         MaterialButton addCartBtn;
 
         public ViewHolder() {
@@ -57,6 +57,7 @@ public class DetailsActivity extends BaseActivity {
             storeName = findViewById(R.id.store_name);
             priceText = findViewById(R.id.price_text);
             storesBtn = findViewById(R.id.store_btn);
+            closeBtn = findViewById(R.id.close_btn);
         }
     }
 
@@ -103,18 +104,18 @@ public class DetailsActivity extends BaseActivity {
         switch (detailsViewModel.getItemCategory()) {
             case phones:
                 vh.ramContainer.setVisibility(View.INVISIBLE);
-                return;
+                break;
             case accessories:
                 vh.ramContainer.setVisibility(View.INVISIBLE);
                 vh.storageContainer.setVisibility(View.INVISIBLE);
-                return;
+                break;
         }
-
         setDynamicStyling();
     }
 
     private void setDynamicStyling() {
         vh.colourTitle.setText(capitaliseFirst(detailsViewModel.getVariantColour().getName()));
+        System.out.println("price: " + detailsViewModel.getItemVariant().getDisplayPrice());
         vh.priceText.setText(detailsViewModel.getItemVariant().getDisplayPrice() + " NZD");
     }
 
@@ -137,6 +138,11 @@ public class DetailsActivity extends BaseActivity {
 
         vh.addCartBtn.setOnClickListener(v -> {
             detailsViewModel.addCart();
+        });
+
+        vh.closeBtn.setOnClickListener(v -> {
+            super.onBackPressed();
+            this.finish();
         });
     }
 

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
+import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
 
@@ -48,5 +49,14 @@ public class Phone extends Item {
     @Exclude
     public ISpecs getSpecs(){
         return getPhoneSpecs();
+    }
+
+    @Override
+    @Exclude
+    public IItemVariant getDefaultItemVariant(){
+        IItemVariant itemVariant = super.getDefaultItemVariant();
+        itemVariant.setStorageOption(phoneSpecs.getStorageOptions().get(0));
+
+        return itemVariant;
     }
 }

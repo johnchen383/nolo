@@ -24,7 +24,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@null" />
+                android:background="@null">
+                <ImageView
+                    android:id="@+id/close_btn"
+                    android:layout_width="@dimen/touch_target_min"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="27dp"
+                    android:paddingRight="28dp"
+                    app:srcCompat="@drawable/exit_cross" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/details_container"
@@ -50,7 +59,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/colours_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/touch_target_min"
                         android:layout_gravity="center" />
 
                     <TextView
@@ -80,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_lrg"
-                    android:layout_marginBottom="60dp">
+                    android:layout_marginBottom="25dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -117,76 +126,51 @@
                             android:layout_gravity="bottom"
                             app:srcCompat="@drawable/details_store_btn" />
                     </FrameLayout>
-
                 </RelativeLayout>
 
 
                 <LinearLayout
                     android:id="@+id/ram_container"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/touch_target_min"
-                    android:layout_marginVertical="15dp">
-
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="vertical">
                     <TextView
                         style="@style/TextStroke.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="24dp"
-                        android:layout_gravity="center"
-                        android:text="Unified \nMemory" />
+                        android:layout_marginBottom="8dp"
+                        android:text="Unified Memory" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ram_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-<!--                    <com.google.android.material.button.MaterialButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:backgroundTint="@color/white"-->
-<!--                        android:insetTop="0dp"-->
-<!--                        android:insetBottom="0dp"-->
-<!--                        android:text="8GB RAM"-->
-<!--                        android:textColor="@color/navy"-->
-<!--                        android:textSize="@dimen/font_caption"-->
-<!--                        app:cornerRadius="8dp" />-->
+                        android:layout_height="@dimen/touch_target_min" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/storage_container"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/touch_target_min"
-                    android:layout_marginVertical="15dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         style="@style/TextStroke.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="24dp"
-                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
                         android:text="Storage" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/storage_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-<!--                    <com.google.android.material.button.MaterialButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:backgroundTint="@color/white"-->
-<!--                        android:insetTop="0dp"-->
-<!--                        android:insetBottom="0dp"-->
-<!--                        android:text="8GB RAM"-->
-<!--                        android:textColor="@color/navy"-->
-<!--                        android:textSize="@dimen/font_caption"-->
-<!--                        app:cornerRadius="8dp" />-->
+                        android:layout_height="@dimen/touch_target_min" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="23dp">
 
                     <LinearLayout

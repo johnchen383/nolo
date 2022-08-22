@@ -97,8 +97,18 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
+    public void setStorageOption(SpecsOption storageOption) {
+        this.storageOption = storageOption;
+    }
+
+    @Override
     public SpecsOption getRamOption() {
         return ramOption;
+    }
+
+    @Override
+    public void setRamOption(SpecsOption ramOption) {
+        this.ramOption = ramOption;
     }
 
     @Override
@@ -122,7 +132,7 @@ public class ItemVariant implements IItemVariant, Serializable {
             displayPrice += this.storageOption.getAdditionalPrice();
         }
 
-        return String.format("%.2f", displayPrice);
+        return String.format("%.0f.00", displayPrice);
     }
 
     @Override
