@@ -120,12 +120,13 @@
                 android:id="@+id/search_suggestions_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_lrg"
-                android:layout_marginEnd="@dimen/padding_lrg"
+                android:layout_marginStart="@dimen/font_h2"
+                android:layout_marginEnd="@dimen/font_h2"
                 android:layout_gravity="center_horizontal"
-                android:divider="@color/faint_white"
+                android:divider="@color/light_navy"
                 android:dividerHeight="1sp"
-                android:orientation="vertical"/>
+                android:orientation="vertical"
+                android:visibility="gone"/>
         </LinearLayout>
     </FrameLayout>
 </ScrollView>
