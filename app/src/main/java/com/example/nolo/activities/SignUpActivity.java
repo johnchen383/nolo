@@ -33,7 +33,6 @@ import java.io.File;
 
 public class SignUpActivity extends BaseActivity {
     private SignUpViewModel signUpViewModel;
-
     private ViewHolder vh;
 
     private class ViewHolder {
@@ -130,7 +129,7 @@ public class SignUpActivity extends BaseActivity {
 
         vh.termsBtn.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"), "application/pdf");
+            intent.setDataAndType(Uri.parse("https://nolo-docs.vercel.app/nolo_terms.pdf"), "application/pdf");
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
