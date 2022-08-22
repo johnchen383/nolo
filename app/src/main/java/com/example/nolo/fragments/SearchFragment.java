@@ -33,6 +33,7 @@ import java.util.stream.Collectors;
 public class SearchFragment extends Fragment {
     private ViewHolder vh;
     private SearchViewModel searchViewModel;
+    private View currentView;
 
     private class ViewHolder {
         LinearLayout outsideSearchContainer;
@@ -40,11 +41,11 @@ public class SearchFragment extends Fragment {
         EditText searchEditText;
         ListView searchSuggestionsList;
 
-        public ViewHolder(){
-            outsideSearchContainer = getView().findViewById(R.id.search_fragment_outside_search_container);
-            searchLogo = getView().findViewById(R.id.search_logo);
-            searchEditText = getView().findViewById(R.id.search_fragment_edittext);
-            searchSuggestionsList = getView().findViewById(R.id.search_fragment_suggestions_list);
+        public ViewHolder(View view){
+            outsideSearchContainer = view.findViewById(R.id.search_fragment_outside_search_container);
+            searchLogo = view.findViewById(R.id.search_logo);
+            searchEditText = view.findViewById(R.id.search_fragment_edittext);
+            searchSuggestionsList = view.findViewById(R.id.search_fragment_suggestions_list);
         }
     }
 
@@ -54,7 +55,8 @@ public class SearchFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        vh = new ViewHolder();
+        currentView = view;
+        vh = new ViewHolder(view);
         searchViewModel =
                 new ViewModelProvider(this).get(SearchViewModel.class);
 
@@ -135,6 +137,6 @@ public class SearchFragment extends Fragment {
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(getView()) / 2 / 100;
+        return Display.getScreenHeight(currentView) / 2 / 100;
     }
 }
