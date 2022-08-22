@@ -134,6 +134,13 @@ public class SignUpActivity extends BaseActivity {
             startActivity(intent);
         });
 
+        vh.privacyBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse("https://nolo-docs.vercel.app/nolo_privacy.pdf"), "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        });
+
         vh.logInBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, LogInActivity.class));
 //            overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
