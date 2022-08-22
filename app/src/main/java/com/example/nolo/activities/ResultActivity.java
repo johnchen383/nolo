@@ -16,7 +16,7 @@ import com.example.nolo.util.ListUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends BaseActivity {
+public class ResultActivity extends BaseActivity {
     private ViewHolder vh;
 
     private class ViewHolder {

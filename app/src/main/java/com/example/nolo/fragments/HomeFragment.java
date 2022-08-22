@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.SearchActivity;
+import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -246,7 +246,7 @@ public class HomeFragment extends Fragment {
         // Hide the keyboard
         Keyboard.hide(getActivity(), currentView);
 
-        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        Intent intent = new Intent(getActivity(), ResultActivity.class);
         intent.putExtra(getString(R.string.search_term), searchTerm);
         startActivity(intent, Animation.Fade(getActivity()).toBundle());
     }
