@@ -29,7 +29,7 @@ public class DetailsActivity extends BaseActivity {
 
     private class ViewHolder {
         LinearLayout transparentContainer, detailsContainer, ramContainer, storageContainer;
-        TextView itemTitle, colourTitle, quantityText, decrementBtn, incrementBtn;
+        TextView itemTitle, colourTitle, quantityText, decrementBtn, incrementBtn, storeName, priceText;
         RecyclerView coloursList, ramList, storageList;
         MaterialButton addCartBtn;
 
@@ -47,6 +47,8 @@ public class DetailsActivity extends BaseActivity {
             decrementBtn = findViewById(R.id.decrement_btn);
             incrementBtn = findViewById(R.id.increment_btn);
             addCartBtn = findViewById(R.id.add_cart_btn);
+            storeName = findViewById(R.id.store_name);
+            priceText = findViewById(R.id.price_text);
         }
     }
 
@@ -87,14 +89,18 @@ public class DetailsActivity extends BaseActivity {
         vh.transparentContainer.setMinimumHeight((int) (0.45 * (Display.getScreenHeight(vh.transparentContainer))));
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
+        vh.storeName.setText(detailsViewModel.getStoreBranchName());
 
-//        switch (detailsViewModel.getItemCategory()) {
-//            case phones:
-//                vh.ramContainer.setVisibility(View.INVISIBLE);
-//            case accessories:
-//                vh.ramContainer.setVisibility(View.INVISIBLE);
-//                vh.storageContainer.setVisibility(View.INVISIBLE);
-//        }
+        System.out.print("category: " + detailsViewModel.getItemCategory().toString());
+        switch (detailsViewModel.getItemCategory()) {
+            case phones:
+                System.out.println("phones!");
+                vh.storageContainer.setVisibility(View.VISIBLE);
+                vh.ramContainer.setVisibility(View.INVISIBLE);
+            case accessories:
+                vh.ramContainer.setVisibility(View.INVISIBLE);
+                vh.storageContainer.setVisibility(View.INVISIBLE);
+        }
 
         setDynamicStyling();
     }
