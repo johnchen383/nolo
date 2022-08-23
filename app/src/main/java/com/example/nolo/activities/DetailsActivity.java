@@ -46,6 +46,7 @@ public class DetailsActivity extends FragmentActivity {
     private int maxIndex;
     private float historicX;
     private double heightFactor;
+    private Colour displayedColour;
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
@@ -119,6 +120,18 @@ public class DetailsActivity extends FragmentActivity {
         }
     }
 
+    private void initCarouselAdaptor(){
+        /**
+         * CAROUSEL
+         */
+        List<String> uris = detailsViewModel.getImageUrisByColour();
+        maxIndex = uris.size() - 1;
+        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
+        vh.carousel.setAdapter(pagerAdapter);
+        vh.carousel.setCurrentItem(imgIndex, false);
+        displayedColour = detailsViewModel.getVariantColour();
+    }
+
     private void initAdaptors() {
         /**
          * COLOURS ADAPTOR
@@ -150,17 +163,6 @@ public class DetailsActivity extends FragmentActivity {
             DetailsCustomisationAdaptor ramAdaptor = new DetailsCustomisationAdaptor(this, ramOptions, SpecsOptionType.ram, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
             vh.ramList.setAdapter(ramAdaptor);
         }
-
-        /**
-         * CAROUSEL
-         */
-
-        List<String> uris = detailsViewModel.getImageUrisByColour();
-        maxIndex = uris.size() - 1;
-        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
-        vh.carousel.setAdapter(pagerAdapter);
-        vh.carousel.setCurrentItem(imgIndex, false);
-
 
         /**
          * REC
@@ -305,6 +307,11 @@ public class DetailsActivity extends FragmentActivity {
         initAdaptors();
         setDynamicStyling();
         initSpecsStyling(detailsViewModel.getItemCategory());
+
+        if (!displayedColour.equals(itemVariant.getColour())){
+            //colour changed
+            initCarouselAdaptor();
+        }
     }
 
     private String capitaliseFirst(String string) {
@@ -323,6 +330,7 @@ public class DetailsActivity extends FragmentActivity {
 
         initStyling();
         initAdaptors();
+        initCarouselAdaptor();
         initListeners();
     }
 
