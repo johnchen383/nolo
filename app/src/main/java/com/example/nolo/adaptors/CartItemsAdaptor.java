@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,18 +29,22 @@ public class CartItemsAdaptor extends ArrayAdapter {
 
     private class ViewHolder {
         LinearLayout itemClickable;
-        TextView title, price;
+        TextView title, priceText, quantityText;
         ImageView img, binBtn;
+        RelativeLayout incrementBtn, decrementBtn;
 
         public ViewHolder(View currentListViewItem) {
             itemClickable = currentListViewItem.findViewById(R.id.item_clickable);
             title = currentListViewItem.findViewById(R.id.title);
-            price = currentListViewItem.findViewById(R.id.price);
+            priceText = currentListViewItem.findViewById(R.id.price);
+            quantityText = currentListViewItem.findViewById(R.id.quantity_text);
             img = currentListViewItem.findViewById(R.id.item_img);
+            incrementBtn = currentListViewItem.findViewById(R.id.increment_btn);
+            decrementBtn = currentListViewItem.findViewById(R.id.decrement_btn);
         }
     }
 
-    public SearchItemResultAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects) {
+    public CartItemsAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects) {
         super(context, resource, objects);
         mContext = context;
         mLayoutID = resource;
@@ -66,7 +71,7 @@ public class CartItemsAdaptor extends ArrayAdapter {
         ViewHolder vh = new ViewHolder(currentListViewItem);
 
         vh.title.setText(currentItem.getName());
-        vh.price.setText(currentItem.getDefaultItemVariant().getDisplayPrice());
+        vh.priceText.setText(currentItem.getDefaultItemVariant().getDisplayPrice());
 
         int i = mContext.getResources().getIdentifier(
                 currentItem.getDefaultItemVariant().getDisplayImage(), "drawable",
