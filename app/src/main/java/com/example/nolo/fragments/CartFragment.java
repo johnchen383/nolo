@@ -20,10 +20,10 @@ public class CartFragment extends Fragment {
     private CartViewModel cartViewModel;
 
     private class ViewHolder {
-        TextView textView;
+        TextView totalPrice;
 
         public ViewHolder(){
-            textView = getView().findViewById(R.id.text_cart);
+            totalPrice = getView().findViewById(R.id.total_price);
         }
     }
 
