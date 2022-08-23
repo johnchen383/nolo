@@ -35,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:maxLines="1"
                 android:text="Apple 16 MacBook M1 Pro"
                 android:textSize="@dimen/font_body1" />
 
@@ -71,6 +72,7 @@
                 app:strokeColor="@color/faint_white"
                 android:visibility="visible">
                 <TextView
+                    android:id="@+id/ram_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_small"
@@ -92,6 +94,7 @@
                 app:strokeColor="@color/faint_white"
                 android:visibility="visible">
                 <TextView
+                    android:id="@+id/ssd_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_small"
