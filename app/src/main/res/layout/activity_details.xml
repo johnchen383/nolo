@@ -141,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     android:orientation="vertical">
+
                     <TextView
                         style="@style/TextStroke.White"
                         android:layout_width="wrap_content"
@@ -171,12 +172,14 @@
                         android:id="@+id/storage_list"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/touch_target_min" />
+
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp" >
+                    android:layout_marginTop="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -196,6 +199,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="-8dp"
                             android:background="@color/transparent">
+
                             <RelativeLayout
                                 android:id="@+id/decrement_btn"
                                 android:layout_width="@dimen/touch_target_min"
@@ -213,6 +217,7 @@
                                     android:textColor="@color/light_brown"
                                     android:textSize="@dimen/font_h6" />
                             </RelativeLayout>
+
                             <TextView
                                 android:id="@+id/quantity_text"
                                 style="@style/TextStroke.Brown"
@@ -221,7 +226,8 @@
                                 android:layout_gravity="center"
                                 android:text="1"
                                 android:textColor="@color/light_brown"
-                                android:textSize="@dimen/font_h6"/>
+                                android:textSize="@dimen/font_h6" />
+
                             <RelativeLayout
                                 android:id="@+id/increment_btn"
                                 android:layout_width="@dimen/touch_target_min"
@@ -248,8 +254,8 @@
                         style="@style/RoundButton.Filled"
                         android:layout_width="fill_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="top"
+                        android:layout_marginLeft="20dp"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:paddingVertical="0dp"
@@ -264,6 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:orientation="vertical">
+
                     <TextView
                         style="@style/TextStroke.White"
                         android:layout_width="match_parent"
@@ -277,11 +284,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="35dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Display" />
+
                         <TextView
                             android:id="@+id/display_text"
                             android:layout_width="wrap_content"
@@ -297,11 +306,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Protection resistance" />
+
                         <TextView
                             android:id="@+id/protection_text"
                             android:layout_width="wrap_content"
@@ -317,11 +328,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dimensions" />
+
                         <TextView
                             android:id="@+id/dimen_text"
                             android:layout_width="wrap_content"
@@ -329,6 +342,8 @@
                             android:layout_marginTop="5dp"
                             android:text="Specs"
                             android:textSize="@dimen/font_caption" />
+
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -337,11 +352,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Weight" />
+
                         <TextView
                             android:id="@+id/weight_text"
                             android:layout_width="wrap_content"
@@ -357,11 +374,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="CPU" />
+
                         <TextView
                             android:id="@+id/cpu_text"
                             android:layout_width="wrap_content"
@@ -377,11 +396,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="GPU" />
+
                         <TextView
                             android:id="@+id/gpu_text"
                             android:layout_width="wrap_content"
@@ -397,11 +418,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="RAM" />
+
                         <TextView
                             android:id="@+id/ram_text"
                             android:layout_width="wrap_content"
@@ -417,11 +440,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Storage" />
+
                         <TextView
                             android:id="@+id/storage_text"
                             android:layout_width="wrap_content"
@@ -437,11 +462,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Camera" />
+
                         <TextView
                             android:id="@+id/camera_text"
                             android:layout_width="wrap_content"
@@ -457,11 +484,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Keyboard" />
+
                         <TextView
                             android:id="@+id/keyboard_text"
                             android:layout_width="wrap_content"
@@ -477,11 +506,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Communication" />
+
                         <TextView
                             android:id="@+id/communication_text"
                             android:layout_width="wrap_content"
@@ -497,11 +528,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Audio" />
+
                         <TextView
                             android:id="@+id/audio_text"
                             android:layout_width="wrap_content"
@@ -517,11 +550,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Touchscreen" />
+
                         <TextView
                             android:id="@+id/touchscreen_text"
                             android:layout_width="wrap_content"
@@ -537,11 +572,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fingerprint reader" />
+
                         <TextView
                             android:id="@+id/fingerprint_text"
                             android:layout_width="wrap_content"
@@ -557,11 +594,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Optical drive" />
+
                         <TextView
                             android:id="@+id/optical_text"
                             android:layout_width="wrap_content"
@@ -577,11 +616,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ports" />
+
                         <TextView
                             android:id="@+id/ports_text"
                             android:layout_width="wrap_content"
@@ -597,11 +638,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Battery and power" />
+
                         <TextView
                             android:id="@+id/battery_text"
                             android:layout_width="wrap_content"
@@ -617,11 +660,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Sensors" />
+
                         <TextView
                             android:id="@+id/sensors_text"
                             android:layout_width="wrap_content"
@@ -637,11 +682,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Operating System" />
+
                         <TextView
                             android:id="@+id/os_text"
                             android:layout_width="wrap_content"
@@ -657,11 +704,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SIM card" />
+
                         <TextView
                             android:id="@+id/sim_text"
                             android:layout_width="wrap_content"
@@ -677,11 +726,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical">
+
                         <TextView
                             style="@style/TextStroke.White"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="AC adaptor" />
+
                         <TextView
                             android:id="@+id/ac_text"
                             android:layout_width="wrap_content"
@@ -692,9 +743,21 @@
                     </LinearLayout>
                 </LinearLayout>
 
-
-
-
+                <LinearLayout
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RECOMMENDED ACCESSORIES"
+                        android:layout_gravity="left"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rec_items_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

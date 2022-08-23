@@ -22,6 +22,7 @@ import com.example.nolo.R;
 import com.example.nolo.adaptors.CarouselPagerAdaptor;
 import com.example.nolo.adaptors.DetailsColorAdaptor;
 import com.example.nolo.adaptors.DetailsCustomisationAdaptor;
+import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
@@ -51,7 +52,7 @@ public class DetailsActivity extends FragmentActivity {
         LinearLayout detailsContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
         TextView itemTitle, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;;
         RelativeLayout decrementBtn, incrementBtn;
-        RecyclerView coloursList, ramList, storageList;
+        RecyclerView coloursList, ramList, storageList, recItemsList;
         ImageView closeBtn, storesBtn;
         MaterialButton addCartBtn;
         ViewPager2 carousel;
@@ -112,6 +113,7 @@ public class DetailsActivity extends FragmentActivity {
             acText = findViewById(R.id.ac_text);
             carousel = findViewById(R.id.carousel);
             scrollContainer = findViewById(R.id.scrollContainer);
+            recItemsList = findViewById(R.id.rec_items_list);
         }
     }
 
@@ -157,6 +159,14 @@ public class DetailsActivity extends FragmentActivity {
         vh.carousel.setAdapter(pagerAdapter);
         vh.carousel.setCurrentItem(imgIndex, false);
 
+
+        /**
+         * REC
+         */
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        vh.recItemsList.setLayoutManager(layoutManager);
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43);
+        vh.recItemsList.setAdapter(featuredItemsAdaptor);
     }
 
     @Override
