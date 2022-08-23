@@ -8,6 +8,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
@@ -43,6 +44,7 @@ public class DetailsActivity extends FragmentActivity {
     private int imgIndex;
     private int maxIndex;
     private float historicX;
+    private double heightFactor;
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
@@ -53,6 +55,7 @@ public class DetailsActivity extends FragmentActivity {
         ImageView closeBtn, storesBtn;
         MaterialButton addCartBtn;
         ViewPager2 carousel;
+        ScrollView scrollContainer;
 
         public ViewHolder() {
             transparentContainer = findViewById(R.id.transparent_container);
@@ -108,6 +111,7 @@ public class DetailsActivity extends FragmentActivity {
             simText = findViewById(R.id.sim_text);
             acText = findViewById(R.id.ac_text);
             carousel = findViewById(R.id.carousel);
+            scrollContainer = findViewById(R.id.scrollContainer);
         }
     }
 
@@ -173,7 +177,7 @@ public class DetailsActivity extends FragmentActivity {
     }
 
     private void initStyling() {
-        double heightFactor = 0.45;
+        heightFactor = 0.45;
 
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
@@ -268,6 +272,19 @@ public class DetailsActivity extends FragmentActivity {
                         }
 
                 }
+                return false;
+            }
+        });
+
+        vh.scrollContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (vh.scrollContainer.getScrollY() > ((Display.getScreenHeight(vh.scrollContainer) * heightFactor) - 100)){
+                    vh.closeBtn.setVisibility(View.INVISIBLE);
+                } else {
+                    vh.closeBtn.setVisibility(View.VISIBLE);
+                }
+
                 return false;
             }
         });
