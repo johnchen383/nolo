@@ -69,20 +69,19 @@
 
                             <TextView
                                 android:id="@+id/featured_text"
-                                style="@style/TextStroke.White"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
                                 android:layout_marginLeft="25dp"
                                 android:text="@string/home_featured_prev"
-                                android:textSize="@dimen/font_h6" />
+                                android:textSize="@dimen/font_body1" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/featured_items_list"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
-                                android:layout_marginTop="15dp"/>
+                                android:layout_marginTop="10dp" />
                         </LinearLayout>
 
 
@@ -95,8 +94,7 @@
                         android:orientation="horizontal"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="48dp"
-                        android:paddingBottom="@dimen/touch_target_min">
+                        android:paddingBottom="75dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
