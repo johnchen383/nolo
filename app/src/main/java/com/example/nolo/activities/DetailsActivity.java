@@ -49,7 +49,7 @@ public class DetailsActivity extends FragmentActivity {
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
-        LinearLayout detailsContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
+        LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
         TextView itemTitle, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;;
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList, recItemsList;
@@ -114,6 +114,7 @@ public class DetailsActivity extends FragmentActivity {
             carousel = findViewById(R.id.carousel);
             scrollContainer = findViewById(R.id.scrollContainer);
             recItemsList = findViewById(R.id.rec_items_list);
+            recContainer = findViewById(R.id.rec_container);
         }
     }
 
@@ -355,6 +356,7 @@ public class DetailsActivity extends FragmentActivity {
             vh.acSpecs.setVisibility(View.GONE);
         } else {
             vh.specs.setVisibility(View.GONE);
+            vh.recContainer.setVisibility(View.GONE);
             return;
         }
 
