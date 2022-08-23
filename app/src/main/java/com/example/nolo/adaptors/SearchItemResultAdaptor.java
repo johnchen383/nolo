@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.ResultActivity;
+import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Animation;
@@ -77,7 +77,7 @@ public class SearchItemResultAdaptor extends ArrayAdapter {
         vh.itemClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ResultActivity.class);
+                Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) currentItem.getDefaultItemVariant());
                 mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
             }

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.ResultActivity;
+import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
@@ -118,7 +118,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         vh.itemClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ResultActivity.class);
+                Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) item.getDefaultItemVariant());
                 mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
             }
