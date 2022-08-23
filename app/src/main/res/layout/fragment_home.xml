@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navy"
+    android:id="@+id/home_frag"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -12,63 +13,102 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/initial_home_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
                     <LinearLayout
-                        android:id="@+id/search_layout_btn"
+                        android:id="@+id/initial_home_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/search_layout_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="48dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/nav_icon_search_brown" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="8dp"
+                                android:gravity="center"
+                                android:text="@string/title_search"
+                                android:textAllCaps="true"
+                                android:textColor="@color/light_brown"
+                                android:textSize="@dimen/font_body1" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="65dp"
+                            android:src="@drawable/home_logo" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/featured_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="25dp"
+                                android:text="@string/home_featured_prev"
+                                android:textSize="@dimen/font_body1" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/featured_items_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="10dp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/browse_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="32dp">
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingBottom="75dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/font_body2"
+                            android:textColor="@color/light_brown"
+                            android:text="BROWSE CATEGORIES"/>
                         <ImageView
+                            android:layout_marginLeft="8dp"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/nav_icon_search"/>
-                        <TextView
-                            android:layout_marginLeft="8dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/title_search"
-                            android:textSize="@dimen/font_body1"
-                            android:textAllCaps="true"
-                            android:layout_gravity="center"/>
+                            android:src="@drawable/browse_btn_arrow" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/home_logo"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/featured_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/home_featured_prev"
-                            android:layout_marginLeft="@dimen/header_indent"                        
-                            android:layout_gravity="left"/>
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/featured_items_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                </RelativeLayout>
 
                 <ListView
                     android:id="@+id/category_list"
@@ -127,7 +167,6 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/nav_icon_search"/>
             </RelativeLayout>
-
             <ListView
                 android:id="@+id/search_suggestions_list"
                 android:layout_width="match_parent"
@@ -138,4 +177,35 @@
                 android:orientation="vertical"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/indicator"
+        android:layout_gravity="bottom|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="84dp"
+        android:layout_marginRight="24dp">
+        <TextView
+            android:id="@+id/one"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
+            android:text="01  |"/>
+        <TextView
+            android:id="@+id/two"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
+            android:text="02  |"/>
+        <TextView
+            android:id="@+id/three"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
+            android:text="03  |"/>
+    </LinearLayout>
 </FrameLayout>

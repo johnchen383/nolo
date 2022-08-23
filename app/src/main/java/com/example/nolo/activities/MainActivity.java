@@ -1,5 +1,6 @@
 package com.example.nolo.activities;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.example.nolo.R;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.fragments.AccountFragment;
+import com.example.nolo.fragments.HomeFragment;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.entities.item.IItem;
@@ -42,6 +44,11 @@ public class MainActivity extends BaseActivity {
 //        vh.navProfile.setOnClickListener(v -> {
 //            getSupportFragmentManager().beginTransaction().remove(AccountFragment.this).commit();
 //        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
