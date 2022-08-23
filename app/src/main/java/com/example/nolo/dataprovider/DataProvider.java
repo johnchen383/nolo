@@ -808,55 +808,55 @@ public class DataProvider {
         /*
          * Laptop 9
          */
-//        colours = new ArrayList<>(Arrays.asList(
-//                new Colour("black", "#000000")
-//        ));
-//        itemStoreVariant = new ArrayList<>(Arrays.asList(
-//                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
-//                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
-//        ));
-//        rams = new ArrayList<>(Arrays.asList(
-//                new SpecsOption(16, 0),
-//                new SpecsOption(32, 300)
-//        ));
-//        storages = new ArrayList<>(Arrays.asList(
-//                new SpecsOption(1024, 0)
-//        ));
-//        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-//                "Windows 11 Home",
-//                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
-//                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
-//                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
-//                rams,
-//                storages,
-//                "Built-in Full HD webcam",
-//                "Per-Key Backlighting, powered by Razer Chroma",
-//                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
-//                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
-//                "N/A",
-//                "N/A",
-//                "N/A",
-//                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
-//                "Built-in 82WHr rechargeable lithium-ion polymer battery",
-//                "280W power adapter",
-//                "395 x 260 x 19.9 mm",
-//                "2.75 kg");
-//        imageUris = new ArrayList<>(Arrays.asList(
-//                "item_laptop_razer_blade_17_1_black",
-//                "item_laptop_razer_blade_17_2_black",
-//                "item_laptop_razer_blade_17_3_black"
-//        ));
-//        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-//                "Logitech Pro X DTS Headphone",
-//                "HyperX QuadCast S Standalone Microphone",
-//                "Sony WH-1000XM4"
-//        ));
-//        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-//                "Razer",
-//                (LaptopSpecs) specs,
-//                itemStoreVariant,
-//                imageUris,
-//                recommendedAccessoryIds));
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0),
+                new SpecsOption(32, 300)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Windows 11 Home",
+                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
+                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
+                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
+                rams,
+                storages,
+                "Built-in Full HD webcam",
+                "Per-Key Backlighting, powered by Razer Chroma",
+                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
+                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
+                "N/A",
+                "N/A",
+                "N/A",
+                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
+                "Built-in 82WHr rechargeable lithium-ion polymer battery",
+                "280W power adapter",
+                "395 x 260 x 19.9 mm",
+                "2.75 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_razer_blade_17_1_black",
+                "item_laptop_razer_blade_17_2_black",
+                "item_laptop_razer_blade_17_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
+        ));
+        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Razer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
 
         /*
          * Laptop 10
