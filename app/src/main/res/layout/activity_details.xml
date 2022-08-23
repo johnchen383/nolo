@@ -134,8 +134,8 @@
 
                         <ImageView
                             android:id="@+id/store_btn"
-                            android:layout_width="115dp"
-                            android:layout_height="48dp"
+                            android:layout_width="154dp"
+                            android:layout_height="54dp"
                             android:layout_gravity="bottom"
                             android:src="@drawable/details_store_btn" />
                     </RelativeLayout>
