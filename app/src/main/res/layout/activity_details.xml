@@ -90,6 +90,7 @@
                     android:layout_marginTop="@dimen/padding_med"
                     android:layout_marginBottom="@dimen/padding_small"
                     android:lineSpacingExtra="5dp"
+                    android:maxLines="1"
                     android:text='Apple 13" MacBook Pro: M1 Chip'
                     android:textSize="@dimen/font_h5" />
 

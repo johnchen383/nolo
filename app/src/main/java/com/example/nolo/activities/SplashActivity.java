@@ -94,7 +94,7 @@ public class SplashActivity extends BaseActivity {
         } else {
             System.out.println("CONNECTED");
         }
-
+//
 //        DataProvider.clearAndAddEntity(CollectionPath.laptops.name(), (a) -> {
 //            DataProvider.clearAndAddEntity(CollectionPath.accessories.name(), (b) -> {
 //                DataProvider.clearAndAddEntity(CollectionPath.phones.name(), (c) -> {
