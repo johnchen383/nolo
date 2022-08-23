@@ -16,8 +16,10 @@ public interface IUsersRepository {
     void logIn(Consumer<String> onUserLoggedIn, String email, String password);
     void logOut();
     void addViewHistory(IItemVariant item);
+
+    void updateCart(List<Purchasable> cartItems);
+
     List<ItemVariant> getViewHistory();
     void addCart(IPurchasable cartItem);
-    void removeCart(IPurchasable cartItem);
     List<Purchasable> getCart();
 }

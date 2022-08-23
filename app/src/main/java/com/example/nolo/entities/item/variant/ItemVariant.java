@@ -120,7 +120,15 @@ public class ItemVariant implements IItemVariant, Serializable {
     @Override
     @Exclude
     public String getDisplayPrice(){
+        return String.format("$%.2f", getNumericalPrice());
+    }
+
+    @Override
+    @Exclude
+    public double getNumericalPrice(){
         IItem item = GetItemByIdUseCase.getItemById(itemId);
+
+        if (item == null) return 0;
 
         double displayPrice = item.getBasePrice(storeId);
 
@@ -132,7 +140,7 @@ public class ItemVariant implements IItemVariant, Serializable {
             displayPrice += this.storageOption.getAdditionalPrice();
         }
 
-        return String.format("$%.2f", displayPrice);
+        return displayPrice;
     }
 
     @Override

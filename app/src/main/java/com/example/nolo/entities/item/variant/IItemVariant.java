@@ -17,6 +17,7 @@ public interface IItemVariant {
     void setRamOption(SpecsOption ramOption);
     String getTitle();
     String getDisplayPrice();
+    double getNumericalPrice();
     String getDisplayImage();
     void setStoreId(String id);
     void setBranchName(String name);

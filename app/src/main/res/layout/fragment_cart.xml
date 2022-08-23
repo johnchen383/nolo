@@ -7,17 +7,10 @@
     android:background="@color/navy"
     tools:context=".fragments.CartFragment">
 
-    <ListView
-        android:id="@+id/cart_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="200dp"
-        android:paddingBottom="220dp"
-        android:paddingHorizontal="12dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:orientation="vertical"
         android:background="@color/navy">
 
         <ImageView
@@ -26,7 +19,14 @@
             android:layout_marginLeft="-15dp"
             android:layout_marginTop="60dp"
             app:srcCompat="@drawable/cart_header" />
-    </RelativeLayout>
+
+        <ListView
+            android:id="@+id/cart_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="12dp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,6 +65,7 @@
                 android:text="$11293.00 NZD" />
         </RelativeLayout>
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/checkout_btn"
             style="@style/RoundButton.Filled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

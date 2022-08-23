@@ -200,8 +200,8 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
-    public void removeCart(IPurchasable cartItem) {
-        currentUser.removeCart(cartItem);
+    public void updateCart(List<Purchasable> cartItems) {
+        currentUser.updateCart(cartItems);
 
         String field = "cart";
         if (currentUser.isFieldNameValid(field)){
