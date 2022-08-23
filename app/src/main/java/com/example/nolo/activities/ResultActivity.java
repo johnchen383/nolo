@@ -1,6 +1,5 @@
 package com.example.nolo.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -75,7 +73,6 @@ public class ResultActivity extends BaseActivity {
      * SEARCH RESULT ADAPTOR
      */
     private void resetSearchResults(String searchTerm) {
-        vh.homeScrollView.fullScroll(ScrollView.FOCUS_UP);
         List<IItem> searchResult = new ArrayList<>();
 
         if (!searchTerm.isEmpty()) {
@@ -113,8 +110,6 @@ public class ResultActivity extends BaseActivity {
     }
 
     private void initListeners() {
-        Activity currentActivity = this;
-
         // When enter is pressed in search bar, refresh search result
         vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
