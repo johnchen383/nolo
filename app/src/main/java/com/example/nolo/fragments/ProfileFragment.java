@@ -1,21 +1,18 @@
 package com.example.nolo.fragments;
 
 import android.accounts.Account;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.AccountActivity;
-import com.example.nolo.activities.LogInActivity;
-import com.example.nolo.interactors.user.GetCurrentUserUseCase;
-import com.example.nolo.interactors.user.LogOutUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ProfileViewModel;
 
@@ -39,8 +36,15 @@ public class ProfileFragment extends Fragment {
 
     private void initListeners() {
         vh.accountBtn.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), AccountActivity.class), Animation.Fade(getActivity()).toBundle());
+            replaceFragment(AccountFragment.class);
         });
+    }
+
+    private void replaceFragment(Class<? extends Fragment> fragment) {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.profile_fragment, fragment, null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
     }
 
     public ProfileFragment() {

@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="100dp"
             android:gravity="center"
             android:text="SIGN OUT"
             android:textAppearance="@style/TextStroke.Navy" />
