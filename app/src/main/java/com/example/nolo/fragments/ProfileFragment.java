@@ -28,18 +28,17 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
 
     private class ViewHolder {
-        TextView textView, emailText;
-        Button signOutBtn;
+        TextView purchasesBtn, wishlistBtn, accountBtn;
 
         public ViewHolder() {
-            textView = getView().findViewById(R.id.text_profile);
-            emailText = getView().findViewById(R.id.text_email);
-            signOutBtn = getView().findViewById(R.id.sign_out_button);
+            purchasesBtn = getView().findViewById(R.id.purchases_btn);
+            wishlistBtn = getView().findViewById(R.id.wishlist_btn);
+            accountBtn = getView().findViewById(R.id.account_btn);
         }
     }
 
     private void initListeners() {
-        vh.signOutBtn.setOnClickListener(v -> {
+        vh.accountBtn.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AccountActivity.class), Animation.Fade(getActivity()).toBundle());
         });
     }
