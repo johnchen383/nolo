@@ -596,7 +596,7 @@ public class DataProvider {
         specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
                 "Windows 11 Home",
                 "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
-                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)\n",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)",
                 "Intel® UHD Graphics",
                 rams,
                 storages,
@@ -831,7 +831,7 @@ public class DataProvider {
                 storages,
                 "Built-in Full HD webcam",
                 "Per-Key Backlighting, powered by Razer Chroma",
-                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
+                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2",
                 "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
                 "N/A",
                 "N/A",
@@ -914,7 +914,7 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
-         * Laptop 10.5
+         * Laptop 10.5.1
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000")
@@ -932,7 +932,7 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(1024, 0)
         ));
-        specs = new LaptopSpecs("Acer Aspire 3 14in FHD Athlon Silver 3050U 8GB RAM 128GB SSD+1TB HDD\n",
+        specs = new LaptopSpecs("Acer Aspire 3 14in FHD Athlon Silver 3050U 8GB RAM 128GB SSD+1TB HDD",
                 "Windows 10 Home",
                 "39.6 cm (15.6\") LCD",
                 "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
@@ -962,6 +962,61 @@ public class DataProvider {
                 "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Acer Aspire 3",
+                "Acer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10.5.2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 729),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 709),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 769),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 799)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Acer Spin 1 SP114-31-P3KD Edu Laptop 14\" FHD Touch Intel Pentium Silver N6000",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
+                rams,
+                storages,
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone; Stereo speakers",
+                "N/A",
+                "Yes",
+                "N/A",
+                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_acer_spin_1_1_black",
+                "item_laptop_acer_spin_1_2_black",
+                "item_laptop_acer_spin_1_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
+        ));
+        items.add(new Laptop("Acer Spin 1",
                 "Acer",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
