@@ -73,18 +73,18 @@ public class ListActivity extends BaseActivity {
     private void initPhoneListeners() {
         vh.androidBtn.setOnClickListener(v -> {
             vh.androidImage.setImageResource(R.drawable.os_button_android);
-            vh.androidSelect.setVisibility(View.VISIBLE);
+            vh.androidSelect.setTextColor(getColor(R.color.white));
             vh.appleImage.setImageResource(R.drawable.os_button_ios_dim);
-            vh.appleSelect.setVisibility(View.INVISIBLE);
+            vh.appleSelect.setTextColor(getColor(R.color.navy));
             listViewModel.setPhoneOs(PhoneOs.android);
             establishAdaptor();
         });
 
         vh.appleBtn.setOnClickListener(v -> {
             vh.androidImage.setImageResource(R.drawable.os_button_android_dim);
-            vh.androidSelect.setVisibility(View.INVISIBLE);
+            vh.androidSelect.setTextColor(getColor(R.color.navy));
             vh.appleImage.setImageResource(R.drawable.os_button_ios);
-            vh.appleSelect.setVisibility(View.VISIBLE);
+            vh.appleSelect.setTextColor(getColor(R.color.white));
             listViewModel.setPhoneOs(PhoneOs.ios);
             establishAdaptor();
         });
