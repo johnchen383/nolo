@@ -8,10 +8,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.nolo.R;
+import com.example.nolo.adaptors.CarouselPagerAdaptor;
 import com.example.nolo.adaptors.DetailsColorAdaptor;
 import com.example.nolo.adaptors.DetailsCustomisationAdaptor;
 import com.example.nolo.entities.item.colour.Colour;
@@ -27,10 +32,12 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class DetailsActivity extends BaseActivity {
+public class DetailsActivity extends FragmentActivity {
     private DetailsViewModel detailsViewModel;
 
     private ViewHolder vh;
+    private int imgIndex;
+    private int maxIndex;
 
     private class ViewHolder {
         LinearLayout transparentContainer, detailsContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
@@ -39,6 +46,7 @@ public class DetailsActivity extends BaseActivity {
         RecyclerView coloursList, ramList, storageList;
         ImageView closeBtn, storesBtn;
         MaterialButton addCartBtn;
+        ViewPager2 carousel;
 
         public ViewHolder() {
             transparentContainer = findViewById(R.id.transparent_container);
@@ -93,6 +101,7 @@ public class DetailsActivity extends BaseActivity {
             osText = findViewById(R.id.os_text);
             simText = findViewById(R.id.sim_text);
             acText = findViewById(R.id.ac_text);
+            carousel = findViewById(R.id.carousel);
         }
     }
 
@@ -126,6 +135,28 @@ public class DetailsActivity extends BaseActivity {
         if (ramOptions != null) {
             DetailsCustomisationAdaptor ramAdaptor = new DetailsCustomisationAdaptor(this, ramOptions, SpecsOptionType.ram, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
             vh.ramList.setAdapter(ramAdaptor);
+        }
+
+        /**
+         * CAROUSEL
+         */
+
+        List<String> uris = detailsViewModel.getImageUrisByColour();
+        maxIndex = uris.size() - 1;
+        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
+        vh.carousel.setAdapter(pagerAdapter);
+        vh.carousel.setCurrentItem(imgIndex, false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (vh.carousel.getCurrentItem() == 0) {
+            super.onBackPressed();
+        } else {
+            imgIndex--;
+            if (imgIndex < 0) imgIndex = 0;
+            vh.carousel.setCurrentItem(imgIndex);
+            System.out.println("SWIPE: " + imgIndex);
         }
     }
 
@@ -162,11 +193,21 @@ public class DetailsActivity extends BaseActivity {
         vh.decrementBtn.setOnClickListener(v -> {
             detailsViewModel.incrementOrDecrementQuantity(false);
             vh.quantityText.setText(String.valueOf(detailsViewModel.getQuantity()));
+
+            imgIndex--;
+            if (imgIndex < 0) imgIndex = 0;
+            vh.carousel.setCurrentItem(imgIndex);
+            System.out.println("SWIPE: " + imgIndex);
         });
 
         vh.incrementBtn.setOnClickListener(v -> {
             detailsViewModel.incrementOrDecrementQuantity(true);
             vh.quantityText.setText(String.valueOf(detailsViewModel.getQuantity()));
+
+            imgIndex++;
+            if (imgIndex > maxIndex) imgIndex = maxIndex;
+            vh.carousel.setCurrentItem(imgIndex);
+            System.out.println("SWIPE: " + imgIndex);
         });
 
         vh.storesBtn.setOnClickListener(v -> {
@@ -204,10 +245,11 @@ public class DetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_details);
         vh = new ViewHolder();
 
+        imgIndex = 0;
+
         initAdaptors();
         initStyling();
         initListeners();
-
     }
 
     private void initSpecsStyling(CategoryType category) {
