@@ -67,7 +67,8 @@
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="-55dp"
+                android:layout_marginBottom="90dp"
                 android:gravity="left"
                 android:textSize="@dimen/font_caption"
                 android:textColor="@color/faint_white"
@@ -90,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="45dp">
+                android:layout_marginBottom="25dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -131,9 +132,8 @@
             </RelativeLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/branch_btn"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 style="@style/RoundButton.Filled"
-                android:textAppearance="@style/TextStroke.Navy"
                 android:textColor="@color/navy"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
