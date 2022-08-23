@@ -75,7 +75,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             modalHeader = findViewById(R.id.modal_header);
             address = findViewById(R.id.address);
             price = findViewById(R.id.price);
-            img = findViewById(R.id.item_img);
             title = findViewById(R.id.title);
             branchBtn = findViewById(R.id.branch_btn);
         }
@@ -90,11 +89,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         variant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
         initListeners();
         vh.mapFragment.getMapAsync(this);
-
-        int i = getResources().getIdentifier(
-                variant.getDisplayImage(), "drawable",
-                getPackageName());
-        vh.img.setImageResource(i);
         vh.title.setText(variant.getTitle());
 
         vh.modalHeader.getLayoutParams().height = (int)(Display.getScreenHeight(vh.modalHeader) * 0.1);
