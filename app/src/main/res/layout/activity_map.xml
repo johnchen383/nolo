@@ -14,7 +14,7 @@
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6">
+        android:layout_weight="0.9">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:textSize="@dimen/font_h6"
+                android:maxLines="1"
                 android:text="Harvey Norman Mt Wellington"/>
             <TextView
                 android:id="@+id/address"
@@ -70,11 +71,13 @@
                 android:gravity="left"
                 android:textSize="@dimen/font_caption"
                 android:textColor="@color/faint_white"
+                android:maxLines="1"
                 android:text="20-54 Mount Wellington Highway Mt Wellington, Auckland"/>
 
             <TextView
                 android:id="@+id/title"
                 style="@style/TextStroke.Brown"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
@@ -130,6 +133,7 @@
                 android:id="@+id/branch_btn"
                 android:layout_marginTop="16dp"
                 style="@style/RoundButton.Filled"
+                android:textAppearance="@style/TextStroke.Navy"
                 android:textColor="@color/navy"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"

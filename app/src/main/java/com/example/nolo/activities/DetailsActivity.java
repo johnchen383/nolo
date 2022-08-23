@@ -175,6 +175,18 @@ public class DetailsActivity extends FragmentActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (DetailsViewModel.itemVariantFromMap != null){
+//            System.out.println("SETTING FROM RESUME");
+            detailsViewModel = new DetailsViewModel(DetailsViewModel.itemVariantFromMap);
+            init();
+            DetailsViewModel.itemVariantFromMap = null;
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         if (vh.carousel.getCurrentItem() == 0) {
             super.onBackPressed();
@@ -323,13 +335,17 @@ public class DetailsActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IItemVariant itemVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
-        detailsViewModel = new DetailsViewModel(itemVariant);
         setContentView(R.layout.activity_details);
         vh = new ViewHolder();
 
-        imgIndex = 0;
+        IItemVariant itemVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
+        detailsViewModel = new DetailsViewModel(itemVariant);
+//        System.out.println("SETTING FROM CREATE");
+        init();
+    }
 
+    private void init(){
+        imgIndex = 0;
         initStyling();
         initAdaptors();
         initCarouselAdaptor();

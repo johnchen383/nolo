@@ -31,6 +31,7 @@ import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.LocationUtil;
+import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,6 +56,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private ViewHolder vh;
     private boolean isModalOpen;
     private Marker activeMarker;
+    private double activeMarkerPrice;
 
     private class ViewHolder {
         SupportMapFragment mapFragment;
@@ -104,10 +106,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         });
 
         vh.branchBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DetailsActivity.class);
-            intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) variant);
-
-            startActivity(intent);
+            DetailsViewModel.itemVariantFromMap = variant;
+            finish();
+//            Intent intent = new Intent(this, DetailsActivity.class);
+//            intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) variant);
+//
+//            startActivity(intent);
         });
     }
 
@@ -140,6 +144,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
                 if (branch.getBranchName().equals(variant.getBranchName()) && store.getStoreId().equals(variant.getStoreId())){
                     activeMarker = marker;
+                    activeMarkerPrice = variant.getNumericalPrice();
                 }
             }
         }
@@ -204,11 +209,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         if (isActiveCheap){
             activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img_red, R.color.green))
+                    createMapIcon(getDisplayPrice(activeMarkerPrice), R.drawable.marker_img_red, R.color.green))
             );
         } else {
             activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
-                    createMapIcon(getDisplayPrice(price), R.drawable.marker_img_red, R.color.white))
+                    createMapIcon(getDisplayPrice(activeMarkerPrice), R.drawable.marker_img_red, R.color.white))
             );
         }
     }
@@ -300,6 +305,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
             updateFields();
             activeMarker = marker;
+            activeMarkerPrice = variant.getNumericalPrice();
             updateMarkers();
         }
 

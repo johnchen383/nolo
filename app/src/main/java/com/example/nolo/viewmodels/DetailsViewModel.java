@@ -25,6 +25,8 @@ import java.util.List;
 public class DetailsViewModel extends ViewModel {
     private int quantity;
     private IItemVariant itemVariant;
+    public static IItemVariant itemVariantFromMap = null;
+
     private IItem item;
     private IPurchasable purchasable;
 
