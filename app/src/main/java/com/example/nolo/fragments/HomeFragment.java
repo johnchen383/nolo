@@ -51,6 +51,7 @@ import java.util.stream.Collectors;
  */
 public class HomeFragment extends Fragment {
     private final int NUMBER_OF_SEARCH_SUGGESTIONS = 6;
+    private final int SNAP_DURATION = 300;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
     private float historicY = 0;
@@ -94,39 +95,18 @@ public class HomeFragment extends Fragment {
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
-//        vh.initialView.setOnTouchListener((v, event) -> {
-//            System.out.println("Swipe!");
-//            if (event.getAction() == MotionEvent.ACTION_DOWN){
-//                System.out.println("Swipe!");
-//
-//                return true;
-//            }
-//
-//            return false;
-//        });
-
-
         initAdaptors();
         initListeners();
-
-
     }
 
-    private boolean onTouch(MotionEvent motionEvent, boolean isInitial) {
-//        System.out.println("SCROLL Touched");
-        System.out.println("SCROLL" + motionEvent.getAction());
+    private boolean onTouch(MotionEvent motionEvent) {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 historicY = vh.scrollView.getScrollY();
-                System.out.println("SCROLL Down");
                 return true;
             case MotionEvent.ACTION_UP:
             case MotionEvent.AXIS_SIZE:
-                System.out.println("SCROLL Up " + isInitial);
                 float currentY = vh.scrollView.getScrollY();
-                System.out.println("SCROLL" + currentY);
-                System.out.println("SCROLL_HIST" + historicY);
-                System.out.println("SCROLL YA" + vh.categoryList.getChildAt(0).getTop());
                 if (currentY > historicY) {
                     //swipe down
 
@@ -139,21 +119,16 @@ public class HomeFragment extends Fragment {
 
                     }
 
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(300);
+                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
                     objectAnimator.start();
-
-                    System.out.println("SCROLL swipe down");
                 } else if (currentY < historicY) {
                     //swipe up
 
                     panelIndex--;
                     if (panelIndex < 0) panelIndex = 0;
 
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(300);
+                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
                     objectAnimator.start();
-
-//                    historicY = Display.getScreenHeight(vh.scrollView);
-                    System.out.println("SCROLL swipe up");
                 }
 
                 historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
@@ -170,21 +145,9 @@ public class HomeFragment extends Fragment {
          */
         List<ICategory> categories = GetCategoriesUseCase.getCategories();
         panelMaxIndex = categories.size();
-        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories, (motionEvent) -> {return false;});
+        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories);
         vh.categoryList.setAdapter(categoriesAdaptor);
-//        vh.categoryList.setO(new AbsListView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(AbsListView absListView, int i) {
-//                System.out.println("SAD" + i);
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-//                System.out.println("SAD" + i);
-//                System.out.println("SAD" + i1);
-//                System.out.println("SAD" + i2);
-//            }
-//        });
+
         ListUtil.setDynamicHeight(vh.categoryList);
 
         /**
@@ -286,7 +249,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent, true));
+        vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
     }
 
     /**

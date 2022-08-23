@@ -34,7 +34,6 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
     private int mLayoutID;
     private List<ICategory> mCategories;
     private Context mContext;
-    private Function<MotionEvent, Boolean> onTouch;
 
     private class ViewHolder {
         TextView categoryLabel;
@@ -48,12 +47,11 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories, Function<MotionEvent, Boolean> onTouch) {
+    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories) {
         super(context, resource, categories);
         mContext = context;
         mLayoutID = resource;
         mCategories = categories;
-        this.onTouch = onTouch;
     }
 
     @NonNull
@@ -82,10 +80,6 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         //setting the category img
         vh.categoryImg.setImageResource(i);
         vh.categoryImg.getLayoutParams().height = Display.getScreenHeight(currentListViewItem);
-
-        currentListViewItem.setOnTouchListener((v, motionEvent) -> {
-            return onTouch.apply(motionEvent);
-        });
 
         // Setting the category label
         vh.categoryLabel.setText(currentCategory.getCategoryName());
