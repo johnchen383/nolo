@@ -158,8 +158,10 @@ public class HomeFragment extends Fragment {
         objectAnimator.start();
 
         if (panelIndex > 0){
+            getActivity().getWindow().setStatusBarColor(Color.argb(255, 0, 0, 0));
             setIndicator();
         } else {
+            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
 //            Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.home_frag);
 //            System.out.println("Frag: " + currentFragment);
 //            if (currentFragment instanceof HomeFragment) {
