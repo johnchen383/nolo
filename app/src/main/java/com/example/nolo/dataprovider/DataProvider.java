@@ -1130,6 +1130,76 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
+         * Phone 3.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("green", "#576856"),
+                new Colour("silver", "#F2F3EE"),
+                new Colour("gold", "#FAEAD3"),
+                new Colour("graphite", "#5F5E5A"),
+                new Colour("blue", "#AFC6DC")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1699),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1658.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1699),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1658.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 200),
+                new SpecsOption(512, 600),
+                new SpecsOption(1024, 1000)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 13 Pro",
+                "ios",
+                "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
+                "A15 Bionic chip",
+                storages,
+                "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP68",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "78.1 x 160.8 x 7.65mm",
+                "238g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_13_pro_max_2_green",
+                "item_phone_iphone_13_pro_max_1_green",
+                "item_phone_iphone_13_pro_max_3_green",
+
+                "item_phone_iphone_13_pro_max_2_silver",
+                "item_phone_iphone_13_pro_max_1_silver",
+                "item_phone_iphone_13_pro_max_3_silver",
+
+                "item_phone_iphone_13_pro_max_2_gold",
+                "item_phone_iphone_13_pro_max_1_gold",
+                "item_phone_iphone_13_pro_max_3_gold",
+
+                "item_phone_iphone_13_pro_max_2_graphite",
+                "item_phone_iphone_13_pro_max_1_graphite",
+                "item_phone_iphone_13_pro_max_3_graphite",
+
+                "item_phone_iphone_13_pro_max_2_blue",
+                "item_phone_iphone_13_pro_max_1_blue",
+                "item_phone_iphone_13_pro_max_3_blue"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
+        ));
+        items.add(new Phone("Apple iPhone 13 Pro",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
          * Phone 4
          */
         colours = new ArrayList<>(Arrays.asList(
