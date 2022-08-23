@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -69,6 +70,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        return;
+        Fragment profileAdditionFragment = getSupportFragmentManager().findFragmentByTag("PROFILE_ADDITION");
+        if (profileAdditionFragment != null && profileAdditionFragment.isVisible()) {
+            getSupportFragmentManager().beginTransaction().remove(profileAdditionFragment).commit();
+        } else {
+            return;
+        }
     }
 }

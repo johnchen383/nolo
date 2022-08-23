@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment {
 
     private void replaceFragment(Class<? extends Fragment> fragment) {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.profile_fragment, fragment, null);
+        ft.replace(R.id.profile_fragment, fragment, null, "PROFILE_ADDITION");
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
     }
