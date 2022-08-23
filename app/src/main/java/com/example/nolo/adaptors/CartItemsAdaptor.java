@@ -39,7 +39,7 @@ public class CartItemsAdaptor extends ArrayAdapter {
         }
     }
 
-    public SearchItemResultAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects) {
+    public CartItemsAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects) {
         super(context, resource, objects);
         mContext = context;
         mLayoutID = resource;

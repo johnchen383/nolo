@@ -69,10 +69,11 @@ public class DataProvider {
 
     /**
      * Clears collection before adding entities
+     *
      * @param path
      * @param addEntityMethod
      */
-    public static void clearAndAddEntity(String path, Consumer<Void> addEntityMethod){
+    public static void clearAndAddEntity(String path, Consumer<Void> addEntityMethod) {
         clearCollection(path, (a) -> addEntityMethod.accept(a));
     }
 
@@ -89,7 +90,7 @@ public class DataProvider {
         return categories;
     }
 
-    public static void addCategoriesToFirebase(){
+    public static void addCategoriesToFirebase() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<ICategory> categories = generateCategories();
         int count = 1;
@@ -376,8 +377,8 @@ public class DataProvider {
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
                 new Colour("blue", "#9A9CA3"),
-                new Colour("sandstone", "#79838A"),
-                new Colour("platinum", "#CBB1A0")
+                new Colour("sandstone", "#CBB1A0"),
+                new Colour("platinum", "#79838A")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1749),
@@ -446,8 +447,8 @@ public class DataProvider {
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("black", "#000000"),
                 new Colour("blue", "#9A9CA3"),
-                new Colour("sandstone", "#79838A"),
-                new Colour("platinum", "#CBB1A0")
+                new Colour("sandstone", "#CBB1A0"),
+                new Colour("platinum", "#79838A")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1549),
@@ -1318,8 +1319,8 @@ public class DataProvider {
          * Phone 7
          */
         colours = new ArrayList<>(Arrays.asList(
-                new Colour("silver", "#6A4E57"),
-                new Colour("blue", "#000000")
+                new Colour("silver", "#82878B"),
+                new Colour("blue", "#00A0BA")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1075.99),
@@ -1889,7 +1890,7 @@ public class DataProvider {
         }
     }
 
-    public static void addItemsToFirebase(){
+    public static void addItemsToFirebase() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         loadableAccessories = new HashSet<>(generateAccessories());
         loadedAccessories = new HashSet<>();
