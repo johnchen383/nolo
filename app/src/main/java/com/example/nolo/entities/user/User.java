@@ -90,9 +90,8 @@ public class User implements IUser {
     }
 
     @Override
-    public void removeCart(IPurchasable cartItem) {
-        //removes if present
-        cart.remove(cartItem);
+    public void updateCart(List<Purchasable> cartItems) {
+        cart = cartItems;
     }
 
 

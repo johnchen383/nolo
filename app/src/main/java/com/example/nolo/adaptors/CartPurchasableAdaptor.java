@@ -165,6 +165,14 @@ public class CartPurchasableAdaptor extends ArrayAdapter {
             baseContext.startActivity(intent);
         });
 
+        vh.title.setOnClickListener(v -> {
+            Activity baseContext = (Activity) getContext();
+            Intent intent = new Intent(baseContext, DetailsActivity.class);
+            intent.putExtra(baseContext.getString(R.string.extra_item_variant), item.getItemVariant());
+
+            baseContext.startActivity(intent);
+        });
+
         return currentListViewItem;
     }
 }

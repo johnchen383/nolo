@@ -15,6 +15,7 @@ import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
+import com.example.nolo.interactors.user.UpdateCartItemUseCase;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.google.android.material.button.MaterialButton;
@@ -63,6 +64,13 @@ public class CartFragment extends Fragment {
     private void updateCartItems(List<Purchasable> items){
         cartItems = items;
         updatePrice();
+        initAdaptor();
+        UpdateCartItemUseCase.updateCartItem(items);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         initAdaptor();
     }
 

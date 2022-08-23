@@ -33,10 +33,11 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:maxLines="1"
-                android:text="Apple 16 MacBook M1 Pro"
+                android:text="Apple 16 MacBasdsdook M1 Pro"
                 android:textSize="@dimen/font_body1" />
 
             <RelativeLayout
