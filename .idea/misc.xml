@@ -22,9 +22,8 @@
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/nav_search_icon_background.xml" value="0.19166666666666668" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/toggle_border.xml" value="0.20989583333333334" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/toggle_fill.xml" value="0.20989583333333334" />
-        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_details.xml" value="0.22" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_forgot_password.xml" value="0.1375" />
-        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_list.xml" value="0.3333333333333333" />
+        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_list.xml" value="0.14666666666666667" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_main.xml" value="0.3080513418903151" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_map.xml" value="0.3333333333333333" />
@@ -45,12 +44,15 @@
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_list_category.xml" value="0.2625" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_list_laptop.xml" value="0.19375" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_list_phone.xml" value="0.19375" />
-        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_list_vertical.xml" value="0.4466666666666667" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_search_suggestion.xml" value="0.27149122807017545" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/popup_connectivity.xml" value="0.5" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Projects/Uni Project/3rd Year/SOFTENG 306/project-1-java-new-team-1/app/src/main/res/layout/activity_main.xml" value="0.303985171455051" />
         <entry key="..\:/Projects/Uni Project/3rd Year/SOFTENG 306/project-1-java-new-team-1/app/src/main/res/layout/activity_splash.xml" value="0.11875" />
+        <entry key="app/src/main/res/drawable/details_bar.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/details_color_btn.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/details_spec_tag.xml" value="0.2865" />
+        <entry key="app/src/main/res/drawable/item_border.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/login_button.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/login_edit_text.xml" value="0.266" />
         <entry key="app/src/main/res/drawable/login_text_edit_bg.xml" value="0.266" />
@@ -63,6 +65,13 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35229194726866975" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.3041025641025641" />
+        <entry key="app/src/main/res/layout/activity_list.xml" value="0.3284462190457744" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24" />
+        <entry key="app/src/main/res/layout/activity_map.xml" value="0.17623596191406252" />
+        <entry key="app/src/main/res/layout/activity_profile_settings.xml" value="0.2942205789205911" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.2677083333333333" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.30512820512820515" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4036458333333333" />
