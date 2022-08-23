@@ -1263,6 +1263,79 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
+         * Phone 5.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("green", "#ADE0CD"),
+                new Colour("purple", "#D1CDDB"),
+                new Colour("white", "#F9F6EF"),
+                new Colour("yellow", "#FFE680"),
+                new Colour("black", "#1F2120"),
+                new Colour("red", "#C92435")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 429),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 428.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 429),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 428.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(64, 0),
+                new SpecsOption(128, 100)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 11",
+                "ios",
+                "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
+                "A15 Bionic chip",
+                storages,
+                "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP68",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "71.5 x 146.7 x 7.65mm",
+                "173g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_11_1_green",
+                "item_phone_iphone_11_2_green",
+                "item_phone_iphone_11_3_green",
+
+                "item_phone_iphone_11_1_purple",
+                "item_phone_iphone_11_2_purple",
+                "item_phone_iphone_11_3_purple",
+
+                "item_phone_iphone_11_1_white",
+                "item_phone_iphone_11_2_white",
+                "item_phone_iphone_11_3_white",
+
+                "item_phone_iphone_11_1_yellow",
+                "item_phone_iphone_11_2_yellow",
+                "item_phone_iphone_11_3_yellow",
+
+                "item_phone_iphone_11_1_black",
+                "item_phone_iphone_11_2_black",
+                "item_phone_iphone_11_3_black",
+
+                "item_phone_iphone_11_1_red",
+                "item_phone_iphone_11_2_red",
+                "item_phone_iphone_11_3_red"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
+        ));
+        items.add(new Phone("Apple iPhone 11",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
          * Phone 6
          */
         colours = new ArrayList<>(Arrays.asList(
