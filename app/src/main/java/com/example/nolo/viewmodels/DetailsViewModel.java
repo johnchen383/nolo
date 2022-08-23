@@ -44,8 +44,10 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public List<ItemVariant> getRecItemVariants() {
-        List<String> ids = item.getRecommendedAccessoryIds();
         List<ItemVariant> ret = new ArrayList<>();
+        if (getItemCategory().equals(CategoryType.accessories)) return ret;
+
+        List<String> ids = item.getRecommendedAccessoryIds();
         for (String id : ids) {
             IItem item = GetItemByIdUseCase.getItemById(id);
 

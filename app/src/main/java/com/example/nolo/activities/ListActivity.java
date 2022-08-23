@@ -31,10 +31,10 @@ public class ListActivity extends BaseActivity {
 
     private class ViewHolder {
         ListView categoryItemsParentList;
-        ImageView categoryHeader;
+        ImageView categoryHeader, appleImage, androidImage;
         ImageButton backButton;
-        LinearLayout phoneToggle;
-        TextView appleBtn, androidBtn;
+        LinearLayout phoneToggle, appleBtn, androidBtn;
+        TextView appleSelect, androidSelect;
 
         public ViewHolder() {
             categoryItemsParentList = findViewById(R.id.category_item_parent_list);
@@ -43,6 +43,10 @@ public class ListActivity extends BaseActivity {
             phoneToggle = findViewById(R.id.phone_toggle);
             appleBtn = findViewById(R.id.apple_btn);
             androidBtn = findViewById(R.id.android_btn);
+            appleSelect = findViewById(R.id.apple_select);
+            androidSelect = findViewById(R.id.android_select);
+            appleImage = findViewById(R.id.apple_image);
+            androidImage = findViewById(R.id.android_image);
         }
     }
 
@@ -68,19 +72,19 @@ public class ListActivity extends BaseActivity {
 
     private void initPhoneListeners() {
         vh.androidBtn.setOnClickListener(v -> {
-            vh.androidBtn.setBackground(getDrawable(R.drawable.toggle_fill));
-            vh.androidBtn.setTextColor(getColor(R.color.navy));
-            vh.appleBtn.setBackground(null);
-            vh.appleBtn.setTextColor(getColor(R.color.white));
+            vh.androidImage.setImageResource(R.drawable.os_button_android);
+            vh.androidSelect.setTextColor(getColor(R.color.white));
+            vh.appleImage.setImageResource(R.drawable.os_button_ios_dim);
+            vh.appleSelect.setTextColor(getColor(R.color.navy));
             listViewModel.setPhoneOs(PhoneOs.android);
             establishAdaptor();
         });
 
         vh.appleBtn.setOnClickListener(v -> {
-            vh.appleBtn.setBackground(getDrawable(R.drawable.toggle_fill));
-            vh.appleBtn.setTextColor(getColor(R.color.navy));
-            vh.androidBtn.setBackground(null);
-            vh.androidBtn.setTextColor(getColor(R.color.white));
+            vh.androidImage.setImageResource(R.drawable.os_button_android_dim);
+            vh.androidSelect.setTextColor(getColor(R.color.navy));
+            vh.appleImage.setImageResource(R.drawable.os_button_ios);
+            vh.appleSelect.setTextColor(getColor(R.color.white));
             listViewModel.setPhoneOs(PhoneOs.ios);
             establishAdaptor();
         });

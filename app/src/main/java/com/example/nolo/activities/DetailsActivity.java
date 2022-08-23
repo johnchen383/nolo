@@ -46,11 +46,13 @@ public class DetailsActivity extends FragmentActivity {
     private int maxIndex;
     private float historicX;
     private double heightFactor;
+    private Colour displayedColour;
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
-        LinearLayout detailsContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
-        TextView itemTitle, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;;
+        LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
+        TextView itemTitle, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;
+        ;
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList, recItemsList;
         ImageView closeBtn, storesBtn;
@@ -114,7 +116,20 @@ public class DetailsActivity extends FragmentActivity {
             carousel = findViewById(R.id.carousel);
             scrollContainer = findViewById(R.id.scrollContainer);
             recItemsList = findViewById(R.id.rec_items_list);
+            recContainer = findViewById(R.id.rec_container);
         }
+    }
+
+    private void initCarouselAdaptor(){
+        /**
+         * CAROUSEL
+         */
+        List<String> uris = detailsViewModel.getImageUrisByColour();
+        maxIndex = uris.size() - 1;
+        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
+        vh.carousel.setAdapter(pagerAdapter);
+        vh.carousel.setCurrentItem(imgIndex, false);
+        displayedColour = detailsViewModel.getVariantColour();
     }
 
     private void initAdaptors() {
@@ -124,7 +139,7 @@ public class DetailsActivity extends FragmentActivity {
         LinearLayoutManager coloursLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         vh.coloursList.setLayoutManager(coloursLayoutManager);
 
-        List<Colour> colours =  detailsViewModel.getItemColours();
+        List<Colour> colours = detailsViewModel.getItemColours();
         DetailsColorAdaptor coloursAdaptor = new DetailsColorAdaptor(this, colours, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
         vh.coloursList.setAdapter(coloursAdaptor);
 
@@ -150,17 +165,6 @@ public class DetailsActivity extends FragmentActivity {
         }
 
         /**
-         * CAROUSEL
-         */
-
-        List<String> uris = detailsViewModel.getImageUrisByColour();
-        maxIndex = uris.size() - 1;
-        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
-        vh.carousel.setAdapter(pagerAdapter);
-        vh.carousel.setCurrentItem(imgIndex, false);
-
-
-        /**
          * REC
          */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -175,7 +179,7 @@ public class DetailsActivity extends FragmentActivity {
             super.onBackPressed();
             IUser usr = GetCurrentUserUseCase.getCurrentUser();
 
-            if (usr != null){
+            if (usr != null) {
                 usr.addViewHistory(detailsViewModel.getItemVariant());
             }
         } else {
@@ -250,7 +254,7 @@ public class DetailsActivity extends FragmentActivity {
         vh.closeBtn.setOnClickListener(v -> {
             IUser usr = GetCurrentUserUseCase.getCurrentUser();
 
-            if (usr != null){
+            if (usr != null) {
                 usr.addViewHistory(detailsViewModel.getItemVariant());
             }
 
@@ -262,19 +266,19 @@ public class DetailsActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 System.out.println("SWIPE: " + motionEvent.getAction());
-                switch (motionEvent.getAction()){
+                switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         historicX = motionEvent.getX();
                         break;
                     case MotionEvent.ACTION_UP:
                         float currentX = motionEvent.getX();
 
-                        if (currentX < historicX){
+                        if (currentX < historicX) {
                             imgIndex++;
                             if (imgIndex > maxIndex) imgIndex = maxIndex;
                             vh.carousel.setCurrentItem(imgIndex);
                             System.out.println("SWIPE: " + imgIndex);
-                        } else if (currentX > historicX){
+                        } else if (currentX > historicX) {
                             imgIndex--;
                             if (imgIndex < 0) imgIndex = 0;
                             vh.carousel.setCurrentItem(imgIndex);
@@ -286,16 +290,14 @@ public class DetailsActivity extends FragmentActivity {
             }
         });
 
-        vh.scrollContainer.setOnTouchListener(new View.OnTouchListener() {
+        vh.scrollContainer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (vh.scrollContainer.getScrollY() > ((Display.getScreenHeight(vh.scrollContainer) * heightFactor) - 100)){
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                if (vh.scrollContainer.getScrollY() > ((Display.getScreenHeight(vh.scrollContainer) * heightFactor) - 100)) {
                     vh.closeBtn.setVisibility(View.INVISIBLE);
                 } else {
                     vh.closeBtn.setVisibility(View.VISIBLE);
                 }
-
-                return false;
             }
         });
     }
@@ -305,6 +307,11 @@ public class DetailsActivity extends FragmentActivity {
         initAdaptors();
         setDynamicStyling();
         initSpecsStyling(detailsViewModel.getItemCategory());
+
+        if (!displayedColour.equals(itemVariant.getColour())){
+            //colour changed
+            initCarouselAdaptor();
+        }
     }
 
     private String capitaliseFirst(String string) {
@@ -323,6 +330,7 @@ public class DetailsActivity extends FragmentActivity {
 
         initStyling();
         initAdaptors();
+        initCarouselAdaptor();
         initListeners();
     }
 
@@ -355,6 +363,7 @@ public class DetailsActivity extends FragmentActivity {
             vh.acSpecs.setVisibility(View.GONE);
         } else {
             vh.specs.setVisibility(View.GONE);
+            vh.recContainer.setVisibility(View.GONE);
             return;
         }
 
