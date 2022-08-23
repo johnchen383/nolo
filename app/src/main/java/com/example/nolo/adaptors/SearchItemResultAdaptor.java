@@ -1,6 +1,7 @@
 package com.example.nolo.adaptors;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.util.Animation;
 
 import java.util.List;
 
@@ -23,12 +27,12 @@ public class SearchItemResultAdaptor extends ArrayAdapter {
     private int mLayoutID;
 
     private class ViewHolder {
-        LinearLayout searchResultItem;
+        LinearLayout itemClickable;
         TextView title, price;
         ImageView img;
 
         public ViewHolder(View currentListViewItem) {
-            searchResultItem = currentListViewItem.findViewById(R.id.search_result_item);
+            itemClickable = currentListViewItem.findViewById(R.id.item_clickable);
             title = currentListViewItem.findViewById(R.id.title);
             price = currentListViewItem.findViewById(R.id.price);
             img = currentListViewItem.findViewById(R.id.item_img);
@@ -70,10 +74,12 @@ public class SearchItemResultAdaptor extends ArrayAdapter {
 
         vh.img.setImageResource(i);
 
-        vh.searchResultItem.setOnClickListener(new View.OnClickListener() {
+        vh.itemClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: when item in search suggestion is clicked, go to detail page
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) currentItem.getDefaultItemVariant());
+                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
             }
         });
 
