@@ -62,7 +62,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
 
         holder.title.setText(variant.getTitle());
 
-        holder.price.setText(variant.getDisplayPrice());
+        holder.price.setText(variant.getDisplayPrice().substring(1) + " NZD");
 
         int i = mContext.getResources().getIdentifier(
                 variant.getDisplayImage(), "drawable",

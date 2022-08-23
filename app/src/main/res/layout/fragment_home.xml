@@ -22,60 +22,68 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
                         android:id="@+id/initial_home_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:id="@+id/search_layout_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_gravity="center"
-                            android:layout_marginTop="48dp">
+                            android:layout_marginTop="48dp"
+                            android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="16dp"
                                 android:layout_height="16dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/nav_icon_search_brown"/>
+                                android:src="@drawable/nav_icon_search_brown" />
+
                             <TextView
-                                android:textColor="@color/light_brown"
-                                android:layout_marginLeft="8dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="8dp"
                                 android:gravity="center"
                                 android:text="@string/title_search"
-                                android:textSize="@dimen/font_body1"
                                 android:textAllCaps="true"
-                                android:layout_gravity="center"/>
+                                android:textColor="@color/light_brown"
+                                android:textSize="@dimen/font_body1" />
                         </LinearLayout>
 
                         <ImageView
-                            android:layout_marginTop="32dp"
-                            android:layout_marginBottom="56dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/home_logo"/>
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="65dp"
+                            android:src="@drawable/home_logo" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <TextView
                                 android:id="@+id/featured_text"
+                                style="@style/TextStroke.White"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/font_body1"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="25dp"
                                 android:text="@string/home_featured_prev"
-                                android:layout_marginLeft="@dimen/header_indent"
-                                android:layout_gravity="left"/>
+                                android:textSize="@dimen/font_h6" />
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/featured_items_list"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="15dp"/>
                         </LinearLayout>
-
 
 
                     </LinearLayout>
@@ -87,7 +95,8 @@
                         android:orientation="horizontal"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:paddingBottom="80dp">
+                        android:layout_marginBottom="48dp"
+                        android:paddingBottom="@dimen/touch_target_min">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -170,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="84dp"
         android:layout_marginRight="24dp">
         <TextView
             android:id="@+id/one"
