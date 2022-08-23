@@ -20,7 +20,8 @@ public class CarouselPagerAdaptor extends FragmentStateAdapter {
 
     @Override
     public Fragment createFragment(int position) {
-        return new CarouselImageFragment();
+        Fragment f =  new CarouselImageFragment(uris.get(position));
+        return f;
     }
 
     @Override

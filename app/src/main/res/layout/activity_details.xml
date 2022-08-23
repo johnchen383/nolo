@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/white">
         <androidx.viewpager2.widget.ViewPager2
+            android:paddingTop="64dp"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/carousel"
             android:layout_width="match_parent"
@@ -25,21 +26,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-            <LinearLayout
+            <HorizontalScrollView
                 android:id="@+id/transparent_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
                 android:background="@null">
-                <ImageView
-                    android:id="@+id/close_btn"
+                <View
                     android:layout_width="@dimen/touch_target_min"
                     android:layout_height="@dimen/touch_target_min"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="27dp"
-                    android:paddingRight="28dp"
-                    app:srcCompat="@drawable/exit_cross" />
-            </LinearLayout>
+                    android:paddingRight="28dp"/>
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:id="@+id/details_container"
@@ -698,5 +697,12 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="@dimen/touch_target_min"
+        android:layout_height="@dimen/touch_target_min"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="27dp"
+        android:paddingRight="28dp"
+        android:src="@drawable/exit_cross" />
 </FrameLayout>

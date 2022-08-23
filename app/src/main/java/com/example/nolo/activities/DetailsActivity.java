@@ -2,7 +2,9 @@ package com.example.nolo.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -38,9 +40,11 @@ public class DetailsActivity extends FragmentActivity {
     private ViewHolder vh;
     private int imgIndex;
     private int maxIndex;
+    private float historicX;
 
     private class ViewHolder {
-        LinearLayout transparentContainer, detailsContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
+        HorizontalScrollView transparentContainer;
+        LinearLayout detailsContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
         TextView itemTitle, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;;
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList;
@@ -146,6 +150,7 @@ public class DetailsActivity extends FragmentActivity {
         CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
         vh.carousel.setAdapter(pagerAdapter);
         vh.carousel.setCurrentItem(imgIndex, false);
+
     }
 
     @Override
@@ -161,7 +166,8 @@ public class DetailsActivity extends FragmentActivity {
     }
 
     private void initStyling() {
-        vh.transparentContainer.setMinimumHeight((int) (0.45 * (Display.getScreenHeight(vh.transparentContainer))));
+        double heightFactor = 0.45;
+
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
         vh.storeName.setText(detailsViewModel.getStoreBranchName());
@@ -171,6 +177,7 @@ public class DetailsActivity extends FragmentActivity {
                 initSpecsStyling(CategoryType.laptops);
                 break;
             case phones:
+                heightFactor = 0.7;
                 vh.ramContainer.setVisibility(View.INVISIBLE);
                 initSpecsStyling(CategoryType.phones);
                 break;
@@ -180,6 +187,15 @@ public class DetailsActivity extends FragmentActivity {
                 initSpecsStyling(CategoryType.accessories);
                 break;
         }
+
+        LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
+        params2.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
+        vh.transparentContainer.setLayoutParams(params2);
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) vh.carousel.getLayoutParams();
+        params.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
+        vh.carousel.setLayoutParams(params);
+
         setDynamicStyling();
     }
 
@@ -193,21 +209,11 @@ public class DetailsActivity extends FragmentActivity {
         vh.decrementBtn.setOnClickListener(v -> {
             detailsViewModel.incrementOrDecrementQuantity(false);
             vh.quantityText.setText(String.valueOf(detailsViewModel.getQuantity()));
-
-            imgIndex--;
-            if (imgIndex < 0) imgIndex = 0;
-            vh.carousel.setCurrentItem(imgIndex);
-            System.out.println("SWIPE: " + imgIndex);
         });
 
         vh.incrementBtn.setOnClickListener(v -> {
             detailsViewModel.incrementOrDecrementQuantity(true);
             vh.quantityText.setText(String.valueOf(detailsViewModel.getQuantity()));
-
-            imgIndex++;
-            if (imgIndex > maxIndex) imgIndex = maxIndex;
-            vh.carousel.setCurrentItem(imgIndex);
-            System.out.println("SWIPE: " + imgIndex);
         });
 
         vh.storesBtn.setOnClickListener(v -> {
@@ -223,6 +229,34 @@ public class DetailsActivity extends FragmentActivity {
         vh.closeBtn.setOnClickListener(v -> {
             super.onBackPressed();
             this.finish();
+        });
+
+        vh.transparentContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                System.out.println("SWIPE: " + motionEvent.getAction());
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        historicX = motionEvent.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        float currentX = motionEvent.getX();
+
+                        if (currentX < historicX){
+                            imgIndex++;
+                            if (imgIndex > maxIndex) imgIndex = maxIndex;
+                            vh.carousel.setCurrentItem(imgIndex);
+                            System.out.println("SWIPE: " + imgIndex);
+                        } else if (currentX > historicX){
+                            imgIndex--;
+                            if (imgIndex < 0) imgIndex = 0;
+                            vh.carousel.setCurrentItem(imgIndex);
+                            System.out.println("SWIPE: " + imgIndex);
+                        }
+
+                }
+                return false;
+            }
         });
     }
 
@@ -247,8 +281,8 @@ public class DetailsActivity extends FragmentActivity {
 
         imgIndex = 0;
 
-        initAdaptors();
         initStyling();
+        initAdaptors();
         initListeners();
     }
 
