@@ -26,8 +26,10 @@ import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.entities.user.IUser;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.SpecsOptionType;
+import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
@@ -157,6 +159,11 @@ public class DetailsActivity extends FragmentActivity {
     public void onBackPressed() {
         if (vh.carousel.getCurrentItem() == 0) {
             super.onBackPressed();
+            IUser usr = GetCurrentUserUseCase.getCurrentUser();
+
+            if (usr != null){
+                usr.addViewHistory(detailsViewModel.getItemVariant());
+            }
         } else {
             imgIndex--;
             if (imgIndex < 0) imgIndex = 0;
@@ -227,6 +234,12 @@ public class DetailsActivity extends FragmentActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
+            IUser usr = GetCurrentUserUseCase.getCurrentUser();
+
+            if (usr != null){
+                usr.addViewHistory(detailsViewModel.getItemVariant());
+            }
+
             super.onBackPressed();
             this.finish();
         });
