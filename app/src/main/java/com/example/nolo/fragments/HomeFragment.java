@@ -292,6 +292,21 @@ public class HomeFragment extends Fragment {
             snapScroll();
         });
 
+        vh.one.setOnClickListener(v -> {
+            panelIndex = 1;
+            snapScroll();
+        });
+
+        vh.two.setOnClickListener(v -> {
+            panelIndex = 2;
+            snapScroll();
+        });
+
+        vh.three.setOnClickListener(v -> {
+            panelIndex = 3;
+            snapScroll();
+        });
+
         vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
     }
 
