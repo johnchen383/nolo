@@ -630,6 +630,61 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
+         * Laptop 5.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2540.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2499),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2527.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(4, 0),
+                new SpecsOption(8, 59)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 99)
+        ));
+        specs = new LaptopSpecs("ASUS ROG Strix G15 Advantage Edition G513QY",
+                "Windows 11 Home",
+                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)",
+                "Intel® UHD Graphics",
+                rams,
+                storages,
+                "720p HD camera",
+                "Backlit Chiclet Keyboard; 1.4mm Key-travel",
+                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
+                "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support",
+                "Touch screen display",
+                "Fingerprint sensor integrated with Touchpad",
+                "N/A",
+                "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader",
+                "39WHrs, 2S1P, 2-cell Li-ion",
+                "45W AC Adapter",
+                "32.07 x 21.70 x 1.69 mm",
+                "1.50 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_asus_rog_strix_g15_1_black",
+                "item_laptop_asus_rog_strix_g15_2_black",
+                "item_laptop_asus_rog_strix_g15_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
+        ));
+        items.add(new Laptop("ASUS ROG Strix G15 Advantage Edition",
+                "ASUS",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
          * Laptop 6
          */
         colours = new ArrayList<>(Arrays.asList(
