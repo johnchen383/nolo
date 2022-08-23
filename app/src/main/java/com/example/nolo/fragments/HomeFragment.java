@@ -200,12 +200,7 @@ public class HomeFragment extends Fragment {
         vh.searchImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Check if Search bar is empty
-                if (vh.searchEditText.getText().toString().isEmpty()) {
-                    Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
-                } else {
-                    goToSearchActivity(vh.searchEditText.getText().toString());
-                }
+                goToSearchActivity(vh.searchEditText.getText().toString());
             }
         });
     }
@@ -241,10 +236,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void goToSearchActivity(String searchTerm) {
-        showSearchContainer(false);
+        // Check if Search bar is empty
+        if (searchTerm.isEmpty()) {
+            Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+        } else {
+            showSearchContainer(false);
 
-        Intent intent = new Intent(getActivity(), ResultActivity.class);
-        intent.putExtra(getString(R.string.search_term), searchTerm);
-        startActivity(intent, Animation.Fade(getActivity()).toBundle());
+            Intent intent = new Intent(getActivity(), ResultActivity.class);
+            intent.putExtra(getString(R.string.search_term), searchTerm);
+            startActivity(intent, Animation.Fade(getActivity()).toBundle());
+        }
     }
 }

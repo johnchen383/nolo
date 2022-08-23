@@ -23,6 +23,7 @@ import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
+import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.SearchViewModel;
 
@@ -127,12 +128,7 @@ public class SearchFragment extends Fragment {
         vh.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Check if Search bar is empty
-                if (vh.searchEditText.getText().toString().isEmpty()) {
-                    Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
-                } else {
-                    goToSearchActivity(vh.searchEditText.getText().toString());
-                }
+                goToSearchActivity(vh.searchEditText.getText().toString());
             }
         });
     }
@@ -146,8 +142,16 @@ public class SearchFragment extends Fragment {
     }
 
     private void goToSearchActivity(String searchTerm) {
-        Intent intent = new Intent(getActivity(), ResultActivity.class);
-        intent.putExtra(getString(R.string.search_term), searchTerm);
-        startActivity(intent, Animation.Fade(getActivity()).toBundle());
+        // Check if Search bar is empty
+        if (searchTerm.isEmpty()) {
+            Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+        } else {
+            // Hide the keyboard
+            Keyboard.hide(getActivity(), currentView);
+
+            Intent intent = new Intent(getActivity(), ResultActivity.class);
+            intent.putExtra(getString(R.string.search_term), searchTerm);
+            startActivity(intent, Animation.Fade(getActivity()).toBundle());
+        }
     }
 }
