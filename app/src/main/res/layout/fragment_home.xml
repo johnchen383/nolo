@@ -18,57 +18,84 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/initial_home_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
                     <LinearLayout
-                        android:id="@+id/search_layout_btn"
+                        android:id="@+id/initial_home_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/search_layout_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp">
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/nav_icon_search"/>
+                            <TextView
+                                android:layout_marginLeft="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/title_search"
+                                android:textSize="@dimen/font_body1"
+                                android:textAllCaps="true"
+                                android:layout_gravity="center"/>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/home_logo"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/featured_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_featured_prev"
+                                android:layout_marginLeft="@dimen/header_indent"
+                                android:layout_gravity="left"/>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/featured_items_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/browse_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="32dp">
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingBottom="80dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/font_body2"
+                            android:textColor="@color/light_brown"
+                            android:text="BROWSE CATEGORIES"/>
                         <ImageView
+                            android:layout_marginLeft="8dp"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/nav_icon_search"/>
-                        <TextView
-                            android:layout_marginLeft="8dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/title_search"
-                            android:textSize="@dimen/font_body1"
-                            android:textAllCaps="true"
-                            android:layout_gravity="center"/>
+                            android:src="@drawable/browse_btn_arrow" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/home_logo"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/featured_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/home_featured_prev"
-                            android:layout_marginLeft="@dimen/header_indent"                        
-                            android:layout_gravity="left"/>
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/featured_items_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                </RelativeLayout>
 
                 <ListView
                     android:id="@+id/category_list"
