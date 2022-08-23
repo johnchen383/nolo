@@ -49,14 +49,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        FragmentTransaction tr = getFragmentManager().beginTransaction();
-//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.home_fragment_layout);
-//        getFragmentManager()
-//                .beginTransaction()
-//                .detach(fragment)
-//                .attach(fragment)
-//                .commit();
-//        tr.commit();
     }
 
     @Override
