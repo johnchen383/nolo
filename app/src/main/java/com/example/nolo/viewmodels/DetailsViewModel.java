@@ -19,6 +19,7 @@ import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
 import com.example.nolo.interactors.user.AddViewedItemUseCase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsViewModel extends ViewModel {
@@ -30,9 +31,9 @@ public class DetailsViewModel extends ViewModel {
     private StoreVariant getStoreVariant() {
         String variantStoreId = itemVariant.getStoreId();
         return item.getStoreVariants().stream()
-            .filter(o -> o.getStoreId().equals(variantStoreId))
-            .findFirst()
-            .get();
+                .filter(o -> o.getStoreId().equals(variantStoreId))
+                .findFirst()
+                .get();
     }
 
     public DetailsViewModel(IItemVariant itemVariant) {
@@ -40,6 +41,52 @@ public class DetailsViewModel extends ViewModel {
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
         this.quantity = 1;
         this.purchasable = new Purchasable((ItemVariant) this.itemVariant, this.quantity);
+    }
+
+    public List<ItemVariant> getRecItemVariants() {
+        List<String> ids = item.getRecommendedAccessoryIds();
+        List<ItemVariant> ret = new ArrayList<>();
+        for (String id : ids) {
+            IItem item = GetItemByIdUseCase.getItemById(id);
+
+            if (item != null) {
+                ret.add((ItemVariant) item.getDefaultItemVariant());
+            }
+        }
+
+        return ret;
+    }
+
+    public List<String> getImageUrisByColour() {
+        Colour colour = getVariantColour();
+
+        boolean found = false;
+        List<String> images = new ArrayList<>();
+        for (String uri : item.getImageUris()) {
+            String[] parts = uri.split("_");
+            String col = parts[parts.length - 1];
+
+            if (col.equals(colour.getName())) {
+                found = true;
+                images.add(uri);
+            }
+        }
+
+        if (!found) {
+            String[] parts = item.getImageUris().get(0).split("_");
+            String col = parts[parts.length - 1];
+            for (String uri : item.getImageUris()) {
+                String[] parts2 = uri.split("_");
+                String col2 = parts2[parts2.length - 1];
+
+                if (col2.equals(col)) {
+                    found = true;
+                    images.add(uri);
+                }
+            }
+        }
+
+        return images;
     }
 
     public IItemVariant getItemVariant() {
@@ -69,7 +116,9 @@ public class DetailsViewModel extends ViewModel {
         return storeName + " " + branchName;
     }
 
-    public CategoryType getItemCategory() { return itemVariant.getCategoryType(); }
+    public CategoryType getItemCategory() {
+        return itemVariant.getCategoryType();
+    }
 
     public List<SpecsOption> getStorageOptions() {
         if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
