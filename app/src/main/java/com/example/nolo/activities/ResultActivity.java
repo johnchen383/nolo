@@ -81,7 +81,7 @@ public class ResultActivity extends BaseActivity {
 
         // Create and Set the adaptor
         SearchItemResultAdaptor searchItemResultAdaptor =
-                new SearchItemResultAdaptor(this, R.layout.item_list_wide, searchResult);
+                new SearchItemResultAdaptor(this, R.layout.item_list_vertical, searchResult);
         vh.searchResultList.setAdapter(searchItemResultAdaptor);
         ListUtil.setDynamicHeight(vh.searchResultList);
 
