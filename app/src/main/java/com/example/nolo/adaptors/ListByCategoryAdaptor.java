@@ -52,7 +52,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
 
     public class AccessoryViewHolder {
         LinearLayout itemClickable;
-        TextView title, price;
+        TextView title, price, laptopsTag, phonesTag;
         ImageView img;
 
         public AccessoryViewHolder(View currentListViewItem) {
@@ -60,6 +60,8 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             title = currentListViewItem.findViewById(R.id.title);
             price = currentListViewItem.findViewById(R.id.price);
             img = currentListViewItem.findViewById(R.id.item_img);
+            laptopsTag = currentListViewItem.findViewById(R.id.laptops_tag);
+            phonesTag = currentListViewItem.findViewById(R.id.phones_tag);
         }
     }
 
@@ -123,6 +125,14 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
                 mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
             }
         });
+
+        if (item.getIsForLaptops()) {
+            vh.laptopsTag.setVisibility(View.VISIBLE);
+        }
+
+        if (item.getIsForPhones()) {
+            vh.phonesTag.setVisibility(View.VISIBLE);
+        }
 
         return currentListViewItem;
     }
