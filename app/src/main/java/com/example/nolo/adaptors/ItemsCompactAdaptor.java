@@ -62,7 +62,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
 
         holder.title.setText(variant.getTitle());
 
-        holder.price.setText(variant.getDisplayPrice());
+        holder.price.setText(variant.getDisplayPrice().substring(1) + " NZD");
 
         int i = mContext.getResources().getIdentifier(
                 variant.getDisplayImage(), "drawable",
@@ -75,7 +75,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
         layoutParams.width = (int) width;
 
         LinearLayout.LayoutParams ivLayoutParams = (LinearLayout.LayoutParams) holder.img.getLayoutParams();
-        ivLayoutParams.height = (int) (0.75 * width);
+        ivLayoutParams.height = (int) (0.9 * width);
 
         holder.itemClickable.setLayoutParams(layoutParams);
         holder.img.setLayoutParams(ivLayoutParams);

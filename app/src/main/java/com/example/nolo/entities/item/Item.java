@@ -118,6 +118,18 @@ public abstract class Item implements IItem {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
+    @Override
+    @Exclude
+    public boolean getIsForLaptops() {
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
+    @Override
+    @Exclude
+    public boolean getIsForPhones() {
+        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    }
+
     /**
      * Get the base price of the current item with the selected store ID
      *

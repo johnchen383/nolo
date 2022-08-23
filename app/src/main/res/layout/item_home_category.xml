@@ -24,17 +24,23 @@
             android:text="accessories"
             android:letterSpacing="-0.1"
             android:background="@color/transparent"
-            android:textSize="@dimen/font_h2"
+            android:textSize="70sp"
             />
-        <ImageButton
-            android:id="@+id/category_btn"
-            android:layout_width="64dp"
-            android:layout_height="32dp"
-            android:src="@drawable/home_categories_btn"
-            android:background="@color/transparent"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/category_btn"
+                android:layout_width="65dp"
+                android:layout_height="31dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_categories_btn" />
+        </RelativeLayout>
     </LinearLayout>
 
 </FrameLayout>

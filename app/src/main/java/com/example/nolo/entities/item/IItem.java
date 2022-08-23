@@ -27,4 +27,6 @@ public interface IItem {
     PhoneSpecs getPhoneSpecs();
     LaptopSpecs getLaptopSpecs();
     AccessorySpecs getAccessorySpecs();
+    boolean getIsForLaptops();
+    boolean getIsForPhones();
 }

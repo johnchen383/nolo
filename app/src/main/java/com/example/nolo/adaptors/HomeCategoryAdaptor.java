@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,8 @@ import com.example.nolo.util.Display;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class HomeCategoryAdaptor extends ArrayAdapter {
     private int mLayoutID;
