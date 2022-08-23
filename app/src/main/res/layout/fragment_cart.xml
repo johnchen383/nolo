@@ -7,6 +7,14 @@
     android:background="@color/navy"
     tools:context=".fragments.CartFragment">
 
+    <ListView
+        android:id="@+id/cart_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="200dp"
+        android:paddingBottom="220dp"
+        android:paddingHorizontal="12dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -26,6 +34,7 @@
         android:layout_gravity="bottom"
         android:paddingHorizontal="45dp"
         android:paddingTop="25dp"
+        android:background="@color/navy"
         android:orientation="vertical">
 
         <TextView

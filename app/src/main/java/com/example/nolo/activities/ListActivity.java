@@ -125,7 +125,7 @@ public class ListActivity extends BaseActivity {
                     l.add(tempItem);
                     items.add(l);
                 }
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_wide, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_vertical, items);
 
                 ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.white));
                 vh.categoryItemsParentList.setDivider(whiteDivider);
