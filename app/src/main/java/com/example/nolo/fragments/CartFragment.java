@@ -2,8 +2,10 @@ package com.example.nolo.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,11 +38,13 @@ public class CartFragment extends Fragment {
         TextView totalPrice;
         ListView cartList;
         MaterialButton checkoutBtn;
+        LinearLayout emptyMsg;
 
         public ViewHolder(){
             totalPrice = getView().findViewById(R.id.total_price);
             cartList = getView().findViewById(R.id.cart_list);
             checkoutBtn = getView().findViewById(R.id.checkout_btn);
+            emptyMsg = getView().findViewById(R.id.empty_msg);
         }
     }
 
@@ -59,6 +63,16 @@ public class CartFragment extends Fragment {
 
         updatePrice();
         initAdaptor();
+
+        checkCartEmpty();
+
+        vh.checkoutBtn.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Purchase made!", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void checkCartEmpty(){
+        vh.emptyMsg.setVisibility(cartItems.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     private void updateCartItems(List<Purchasable> items){
@@ -66,6 +80,7 @@ public class CartFragment extends Fragment {
         updatePrice();
         initAdaptor();
         UpdateCartItemUseCase.updateCartItem(items);
+        checkCartEmpty();
     }
 
     @Override

@@ -75,7 +75,7 @@
                                 android:layout_gravity="left"
                                 android:layout_marginLeft="25dp"
                                 android:text="@string/home_featured_prev"
-                                android:textSize="@dimen/font_body1" />
+                                android:textSize="@dimen/font_body2" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/featured_items_list"

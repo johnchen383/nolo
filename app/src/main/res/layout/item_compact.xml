@@ -16,6 +16,7 @@
             android:id="@+id/item_img"
             android:layout_width="match_parent"
             android:layout_height="164dp"
+            android:background="@color/white"
             android:scaleType="centerCrop"
             android:src="@drawable/item_accessory_sony_wh_1000xm4_1_black" />
     </LinearLayout>
@@ -32,7 +33,7 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:gravity="center"
-        android:textSize="@dimen/font_caption" />
+        android:textSize="@dimen/font_overline" />
 
     <TextView
         android:id="@+id/item_price"

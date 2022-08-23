@@ -5,6 +5,9 @@
     android:background="@color/navy"
     android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/child_items_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

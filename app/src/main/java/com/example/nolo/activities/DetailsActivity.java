@@ -1,5 +1,7 @@
 package com.example.nolo.activities;
 
+import static androidx.test.InstrumentationRegistry.getContext;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -262,6 +265,7 @@ public class DetailsActivity extends FragmentActivity {
         });
 
         vh.addCartBtn.setOnClickListener(v -> {
+            Toast.makeText(this, "Added to cart!", Toast.LENGTH_SHORT).show();
             detailsViewModel.addCart();
         });
 

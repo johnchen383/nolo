@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/navy"
+    android:weightSum="1"
+    android:layout_marginTop="-150dp"
+    android:paddingHorizontal="8dp">
+
+    <LinearLayout
+        android:id="@+id/item_clickable"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:background="@color/navy"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_border">
+            <ImageView
+                android:layout_margin="7dp"
+                android:id="@+id/item_img"
+                android:layout_width="match_parent"
+                android:layout_height="204dp"
+                android:scaleType="centerCrop"
+                android:background="@color/white"
+                android:src="@drawable/item_phone_huawei_p40_pro_1_blue" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:text="Apple iPhone 13 Pro Max"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/font_caption" />
+
+        <TextView
+            android:id="@+id/item_price"
+            style="@style/TextStroke.White"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:text="1999.00 NZD"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_caption"
+            android:textFontWeight="500"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:id="@+id/item_clickable2"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/navy"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_border">
+            <ImageView
+                android:layout_margin="7dp"
+                android:id="@+id/item_img2"
+                android:layout_width="match_parent"
+                android:layout_height="204dp"
+                android:background="@color/white"
+                android:src="@drawable/item_phone_huawei_p40_pro_1_blue" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/item_title2"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:text="Apple iPhone 13 Pro Max"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/font_caption" />
+
+        <TextView
+            android:id="@+id/item_price2"
+            style="@style/TextStroke.White"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:text="1999.00 NZD"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_caption"
+            android:textFontWeight="500"
+            />
+    </LinearLayout>
+
+</LinearLayout>

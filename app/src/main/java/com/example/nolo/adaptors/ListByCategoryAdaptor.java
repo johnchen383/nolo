@@ -33,11 +33,31 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
     private Context mContext;
     private int mLayoutID;
 
+//    public class PhoneViewHolder {
+//        RecyclerView childItemsList;
+//
+//        public PhoneViewHolder(View currentListViewItem) {
+//            childItemsList = currentListViewItem.findViewById(R.id.child_items_list);
+//        }
+//    }
+
     public class PhoneViewHolder {
-        RecyclerView childItemsList;
+        LinearLayout itemClickable;
+        TextView title, price;
+        ImageView img;
+        LinearLayout itemClickable2;
+        TextView title2, price2;
+        ImageView img2;
 
         public PhoneViewHolder(View currentListViewItem) {
-            childItemsList = currentListViewItem.findViewById(R.id.child_items_list);
+            itemClickable = currentListViewItem.findViewById(R.id.item_clickable);
+            title = currentListViewItem.findViewById(R.id.item_title);
+            price = currentListViewItem.findViewById(R.id.item_price);
+            img = currentListViewItem.findViewById(R.id.item_img);
+            itemClickable2 = currentListViewItem.findViewById(R.id.item_clickable2);
+            title2 = currentListViewItem.findViewById(R.id.item_title2);
+            price2 = currentListViewItem.findViewById(R.id.item_price2);
+            img2 = currentListViewItem.findViewById(R.id.item_img2);
         }
     }
 
@@ -111,7 +131,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         AccessoryViewHolder vh = new AccessoryViewHolder(currentListViewItem);
 
         vh.title.setText(item.getName());
-        vh.price.setText(item.getDefaultItemVariant().getDisplayPrice());
+        vh.price.setText(item.getDefaultItemVariant().getDisplayPrice().substring(1) + " NZD");
 
         int i = mContext.getResources().getIdentifier(
                 item.getDefaultItemVariant().getDisplayImage(), "drawable",
@@ -139,10 +159,54 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         return currentListViewItem;
     }
 
-    private View populatePhoneItemsByOs(List<IItem> osItems, View currentListViewItem){
+    private View populatePhoneItemsByOs(List<IItem> items, View currentListViewItem){
         PhoneViewHolder vh = new PhoneViewHolder(currentListViewItem);
 
-        setUpChildRecyclerView(vh.childItemsList, osItems, 0.48);
+//        setUpChildRecyclerView(vh.childItemsList, osItems, 0.48);
+
+        int index = 0;
+
+        if (items.size() < 1) return currentListViewItem;
+
+        vh.title.setText(items.get(index).getName());
+        vh.price.setText(items.get(index).getDefaultItemVariant().getDisplayPrice().substring(1) + " NZD");
+
+        int i = mContext.getResources().getIdentifier(
+                items.get(index).getDefaultItemVariant().getDisplayImage(), "drawable",
+                mContext.getPackageName());
+
+        vh.img.setImageResource(i);
+
+        vh.itemClickable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) items.get(index).getDefaultItemVariant());
+                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+            }
+        });
+
+        if (items.size() < 2) return currentListViewItem;
+        int index2 = 1;
+
+        vh.title2.setText(items.get(index2).getName());
+        vh.price2.setText(items.get(index2).getDefaultItemVariant().getDisplayPrice().substring(1) + " NZD");
+
+        int i2 = mContext.getResources().getIdentifier(
+                items.get(index2).getDefaultItemVariant().getDisplayImage(), "drawable",
+                mContext.getPackageName());
+
+        vh.img2.setImageResource(i2);
+
+        vh.itemClickable2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) items.get(index2).getDefaultItemVariant());
+                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+            }
+        });
+
 
         return currentListViewItem;
     }
@@ -151,7 +215,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         LaptopsViewHolder vh = new LaptopsViewHolder(currentListViewItem);
 
         vh.brandName.setText(items.get(0).getBrand().toUpperCase());
-        setUpChildRecyclerView(vh.childItemsList, items, 0.48);
+        setUpChildRecyclerView(vh.childItemsList, items, 0.4);
 
         return currentListViewItem;
     }

@@ -66,7 +66,7 @@ public class SearchItemResultAdaptor extends ArrayAdapter {
         ViewHolder vh = new ViewHolder(currentListViewItem);
 
         vh.title.setText(currentItem.getName());
-        vh.price.setText(currentItem.getDefaultItemVariant().getDisplayPrice());
+        vh.price.setText(currentItem.getDefaultItemVariant().getDisplayPrice().substring(1) + " NZD");
 
         int i = mContext.getResources().getIdentifier(
                 currentItem.getDefaultItemVariant().getDisplayImage(), "drawable",

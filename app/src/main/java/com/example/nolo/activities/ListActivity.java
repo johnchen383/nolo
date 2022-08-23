@@ -120,7 +120,7 @@ public class ListActivity extends BaseActivity {
                 break;
             case phones:
                 items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(listViewModel.getPhoneOs());
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone_child, items);
                 break;
             case accessories:
                 List<IItem> tempItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories);
@@ -131,7 +131,7 @@ public class ListActivity extends BaseActivity {
                 }
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_vertical, items);
 
-                ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.white));
+                ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.faint_white));
                 vh.categoryItemsParentList.setDivider(whiteDivider);
                 vh.categoryItemsParentList.setDividerHeight(1);
                 vh.categoryItemsParentList.setPadding(32, 32, 32, 32);
