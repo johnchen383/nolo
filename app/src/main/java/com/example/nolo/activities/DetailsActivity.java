@@ -51,7 +51,7 @@ public class DetailsActivity extends FragmentActivity {
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
         LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
-        TextView itemTitle, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;
+        TextView itemTitle, summaryText, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;
         ;
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList, recItemsList;
@@ -117,6 +117,7 @@ public class DetailsActivity extends FragmentActivity {
             scrollContainer = findViewById(R.id.scrollContainer);
             recItemsList = findViewById(R.id.rec_items_list);
             recContainer = findViewById(R.id.rec_container);
+            summaryText = findViewById(R.id.summary_text);
         }
     }
 
@@ -202,13 +203,14 @@ public class DetailsActivity extends FragmentActivity {
                 initSpecsStyling(CategoryType.laptops);
                 break;
             case phones:
-                heightFactor = 0.7;
-                vh.ramContainer.setVisibility(View.INVISIBLE);
+                heightFactor = 0.55;
+                vh.ramContainer.setVisibility(View.GONE);
                 initSpecsStyling(CategoryType.phones);
                 break;
             case accessories:
-                vh.ramContainer.setVisibility(View.INVISIBLE);
-                vh.storageContainer.setVisibility(View.INVISIBLE);
+                heightFactor = 0.58;
+                vh.ramContainer.setVisibility(View.GONE);
+                vh.storageContainer.setVisibility(View.GONE);
                 initSpecsStyling(CategoryType.accessories);
                 break;
         }
@@ -348,6 +350,7 @@ public class DetailsActivity extends FragmentActivity {
             vh.protectionSpecs.setVisibility(View.GONE);
             vh.sensorsSpecs.setVisibility(View.GONE);
             vh.simSpecs.setVisibility(View.GONE);
+            vh.summaryText.setVisibility(View.GONE);
         } else if (category.equals(CategoryType.phones)) {
             vh.protectionText.setText(detailsViewModel.getItemSpecs().getProtectionResistance());
             vh.sensorsText.setText(detailsViewModel.getItemSpecs().getSensors());
@@ -361,9 +364,11 @@ public class DetailsActivity extends FragmentActivity {
             vh.portsSpecs.setVisibility(View.GONE);
             vh.keyboardSpecs.setVisibility(View.GONE);
             vh.acSpecs.setVisibility(View.GONE);
+            vh.summaryText.setVisibility(View.GONE);
         } else {
             vh.specs.setVisibility(View.GONE);
             vh.recContainer.setVisibility(View.GONE);
+            vh.summaryText.setText(detailsViewModel.getItemSpecs().getSummary());
             return;
         }
 

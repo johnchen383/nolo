@@ -2,43 +2,46 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.DetailsActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy">
+    android:background="@color/navy"
+    tools:context=".activities.DetailsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
-        <androidx.viewpager2.widget.ViewPager2
-            android:paddingTop="64dp"
-            xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <androidx.viewpager2.widget.ViewPager2 xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/carousel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingTop="64dp" />
     </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scrollContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
             <HorizontalScrollView
                 android:id="@+id/transparent_container"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:orientation="horizontal"
-                android:background="@null">
+                android:background="@null"
+                android:orientation="horizontal">
+
                 <View
                     android:layout_width="@dimen/touch_target_min"
                     android:layout_height="@dimen/touch_target_min"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="27dp"
-                    android:paddingRight="28dp"/>
+                    android:layout_marginTop="20dp"
+                    android:paddingRight="28dp" />
             </HorizontalScrollView>
 
             <LinearLayout
@@ -50,18 +53,18 @@
                 android:paddingBottom="30dp">
 
                 <View
-                    android:paddingHorizontal="27dp"
                     android:layout_width="30dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginVertical="15dp"
-                    android:background="@drawable/details_bar" />
+                    android:background="@drawable/details_bar"
+                    android:paddingHorizontal="27dp" />
 
                 <LinearLayout
-                    android:paddingHorizontal="27dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/padding_med">
+                    android:layout_marginVertical="@dimen/padding_med"
+                    android:paddingHorizontal="27dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/colours_list"
@@ -82,7 +85,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:paddingHorizontal="27dp"
                     android:id="@+id/item_title"
                     style="@style/TextStroke.White"
                     android:layout_width="match_parent"
@@ -91,15 +93,16 @@
                     android:layout_marginBottom="@dimen/padding_small"
                     android:lineSpacingExtra="5dp"
                     android:maxLines="1"
+                    android:paddingHorizontal="27dp"
                     android:text='Apple 13" MacBook Pro: M1 Chip'
                     android:textSize="@dimen/font_h5" />
 
                 <RelativeLayout
-                    android:paddingHorizontal="27dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_lrg"
-                    android:layout_marginBottom="25dp">
+                    android:layout_marginBottom="25dp"
+                    android:paddingHorizontal="27dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -148,18 +151,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:paddingHorizontal="27dp"
                         style="@style/TextStroke.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
+                        android:paddingHorizontal="27dp"
                         android:text="Unified Memory" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:paddingLeft="27dp"
                         android:id="@+id/ram_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/touch_target_min" />
+                        android:layout_height="@dimen/touch_target_min"
+                        android:paddingLeft="27dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,27 +173,32 @@
 
                     <TextView
                         style="@style/TextStroke.White"
-                        android:paddingHorizontal="27dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
+                        android:paddingHorizontal="27dp"
                         android:text="Storage" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:paddingLeft="27dp"
                         android:id="@+id/storage_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/touch_target_min" />
+                        android:layout_height="@dimen/touch_target_min"
+                        android:paddingLeft="27dp" />
 
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/summary_text"
+                    android:layout_marginHorizontal="32dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="27dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingHorizontal="27dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -761,15 +769,18 @@
 
                     <LinearLayout
                         android:id="@+id/rec_container"
-                        android:layout_marginTop="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECOMMENDED ACCESSORIES"
-                            android:layout_gravity="left"/>
+                            android:layout_gravity="left"
+                            android:layout_marginBottom="8dp"
+                            android:text="RECOMMENDED ACCESSORIES" />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rec_items_list"
                             android:layout_width="match_parent"
@@ -781,12 +792,13 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <ImageView
         android:id="@+id/close_btn"
         android:layout_width="@dimen/touch_target_min"
         android:layout_height="@dimen/touch_target_min"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="27dp"
+        android:layout_marginTop="20dp"
         android:paddingRight="28dp"
         android:src="@drawable/exit_cross" />
 </FrameLayout>
