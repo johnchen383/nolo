@@ -1,5 +1,6 @@
 package com.example.nolo.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
@@ -17,6 +18,7 @@ import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Animation;
+import com.example.nolo.util.Keyboard;
 
 import java.util.List;
 
@@ -69,6 +71,8 @@ public class SearchItemSuggestionAdaptor extends ArrayAdapter {
         vh.searchSuggestText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Keyboard.hide((Activity) mContext, v);
+
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) currentItem.getDefaultItemVariant());
                 mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
