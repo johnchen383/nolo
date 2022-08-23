@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
+    android:paddingRight="20dp"
     android:background="@color/navy"
     android:orientation="horizontal">
     <LinearLayout
@@ -15,39 +16,58 @@
         <ImageView
             android:layout_margin="6dp"
             android:id="@+id/item_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:src="@drawable/item_accessory_sony_wh_1000xm4_1_black" />
     </LinearLayout>
     <LinearLayout
-        android:layout_marginLeft="23dp"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/title"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="@dimen/font_body1"
-            android:text="Accessory"/>
+            android:layout_marginTop="-10dp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Apple 16 MacBook M1 Pro"
+                android:textSize="@dimen/font_body1" />
+            <RelativeLayout
+                android:id="@+id/bin_btn"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true" >
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/bin_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="-8dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/laptops_tag"
+                android:id="@+id/ram_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/padding_med"
+                android:layout_marginEnd="4dp"
                 android:backgroundTint="@color/transparent"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="6dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="@color/faint_white"
-                android:visibility="gone">
+                android:visibility="visible">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,19 +75,20 @@
                     android:layout_marginBottom="@dimen/padding_small"
                     android:layout_marginStart="@dimen/padding_med"
                     android:layout_marginEnd="@dimen/padding_med"
-                    android:text="@string/laptops"
+                    android:paddingVertical="1dp"
+                    android:text="16GB RAM"
                     android:textSize="@dimen/font_overline"
                     android:textColor="@color/faint_white"/>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/phones_tag"
+                android:id="@+id/ssd_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/transparent"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="6dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="@color/faint_white"
-                android:visibility="gone">
+                android:visibility="visible">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,18 +96,107 @@
                     android:layout_marginBottom="@dimen/padding_small"
                     android:layout_marginStart="@dimen/padding_med"
                     android:layout_marginEnd="@dimen/padding_med"
-                    android:text="@string/phones"
+                    android:paddingVertical="1dp"
+                    android:text="256GB SSD"
                     android:textSize="@dimen/font_overline"
                     android:textColor="@color/faint_white"/>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_marginTop="16dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:text="Price"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="13dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/colour_circle"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="@color/light_brown"
+                app:strokeWidth="0.9dp"
+                app:strokeColor="@color/white"/>
+            <TextView
+                android:id="@+id/colour_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="Space grey"
+                android:textColor="@color/faint_white"
+                android:textSize="@dimen/font_caption"
+                android:fontFamily="@font/abeezee_italic" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-8dp">
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/TextStroke.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="4299.00 NZD" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="-21dp"
+                android:layout_alignParentRight="true">
+                <RelativeLayout
+                    android:id="@+id/decrement_btn"
+                    android:layout_width="@dimen/touch_target_min"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:layout_marginRight="-5dp"
+                    android:background="@color/transparent">>
+
+                    <TextView
+                        style="@style/TextStroke.Brown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingHorizontal="6dp"
+                        android:text="–"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_body1" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/quantity_text"
+                    style="@style/TextStroke.Brown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_body1" />
+                <RelativeLayout
+                    android:id="@+id/increment_btn"
+                    android:layout_width="@dimen/touch_target_min"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:layout_marginLeft="-5dp"
+                    android:background="@color/transparent">>
+
+                    <TextView
+                        style="@style/TextStroke.Brown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingHorizontal="6dp"
+                        android:text="+"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_body1"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
