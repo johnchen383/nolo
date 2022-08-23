@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/navy"
-    tools:context=".fragments.ProfileFragment">
-
-    <TextView
-        android:id="@+id/text_profile"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="PROFILE"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:background="@color/navy"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_below="@id/text_profile"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="PROFILE"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="325dp"
+            android:layout_marginTop="75dp"
+            app:srcCompat="@drawable/profile_header" />
+        <TextView
+            android:id="@+id/purchases_btn"
+            style="@style/TextStroke.White"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="60dp"
+            android:text="PURCHASES"
+            android:textSize="@dimen/font_h6"
+            android:gravity="center" />
 
-    // Placeholder sign out button
-    <Button
-        android:id="@+id/sign_out_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="@color/light_grey"
-        android:text="SIGN OUT"/>
+        <TextView
+            android:id="@+id/wishlist_btn"
+            style="@style/TextStroke.White"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:text="WISHLIST"
+            android:textSize="@dimen/font_h6"
+            android:gravity="center" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/account_btn"
+            style="@style/TextStroke.White"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:text="ACCOUNT"
+            android:textSize="@dimen/font_h6"
+            android:gravity="center" />
+
+
+
+    </LinearLayout>
+</FrameLayout>

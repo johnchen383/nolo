@@ -2,7 +2,9 @@ package com.example.nolo.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -10,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.nolo.R;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.fragments.AccountFragment;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.dataprovider.DataProvider;
 import com.example.nolo.entities.item.IItem;
@@ -25,12 +28,20 @@ public class MainActivity extends BaseActivity {
     private ViewHolder vh;
 
     private class ViewHolder {
+        View navProfile;
         BottomNavigationView navView;
 
         public ViewHolder(){
+            navProfile = findViewById(R.id.navigation_profile);
             navView = findViewById(R.id.nav_view);
             navView.setItemIconTintList(null);
         }
+    }
+
+    private void initListeners() {
+//        vh.navProfile.setOnClickListener(v -> {
+//            getSupportFragmentManager().beginTransaction().remove(AccountFragment.this).commit();
+//        });
     }
 
     @Override
@@ -39,9 +50,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         vh = new ViewHolder();
-
-//        List<IItem> items = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
-//        vh.navView.setBackground(new ColorDrawable(0));
+        initListeners();
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile)
@@ -61,6 +70,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        return;
+        Fragment profileAdditionFragment = getSupportFragmentManager().findFragmentByTag("PROFILE_ADDITION");
+        if (profileAdditionFragment != null && profileAdditionFragment.isVisible()) {
+            getSupportFragmentManager().beginTransaction().remove(profileAdditionFragment).commit();
+        } else {
+            return;
+        }
     }
 }
