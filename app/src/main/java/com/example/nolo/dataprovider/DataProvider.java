@@ -596,7 +596,7 @@ public class DataProvider {
         specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
                 "Windows 11 Home",
                 "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
-                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)\n",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)",
                 "Intel® UHD Graphics",
                 rams,
                 storages,
@@ -630,6 +630,61 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
+         * Laptop 5.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2540.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2499),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2527.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(4, 0),
+                new SpecsOption(8, 59)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(256, 0),
+                new SpecsOption(512, 99)
+        ));
+        specs = new LaptopSpecs("ASUS ROG Strix G15 Advantage Edition G513QY",
+                "Windows 11 Home",
+                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
+                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)",
+                "Intel® UHD Graphics",
+                rams,
+                storages,
+                "720p HD camera",
+                "Backlit Chiclet Keyboard; 1.4mm Key-travel",
+                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
+                "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support",
+                "Touch screen display",
+                "Fingerprint sensor integrated with Touchpad",
+                "N/A",
+                "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader",
+                "39WHrs, 2S1P, 2-cell Li-ion",
+                "45W AC Adapter",
+                "32.07 x 21.70 x 1.69 mm",
+                "1.50 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_asus_rog_strix_g15_1_black",
+                "item_laptop_asus_rog_strix_g15_2_black",
+                "item_laptop_asus_rog_strix_g15_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "BOOM 3 Bluetooth Speaker",
+                "Logitech Pro X DTS Headphone"
+        ));
+        items.add(new Laptop("ASUS ROG Strix G15 Advantage Edition",
+                "ASUS",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
          * Laptop 6
          */
         colours = new ArrayList<>(Arrays.asList(
@@ -637,9 +692,9 @@ public class DataProvider {
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2362.39),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2462.39),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2522.39)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(16, 0)
@@ -808,55 +863,55 @@ public class DataProvider {
         /*
          * Laptop 9
          */
-//        colours = new ArrayList<>(Arrays.asList(
-//                new Colour("black", "#000000")
-//        ));
-//        itemStoreVariant = new ArrayList<>(Arrays.asList(
-//                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
-//                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
-//        ));
-//        rams = new ArrayList<>(Arrays.asList(
-//                new SpecsOption(16, 0),
-//                new SpecsOption(32, 300)
-//        ));
-//        storages = new ArrayList<>(Arrays.asList(
-//                new SpecsOption(1024, 0)
-//        ));
-//        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-//                "Windows 11 Home",
-//                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
-//                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
-//                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
-//                rams,
-//                storages,
-//                "Built-in Full HD webcam",
-//                "Per-Key Backlighting, powered by Razer Chroma",
-//                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2\n",
-//                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
-//                "N/A",
-//                "N/A",
-//                "N/A",
-//                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
-//                "Built-in 82WHr rechargeable lithium-ion polymer battery",
-//                "280W power adapter",
-//                "395 x 260 x 19.9 mm",
-//                "2.75 kg");
-//        imageUris = new ArrayList<>(Arrays.asList(
-//                "item_laptop_razer_blade_17_1_black",
-//                "item_laptop_razer_blade_17_2_black",
-//                "item_laptop_razer_blade_17_3_black"
-//        ));
-//        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
-//                "Logitech Pro X DTS Headphone",
-//                "HyperX QuadCast S Standalone Microphone",
-//                "Sony WH-1000XM4"
-//        ));
-//        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-//                "Razer",
-//                (LaptopSpecs) specs,
-//                itemStoreVariant,
-//                imageUris,
-//                recommendedAccessoryIds));
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3099.99)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(16, 0),
+                new SpecsOption(32, 300)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Windows 11 Home",
+                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
+                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
+                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
+                rams,
+                storages,
+                "Built-in Full HD webcam",
+                "Per-Key Backlighting, powered by Razer Chroma",
+                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2",
+                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
+                "N/A",
+                "N/A",
+                "N/A",
+                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
+                "Built-in 82WHr rechargeable lithium-ion polymer battery",
+                "280W power adapter",
+                "395 x 260 x 19.9 mm",
+                "2.75 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_razer_blade_17_1_black",
+                "item_laptop_razer_blade_17_2_black",
+                "item_laptop_razer_blade_17_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
+        ));
+        items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
+                "Razer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
 
         /*
          * Laptop 10
@@ -907,6 +962,116 @@ public class DataProvider {
                 "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
+                "Acer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10.5.1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 829),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 809),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 869),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 899)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Acer Aspire 3 14in FHD Athlon Silver 3050U 8GB RAM 128GB SSD+1TB HDD",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
+                rams,
+                storages,
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone; Stereo speakers",
+                "N/A",
+                "Yes",
+                "N/A",
+                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_acer_aspire_3_1_black",
+                "item_laptop_acer_aspire_3_2_black",
+                "item_laptop_acer_aspire_3_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
+        ));
+        items.add(new Laptop("Acer Aspire 3",
+                "Acer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10.5.2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("silver", "#C0C0C0")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 729),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 709),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 769),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 799)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Acer Spin 1 SP114-31-P3KD Edu Laptop 14\" FHD Touch Intel Pentium Silver N6000",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
+                rams,
+                storages,
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone; Stereo speakers",
+                "N/A",
+                "Yes",
+                "N/A",
+                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_acer_spin_1_1_black",
+                "item_laptop_acer_spin_1_2_black",
+                "item_laptop_acer_spin_1_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
+        ));
+        items.add(new Laptop("Acer Spin 1",
                 "Acer",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
@@ -1130,6 +1295,76 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
+         * Phone 3.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("green", "#576856"),
+                new Colour("silver", "#F2F3EE"),
+                new Colour("gold", "#FAEAD3"),
+                new Colour("graphite", "#5F5E5A"),
+                new Colour("blue", "#AFC6DC")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 1699),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 1658.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 1699),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 1658.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(128, 0),
+                new SpecsOption(256, 200),
+                new SpecsOption(512, 600),
+                new SpecsOption(1024, 1000)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 13 Pro",
+                "ios",
+                "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
+                "A15 Bionic chip",
+                storages,
+                "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP68",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "78.1 x 160.8 x 7.65mm",
+                "238g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_13_pro_max_2_green",
+                "item_phone_iphone_13_pro_max_1_green",
+                "item_phone_iphone_13_pro_max_3_green",
+
+                "item_phone_iphone_13_pro_max_2_silver",
+                "item_phone_iphone_13_pro_max_1_silver",
+                "item_phone_iphone_13_pro_max_3_silver",
+
+                "item_phone_iphone_13_pro_max_2_gold",
+                "item_phone_iphone_13_pro_max_1_gold",
+                "item_phone_iphone_13_pro_max_3_gold",
+
+                "item_phone_iphone_13_pro_max_2_graphite",
+                "item_phone_iphone_13_pro_max_1_graphite",
+                "item_phone_iphone_13_pro_max_3_graphite",
+
+                "item_phone_iphone_13_pro_max_2_blue",
+                "item_phone_iphone_13_pro_max_1_blue",
+                "item_phone_iphone_13_pro_max_3_blue"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
+        ));
+        items.add(new Phone("Apple iPhone 13 Pro",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
          * Phone 4
          */
         colours = new ArrayList<>(Arrays.asList(
@@ -1256,6 +1491,133 @@ public class DataProvider {
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("Apple iPhone SE",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 5.5.1
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("green", "#ADE0CD"),
+                new Colour("purple", "#D1CDDB"),
+                new Colour("white", "#F9F6EF"),
+                new Colour("yellow", "#FFE680"),
+                new Colour("black", "#1F2120"),
+                new Colour("red", "#C92435")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 429),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 428.99),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 429),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 428.99)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(64, 0),
+                new SpecsOption(128, 100)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 11",
+                "ios",
+                "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
+                "A15 Bionic chip",
+                storages,
+                "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP68",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "71.5 x 146.7 x 7.65mm",
+                "173g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_11_1_green",
+                "item_phone_iphone_11_2_green",
+                "item_phone_iphone_11_3_green",
+
+                "item_phone_iphone_11_1_purple",
+                "item_phone_iphone_11_2_purple",
+                "item_phone_iphone_11_3_purple",
+
+                "item_phone_iphone_11_1_white",
+                "item_phone_iphone_11_2_white",
+                "item_phone_iphone_11_3_white",
+
+                "item_phone_iphone_11_1_yellow",
+                "item_phone_iphone_11_2_yellow",
+                "item_phone_iphone_11_3_yellow",
+
+                "item_phone_iphone_11_1_black",
+                "item_phone_iphone_11_2_black",
+                "item_phone_iphone_11_3_black",
+
+                "item_phone_iphone_11_1_red",
+                "item_phone_iphone_11_2_red",
+                "item_phone_iphone_11_3_red"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
+        ));
+        items.add(new Phone("Apple iPhone 11",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 5.5.2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#FFFFFF"),
+                new Colour("white", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 199),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 299),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 199),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 199)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 100),
+                new SpecsOption(32, 300)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 4",
+                "ios",
+                "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
+                "A15 Bionic chip",
+                storages,
+                "12MP Wide camera; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP67",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "67.3 x 138.4 x 7.3mm",
+                "144g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_4_1_black",
+                "item_phone_iphone_4_2_black",
+                "item_phone_iphone_4_3_black",
+
+                "item_phone_iphone_4_1_white",
+                "item_phone_iphone_4_2_white",
+                "item_phone_iphone_4_3_white"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
+        ));
+        items.add(new Phone("Apple iPhone 4",
                 "Apple",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
