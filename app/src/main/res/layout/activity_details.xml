@@ -123,7 +123,7 @@
                             android:textSize="@dimen/font_h6" />
                     </LinearLayout>
 
-                    <FrameLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/touch_target_min"
                         android:layout_alignParentRight="true">
@@ -131,10 +131,10 @@
                         <ImageView
                             android:id="@+id/store_btn"
                             android:layout_width="115dp"
-                            android:layout_height="34dp"
+                            android:layout_height="48dp"
                             android:layout_gravity="bottom"
-                            app:srcCompat="@drawable/details_store_btn" />
-                    </FrameLayout>
+                            android:src="@drawable/details_store_btn" />
+                    </RelativeLayout>
                 </RelativeLayout>
 
 
