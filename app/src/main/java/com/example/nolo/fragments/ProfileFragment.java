@@ -1,5 +1,6 @@
 package com.example.nolo.fragments;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.AccountActivity;
 import com.example.nolo.activities.LogInActivity;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.user.LogOutUseCase;
@@ -38,8 +40,7 @@ public class ProfileFragment extends Fragment {
 
     private void initListeners() {
         vh.signOutBtn.setOnClickListener(v -> {
-            LogOutUseCase.logOut();
-            startActivity(new Intent(getActivity(), LogInActivity.class), Animation.Fade(getActivity()).toBundle());
+            startActivity(new Intent(getActivity(), AccountActivity.class), Animation.Fade(getActivity()).toBundle());
         });
     }
 
@@ -53,9 +54,5 @@ public class ProfileFragment extends Fragment {
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         vh = new ViewHolder();
         initListeners();
-
-        System.out.println(GetCurrentUserUseCase.getCurrentUser().toString());
-        String email = GetCurrentUserUseCase.getCurrentUser().getEmail();
-        vh.emailText.setText(email);
     }
 }

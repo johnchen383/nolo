@@ -22,6 +22,7 @@ import com.example.nolo.interactors.user.AddViewedItemUseCase;
 import java.util.List;
 
 public class DetailsViewModel extends ViewModel {
+    private int quantity;
     private IItemVariant itemVariant;
     private IItem item;
     private IPurchasable purchasable;
@@ -37,7 +38,8 @@ public class DetailsViewModel extends ViewModel {
     public DetailsViewModel(IItemVariant itemVariant) {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
-        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, 1);
+        this.quantity = 1;
+        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, this.quantity);
     }
 
     public IItemVariant getItemVariant() {
@@ -96,7 +98,22 @@ public class DetailsViewModel extends ViewModel {
         return purchasable;
     }
 
+    public void incrementOrDecrementQuantity(boolean isIncrement) {
+        if (isIncrement) {
+            this.quantity++;
+        } else {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+        }
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     public void addCart() {
+        this.purchasable.addToQuantity(quantity - 1);
         AddCartItemUseCase.addCart(this.purchasable);
     }
 

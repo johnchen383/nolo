@@ -160,13 +160,13 @@ public class DetailsActivity extends BaseActivity {
 
     private void initListeners() {
         vh.decrementBtn.setOnClickListener(v -> {
-            detailsViewModel.getPurchasable().incrementOrDecrementQuantity(false);
-            vh.quantityText.setText(String.valueOf(detailsViewModel.getPurchasable().getQuantity()));
+            detailsViewModel.incrementOrDecrementQuantity(false);
+            vh.quantityText.setText(String.valueOf(detailsViewModel.getQuantity()));
         });
 
         vh.incrementBtn.setOnClickListener(v -> {
-            detailsViewModel.getPurchasable().incrementOrDecrementQuantity(true);
-            vh.quantityText.setText(String.valueOf(detailsViewModel.getPurchasable().getQuantity()));
+            detailsViewModel.incrementOrDecrementQuantity(true);
+            vh.quantityText.setText(String.valueOf(detailsViewModel.getQuantity()));
         });
 
         vh.storesBtn.setOnClickListener(v -> {
