@@ -1569,7 +1569,9 @@ public class DataProvider {
                 "Sony",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                true,
+                true));
 
         /*
          * Accessory 2 - gaming laptop - Logitech Pro X DTS Headphone
@@ -1592,7 +1594,9 @@ public class DataProvider {
                 "Logitech",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                true,
+                false));
 
         /*
          * Accessory 3 - all - Apple AirPods Pro
@@ -1616,7 +1620,9 @@ public class DataProvider {
                 "Apple",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                true,
+                true));
 
         /*
          * Accessory 4 - all - BOOM 3 Bluetooth Speaker
@@ -1660,7 +1666,9 @@ public class DataProvider {
                 "Ultimate Ears",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                true,
+                true));
 
         /*
          * Accessory 5 - gaming laptop - HyperX QuadCast S Standalone Microphone
@@ -1682,7 +1690,9 @@ public class DataProvider {
                 "HyperX",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                true,
+                false));
 
         /*
          * Accessory 6 - phone - Xiaomi Mi 20000mAh 50W Fast Charging Power Bank
@@ -1705,7 +1715,9 @@ public class DataProvider {
                 "Xiaomi",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                false,
+                true));
 
         /*
          * Accessory 7 - iphone 13 pro max - Apple iPhone 13 Pro Max Leather Case with MagSafe
@@ -1749,7 +1761,9 @@ public class DataProvider {
                 "Apple",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                false,
+                true));
 
         /*
          * Accessory 8 - iphone se - Lifeproof iPhone SE case
@@ -1771,7 +1785,9 @@ public class DataProvider {
                 "Lifeproof",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                false,
+                true));
 
         /*
          * Accessory 9 - galaxy s22 ultra - Urban Armor Gear - Galaxy S22 Ultra 5G
@@ -1798,7 +1814,9 @@ public class DataProvider {
                 "Urban Armor Gear",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                false,
+                true));
 
         /*
          * Accessory 10 - oneplus 10 pro - Spigen Oneplus 10 Pro Hybrid Case
@@ -1819,7 +1837,9 @@ public class DataProvider {
                 "Spigen",
                 (AccessorySpecs) specs,
                 itemStoreVariant,
-                imageUris));
+                imageUris,
+                false,
+                true));
 
         return items;
     }

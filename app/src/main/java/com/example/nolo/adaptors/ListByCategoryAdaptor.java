@@ -23,6 +23,7 @@ import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Animation;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +55,15 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         LinearLayout itemClickable;
         TextView title, price;
         ImageView img;
+        MaterialCardView laptopsTag, phonesTag;
 
         public AccessoryViewHolder(View currentListViewItem) {
             itemClickable = currentListViewItem.findViewById(R.id.item_clickable);
             title = currentListViewItem.findViewById(R.id.title);
             price = currentListViewItem.findViewById(R.id.price);
             img = currentListViewItem.findViewById(R.id.item_img);
+            laptopsTag = currentListViewItem.findViewById(R.id.laptops_tag);
+            phonesTag = currentListViewItem.findViewById(R.id.phones_tag);
         }
     }
 
@@ -123,6 +127,14 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
                 mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
             }
         });
+
+        if (item.getIsForLaptops()) {
+            vh.laptopsTag.setVisibility(View.VISIBLE);
+        }
+
+        if (item.getIsForPhones()) {
+            vh.phonesTag.setVisibility(View.VISIBLE);
+        }
 
         return currentListViewItem;
     }

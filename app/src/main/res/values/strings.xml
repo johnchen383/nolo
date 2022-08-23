@@ -15,5 +15,7 @@
     <string name="google_maps_key"></string>
     <string name="search_results_found">results found</string>
     <string name="search_term">SEARCH_TERM</string>
+    <string name="laptops">Laptops</string>
+    <string name="phones">Phones</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
