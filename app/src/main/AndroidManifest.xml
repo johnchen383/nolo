@@ -40,7 +40,6 @@
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.ListActivity" />
         <activity android:name=".activities.DetailsActivity" />
-        <activity android:name=".fragments.AccountFragment" />
     </application>
 
 </manifest>
