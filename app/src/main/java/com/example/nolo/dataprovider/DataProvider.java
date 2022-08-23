@@ -1263,7 +1263,7 @@ public class DataProvider {
                 recommendedAccessoryIds));
 
         /*
-         * Phone 5.5
+         * Phone 5.5.1
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("green", "#ADE0CD"),
@@ -1329,6 +1329,60 @@ public class DataProvider {
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
         ));
         items.add(new Phone("Apple iPhone 11",
+                "Apple",
+                (PhoneSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Phone 5.5.2
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#FFFFFF"),
+                new Colour("white", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 199),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 299),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 199),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 199)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 100),
+                new SpecsOption(32, 300)
+        ));
+        specs = new PhoneSpecs("Apple iPhone 4",
+                "ios",
+                "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
+                "A15 Bionic chip",
+                storages,
+                "12MP Wide camera; Digital zoom up to 5x",
+                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
+                "Stereo speakers; Spatial audio playback",
+                "Yes",
+                "IP67",
+                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
+                "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
+                "Built‑in rechargeable lithium‑ion battery",
+                "67.3 x 138.4 x 7.3mm",
+                "144g");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_phone_iphone_4_1_black",
+                "item_phone_iphone_4_2_black",
+                "item_phone_iphone_4_3_black",
+
+                "item_phone_iphone_4_1_white",
+                "item_phone_iphone_4_2_white",
+                "item_phone_iphone_4_3_white"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Sony WH-1000XM4",
+                "Apple AirPods Pro",
+                "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank"
+        ));
+        items.add(new Phone("Apple iPhone 4",
                 "Apple",
                 (PhoneSpecs) specs,
                 itemStoreVariant,
