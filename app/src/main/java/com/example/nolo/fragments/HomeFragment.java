@@ -73,30 +73,30 @@ public class HomeFragment extends Fragment {
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
         CardView searchContainer;
-        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer, browseBtn, indicator;
+        LinearLayout initialView, searchLayoutBtn, outsideSearchContainer, browseBtn, indicator;
         RecyclerView featuredItemsList;
         TextView featuredText, one, two, three;
         EditText searchEditText;
         ImageView searchImageBtn;
         ScrollView scrollView;
 
-        public ViewHolder() {
-            categoryList = getView().findViewById(R.id.category_list);
-            initialView = getView().findViewById(R.id.initial_home_view);
-            searchLayoutBtn = getView().findViewById(R.id.search_layout_btn);
-            featuredItemsList = getView().findViewById(R.id.featured_items_list);
-            featuredText = getView().findViewById(R.id.featured_text);
-            searchEditText = getView().findViewById(R.id.search_edittext);
-            searchSuggestionsList = getView().findViewById(R.id.search_suggestions_list);
-            searchContainer = getView().findViewById(R.id.search_container);
-            outsideSearchContainer = getView().findViewById(R.id.outside_search_container);
-            searchImageBtn = getView().findViewById(R.id.search_image_btn);
-            scrollView = getView().findViewById(R.id.scroll_view);
-            browseBtn = getView().findViewById(R.id.browse_btn);
-            indicator = getView().findViewById(R.id.indicator);
-            one = getView().findViewById(R.id.one);
-            two = getView().findViewById(R.id.two);
-            three = getView().findViewById(R.id.three);
+        public ViewHolder(View view) {
+            categoryList = view.findViewById(R.id.category_list);
+            initialView = view.findViewById(R.id.initial_home_view);
+            searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
+            featuredItemsList = view.findViewById(R.id.featured_items_list);
+            featuredText = view.findViewById(R.id.featured_text);
+            searchEditText = view.findViewById(R.id.search_edittext);
+            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
+            searchContainer = view.findViewById(R.id.search_container);
+            outsideSearchContainer = view.findViewById(R.id.outside_search_container);
+            searchImageBtn = view.findViewById(R.id.search_image_btn);
+            scrollView = view.findViewById(R.id.scroll_view);
+            browseBtn = view.findViewById(R.id.browse_btn);
+            indicator = view.findViewById(R.id.indicator);
+            one = view.findViewById(R.id.one);
+            two = view.findViewById(R.id.two);
+            three = view.findViewById(R.id.three);
         }
     }
 
