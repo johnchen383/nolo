@@ -5,8 +5,6 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 public class ListUtil {
     public static void setDynamicHeight(ListView mListView) {
         ListAdapter mListAdapter = mListView.getAdapter();

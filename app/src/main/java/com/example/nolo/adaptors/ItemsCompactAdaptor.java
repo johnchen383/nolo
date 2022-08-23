@@ -12,9 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.nolo.R;
 import com.example.nolo.activities.DetailsActivity;
-import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,7 +84,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
             Intent intent = new Intent(mContext, DetailsActivity.class);
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
-            mContext.startActivity(intent);
+            mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
         });
     }
 

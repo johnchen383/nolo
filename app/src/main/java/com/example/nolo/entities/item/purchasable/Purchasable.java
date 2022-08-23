@@ -55,17 +55,6 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
-    public void incrementOrDecrementQuantity(boolean isIncrement) {
-        if (isIncrement) {
-            this.quantity++;
-        } else {
-            if (this.quantity > 1) {
-                this.quantity--;
-            }
-        }
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
