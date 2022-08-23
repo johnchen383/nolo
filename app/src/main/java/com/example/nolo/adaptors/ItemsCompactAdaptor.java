@@ -75,7 +75,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
         layoutParams.width = (int) width;
 
         LinearLayout.LayoutParams ivLayoutParams = (LinearLayout.LayoutParams) holder.img.getLayoutParams();
-        ivLayoutParams.height = (int) (0.75 * width);
+        ivLayoutParams.height = (int) (0.9 * width);
 
         holder.itemClickable.setLayoutParams(layoutParams);
         holder.img.setLayoutParams(ivLayoutParams);

@@ -35,13 +35,16 @@
 
     <TextView
         android:id="@+id/item_price"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/transparent"
         android:text="$10"
         android:textColor="@color/light_brown"
-        android:textSize="@dimen/font_caption" />
+        android:textSize="@dimen/font_caption"
+        android:textFontWeight="500"
+        />
 
 
 </LinearLayout>

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -142,6 +143,15 @@ public class HomeFragment extends Fragment {
         if (panelIndex > 0){
             setIndicator();
         } else {
+//            Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.home_frag);
+//            System.out.println("Frag: " + currentFragment);
+//            if (currentFragment instanceof HomeFragment) {
+//                FragmentTransaction fragTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                fragTransaction.detach(currentFragment);
+//                fragTransaction.attach(currentFragment);
+//                fragTransaction.commit();
+//            }
+
             vh.indicator.setVisibility(View.INVISIBLE);
         }
 
@@ -161,13 +171,17 @@ public class HomeFragment extends Fragment {
                     panelIndex++;
                     if (panelIndex > panelMaxIndex) {
                         panelIndex = panelMaxIndex;
+                    } else {
+                        snapScroll();
                     }
-                    snapScroll();
                 } else if (currentY < historicY) {
                     //swipe up
                     panelIndex--;
-                    if (panelIndex < 0) panelIndex = 0;
-                    snapScroll();
+                    if (panelIndex < 0) {
+                        panelIndex = 0;
+                    } else {
+                        snapScroll();
+                    }
                 }
 
                 historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;

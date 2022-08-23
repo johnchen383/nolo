@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navy"
+    android:id="@+id/home_frag"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -32,13 +33,14 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_gravity="center"
-                            android:layout_marginTop="32dp">
+                            android:layout_marginTop="48dp">
                             <ImageView
                                 android:layout_width="16dp"
                                 android:layout_height="16dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/nav_icon_search"/>
+                                android:src="@drawable/nav_icon_search_brown"/>
                             <TextView
+                                android:textColor="@color/light_brown"
                                 android:layout_marginLeft="8dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -50,6 +52,8 @@
                         </LinearLayout>
 
                         <ImageView
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="56dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/home_logo"/>
@@ -62,6 +66,7 @@
                                 android:id="@+id/featured_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="@dimen/font_body1"
                                 android:text="@string/home_featured_prev"
                                 android:layout_marginLeft="@dimen/header_indent"
                                 android:layout_gravity="left"/>
