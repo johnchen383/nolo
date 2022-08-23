@@ -637,9 +637,9 @@ public class DataProvider {
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 2562.39),
-                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2562.39),
-                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2562.39),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2562.39)
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 2362.39),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 2462.39),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 2522.39)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(16, 0)
@@ -813,7 +813,7 @@ public class DataProvider {
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 3199.99),
-                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3199.99)
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 3099.99)
         ));
         rams = new ArrayList<>(Arrays.asList(
                 new SpecsOption(16, 0),
@@ -907,6 +907,61 @@ public class DataProvider {
                 "Sony WH-1000XM4"
         ));
         items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
+                "Acer",
+                (LaptopSpecs) specs,
+                itemStoreVariant,
+                imageUris,
+                recommendedAccessoryIds));
+
+        /*
+         * Laptop 10.5
+         */
+        colours = new ArrayList<>(Arrays.asList(
+                new Colour("black", "#000000")
+        ));
+        itemStoreVariant = new ArrayList<>(Arrays.asList(
+                new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 829),
+                new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 809),
+                new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 869),
+                new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 899)
+        ));
+        rams = new ArrayList<>(Arrays.asList(
+                new SpecsOption(8, 0),
+                new SpecsOption(16, 69)
+        ));
+        storages = new ArrayList<>(Arrays.asList(
+                new SpecsOption(1024, 0)
+        ));
+        specs = new LaptopSpecs("Acer Aspire 3 14in FHD Athlon Silver 3050U 8GB RAM 128GB SSD+1TB HDD\n",
+                "Windows 10 Home",
+                "39.6 cm (15.6\") LCD",
+                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
+                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
+                rams,
+                storages,
+                "Front Camera/Webcam, 1280 x 720",
+                "Backlight",
+                "802.11 ax Wi-Fi 6 + Bluetooth",
+                "Microphone; Stereo speakers",
+                "N/A",
+                "Yes",
+                "N/A",
+                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
+                "3-cell Lithium Ion (Li-Ion) 48 Wh",
+                "135W adapter",
+                "363.4 x 254.5 x 22.9 mm",
+                "2.15 kg");
+        imageUris = new ArrayList<>(Arrays.asList(
+                "item_laptop_acer_aspire_3_1_black",
+                "item_laptop_acer_aspire_3_2_black",
+                "item_laptop_acer_aspire_3_3_black"
+        ));
+        recommendedAccessoryIds = new ArrayList<>(Arrays.asList(
+                "Logitech Pro X DTS Headphone",
+                "HyperX QuadCast S Standalone Microphone",
+                "Sony WH-1000XM4"
+        ));
+        items.add(new Laptop("Acer Aspire 3",
                 "Acer",
                 (LaptopSpecs) specs,
                 itemStoreVariant,
