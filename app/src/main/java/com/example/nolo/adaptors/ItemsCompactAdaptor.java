@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import com.example.nolo.R;
-import com.example.nolo.activities.MapActivity;
+import com.example.nolo.activities.DetailsActivity;
+import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Display;
@@ -80,7 +81,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
         holder.img.setLayoutParams(ivLayoutParams);
 
         holder.itemClickable.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, MapActivity.class); //TODO: change to details activity
+            Intent intent = new Intent(mContext, DetailsActivity.class);
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
             mContext.startActivity(intent);

@@ -7,17 +7,22 @@ import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
+import com.example.nolo.entities.item.specs.ISpecs;
+import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
+import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
 import com.example.nolo.interactors.user.AddViewedItemUseCase;
 
 import java.util.List;
 
 public class DetailsViewModel extends ViewModel {
+    private int quantity;
     private IItemVariant itemVariant;
     private IItem item;
     private IPurchasable purchasable;
@@ -33,7 +38,8 @@ public class DetailsViewModel extends ViewModel {
     public DetailsViewModel(IItemVariant itemVariant) {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
-        this.purchasable = new Purchasable(this.itemVariant, 0);
+        this.quantity = 1;
+        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, this.quantity);
     }
 
     public IItemVariant getItemVariant() {
@@ -56,12 +62,18 @@ public class DetailsViewModel extends ViewModel {
         return itemVariant.getColour();
     }
 
+    public String getStoreBranchName() {
+        String branchName = itemVariant.getBranchName();
+        String storeName = GetStoreByIdUseCase.getStoreById(itemVariant.getStoreId()).getStoreName();
+
+        return storeName + " " + branchName;
+    }
+
     public CategoryType getItemCategory() { return itemVariant.getCategoryType(); }
 
     public List<SpecsOption> getStorageOptions() {
-        System.out.println(itemVariant.toString());
         if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
-            System.out.println("hi" + item.getSpecs().getStorageOptions());
+            System.out.println(item.getSpecs().toString());
             return item.getSpecs().getStorageOptions();
         } else {
             System.err.println("Storage options not available");
@@ -78,11 +90,30 @@ public class DetailsViewModel extends ViewModel {
         }
     }
 
+    public ISpecs getItemSpecs() {
+        return item.getSpecs();
+    }
+
     public IPurchasable getPurchasable() {
         return purchasable;
     }
 
+    public void incrementOrDecrementQuantity(boolean isIncrement) {
+        if (isIncrement) {
+            this.quantity++;
+        } else {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+        }
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     public void addCart() {
+        this.purchasable.addToQuantity(quantity - 1);
         AddCartItemUseCase.addCart(this.purchasable);
     }
 

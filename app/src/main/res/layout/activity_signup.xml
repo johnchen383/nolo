@@ -133,6 +133,15 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textSize="@dimen/font_body2"
+            android:textColor="@color/red"
+            android:visibility="invisible"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -215,13 +224,13 @@
             android:layout_marginVertical="@dimen/padding_small"
             android:text="CREATE ACCOUNT" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signup_google_button"
-            style="@style/RoundButton.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/login_google"
-            android:text="SIGN UP WITH GOOGLE" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/signup_google_button"-->
+<!--            style="@style/RoundButton.Icon"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:icon="@drawable/login_google"-->
+<!--            android:text="SIGN UP WITH GOOGLE" />-->
 
         <LinearLayout
             android:layout_width="wrap_content"

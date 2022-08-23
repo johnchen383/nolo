@@ -21,7 +21,7 @@ public class Purchasable implements IPurchasable {
      * our team decided to use StoreVariant and Specs.
      * So it is a reasonable excuse to violate the SOLID principle.
      */
-    private IItemVariant itemVariant;
+    private ItemVariant itemVariant;
     private int quantity;
 
     /**
@@ -29,13 +29,13 @@ public class Purchasable implements IPurchasable {
      */
     public Purchasable(){}
 
-    public Purchasable(IItemVariant itemVariant, int quantity){
+    public Purchasable(ItemVariant itemVariant, int quantity){
         this.itemVariant = itemVariant;
         this.quantity = quantity;
     }
 
     @Override
-    public IItemVariant getItemVariant() {
+    public ItemVariant getItemVariant() {
         return itemVariant;
     }
 
@@ -52,17 +52,6 @@ public class Purchasable implements IPurchasable {
         }
 
         this.quantity += quantity;
-    }
-
-    @Override
-    public void incrementOrDecrementQuantity(boolean isIncrement) {
-        if (isIncrement) {
-            this.quantity++;
-        } else {
-            if (this.quantity > 1) {
-                this.quantity--;
-            }
-        }
     }
 
     @Override

@@ -11,6 +11,12 @@ import com.example.nolo.R;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.dataprovider.DataProvider;
+import com.example.nolo.entities.item.IItem;
+import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.CollectionPath;
+import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
+import com.example.nolo.util.LocationUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;

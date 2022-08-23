@@ -93,6 +93,15 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textSize="@dimen/font_body2"
+            android:textColor="@color/red"
+            android:visibility="invisible"/>
+
+        <TextView
             android:id="@+id/forgot_text_view"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/touch_target_min"
@@ -110,13 +119,13 @@
             android:layout_marginVertical="@dimen/padding_small"
             android:text="LOG IN" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_google_button"
-            style="@style/RoundButton.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/login_google"
-            android:text="LOG IN WITH GOOGLE" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/login_google_button"-->
+<!--            style="@style/RoundButton.Icon"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:icon="@drawable/login_google"-->
+<!--            android:text="LOG IN WITH GOOGLE" />-->
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,8 +35,8 @@ public class LogInActivity extends BaseActivity {
         TextInputLayout emailLayout, passwordLayout;
         RelativeLayout eyeBtn, signUpBtn;
         ImageView eyeIcon;
-        TextView forgotPassword, signUpText;
-        MaterialButton logIn, logInGoogle;
+        TextView forgotPassword, signUpText, errorText;
+        MaterialButton logIn;
 
         public ViewHolder(){
             emailInput = findViewById(R.id.email_edit);
@@ -46,9 +47,10 @@ public class LogInActivity extends BaseActivity {
             eyeIcon = findViewById(R.id.eye_icon);
             forgotPassword = findViewById(R.id.forgot_text_view);
             logIn = findViewById(R.id.login_button);
-            logInGoogle = findViewById(R.id.login_google_button);
+//            logInGoogle = findViewById(R.id.login_google_button);
             signUpBtn = findViewById(R.id.register_btn);
             signUpText = findViewById(R.id.register_text);
+            errorText = findViewById(R.id.error_text_view);
         }
     }
 
@@ -72,8 +74,8 @@ public class LogInActivity extends BaseActivity {
             if (error == null) {
                 startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
             } else {
-                //display error message
-                System.out.println("ERR: " + error);
+                vh.errorText.setText(error);
+                vh.errorText.setVisibility(View.VISIBLE);
             }
         }, userEmail, userPassword);
     }
@@ -85,7 +87,8 @@ public class LogInActivity extends BaseActivity {
         });
 
         vh.forgotPassword.setOnClickListener(v -> {
-            startActivity(new Intent(this, ForgotPasswordActivity.class), Animation.Fade(this).toBundle());
+//            startActivity(new Intent(this, ForgotPasswordActivity.class), Animation.Fade(this).toBundle());
+            Toast.makeText(this, "Password Reset!", Toast.LENGTH_SHORT).show();
         });
 
         vh.signUpBtn.setOnClickListener(v -> {
@@ -97,9 +100,9 @@ public class LogInActivity extends BaseActivity {
             logIn();
         });
 
-        vh.logInGoogle.setOnClickListener(v -> {
-            hideKeyboard(v, true);
-        });
+//        vh.logInGoogle.setOnClickListener(v -> {
+//            hideKeyboard(v, true);
+//        });
 
         vh.emailInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);

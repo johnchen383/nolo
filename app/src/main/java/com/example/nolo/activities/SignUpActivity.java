@@ -33,7 +33,6 @@ import java.io.File;
 
 public class SignUpActivity extends BaseActivity {
     private SignUpViewModel signUpViewModel;
-
     private ViewHolder vh;
 
     private class ViewHolder {
@@ -42,8 +41,8 @@ public class SignUpActivity extends BaseActivity {
         RelativeLayout eyeBtn, repeatEyeBtn, logInBtn, checkboxBtn, termsBtn, privacyBtn;
         CheckBox checkbox;
         ImageView eyeIcon, repeatEyeIcon;
-        TextView logInText, termsText, privacyText;
-        MaterialButton signUp, signUpGoogle;
+        TextView logInText, termsText, privacyText, errorText;
+        MaterialButton signUp;
 
         public ViewHolder(){
             emailInput = findViewById(R.id.email_edit);
@@ -63,9 +62,10 @@ public class SignUpActivity extends BaseActivity {
             privacyBtn = findViewById(R.id.privacy_btn);
             privacyText = findViewById(R.id.privacy_text_view);
             signUp = findViewById(R.id.signup_button);
-            signUpGoogle = findViewById(R.id.signup_google_button);
+//            signUpGoogle = findViewById(R.id.signup_google_button);
             logInBtn = findViewById(R.id.login_btn);
             logInText = findViewById(R.id.login_text);
+            errorText = findViewById(R.id.error_text_view);
         }
     }
 
@@ -87,16 +87,20 @@ public class SignUpActivity extends BaseActivity {
 
         // @TODO validation for input errors
         if (userEmail.isEmpty()) {
-            System.out.println("Please enter an email address.");
+            vh.errorText.setText("Please enter an email address.");
+            vh.errorText.setVisibility(View.VISIBLE);
             return;
         } else if (userPassword.isEmpty() && userRepeatPassword.isEmpty()) {
-            System.out.println("Please enter a password.");
+            vh.errorText.setText("Please enter a password.");
+            vh.errorText.setVisibility(View.VISIBLE);
             return;
         } else if (!userPassword.equals(userRepeatPassword)) {
-            System.out.println("The passwords do not match.");
+            vh.errorText.setText("The passwords do not match.");
+            vh.errorText.setVisibility(View.VISIBLE);
             return;
         } else if (!vh.checkbox.isChecked()) {
-            System.out.println("Please read and accept the Terms of Use and Privacy Policy.");
+            vh.errorText.setText("Please read and accept the Terms of Use and Privacy Policy.");
+            vh.errorText.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -104,8 +108,8 @@ public class SignUpActivity extends BaseActivity {
             if (error == null) {
                 startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
             } else {
-                //display error message
-                System.out.println("ERR: " + error);
+                vh.errorText.setText(error);
+                vh.errorText.setVisibility(View.VISIBLE);
             }
         }, userEmail, userPassword);
     }
@@ -125,7 +129,14 @@ public class SignUpActivity extends BaseActivity {
 
         vh.termsBtn.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"), "application/pdf");
+            intent.setDataAndType(Uri.parse("https://nolo-docs.vercel.app/nolo_terms.pdf"), "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        });
+
+        vh.privacyBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse("https://nolo-docs.vercel.app/nolo_privacy.pdf"), "application/pdf");
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
@@ -140,9 +151,9 @@ public class SignUpActivity extends BaseActivity {
             signUp();
         });
 
-        vh.signUpGoogle.setOnClickListener(v -> {
-            hideKeyboard(v, true);
-        });
+//        vh.signUpGoogle.setOnClickListener(v -> {
+//            hideKeyboard(v, true);
+//        });
 
         vh.emailInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
