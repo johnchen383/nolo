@@ -34,7 +34,6 @@ public class Display {
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    //TODO: may not be needed (delete if not!!)
     public static int getScreenWidth(View v){
         return getDisplayMetrics(v).widthPixels;
     }

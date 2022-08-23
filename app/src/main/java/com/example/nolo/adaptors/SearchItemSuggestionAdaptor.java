@@ -1,6 +1,7 @@
 package com.example.nolo.adaptors;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,11 @@ import com.example.nolo.entities.item.IItem;
 
 import java.util.List;
 
-public class HomeSearchItemsAdaptor extends ArrayAdapter {
+public class SearchItemSuggestionAdaptor extends ArrayAdapter {
     private int mLayoutID;
     private List<IItem> mItems;
     private Context mContext;
+    private String searchTerm, promptColour, normalColour;
 
     private class ViewHolder {
         TextView searchSuggestText;
@@ -28,11 +30,15 @@ public class HomeSearchItemsAdaptor extends ArrayAdapter {
         }
     }
     
-    public HomeSearchItemsAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects) {
+    public SearchItemSuggestionAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects,
+                                       String searchTerm, String promptColour, String normalColour) {
         super(context, resource, objects);
         mLayoutID = resource;
         mContext = context;
         mItems = objects;
+        this.searchTerm = searchTerm;
+        this.promptColour = promptColour;
+        this.normalColour = normalColour;
     }
 
     @NonNull
@@ -54,7 +60,7 @@ public class HomeSearchItemsAdaptor extends ArrayAdapter {
     private View populateItemListItem(IItem currentItem, View currentListViewItem) {
         ViewHolder vh = new ViewHolder(currentListViewItem);
 
-        vh.searchSuggestText.setText(currentItem.getName());
+        vh.searchSuggestText.setText(Html.fromHtml(getPromptedText(currentItem.getName()), Html.FROM_HTML_MODE_LEGACY));
 
         vh.searchSuggestText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,5 +70,27 @@ public class HomeSearchItemsAdaptor extends ArrayAdapter {
         });
 
         return currentListViewItem;
+    }
+
+    /**
+     * Highlight the search term in search suggestions
+     *
+     * @param itemName Original item name
+     * @return Highlighted item name
+     */
+    private String getPromptedText(String itemName) {
+        int startIndex, endIndex;
+        String substring1, substring2, substring3;
+
+        startIndex = itemName.toLowerCase().indexOf(searchTerm.toLowerCase());
+        endIndex = startIndex + searchTerm.length();
+
+        substring1 = itemName.substring(0, startIndex);
+        substring2 = itemName.substring(startIndex, endIndex);
+        substring3 = itemName.substring(endIndex);
+
+        return "<font color=" + normalColour + ">" + substring1 + "</font>"
+                + "<font color=" + promptColour + ">" + substring2 + "</font>"
+                + "<font color=" + normalColour + ">" + substring3 + "</font>";
     }
 }

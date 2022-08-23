@@ -1,13 +1,11 @@
 package com.example.nolo.adaptors;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,17 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.SearchActivity;
-import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
-import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.enums.CategoryType;
-import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
-import com.example.nolo.util.Display;
 
 import java.util.ArrayList;
 import java.util.List;

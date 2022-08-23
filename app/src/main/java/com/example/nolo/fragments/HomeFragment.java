@@ -1,9 +1,11 @@
 package com.example.nolo.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -14,25 +16,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.SearchActivity;
+import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.util.Animation;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
-import com.example.nolo.adaptors.HomeSearchItemsAdaptor;
+import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
+import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.HomeViewModel;
 
@@ -45,29 +50,30 @@ import java.util.stream.Collectors;
  * Used for viewing featured items, browsing categories, and navigation to search
  */
 public class HomeFragment extends Fragment {
-    private final int NUMBER_OF_SEARCH_SUGGESTIONS = 6;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
+    private View currentView;
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer;
+        CardView searchContainer;
+        LinearLayout initialView, searchLayoutBtn, outsideSearchContainer;
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchEditText;
         ImageView searchImageBtn;
 
-        public ViewHolder() {
-            categoryList = getView().findViewById(R.id.category_list);
-            initialView = getView().findViewById(R.id.initial_home_view);
-            searchLayoutBtn = getView().findViewById(R.id.search_layout_btn);
-            featuredItemsList = getView().findViewById(R.id.featured_items_list);
-            featuredText = getView().findViewById(R.id.featured_text);
-            searchEditText = getView().findViewById(R.id.search_edittext);
-            searchSuggestionsList = getView().findViewById(R.id.search_suggestions_list);
-            searchContainer = getView().findViewById(R.id.search_container);
-            outsideSearchContainer = getView().findViewById(R.id.outside_search_container);
-            searchImageBtn = getView().findViewById(R.id.search_image_btn);
+        public ViewHolder(View view) {
+            categoryList = view.findViewById(R.id.category_list);
+            initialView = view.findViewById(R.id.initial_home_view);
+            searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
+            featuredItemsList = view.findViewById(R.id.featured_items_list);
+            featuredText = view.findViewById(R.id.featured_text);
+            searchEditText = view.findViewById(R.id.search_edittext);
+            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
+            searchContainer = view.findViewById(R.id.search_container);
+            outsideSearchContainer = view.findViewById(R.id.outside_search_container);
+            searchImageBtn = view.findViewById(R.id.search_image_btn);
         }
     }
 
@@ -77,7 +83,8 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        vh = new ViewHolder();
+        currentView = view;
+        vh = new ViewHolder(view);
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -115,33 +122,53 @@ public class HomeFragment extends Fragment {
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 
+    /**
+     * SEARCH SUGGESTION ADAPTOR
+     */
     private void resetSearchSuggestionsAdaptor(String searchTerm) {
-        /**
-         * SEARCH SUGGESTION ADAPTOR
-         */
-        HomeSearchItemsAdaptor homeSearchItemsAdaptor;
+        List<IItem> firstNItems = new ArrayList<>();
+
         if (!searchTerm.isEmpty()) {
             // First limit the number of items showing in the list
             List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-            List<IItem> firstNItems = searchSuggestions.stream().limit(NUMBER_OF_SEARCH_SUGGESTIONS).collect(Collectors.toList());
-
-            // and then display them
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems);
-        } else {
-            homeSearchItemsAdaptor = new HomeSearchItemsAdaptor(getActivity(), R.layout.item_search_suggestion, new ArrayList<>());
+            firstNItems = searchSuggestions.stream().limit(getMaxNumberOfSearchSuggestionsInList()).collect(Collectors.toList());
         }
-        vh.searchSuggestionsList.setAdapter(homeSearchItemsAdaptor);
+
+        // Create and Set the adaptor
+        SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
+                new SearchItemSuggestionAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems, searchTerm,
+                        getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
+        vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
 
     private void initListeners() {
+        // When outside box is clicked, hide the search related views
         vh.outsideSearchContainer.setOnClickListener(v -> {
             showSearchContainer(false);
         });
 
+        // When first search button is clicked, show search related views
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
             vh.searchEditText.requestFocus();
+        });
+
+        // Handle Enter and Back keys
+        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // When Enter key pressed, go to search list
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    goToSearchActivity(vh.searchEditText.getText().toString());
+
+                // When Back key pressed, hide the search bar
+                } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    showSearchContainer(false);
+                }
+
+                return false;
+            }
         });
 
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
@@ -177,16 +204,7 @@ public class HomeFragment extends Fragment {
                 if (vh.searchEditText.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
                 } else {
-                    String searchTerm = vh.searchEditText.getText().toString();
-                    List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-
-                    // Check if Search suggestion is empty
-                    if (searchSuggestions.size() <= 0) {
-                        Toast.makeText(getActivity(), "Search suggestion is empty!", Toast.LENGTH_LONG).show();
-                    } else {
-                        // TODO: When search button on the right is pressed,
-                        //  go to list view of the search suggestion
-                    }
+                    goToSearchActivity(vh.searchEditText.getText().toString());
                 }
             }
         });
@@ -204,15 +222,29 @@ public class HomeFragment extends Fragment {
             vh.outsideSearchContainer.setVisibility(View.VISIBLE);
 
             // Show the keyboard
-            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                    .toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            Keyboard.show(getActivity());
         } else {
             vh.searchContainer.setVisibility(View.GONE);
             vh.outsideSearchContainer.setVisibility(View.GONE);
 
             // Hide the keyboard
-            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE))
-                    .hideSoftInputFromWindow(getView().getWindowToken(), 0);
+            Keyboard.hide(getActivity(), currentView);
         }
+    }
+
+    private int getMaxNumberOfSearchSuggestionsInList() {
+        return Display.getScreenHeight(currentView) / 2 / 120;
+    }
+
+    private String getColourInHexFromResourceId(int rId) {
+        return "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), rId) & 0x00ffffff);
+    }
+
+    private void goToSearchActivity(String searchTerm) {
+        showSearchContainer(false);
+
+        Intent intent = new Intent(getActivity(), ResultActivity.class);
+        intent.putExtra(getString(R.string.search_term), searchTerm);
+        startActivity(intent, Animation.Fade(getActivity()).toBundle());
     }
 }
