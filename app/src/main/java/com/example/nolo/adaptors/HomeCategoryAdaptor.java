@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,11 +27,14 @@ import com.example.nolo.util.Display;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class HomeCategoryAdaptor extends ArrayAdapter {
     private int mLayoutID;
     private List<ICategory> mCategories;
     private Context mContext;
+    private Function<MotionEvent, Boolean> onTouch;
 
     private class ViewHolder {
         TextView categoryLabel;
@@ -44,11 +48,12 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories) {
+    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories, Function<MotionEvent, Boolean> onTouch) {
         super(context, resource, categories);
         mContext = context;
         mLayoutID = resource;
         mCategories = categories;
+        this.onTouch = onTouch;
     }
 
     @NonNull
@@ -77,6 +82,10 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         //setting the category img
         vh.categoryImg.setImageResource(i);
         vh.categoryImg.getLayoutParams().height = Display.getScreenHeight(currentListViewItem);
+
+        currentListViewItem.setOnTouchListener((v, motionEvent) -> {
+            return onTouch.apply(motionEvent);
+        });
 
         // Setting the category label
         vh.categoryLabel.setText(currentCategory.getCategoryName());

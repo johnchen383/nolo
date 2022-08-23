@@ -1,15 +1,19 @@
 package com.example.nolo.fragments;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ import com.example.nolo.R;
 import com.example.nolo.activities.SearchActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
+import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.util.Animation;
@@ -48,6 +53,9 @@ public class HomeFragment extends Fragment {
     private final int NUMBER_OF_SEARCH_SUGGESTIONS = 6;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
+    private float historicY = 0;
+    private int panelIndex = 0;
+    private int panelMaxIndex;
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
@@ -56,6 +64,7 @@ public class HomeFragment extends Fragment {
         TextView featuredText;
         EditText searchEditText;
         ImageView searchImageBtn;
+        ScrollView scrollView;
 
         public ViewHolder() {
             categoryList = getView().findViewById(R.id.category_list);
@@ -68,6 +77,7 @@ public class HomeFragment extends Fragment {
             searchContainer = getView().findViewById(R.id.search_container);
             outsideSearchContainer = getView().findViewById(R.id.outside_search_container);
             searchImageBtn = getView().findViewById(R.id.search_image_btn);
+            scrollView = getView().findViewById(R.id.scroll_view);
         }
     }
 
@@ -84,16 +94,97 @@ public class HomeFragment extends Fragment {
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
+//        vh.initialView.setOnTouchListener((v, event) -> {
+//            System.out.println("Swipe!");
+//            if (event.getAction() == MotionEvent.ACTION_DOWN){
+//                System.out.println("Swipe!");
+//
+//                return true;
+//            }
+//
+//            return false;
+//        });
+
+
         initAdaptors();
         initListeners();
+
+
+    }
+
+    private boolean onTouch(MotionEvent motionEvent, boolean isInitial) {
+//        System.out.println("SCROLL Touched");
+        System.out.println("SCROLL" + motionEvent.getAction());
+        switch (motionEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                historicY = vh.scrollView.getScrollY();
+                System.out.println("SCROLL Down");
+                return true;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.AXIS_SIZE:
+                System.out.println("SCROLL Up " + isInitial);
+                float currentY = vh.scrollView.getScrollY();
+                System.out.println("SCROLL" + currentY);
+                System.out.println("SCROLL_HIST" + historicY);
+                System.out.println("SCROLL YA" + vh.categoryList.getChildAt(0).getTop());
+                if (currentY > historicY) {
+                    //swipe down
+
+                    panelIndex++;
+                    if (panelIndex > panelMaxIndex) {
+                        panelIndex = panelMaxIndex;
+                    }
+
+                    if (panelIndex == panelMaxIndex){
+
+                    }
+
+                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(300);
+                    objectAnimator.start();
+
+                    System.out.println("SCROLL swipe down");
+                } else if (currentY < historicY) {
+                    //swipe up
+
+                    panelIndex--;
+                    if (panelIndex < 0) panelIndex = 0;
+
+                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(300);
+                    objectAnimator.start();
+
+//                    historicY = Display.getScreenHeight(vh.scrollView);
+                    System.out.println("SCROLL swipe up");
+                }
+
+                historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
+
+                return true;
+        }
+        return false;
+
     }
 
     private void initAdaptors() {
         /**
          * CATEGORY ADAPTOR
          */
-        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, GetCategoriesUseCase.getCategories());
+        List<ICategory> categories = GetCategoriesUseCase.getCategories();
+        panelMaxIndex = categories.size();
+        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories, (motionEvent) -> {return false;});
         vh.categoryList.setAdapter(categoriesAdaptor);
+//        vh.categoryList.setO(new AbsListView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(AbsListView absListView, int i) {
+//                System.out.println("SAD" + i);
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+//                System.out.println("SAD" + i);
+//                System.out.println("SAD" + i1);
+//                System.out.println("SAD" + i2);
+//            }
+//        });
         ListUtil.setDynamicHeight(vh.categoryList);
 
         /**
@@ -146,10 +237,12 @@ public class HomeFragment extends Fragment {
 
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -159,10 +252,12 @@ public class HomeFragment extends Fragment {
 
         vh.searchEditText.removeTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -190,13 +285,15 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent, true));
     }
 
     /**
      * Show/hide the search bar, search suggestions and keyboard
      *
      * @param show boolean - True to go search bar and show keyboard
-     *                       False to go back the original page and hide keyboard
+     *             False to go back the original page and hide keyboard
      */
     private void showSearchContainer(boolean show) {
         if (show) {
