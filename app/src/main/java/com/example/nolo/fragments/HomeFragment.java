@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer;
+        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer, browseBtn;
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchEditText;
@@ -79,6 +79,7 @@ public class HomeFragment extends Fragment {
             outsideSearchContainer = getView().findViewById(R.id.outside_search_container);
             searchImageBtn = getView().findViewById(R.id.search_image_btn);
             scrollView = getView().findViewById(R.id.scroll_view);
+            browseBtn = getView().findViewById(R.id.browse_btn);
         }
     }
 
@@ -99,6 +100,13 @@ public class HomeFragment extends Fragment {
         initListeners();
     }
 
+    private void snapScroll(){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
+        objectAnimator.start();
+
+        historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
+    }
+
     private boolean onTouch(MotionEvent motionEvent) {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -109,30 +117,19 @@ public class HomeFragment extends Fragment {
                 float currentY = vh.scrollView.getScrollY();
                 if (currentY > historicY) {
                     //swipe down
-
                     panelIndex++;
                     if (panelIndex > panelMaxIndex) {
                         panelIndex = panelMaxIndex;
                     }
-
-                    if (panelIndex == panelMaxIndex){
-
-                    }
-
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
-                    objectAnimator.start();
+                    snapScroll();
                 } else if (currentY < historicY) {
                     //swipe up
-
                     panelIndex--;
                     if (panelIndex < 0) panelIndex = 0;
-
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
-                    objectAnimator.start();
+                    snapScroll();
                 }
 
                 historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
-
                 return true;
         }
         return false;
@@ -247,6 +244,11 @@ public class HomeFragment extends Fragment {
                     }
                 }
             }
+        });
+
+        vh.browseBtn.setOnClickListener(v -> {
+            panelIndex = 1;
+            snapScroll();
         });
 
         vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
