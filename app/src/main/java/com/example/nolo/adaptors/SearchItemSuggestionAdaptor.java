@@ -1,6 +1,7 @@
 package com.example.nolo.adaptors;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.util.Animation;
 
 import java.util.List;
 
@@ -65,7 +69,9 @@ public class SearchItemSuggestionAdaptor extends ArrayAdapter {
         vh.searchSuggestText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: when item in search suggestion is clicked, go to detail page
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) currentItem.getDefaultItemVariant());
+                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
             }
         });
 
