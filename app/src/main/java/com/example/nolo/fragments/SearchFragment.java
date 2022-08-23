@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,11 +45,13 @@ public class SearchFragment extends Fragment {
         EditText searchEditText;
         ImageView searchBtn;
         ListView searchSuggestionsList;
+        LinearLayout outsideSearchContainer;
 
         public ViewHolder(View view){
             searchEditText = view.findViewById(R.id.search_edittext);
             searchBtn = view.findViewById(R.id.search_image_btn);
             searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
+            outsideSearchContainer = view.findViewById(R.id.outside_search_container);
         }
     }
 
@@ -129,6 +132,15 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 goToSearchActivity(vh.searchEditText.getText().toString());
+            }
+        });
+
+        vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.searchEditText.clearFocus();
+                // Hide the keyboard
+                Keyboard.hide(getActivity(), currentView);
             }
         });
     }
