@@ -132,7 +132,7 @@ public class ItemVariant implements IItemVariant, Serializable {
             displayPrice += this.storageOption.getAdditionalPrice();
         }
 
-        return String.format("%.0f.00", displayPrice);
+        return String.format("$%.2f", displayPrice);
     }
 
     @Override

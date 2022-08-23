@@ -3,7 +3,7 @@
     android:id="@+id/item_clickable"
     android:layout_width="192dp"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginRight="10dp"
     android:background="@color/navy"
     android:orientation="vertical">
 
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/item_border">
         <ImageView
-            android:layout_margin="8dp"
+            android:layout_margin="7dp"
             android:id="@+id/item_img"
             android:layout_width="match_parent"
             android:layout_height="164dp"
@@ -23,25 +23,29 @@
 
     <TextView
         android:id="@+id/item_title"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/transparent"
-        android:text="Some item"
+        android:text="Apple iPhone 13 Pro Max"
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="@dimen/font_caption" />
 
     <TextView
         android:id="@+id/item_price"
+        style="@style/TextStroke.White"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/transparent"
-        android:text="$10"
-        android:textColor="@color/light_brown"
-        android:textSize="@dimen/font_caption" />
+        android:text="1999.00 NZD"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_caption"
+        android:textFontWeight="500"
+        />
 
 
 </LinearLayout>
