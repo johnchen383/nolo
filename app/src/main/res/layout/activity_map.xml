@@ -14,7 +14,7 @@
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.86">
+        android:layout_weight="0.6">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -59,15 +59,15 @@
                 style="@style/TextStroke.White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|left"
+                android:gravity="left"
                 android:textSize="@dimen/font_h6"
                 android:text="Harvey Norman Mt Wellington"/>
             <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:gravity="center_vertical|left"
+                android:layout_marginTop="6dp"
+                android:gravity="left"
                 android:textSize="@dimen/font_caption"
                 android:textColor="@color/faint_white"
                 android:text="20-54 Mount Wellington Highway Mt Wellington, Auckland"/>
@@ -77,8 +77,8 @@
                 style="@style/TextStroke.Brown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:gravity="center_vertical|left"
+                android:layout_marginTop="0dp"
+                android:gravity="left"
                 android:textSize="@dimen/font_body1"
                 android:textColor="@color/light_brown"
                 android:text="Lenovo ThinkPad X1 Carbon Gen 10 - Intel Evo"/>
@@ -128,6 +128,7 @@
             </RelativeLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/branch_btn"
+                android:layout_marginTop="16dp"
                 style="@style/RoundButton.Filled"
                 android:textColor="@color/navy"
                 android:layout_width="match_parent"
