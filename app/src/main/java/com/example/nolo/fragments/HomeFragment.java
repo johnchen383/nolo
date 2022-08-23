@@ -2,6 +2,8 @@ package com.example.nolo.fragments;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -60,9 +62,9 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer, browseBtn;
+        LinearLayout initialView, searchLayoutBtn, searchContainer, outsideSearchContainer, browseBtn, indicator;
         RecyclerView featuredItemsList;
-        TextView featuredText;
+        TextView featuredText, one, two, three;
         EditText searchEditText;
         ImageView searchImageBtn;
         ScrollView scrollView;
@@ -80,8 +82,40 @@ public class HomeFragment extends Fragment {
             searchImageBtn = getView().findViewById(R.id.search_image_btn);
             scrollView = getView().findViewById(R.id.scroll_view);
             browseBtn = getView().findViewById(R.id.browse_btn);
+            indicator = getView().findViewById(R.id.indicator);
+            one = getView().findViewById(R.id.one);
+            two = getView().findViewById(R.id.two);
+            three = getView().findViewById(R.id.three);
         }
     }
+
+    private void setIndicator() {
+        int opacityNorm = (int) (255 * 0.4);
+        int opacitySel = (int) (255 * 0.7);
+        vh.indicator.setVisibility(View.VISIBLE);
+        vh.one.setTypeface(vh.one.getTypeface(), Typeface.NORMAL);
+        vh.two.setTypeface(vh.two.getTypeface(), Typeface.NORMAL);
+        vh.three.setTypeface(vh.three.getTypeface(), Typeface.NORMAL);
+        vh.one.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
+        vh.two.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
+        vh.three.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
+        switch (panelIndex) {
+            case 1:
+                vh.one.setTypeface(vh.three.getTypeface(), Typeface.BOLD);
+                vh.one.setTextColor(Color.argb(opacitySel, 255, 255, 255));
+                break;
+            case 2:
+                vh.two.setTypeface(vh.three.getTypeface(), Typeface.BOLD);
+                vh.two.setTextColor(Color.argb(opacitySel, 255, 255, 255));
+                break;
+            case 3:
+                vh.three.setTypeface(vh.three.getTypeface(), Typeface.BOLD);
+                vh.three.setTextColor(Color.argb(opacitySel, 255, 255, 255));
+                break;
+            default:
+        }
+    }
+
 
     public HomeFragment() {
         super(R.layout.fragment_home);
@@ -95,14 +129,21 @@ public class HomeFragment extends Fragment {
 
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
+        vh.indicator.setVisibility(View.INVISIBLE);
 
         initAdaptors();
         initListeners();
     }
 
-    private void snapScroll(){
+    private void snapScroll() {
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
         objectAnimator.start();
+
+        if (panelIndex > 0){
+            setIndicator();
+        } else {
+            vh.indicator.setVisibility(View.INVISIBLE);
+        }
 
         historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
     }

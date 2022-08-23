@@ -159,4 +159,34 @@
             android:dividerHeight="1sp"
             android:orientation="vertical"/>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/indicator"
+        android:layout_gravity="bottom|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="64dp"
+        android:layout_marginRight="24dp">
+        <TextView
+            android:id="@+id/one"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
+            android:text="01  |"/>
+        <TextView
+            android:id="@+id/two"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
+            android:text="02  |"/>
+        <TextView
+            android:id="@+id/three"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.1"
+            android:text="03  |"/>
+    </LinearLayout>
 </FrameLayout>
