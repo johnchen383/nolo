@@ -23,6 +23,7 @@ import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Animation;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +53,9 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
 
     public class AccessoryViewHolder {
         LinearLayout itemClickable;
-        TextView title, price, laptopsTag, phonesTag;
+        TextView title, price;
         ImageView img;
+        MaterialCardView laptopsTag, phonesTag;
 
         public AccessoryViewHolder(View currentListViewItem) {
             itemClickable = currentListViewItem.findViewById(R.id.item_clickable);
