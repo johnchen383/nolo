@@ -1,22 +1,12 @@
 package com.example.nolo.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.nolo.R;
-import com.example.nolo.adaptors.HomeCategoryAdaptor;
-import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.adaptors.ListByCategoryAdaptor;
 import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.PhoneOs;
-import com.example.nolo.fragments.HomeFragment;
-import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.interactors.item.GetAllItemsUseCase;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
@@ -135,7 +125,7 @@ public class ListActivity extends BaseActivity {
                     l.add(tempItem);
                     items.add(l);
                 }
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_accessory, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_wide, items);
 
                 ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.white));
                 vh.categoryItemsParentList.setDivider(whiteDivider);
