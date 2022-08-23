@@ -1,13 +1,15 @@
 package com.example.nolo.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -15,9 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.SearchViewModel;
@@ -36,16 +40,14 @@ public class SearchFragment extends Fragment {
     private View currentView;
 
     private class ViewHolder {
-        LinearLayout outsideSearchContainer;
-        RelativeLayout searchLogo;
         EditText searchEditText;
+        ImageView searchBtn;
         ListView searchSuggestionsList;
 
         public ViewHolder(View view){
-            outsideSearchContainer = view.findViewById(R.id.search_fragment_outside_search_container);
-            searchLogo = view.findViewById(R.id.search_logo);
-            searchEditText = view.findViewById(R.id.search_fragment_edittext);
-            searchSuggestionsList = view.findViewById(R.id.search_fragment_suggestions_list);
+            searchEditText = view.findViewById(R.id.search_edittext);
+            searchBtn = view.findViewById(R.id.search_image_btn);
+            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
         }
     }
 
@@ -84,6 +86,18 @@ public class SearchFragment extends Fragment {
     }
 
     private void initListeners() {
+        // When Enter is pressed in search bar, go to search result
+        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    goToSearchActivity(vh.searchEditText.getText().toString());
+                }
+
+                return false;
+            }
+        });
+
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -109,6 +123,18 @@ public class SearchFragment extends Fragment {
                 resetSearchSuggestionsAdaptor(s.toString());
             }
         });
+
+        vh.searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if Search bar is empty
+                if (vh.searchEditText.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+                } else {
+                    goToSearchActivity(vh.searchEditText.getText().toString());
+                }
+            }
+        });
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
@@ -117,5 +143,11 @@ public class SearchFragment extends Fragment {
 
     private String getColourInHexFromResourceId(int rId) {
         return "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), rId) & 0x00ffffff);
+    }
+
+    private void goToSearchActivity(String searchTerm) {
+        Intent intent = new Intent(getActivity(), ResultActivity.class);
+        intent.putExtra(getString(R.string.search_term), searchTerm);
+        startActivity(intent, Animation.Fade(getActivity()).toBundle());
     }
 }

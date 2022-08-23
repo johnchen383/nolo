@@ -117,7 +117,7 @@
                     android:singleLine="true"
                     android:textSize="@dimen/font_body1"
                     android:textColor="@color/faint_white"
-                    android:textColorHint="@color/faint_white"
+                    android:textColorHint="@color/light_grey"
                     android:backgroundTint="@color/faint_white"/>
                 <ImageView
                     android:id="@+id/search_image_btn"

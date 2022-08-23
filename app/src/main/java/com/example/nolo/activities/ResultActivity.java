@@ -110,7 +110,7 @@ public class ResultActivity extends BaseActivity {
     }
 
     private void initListeners() {
-        // When enter is pressed in search bar, refresh search result
+        // When Enter is pressed in search bar, refresh search result
         vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

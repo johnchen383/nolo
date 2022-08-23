@@ -143,15 +143,18 @@ public class HomeFragment extends Fragment {
     }
 
     private void initListeners() {
+        // When outside box is clicked, hide the search related views
         vh.outsideSearchContainer.setOnClickListener(v -> {
             showSearchContainer(false);
         });
 
+        // When first search button is clicked, show search related views
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
             vh.searchEditText.requestFocus();
         });
 
+        // Handle Enter and Back keys
         vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
