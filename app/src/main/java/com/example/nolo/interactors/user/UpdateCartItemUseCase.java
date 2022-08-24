@@ -6,6 +6,11 @@ import com.example.nolo.repositories.user.UsersRepository;
 import java.util.List;
 
 public class UpdateCartItemUseCase {
+    /**
+     * Update the user's cart with the new cart list and push to firebase
+     *
+     * @param cartItems New cart list
+     */
     public static void updateCartItem(List<Purchasable> cartItems) {
         UsersRepository.getInstance().updateCart(cartItems);
     }
