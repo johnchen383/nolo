@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GetLaptopsGroupedByBrandUseCase {
-    public static List<List<IItem>> getLaptopsGroupedByBrand(){
+    public static List<List<IItem>> getLaptopsGroupedByBrand() {
         List<IItem> laptopItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.laptops);
         Map<String, List<IItem>> brandMap = laptopItems.stream().collect(Collectors.groupingBy(IItem::getBrand));
 
@@ -19,7 +19,7 @@ public class GetLaptopsGroupedByBrandUseCase {
         Collections.sort(brands);
 
         List<List<IItem>> groupedLaptops = new ArrayList<>();
-        for (String brand : brands){
+        for (String brand : brands) {
             groupedLaptops.add(brandMap.get(brand));
         }
 

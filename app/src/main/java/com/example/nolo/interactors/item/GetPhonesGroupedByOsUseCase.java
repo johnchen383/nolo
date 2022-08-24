@@ -1,8 +1,6 @@
 package com.example.nolo.interactors.item;
 
 import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.PhoneOs;
 
@@ -21,15 +19,15 @@ public class GetPhonesGroupedByOsUseCase {
 
         List<List<IItem>> groupedPhones = new ArrayList<>();
         for (String os : osMap.keySet()) {
-            if (os.equals(targetOs.name())){
+            if (os.equals(targetOs.name())) {
                 int count = 0;
                 List<IItem> tuple = new ArrayList<>();
 
-                for (IItem phone : osMap.get(os)){
+                for (IItem phone : osMap.get(os)) {
                     tuple.add(phone);
 
                     count++;
-                    if (count % 2 == 0){
+                    if (count % 2 == 0) {
                         groupedPhones.add(tuple);
                         tuple = new ArrayList<>();
                     }

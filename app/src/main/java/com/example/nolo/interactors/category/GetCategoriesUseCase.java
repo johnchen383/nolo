@@ -11,7 +11,7 @@ public class GetCategoriesUseCase {
      *
      * @return List of Category entities
      */
-    public static List<ICategory> getCategories(){
+    public static List<ICategory> getCategories() {
         return CategoriesRepository.getInstance().getCategories();
     }
 }
