@@ -10,8 +10,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GetLaptopsGroupedByBrandUseCase {
+    /**
+     * Get all laptops that are grouped by brands in alphabetical order
+     *
+     * @return Laptops that are grouped by brands in alphabetical order
+     */
     public static List<List<IItem>> getLaptopsGroupedByBrand() {
         List<IItem> laptopItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.laptops);
+
+        // Group the laptops by brands
         Map<String, List<IItem>> brandMap = laptopItems.stream().collect(Collectors.groupingBy(IItem::getBrand));
 
         // Sort the brands name in alphabetical order

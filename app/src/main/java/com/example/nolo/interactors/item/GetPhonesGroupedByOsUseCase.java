@@ -10,13 +10,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GetPhonesGroupedByOsUseCase {
+    /**
+     * Get phones of the target operating system
+     *
+     * @param targetOs Target operating system
+     * @return Phones of the target operating system
+     */
     public static List<List<IItem>> getPhonesGroupedByOs(PhoneOs targetOs) {
         List<IItem> phoneItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.phones);
 
+        // Group the phones by operating systems
         Map<String, List<IItem>> osMap = phoneItems.stream().collect(Collectors.groupingBy(
                 (item) -> item.getSpecs().getOperatingSystem()
         ));
 
+        // Only get the phones of the target OS
         List<List<IItem>> groupedPhones = new ArrayList<>();
         for (String os : osMap.keySet()) {
             if (os.equals(targetOs.name())) {
