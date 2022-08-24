@@ -65,103 +65,92 @@ public class ItemsRepository implements IItemsRepository {
     }
 
     /**
-     * Load Laptop from Firebase.
+     * Get the collection path in String by category type
      */
-    private void loadLaptopsRepo(Consumer<Class<?>> onLoadedRepository) {
-        laptopsRepo = new ArrayList<>();
-
-        db.collection(CollectionPath.laptops.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        IItem item = document.toObject(Laptop.class);
-                        item.setCategoryType(CategoryType.laptops);
-                        item.setItemId(document.getId());  // store document ID after getting the object
-                        laptopsRepo.add(item);
-
-                        Log.i("Load Laptops From Firebase", item.toString());
-                    }
-
-                    if (laptopsRepo.size() > 0) {
-                        Log.i("Load Laptops From Firebase", "Success");
-                    } else {
-                        Log.i("Load Laptops From Firebase", "Laptops collection is empty!");
-                    }
-                } else {
-                    Log.i("Load Laptops From Firebase", "Loading Laptops collection failed from Firestore!");
-                }
-
-                // inform laptops repository finished loading
-                onLoadItemsRepoCacheComplete(onLoadedRepository, CategoryType.laptops);
-            }
-        });
+    private String getCollectionPathByCategoryType(CategoryType categoryType) {
+        switch (categoryType) {
+            case laptops:
+                return CollectionPath.laptops.name();
+            case phones:
+                return CollectionPath.phones.name();
+            case accessories:
+                return CollectionPath.accessories.name();
+            default:
+                System.err.println("This shouldn't happen! Occur in getCollectionPathByCategoryType() in " + getClass().getSimpleName());
+                return CollectionPath.laptops.name();
+        }
     }
 
     /**
-     * Load Phone from Firebase.
+     * Convert the document from Firebase into Item, specify the item to convert to by category type
      */
-    private void loadPhonesRepo(Consumer<Class<?>> onLoadedRepository) {
-        phonesRepo = new ArrayList<>();
-
-        db.collection(CollectionPath.phones.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        IItem item = document.toObject(Phone.class);
-                        item.setCategoryType(CategoryType.phones);
-                        item.setItemId(document.getId());  // store document ID after getting the object
-                        phonesRepo.add(item);
-
-                        Log.i("Load Phones From Firebase", item.toString());
-                    }
-
-                    if (phonesRepo.size() > 0) {
-                        Log.i("Load Phones From Firebase", "Success");
-                    } else {
-                        Log.i("Load Phones From Firebase", "Phones collection is empty!");
-                    }
-                } else {
-                    Log.i("Load Phones From Firebase", "Loading Phones collection failed from Firestore!");
-                }
-
-                // inform phones repository finished loading
-                onLoadItemsRepoCacheComplete(onLoadedRepository, CategoryType.phones);
-            }
-        });
+    private IItem convertToItem(CategoryType categoryType, QueryDocumentSnapshot document) {
+        switch (categoryType) {
+            case laptops:
+                return document.toObject(Laptop.class);
+            case phones:
+                return document.toObject(Phone.class);
+            case accessories:
+                return document.toObject(Accessory.class);
+            default:
+                System.err.println("This shouldn't happen! Occur in loadRepo() in " + getClass().getSimpleName());
+                return document.toObject(Laptop.class);
+        }
     }
 
     /**
-     * Load Accessory from Firebase.
+     * Store the repo into a specific repository, specify the repository to store to by category type
      */
-    private void loadAccessoriesRepo(Consumer<Class<?>> onLoadedRepository) {
-        accessoriesRepo = new ArrayList<>();
+    private void storeRepoByCategoryType(CategoryType categoryType, List<IItem> repo) {
+        switch (categoryType) {
+            case laptops:
+                laptopsRepo = repo;
+                break;
+            case phones:
+                phonesRepo = repo;
+                break;
+            case accessories:
+                accessoriesRepo = repo;
+                break;
+            default:
+                System.err.println("This shouldn't happen! Occur in storeRepoByCategoryType() in " + getClass().getSimpleName());
+                break;
+        }
+    }
 
-        db.collection(CollectionPath.accessories.name()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    /**
+     * Load Item from Firebase
+     */
+    private void loadRepo(Consumer<Class<?>> onLoadedRepository, CategoryType categoryType) {
+        List<IItem> repo = new ArrayList<>();
+        String collectionPath = getCollectionPathByCategoryType(categoryType);
+
+        db.collection(collectionPath).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        IItem item = document.toObject(Accessory.class);
-                        item.setCategoryType(CategoryType.accessories);
+                        IItem item = convertToItem(categoryType, document);
+                        item.setCategoryType(categoryType);
                         item.setItemId(document.getId());  // store document ID after getting the object
-                        accessoriesRepo.add(item);
+                        repo.add(item);
 
-                        Log.i("Load Accessories From Firebase", item.toString());
+                        Log.i("Load " + collectionPath + " From Firebase", item.toString());
                     }
 
-                    if (accessoriesRepo.size() > 0) {
-                        Log.i("Load Accessories From Firebase", "Success");
+                    if (repo.size() > 0) {
+                        Log.i("Load " + collectionPath + " From Firebase", "Success");
                     } else {
-                        Log.i("Load Accessories From Firebase", "Accessories collection is empty!");
+                        Log.i("Load " + collectionPath + " From Firebase", collectionPath + " collection is empty!");
                     }
                 } else {
-                    Log.i("Load Accessories From Firebase", "Loading Accessories collection failed from Firestore!");
+                    Log.i("Load " + collectionPath + " From Firebase", "Loading " + collectionPath + " collection failed from Firestore!");
                 }
+
+                storeRepoByCategoryType(categoryType, repo);
 
                 // inform this accessories finished loading
-                onLoadItemsRepoCacheComplete(onLoadedRepository, CategoryType.accessories);
+                onLoadItemsRepoCacheComplete(onLoadedRepository, categoryType);
             }
         });
     }
@@ -193,9 +182,9 @@ public class ItemsRepository implements IItemsRepository {
         loadedCategoryItems.clear();
         timeToLiveToken.reset();
 
-        loadLaptopsRepo(onLoadedRepository);
-        loadPhonesRepo(onLoadedRepository);
-        loadAccessoriesRepo(onLoadedRepository);
+        loadRepo(onLoadedRepository, CategoryType.laptops);
+        loadRepo(onLoadedRepository, CategoryType.phones);
+        loadRepo(onLoadedRepository, CategoryType.accessories);
     }
 
     @Override
