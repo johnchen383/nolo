@@ -1,7 +1,5 @@
 package com.example.nolo.entities.item.specs.specsoption;
 
-import com.example.nolo.entities.item.variant.ItemVariant;
-
 import java.io.Serializable;
 import java.util.Objects;
 
