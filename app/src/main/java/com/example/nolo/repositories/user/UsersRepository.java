@@ -4,9 +4,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
-import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
@@ -176,11 +176,16 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public List<ItemVariant> getViewHistory() {
+        return currentUser.getViewHistory();
+    }
+
+    @Override
     public void addViewHistory(IItemVariant item) {
         currentUser.addViewHistory(item);
 
         String field = "viewHistory";
-        if (currentUser.isFieldNameValid(field)){
+        if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
         } else {
             Log.i("Err", "Unable to update view history as field not matched");
@@ -188,11 +193,16 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public List<Purchasable> getCart() {
+        return currentUser.getCart();
+    }
+
+    @Override
     public void addCart(IPurchasable cartItem) {
         currentUser.addCart(cartItem);
 
         String field = "cart";
-        if (currentUser.isFieldNameValid(field)){
+        if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
         } else {
             Log.i("Err", "Unable to update cart as field not matched");
@@ -204,20 +214,10 @@ public class UsersRepository implements IUsersRepository {
         currentUser.updateCart(cartItems);
 
         String field = "cart";
-        if (currentUser.isFieldNameValid(field)){
+        if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
         } else {
             Log.i("Err", "Unable to update cart as field not matched");
         }
-    }
-
-    @Override
-    public List<ItemVariant> getViewHistory() {
-        return currentUser.getViewHistory();
-    }
-
-    @Override
-    public List<Purchasable> getCart() {
-        return currentUser.getCart();
     }
 }
