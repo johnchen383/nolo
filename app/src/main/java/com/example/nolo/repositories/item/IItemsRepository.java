@@ -1,6 +1,7 @@
 package com.example.nolo.repositories.item;
 
 import com.example.nolo.entities.item.IItem;
+import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 
 import java.util.List;
@@ -10,8 +11,7 @@ public interface IItemsRepository {
     void loadItems(Consumer<Class<?>> onLoadedRepository);
     List<IItem> getAllItems();
     IItem getItemById(String itemId);
-    List<IItem> getItemByIdList(List<String> itemIds);
     List<IItem> getCategoryItems(CategoryType categoryType);
     List<IItem> getSearchSuggestions(String searchTerm);
-    List<IItem> getAccessRecommendationsByItemId(String itemId);
+    List<ItemVariant> getAccessRecommendationsByItemId(String itemId);
 }

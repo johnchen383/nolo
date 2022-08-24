@@ -14,6 +14,7 @@ import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.interactors.item.GetAccessRecommendationsByItemIdUseCase;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
@@ -49,14 +50,7 @@ public class DetailsViewModel extends ViewModel {
         List<ItemVariant> ret = new ArrayList<>();
         if (getItemCategory().equals(CategoryType.accessories)) return ret;
 
-        List<String> ids = item.getRecommendedAccessoryIds();
-        for (String id : ids) {
-            IItem item = GetItemByIdUseCase.getItemById(id);
-
-            if (item != null) {
-                ret.add((ItemVariant) item.getDefaultItemVariant());
-            }
-        }
+        ret = GetAccessRecommendationsByItemIdUseCase.getAccessRecommendationsByItemId(item.getItemId());
 
         return ret;
     }
