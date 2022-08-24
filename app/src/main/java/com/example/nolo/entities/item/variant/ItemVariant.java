@@ -1,5 +1,7 @@
 package com.example.nolo.entities.item.variant;
 
+import android.util.Log;
+
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
@@ -190,7 +192,7 @@ public class ItemVariant implements IItemVariant, Serializable {
             }
         }
 
-        System.err.println("No image matched!");
+        Log.e("ItemVariant", "No image matched!");
         return item.getImageUris().get(0);
     }
 

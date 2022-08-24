@@ -51,7 +51,7 @@ public class Purchasable implements IPurchasable {
     @Override
     public void addToQuantity(int quantity) {
         if (quantity < 0) {
-            Log.i("Err", "Invalid increment");
+            Log.e("Purchasable", "Invalid increment");
             return;
         }
 
