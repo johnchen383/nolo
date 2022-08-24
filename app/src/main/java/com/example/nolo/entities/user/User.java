@@ -66,6 +66,11 @@ public class User implements IUser {
         return viewHistory;
     }
 
+    /**
+     * Add selected item (ItemVariant) into the user's view history
+     *
+     * @param item selected item (ItemVariant)
+     */
     @Override
     public void addViewHistory(IItemVariant item) {
         viewHistory.removeIf(viewedItem -> viewedItem.getItemId().equals(item.getItemId()));
@@ -84,6 +89,11 @@ public class User implements IUser {
         return cart;
     }
 
+    /**
+     * Add selected item with quantity (Purchasable) into the user's cart
+     *
+     * @param cartItem selected item with quantity (Purchasable)
+     */
     @Override
     public void addCart(IPurchasable cartItem) {
         //if already in cart, simply increment quantity of that in cart
