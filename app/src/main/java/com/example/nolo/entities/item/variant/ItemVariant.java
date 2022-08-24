@@ -135,9 +135,9 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     /**
-     * Get the item's price (base price + additional price)
+     * Get the item's price (base price + additional price) in String
      *
-     * @return Item's price
+     * @return Item's price in String
      */
     @Override
     @Exclude
@@ -145,6 +145,11 @@ public class ItemVariant implements IItemVariant, Serializable {
         return String.format("$%.2f", getNumericalPrice());
     }
 
+    /**
+     * Get the item's price (base price + additional price)
+     *
+     * @return Item's price
+     */
     @Override
     @Exclude
     public double getNumericalPrice() {

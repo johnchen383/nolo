@@ -108,6 +108,10 @@ public class User implements IUser {
         cart.add((Purchasable) cartItem);
     }
 
+    /**
+     * Update the user's cart with the new cart list
+     * @param cartItems New cart list
+     */
     @Override
     public void updateCart(List<Purchasable> cartItems) {
         cart = cartItems;
