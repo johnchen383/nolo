@@ -31,25 +31,25 @@ public class User implements IUser {
     }
 
     @Override
-    public void setUserAuthUid(String userAuthUid) {
-        this.userAuthUid = userAuthUid;
-    }
-
-    @Override
     @Exclude
     public String getUserAuthUid() {
         return userAuthUid;
     }
 
     @Override
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserAuthUid(String userAuthUid) {
+        this.userAuthUid = userAuthUid;
     }
 
     @Override
     @Exclude
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class User implements IUser {
         viewHistory.add(0, (ItemVariant) item);
 
         //truncate list if greater than MAX_VIEWED
-        while (viewHistory.size() > MAX_VIEWED){
+        while (viewHistory.size() > MAX_VIEWED) {
             viewHistory.remove(MAX_VIEWED);
         }
     }
@@ -78,8 +78,8 @@ public class User implements IUser {
     @Override
     public void addCart(IPurchasable cartItem) {
         //if already in cart, simply increment quantity of that in cart
-        for (IPurchasable cItem : cart){
-            if (cItem.getItemVariant().equals(cartItem.getItemVariant())){
+        for (IPurchasable cItem : cart) {
+            if (cItem.getItemVariant().equals(cartItem.getItemVariant())) {
                 cItem.addToQuantity(cartItem.getQuantity());
                 return;
             }
@@ -97,6 +97,7 @@ public class User implements IUser {
 
     /**
      * Check does the field name exist
+     *
      * @param fieldName Field name (case sensitive)
      * @return True if it is one of the field in User class;
      *         False if it is not
