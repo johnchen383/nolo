@@ -31,9 +31,9 @@ import java.util.function.Consumer;
 public class ItemsRepository implements IItemsRepository {
     private static ItemsRepository itemsRepository = null;
     private final FirebaseFirestore db;
-    private List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
     private final TimeToLiveToken timeToLiveToken;
     private final Set<CategoryType> loadableCategoryItems, loadedCategoryItems;
+    private List<IItem> allItemsRepo, laptopsRepo, phonesRepo, accessoriesRepo;
 
     private ItemsRepository() {
         db = FirebaseFirestore.getInstance();
