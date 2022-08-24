@@ -10,7 +10,9 @@ public interface IItemVariant {
     String getItemId();
     CategoryType getCategoryType();
     String getStoreId();
+    void setStoreId(String id);
     String getBranchName();
+    void setBranchName(String name);
     SpecsOption getStorageOption();
     void setStorageOption(SpecsOption storageOption);
     SpecsOption getRamOption();
@@ -19,6 +21,4 @@ public interface IItemVariant {
     String getDisplayPrice();
     double getNumericalPrice();
     String getDisplayImage();
-    void setStoreId(String id);
-    void setBranchName(String name);
 }
