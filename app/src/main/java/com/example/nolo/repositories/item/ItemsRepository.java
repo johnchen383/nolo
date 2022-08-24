@@ -76,7 +76,7 @@ public class ItemsRepository implements IItemsRepository {
             case accessories:
                 return CollectionPath.accessories.name();
             default:
-                System.err.println("This shouldn't happen! Occur in getCollectionPathByCategoryType() in " + getClass().getSimpleName());
+                Log.e("ItemsRepository", "This shouldn't happen! Occur in getCollectionPathByCategoryType() in " + getClass().getSimpleName());
                 return CollectionPath.laptops.name();
         }
     }
@@ -93,7 +93,7 @@ public class ItemsRepository implements IItemsRepository {
             case accessories:
                 return document.toObject(Accessory.class);
             default:
-                System.err.println("This shouldn't happen! Occur in loadRepo() in " + getClass().getSimpleName());
+                Log.e("ItemsRepository", "This shouldn't happen! Occur in loadRepo() in " + getClass().getSimpleName());
                 return document.toObject(Laptop.class);
         }
     }
@@ -113,7 +113,7 @@ public class ItemsRepository implements IItemsRepository {
                 accessoriesRepo = repo;
                 break;
             default:
-                System.err.println("This shouldn't happen! Occur in storeRepoByCategoryType() in " + getClass().getSimpleName());
+                Log.e("ItemsRepository", "This shouldn't happen! Occur in storeRepoByCategoryType() in " + getClass().getSimpleName());
                 break;
         }
     }
