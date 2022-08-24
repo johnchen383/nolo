@@ -15,6 +15,15 @@ import java.util.List;
  * {@link #userAuthUid} {@link #email} will not be in the Firestore
  */
 public class User implements IUser {
+    /**
+     * Object list cannot use IItemVariant and IPurchasable (ItemVariant and Purchasable interfaces),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use Branch class as the object list.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     public static final int MAX_VIEWED = 5;
     private String userAuthUid, email;
     private List<ItemVariant> viewHistory = new ArrayList<>();
