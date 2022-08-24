@@ -5,7 +5,6 @@ import com.example.nolo.entities.item.specs.AccessorySpecs;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.LaptopSpecs;
 import com.example.nolo.entities.item.specs.PhoneSpecs;
-import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
@@ -21,10 +20,8 @@ import java.util.List;
  * {@link #itemId} {@link #categoryType} will not be in the Firestore
  */
 public abstract class Item implements IItem {
-    private String itemId, name, brand;
-    private CategoryType categoryType;
     /**
-     * Cannot use ISpecs and IStoreVariant (interfaces),
+     * Object list cannot use ISpecs and IStoreVariant (Specs and StoreVariant interfaces),
      * the reason is when the Firebase auto converts the data into
      * the object, it is unable to deserialize the object.
      * It is because the interface does not have 0-argument constructor.
@@ -32,6 +29,8 @@ public abstract class Item implements IItem {
      * our team decided to use StoreVariant and Specs.
      * So it is a reasonable excuse to violate the SOLID principle.
      */
+    private String itemId, name, brand;
+    private CategoryType categoryType;
     private List<StoreVariant> storeVariants;
     private List<String> imageUris;
 
@@ -49,14 +48,14 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
-    @Override
     @Exclude
     public String getItemId() {
         return itemId;
+    }
+
+    @Override
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     @Override
@@ -66,7 +65,9 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    public void setCategoryType(CategoryType type) {this.categoryType = type;}
+    public void setCategoryType(CategoryType type) {
+        this.categoryType = type;
+    }
 
     @Override
     public String getName() {
@@ -80,24 +81,24 @@ public abstract class Item implements IItem {
 
     @Override
     @Exclude
-    public ISpecs getSpecs(){
+    public ISpecs getSpecs() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
     @Override
     @Exclude
-    public PhoneSpecs getPhoneSpecs(){
+    public PhoneSpecs getPhoneSpecs() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
-    @Exclude
     @Override
+    @Exclude
     public LaptopSpecs getLaptopSpecs() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
 
-    @Exclude
     @Override
+    @Exclude
     public AccessorySpecs getAccessorySpecs() {
         throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
     }
@@ -148,9 +149,14 @@ public abstract class Item implements IItem {
         return -1;
     }
 
+    /**
+     * Get the default variant of the current item
+     *
+     * @return Default variant of the current item
+     */
     @Override
     @Exclude
-    public IItemVariant getDefaultItemVariant(){
+    public IItemVariant getDefaultItemVariant() {
         IStoreVariant sVariant = this.storeVariants.get(0);
         IBranch branch = GetStoreByIdUseCase.getStoreById(sVariant.getStoreId()).getBranches().get(0);
         Colour colour = sVariant.getColours().get(0);

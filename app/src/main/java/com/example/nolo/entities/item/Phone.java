@@ -41,19 +41,24 @@ public class Phone extends Item {
     }
 
     @Override
-    public PhoneSpecs getPhoneSpecs(){
+    public PhoneSpecs getPhoneSpecs() {
         return phoneSpecs;
     }
 
     @Override
     @Exclude
-    public ISpecs getSpecs(){
+    public ISpecs getSpecs() {
         return getPhoneSpecs();
     }
 
+    /**
+     * Get the default variant of the current item (Phone)
+     *
+     * @return Default variant of the phone
+     */
     @Override
     @Exclude
-    public IItemVariant getDefaultItemVariant(){
+    public IItemVariant getDefaultItemVariant() {
         IItemVariant itemVariant = super.getDefaultItemVariant();
         itemVariant.setStorageOption(phoneSpecs.getStorageOptions().get(0));
 
