@@ -77,7 +77,7 @@ public class Purchasable implements IPurchasable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchasable that = (Purchasable) o;
-        return quantity == that.quantity && Objects.equals(itemVariant, that.itemVariant);
+        return Objects.equals(itemVariant, that.itemVariant);
     }
 
     @Override

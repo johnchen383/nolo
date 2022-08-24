@@ -98,7 +98,7 @@ public class User implements IUser {
     public void addCart(IPurchasable cartItem) {
         //if already in cart, simply increment quantity of that in cart
         for (IPurchasable cItem : cart) {
-            if (cItem.getItemVariant().equals(cartItem.getItemVariant())) {
+            if (cItem.equals(cartItem)) {
                 cItem.addToQuantity(cartItem.getQuantity());
                 return;
             }
