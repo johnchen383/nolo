@@ -7,11 +7,33 @@ import com.example.nolo.entities.item.specs.LaptopSpecs;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.Specs;
 import com.google.firebase.firestore.Exclude;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Laptop extends Item {
+    public static final List<Specs> SPECS = new ArrayList<>(Arrays.asList(
+            Specs.summary,
+            Specs.operatingSystem,
+            Specs.display,
+            Specs.cpu,
+            Specs.gpu,
+            Specs.camera,
+            Specs.keyboard,
+            Specs.communication,
+            Specs.audio,
+            Specs.touchscreen,
+            Specs.fingerprintReader,
+            Specs.opticalDrive,
+            Specs.ports,
+            Specs.battery,
+            Specs.acAdaptor,
+            Specs.dimensions,
+            Specs.weight
+    ));
     private List<String> recommendedAccessoryIds;
     private LaptopSpecs laptopSpecs;
 
