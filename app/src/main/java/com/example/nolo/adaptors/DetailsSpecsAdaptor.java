@@ -59,7 +59,7 @@ public class DetailsSpecsAdaptor extends ArrayAdapter {
     private View populateItemListItem(SpecsType currentSpecsNames, View currentListViewItem) {
         ViewHolder vh = new ViewHolder(currentListViewItem);
 
-        vh.descriptionName.setText(currentSpecsNames.name());
+        vh.descriptionName.setText(currentSpecsNames.getFullname());
         vh.descriptionText.setText(mSpecsDescription.get(currentSpecsNames.name()));
 
         return currentListViewItem;

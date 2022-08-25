@@ -4,36 +4,46 @@ public enum SpecsType {
     /**
      * All items
      */
-    summary,
+    summary("Summary"),
 
     /**
      * Laptops & Phones
      */
-    operatingSystem,
-    display,
-    cpu,
-    camera,
-    communication,
-    audio,
-    touchscreen,
-    battery,
-    dimensions,
-    weight,
+    operatingSystem("Sperating System"),
+    display("Display"),
+    cpu("CPU"),
+    camera("Camera"),
+    communication("Communication"),
+    audio("Audio"),
+    touchscreen("Touchscreen"),
+    battery("Battery"),
+    dimensions("Dimensions"),
+    weight("Weight"),
 
     /**
      * Laptops
      */
-    gpu,
-    keyboard,
-    fingerprintReader,
-    opticalDrive,
-    ports,
-    acAdaptor,
+    gpu("GPU"),
+    keyboard("Keyboard"),
+    fingerprintReader("Fingerprint Reader"),
+    opticalDrive("Optical Drive"),
+    ports("Ports"),
+    acAdaptor("AC Adaptor"),
 
     /**
      * Phones
      */
-    protectionResistance,
-    simCard,
-    sensors
+    protectionResistance("Protection Resistance"),
+    simCard("Sim Card"),
+    sensors("Sensors");
+
+    private final String fullname;
+
+    SpecsType(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getFullname() {
+        return this.fullname;
+    };
 }
