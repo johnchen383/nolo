@@ -73,6 +73,11 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
+    public IPurchasable copy() {
+        return new Purchasable(itemVariant, quantity);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Purchasable that = (Purchasable) o;
