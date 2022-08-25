@@ -25,8 +25,8 @@ import java.util.function.Consumer;
 public class StoresRepository implements IStoresRepository {
     private static StoresRepository storesRepository = null;
     private final FirebaseFirestore db;
-    private List<IStore> storesRepo;
     private final TimeToLiveToken timeToLiveToken;
+    private List<IStore> storesRepo;
 
     private StoresRepository() {
         db = FirebaseFirestore.getInstance();

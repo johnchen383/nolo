@@ -110,6 +110,7 @@ public class User implements IUser {
 
     /**
      * Update the user's cart with the new cart list
+     *
      * @param cartItems New cart list
      */
     @Override

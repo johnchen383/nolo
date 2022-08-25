@@ -4,9 +4,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
-import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
@@ -92,7 +92,7 @@ public class UsersRepository implements IUsersRepository {
         // Check if user is signed in (non-null)
         if (currentFBUser != null) {
             String userAuthUid = currentFBUser.getUid();
-            System.out.println("Current UID: " + currentFBUser.getUid());
+            Log.i("UserRepository", "Current UID: " + currentFBUser.getUid());
 
             // Find the user in the user repository (Firestore)
             for (IUser u : usersRepo) {
@@ -104,15 +104,15 @@ public class UsersRepository implements IUsersRepository {
             }
         }
 
-        System.out.println("Not signed in");
         // Not signed in
+        Log.i("UserRepository", "Not signed in");
         return null;
     }
 
     /**
      * After signing up, add user into Firestore.
      */
-    private void addUserRepoAfterSignedUp(Consumer<String> onUserSignUp, String uid) {
+    private void addUserRepoAfterSignedUp(Consumer<String> onAddUserRepoComplete, String uid) {
         db.collection(CollectionPath.users.name()).document(uid).set(new User()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -121,14 +121,17 @@ public class UsersRepository implements IUsersRepository {
                     IUser usr = new User();
                     usr.setUserAuthUid(uid);
                     usersRepo.add(usr);
-                    onUserSignUp.accept(null);
+                    onAddUserRepoComplete.accept(null);
                 } else {
-                    onUserSignUp.accept(task.getException().getMessage());
+                    onAddUserRepoComplete.accept(task.getException().getMessage());
                 }
             }
         });
     }
 
+    /**
+     * After signing up, it will automatically login the app
+     */
     @Override
     public void signUp(Consumer<String> onUserSignedUp, String email, String password) {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -136,7 +139,8 @@ public class UsersRepository implements IUsersRepository {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("Sign Up", "createUserWithEmail:success");
-                    // after signing up, add user into Firestore
+
+                    // After signing up, first add user into Firestore and then login
                     addUserRepoAfterSignedUp((addFirebaseErr) -> {
                         logIn((logInErr) -> {
                             if (logInErr != null) {
@@ -176,48 +180,63 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public List<ItemVariant> getViewHistory() {
+        return currentUser.getViewHistory();
+    }
+
+    /**
+     * Add selected item (ItemVariant) into the user's view history
+     *
+     * @param item selected item (ItemVariant)
+     */
+    @Override
     public void addViewHistory(IItemVariant item) {
         currentUser.addViewHistory(item);
 
         String field = "viewHistory";
-        if (currentUser.isFieldNameValid(field)){
+        if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
         } else {
-            Log.i("Err", "Unable to update view history as field not matched");
+            Log.e("UsersRepository", "Unable to update view history as field not matched");
         }
-    }
-
-    @Override
-    public void addCart(IPurchasable cartItem) {
-        currentUser.addCart(cartItem);
-
-        String field = "cart";
-        if (currentUser.isFieldNameValid(field)){
-            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
-        } else {
-            Log.i("Err", "Unable to update cart as field not matched");
-        }
-    }
-
-    @Override
-    public void updateCart(List<Purchasable> cartItems) {
-        currentUser.updateCart(cartItems);
-
-        String field = "cart";
-        if (currentUser.isFieldNameValid(field)){
-            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
-        } else {
-            Log.i("Err", "Unable to update cart as field not matched");
-        }
-    }
-
-    @Override
-    public List<ItemVariant> getViewHistory() {
-        return currentUser.getViewHistory();
     }
 
     @Override
     public List<Purchasable> getCart() {
         return currentUser.getCart();
+    }
+
+    /**
+     * Add selected item with quantity (Purchasable) into the user's cart
+     *
+     * @param cartItem selected item with quantity (Purchasable)
+     */
+    @Override
+    public void addCart(IPurchasable cartItem) {
+        currentUser.addCart(cartItem);
+
+        String field = "cart";
+        if (currentUser.isFieldNameValid(field)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+        } else {
+            Log.e("UsersRepository", "Unable to update cart as field not matched");
+        }
+    }
+
+    /**
+     * Update the user's cart with the new cart list
+     *
+     * @param cartItems New cart list
+     */
+    @Override
+    public void updateCart(List<Purchasable> cartItems) {
+        currentUser.updateCart(cartItems);
+
+        String field = "cart";
+        if (currentUser.isFieldNameValid(field)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+        } else {
+            Log.e("UsersRepository", "Unable to update cart as field not matched");
+        }
     }
 }

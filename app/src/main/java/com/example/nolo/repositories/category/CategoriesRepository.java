@@ -26,8 +26,8 @@ import java.util.function.Consumer;
 public class CategoriesRepository implements ICategoriesRepository {
     private static CategoriesRepository categoriesRepository = null;
     private final FirebaseFirestore db;
-    private List<ICategory> categoriesRepo;
     private final TimeToLiveToken timeToLiveToken;
+    private List<ICategory> categoriesRepo;
 
     private CategoriesRepository() {
         db = FirebaseFirestore.getInstance();
