@@ -85,7 +85,7 @@
             android:id="@+id/outside_search_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent_grey"
+            android:background="@color/transparent"
             android:orientation="vertical"
             android:visibility="gone"/>
 
@@ -130,6 +130,7 @@
                     android:textSize="@dimen/font_body1"
                     android:textColor="@color/faint_white"
                     android:textColorHint="@color/light_grey"
+                    android:imeOptions="actionSearch"
                     android:backgroundTint="@color/faint_white"/>
                 <ImageView
                     android:id="@+id/search_image_btn"
@@ -146,7 +147,7 @@
                 android:layout_marginStart="@dimen/font_h2"
                 android:layout_marginEnd="@dimen/font_h2"
                 android:layout_gravity="center_horizontal"
-                android:divider="@color/light_navy"
+                android:divider="@color/navy"
                 android:dividerHeight="1dp"
                 android:orientation="vertical"
                 android:visibility="gone"/>
