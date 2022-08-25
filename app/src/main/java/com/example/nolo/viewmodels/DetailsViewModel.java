@@ -14,6 +14,7 @@ import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
+import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.interactors.item.GetAccessRecommendationsByItemIdUseCase;
 import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
@@ -121,7 +122,7 @@ public class DetailsViewModel extends ViewModel {
     public List<SpecsOption> getStorageOptions() {
         if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
             System.out.println(item.getSpecs().toString());
-            return item.getSpecs().getStorageOptions();
+            return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.storage);
         } else {
             System.err.println("Storage options not available");
             return null;
@@ -130,7 +131,7 @@ public class DetailsViewModel extends ViewModel {
 
     public List<SpecsOption> getRamOptions() {
         if (getItemCategory() == CategoryType.laptops) {
-            return item.getSpecs().getRamOptions();
+            return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.ram);
         } else {
             System.err.println("RAM options not available");
             return null;
