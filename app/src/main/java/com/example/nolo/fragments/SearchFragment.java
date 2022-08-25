@@ -43,13 +43,14 @@ public class SearchFragment extends Fragment {
 
     private class ViewHolder {
         EditText searchEditText;
-        ImageView searchBtn;
+        ImageView searchBtn, deleteBtn;
         ListView searchSuggestionsList;
         LinearLayout outsideSearchContainer;
 
         public ViewHolder(View view){
             searchEditText = view.findViewById(R.id.search_edittext);
             searchBtn = view.findViewById(R.id.search_image_btn);
+            deleteBtn = view.findViewById(R.id.delete_btn);
             searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
         }
@@ -102,6 +103,14 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // When search bar has focus, show delete button, otherwise search button
+        vh.searchEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                onSearchBar(hasFocus);
+            }
+        });
+
         vh.searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -135,6 +144,15 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // When delete button is clicked, remove all text in edit text
+        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.searchEditText.setText("");
+                resetSearchSuggestionsAdaptor(vh.searchEditText.getText().toString());
+            }
+        });
+
         vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +161,21 @@ public class SearchFragment extends Fragment {
                 Keyboard.hide(getActivity(), currentView);
             }
         });
+    }
+
+    /**
+     * Show/hide the search & delete button next to search bar
+     *
+     * @param isOnSearchBar indicate whether it is on search bar or not
+     */
+    private void onSearchBar(boolean isOnSearchBar) {
+        if (isOnSearchBar) {
+            vh.searchBtn.setVisibility(View.GONE);
+            vh.deleteBtn.setVisibility(View.VISIBLE);
+        } else {
+            vh.searchBtn.setVisibility(View.VISIBLE);
+            vh.deleteBtn.setVisibility(View.GONE);
+        }
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
