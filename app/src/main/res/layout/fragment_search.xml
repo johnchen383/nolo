@@ -49,6 +49,7 @@
                 android:textSize="@dimen/font_body1"
                 android:textColor="@color/faint_white"
                 android:textColorHint="@color/light_grey"
+                android:imeOptions="actionSearch"
                 android:backgroundTint="@color/faint_white"/>
             <ImageView
                 android:id="@+id/search_image_btn"
@@ -63,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:divider="@color/light_navy"
+            android:divider="@color/navy"
             android:dividerHeight="1dp"
             android:orientation="vertical"/>
     </LinearLayout>
