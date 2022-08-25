@@ -33,14 +33,14 @@ public class Store implements IStore {
     }
 
     @Override
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
-    @Override
     @Exclude
     public String getStoreId() {
         return storeId;
+    }
+
+    @Override
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 
     @Override

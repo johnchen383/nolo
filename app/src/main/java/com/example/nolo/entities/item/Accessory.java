@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.example.nolo.entities.item.specs.AccessorySpecs;
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.LaptopSpecs;
-import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.enums.CategoryType;
 import com.google.firebase.firestore.Exclude;
@@ -15,6 +13,7 @@ import java.util.List;
 public class Accessory extends Item {
     private AccessorySpecs accessorySpecs;
     private boolean isForLaptops, isForPhones;
+
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
@@ -36,13 +35,13 @@ public class Accessory extends Item {
     }
 
     @Override
-    public AccessorySpecs getAccessorySpecs(){
+    public AccessorySpecs getAccessorySpecs() {
         return accessorySpecs;
     }
 
     @Override
     @Exclude
-    public ISpecs getSpecs(){
+    public ISpecs getSpecs() {
         return getAccessorySpecs();
     }
 

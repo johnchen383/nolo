@@ -69,7 +69,9 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
-    public void setColour(Colour colour) { this.colour = colour; }
+    public void setColour(Colour colour) {
+        this.colour = colour;
+    }
 
     @Override
     public String getItemId() {
@@ -87,8 +89,18 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
+    public void setStoreId(String id) {
+        this.storeId = id;
+    }
+
+    @Override
     public String getBranchName() {
         return branchName;
+    }
+
+    @Override
+    public void setBranchName(String name) {
+        this.branchName = name;
     }
 
     @Override
@@ -111,65 +123,75 @@ public class ItemVariant implements IItemVariant, Serializable {
         this.ramOption = ramOption;
     }
 
+    /**
+     * Get the item's name
+     *
+     * @return Item's name
+     */
     @Override
     @Exclude
-    public String getTitle(){
+    public String getTitle() {
         return GetItemByIdUseCase.getItemById(itemId).getName();
     }
 
+    /**
+     * Get the item's price (base price + additional price) in String
+     *
+     * @return Item's price in String
+     */
     @Override
     @Exclude
-    public String getDisplayPrice(){
+    public String getDisplayPrice() {
         return String.format("$%.2f", getNumericalPrice());
     }
 
+    /**
+     * Get the item's price (base price + additional price)
+     *
+     * @return Item's price
+     */
     @Override
     @Exclude
-    public double getNumericalPrice(){
+    public double getNumericalPrice() {
         IItem item = GetItemByIdUseCase.getItemById(itemId);
 
         if (item == null) return 0;
 
         double displayPrice = item.getBasePrice(storeId);
 
-        if (this.ramOption != null){
+        if (this.ramOption != null) {
             displayPrice += this.ramOption.getAdditionalPrice();
         }
 
-        if (this.storageOption != null){
+        if (this.storageOption != null) {
             displayPrice += this.storageOption.getAdditionalPrice();
         }
 
         return displayPrice;
     }
 
+    /**
+     * Get the item's image with specific colour
+     *
+     * @return Item's image
+     */
     @Override
     @Exclude
-    public String getDisplayImage(){
+    public String getDisplayImage() {
         IItem item = GetItemByIdUseCase.getItemById(itemId);
 
-        for (String uri : item.getImageUris()){
+        for (String uri : item.getImageUris()) {
             //find suffix which indicates colour
             String[] parts = uri.split("_");
             String suffix = parts[parts.length - 1];
 
-            if (suffix.equals(colour.getName())){
+            if (suffix.equals(colour.getName())) {
                 return uri;
             }
         }
 
         System.err.println("No image matched!");
         return item.getImageUris().get(0);
-    }
-
-    @Override
-    public void setStoreId(String id){
-        this.storeId = id;
-    }
-
-    @Override
-    public void setBranchName(String name){
-        this.branchName = name;
     }
 
     @Override

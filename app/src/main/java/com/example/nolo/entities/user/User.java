@@ -15,6 +15,15 @@ import java.util.List;
  * {@link #userAuthUid} {@link #email} will not be in the Firestore
  */
 public class User implements IUser {
+    /**
+     * Object list cannot use IItemVariant and IPurchasable (ItemVariant and Purchasable interfaces),
+     * the reason is when the Firebase auto converts the data into
+     * the object, it is unable to deserialize the object.
+     * It is because the interface does not have 0-argument constructor.
+     * To have the Firebase auto converts the data into the object,
+     * our team decided to use Branch class as the object list.
+     * So it is a reasonable excuse to violate the SOLID principle.
+     */
     public static final int MAX_VIEWED = 5;
     private String userAuthUid, email;
     private List<ItemVariant> viewHistory = new ArrayList<>();
@@ -31,19 +40,14 @@ public class User implements IUser {
     }
 
     @Override
-    public void setUserAuthUid(String userAuthUid) {
-        this.userAuthUid = userAuthUid;
-    }
-
-    @Override
     @Exclude
     public String getUserAuthUid() {
         return userAuthUid;
     }
 
     @Override
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserAuthUid(String userAuthUid) {
+        this.userAuthUid = userAuthUid;
     }
 
     @Override
@@ -53,10 +57,20 @@ public class User implements IUser {
     }
 
     @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
     public List<ItemVariant> getViewHistory() {
         return viewHistory;
     }
 
+    /**
+     * Add selected item (ItemVariant) into the user's view history
+     *
+     * @param item selected item (ItemVariant)
+     */
     @Override
     public void addViewHistory(IItemVariant item) {
         viewHistory.removeIf(viewedItem -> viewedItem.getItemId().equals(item.getItemId()));
@@ -65,7 +79,7 @@ public class User implements IUser {
         viewHistory.add(0, (ItemVariant) item);
 
         //truncate list if greater than MAX_VIEWED
-        while (viewHistory.size() > MAX_VIEWED){
+        while (viewHistory.size() > MAX_VIEWED) {
             viewHistory.remove(MAX_VIEWED);
         }
     }
@@ -75,11 +89,16 @@ public class User implements IUser {
         return cart;
     }
 
+    /**
+     * Add selected item with quantity (Purchasable) into the user's cart
+     *
+     * @param cartItem selected item with quantity (Purchasable)
+     */
     @Override
     public void addCart(IPurchasable cartItem) {
         //if already in cart, simply increment quantity of that in cart
-        for (IPurchasable cItem : cart){
-            if (cItem.getItemVariant().equals(cartItem.getItemVariant())){
+        for (IPurchasable cItem : cart) {
+            if (cItem.equals(cartItem)) {
                 cItem.addToQuantity(cartItem.getQuantity());
                 return;
             }
@@ -89,6 +108,10 @@ public class User implements IUser {
         cart.add((Purchasable) cartItem);
     }
 
+    /**
+     * Update the user's cart with the new cart list
+     * @param cartItems New cart list
+     */
     @Override
     public void updateCart(List<Purchasable> cartItems) {
         cart = cartItems;
@@ -97,6 +120,7 @@ public class User implements IUser {
 
     /**
      * Check does the field name exist
+     *
      * @param fieldName Field name (case sensitive)
      * @return True if it is one of the field in User class;
      *         False if it is not
