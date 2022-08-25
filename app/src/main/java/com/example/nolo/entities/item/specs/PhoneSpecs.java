@@ -1,116 +1,31 @@
 package com.example.nolo.entities.item.specs;
 
-import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
+import com.example.nolo.enums.SpecsOptionType;
+import com.example.nolo.enums.SpecsType;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class PhoneSpecs extends Specs {
-    /**
-     * Cannot use ISpecsOption (interface),
-     * the reason is when the Firebase auto converts the data into
-     * the object, it is unable to deserialize the object.
-     * It is because the interface does not have 0-argument constructor.
-     * To have the Firebase auto converts the data into the object,
-     * our team decided to use StoreVariant and Specs.
-     * So it is a reasonable excuse to violate the SOLID principle.
-     */
-    private String operatingSystem, display, cpu, camera, connectivity, audio, touchscreen,
-            protectionResistance, simCard, sensors, battery, dimensions, weight;
-    private List<SpecsOption> storageOptions;
+public class PhoneSpecs {
+    public static final List<SpecsType> FIXED_SPECS = new ArrayList<>(Arrays.asList(
+            SpecsType.summary,
+            SpecsType.operatingSystem,
+            SpecsType.display,
+            SpecsType.cpu,
+            SpecsType.camera,
+            SpecsType.communication,
+            SpecsType.audio,
+            SpecsType.touchscreen,
+            SpecsType.protectionResistance,
+            SpecsType.simCard,
+            SpecsType.sensors,
+            SpecsType.battery,
+            SpecsType.dimensions,
+            SpecsType.weight
+    ));
 
-    /**
-     * 0 argument constructor for convert Firebase data to this class
-     */
-    public PhoneSpecs() {}
-
-    public PhoneSpecs(String summary, String operatingSystem, String display, String cpu,
-                      List<SpecsOption> storageOptions, String camera, String connectivity, String audio,
-                      String touchscreen, String protectionResistance, String simCard,
-                      String sensors, String battery, String dimensions, String weight) {
-        super(summary);
-        this.operatingSystem = operatingSystem;
-        this.display = display;
-        this.cpu = cpu;
-        this.storageOptions = storageOptions;
-        this.camera = camera;
-        this.connectivity = connectivity;
-        this.audio = audio;
-        this.touchscreen = touchscreen;
-        this.protectionResistance = protectionResistance;
-        this.simCard = simCard;
-        this.sensors = sensors;
-        this.battery = battery;
-        this.dimensions = dimensions;
-        this.weight = weight;
-    }
-
-    @Override
-    public String getOperatingSystem() {
-        return operatingSystem;
-    }
-
-    @Override
-    public String getDisplay() {
-        return display;
-    }
-
-    @Override
-    public String getCpu() {
-        return cpu;
-    }
-
-    @Override
-    public List<SpecsOption> getStorageOptions() {
-        return storageOptions;
-    }
-
-    @Override
-    public String getCamera() {
-        return camera;
-    }
-
-    @Override
-    public String getCommunication() {
-        return connectivity;
-    }
-
-    @Override
-    public String getAudio() {
-        return audio;
-    }
-
-    @Override
-    public String getTouchscreen() {
-        return touchscreen;
-    }
-
-    @Override
-    public String getProtectionResistance() {
-        return protectionResistance;
-    }
-
-    @Override
-    public String getSimCard() {
-        return simCard;
-    }
-
-    @Override
-    public String getSensors() {
-        return sensors;
-    }
-
-    @Override
-    public String getBattery() {
-        return battery;
-    }
-
-    @Override
-    public String getDimensions() {
-        return dimensions;
-    }
-
-    @Override
-    public String getWeight() {
-        return weight;
-    }
+    public static final List<SpecsOptionType> CUSTOMISABLE_SPECS = new ArrayList<>(Arrays.asList(
+            SpecsOptionType.storage
+    ));
 }

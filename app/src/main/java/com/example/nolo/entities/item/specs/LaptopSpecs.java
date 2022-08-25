@@ -1,142 +1,35 @@
 package com.example.nolo.entities.item.specs;
 
-import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
+import com.example.nolo.enums.SpecsOptionType;
+import com.example.nolo.enums.SpecsType;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class LaptopSpecs extends Specs {
-    /**
-     * Cannot use ISpecsOption (interface),
-     * the reason is when the Firebase auto converts the data into
-     * the object, it is unable to deserialize the object.
-     * It is because the interface does not have 0-argument constructor.
-     * To have the Firebase auto converts the data into the object,
-     * our team decided to use StoreVariant and Specs.
-     * So it is a reasonable excuse to violate the SOLID principle.
-     */
-    private String operatingSystem, display, cpu, gpu, camera, keyboard,
-            communication, audio, touchscreen, fingerprintReader, opticalDrive, ports, battery,
-            acAdaptor, dimensions, weight;
-    private List<SpecsOption> ramOptions, storageOptions;
+public class LaptopSpecs {
+    public static final List<SpecsType> FIXED_SPECS = new ArrayList<>(Arrays.asList(
+            SpecsType.summary,
+            SpecsType.operatingSystem,
+            SpecsType.display,
+            SpecsType.cpu,
+            SpecsType.gpu,
+            SpecsType.camera,
+            SpecsType.keyboard,
+            SpecsType.communication,
+            SpecsType.audio,
+            SpecsType.touchscreen,
+            SpecsType.fingerprintReader,
+            SpecsType.opticalDrive,
+            SpecsType.ports,
+            SpecsType.battery,
+            SpecsType.acAdaptor,
+            SpecsType.dimensions,
+            SpecsType.weight
+    ));
 
-    /**
-     * 0 argument constructor for convert Firebase data to this class
-     */
-    public LaptopSpecs() {}
-
-    public LaptopSpecs(String summary, String operatingSystem, String display, String cpu,
-                       String gpu, List<SpecsOption> ramOptions, List<SpecsOption> storageOptions, String camera,
-                       String keyboard, String communication, String audio, String touchscreen,
-                       String fingerprintReader, String opticalDrive, String ports, String battery,
-                       String acAdaptor, String dimensions, String weight) {
-        super(summary);
-        this.operatingSystem = operatingSystem;
-        this.display = display;
-        this.cpu = cpu;
-        this.gpu = gpu;
-        this.ramOptions = ramOptions;
-        this.storageOptions = storageOptions;
-        this.camera = camera;
-        this.keyboard = keyboard;
-        this.communication = communication;
-        this.audio = audio;
-        this.touchscreen = touchscreen;
-        this.fingerprintReader = fingerprintReader;
-        this.opticalDrive = opticalDrive;
-        this.ports = ports;
-        this.battery = battery;
-        this.acAdaptor = acAdaptor;
-        this.dimensions = dimensions;
-        this.weight = weight;
-    }
-
-    @Override
-    public String getOperatingSystem() {
-        return operatingSystem;
-    }
-
-    @Override
-    public String getDisplay() {
-        return display;
-    }
-
-    @Override
-    public String getCpu() {
-        return cpu;
-    }
-
-    @Override
-    public String getGpu() {
-        return gpu;
-    }
-
-    @Override
-    public List<SpecsOption> getRamOptions() {
-        return ramOptions;
-    }
-
-    @Override
-    public List<SpecsOption> getStorageOptions() {
-        return storageOptions;
-    }
-
-    @Override
-    public String getCamera() {
-        return camera;
-    }
-
-    @Override
-    public String getKeyboard() {
-        return keyboard;
-    }
-
-    @Override
-    public String getCommunication() {
-        return communication;
-    }
-
-    @Override
-    public String getAudio() {
-        return audio;
-    }
-
-    @Override
-    public String getTouchscreen() {
-        return touchscreen;
-    }
-
-    @Override
-    public String getFingerprintReader() {
-        return fingerprintReader;
-    }
-
-    @Override
-    public String getOpticalDrive() {
-        return opticalDrive;
-    }
-
-    @Override
-    public String getPorts() {
-        return ports;
-    }
-
-    @Override
-    public String getBattery() {
-        return battery;
-    }
-
-    @Override
-    public String getAcAdaptor() {
-        return acAdaptor;
-    }
-
-    @Override
-    public String getDimensions() {
-        return dimensions;
-    }
-
-    @Override
-    public String getWeight() {
-        return weight;
-    }
+    public static final List<SpecsOptionType> CUSTOMISABLE_SPECS = new ArrayList<>(Arrays.asList(
+            SpecsOptionType.ram,
+            SpecsOptionType.storage
+    ));
 }

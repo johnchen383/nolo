@@ -1,12 +1,13 @@
 package com.example.nolo.entities.item.specs;
 
-public class AccessorySpecs extends Specs {
-    /**
-     * 0 argument constructor for convert Firebase data to this class
-     */
-    public AccessorySpecs() {}
+import com.example.nolo.enums.SpecsType;
 
-    public AccessorySpecs(String summary) {
-        super(summary);
-    }
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class AccessorySpecs {
+    public static final List<SpecsType> FIXED_SPECS = new ArrayList<>(Arrays.asList(
+            SpecsType.summary
+    ));
 }
