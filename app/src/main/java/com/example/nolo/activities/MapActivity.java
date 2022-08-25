@@ -93,7 +93,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         vh.mapFragment.getMapAsync(this);
         vh.title.setText(variant.getTitle());
 
-        vh.modalHeader.getLayoutParams().height = (int)(Display.getScreenHeight(vh.modalHeader) * 0.1);
+        vh.modalHeader.getLayoutParams().height = (int) (Display.getScreenHeight(vh.modalHeader) * 0.1);
     }
 
     private void initListeners() {
@@ -142,7 +142,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                 marker.setTag(createMarkerTag(store.getStoreId(), branch.getBranchName()));
                 markers.add(marker);
 
-                if (branch.getBranchName().equals(variant.getBranchName()) && store.getStoreId().equals(variant.getStoreId())){
+                if (branch.getBranchName().equals(variant.getBranchName()) && store.getStoreId().equals(variant.getStoreId())) {
                     activeMarker = marker;
                     activeMarkerPrice = variant.getNumericalPrice();
                 }
@@ -207,7 +207,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             );
         }
 
-        if (isActiveCheap){
+        if (isActiveCheap) {
             activeMarker.setIcon(BitmapDescriptorFactory.fromBitmap(
                     createMapIcon(getDisplayPrice(activeMarkerPrice), R.drawable.marker_img_red, R.color.green))
             );
@@ -276,8 +276,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         List<Branch> branches = variantStore.getBranches();
 
-        for (Branch branch : branches){
-            if (branch.getBranchName().equals(variant.getBranchName())){
+        for (Branch branch : branches) {
+            if (branch.getBranchName().equals(variant.getBranchName())) {
                 vh.address.setText(branch.getAddress());
                 break;
             }

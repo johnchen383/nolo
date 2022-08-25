@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
 import com.example.nolo.R;
 import com.example.nolo.entities.item.specs.specsoption.ISpecsOption;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
@@ -22,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCustomisationAdaptor.ViewHolder>{
+public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCustomisationAdaptor.ViewHolder> {
     private Context mContext;
     private List<SpecsOption> specsOptions;
     private SpecsOptionType specType;
@@ -42,7 +43,7 @@ public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCus
         }
     }
 
-    public DetailsCustomisationAdaptor(@NonNull Context context, List<SpecsOption> specsOptions, SpecsOptionType specType, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant){
+    public DetailsCustomisationAdaptor(@NonNull Context context, List<SpecsOption> specsOptions, SpecsOptionType specType, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant) {
         this.specsOptions = specsOptions;
         this.specType = specType;
         this.mContext = context;
@@ -114,8 +115,8 @@ public class DetailsCustomisationAdaptor extends RecyclerView.Adapter<DetailsCus
         System.out.println(option);
 
         return specsOptions.stream()
-            .filter(o -> o.getSize() == Integer.parseInt(option))
-            .findFirst()
-            .get();
+                .filter(o -> o.getSize() == Integer.parseInt(option))
+                .findFirst()
+                .get();
     }
 }

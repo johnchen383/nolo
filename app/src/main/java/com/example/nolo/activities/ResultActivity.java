@@ -136,10 +136,12 @@ public class ResultActivity extends BaseActivity {
 
         vh.searchBarText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -149,10 +151,12 @@ public class ResultActivity extends BaseActivity {
 
         vh.searchBarText.removeTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -194,8 +198,8 @@ public class ResultActivity extends BaseActivity {
      * Show/hide the search bar, search suggestions and keyboard
      *
      * @param show boolean - True to show search suggestions and show keyboard
-     *                       False to hide search suggestions and hide keyboard
-     * @param v view
+     *             False to hide search suggestions and hide keyboard
+     * @param v    view
      */
     private void showSearchSuggestionsList(boolean show, View v) {
         if (show) {

@@ -35,7 +35,7 @@ public class SearchItemSuggestionAdaptor extends ArrayAdapter {
             searchSuggestText = currentListViewItem.findViewById(R.id.search_suggestion_item_text);
         }
     }
-    
+
     public SearchItemSuggestionAdaptor(@NonNull Context context, int resource, @NonNull List<IItem> objects,
                                        String searchTerm, String promptColour, String normalColour) {
         super(context, resource, objects);

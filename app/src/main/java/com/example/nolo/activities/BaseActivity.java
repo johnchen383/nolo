@@ -20,10 +20,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //hide title bar and status bar
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//
+        //hide title bar and set status bar to navy
         getWindow().setStatusBarColor(getColor(R.color.navy));
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();

@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.example.nolo.R;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
@@ -33,7 +34,7 @@ public class MainActivity extends BaseActivity {
         View navProfile;
         BottomNavigationView navView;
 
-        public ViewHolder(){
+        public ViewHolder() {
             navProfile = findViewById(R.id.navigation_profile);
             navView = findViewById(R.id.nav_view);
             navView.setItemIconTintList(null);
@@ -62,7 +63,7 @@ public class MainActivity extends BaseActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile)
                 .build();
-        
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 

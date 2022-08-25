@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
 import com.example.nolo.R;
 import com.example.nolo.activities.DetailsActivity;
 import com.example.nolo.entities.item.variant.IItemVariant;
@@ -21,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdaptor.ViewHolder>{
+public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdaptor.ViewHolder> {
     private List<ItemVariant> featuredItems;
     private Context mContext;
     private double widthFactor;
@@ -41,7 +42,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
         }
     }
 
-    public ItemsCompactAdaptor(@NonNull Context context, List<ItemVariant> featuredItems, double widthFactor){
+    public ItemsCompactAdaptor(@NonNull Context context, List<ItemVariant> featuredItems, double widthFactor) {
         this.featuredItems = featuredItems;
         this.mContext = context;
         this.widthFactor = widthFactor;

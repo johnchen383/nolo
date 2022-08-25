@@ -124,7 +124,7 @@ public class DetailsActivity extends FragmentActivity {
         }
     }
 
-    private void initCarouselAdaptor(){
+    private void initCarouselAdaptor() {
         /**
          * CAROUSEL
          */
@@ -181,7 +181,7 @@ public class DetailsActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        if (DetailsViewModel.itemVariantFromMap != null){
+        if (DetailsViewModel.itemVariantFromMap != null) {
 //            System.out.println("SETTING FROM RESUME");
             detailsViewModel = new DetailsViewModel(DetailsViewModel.itemVariantFromMap);
             init();
@@ -191,18 +191,11 @@ public class DetailsActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (vh.carousel.getCurrentItem() == 0) {
-            super.onBackPressed();
-            IUser usr = GetCurrentUserUseCase.getCurrentUser();
+        super.onBackPressed();
+        IUser usr = GetCurrentUserUseCase.getCurrentUser();
 
-            if (usr != null) {
-                usr.addViewHistory(detailsViewModel.getItemVariant());
-            }
-        } else {
-            imgIndex--;
-            if (imgIndex < 0) imgIndex = 0;
-            vh.carousel.setCurrentItem(imgIndex);
-            System.out.println("SWIPE: " + imgIndex);
+        if (usr != null) {
+            usr.addViewHistory(detailsViewModel.getItemVariant());
         }
     }
 
@@ -326,7 +319,7 @@ public class DetailsActivity extends FragmentActivity {
         setDynamicStyling();
         initSpecsStyling(detailsViewModel.getItemCategory());
 
-        if (!displayedColour.equals(itemVariant.getColour())){
+        if (!displayedColour.equals(itemVariant.getColour())) {
             //colour changed
             initCarouselAdaptor();
         }
@@ -348,7 +341,7 @@ public class DetailsActivity extends FragmentActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         imgIndex = 0;
         initStyling();
         initAdaptors();

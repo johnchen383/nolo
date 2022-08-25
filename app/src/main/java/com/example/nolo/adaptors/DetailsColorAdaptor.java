@@ -1,34 +1,35 @@
 package com.example.nolo.adaptors;
 
 import android.content.Context;
-        import android.content.Intent;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-        import androidx.annotation.NonNull;
-        import com.example.nolo.R;
-        import com.example.nolo.activities.DetailsActivity;
-        import com.example.nolo.entities.item.colour.Colour;
-        import com.example.nolo.entities.item.colour.IColour;
-        import com.example.nolo.entities.item.variant.IItemVariant;
-        import com.example.nolo.entities.item.variant.ItemVariant;
-        import com.example.nolo.interactors.item.GetItemByIdUseCase;
-        import com.google.android.material.button.MaterialButton;
+import androidx.annotation.NonNull;
 
-        import androidx.core.content.ContextCompat;
-        import androidx.recyclerview.widget.RecyclerView;
+import com.example.nolo.R;
+import com.example.nolo.activities.DetailsActivity;
+import com.example.nolo.entities.item.colour.Colour;
+import com.example.nolo.entities.item.colour.IColour;
+import com.example.nolo.entities.item.variant.IItemVariant;
+import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.interactors.item.GetItemByIdUseCase;
+import com.google.android.material.button.MaterialButton;
 
-        import java.util.List;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 import java.util.function.Consumer;
 
-public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdaptor.ViewHolder>{
+public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdaptor.ViewHolder> {
     private Context mContext;
     private List<Colour> colours;
     private IItemVariant itemVariant;
@@ -47,7 +48,7 @@ public class DetailsColorAdaptor extends RecyclerView.Adapter<DetailsColorAdapto
         }
     }
 
-    public DetailsColorAdaptor(@NonNull Context context, List<Colour> colours, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant){
+    public DetailsColorAdaptor(@NonNull Context context, List<Colour> colours, IItemVariant itemVariant, Consumer<IItemVariant> updateItemVariant) {
         this.colours = colours;
         this.mContext = context;
         this.itemVariant = itemVariant;

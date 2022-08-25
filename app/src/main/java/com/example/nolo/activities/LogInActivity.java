@@ -38,7 +38,7 @@ public class LogInActivity extends BaseActivity {
         TextView forgotPassword, signUpText, errorText;
         MaterialButton logIn;
 
-        public ViewHolder(){
+        public ViewHolder() {
             emailInput = findViewById(R.id.email_edit);
             emailLayout = findViewById(R.id.email_layout);
             passwordInput = findViewById(R.id.password_edit);
@@ -56,13 +56,13 @@ public class LogInActivity extends BaseActivity {
 
     private void initStyling() {
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        vh.emailLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
-        vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
+        vh.emailLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this, R.color.text_input_layout_stroke_colour));
+        vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this, R.color.text_input_layout_stroke_colour));
     }
 
-    private void logIn(){
+    private void logIn() {
         String userEmail = vh.emailInput.getText().toString();
         String userPassword = vh.passwordInput.getText().toString();
 
@@ -138,7 +138,7 @@ public class LogInActivity extends BaseActivity {
             clearFocus();
         }
         if (!vh.emailInput.hasFocus() && !vh.passwordInput.hasFocus()) {
-            InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
@@ -152,7 +152,7 @@ public class LogInActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        logInViewModel =  new ViewModelProvider(this).get(LogInViewModel.class);
+        logInViewModel = new ViewModelProvider(this).get(LogInViewModel.class);
         setContentView(R.layout.activity_login);
         vh = new ViewHolder();
         initStyling();

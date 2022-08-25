@@ -44,7 +44,7 @@ public class SignUpActivity extends BaseActivity {
         TextView logInText, termsText, privacyText, errorText;
         MaterialButton signUp;
 
-        public ViewHolder(){
+        public ViewHolder() {
             emailInput = findViewById(R.id.email_edit);
             emailLayout = findViewById(R.id.email_layout);
             passwordInput = findViewById(R.id.password_edit);
@@ -72,12 +72,12 @@ public class SignUpActivity extends BaseActivity {
     private void initStyling() {
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.repeatPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        vh.termsText.setPaintFlags(vh.termsText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-        vh.privacyText.setPaintFlags(vh.privacyText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-        vh.logInText.setPaintFlags(vh.logInText.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        vh.termsText.setPaintFlags(vh.termsText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        vh.privacyText.setPaintFlags(vh.privacyText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        vh.logInText.setPaintFlags(vh.logInText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        vh.emailLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
-        vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this,R.color.text_input_layout_stroke_colour));
+        vh.emailLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this, R.color.text_input_layout_stroke_colour));
+        vh.passwordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(this, R.color.text_input_layout_stroke_colour));
     }
 
     private void signUp() {
@@ -195,7 +195,7 @@ public class SignUpActivity extends BaseActivity {
             clearFocus();
         }
         if (!vh.emailInput.hasFocus() && !vh.passwordInput.hasFocus() && !vh.repeatPasswordInput.hasFocus()) {
-            InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
@@ -209,7 +209,7 @@ public class SignUpActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        signUpViewModel =  new ViewModelProvider(this).get(SignUpViewModel.class);
+        signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
         setContentView(R.layout.activity_signup);
         vh = new ViewHolder();
         initStyling();

@@ -87,7 +87,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems){
+    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems) {
         super(context, resource, categoryItems);
         this.categoryItems = categoryItems;
         this.mContext = context;
@@ -118,7 +118,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
 
         //accessories
-        if (Accessory.class.equals(categoryItems.get(0).get(0).getClass())){
+        if (Accessory.class.equals(categoryItems.get(0).get(0).getClass())) {
             IItem displayItem = categoryItems.get(position).get(0);
             return populateAccessory(displayItem, currentListViewItem);
         }
@@ -127,7 +127,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         return null;
     }
 
-    private View populateAccessory(IItem item, View currentListViewItem){
+    private View populateAccessory(IItem item, View currentListViewItem) {
         AccessoryViewHolder vh = new AccessoryViewHolder(currentListViewItem);
 
         vh.title.setText(item.getName());
@@ -159,7 +159,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         return currentListViewItem;
     }
 
-    private View populatePhoneItemsByOs(List<IItem> items, View currentListViewItem){
+    private View populatePhoneItemsByOs(List<IItem> items, View currentListViewItem) {
         PhoneViewHolder vh = new PhoneViewHolder(currentListViewItem);
 
 //        setUpChildRecyclerView(vh.childItemsList, osItems, 0.48);
@@ -211,7 +211,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         return currentListViewItem;
     }
 
-    private View populateLaptopItemsByBrand(List<IItem> items, View currentListViewItem){
+    private View populateLaptopItemsByBrand(List<IItem> items, View currentListViewItem) {
         LaptopsViewHolder vh = new LaptopsViewHolder(currentListViewItem);
 
         vh.brandName.setText(items.get(0).getBrand().toUpperCase());
@@ -220,13 +220,13 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         return currentListViewItem;
     }
 
-    private void setUpChildRecyclerView(RecyclerView rv, List<IItem> items, double widthFactor){
+    private void setUpChildRecyclerView(RecyclerView rv, List<IItem> items, double widthFactor) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         rv.setLayoutManager(layoutManager);
 
         List<ItemVariant> defVariants = new ArrayList<>();
 
-        for (IItem item : items){
+        for (IItem item : items) {
             defVariants.add((ItemVariant) item.getDefaultItemVariant());
         }
 

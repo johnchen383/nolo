@@ -28,6 +28,7 @@ import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
 import com.example.nolo.util.Connectivity;
 import com.example.nolo.util.LocationUtil;
 import com.example.nolo.viewmodels.SplashViewModel;
+
 import java.util.function.Consumer;
 
 public class SplashActivity extends BaseActivity {
@@ -87,7 +88,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         vh = new ViewHolder();
 
-        if (!Connectivity.isConnected(this)){
+        if (!Connectivity.isConnected(this)) {
             System.out.println("NOT CONNECTED");
             showConnectivityPopup();
             //TODO: handle the clicking of the okay button, and only transition after??
@@ -104,14 +105,13 @@ public class SplashActivity extends BaseActivity {
 //        });
 
 
-
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
             LocationUtil.loadCurrentLocation(this);
             loadAllRepositories();
         }));
     }
 
-    private void showConnectivityPopup(){
+    private void showConnectivityPopup() {
         //Delay required for android bug with popup windows
         new Handler().postDelayed(() -> {
             int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -123,7 +123,7 @@ public class SplashActivity extends BaseActivity {
                 popupWindow.dismiss();
                 return false;
             });
-        },50);
+        }, 50);
     }
 
     private void checkLocationPermissionsAndContinue(Consumer<Void> func) {
