@@ -115,7 +115,6 @@ public class CartPurchasableAdaptor extends ArrayAdapter {
             for (Purchasable p : mItems) {
                 if (p.equals(item)) {
                     p.incrementOrDecrementQuantity(false);
-
                 }
             }
             update.accept(mItems);

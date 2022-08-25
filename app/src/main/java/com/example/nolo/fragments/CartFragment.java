@@ -96,7 +96,7 @@ public class CartFragment extends Fragment {
 //        cartItems.add(null);
 //        cartItems.add(null);
 
-        CartPurchasableAdaptor categoriesAdaptor = new CartPurchasableAdaptor(getActivity(), R.layout.item_list_cart, cartItems, (items) -> updateCartItems(items));
+        CartPurchasableAdaptor categoriesAdaptor = new CartPurchasableAdaptor(getActivity(), R.layout.item_list_cart, cartItems, this::updateCartItems);
         vh.cartList.setAdapter(categoriesAdaptor);
 
         ListUtil.setDynamicHeight(vh.cartList);
