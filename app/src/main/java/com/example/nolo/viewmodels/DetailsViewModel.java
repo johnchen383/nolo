@@ -122,7 +122,7 @@ public class DetailsViewModel extends ViewModel {
     public List<SpecsOption> getStorageOptions() {
         if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
             System.out.println(item.getSpecs().toString());
-            return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.storage);
+            return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.storage.name());
         } else {
             System.err.println("Storage options not available");
             return null;
@@ -131,7 +131,7 @@ public class DetailsViewModel extends ViewModel {
 
     public List<SpecsOption> getRamOptions() {
         if (getItemCategory() == CategoryType.laptops) {
-            return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.ram);
+            return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.ram.name());
         } else {
             System.err.println("RAM options not available");
             return null;

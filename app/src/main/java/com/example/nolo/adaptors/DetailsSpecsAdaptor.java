@@ -1,31 +1,24 @@
 package com.example.nolo.adaptors;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.DetailsActivity;
-import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.SpecsType;
-import com.example.nolo.util.Animation;
 
 import java.util.List;
 import java.util.Map;
 
 public class DetailsSpecsAdaptor extends ArrayAdapter {
     List<SpecsType> mSpecsNames;
-    private Map<SpecsType, String> mSpecsDescription;
+    private Map<String, String> mSpecsDescription;
     private Context mContext;
     private int mLayoutID;
 
@@ -39,7 +32,7 @@ public class DetailsSpecsAdaptor extends ArrayAdapter {
     }
 
     public DetailsSpecsAdaptor(@NonNull Context context, int resource, @NonNull List<SpecsType> objects,
-                               Map<SpecsType, String> specsDescription) {
+                               Map<String, String> specsDescription) {
         super(context, resource, objects);
         mContext = context;
         mLayoutID = resource;
@@ -67,7 +60,7 @@ public class DetailsSpecsAdaptor extends ArrayAdapter {
         ViewHolder vh = new ViewHolder(currentListViewItem);
 
         vh.descriptionName.setText(currentSpecsNames.name());
-        vh.descriptionText.setText(mSpecsDescription.get(currentSpecsNames));
+        vh.descriptionText.setText(mSpecsDescription.get(currentSpecsNames.name()));
 
         return currentListViewItem;
     }

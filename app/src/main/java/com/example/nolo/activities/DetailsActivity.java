@@ -26,6 +26,7 @@ import com.example.nolo.adaptors.DetailsSpecsAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.LaptopSpecs;
+import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -320,10 +321,16 @@ public class DetailsActivity extends FragmentActivity {
     }
 
     private void initSpecsStyling(CategoryType category) {
-        if (category.equals(CategoryType.accessories)) {
+        List<SpecsType> fixedSpecs;
+
+        if (category.equals(CategoryType.laptops)) {
+            fixedSpecs = LaptopSpecs.FIXED_SPECS;
+        } else if (category.equals(CategoryType.phones)) {
+            fixedSpecs = PhoneSpecs.FIXED_SPECS;
+        } else {
             vh.specs.setVisibility(View.GONE);
             vh.recContainer.setVisibility(View.GONE);
-            vh.summaryText.setText(detailsViewModel.getItemSpecs().getFixedSpecs().get(SpecsType.summary));
+            vh.summaryText.setText(detailsViewModel.getItemSpecs().getFixedSpecs().get(SpecsType.summary.name()));
             return;
         }
 
@@ -331,7 +338,7 @@ public class DetailsActivity extends FragmentActivity {
 
         DetailsSpecsAdaptor detailsSpecsAdaptor =
                 new DetailsSpecsAdaptor(this, R.layout.item_details_description,
-                        LaptopSpecs.FIXED_SPECS, detailsViewModel.getItemSpecs().getFixedSpecs());
+                        fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
         vh.specsList.setAdapter(detailsSpecsAdaptor);
         ListUtil.setDynamicHeight(vh.specsList);
     }
