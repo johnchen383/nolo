@@ -28,6 +28,8 @@ import com.example.nolo.entities.user.IUser;
 import com.example.nolo.entities.user.User;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
+import com.example.nolo.enums.SpecsOptionType;
+import com.example.nolo.enums.SpecsType;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,6 +49,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DataProvider {
     private static void clearCollection(String collectionPath, Consumer<Void> callback) {
@@ -229,6 +233,8 @@ public class DataProvider {
     private static List<IItem> generateLaptops() {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris, recommendedAccessoryIds;
+        Map<SpecsType, String> fixedSpecs;
+        Map<SpecsOptionType, List<SpecsOption>> customisableSpecs;
         Specs specs;
         List<SpecsOption> rams, storages;
         List<StoreVariant> itemStoreVariant;
@@ -260,25 +266,29 @@ public class DataProvider {
                 new SpecsOption(1024, 700),
                 new SpecsOption(2048, 1400)
         ));
-        specs = new LaptopSpecs("MacBook Air M2 chip model",
-                "macOS",
-                "13.6-inch (diagonal) LED-backlit display with IPS technology; (2560*1664), Liquid Retina display",
-                "Apple M2 chip; 8-core CPU with four performance cores and four efficiency cores",
-                "Integrated Graphics 8-core GPU",
-                rams,
-                storages,
-                "1080p FaceTime HD camera",
-                "Backlit Magic Keyboard",
-                "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology",
-                "Four-speaker sound system; Wide stereo sound",
-                "N/A",
-                "Touch ID",
-                "N/A",
-                "Thunderbolt 3 digital video output; Native DisplayPort output over USB‑C",
-                "52.6-watt‑hour lithium‑polymer battery",
-                "30W USB-C Power Adapter",
-                "304.1 x 215 x 11.3 mm",
-                "1.24 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "MacBook Air M2 chip model"},
+                {SpecsType.operatingSystem, "macOS"},
+                {SpecsType.display, "13.6-inch (diagonal) LED-backlit display with IPS technology; (2560*1664), Liquid Retina display"},
+                {SpecsType.cpu, "Apple M2 chip; 8-core CPU with four performance cores and four efficiency cores"},
+                {SpecsType.gpu, "Integrated Graphics 8-core GPU"},
+                {SpecsType.camera, "1080p FaceTime HD camera"},
+                {SpecsType.keyboard, "Backlit Magic Keyboard"},
+                {SpecsType.communication, "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology"},
+                {SpecsType.audio, "Four-speaker sound system; Wide stereo sound"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "Touch ID"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "Thunderbolt 3 digital video output; Native DisplayPort output over USB‑C"},
+                {SpecsType.battery, "52.6-watt‑hour lithium‑polymer battery"},
+                {SpecsType.acAdaptor, "30W USB-C Power Adapter"},
+                {SpecsType.dimensions, "304.1 x 215 x 11.3 mm"},
+                {SpecsType.weight, "1.24 kg"}
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_macbook_air_m2_1_silver",
                 "item_laptop_macbook_air_m2_2_silver",
@@ -303,7 +313,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Apple MacBook Air (M2)",
                 "Apple",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -331,25 +341,29 @@ public class DataProvider {
                 new SpecsOption(2048, 1050),
                 new SpecsOption(4096, 2100)
         ));
-        specs = new LaptopSpecs("MacBook Pro 16\" models",
-                "macOS",
-                "16.2-inch (diagonal) Liquid Retina XDR display, (3456*2234)",
-                "Apple M1 Pro chip; 10-core CPU with eight performance cores and two efficiency cores",
-                "Integrated Graphics 16-core GPU",
-                rams,
-                storages,
-                "1080p FaceTime HD camera",
-                "Backlit Magic Keyboard",
-                "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology",
-                "High-fidelity six-speaker sound system with force-cancelling woofers; Wide stereo sound",
-                "N/A",
-                "Touch ID",
-                "N/A",
-                "SDXC card slot; HDMI port; 3.5-mm headphone jack; MagSafe 3 port; Three Thunderbolt 4 (USB-C) ports",
-                "100-watt-hour lithium-polymer battery",
-                "140W USB-C Power Adapter",
-                "355.7 x 248.1 x 16.8 mm",
-                "2.15 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "MacBook Pro 16\" models"},
+                {SpecsType.operatingSystem, "macOS"},
+                {SpecsType.display, "16.2-inch (diagonal) Liquid Retina XDR display, (3456*2234)"},
+                {SpecsType.cpu, "Apple M1 Pro chip; 10-core CPU with eight performance cores and two efficiency cores"},
+                {SpecsType.gpu, "Integrated Graphics 16-core GPU"},
+                {SpecsType.camera, "1080p FaceTime HD camera"},
+                {SpecsType.keyboard, "Backlit Magic Keyboard"},
+                {SpecsType.communication, "802.11ax Wi-Fi 6 wireless networking + Bluetooth 5.0 wireless technology"},
+                {SpecsType.audio, "High-fidelity six-speaker sound system with force-cancelling woofers; Wide stereo sound"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "Touch ID"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "SDXC card slot; HDMI port; 3.5-mm headphone jack; MagSafe 3 port; Three Thunderbolt 4 (USB-C) ports"},
+                {SpecsType.battery, "100-watt-hour lithium-polymer battery"},
+                {SpecsType.acAdaptor, "140W USB-C Power Adapter"},
+                {SpecsType.dimensions, "355.7 x 248.1 x 16.8 mm"},
+                {SpecsType.weight, "2.15 kg"}
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_macbook_pro_16_1_silver",
                 "item_laptop_macbook_pro_16_2_silver",
@@ -366,7 +380,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Apple MacBook Pro 16\"",
                 "Apple",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -393,25 +407,29 @@ public class DataProvider {
                 new SpecsOption(256, 0),
                 new SpecsOption(512, 450)
         ));
-        specs = new LaptopSpecs("Microsoft Surface Laptop 4 13.5\"",
-                "Windows 11 Home",
-                "13.5\" 2256 x 1504 (201 PPI)",
-                "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)",
-                "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics",
-                rams,
-                storages,
-                "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)",
-                "Backlight",
-                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology",
-                "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos",
-                "10 point multi-touch",
-                "N/A",
-                "N/A",
-                "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port",
-                "Battery Capacity Nominal (WH) 47.4",
-                "Power Supply",
-                "308 x 223 x 14.5 mm",
-                "1.27 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Microsoft Surface Laptop 4 13.5\""},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "13.5\" 2256 x 1504 (201 PPI)"},
+                {SpecsType.cpu, "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)"},
+                {SpecsType.gpu, "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics"},
+                {SpecsType.camera, "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)"},
+                {SpecsType.keyboard, "Backlight"},
+                {SpecsType.communication, "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology"},
+                {SpecsType.audio, "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos"},
+                {SpecsType.touchscreen, "10 point multi-touch"},
+                {SpecsType.fingerprintReader, "N/A"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port"},
+                {SpecsType.battery, "Battery Capacity Nominal (WH) 47.4"},
+                {SpecsType.acAdaptor, "Power Supply"},
+                {SpecsType.dimensions, "308 x 223 x 14.5 mm"},
+                {SpecsType.weight, "1.27 kg"}
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_surface_laptop_4_1_black",
                 "item_laptop_surface_laptop_4_2_black",
@@ -436,7 +454,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Microsoft Surface Laptop 4",
                 "Microsoft",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -463,25 +481,29 @@ public class DataProvider {
                 new SpecsOption(256, 0),
                 new SpecsOption(512, 450)
         ));
-        specs = new LaptopSpecs("Microsoft Surface Laptop 3 13.5\"",
-                "Windows 11 Home",
-                "13.5\" 2256 x 1504 (201 PPI)",
-                "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)",
-                "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics",
-                rams,
-                storages,
-                "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)",
-                "Backlight",
-                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology",
-                "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos",
-                "10 point multi-touch",
-                "N/A",
-                "N/A",
-                "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port",
-                "Battery Capacity Nominal (WH) 47.4",
-                "Power Supply",
-                "308 x 223 x 14.5 mm",
-                "1.27 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Microsoft Surface Laptop 3 13.5\""},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "13.5\" 2256 x 1504 (201 PPI)"},
+                {SpecsType.cpu, "AMD Ryzen™ 5 4680U Mobile Processor with Radeon™ Graphics Microsoft Surface® Edition (6 cores)"},
+                {SpecsType.gpu, "AMD Ryzen™ Microsoft Surface® Edition: AMD Radeon™ Graphics"},
+                {SpecsType.camera, "Windows Hello face authentication camera (front-facing); 720p HD f2.0 camera (front-facing)"},
+                {SpecsType.keyboard, "Backlight"},
+                {SpecsType.communication, "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.0 technology"},
+                {SpecsType.audio, "Dual far-field Studio Mics; Omnisonic Speakers with Dolby Atmos"},
+                {SpecsType.touchscreen, "10 point multi-touch"},
+                {SpecsType.fingerprintReader, "N/A"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1 x USB-C; 1 x USB-A; 3.5 mm headphone jack; 1 x Surface Connect port"},
+                {SpecsType.battery, "Battery Capacity Nominal (WH) 47.4"},
+                {SpecsType.acAdaptor, "Power Supply"},
+                {SpecsType.dimensions, "308 x 223 x 14.5 mm"},
+                {SpecsType.weight, "1.27 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_surface_laptop_4_1_black",
                 "item_laptop_surface_laptop_4_2_black",
@@ -506,7 +528,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Microsoft Surface Laptop 3",
                 "Microsoft",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -535,25 +557,29 @@ public class DataProvider {
                 new SpecsOption(512, 320),
                 new SpecsOption(1024, 520)
         ));
-        specs = new LaptopSpecs("Microsoft Surface Pro 8",
-                "Windows 11 Home",
-                "13\" 2880 x 1920 (267 PPI) 120Hz",
-                "Quad-core 11th Gen Intel® Core™ i5-1135G7 Processor, designed on the Intel® Evo™ platform",
-                "Integrated Graphics",
-                rams,
-                storages,
-                "Windows Hello face authentication camera (front-facing); 5.0MP front-facing camera with 1080p full HD video; 10.0MP rear-facing autofocus camera with 1080p HD and 4k video",
-                "Backlight",
-                "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.1 technology",
-                "Dual far-field Studio Mics; 2W stereo speakers with Dolby Atmos",
-                "10 point multi-touch",
-                "N/A",
-                "N/A",
-                "2 x USB-C® with USB 4.0/Thunderbolt™ 4; 3.5mm headphone jack; 1 × Surface Connect port; Surface Type Cover port",
-                "Battery Capacity Nominal (WH) 51.5Wh",
-                "Power Supply",
-                "287 x 208 x 9.3 mm",
-                "891 g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Microsoft Surface Pro 8"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "13\" 2880 x 1920 (267 PPI) 120Hz"},
+                {SpecsType.cpu, "Quad-core 11th Gen Intel® Core™ i5-1135G7 Processor, designed on the Intel® Evo™ platform"},
+                {SpecsType.gpu, "Integrated Graphics"},
+                {SpecsType.camera, "Windows Hello face authentication camera (front-facing); 5.0MP front-facing camera with 1080p full HD video; 10.0MP rear-facing autofocus camera with 1080p HD and 4k video"},
+                {SpecsType.keyboard, "Backlight"},
+                {SpecsType.communication, "Wi-Fi 6: 802.11ax + Bluetooth® Wireless 5.1 technology"},
+                {SpecsType.audio, "Dual far-field Studio Mics; 2W stereo speakers with Dolby Atmos"},
+                {SpecsType.touchscreen, "10 point multi-touch"},
+                {SpecsType.fingerprintReader, "N/A"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "2 x USB-C® with USB 4.0/Thunderbolt™ 4; 3.5mm headphone jack; 1 × Surface Connect port; Surface Type Cover port"},
+                {SpecsType.battery, "Battery Capacity Nominal (WH) 51.5Wh"},
+                {SpecsType.acAdaptor, "Power Supply"},
+                {SpecsType.dimensions, "287 x 208 x 9.3 mm"},
+                {SpecsType.weight, "891 g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_surface_pro_8_1_platinum",
                 "item_laptop_surface_pro_8_2_platinum",
@@ -570,7 +596,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Microsoft Surface Pro 8",
                 "Microsoft",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -593,25 +619,29 @@ public class DataProvider {
                 new SpecsOption(256, 0),
                 new SpecsOption(512, 99)
         ));
-        specs = new LaptopSpecs("ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch",
-                "Windows 11 Home",
-                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
-                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)",
-                "Intel® UHD Graphics",
-                rams,
-                storages,
-                "720p HD camera",
-                "Backlit Chiclet Keyboard; 1.4mm Key-travel",
-                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
-                "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support",
-                "Touch screen display",
-                "Fingerprint sensor integrated with Touchpad",
-                "N/A",
-                "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader",
-                "39WHrs, 2S1P, 2-cell Li-ion",
-                "45W AC Adapter",
-                "32.07 x 21.70 x 1.69 mm",
-                "1.50 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "ASUS Vivobook Go 14 Flip TP1400KA Laptop 14\" HD Touch"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio"},
+                {SpecsType.cpu, "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)"},
+                {SpecsType.gpu, "Intel® UHD Graphics"},
+                {SpecsType.camera, "720p HD camera"},
+                {SpecsType.keyboard, "Backlit Chiclet Keyboard; 1.4mm Key-travel"},
+                {SpecsType.communication, "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1"},
+                {SpecsType.audio, "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support"},
+                {SpecsType.touchscreen, "Touch screen display"},
+                {SpecsType.fingerprintReader, "Fingerprint sensor integrated with Touchpad"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader"},
+                {SpecsType.battery, "39WHrs, 2S1P, 2-cell Li-ion"},
+                {SpecsType.acAdaptor, "45W AC Adapter"},
+                {SpecsType.dimensions, "32.07 x 21.70 x 1.69 mm"},
+                {SpecsType.weight, "1.50 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_asus_vivobook_go_14_flip_tp1400ka_1_blue",
                 "item_laptop_asus_vivobook_go_14_flip_tp1400ka_2_blue",
@@ -624,7 +654,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("ASUS Vivobook Go 14 Flip TP1400KA",
                 "ASUS",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -648,25 +678,29 @@ public class DataProvider {
                 new SpecsOption(256, 0),
                 new SpecsOption(512, 99)
         ));
-        specs = new LaptopSpecs("ASUS ROG Strix G15 Advantage Edition G513QY",
-                "Windows 11 Home",
-                "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio",
-                "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)",
-                "Intel® UHD Graphics",
-                rams,
-                storages,
-                "720p HD camera",
-                "Backlit Chiclet Keyboard; 1.4mm Key-travel",
-                "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1",
-                "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support",
-                "Touch screen display",
-                "Fingerprint sensor integrated with Touchpad",
-                "N/A",
-                "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader",
-                "39WHrs, 2S1P, 2-cell Li-ion",
-                "45W AC Adapter",
-                "32.07 x 21.70 x 1.69 mm",
-                "1.50 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "ASUS ROG Strix G15 Advantage Edition G513QY"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "14.0-inch, FHD (1920 x 1080) 16:9 aspect ratio"},
+                {SpecsType.cpu, "Intel® Celeron® N4500 Processor 1.1 GHz (4M Cache, up to 2.8 GHz, 2 cores)"},
+                {SpecsType.gpu, "Intel® UHD Graphics"},
+                {SpecsType.camera, "720p HD camera"},
+                {SpecsType.keyboard, "Backlit Chiclet Keyboard; 1.4mm Key-travel"},
+                {SpecsType.communication, "Wi-Fi 5(802.11ac) (Dual band) 1*1 + Bluetooth 4.1"},
+                {SpecsType.audio, "SonicMaster; Built-in speaker; Built-in array microphone with Cortana support"},
+                {SpecsType.touchscreen, "Touch screen display"},
+                {SpecsType.fingerprintReader, "Fingerprint sensor integrated with Touchpad"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1x USB 2.0 Type-A; 1x USB 3.2 Gen 1 Type-A; 1x USB 3.2 Gen 1 Type-C; 1x HDMI 1.4; 1x 3.5mm Combo Audio Jack; 1x DC-in; Micro SD card reader"},
+                {SpecsType.battery, "39WHrs, 2S1P, 2-cell Li-ion"},
+                {SpecsType.acAdaptor, "45W AC Adapter"},
+                {SpecsType.dimensions, "32.07 x 21.70 x 1.69 mm"},
+                {SpecsType.weight, "1.50 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_asus_rog_strix_g15_1_black",
                 "item_laptop_asus_rog_strix_g15_2_black",
@@ -679,7 +713,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("ASUS ROG Strix G15 Advantage Edition",
                 "ASUS",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -705,25 +739,29 @@ public class DataProvider {
                 new SpecsOption(1024, 586.5),
                 new SpecsOption(2048, 1161.5)
         ));
-        specs = new LaptopSpecs("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
-                "Windows 11 Home",
-                "14\" WUXGA (1920 x 1200); IPS; Anti-Glare; Non-Touch; 100%sRGB; 400 nits; Narrow Bezel; Low Blue Light",
-                "12th Generation Intel® Core™ i5-1240P Processor (E-cores up to 3.30 GHz P-cores up to 4.40 GHz)",
-                "Integrated Intel® Iris® Xe Graphics",
-                rams,
-                storages,
-                "FHD IR/RGB Hybrid with Microphone",
-                "Backlit; Black with Fingerprint Reader - English",
-                "Wi-Fi 6E AX211 2x2 AX & Bluetooth® 5.0",
-                "Audio jack; Two upward- and two downward-firing speakers",
-                "N/A",
-                "Fingerprint Reader",
-                "N/A",
-                "2x USB-C Thunderbolt 4 ports; 2x USB 3.2 Type-A port; 1x HDMI video output; 1x nano SIM slot",
-                "4 Cell Li-Polymer Internal Battery, 57Wh",
-                "65W adapter",
-                "323.5 x 217.1 x 15.95 mm",
-                "1.13 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "14\" WUXGA (1920 x 1200); IPS; Anti-Glare; Non-Touch; 100%sRGB; 400 nits; Narrow Bezel; Low Blue Light"},
+                {SpecsType.cpu, "12th Generation Intel® Core™ i5-1240P Processor (E-cores up to 3.30 GHz P-cores up to 4.40 GHz)"},
+                {SpecsType.gpu, "Integrated Intel® Iris® Xe Graphics"},
+                {SpecsType.camera, "FHD IR/RGB Hybrid with Microphone"},
+                {SpecsType.keyboard, "Backlit; Black with Fingerprint Reader - English"},
+                {SpecsType.communication, "Wi-Fi 6E AX211 2x2 AX & Bluetooth® 5.0"},
+                {SpecsType.audio, "Audio jack; Two upward- and two downward-firing speakers"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "Fingerprint Reader"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "2x USB-C Thunderbolt 4 ports; 2x USB 3.2 Type-A port; 1x HDMI video output; 1x nano SIM slot"},
+                {SpecsType.battery, "4 Cell Li-Polymer Internal Battery, 57Wh"},
+                {SpecsType.acAdaptor, "65W adapter"},
+                {SpecsType.dimensions, "323.5 x 217.1 x 15.95 mm"},
+                {SpecsType.weight, "1.13 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_lenovo_thinkpad_x1_1_black",
                 "item_laptop_lenovo_thinkpad_x1_2_black",
@@ -736,7 +774,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Lenovo ThinkPad X1 Carbon Gen 10 - Intel® Evo",
                 "Lenovo",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -763,25 +801,29 @@ public class DataProvider {
                 new SpecsOption(512, 99),
                 new SpecsOption(1024, 179)
         ));
-        specs = new LaptopSpecs("Legion 5 Pro (16\", Gen 7) AMD",
-                "Windows 11 Home",
-                "16.0\" WQXGA (2560x1600) IPS 500nits Anti-glare; 165Hz",
-                "AMD Ryzen™ 7 6800H",
-                "NVIDIA® GeForce RTX™ 3050 Ti 4GB GDDR6",
-                rams,
-                storages,
-                "HD 720p, with E-camera shutter, fixed focus",
-                "6-row, multimedia Fn keys, numeric keypad, black keycap",
-                "802.11AX (2x2) & Bluetooth® 5.1",
-                "Stereo speakers; 2 x 2W, Nahimic Audio; Dual array mic",
-                "Non-touch",
-                "No fingerprint reader",
-                "N/A",
-                "2 x USB 3.2 Gen 1; 1 x USB 3.2 Gen 1 (Always On); 2 x USB-C 3.2 Gen 2 (support data transfer and DisplayPort™ 1.4); 1 x USB-C 3.2 Gen 2 (support data transfer; Power Delivery 135W and DisplayPort 1.4); 1 x HDMI 2.1; 1 x Ethernet (RJ-45); 1 x Headphone / mic; 1 x Power connector",
-                "4-cell (80Wh), integrated",
-                "230W Slim Tip (3-pin)",
-                "359.9 x 262.4 x 19.9 mm",
-                "2.49 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Legion 5 Pro (16\", Gen 7) AMD"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "16.0\" WQXGA (2560x1600) IPS 500nits Anti-glare; 165Hz"},
+                {SpecsType.cpu, "AMD Ryzen™ 7 6800H"},
+                {SpecsType.gpu, "NVIDIA® GeForce RTX™ 3050 Ti 4GB GDDR6"},
+                {SpecsType.camera, "HD 720p, with E-camera shutter, fixed focus"},
+                {SpecsType.keyboard, "6-row, multimedia Fn keys, numeric keypad, black keycap"},
+                {SpecsType.communication, "802.11AX (2x2) & Bluetooth® 5.1"},
+                {SpecsType.audio, "Stereo speakers; 2 x 2W, Nahimic Audio; Dual array mic"},
+                {SpecsType.touchscreen, "Non-touch"},
+                {SpecsType.fingerprintReader, "No fingerprint reader"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "2 x USB 3.2 Gen 1; 1 x USB 3.2 Gen 1 (Always On); 2 x USB-C 3.2 Gen 2 (support data transfer and DisplayPort™ 1.4); 1 x USB-C 3.2 Gen 2 (support data transfer; Power Delivery 135W and DisplayPort 1.4); 1 x HDMI 2.1; 1 x Ethernet (RJ-45); 1 x Headphone / mic; 1 x Power connector"},
+                {SpecsType.battery, "4-cell (80Wh), integrated"},
+                {SpecsType.acAdaptor, "230W Slim Tip (3-pin)"},
+                {SpecsType.dimensions, "359.9 x 262.4 x 19.9 mm"},
+                {SpecsType.weight, "2.49 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_legion_5_pro_16arh7_1_grey",
                 "item_laptop_legion_5_pro_16arh7_2_grey",
@@ -798,7 +840,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Lenovo Legion 5 Pro 16ARH7",
                 "Lenovo",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -824,25 +866,29 @@ public class DataProvider {
                 new SpecsOption(512, 79),
                 new SpecsOption(1024, 129)
         ));
-        specs = new LaptopSpecs("MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD",
-                "Windows 11 Home",
-                "15.6\" FHD (1920*1080) 60Hz",
-                "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores",
-                "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6",
-                rams,
-                storages,
-                "HD type (30fps @ 720p)",
-                "Backlight Keyboard (Single-Color, Red)",
-                "802.11 ax Wi-Fi 6 + Bluetooth v5.2",
-                "2x 2W Speaker; 1x Mic-in; 1x Headphone-out",
-                "N/A",
-                "N/A",
-                "N/A",
-                "1x RJ45; 1x (4K @ 30Hz) HDMI; 1x Type-C USB3.2 Gen1; 3x Type-A USB3.2 Gen1",
-                "3-Cell, 51 Battery (Whr)",
-                "120W adapter",
-                "359 x 254 x 21.7 mm",
-                "1.86 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "MSI GF63 Thin 11SC GTX1650 Max Q Gaming Laptop 15.6' FHD"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "15.6\" FHD (1920*1080) 60Hz"},
+                {SpecsType.cpu, "11th Gen. Intel® Core™ i5-11400H Processor 6 Cores"},
+                {SpecsType.gpu, "NVIDIA® GeForce® GTX 1650 Laptop GPU, 4GB GDDR6"},
+                {SpecsType.camera, "HD type (30fps @ 720p)"},
+                {SpecsType.keyboard, "Backlight Keyboard (Single-Color, Red)"},
+                {SpecsType.communication, "802.11 ax Wi-Fi 6 + Bluetooth v5.2"},
+                {SpecsType.audio, "2x 2W Speaker; 1x Mic-in; 1x Headphone-out"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "N/A"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1x RJ45; 1x (4K @ 30Hz) HDMI; 1x Type-C USB3.2 Gen1; 3x Type-A USB3.2 Gen1"},
+                {SpecsType.battery, "3-Cell, 51 Battery (Whr)"},
+                {SpecsType.acAdaptor, "120W adapter"},
+                {SpecsType.dimensions, "359 x 254 x 21.7 mm"},
+                {SpecsType.weight, "1.86 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_msi_gf63_1_black",
                 "item_laptop_msi_gf63_2_black",
@@ -855,7 +901,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("MSI GF63",
                 "MSI",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -877,25 +923,29 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(1024, 0)
         ));
-        specs = new LaptopSpecs("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
-                "Windows 11 Home",
-                "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate",
-                "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache",
-                "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)",
-                rams,
-                storages,
-                "Built-in Full HD webcam",
-                "Per-Key Backlighting, powered by Razer Chroma",
-                "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2",
-                "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array",
-                "N/A",
-                "N/A",
-                "N/A",
-                "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2",
-                "Built-in 82WHr rechargeable lithium-ion polymer battery",
-                "280W power adapter",
-                "395 x 260 x 19.9 mm",
-                "2.75 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black"},
+                {SpecsType.operatingSystem, "Windows 11 Home"},
+                {SpecsType.display, "17.3\" FHD 360Hz; 100% sRGB; 6mm bezels; individually factory calibrated; 3ms Response Rate"},
+                {SpecsType.cpu, "1.8GHz 14-core Intel i7-12800H processor; Turbo Boost up to 4.8GHz, with 24MB of Cache"},
+                {SpecsType.gpu, "NVIDIA® GeForce RTX™ 3070 Ti (8GB GDDR6 VRAM)"},
+                {SpecsType.camera, "Built-in Full HD webcam"},
+                {SpecsType.keyboard, "Per-Key Backlighting, powered by Razer Chroma"},
+                {SpecsType.communication, "Wireless Wi-Fi 6E AX1690 (IEEE 802.11a/b/g/n/ac/ax/az); Bluetooth® 5.2"},
+                {SpecsType.audio, "3.5mm Combo-Jack; Stereo 2.0 | 8 Speakers; THX Spatial Audio; 2-Mic Array"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "N/A"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "2 x Thunderbolt™ 4 (USB-C™); 1 x USB-C 3.2 Gen 2 - Supports Power Delivery 3 (15W); 3 x USB-A 3.2 Gen 2"},
+                {SpecsType.battery, "Built-in 82WHr rechargeable lithium-ion polymer battery"},
+                {SpecsType.acAdaptor, "280W power adapter"},
+                {SpecsType.dimensions, "395 x 260 x 19.9 mm"},
+                {SpecsType.weight, "2.75 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_razer_blade_17_1_black",
                 "item_laptop_razer_blade_17_2_black",
@@ -908,7 +958,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Razer Blade 17 - Full HD 360Hz - GeForce RTX 3070 Ti - Black",
                 "Razer",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -932,25 +982,29 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(512, 0)
         ));
-        specs = new LaptopSpecs("Acer Aspire 7 A715-42G-R0EX",
-                "Windows 10 Home",
-                "39.6 cm (15.6\") LCD",
-                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
-                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
-                rams,
-                storages,
-                "Front Camera/Webcam, 1280 x 720",
-                "Backlight",
-                "802.11 ax Wi-Fi 6 + Bluetooth",
-                "Microphone; Stereo speakers",
-                "N/A",
-                "Yes",
-                "N/A",
-                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
-                "3-cell Lithium Ion (Li-Ion) 48 Wh",
-                "135W adapter",
-                "363.4 x 254.5 x 22.9 mm",
-                "2.15 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Acer Aspire 7 A715-42G-R0EX"},
+                {SpecsType.operatingSystem, "Windows 10 Home"},
+                {SpecsType.display, "39.6 cm (15.6\") LCD"},
+                {SpecsType.cpu, "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache"},
+                {SpecsType.gpu, "NVIDIA® GeForce® GTX 1650 4 GB GDDR6"},
+                {SpecsType.camera, "Front Camera/Webcam, 1280 x 720"},
+                {SpecsType.keyboard, "Backlight"},
+                {SpecsType.communication, "802.11 ax Wi-Fi 6 + Bluetooth"},
+                {SpecsType.audio, "Microphone; Stereo speakers"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "Yes"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port"},
+                {SpecsType.battery, "3-cell Lithium Ion (Li-Ion) 48 Wh"},
+                {SpecsType.acAdaptor, "135W adapter"},
+                {SpecsType.dimensions, "363.4 x 254.5 x 22.9 mm"},
+                {SpecsType.weight, "2.15 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_acer_aspire_7_a715_42g_roex_1_black",
                 "item_laptop_acer_aspire_7_a715_42g_roex_2_black",
@@ -963,7 +1017,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Acer Aspire 7 A715-42G-R0EX",
                 "Acer",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -987,25 +1041,29 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(1024, 0)
         ));
-        specs = new LaptopSpecs("Acer Aspire 3 14in FHD Athlon Silver 3050U 8GB RAM 128GB SSD+1TB HDD",
-                "Windows 10 Home",
-                "39.6 cm (15.6\") LCD",
-                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
-                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
-                rams,
-                storages,
-                "Front Camera/Webcam, 1280 x 720",
-                "Backlight",
-                "802.11 ax Wi-Fi 6 + Bluetooth",
-                "Microphone; Stereo speakers",
-                "N/A",
-                "Yes",
-                "N/A",
-                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
-                "3-cell Lithium Ion (Li-Ion) 48 Wh",
-                "135W adapter",
-                "363.4 x 254.5 x 22.9 mm",
-                "2.15 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Acer Aspire 3 14in FHD Athlon Silver 3050U 8GB RAM 128GB SSD+1TB HDD"},
+                {SpecsType.operatingSystem, "Windows 10 Home"},
+                {SpecsType.display, "39.6 cm (15.6\") LCD"},
+                {SpecsType.cpu, "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache"},
+                {SpecsType.gpu, "NVIDIA® GeForce® GTX 1650 4 GB GDDR6"},
+                {SpecsType.camera, "Front Camera/Webcam, 1280 x 720"},
+                {SpecsType.keyboard, "Backlight"},
+                {SpecsType.communication, "802.11 ax Wi-Fi 6 + Bluetooth"},
+                {SpecsType.audio, "Microphone; Stereo speakers"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "Yes"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port"},
+                {SpecsType.battery, "3-cell Lithium Ion (Li-Ion) 48 Wh"},
+                {SpecsType.acAdaptor, "135W adapter"},
+                {SpecsType.dimensions, "363.4 x 254.5 x 22.9 mm"},
+                {SpecsType.weight, "2.15 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_acer_aspire_3_1_black",
                 "item_laptop_acer_aspire_3_2_black",
@@ -1018,7 +1076,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Acer Aspire 3",
                 "Acer",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1042,25 +1100,29 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(1024, 0)
         ));
-        specs = new LaptopSpecs("Acer Spin 1 SP114-31-P3KD Edu Laptop 14\" FHD Touch Intel Pentium Silver N6000",
-                "Windows 10 Home",
-                "39.6 cm (15.6\") LCD",
-                "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache",
-                "NVIDIA® GeForce® GTX 1650 4 GB GDDR6",
-                rams,
-                storages,
-                "Front Camera/Webcam, 1280 x 720",
-                "Backlight",
-                "802.11 ax Wi-Fi 6 + Bluetooth",
-                "Microphone; Stereo speakers",
-                "N/A",
-                "Yes",
-                "N/A",
-                "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port",
-                "3-cell Lithium Ion (Li-Ion) 48 Wh",
-                "135W adapter",
-                "363.4 x 254.5 x 22.9 mm",
-                "2.15 kg");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Acer Spin 1 SP114-31-P3KD Edu Laptop 14\" FHD Touch Intel Pentium Silver N6000"},
+                {SpecsType.operatingSystem, "Windows 10 Home"},
+                {SpecsType.display, "39.6 cm (15.6\") LCD"},
+                {SpecsType.cpu, "AMD Ryzen 5 5500U Hexa-core (6 Core™) 2.10 GHz; up to 4 GHz; 8 MB Cache"},
+                {SpecsType.gpu, "NVIDIA® GeForce® GTX 1650 4 GB GDDR6"},
+                {SpecsType.camera, "Front Camera/Webcam, 1280 x 720"},
+                {SpecsType.keyboard, "Backlight"},
+                {SpecsType.communication, "802.11 ax Wi-Fi 6 + Bluetooth"},
+                {SpecsType.audio, "Microphone; Stereo speakers"},
+                {SpecsType.touchscreen, "N/A"},
+                {SpecsType.fingerprintReader, "Yes"},
+                {SpecsType.opticalDrive, "N/A"},
+                {SpecsType.ports, "1x HDMI; 1x USB 2.0 Ports; 2x USB 3.2 Gen 1 Type-A Ports; 1x USB 3.2 Gen 1 Type-C Ports (up to 5 Gbps); 1x Network (RJ-45); 1x Headphone/Microphone Combo Port"},
+                {SpecsType.battery, "3-cell Lithium Ion (Li-Ion) 48 Wh"},
+                {SpecsType.acAdaptor, "135W adapter"},
+                {SpecsType.dimensions, "363.4 x 254.5 x 22.9 mm"},
+                {SpecsType.weight, "2.15 kg"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.ram, rams);
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_laptop_acer_spin_1_1_black",
                 "item_laptop_acer_spin_1_2_black",
@@ -1073,7 +1135,7 @@ public class DataProvider {
         ));
         items.add(new Laptop("Acer Spin 1",
                 "Acer",
-                (LaptopSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1151,7 +1213,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22 Ultra",
                 "Samsung",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1219,7 +1281,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Samsung Galaxy S22",
                 "Samsung",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1289,7 +1351,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Apple iPhone 13 Pro Max",
                 "Apple",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1359,7 +1421,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Apple iPhone 13 Pro",
                 "Apple",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1433,7 +1495,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Apple iPhone 13",
                 "Apple",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1492,7 +1554,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Apple iPhone SE",
                 "Apple",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1565,7 +1627,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Apple iPhone 11",
                 "Apple",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1619,7 +1681,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Apple iPhone 4",
                 "Apple",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1672,7 +1734,7 @@ public class DataProvider {
         ));
         items.add(new Phone("OnePlus 10 Pro",
                 "OnePlus",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1725,7 +1787,7 @@ public class DataProvider {
         ));
         items.add(new Phone("HUAWEI P40 Pro",
                 "HUAWEI",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1782,7 +1844,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Xiaomi 12 Pro",
                 "Xiaomi",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1832,7 +1894,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Nokia G21",
                 "Nokia",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1887,7 +1949,7 @@ public class DataProvider {
         ));
         items.add(new Phone("Nokia 225 4G",
                 "Nokia",
-                (PhoneSpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 recommendedAccessoryIds));
@@ -1930,7 +1992,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Sony WH-1000XM4",
                 "Sony",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 true,
@@ -1955,7 +2017,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Logitech Pro X DTS Headphone",
                 "Logitech",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 true,
@@ -1981,7 +2043,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Apple AirPods Pro",
                 "Apple",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 true,
@@ -2027,7 +2089,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Ultimate Ears BOOM 3 Bluetooth Speaker",
                 "Ultimate Ears",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 true,
@@ -2051,7 +2113,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("HyperX QuadCast S Standalone Microphone",
                 "HyperX",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 true,
@@ -2076,7 +2138,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
                 "Xiaomi",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 false,
@@ -2122,7 +2184,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Apple iPhone 13 Pro Max Leather Case with MagSafe",
                 "Apple",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 false,
@@ -2146,7 +2208,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Lifeproof iPhone SE case",
                 "Lifeproof",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 false,
@@ -2175,7 +2237,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Urban Armor Gear - Galaxy S22 Ultra 5G",
                 "Urban Armor Gear",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 false,
@@ -2198,7 +2260,7 @@ public class DataProvider {
         ));
         items.add(new Accessory("Spigen Oneplus 10 Pro Hybrid Case",
                 "Spigen",
-                (AccessorySpecs) specs,
+                specs,
                 itemStoreVariant,
                 imageUris,
                 false,
