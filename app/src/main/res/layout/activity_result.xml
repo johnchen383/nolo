@@ -114,51 +114,15 @@
                     android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/font_h2"
-                android:layout_marginEnd="@dimen/font_h2"
-                android:layout_gravity="center">
-                <EditText
-                    android:id="@+id/search_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/search_bar"
-                    android:textAllCaps="true"
-                    android:singleLine="true"
-                    android:textSize="@dimen/font_body1"
-                    android:textColor="@color/faint_white"
-                    android:textColorHint="@color/light_grey"
-                    android:imeOptions="actionSearch"
-                    android:backgroundTint="@color/faint_white"/>
-                <ImageView
-                    android:id="@+id/delete_btn"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/delete_icon"
-                    android:visibility="gone"/>
-                <ImageView
-                    android:id="@+id/search_image_btn"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/nav_icon_search"/>
-            </RelativeLayout>
-            <ListView
-                android:id="@+id/search_suggestions_list"
+            <include
+                android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/font_h2"
                 android:layout_marginEnd="@dimen/font_h2"
                 android:layout_gravity="center_horizontal"
-                android:divider="@color/navy"
-                android:dividerHeight="1dp"
-                android:orientation="vertical"
-                android:visibility="gone"/>
+                android:background="@color/navy"
+                layout="@layout/item_search_bar"/>
         </LinearLayout>
     </FrameLayout>
 </ScrollView>

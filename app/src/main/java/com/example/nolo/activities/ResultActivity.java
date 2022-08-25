@@ -35,17 +35,20 @@ public class ResultActivity extends BaseActivity {
         ListView searchResultList, searchSuggestionsList;
         TextView numOfResultFound;
         ImageView backBtn, searchBtn, deleteBtn;
+        View searchView;
 
         public ViewHolder() {
             homeScrollView = findViewById(R.id.home_scroll_view);
             outsideSearchContainer = findViewById(R.id.outside_search_container);
-            searchBarText = findViewById(R.id.search_edittext);
             searchResultList = findViewById(R.id.search_results_list);
-            searchSuggestionsList = findViewById(R.id.search_suggestions_list);
             numOfResultFound = findViewById(R.id.number_results_found);
             backBtn = findViewById(R.id.back_btn);
-            searchBtn = findViewById(R.id.search_image_btn);
-            deleteBtn = findViewById(R.id.delete_btn);
+            searchView = findViewById(R.id.search_view);
+
+            searchBarText = searchView.findViewById(R.id.search_edittext);
+            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            deleteBtn = searchView.findViewById(R.id.delete_btn);
+            searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
@@ -56,7 +59,6 @@ public class ResultActivity extends BaseActivity {
         String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
         vh = new ViewHolder();
-        vh.searchResultList.setFocusable(false);
 
         initStyle(searchTerm);
         initAdaptors(searchTerm);
@@ -65,6 +67,8 @@ public class ResultActivity extends BaseActivity {
 
     private void initStyle(String searchTerm) {
         vh.searchBarText.setText(searchTerm);
+        vh.searchResultList.setFocusable(false);
+        vh.searchSuggestionsList.setVisibility(View.GONE);
     }
 
     private void initAdaptors(String searchTerm) {
