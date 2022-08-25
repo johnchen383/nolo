@@ -46,14 +46,17 @@ public class SearchFragment extends Fragment {
         ImageView searchLogo, searchBtn, deleteBtn;
         ListView searchSuggestionsList;
         LinearLayout outsideSearchContainer;
+        View searchView;
 
         public ViewHolder(View view){
             searchLogo = view.findViewById(R.id.search_logo);
-            searchBarText = view.findViewById(R.id.search_edittext);
-            searchBtn = view.findViewById(R.id.search_image_btn);
-            deleteBtn = view.findViewById(R.id.delete_btn);
-            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
+            searchView = view.findViewById(R.id.search_view);
+
+            searchBarText = searchView.findViewById(R.id.search_edittext);
+            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            deleteBtn = searchView.findViewById(R.id.delete_btn);
+            searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
