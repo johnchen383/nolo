@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
         EditText searchBarText;
         ImageView homeLogo, searchBtn, deleteBtn;
         ScrollView scrollView;
+        View searchView;
 
         public ViewHolder(View view) {
             homeLogo = view.findViewById(R.id.home_logo);
@@ -76,18 +77,20 @@ public class HomeFragment extends Fragment {
             searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
             featuredItemsList = view.findViewById(R.id.featured_items_list);
             featuredText = view.findViewById(R.id.featured_text);
-            searchBarText = view.findViewById(R.id.search_edittext);
-            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
             searchContainer = view.findViewById(R.id.search_container);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
-            searchBtn = view.findViewById(R.id.search_image_btn);
-            deleteBtn = view.findViewById(R.id.delete_btn);
             scrollView = view.findViewById(R.id.scroll_view);
             browseBtn = view.findViewById(R.id.browse_btn);
             indicator = view.findViewById(R.id.indicator);
             one = view.findViewById(R.id.one);
             two = view.findViewById(R.id.two);
             three = view.findViewById(R.id.three);
+            searchView = view.findViewById(R.id.search_view);
+
+            searchBarText = searchView.findViewById(R.id.search_edittext);
+            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            deleteBtn = searchView.findViewById(R.id.delete_btn);
+            searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
