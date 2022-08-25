@@ -18,14 +18,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.nolo.R;
-import com.example.nolo.dataprovider.DataProvider;
-import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
 import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
-import com.example.nolo.util.Connectivity;
 import com.example.nolo.util.LocationUtil;
 import com.example.nolo.viewmodels.SplashViewModel;
 
@@ -87,14 +84,6 @@ public class SplashActivity extends BaseActivity {
         splashViewModel = new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
         vh = new ViewHolder();
-
-        if (!Connectivity.isConnected(this)) {
-            System.out.println("NOT CONNECTED");
-            showConnectivityPopup();
-            //TODO: handle the clicking of the okay button, and only transition after??
-        } else {
-            System.out.println("CONNECTED");
-        }
 //
 //        DataProvider.clearAndAddEntity(CollectionPath.laptops.name(), (a) -> {
 //            DataProvider.clearAndAddEntity(CollectionPath.accessories.name(), (b) -> {
