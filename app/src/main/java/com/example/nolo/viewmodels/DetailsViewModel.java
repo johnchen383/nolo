@@ -161,7 +161,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public void addCart() {
-        this.purchasable.addToQuantity(quantity - 1);
+        this.purchasable.addToQuantity(quantity - 1);  // TODO: need to test
         AddCartItemUseCase.addCart(this.purchasable);
     }
 

@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:divider="@color/light_navy"
-                android:dividerHeight="1sp"
+                android:dividerHeight="1dp"
                 android:orientation="vertical"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
