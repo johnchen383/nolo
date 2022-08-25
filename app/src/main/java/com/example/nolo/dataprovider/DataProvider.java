@@ -1149,6 +1149,8 @@ public class DataProvider {
     private static List<IItem> generatePhones() {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris, recommendedAccessoryIds;
+        Map<SpecsType, String> fixedSpecs;
+        Map<SpecsOptionType, List<SpecsOption>> customisableSpecs;
         Specs specs;
         List<SpecsOption> storages;
         List<StoreVariant> itemStoreVariant;
@@ -1174,21 +1176,25 @@ public class DataProvider {
                 new SpecsOption(256, 100),
                 new SpecsOption(512, 400)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22 Ultra",
-                "android",
-                "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
-                storages,
-                "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Ultra high quality audio playback; Audio playback format",
-                "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "5000mAh",
-                "77.9 x 163.3 x 8.9mm",
-                "228g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Samsung Galaxy S22 Ultra"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "6.8\" edge Quad HD+ Dynamic AMOLED 2X; Infinity-O Display (3088x1440); 120Hz refresh rate"},
+                {SpecsType.cpu, "Snapdragon 8 Gen 1 4nm octa-core flagship processor"},
+                {SpecsType.camera, "Quad Rear Camera; 108MP Main sensor, F1.8, OIS; 12MP Ultra Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 10MP 10x Periscope Telephoto, F4.9, OIS; Up to 100x Space Zoom; 40MP Front camera, F2.2"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2"},
+                {SpecsType.audio, "Stereo speakers; Ultra high quality audio playback; Audio playback format"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM model"},
+                {SpecsType.sensors, "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor"},
+                {SpecsType.battery, "5000mAh"},
+                {SpecsType.dimensions, "77.9 x 163.3 x 8.9mm"},
+                {SpecsType.weight, "228g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_samsung_galaxy_s22_ultra_1_burgundy",
                 "item_phone_samsung_galaxy_s22_ultra_2_burgundy",
@@ -1238,21 +1244,25 @@ public class DataProvider {
                 new SpecsOption(128, 0),
                 new SpecsOption(256, 100)
         ));
-        specs = new PhoneSpecs("Samsung Galaxy S22",
-                "android",
-                "6.1\" Dynamic AMOLED 2X display; FHD+ (2340x1080); 120Hz refresh rate",
-                "Snapdragon 8 Gen 1 4nm octa-core flagship processor",
-                storages,
-                "Triple Rear Camera; 50MP main sensor, F1.8, OIS; 12MP Ultra-Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 30x Digital Zoom; 10MP Front camera, F2.2, Autofocus",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Duel stereo speakers",
-                "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor",
-                "3700mAh",
-                "70.6 x 146 x 7.6mm",
-                "167g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Samsung Galaxy S22"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "6.1\" Dynamic AMOLED 2X display; FHD+ (2340x1080); 120Hz refresh rate"},
+                {SpecsType.cpu, "Snapdragon 8 Gen 1 4nm octa-core flagship processor"},
+                {SpecsType.camera, "Triple Rear Camera; 50MP main sensor, F1.8, OIS; 12MP Ultra-Wide angle, F2.2; 10MP 3x Telephoto, F2.4, OIS; 30x Digital Zoom; 10MP Front camera, F2.2, Autofocus"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2"},
+                {SpecsType.audio, "Duel stereo speakers"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM model"},
+                {SpecsType.sensors, "Ultrasonic Fingerprint sensor; Geomagnetic sensor; Accelerometer; Hall sensor; Barometer; Proximity sensor; Gyro sensor; Ambient Light sensor"},
+                {SpecsType.battery, "3700mAh"},
+                {SpecsType.dimensions, "70.6 x 146 x 7.6mm"},
+                {SpecsType.weight, "167g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_samsung_galaxy_s22_1_purple",
                 "item_phone_samsung_galaxy_s22_2_purple",
@@ -1308,21 +1318,25 @@ public class DataProvider {
                 new SpecsOption(512, 600),
                 new SpecsOption(1024, 1000)
         ));
-        specs = new PhoneSpecs("Apple iPhone 13 Pro Max",
-                "ios",
-                "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
-                "A15 Bionic chip",
-                storages,
-                "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner",
-                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
-                "Stereo speakers; Spatial audio playback",
-                "Yes",
-                "IP68",
-                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
-                "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
-                "Built‑in rechargeable lithium‑ion battery",
-                "78.1 x 160.8 x 7.65mm",
-                "238g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone 13 Pro Max"},
+                {SpecsType.operatingSystem, "ios"},
+                {SpecsType.display, "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi"},
+                {SpecsType.cpu, "A15 Bionic chip"},
+                {SpecsType.camera, "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0"},
+                {SpecsType.audio, "Stereo speakers; Spatial audio playback"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM (nano‑SIM and eSIM); Dual eSIM support"},
+                {SpecsType.sensors, "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor"},
+                {SpecsType.battery, "Built‑in rechargeable lithium‑ion battery"},
+                {SpecsType.dimensions, "78.1 x 160.8 x 7.65mm"},
+                {SpecsType.weight, "238g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_iphone_13_pro_max_1_green",
                 "item_phone_iphone_13_pro_max_2_green",
@@ -1378,21 +1392,25 @@ public class DataProvider {
                 new SpecsOption(512, 600),
                 new SpecsOption(1024, 1000)
         ));
-        specs = new PhoneSpecs("Apple iPhone 13 Pro",
-                "ios",
-                "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi",
-                "A15 Bionic chip",
-                storages,
-                "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner",
-                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
-                "Stereo speakers; Spatial audio playback",
-                "Yes",
-                "IP68",
-                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
-                "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
-                "Built‑in rechargeable lithium‑ion battery",
-                "78.1 x 160.8 x 7.65mm",
-                "238g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone 13 Pro"},
+                {SpecsType.operatingSystem, "ios"},
+                {SpecsType.display, "6.7‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2778x1284) pixel resolution at 458 ppi"},
+                {SpecsType.cpu, "A15 Bionic chip"},
+                {SpecsType.camera, "Telephoto, Wide and Ultra Wide cameras; 3x optical zoom in, 2x optical zoom out; 6x optical zoom range; Digital zoom up to 15x; Night mode portraits enabled by LiDAR Scanner"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0"},
+                {SpecsType.audio, "Stereo speakers; Spatial audio playback"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM (nano‑SIM and eSIM); Dual eSIM support"},
+                {SpecsType.sensors, "Face ID; LiDAR Scanner; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor"},
+                {SpecsType.battery, "Built‑in rechargeable lithium‑ion battery"},
+                {SpecsType.dimensions, "78.1 x 160.8 x 7.65mm"},
+                {SpecsType.weight, "238g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_iphone_13_pro_max_2_green",
                 "item_phone_iphone_13_pro_max_1_green",
@@ -1448,21 +1466,25 @@ public class DataProvider {
                 new SpecsOption(256, 200),
                 new SpecsOption(512, 600)
         ));
-        specs = new PhoneSpecs("Apple iPhone 13",
-                "ios",
-                "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
-                "A15 Bionic chip",
-                storages,
-                "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x",
-                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
-                "Stereo speakers; Spatial audio playback",
-                "Yes",
-                "IP68",
-                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
-                "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
-                "Built‑in rechargeable lithium‑ion battery",
-                "71.5 x 146.7 x 7.65mm",
-                "173g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone 13"},
+                {SpecsType.operatingSystem, "ios"},
+                {SpecsType.display, "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi"},
+                {SpecsType.cpu, "A15 Bionic chip"},
+                {SpecsType.camera, "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0"},
+                {SpecsType.audio, "Stereo speakers; Spatial audio playback"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM (nano‑SIM and eSIM); Dual eSIM support"},
+                {SpecsType.sensors, "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor"},
+                {SpecsType.battery, "Built‑in rechargeable lithium‑ion battery"},
+                {SpecsType.dimensions, "71.5 x 146.7 x 7.65mm"},
+                {SpecsType.weight, "173g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_iphone_13_1_green",
                 "item_phone_iphone_13_2_green",
@@ -1519,21 +1541,25 @@ public class DataProvider {
                 new SpecsOption(128, 100),
                 new SpecsOption(256, 300)
         ));
-        specs = new PhoneSpecs("Apple iPhone SE",
-                "ios",
-                "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
-                "A15 Bionic chip",
-                storages,
-                "12MP Wide camera; Digital zoom up to 5x",
-                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
-                "Stereo speakers; Spatial audio playback",
-                "Yes",
-                "IP67",
-                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
-                "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
-                "Built‑in rechargeable lithium‑ion battery",
-                "67.3 x 138.4 x 7.3mm",
-                "144g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone SE"},
+                {SpecsType.operatingSystem, "ios"},
+                {SpecsType.display, "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi"},
+                {SpecsType.cpu, "A15 Bionic chip"},
+                {SpecsType.camera, "12MP Wide camera; Digital zoom up to 5x"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0"},
+                {SpecsType.audio, "Stereo speakers; Spatial audio playback"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP67"},
+                {SpecsType.simCard, "Dual SIM (nano‑SIM and eSIM); Dual eSIM support"},
+                {SpecsType.sensors, "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor"},
+                {SpecsType.battery, "Built‑in rechargeable lithium‑ion battery"},
+                {SpecsType.dimensions, "67.3 x 138.4 x 7.3mm"},
+                {SpecsType.weight, "144g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_iphone_se_1_midnight",
                 "item_phone_iphone_se_2_midnight",
@@ -1580,21 +1606,25 @@ public class DataProvider {
                 new SpecsOption(64, 0),
                 new SpecsOption(128, 100)
         ));
-        specs = new PhoneSpecs("Apple iPhone 11",
-                "ios",
-                "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi",
-                "A15 Bionic chip",
-                storages,
-                "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x",
-                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
-                "Stereo speakers; Spatial audio playback",
-                "Yes",
-                "IP68",
-                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
-                "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
-                "Built‑in rechargeable lithium‑ion battery",
-                "71.5 x 146.7 x 7.65mm",
-                "173g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone 11"},
+                {SpecsType.operatingSystem, "ios"},
+                {SpecsType.display, "6.1‑inch (diagonal) all‑screen OLED display; Super Retina XDR display; (2532x1170) pixel resolution at 460 ppi"},
+                {SpecsType.cpu, "A15 Bionic chip"},
+                {SpecsType.camera, "Wide and Ultra Wide cameras; 2x optical zoom out; Digital zoom up to 5x"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0"},
+                {SpecsType.audio, "Stereo speakers; Spatial audio playback"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM (nano‑SIM and eSIM); Dual eSIM support"},
+                {SpecsType.sensors, "Face ID; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor"},
+                {SpecsType.battery, "Built‑in rechargeable lithium‑ion battery"},
+                {SpecsType.dimensions, "71.5 x 146.7 x 7.65mm"},
+                {SpecsType.weight, "173g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_iphone_11_1_green",
                 "item_phone_iphone_11_2_green",
@@ -1650,21 +1680,25 @@ public class DataProvider {
                 new SpecsOption(16, 100),
                 new SpecsOption(32, 300)
         ));
-        specs = new PhoneSpecs("Apple iPhone 4",
-                "ios",
-                "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi",
-                "A15 Bionic chip",
-                storages,
-                "12MP Wide camera; Digital zoom up to 5x",
-                "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0",
-                "Stereo speakers; Spatial audio playback",
-                "Yes",
-                "IP67",
-                "Dual SIM (nano‑SIM and eSIM); Dual eSIM support",
-                "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor",
-                "Built‑in rechargeable lithium‑ion battery",
-                "67.3 x 138.4 x 7.3mm",
-                "144g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone 4"},
+                {SpecsType.operatingSystem, "ios"},
+                {SpecsType.display, "4.7-inch (diagonal) widescreen LCD; Retina HD display; (1334x750) pixel resolution at 326 ppi"},
+                {SpecsType.cpu, "A15 Bionic chip"},
+                {SpecsType.camera, "12MP Wide camera; Digital zoom up to 5x"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11ax; Bluetooth 5.0"},
+                {SpecsType.audio, "Stereo speakers; Spatial audio playback"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP67"},
+                {SpecsType.simCard, "Dual SIM (nano‑SIM and eSIM); Dual eSIM support"},
+                {SpecsType.sensors, "Touch ID fingerprint sensor; Barometer; Three‑axis gyro; Accelerometer; Proximity sensor; Ambient light sensor"},
+                {SpecsType.battery, "Built‑in rechargeable lithium‑ion battery"},
+                {SpecsType.dimensions, "67.3 x 138.4 x 7.3mm"},
+                {SpecsType.weight, "144g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_iphone_4_1_black",
                 "item_phone_iphone_4_2_black",
@@ -1703,21 +1737,25 @@ public class DataProvider {
                 new SpecsOption(128, 0),
                 new SpecsOption(256, 100)
         ));
-        specs = new PhoneSpecs("OnePlus 10 Pro",
-                "android",
-                "17.02 centimeters (6.7 inches) (measured diagonally from corner to corner); 3216 X 1440 pixels 525 ppi; 120 Hz Fluid AMOLED with LTPO",
-                "Snapdragon® 8 Gen 1 Mobile Platform",
-                storages,
-                "Main Camera; Ultra-Wide Camera; Telephoto Camera",
-                "5G; LTE; Wi-Fi 802.11a/b/g/n/ac/ax; Bluetooth v5.2",
-                "Dual Stereo Speakers; Noise cancellation support; Dolby Atmos",
-                "Yes",
-                "IP68",
-                "Dual nano-SIM slot",
-                "In-display Fingerprint Sensor; Accelerometer; Electronic Compass; Gyroscope; Ambient Light Sensor; Proximity Sensor; Sensor Core; Flicker-detect Sensor; Front RGB sensor",
-                "5000mAh (2S1P 2,500 mAh, non-removable)",
-                "73.9 x 163.0 x 8.55mm",
-                "200.5g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "OnePlus 10 Pro"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "17.02 centimeters (6.7 inches) (measured diagonally from corner to corner); 3216 X 1440 pixels 525 ppi; 120 Hz Fluid AMOLED with LTPO"},
+                {SpecsType.cpu, "Snapdragon® 8 Gen 1 Mobile Platform"},
+                {SpecsType.camera, "Main Camera; Ultra-Wide Camera; Telephoto Camera"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11a/b/g/n/ac/ax; Bluetooth v5.2"},
+                {SpecsType.audio, "Dual Stereo Speakers; Noise cancellation support; Dolby Atmos"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual nano-SIM slot"},
+                {SpecsType.sensors, "In-display Fingerprint Sensor; Accelerometer; Electronic Compass; Gyroscope; Ambient Light Sensor; Proximity Sensor; Sensor Core; Flicker-detect Sensor; Front RGB sensor"},
+                {SpecsType.battery, "5000mAh (2S1P 2,500 mAh, non-removable)"},
+                {SpecsType.dimensions, "73.9 x 163.0 x 8.55mm"},
+                {SpecsType.weight, "200.5g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_oneplus_10_pro_1_emerald",
                 "item_phone_oneplus_10_pro_2_emerald",
@@ -1756,21 +1794,25 @@ public class DataProvider {
                 new SpecsOption(256, 100),
                 new SpecsOption(512, 400)
         ));
-        specs = new PhoneSpecs("HUAWEI P40 Pro",
-                "android",
-                "6.58 inches; OLED, up to 90 Hz frame refresh rate; 2640 x 1200 Pixels",
-                "HUAWEI Kirin 990 5G; Octa-core",
-                storages,
-                "Rear Camera; 50 MP Ultra Vision Camera + 40 MP Cine Camera + 3D Depth Sensing Camera",
-                "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2",
-                "Stereo speakers; Audio playback format",
-                "Yes",
-                "IP68",
-                "Dual SIM model",
-                "Gesture Sensor; Gravity Sensor; Infrared Sensor; Fingerprint Sensor; Hall Sensor; Gyroscope; Compass; Ambient Light Sensor; Proximity Sensor; Colour Temperature Sensor",
-                "4200 mAh",
-                "72.6 x 158.2 x 8.95mm",
-                "209g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "HUAWEI P40 Pro"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "6.58 inches; OLED, up to 90 Hz frame refresh rate; 2640 x 1200 Pixels"},
+                {SpecsType.cpu, "HUAWEI Kirin 990 5G; Octa-core"},
+                {SpecsType.camera, "Rear Camera; 50 MP Ultra Vision Camera + 40 MP Cine Camera + 3D Depth Sensing Camera"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 802.11; Bluetooth v5.2"},
+                {SpecsType.audio, "Stereo speakers; Audio playback format"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM model"},
+                {SpecsType.sensors, "Gesture Sensor; Gravity Sensor; Infrared Sensor; Fingerprint Sensor; Hall Sensor; Gyroscope; Compass; Ambient Light Sensor; Proximity Sensor; Colour Temperature Sensor"},
+                {SpecsType.battery, "4200 mAh"},
+                {SpecsType.dimensions, "72.6 x 158.2 x 8.95mm"},
+                {SpecsType.weight, "209g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_huawei_p40_pro_1_silver",
                 "item_phone_huawei_p40_pro_2_silver",
@@ -1809,21 +1851,25 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(256, 0)
         ));
-        specs = new PhoneSpecs("Xiaomi 12 Pro",
-                "android",
-                "WQHD+ 6.73\" AMOLED DotDisplay; 3200 x 1440; 552ppi; 480Hz",
-                "Snapdragon® 8 Gen 1",
-                storages,
-                "Pro-grade 50MP triple camera array; 50MP wide angle camera + 50MP ultra-wide angle camera + 50MP telephoto camera; 32MP in-display selfie camera",
-                "5G; LTE; Wi-Fi 6 / Wi-Fi 6E; Bluetooth v5.2",
-                "Quad speakers; Dolby Atmos®; SOUND BY Harman Kardon",
-                "Yes",
-                "IP68",
-                "Dual SIM model",
-                "In-screen fingerprint sensor; AI face unlock; Proximity sensor | Ambient light sensor | Accelerometer | Gyroscope | Electronic compass | Linear motor | IR blaster | Barometer | Flicker sensor",
-                "4600mAh",
-                "74.6 x 163.6 x 8.16mm",
-                "205g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Xiaomi 12 Pro"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "WQHD+ 6.73\" AMOLED DotDisplay; 3200 x 1440; 552ppi; 480Hz"},
+                {SpecsType.cpu, "Snapdragon® 8 Gen 1"},
+                {SpecsType.camera, "Pro-grade 50MP triple camera array; 50MP wide angle camera + 50MP ultra-wide angle camera + 50MP telephoto camera; 32MP in-display selfie camera"},
+                {SpecsType.communication, "5G; LTE; Wi-Fi 6 / Wi-Fi 6E; Bluetooth v5.2"},
+                {SpecsType.audio, "Quad speakers; Dolby Atmos®; SOUND BY Harman Kardon"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "IP68"},
+                {SpecsType.simCard, "Dual SIM model"},
+                {SpecsType.sensors, "In-screen fingerprint sensor; AI face unlock; Proximity sensor | Ambient light sensor | Accelerometer | Gyroscope | Electronic compass | Linear motor | IR blaster | Barometer | Flicker sensor"},
+                {SpecsType.battery, "4600mAh"},
+                {SpecsType.dimensions, "74.6 x 163.6 x 8.16mm"},
+                {SpecsType.weight, "205g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_xiaomi_12_pro_1_blue",
                 "item_phone_xiaomi_12_pro_2_blue",
@@ -1863,21 +1909,25 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(128, 0)
         ));
-        specs = new PhoneSpecs("Nokia G21",
-                "android",
-                "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate",
-                "Unisoc T606",
-                storages,
-                "Front camera: 8 MP; Rear camera: 50 MP Main 1/2.76“ CMOS, 0.64um, 5P lens, f/1.8 + 2 MP Macro + 2 MP Depth; Rear flash LED",
-                "4G; Wi-Fi 802.11 a/b/g/n/ac; Bluetooth 5.0",
-                "OZO Spatial Audio capture. FM Radio (Headset required); Microphone",
-                "Yes",
-                "N/A",
-                "Nano SIM",
-                "Fingerprint sensor: Side Power key; Face Unlock; Accelerometer (G-sensor); Ambient light sensor; Proximity sensor",
-                "5050mAh",
-                "75.9 x 164.6 x 8.5mm",
-                "190g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Nokia G21"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "6.5 inch (1600*720); Features:Adaptive 90Hz refresh rate and 180Hz touch sampling rate"},
+                {SpecsType.cpu, "Unisoc T606"},
+                {SpecsType.camera, "Front camera: 8 MP; Rear camera: 50 MP Main 1/2.76“ CMOS, 0.64um, 5P lens, f/1.8 + 2 MP Macro + 2 MP Depth; Rear flash LED"},
+                {SpecsType.communication, "4G; Wi-Fi 802.11 a/b/g/n/ac; Bluetooth 5.0"},
+                {SpecsType.audio, "OZO Spatial Audio capture. FM Radio (Headset required); Microphone"},
+                {SpecsType.touchscreen, "Yes"},
+                {SpecsType.protectionResistance, "N/A"},
+                {SpecsType.simCard, "Nano SIM"},
+                {SpecsType.sensors, "Fingerprint sensor: Side Power key; Face Unlock; Accelerometer (G-sensor); Ambient light sensor; Proximity sensor"},
+                {SpecsType.battery, "5050mAh"},
+                {SpecsType.dimensions, "75.9 x 164.6 x 8.5mm"},
+                {SpecsType.weight, "190g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_nokia_g21_1_blue",
                 "item_phone_nokia_g21_2_blue",
@@ -1914,21 +1964,25 @@ public class DataProvider {
         storages = new ArrayList<>(Arrays.asList(
                 new SpecsOption(2, 0)
         ));
-        specs = new PhoneSpecs("Nokia 225 4G",
-                "android",
-                "2.4 inch; QVGA resolution",
-                "Unisoc T117",
-                storages,
-                "Rear camera: 0.3 MP",
-                "4G; Bluetooth 5.0",
-                "FM Radio (Wired & Wireless dual mode); MP3 player",
-                "No",
-                "It's a brick",
-                "Nano SIM",
-                "N/A",
-                "1150mAh",
-                "51 x 124.7 x 13.7mm",
-                "90.1g");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Nokia 225 4G"},
+                {SpecsType.operatingSystem, "android"},
+                {SpecsType.display, "2.4 inch; QVGA resolution"},
+                {SpecsType.cpu, "Unisoc T117"},
+                {SpecsType.camera, "Rear camera: 0.3 MP"},
+                {SpecsType.communication, "4G; Bluetooth 5.0"},
+                {SpecsType.audio, "FM Radio (Wired & Wireless dual mode); MP3 player"},
+                {SpecsType.touchscreen, "No"},
+                {SpecsType.protectionResistance, "It's a brick"},
+                {SpecsType.simCard, "Nano SIM"},
+                {SpecsType.sensors, "N/A"},
+                {SpecsType.battery, "1150mAh"},
+                {SpecsType.dimensions, "51 x 124.7 x 13.7mm"},
+                {SpecsType.weight, "90.1g"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        customisableSpecs = new HashMap<>();
+        customisableSpecs.put(SpecsOptionType.storage, storages);
+        specs = new Specs(fixedSpecs, customisableSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_phone_nokia_225_4g_1_black",
                 "item_phone_nokia_225_4g_2_black",
