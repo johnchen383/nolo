@@ -55,7 +55,7 @@ public class DetailsActivity extends FragmentActivity {
         HorizontalScrollView transparentContainer;
         LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
         TextView itemTitle, summaryText, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;
-        ;
+
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList, recItemsList;
         ImageView closeBtn, storesBtn;
