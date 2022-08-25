@@ -55,6 +55,7 @@ public class ResultActivity extends BaseActivity {
         String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
         vh = new ViewHolder();
+        vh.searchResultList.setFocusable(false);
 
         initStyle(searchTerm);
         initAdaptors(searchTerm);
