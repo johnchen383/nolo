@@ -9,7 +9,6 @@ import java.util.List;
 
 public class LaptopSpecs {
     public static final List<SpecsType> FIXED_SPECS = new ArrayList<>(Arrays.asList(
-            SpecsType.summary,
             SpecsType.operatingSystem,
             SpecsType.display,
             SpecsType.cpu,
