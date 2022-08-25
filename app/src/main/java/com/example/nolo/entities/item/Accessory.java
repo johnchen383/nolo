@@ -6,7 +6,7 @@ import com.example.nolo.entities.item.specs.AccessorySpecs;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.enums.CategoryType;
-import com.example.nolo.enums.Specs;
+import com.example.nolo.enums.SpecsType;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Accessory extends Item {
-    public static final List<Specs> SPECS = new ArrayList<>(Arrays.asList(
-            Specs.summary
+    public static final List<SpecsType> SPECS = new ArrayList<>(Arrays.asList(
+            SpecsType.summary
     ));
     private AccessorySpecs accessorySpecs;
     private boolean isForLaptops, isForPhones;

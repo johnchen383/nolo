@@ -1,6 +1,6 @@
 package com.example.nolo.enums;
 
-public enum Specs {
+public enum SpecsType {
     /**
      * All items
      */
