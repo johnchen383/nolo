@@ -2,48 +2,27 @@ package com.example.nolo.entities.item;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.PhoneSpecs;
+import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.enums.CategoryType;
-import com.example.nolo.enums.SpecsType;
+import com.example.nolo.enums.SpecsOptionType;
 import com.google.firebase.firestore.Exclude;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Phone extends Item {
-    public static final List<SpecsType> SPECS = new ArrayList<>(Arrays.asList(
-            SpecsType.summary,
-            SpecsType.operatingSystem,
-            SpecsType.display,
-            SpecsType.cpu,
-            SpecsType.camera,
-            SpecsType.communication,
-            SpecsType.audio,
-            SpecsType.touchscreen,
-            SpecsType.protectionResistance,
-            SpecsType.simCard,
-            SpecsType.sensors,
-            SpecsType.battery,
-            SpecsType.dimensions,
-            SpecsType.weight
-    ));
     private List<String> recommendedAccessoryIds;
-    private PhoneSpecs phoneSpecs;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public Phone() {}
 
-    public Phone(String name, String brand, PhoneSpecs phoneSpecs, List<StoreVariant> storeVariants,
+    public Phone(String name, String brand, Specs specs, List<StoreVariant> storeVariants,
                  List<String> imageUris, List<String> recommendedAccessoryIds) {
-        super(CategoryType.phones, name, brand, storeVariants, imageUris);
+        super(CategoryType.phones, name, brand, specs, storeVariants, imageUris);
         this.recommendedAccessoryIds = recommendedAccessoryIds;
-        this.phoneSpecs = phoneSpecs;
     }
 
     @Override
@@ -59,17 +38,6 @@ public class Phone extends Item {
                 '}';
     }
 
-    @Override
-    public PhoneSpecs getPhoneSpecs() {
-        return phoneSpecs;
-    }
-
-    @Override
-    @Exclude
-    public ISpecs getSpecs() {
-        return getPhoneSpecs();
-    }
-
     /**
      * Get the default variant of the current item (Phone)
      *
@@ -79,7 +47,7 @@ public class Phone extends Item {
     @Exclude
     public IItemVariant getDefaultItemVariant() {
         IItemVariant itemVariant = super.getDefaultItemVariant();
-        itemVariant.setStorageOption(phoneSpecs.getStorageOptions().get(0));
+        itemVariant.setStorageOption(getSpecs().getCustomisableSpecs().get(SpecsOptionType.storage).get(0));
 
         return itemVariant;
     }
