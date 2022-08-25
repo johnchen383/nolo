@@ -14,7 +14,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -25,9 +24,9 @@ import com.example.nolo.adaptors.DetailsColorAdaptor;
 import com.example.nolo.adaptors.DetailsCustomisationAdaptor;
 import com.example.nolo.adaptors.DetailsSpecsAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
+import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.specs.LaptopSpecs;
-import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -331,9 +330,9 @@ public class DetailsActivity extends BaseActivity {
         List<SpecsType> fixedSpecs;
 
         if (category.equals(CategoryType.laptops)) {
-            fixedSpecs = LaptopSpecs.FIXED_SPECS;
+            fixedSpecs = Laptop.FIXED_SPECS;
         } else if (category.equals(CategoryType.phones)) {
-            fixedSpecs = PhoneSpecs.FIXED_SPECS;
+            fixedSpecs = Phone.FIXED_SPECS;
         } else {
             vh.specs.setVisibility(View.GONE);
             vh.recContainer.setVisibility(View.GONE);
