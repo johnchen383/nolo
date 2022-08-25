@@ -51,7 +51,7 @@ public class ResultActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_result);
         String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
         vh = new ViewHolder();
