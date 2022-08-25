@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/padding_xlrg">
         <ImageView
+            android:id="@+id/search_logo"
             android:layout_width="300dp"
             android:layout_height="400dp"
             android:layout_alignParentEnd="true"

@@ -65,17 +65,18 @@ public class HomeFragment extends Fragment {
         LinearLayout initialView, searchLayoutBtn, outsideSearchContainer, browseBtn, indicator;
         RecyclerView featuredItemsList;
         TextView featuredText, one, two, three;
-        EditText searchEditText;
-        ImageView searchBtn, deleteBtn;
+        EditText searchBarText;
+        ImageView homeLogo, searchBtn, deleteBtn;
         ScrollView scrollView;
 
         public ViewHolder(View view) {
+            homeLogo = view.findViewById(R.id.home_logo);
             categoryList = view.findViewById(R.id.category_list);
             initialView = view.findViewById(R.id.initial_home_view);
             searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
             featuredItemsList = view.findViewById(R.id.featured_items_list);
             featuredText = view.findViewById(R.id.featured_text);
-            searchEditText = view.findViewById(R.id.search_edittext);
+            searchBarText = view.findViewById(R.id.search_edittext);
             searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
             searchContainer = view.findViewById(R.id.search_container);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
@@ -259,16 +260,16 @@ public class HomeFragment extends Fragment {
         // When first search button is clicked, show search related views
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
-            vh.searchEditText.requestFocus();
+            vh.searchBarText.requestFocus();
         });
 
         // Handle Enter and Back keys
-        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // When Enter key pressed, go to search list
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    goToSearchActivity(vh.searchEditText.getText().toString());
+                    goToSearchActivity(vh.searchBarText.getText().toString());
 
                 // When Back key pressed, hide the search bar
                 } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
@@ -280,14 +281,14 @@ public class HomeFragment extends Fragment {
         });
 
         // When search bar has focus, show delete button, otherwise search button
-        vh.searchEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 onSearchBar(hasFocus);
             }
         });
 
-        vh.searchEditText.addTextChangedListener(new TextWatcher() {
+        vh.searchBarText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -302,7 +303,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.searchEditText.removeTextChangedListener(new TextWatcher() {
+        vh.searchBarText.removeTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -320,7 +321,7 @@ public class HomeFragment extends Fragment {
         vh.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSearchActivity(vh.searchEditText.getText().toString());
+                goToSearchActivity(vh.searchBarText.getText().toString());
             }
         });
 
@@ -328,8 +329,8 @@ public class HomeFragment extends Fragment {
         vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vh.searchEditText.setText("");
-                resetSearchSuggestionsAdaptor(vh.searchEditText.getText().toString());
+                vh.searchBarText.setText("");
+                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
             }
         });
 
@@ -387,9 +388,13 @@ public class HomeFragment extends Fragment {
         if (isOnSearchBar) {
             vh.searchBtn.setVisibility(View.GONE);
             vh.deleteBtn.setVisibility(View.VISIBLE);
+
+            vh.homeLogo.setAlpha(0.3f);
         } else {
             vh.searchBtn.setVisibility(View.VISIBLE);
             vh.deleteBtn.setVisibility(View.GONE);
+
+            vh.homeLogo.setAlpha(1.0f);
         }
     }
 

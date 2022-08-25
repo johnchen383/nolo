@@ -42,13 +42,14 @@ public class SearchFragment extends Fragment {
     private View currentView;
 
     private class ViewHolder {
-        EditText searchEditText;
-        ImageView searchBtn, deleteBtn;
+        EditText searchBarText;
+        ImageView searchLogo, searchBtn, deleteBtn;
         ListView searchSuggestionsList;
         LinearLayout outsideSearchContainer;
 
         public ViewHolder(View view){
-            searchEditText = view.findViewById(R.id.search_edittext);
+            searchLogo = view.findViewById(R.id.search_logo);
+            searchBarText = view.findViewById(R.id.search_edittext);
             searchBtn = view.findViewById(R.id.search_image_btn);
             deleteBtn = view.findViewById(R.id.delete_btn);
             searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
@@ -92,11 +93,11 @@ public class SearchFragment extends Fragment {
 
     private void initListeners() {
         // When Enter is pressed in search bar, go to search result
-        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    goToSearchActivity(vh.searchEditText.getText().toString());
+                    goToSearchActivity(vh.searchBarText.getText().toString());
                 }
 
                 return false;
@@ -104,14 +105,14 @@ public class SearchFragment extends Fragment {
         });
 
         // When search bar has focus, show delete button, otherwise search button
-        vh.searchEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 onSearchBar(hasFocus);
             }
         });
 
-        vh.searchEditText.addTextChangedListener(new TextWatcher() {
+        vh.searchBarText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -124,7 +125,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        vh.searchEditText.removeTextChangedListener(new TextWatcher() {
+        vh.searchBarText.removeTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -140,7 +141,7 @@ public class SearchFragment extends Fragment {
         vh.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSearchActivity(vh.searchEditText.getText().toString());
+                goToSearchActivity(vh.searchBarText.getText().toString());
             }
         });
 
@@ -148,15 +149,15 @@ public class SearchFragment extends Fragment {
         vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vh.searchEditText.setText("");
-                resetSearchSuggestionsAdaptor(vh.searchEditText.getText().toString());
+                vh.searchBarText.setText("");
+                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
             }
         });
 
         vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vh.searchEditText.clearFocus();
+                vh.searchBarText.clearFocus();
                 // Hide the keyboard
                 Keyboard.hide(getActivity(), currentView);
             }
@@ -172,9 +173,13 @@ public class SearchFragment extends Fragment {
         if (isOnSearchBar) {
             vh.searchBtn.setVisibility(View.GONE);
             vh.deleteBtn.setVisibility(View.VISIBLE);
+
+            vh.searchLogo.setAlpha(0.3f);
         } else {
             vh.searchBtn.setVisibility(View.VISIBLE);
             vh.deleteBtn.setVisibility(View.GONE);
+
+            vh.searchLogo.setAlpha(1.0f);
         }
     }
 
