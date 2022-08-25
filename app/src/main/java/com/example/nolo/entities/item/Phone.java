@@ -47,7 +47,7 @@ public class Phone extends Item {
     @Exclude
     public IItemVariant getDefaultItemVariant() {
         IItemVariant itemVariant = super.getDefaultItemVariant();
-        itemVariant.setStorageOption(getSpecs().getCustomisableSpecs().get(SpecsOptionType.storage).get(0));
+        itemVariant.setStorageOption(getSpecs().getCustomisableSpecs().get(SpecsOptionType.storage.name()).get(0));
 
         return itemVariant;
     }
