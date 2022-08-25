@@ -17,6 +17,10 @@ public class Specs implements ISpecs {
      */
     public Specs() {}
 
+    public Specs(Map<SpecsType, String> fixedSpecs) {
+        this.fixedSpecs = fixedSpecs;
+    }
+
     public Specs(Map<SpecsType, String> fixedSpecs, Map<SpecsOptionType, List<SpecsOption>> customisableSpecs) {
         this.fixedSpecs = fixedSpecs;
         this.customisableSpecs = customisableSpecs;

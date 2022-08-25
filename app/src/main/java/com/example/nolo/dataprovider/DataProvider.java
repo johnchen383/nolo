@@ -11,15 +11,10 @@ import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
-import com.example.nolo.entities.item.specs.AccessorySpecs;
-import com.example.nolo.entities.item.specs.LaptopSpecs;
-import com.example.nolo.entities.item.specs.PhoneSpecs;
 import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
-import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IStore;
@@ -2017,6 +2012,7 @@ public class DataProvider {
     private static List<IItem> generateAccessories() {
         List<IItem> items = new ArrayList<>();
         List<String> imageUris;
+        Map<SpecsType, String> fixedSpecs;
         Specs specs;
         List<StoreVariant> itemStoreVariant;
         List<Colour> colours;
@@ -2034,7 +2030,10 @@ public class DataProvider {
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 459)
         ));
-        specs = new AccessorySpecs("Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Sony WH-1000XM4 Wireless Over-Ear Noise-Cancelling Headphones"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_sony_wh_1000xm4_1_black",
                 "item_accessory_sony_wh_1000xm4_2_black",
@@ -2063,7 +2062,10 @@ public class DataProvider {
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 299),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 299)
         ));
-        specs = new AccessorySpecs("Logitech Pro X DTS Headphone: X 2.0 Gaming Headset With Blue Vo!ce");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Logitech Pro X DTS Headphone: X 2.0 Gaming Headset With Blue Vo!ce"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_logitech_pro_x_dts_1_black",
                 "item_accessory_logitech_pro_x_dts_2_black",
@@ -2089,7 +2091,10 @@ public class DataProvider {
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 449),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 454.99)
         ));
-        specs = new AccessorySpecs("Apple AirPods Pro Noise Cancelling True Wireless Headphones - with MagSafe charging case");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple AirPods Pro Noise Cancelling True Wireless Headphones - with MagSafe charging case"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_apple_airpods_pro_1_white",
                 "item_accessory_apple_airpods_pro_2_white",
@@ -2119,7 +2124,10 @@ public class DataProvider {
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 259.99),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 258.99)
         ));
-        specs = new AccessorySpecs("Ultimate Ears UE BOOM 3 Wireless Portable Bluetooth Speaker");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Ultimate Ears UE BOOM 3 Wireless Portable Bluetooth Speaker"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_boom3_1_black",
                 "item_accessory_boom3_2_black",
@@ -2159,7 +2167,10 @@ public class DataProvider {
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 348.99),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 348.99)
         ));
-        specs = new AccessorySpecs("HyperX QuadCast S Standalone Microphone - Customizable RGB Lighting, Anti-Vibration, Four Polar Patterns");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "HyperX QuadCast S Standalone Microphone - Customizable RGB Lighting, Anti-Vibration, Four Polar Patterns"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_hyperx_quadcast_s_1_black",
                 "item_accessory_hyperx_quadcast_s_2_black",
@@ -2184,7 +2195,10 @@ public class DataProvider {
                 new StoreVariant("8skfdAsUs7avRyCATgRp", colours, 118.99),
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 118.99)
         ));
-        specs = new AccessorySpecs("Xiaomi Mi 20000mAh 50W Fast Charging Power Bank - Black. Max 50W output,Support Apple, Samsung, Xiaomi Smart phones' & Nintendo Switch Fast Charging , Charge three devices simultaneously, Support Laptop with USB-C Charging Port");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank - Black. Max 50W output,Support Apple, Samsung, Xiaomi Smart phones' & Nintendo Switch Fast Charging , Charge three devices simultaneously, Support Laptop with USB-C Charging Port"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_xiaomi_mi_20000mah_1_black",
                 "item_accessory_xiaomi_mi_20000mah_2_black",
@@ -2214,7 +2228,10 @@ public class DataProvider {
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 109),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 109)
         ));
-        specs = new AccessorySpecs("Apple iPhone 13 Pro Max Leather Case with MagSafe - Made with high-quality and supple leather");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Apple iPhone 13 Pro Max Leather Case with MagSafe - Made with high-quality and supple leather"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_apple_iphone_13_pro_max_leather_case_1_brown",
                 "item_accessory_apple_iphone_13_pro_max_leather_case_2_brown",
@@ -2254,7 +2271,10 @@ public class DataProvider {
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 89),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 89)
         ));
-        specs = new AccessorySpecs("Lifeproof iPhone SE (3rd/2nd Gen)/8/7 Fre Case - Black Lime. WATERPROOF,DIRTPROOF,SNOWPROOF,DROPPROOF(Survives drops from 6.6 feet /2 meters)");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Lifeproof iPhone SE (3rd/2nd Gen)/8/7 Fre Case - Black Lime. WATERPROOF,DIRTPROOF,SNOWPROOF,DROPPROOF(Survives drops from 6.6 feet /2 meters)"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_lifeproof_iphone_se_case_1_black",
                 "item_accessory_lifeproof_iphone_se_case_2_black",
@@ -2279,7 +2299,10 @@ public class DataProvider {
                 new StoreVariant("MmfBo1187Agt0n9cCl0d", colours, 65),
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 65)
         ));
-        specs = new AccessorySpecs("Urban Armor Gear - Galaxy S22 Ultra 5G");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Urban Armor Gear - Galaxy S22 Ultra 5G"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_1_ash",
                 "item_accessory_urban_armor_gear_galaxy_s22_ultra_5g_2_ash",
@@ -2306,7 +2329,10 @@ public class DataProvider {
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("QNWnvyDQgkKf3hO0H1KN", colours, 39)
         ));
-        specs = new AccessorySpecs("Spigen Oneplus 10 Pro Hybrid Case - Matte Black, Certified Military-Grade Protection, Clear Durable Back Panel + TPU bumper, ACS04429");
+        fixedSpecs = Stream.of(new Object[][] {
+                {SpecsType.summary, "Spigen Oneplus 10 Pro Hybrid Case - Matte Black, Certified Military-Grade Protection, Clear Durable Back Panel + TPU bumper, ACS04429"},
+        }).collect(Collectors.toMap(data -> (SpecsType) data[0], data -> (String) data[1]));
+        specs = new Specs(fixedSpecs);
         imageUris = new ArrayList<>(Arrays.asList(
                 "item_accessory_spigen_oneplus_10_pro_hybrid_case_1_black",
                 "item_accessory_spigen_oneplus_10_pro_hybrid_case_2_black",
