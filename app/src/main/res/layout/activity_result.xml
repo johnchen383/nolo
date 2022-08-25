@@ -133,6 +133,14 @@
                     android:imeOptions="actionSearch"
                     android:backgroundTint="@color/faint_white"/>
                 <ImageView
+                    android:id="@+id/delete_btn"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/delete_icon"
+                    android:visibility="gone"/>
+                <ImageView
                     android:id="@+id/search_image_btn"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
