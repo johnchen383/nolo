@@ -163,6 +163,8 @@ public class DetailsViewModel extends ViewModel {
     public void addCart() {
         this.purchasable.addToQuantity(quantity - 1);
         AddCartItemUseCase.addCart(this.purchasable);
+
+        this.purchasable = new Purchasable(this.purchasable);
     }
 
     public void addViewHistory() {

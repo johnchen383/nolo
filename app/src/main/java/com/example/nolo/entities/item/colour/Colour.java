@@ -36,7 +36,6 @@ public class Colour implements IColour, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Colour colour = (Colour) o;
         return Objects.equals(name, colour.name) && Objects.equals(hexCode, colour.hexCode);
