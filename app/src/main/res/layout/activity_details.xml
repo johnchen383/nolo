@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:paddingHorizontal="27dp"
-                        android:text="Unified Memory" />
+                        android:text="Memory" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ram_list"
