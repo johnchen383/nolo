@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,7 +43,7 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class DetailsActivity extends FragmentActivity {
+public class DetailsActivity extends BaseActivity {
     private DetailsViewModel detailsViewModel;
 
     private ViewHolder vh;
@@ -305,6 +306,12 @@ public class DetailsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         vh = new ViewHolder();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         IItemVariant itemVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
         detailsViewModel = new DetailsViewModel(itemVariant);
