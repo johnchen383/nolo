@@ -33,7 +33,6 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
     private List<List<IItem>> categoryItems;
     private Context mContext;
     private int mLayoutID;
-    private Activity originalActivity;
 
 //    public class PhoneViewHolder {
 //        RecyclerView childItemsList;
@@ -89,12 +88,11 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems, Activity originalActivity) {
+    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems) {
         super(context, resource, categoryItems);
         this.categoryItems = categoryItems;
         this.mContext = context;
         this.mLayoutID = resource;
-        this.originalActivity = originalActivity;
     }
 
     @NonNull
@@ -233,7 +231,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             defVariants.add((ItemVariant) item.getDefaultItemVariant());
         }
 
-        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, widthFactor, originalActivity);
+        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, widthFactor);
         rv.setAdapter(categoryListAdaptor);
     }
 }

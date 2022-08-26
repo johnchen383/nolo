@@ -207,7 +207,7 @@ public class HomeFragment extends Fragment {
          */
         List<ICategory> categories = GetCategoriesUseCase.getCategories();
         panelMaxIndex = categories.size();
-        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories);
+        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories, getActivity());
         vh.categoryList.setAdapter(categoriesAdaptor);
 
         ListUtil.setDynamicHeight(vh.categoryList);
@@ -227,7 +227,7 @@ public class HomeFragment extends Fragment {
             vh.featuredText.setText(getString(R.string.home_featured_prev));
         }
 
-        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43, getActivity());
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43);
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 

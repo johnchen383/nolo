@@ -39,11 +39,12 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories) {
+    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories, Activity origActivity) {
         super(context, resource, categories);
         mContext = context;
         mLayoutID = resource;
         mCategories = categories;
+//        this.origActivity = origActivity;
     }
 
     @NonNull
@@ -83,6 +84,7 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
             intent.putExtra(baseContext.getString(R.string.extra_category), (Category) currentCategory);
 
             baseContext.startActivity(intent);
+            baseContext.overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         return currentListViewItem;

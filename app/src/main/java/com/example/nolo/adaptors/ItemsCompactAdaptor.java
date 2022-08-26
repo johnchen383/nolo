@@ -27,7 +27,6 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
     private List<ItemVariant> featuredItems;
     private Context mContext;
     private double widthFactor;
-    private Activity origActivity;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
@@ -44,11 +43,10 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
         }
     }
 
-    public ItemsCompactAdaptor(@NonNull Context context, List<ItemVariant> featuredItems, double widthFactor, Activity origActivity) {
+    public ItemsCompactAdaptor(@NonNull Context context, List<ItemVariant> featuredItems, double widthFactor) {
         this.featuredItems = featuredItems;
         this.mContext = context;
         this.widthFactor = widthFactor;
-        this.origActivity = origActivity;
     }
 
     @NonNull
@@ -89,7 +87,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
             mContext.startActivity(intent);
-            origActivity.overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
+            ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
     }
 

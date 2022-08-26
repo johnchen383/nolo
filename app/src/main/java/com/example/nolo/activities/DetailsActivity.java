@@ -142,7 +142,7 @@ public class DetailsActivity extends BaseActivity {
          */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         vh.recItemsList.setLayoutManager(layoutManager);
-        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43, this);
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43);
         vh.recItemsList.setAdapter(featuredItemsAdaptor);
     }
 
