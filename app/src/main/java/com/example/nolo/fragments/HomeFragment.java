@@ -179,19 +179,13 @@ public class HomeFragment extends Fragment {
                 if (currentY > historicY) {
                     //swipe down
                     panelIndex++;
-                    if (panelIndex > panelMaxIndex) {
-                        panelIndex = panelMaxIndex;
-                    } else {
-                        snapScroll();
-                    }
+                    snapScroll();
                 } else if (currentY < historicY) {
                     //swipe up
                     panelIndex--;
-                    if (panelIndex < 0) {
-                        panelIndex = 0;
-                    } else {
-                        snapScroll();
-                    }
+                    snapScroll();
+                } else {
+                    return false;
                 }
 
                 historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
