@@ -3,6 +3,7 @@ package com.example.nolo.interactors.item;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.PhoneOs;
+import com.example.nolo.enums.SpecsType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class GetPhonesGroupedByOsUseCase {
 
         // Group the phones by operating systems
         Map<String, List<IItem>> osMap = phoneItems.stream().collect(Collectors.groupingBy(
-                (item) -> item.getSpecs().getOperatingSystem()
+                (item) -> item.getSpecs().getFixedSpecs().get(SpecsType.operatingSystem)
         ));
 
         // Only get the phones of the target OS

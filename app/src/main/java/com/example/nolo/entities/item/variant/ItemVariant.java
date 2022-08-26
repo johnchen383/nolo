@@ -198,7 +198,6 @@ public class ItemVariant implements IItemVariant, Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemVariant that = (ItemVariant) o;
         return Objects.equals(colour, that.colour)

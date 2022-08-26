@@ -1,10 +1,7 @@
 package com.example.nolo.entities.item;
 
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.specs.AccessorySpecs;
-import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.LaptopSpecs;
-import com.example.nolo.entities.item.specs.PhoneSpecs;
+import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
@@ -33,16 +30,18 @@ public abstract class Item implements IItem {
     private CategoryType categoryType;
     private List<StoreVariant> storeVariants;
     private List<String> imageUris;
+    private Specs specs;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public Item() {}
 
-    public Item(CategoryType categoryType, String name, String brand, List<StoreVariant> storeVariants, List<String> imageUris) {
+    public Item(CategoryType categoryType, String name, String brand, Specs specs, List<StoreVariant> storeVariants, List<String> imageUris) {
         this.categoryType = categoryType;
         this.name = name;
         this.brand = brand;
+        this.specs = specs;
         this.storeVariants = storeVariants;
         this.imageUris = imageUris;
     }
@@ -80,27 +79,8 @@ public abstract class Item implements IItem {
     }
 
     @Override
-    @Exclude
-    public ISpecs getSpecs() {
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @Override
-    @Exclude
-    public PhoneSpecs getPhoneSpecs() {
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @Override
-    @Exclude
-    public LaptopSpecs getLaptopSpecs() {
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
-    }
-
-    @Override
-    @Exclude
-    public AccessorySpecs getAccessorySpecs() {
-        throw new RuntimeException(this.getClass().getSimpleName() + " doesn't have this method");
+    public Specs getSpecs() {
+        return specs;
     }
 
     @Override

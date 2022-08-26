@@ -68,7 +68,7 @@
                 android:layout_marginTop="@dimen/padding_lrg"
                 android:layout_gravity="center_horizontal"
                 android:divider="@color/faint_white"
-                android:dividerHeight="1sp"
+                android:dividerHeight="1dp"
                 android:orientation="vertical"/>
             <TextView
                 android:id="@+id/number_results_found"
@@ -147,7 +147,7 @@
                 android:layout_marginEnd="@dimen/font_h2"
                 android:layout_gravity="center_horizontal"
                 android:divider="@color/light_navy"
-                android:dividerHeight="1sp"
+                android:dividerHeight="1dp"
                 android:orientation="vertical"
                 android:visibility="gone"/>
         </LinearLayout>

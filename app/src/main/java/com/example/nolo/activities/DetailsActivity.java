@@ -1,47 +1,48 @@
 package com.example.nolo.activities;
 
-import static androidx.test.InstrumentationRegistry.getContext;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.nolo.R;
 import com.example.nolo.adaptors.CarouselPagerAdaptor;
 import com.example.nolo.adaptors.DetailsColorAdaptor;
 import com.example.nolo.adaptors.DetailsCustomisationAdaptor;
+import com.example.nolo.adaptors.DetailsSpecsAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
+import com.example.nolo.entities.item.Laptop;
+import com.example.nolo.entities.item.Phone;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.user.IUser;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.SpecsOptionType;
+import com.example.nolo.enums.SpecsType;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.util.Display;
+import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class DetailsActivity extends FragmentActivity {
+public class DetailsActivity extends BaseActivity {
     private DetailsViewModel detailsViewModel;
 
     private ViewHolder vh;
@@ -53,8 +54,9 @@ public class DetailsActivity extends FragmentActivity {
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
-        LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs, protectionSpecs, gpuSpecs, ramSpecs, keyboardSpecs, communicationSpecs, fingerprintSpecs, opticalSpecs, portsSpecs, sensorsSpecs, simSpecs, acSpecs;
-        TextView itemTitle, summaryText, colourTitle, quantityText, storeName, priceText, displayText, protectionText, dimenText, weightText, cpuText, gpuText, ramText, storageText, cameraText, keyboardText, communicationText, audioText, touchscreenText, fingerprintText, opticalText, portsText, batteryText, sensorsText, osText, simText, acText;
+        LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs;
+        TextView itemTitle, summaryText, colourTitle, quantityText, storeName, priceText;
+        ListView specsList;
 
         RelativeLayout decrementBtn, incrementBtn;
         RecyclerView coloursList, ramList, storageList, recItemsList;
@@ -83,39 +85,8 @@ public class DetailsActivity extends FragmentActivity {
             closeBtn = findViewById(R.id.close_btn);
 
             specs = findViewById(R.id.specs);
-            protectionSpecs = findViewById(R.id.protection_specs);
-            gpuSpecs = findViewById(R.id.gpu_specs);
-            ramSpecs = findViewById(R.id.ram_specs);
-            keyboardSpecs = findViewById(R.id.keyboard_specs);
-            communicationSpecs = findViewById(R.id.communication_specs);
-            fingerprintSpecs = findViewById(R.id.fingerprint_specs);
-            opticalSpecs = findViewById(R.id.optical_specs);
-            portsSpecs = findViewById(R.id.ports_specs);
-            sensorsSpecs = findViewById(R.id.sensors_specs);
-            simSpecs = findViewById(R.id.sim_specs);
-            acSpecs = findViewById(R.id.ac_specs);
+            specsList = findViewById(R.id.specs_list);
 
-            displayText = findViewById(R.id.display_text);
-            protectionText = findViewById(R.id.protection_text);
-            dimenText = findViewById(R.id.dimen_text);
-            weightText = findViewById(R.id.weight_text);
-            cpuText = findViewById(R.id.cpu_text);
-            gpuText = findViewById(R.id.gpu_text);
-            ramText = findViewById(R.id.ram_text);
-            storageText = findViewById(R.id.storage_text);
-            cameraText = findViewById(R.id.camera_text);
-            keyboardText = findViewById(R.id.keyboard_text);
-            communicationText = findViewById(R.id.communication_text);
-            audioText = findViewById(R.id.audio_text);
-            touchscreenText = findViewById(R.id.touchscreen_text);
-            fingerprintText = findViewById(R.id.fingerprint_text);
-            opticalText = findViewById(R.id.optical_text);
-            portsText = findViewById(R.id.ports_text);
-            batteryText = findViewById(R.id.battery_text);
-            sensorsText = findViewById(R.id.sensors_text);
-            osText = findViewById(R.id.os_text);
-            simText = findViewById(R.id.sim_text);
-            acText = findViewById(R.id.ac_text);
             carousel = findViewById(R.id.carousel);
             scrollContainer = findViewById(R.id.scrollContainer);
             recItemsList = findViewById(R.id.rec_items_list);
@@ -335,6 +306,12 @@ public class DetailsActivity extends FragmentActivity {
         setContentView(R.layout.activity_details);
         vh = new ViewHolder();
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         IItemVariant itemVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
         detailsViewModel = new DetailsViewModel(itemVariant);
 //        System.out.println("SETTING FROM CREATE");
@@ -350,50 +327,25 @@ public class DetailsActivity extends FragmentActivity {
     }
 
     private void initSpecsStyling(CategoryType category) {
+        List<SpecsType> fixedSpecs;
+
         if (category.equals(CategoryType.laptops)) {
-            vh.gpuText.setText(detailsViewModel.getItemSpecs().getGpu());
-            vh.ramText.setText(String.valueOf(detailsViewModel.getItemVariant().getRamOption().getSize()) + "GB RAM");
-            vh.communicationText.setText(detailsViewModel.getItemSpecs().getCommunication());
-            vh.fingerprintText.setText(detailsViewModel.getItemSpecs().getFingerprintReader());
-            vh.opticalText.setText(detailsViewModel.getItemSpecs().getOpticalDrive());
-            vh.portsText.setText(detailsViewModel.getItemSpecs().getPorts());
-            vh.keyboardText.setText(detailsViewModel.getItemSpecs().getKeyboard());
-            vh.acText.setText(detailsViewModel.getItemSpecs().getAcAdaptor());
-
-            vh.protectionSpecs.setVisibility(View.GONE);
-            vh.sensorsSpecs.setVisibility(View.GONE);
-            vh.simSpecs.setVisibility(View.GONE);
-            vh.summaryText.setVisibility(View.GONE);
+            fixedSpecs = Laptop.FIXED_SPECS;
         } else if (category.equals(CategoryType.phones)) {
-            vh.protectionText.setText(detailsViewModel.getItemSpecs().getProtectionResistance());
-            vh.sensorsText.setText(detailsViewModel.getItemSpecs().getSensors());
-            vh.simText.setText(detailsViewModel.getItemSpecs().getSimCard());
-
-            vh.gpuSpecs.setVisibility(View.GONE);
-            vh.ramSpecs.setVisibility(View.GONE);
-            vh.communicationSpecs.setVisibility(View.GONE);
-            vh.fingerprintSpecs.setVisibility(View.GONE);
-            vh.opticalSpecs.setVisibility(View.GONE);
-            vh.portsSpecs.setVisibility(View.GONE);
-            vh.keyboardSpecs.setVisibility(View.GONE);
-            vh.acSpecs.setVisibility(View.GONE);
-            vh.summaryText.setVisibility(View.GONE);
+            fixedSpecs = Phone.FIXED_SPECS;
         } else {
             vh.specs.setVisibility(View.GONE);
             vh.recContainer.setVisibility(View.GONE);
-            vh.summaryText.setText(detailsViewModel.getItemSpecs().getSummary());
+            vh.summaryText.setText(detailsViewModel.getItemSpecs().getFixedSpecs().get(SpecsType.summary.name()));
             return;
         }
 
-        vh.displayText.setText(detailsViewModel.getItemSpecs().getDisplay());
-        vh.dimenText.setText(detailsViewModel.getItemSpecs().getDimensions());
-        vh.weightText.setText(detailsViewModel.getItemSpecs().getWeight());
-        vh.cpuText.setText(detailsViewModel.getItemSpecs().getCpu());
-        vh.storageText.setText(String.valueOf(detailsViewModel.getItemVariant().getStorageOption().getSize()) + "GB SSD");
-        vh.cameraText.setText(detailsViewModel.getItemSpecs().getCamera());
-        vh.audioText.setText(detailsViewModel.getItemSpecs().getAudio());
-        vh.touchscreenText.setText(detailsViewModel.getItemSpecs().getTouchscreen());
-        vh.batteryText.setText(detailsViewModel.getItemSpecs().getBattery());
-        vh.osText.setText(detailsViewModel.getItemSpecs().getOperatingSystem());
+        vh.summaryText.setVisibility(View.GONE);
+
+        DetailsSpecsAdaptor detailsSpecsAdaptor =
+                new DetailsSpecsAdaptor(this, R.layout.item_details_description,
+                        fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
+        vh.specsList.setAdapter(detailsSpecsAdaptor);
+        ListUtil.setDynamicHeight(vh.specsList);
     }
 }

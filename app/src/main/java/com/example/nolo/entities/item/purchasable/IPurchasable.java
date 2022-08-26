@@ -7,4 +7,5 @@ public interface IPurchasable {
     int getQuantity();
     void addToQuantity(int quantity);
     void incrementOrDecrementQuantity(boolean isIncrement);
+    IPurchasable copy();
 }
