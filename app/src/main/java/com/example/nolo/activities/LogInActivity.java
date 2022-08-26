@@ -93,6 +93,7 @@ public class LogInActivity extends BaseActivity {
 
         vh.signUpBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, SignUpActivity.class));
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_stationery);
         });
 
         vh.logIn.setOnClickListener(v -> {
@@ -164,5 +165,4 @@ public class LogInActivity extends BaseActivity {
     public void onBackPressed() {
         return;
     }
-
 }
