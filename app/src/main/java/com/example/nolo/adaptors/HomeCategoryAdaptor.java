@@ -39,12 +39,11 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories, Activity origActivity) {
+    public HomeCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<ICategory> categories) {
         super(context, resource, categories);
         mContext = context;
         mLayoutID = resource;
         mCategories = categories;
-//        this.origActivity = origActivity;
     }
 
     @NonNull
