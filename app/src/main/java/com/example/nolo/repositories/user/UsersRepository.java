@@ -13,7 +13,9 @@ import com.example.nolo.entities.user.User;
 import com.example.nolo.enums.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -177,6 +179,38 @@ public class UsersRepository implements IUsersRepository {
     public void logOut() {
         fAuth.signOut();
         currentUser = null;
+    }
+
+    @Override
+    public void changePassword(Consumer<String> onUserChangePassword, String oldPassword, String newPassword) {
+        FirebaseUser currentFBUser = fAuth.getCurrentUser();
+        if (currentFBUser == null)
+            return;
+
+        AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(), oldPassword);
+
+        // First make sure the old password is correct, if so continue the process
+        currentFBUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+
+                    // Old password is correct, now change the password
+                    currentFBUser.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                onUserChangePassword.accept(null);
+                            } else {
+                                onUserChangePassword.accept(task.getException().getMessage());
+                            }
+                        }
+                    });
+                } else {
+                    onUserChangePassword.accept(task.getException().getMessage());
+                }
+            }
+        });
     }
 
     @Override
