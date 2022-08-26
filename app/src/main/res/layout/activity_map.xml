@@ -43,106 +43,115 @@
             android:layout_width="100dp"
             android:layout_height="270dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="-60dp"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="17.5dp"
             android:src="@drawable/map_line_icon" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="25dp"
-            android:orientation="vertical" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginTop="20dp">
 
-            <TextView
-                android:id="@+id/modal_header"
-                style="@style/TextStroke.White"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textSize="@dimen/font_h6"
-                android:maxLines="1"
-                android:text="Harvey Norman Mt Wellington"/>
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-55dp"
-                android:layout_marginBottom="90dp"
-                android:gravity="left"
-                android:textSize="@dimen/font_caption"
-                android:textColor="@color/faint_white"
-                android:maxLines="1"
-                android:text="20-54 Mount Wellington Highway Mt Wellington, Auckland"/>
+                android:layout_marginRight="25dp"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/title"
-                style="@style/TextStroke.Brown"
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:gravity="left"
-                android:textSize="@dimen/font_body1"
-                android:textColor="@color/light_brown"
-                android:text="Lenovo ThinkPad X1 Carbon Gen 10 - Intel Evo"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="25dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/modal_header"
+                    style="@style/TextStroke.White"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/abeezee_italic"
-                        android:text="base price"
-                        android:textColor="@color/light_grey"
-                        android:textSize="@dimen/font_caption" />
-
-                    <TextView
-                        android:id="@+id/price"
-                        style="@style/TextStroke.White"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="1749.00 NZD"
-                        android:textSize="@dimen/font_body1" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:gravity="left"
+                    android:textSize="@dimen/font_h6"
+                    android:maxLines="1"
+                    android:text="Harvey Norman Mt Wellington"/>
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:orientation="vertical" >
-                    <TextView
+                    android:layout_marginTop="-55dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="left"
+                    android:textSize="@dimen/font_caption"
+                    android:textColor="@color/faint_white"
+                    android:maxLines="2"
+                    android:text="20-54 Mount Wellington Highway Mt Wellington, Auckland"/>
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/TextStroke.Brown"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:gravity="left"
+                    android:textSize="@dimen/font_body1"
+                    android:textColor="@color/light_brown"
+                    android:text="Lenovo ThinkPad X1 Carbon Gen 10 - Intel Evo"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="25dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="colours in stock"
-                        android:fontFamily="@font/abeezee_italic"
-                        android:textSize="@dimen/font_caption"
-                        android:textColor="@color/light_grey" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/abeezee_italic"
+                            android:text="base price"
+                            android:textColor="@color/light_grey"
+                            android:textSize="@dimen/font_caption" />
+
+                        <TextView
+                            android:id="@+id/price"
+                            style="@style/TextStroke.White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="1749.00 NZD"
+                            android:textSize="@dimen/font_body1" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:orientation="vertical" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="colours in stock"
+                            android:fontFamily="@font/abeezee_italic"
+                            android:textSize="@dimen/font_caption"
+                            android:textColor="@color/light_grey" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/colours_list"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/font_body1" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/branch_btn"
-                android:layout_marginTop="5dp"
                 style="@style/RoundButton.Filled"
                 android:textColor="@color/navy"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_gravity="center"
+                android:layout_alignParentBottom="true"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingVertical="0dp"
                 android:text="SELECT THIS BRANCH"
                 android:textSize="@dimen/font_caption" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
