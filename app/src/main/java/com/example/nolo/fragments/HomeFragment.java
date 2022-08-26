@@ -227,7 +227,7 @@ public class HomeFragment extends Fragment {
             vh.featuredText.setText(getString(R.string.home_featured_prev));
         }
 
-        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43);
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43, getActivity());
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
     }
 

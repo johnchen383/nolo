@@ -142,7 +142,7 @@ public class DetailsActivity extends BaseActivity {
          */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         vh.recItemsList.setLayoutManager(layoutManager);
-        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43);
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43, this);
         vh.recItemsList.setAdapter(featuredItemsAdaptor);
     }
 
@@ -337,5 +337,11 @@ public class DetailsActivity extends BaseActivity {
                         fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
         vh.specsList.setAdapter(detailsSpecsAdaptor);
         ListUtil.setDynamicHeight(vh.specsList);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 }

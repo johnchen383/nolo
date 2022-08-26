@@ -116,11 +116,11 @@ public class ListActivity extends BaseActivity {
         switch (categoryType) {
             case laptops:
                 items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, this);
                 break;
             case phones:
                 items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(listViewModel.getPhoneOs());
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone_child, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone_child, items, this);
                 break;
             case accessories:
                 List<IItem> tempItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories);
@@ -129,7 +129,7 @@ public class ListActivity extends BaseActivity {
                     l.add(tempItem);
                     items.add(l);
                 }
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_vertical, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_vertical, items, this);
 
                 ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.faint_white));
                 vh.categoryItemsParentList.setDivider(whiteDivider);
@@ -139,7 +139,7 @@ public class ListActivity extends BaseActivity {
             default:
                 System.err.println("No adaptor created for this category");
                 items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items, this);
         }
 
         vh.categoryItemsParentList.setAdapter(categoryListAdaptor);

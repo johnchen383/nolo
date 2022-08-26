@@ -1,5 +1,6 @@
 package com.example.nolo.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
     private List<List<IItem>> categoryItems;
     private Context mContext;
     private int mLayoutID;
+    private Activity originalActivity;
 
 //    public class PhoneViewHolder {
 //        RecyclerView childItemsList;
@@ -87,11 +89,12 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         }
     }
 
-    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems) {
+    public ListByCategoryAdaptor(@NonNull Context context, int resource, @NonNull List<List<IItem>> categoryItems, Activity originalActivity) {
         super(context, resource, categoryItems);
         this.categoryItems = categoryItems;
         this.mContext = context;
         this.mLayoutID = resource;
+        this.originalActivity = originalActivity;
     }
 
     @NonNull
@@ -230,7 +233,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             defVariants.add((ItemVariant) item.getDefaultItemVariant());
         }
 
-        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, widthFactor);
+        ItemsCompactAdaptor categoryListAdaptor = new ItemsCompactAdaptor(mContext, defVariants, widthFactor, originalActivity);
         rv.setAdapter(categoryListAdaptor);
     }
 }
