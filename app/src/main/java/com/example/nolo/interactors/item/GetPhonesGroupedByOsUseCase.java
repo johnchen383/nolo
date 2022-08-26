@@ -22,7 +22,7 @@ public class GetPhonesGroupedByOsUseCase {
 
         // Group the phones by operating systems
         Map<String, List<IItem>> osMap = phoneItems.stream().collect(Collectors.groupingBy(
-                (item) -> item.getSpecs().getFixedSpecs().get(SpecsType.operatingSystem)
+                (item) -> item.getSpecs().getFixedSpecs().get(SpecsType.operatingSystem.name())
         ));
 
         // Only get the phones of the target OS
