@@ -85,7 +85,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
             Intent intent = new Intent(mContext, DetailsActivity.class);
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
-            mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+            mContext.startActivity(intent);
         });
     }
 
