@@ -73,17 +73,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-55dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="30dp"
                     android:gravity="left"
                     android:textSize="@dimen/font_caption"
                     android:textColor="@color/faint_white"
-                    android:maxLines="2"
+                    android:minLines="3"
+                    android:maxLines="3"
                     android:text="20-54 Mount Wellington Highway Mt Wellington, Auckland"/>
 
                 <TextView
                     android:id="@+id/title"
                     style="@style/TextStroke.Brown"
-                    android:maxLines="1"
+                    android:minLines="2"
+                    android:maxLines="2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
@@ -95,7 +97,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp">
 
                     <LinearLayout
