@@ -128,27 +128,17 @@
         android:background="@color/transparent"
         android:orientation="vertical"
         android:visibility="gone"/>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/search_container"
+    <include
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/font_h3"
         android:layout_marginEnd="@dimen/font_h3"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="@dimen/padding_xlrg"
+        android:layout_gravity="center_horizontal"
         android:background="@color/navy"
-        android:backgroundTint="@color/navy"
-        app:cardCornerRadius="4dp"
-        android:visibility="gone">
-
-        <include
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:background="@color/navy"
-            layout="@layout/item_search_bar"/>
-    </androidx.cardview.widget.CardView>
+        layout="@layout/item_search_bar"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/indicator"

@@ -1,14 +1,14 @@
 package com.example.nolo.fragments;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
-import android.content.Intent;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,11 +29,11 @@ import com.example.nolo.R;
 import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
+import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.category.ICategory;
+import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
-import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
@@ -61,7 +60,6 @@ public class HomeFragment extends Fragment {
 
     private class ViewHolder {
         ListView categoryList, searchSuggestionsList;
-        CardView searchContainer;
         LinearLayout initialView, searchLayoutBtn, outsideSearchContainer, browseBtn, indicator;
         RecyclerView featuredItemsList;
         TextView featuredText, one, two, three;
@@ -77,7 +75,6 @@ public class HomeFragment extends Fragment {
             searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
             featuredItemsList = view.findViewById(R.id.featured_items_list);
             featuredText = view.findViewById(R.id.featured_text);
-            searchContainer = view.findViewById(R.id.search_container);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
             scrollView = view.findViewById(R.id.scroll_view);
             browseBtn = view.findViewById(R.id.browse_btn);
@@ -368,13 +365,13 @@ public class HomeFragment extends Fragment {
      */
     private void showSearchContainer(boolean show) {
         if (show) {
-            vh.searchContainer.setVisibility(View.VISIBLE);
+            vh.searchView.setVisibility(View.VISIBLE);
             vh.outsideSearchContainer.setVisibility(View.VISIBLE);
 
             // Show the keyboard
             Keyboard.show(getActivity());
         } else {
-            vh.searchContainer.setVisibility(View.GONE);
+            vh.searchView.setVisibility(View.GONE);
             vh.outsideSearchContainer.setVisibility(View.GONE);
 
             // Hide the keyboard
