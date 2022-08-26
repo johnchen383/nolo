@@ -207,7 +207,7 @@ public class HomeFragment extends Fragment {
          */
         List<ICategory> categories = GetCategoriesUseCase.getCategories();
         panelMaxIndex = categories.size();
-        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories);
+        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories, getActivity());
         vh.categoryList.setAdapter(categoriesAdaptor);
 
         ListUtil.setDynamicHeight(vh.categoryList);
@@ -415,7 +415,8 @@ public class HomeFragment extends Fragment {
 
             Intent intent = new Intent(getActivity(), ResultActivity.class);
             intent.putExtra(getString(R.string.search_term), searchTerm);
-            startActivity(intent, Animation.Fade(getActivity()).toBundle());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         }
     }
 }

@@ -220,6 +220,7 @@ public class DetailsActivity extends BaseActivity {
             Intent intent = new Intent(this, MapActivity.class);
             intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) detailsViewModel.getItemVariant());
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         vh.addCartBtn.setOnClickListener(v -> {
@@ -337,5 +338,11 @@ public class DetailsActivity extends BaseActivity {
                         fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
         vh.specsList.setAdapter(detailsSpecsAdaptor);
         ListUtil.setDynamicHeight(vh.specsList);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.nolo.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -85,7 +86,8 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
             Intent intent = new Intent(mContext, DetailsActivity.class);
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
-            mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+            mContext.startActivity(intent);
+            ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
     }
 
