@@ -124,6 +124,22 @@ public class DetailsActivity extends BaseActivity {
         ).attach();
     }
 
+    private void updateCarouselImages() {
+        List<String> uris = detailsViewModel.getImageUrisByColour();
+
+        for (int pos = 0; pos < vh.carousel.getChildCount(); pos++) {
+            RecyclerView rView = (RecyclerView) vh.carousel.getChildAt(0);
+            RecyclerView.ViewHolder vh = rView.findViewHolderForAdapterPosition(pos);
+            ImageView img = vh.itemView.findViewById(R.id.img);
+
+            int i = getResources().getIdentifier(
+                    uris.get(pos), "drawable",
+                    getPackageName());
+
+            img.setImageResource(i);
+        }
+    }
+
     private void initAdaptors() {
         /**
          * COLOURS ADAPTOR
@@ -340,7 +356,7 @@ public class DetailsActivity extends BaseActivity {
                 if (vh.scrollContainer.getScrollY() != 0) {
                     vh.dots.setVisibility(View.INVISIBLE);
 
-                    if (isExpanded){
+                    if (isExpanded) {
                         isExpanded = false;
                         setDynamicHeights(detailsViewModel.getItemCategory());
                     }
@@ -359,7 +375,8 @@ public class DetailsActivity extends BaseActivity {
 
         if (!displayedColour.equals(itemVariant.getColour())) {
             //colour changed
-            initCarouselAdaptor();
+            updateCarouselImages();
+            displayedColour = itemVariant.getColour();
         }
     }
 
