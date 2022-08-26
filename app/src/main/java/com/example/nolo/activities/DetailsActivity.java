@@ -34,6 +34,7 @@ import com.example.nolo.entities.user.IUser;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.enums.SpecsType;
+import com.example.nolo.interactors.user.AddViewedItemUseCase;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
@@ -163,11 +164,7 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        IUser usr = GetCurrentUserUseCase.getCurrentUser();
-
-        if (usr != null) {
-            usr.addViewHistory(detailsViewModel.getItemVariant());
-        }
+        AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
     }
 
     private void initStyling() {
@@ -234,11 +231,7 @@ public class DetailsActivity extends BaseActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
-            IUser usr = GetCurrentUserUseCase.getCurrentUser();
-
-            if (usr != null) {
-                usr.addViewHistory(detailsViewModel.getItemVariant());
-            }
+            AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
 
             super.onBackPressed();
             this.finish();
