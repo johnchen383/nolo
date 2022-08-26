@@ -3,7 +3,6 @@ package com.example.nolo.adaptors;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.example.nolo.entities.item.variant.IItemVariant;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class MapColourOverlayAdaptor extends RecyclerView.Adapter<MapColourOverlayAdaptor.ViewHolder> {
     private Context mContext;
