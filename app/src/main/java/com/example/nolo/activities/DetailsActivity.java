@@ -295,13 +295,6 @@ public class DetailsActivity extends BaseActivity {
                             isExpanded = !isExpanded;
                             setDynamicHeights(detailsViewModel.getItemCategory());
                         }
-
-                        System.out.println("SCROLL" + vh.scrollContainer.getScrollY());
-                        if (currentY < historicY && isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
-                            isExpanded = !isExpanded;
-                            setDynamicHeights(detailsViewModel.getItemCategory());
-                        }
-
                 }
                 return false;
             }
@@ -346,6 +339,11 @@ public class DetailsActivity extends BaseActivity {
 
                 if (vh.scrollContainer.getScrollY() != 0) {
                     vh.dots.setVisibility(View.INVISIBLE);
+
+                    if (isExpanded){
+                        isExpanded = false;
+                        setDynamicHeights(detailsViewModel.getItemCategory());
+                    }
                 } else {
                     vh.dots.setVisibility(View.VISIBLE);
                 }
