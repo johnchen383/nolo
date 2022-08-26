@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nolo.R;
 import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
+import com.example.nolo.adaptors.HomeIndicatorAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.category.ICategory;
@@ -56,13 +58,12 @@ public class HomeFragment extends Fragment {
     private View currentView;
     private float historicY = 0;
     private int panelIndex = 0;
-    private int panelMaxIndex;
 
     private class ViewHolder {
-        ListView categoryList, searchSuggestionsList;
-        LinearLayout initialView, searchLayoutBtn, outsideSearchContainer, browseBtn, indicator;
+        ListView categoryList, searchSuggestionsList, indicator;
+        LinearLayout initialView, searchLayoutBtn, outsideSearchContainer, browseBtn;
         RecyclerView featuredItemsList;
-        TextView featuredText, one, two, three;
+        TextView featuredText;
         EditText searchBarText;
         ImageView homeLogo, searchBtn, deleteBtn;
         ScrollView scrollView;
@@ -79,42 +80,12 @@ public class HomeFragment extends Fragment {
             scrollView = view.findViewById(R.id.scroll_view);
             browseBtn = view.findViewById(R.id.browse_btn);
             indicator = view.findViewById(R.id.indicator);
-            one = view.findViewById(R.id.one);
-            two = view.findViewById(R.id.two);
-            three = view.findViewById(R.id.three);
             searchView = view.findViewById(R.id.search_view);
 
             searchBarText = searchView.findViewById(R.id.search_edittext);
             searchBtn = searchView.findViewById(R.id.search_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
-        }
-    }
-
-    private void setIndicator() {
-        int opacityNorm = (int) (255 * 0.4);
-        int opacitySel = (int) (255 * 0.7);
-        vh.indicator.setVisibility(View.VISIBLE);
-        vh.one.setTypeface(vh.one.getTypeface(), Typeface.NORMAL);
-        vh.two.setTypeface(vh.two.getTypeface(), Typeface.NORMAL);
-        vh.three.setTypeface(vh.three.getTypeface(), Typeface.NORMAL);
-        vh.one.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
-        vh.two.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
-        vh.three.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
-        switch (panelIndex) {
-            case 1:
-                vh.one.setTypeface(vh.three.getTypeface(), Typeface.BOLD);
-                vh.one.setTextColor(Color.argb(opacitySel, 255, 255, 255));
-                break;
-            case 2:
-                vh.two.setTypeface(vh.three.getTypeface(), Typeface.BOLD);
-                vh.two.setTextColor(Color.argb(opacitySel, 255, 255, 255));
-                break;
-            case 3:
-                vh.three.setTypeface(vh.three.getTypeface(), Typeface.BOLD);
-                vh.three.setTextColor(Color.argb(opacitySel, 255, 255, 255));
-                break;
-            default:
         }
     }
 
@@ -148,20 +119,11 @@ public class HomeFragment extends Fragment {
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
         objectAnimator.start();
 
-        if (panelIndex > 0){
+        if (panelIndex > 0) {
             getActivity().getWindow().setStatusBarColor(Color.argb(255, 0, 0, 0));
-            setIndicator();
+            setIndicatorStyles(panelIndex - 1);
         } else {
             getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
-//            Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.home_frag);
-//            System.out.println("Frag: " + currentFragment);
-//            if (currentFragment instanceof HomeFragment) {
-//                FragmentTransaction fragTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                fragTransaction.detach(currentFragment);
-//                fragTransaction.attach(currentFragment);
-//                fragTransaction.commit();
-//            }
-
             vh.indicator.setVisibility(View.INVISIBLE);
         }
 
@@ -179,19 +141,13 @@ public class HomeFragment extends Fragment {
                 if (currentY > historicY) {
                     //swipe down
                     panelIndex++;
-                    if (panelIndex > panelMaxIndex) {
-                        panelIndex = panelMaxIndex;
-                    } else {
-                        snapScroll();
-                    }
+                    snapScroll();
                 } else if (currentY < historicY) {
                     //swipe up
                     panelIndex--;
-                    if (panelIndex < 0) {
-                        panelIndex = 0;
-                    } else {
-                        snapScroll();
-                    }
+                    snapScroll();
+                } else {
+                    return false;
                 }
 
                 historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
@@ -206,8 +162,7 @@ public class HomeFragment extends Fragment {
          * CATEGORY ADAPTOR
          */
         List<ICategory> categories = GetCategoriesUseCase.getCategories();
-        panelMaxIndex = categories.size();
-        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories, getActivity());
+        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories);
         vh.categoryList.setAdapter(categoriesAdaptor);
 
         ListUtil.setDynamicHeight(vh.categoryList);
@@ -229,6 +184,31 @@ public class HomeFragment extends Fragment {
 
         ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43);
         vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
+
+        /**
+         * Indicator adaptor
+         */
+        List<String> indicatorFields = new ArrayList<>();
+        indicatorFields.add("01  |");
+        indicatorFields.add("02  |");
+        indicatorFields.add("03  |");
+
+        HomeIndicatorAdaptor indicatorAdaptor =
+                new HomeIndicatorAdaptor(getContext(), R.layout.item_home_indicator, indicatorFields, (a) -> onClickIndicator(a));
+
+        vh.indicator.setAdapter(indicatorAdaptor);
+    }
+
+    public View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
+        }
     }
 
     /**
@@ -271,7 +251,7 @@ public class HomeFragment extends Fragment {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
                     goToSearchActivity(vh.searchBarText.getText().toString());
 
-                // When Back key pressed, hide the search bar
+                    // When Back key pressed, hide the search bar
                 } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     showSearchContainer(false);
                 }
@@ -339,22 +319,31 @@ public class HomeFragment extends Fragment {
             snapScroll();
         });
 
-        vh.one.setOnClickListener(v -> {
-            panelIndex = 1;
-            snapScroll();
-        });
-
-        vh.two.setOnClickListener(v -> {
-            panelIndex = 2;
-            snapScroll();
-        });
-
-        vh.three.setOnClickListener(v -> {
-            panelIndex = 3;
-            snapScroll();
-        });
-
         vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
+    }
+
+    private void setIndicatorStyles(int index) {
+        int opacityNorm = (int) (255 * 0.4);
+        int opacitySel = (int) (255 * 0.7);
+        vh.indicator.setVisibility(View.VISIBLE);
+
+        for (int pos = 0; pos < vh.indicator.getChildCount(); pos++) {
+            TextView indicatorEl = (TextView) getViewByPosition(pos, vh.indicator);
+
+            if (pos == index) {
+                indicatorEl.setTypeface(indicatorEl.getTypeface(), Typeface.BOLD);
+                indicatorEl.setTextColor(Color.argb(opacitySel, 255, 255, 255));
+                continue;
+            }
+
+            indicatorEl.setTypeface(indicatorEl.getTypeface(), Typeface.NORMAL);
+            indicatorEl.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
+        }
+    }
+
+    private void onClickIndicator(int index) {
+        panelIndex = index + 1;
+        snapScroll();
     }
 
     /**
