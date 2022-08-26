@@ -34,24 +34,28 @@ public class ResultActivity extends BaseActivity {
         EditText searchBarText;
         ListView searchResultList, searchSuggestionsList;
         TextView numOfResultFound;
-        ImageView backBtn, searchBtn;
+        ImageView backBtn, searchBtn, deleteBtn;
+        View searchView;
 
         public ViewHolder() {
             homeScrollView = findViewById(R.id.home_scroll_view);
             outsideSearchContainer = findViewById(R.id.outside_search_container);
-            searchBarText = findViewById(R.id.search_edittext);
             searchResultList = findViewById(R.id.search_results_list);
-            searchSuggestionsList = findViewById(R.id.search_suggestions_list);
             numOfResultFound = findViewById(R.id.number_results_found);
             backBtn = findViewById(R.id.back_btn);
-            searchBtn = findViewById(R.id.search_image_btn);
+            searchView = findViewById(R.id.search_view);
+
+            searchBarText = searchView.findViewById(R.id.search_edittext);
+            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            deleteBtn = searchView.findViewById(R.id.delete_btn);
+            searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_result);
         String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
         vh = new ViewHolder();
@@ -63,6 +67,8 @@ public class ResultActivity extends BaseActivity {
 
     private void initStyle(String searchTerm) {
         vh.searchBarText.setText(searchTerm);
+        vh.searchResultList.setFocusable(false);
+        vh.searchSuggestionsList.setVisibility(View.GONE);
     }
 
     private void initAdaptors(String searchTerm) {
@@ -131,6 +137,7 @@ public class ResultActivity extends BaseActivity {
                 } else {
                     showSearchSuggestionsList(false, v);
                 }
+                onSearchBar(hasFocus);
             }
         });
 
@@ -181,6 +188,15 @@ public class ResultActivity extends BaseActivity {
             }
         });
 
+        // When delete button is clicked, remove all text in edit text
+        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.searchBarText.setText("");
+                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
+            }
+        });
+
         // When back button is clicked, go back to previous activity
         vh.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,6 +231,21 @@ public class ResultActivity extends BaseActivity {
 
             // Hide the keyboard
             Keyboard.hide(this, v);
+        }
+    }
+
+    /**
+     * Show/hide the search & delete button next to search bar
+     *
+     * @param isOnSearchBar indicate whether it is on search bar or not
+     */
+    private void onSearchBar(boolean isOnSearchBar) {
+        if (isOnSearchBar) {
+            vh.searchBtn.setVisibility(View.GONE);
+            vh.deleteBtn.setVisibility(View.VISIBLE);
+        } else {
+            vh.searchBtn.setVisibility(View.VISIBLE);
+            vh.deleteBtn.setVisibility(View.GONE);
         }
     }
 }

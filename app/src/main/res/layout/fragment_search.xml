@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/padding_xlrg">
         <ImageView
+            android:id="@+id/search_logo"
             android:layout_width="300dp"
             android:layout_height="400dp"
             android:layout_alignParentEnd="true"
@@ -25,7 +26,8 @@
         android:layout_height="match_parent"
         android:background="@color/transparent"
         android:orientation="vertical"/>
-    <LinearLayout
+    <include
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/font_h2"
@@ -33,38 +35,5 @@
         android:layout_marginTop="70dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/navy"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-            <EditText
-                android:id="@+id/search_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search_bar"
-                android:textAllCaps="true"
-                android:singleLine="true"
-                android:textSize="@dimen/font_body1"
-                android:textColor="@color/faint_white"
-                android:textColorHint="@color/light_grey"
-                android:backgroundTint="@color/faint_white"/>
-            <ImageView
-                android:id="@+id/search_image_btn"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/nav_icon_search"/>
-        </RelativeLayout>
-        <ListView
-            android:id="@+id/search_suggestions_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:divider="@color/light_navy"
-            android:dividerHeight="1dp"
-            android:orientation="vertical"/>
-    </LinearLayout>
+        layout="@layout/item_search_bar"/>
 </FrameLayout>

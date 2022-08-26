@@ -1,7 +1,6 @@
 package com.example.nolo.fragments;
 
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,13 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,11 +33,8 @@ import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
-import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
-import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
@@ -61,7 +51,6 @@ import java.util.stream.Collectors;
  * Used for viewing featured items, browsing categories, and navigation to search
  */
 public class HomeFragment extends Fragment {
-    private final int NUMBER_OF_SEARCH_SUGGESTIONS = 6;
     private final int SNAP_DURATION = 300;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
@@ -76,27 +65,32 @@ public class HomeFragment extends Fragment {
         LinearLayout initialView, searchLayoutBtn, outsideSearchContainer, browseBtn, indicator;
         RecyclerView featuredItemsList;
         TextView featuredText, one, two, three;
-        EditText searchEditText;
-        ImageView searchImageBtn;
+        EditText searchBarText;
+        ImageView homeLogo, searchBtn, deleteBtn;
         ScrollView scrollView;
+        View searchView;
 
         public ViewHolder(View view) {
+            homeLogo = view.findViewById(R.id.home_logo);
             categoryList = view.findViewById(R.id.category_list);
             initialView = view.findViewById(R.id.initial_home_view);
             searchLayoutBtn = view.findViewById(R.id.search_layout_btn);
             featuredItemsList = view.findViewById(R.id.featured_items_list);
             featuredText = view.findViewById(R.id.featured_text);
-            searchEditText = view.findViewById(R.id.search_edittext);
-            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
             searchContainer = view.findViewById(R.id.search_container);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
-            searchImageBtn = view.findViewById(R.id.search_image_btn);
             scrollView = view.findViewById(R.id.scroll_view);
             browseBtn = view.findViewById(R.id.browse_btn);
             indicator = view.findViewById(R.id.indicator);
             one = view.findViewById(R.id.one);
             two = view.findViewById(R.id.two);
             three = view.findViewById(R.id.three);
+            searchView = view.findViewById(R.id.search_view);
+
+            searchBarText = searchView.findViewById(R.id.search_edittext);
+            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            deleteBtn = searchView.findViewById(R.id.delete_btn);
+            searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
@@ -269,16 +263,16 @@ public class HomeFragment extends Fragment {
         // When first search button is clicked, show search related views
         vh.searchLayoutBtn.setOnClickListener(v -> {
             showSearchContainer(true);
-            vh.searchEditText.requestFocus();
+            vh.searchBarText.requestFocus();
         });
 
         // Handle Enter and Back keys
-        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // When Enter key pressed, go to search list
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    goToSearchActivity(vh.searchEditText.getText().toString());
+                    goToSearchActivity(vh.searchBarText.getText().toString());
 
                 // When Back key pressed, hide the search bar
                 } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
@@ -289,7 +283,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.searchEditText.addTextChangedListener(new TextWatcher() {
+        // When search bar has focus, show delete button, otherwise search button
+        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                onSearchBar(hasFocus);
+            }
+        });
+
+        vh.searchBarText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -304,7 +306,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.searchEditText.removeTextChangedListener(new TextWatcher() {
+        vh.searchBarText.removeTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -319,10 +321,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.searchImageBtn.setOnClickListener(new View.OnClickListener() {
+        vh.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSearchActivity(vh.searchEditText.getText().toString());
+                goToSearchActivity(vh.searchBarText.getText().toString());
+            }
+        });
+
+        // When delete button is clicked, remove all text in edit text
+        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.searchBarText.setText("");
+                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
             }
         });
 
@@ -368,6 +379,25 @@ public class HomeFragment extends Fragment {
 
             // Hide the keyboard
             Keyboard.hide(getActivity(), currentView);
+        }
+    }
+
+    /**
+     * Show/hide the search & delete button next to search bar
+     *
+     * @param isOnSearchBar indicate whether it is on search bar or not
+     */
+    private void onSearchBar(boolean isOnSearchBar) {
+        if (isOnSearchBar) {
+            vh.searchBtn.setVisibility(View.GONE);
+            vh.deleteBtn.setVisibility(View.VISIBLE);
+
+            vh.homeLogo.setAlpha(0.3f);
+        } else {
+            vh.searchBtn.setVisibility(View.VISIBLE);
+            vh.deleteBtn.setVisibility(View.GONE);
+
+            vh.homeLogo.setAlpha(1.0f);
         }
     }
 

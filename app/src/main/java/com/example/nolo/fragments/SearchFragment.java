@@ -42,16 +42,21 @@ public class SearchFragment extends Fragment {
     private View currentView;
 
     private class ViewHolder {
-        EditText searchEditText;
-        ImageView searchBtn;
+        EditText searchBarText;
+        ImageView searchLogo, searchBtn, deleteBtn;
         ListView searchSuggestionsList;
         LinearLayout outsideSearchContainer;
+        View searchView;
 
         public ViewHolder(View view){
-            searchEditText = view.findViewById(R.id.search_edittext);
-            searchBtn = view.findViewById(R.id.search_image_btn);
-            searchSuggestionsList = view.findViewById(R.id.search_suggestions_list);
+            searchLogo = view.findViewById(R.id.search_logo);
             outsideSearchContainer = view.findViewById(R.id.outside_search_container);
+            searchView = view.findViewById(R.id.search_view);
+
+            searchBarText = searchView.findViewById(R.id.search_edittext);
+            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            deleteBtn = searchView.findViewById(R.id.delete_btn);
+            searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
@@ -91,18 +96,26 @@ public class SearchFragment extends Fragment {
 
     private void initListeners() {
         // When Enter is pressed in search bar, go to search result
-        vh.searchEditText.setOnKeyListener(new View.OnKeyListener() {
+        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    goToSearchActivity(vh.searchEditText.getText().toString());
+                    goToSearchActivity(vh.searchBarText.getText().toString());
                 }
 
                 return false;
             }
         });
 
-        vh.searchEditText.addTextChangedListener(new TextWatcher() {
+        // When search bar has focus, show delete button, otherwise search button
+        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                onSearchBar(hasFocus);
+            }
+        });
+
+        vh.searchBarText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -115,7 +128,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        vh.searchEditText.removeTextChangedListener(new TextWatcher() {
+        vh.searchBarText.removeTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -131,18 +144,46 @@ public class SearchFragment extends Fragment {
         vh.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSearchActivity(vh.searchEditText.getText().toString());
+                goToSearchActivity(vh.searchBarText.getText().toString());
+            }
+        });
+
+        // When delete button is clicked, remove all text in edit text
+        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vh.searchBarText.setText("");
+                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
             }
         });
 
         vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vh.searchEditText.clearFocus();
+                vh.searchBarText.clearFocus();
                 // Hide the keyboard
                 Keyboard.hide(getActivity(), currentView);
             }
         });
+    }
+
+    /**
+     * Show/hide the search & delete button next to search bar
+     *
+     * @param isOnSearchBar indicate whether it is on search bar or not
+     */
+    private void onSearchBar(boolean isOnSearchBar) {
+        if (isOnSearchBar) {
+            vh.searchBtn.setVisibility(View.GONE);
+            vh.deleteBtn.setVisibility(View.VISIBLE);
+
+            vh.searchLogo.setAlpha(0.3f);
+        } else {
+            vh.searchBtn.setVisibility(View.VISIBLE);
+            vh.deleteBtn.setVisibility(View.GONE);
+
+            vh.searchLogo.setAlpha(1.0f);
+        }
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {

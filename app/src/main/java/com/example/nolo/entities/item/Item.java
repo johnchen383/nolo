@@ -137,10 +137,25 @@ public abstract class Item implements IItem {
     @Override
     @Exclude
     public IItemVariant getDefaultItemVariant() {
-        IStoreVariant sVariant = this.storeVariants.get(0);
+        IStoreVariant sVariant = getCheapestStoreVariant();
         IBranch branch = GetStoreByIdUseCase.getStoreById(sVariant.getStoreId()).getBranches().get(0);
         Colour colour = sVariant.getColours().get(0);
 
         return new ItemVariant(colour, this.itemId, this.categoryType, sVariant.getStoreId(), branch.getBranchName(), null, null);
+    }
+
+    /**
+     * Get the cheapest store variant (base price)
+     *
+     * @return Cheapest store variant
+     */
+    private IStoreVariant getCheapestStoreVariant() {
+        IStoreVariant cheapestStoreVariant = storeVariants.get(0);
+
+        for (IStoreVariant sV : storeVariants)
+            if (sV.getBasePrice() < cheapestStoreVariant.getBasePrice())
+                cheapestStoreVariant = sV;
+
+        return cheapestStoreVariant;
     }
 }
