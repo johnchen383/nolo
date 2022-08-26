@@ -1,5 +1,6 @@
 package com.example.nolo.activities;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -49,12 +50,15 @@ import java.util.List;
 public class DetailsActivity extends BaseActivity {
     private DetailsViewModel detailsViewModel;
 
+    private final int ANIMATION_INTERVAL = 250;
     private ViewHolder vh;
     private int imgIndex;
     private int maxIndex;
     private float historicX;
+    private float historicY;
     private double heightFactor;
     private Colour displayedColour;
+    private boolean isExpanded;
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
@@ -179,9 +183,45 @@ public class DetailsActivity extends BaseActivity {
         AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
     }
 
-    private void initStyling() {
-        heightFactor = 0.45;
 
+    private void setDynamicHeights(CategoryType categoryType) {
+        int oldHeight = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
+
+        if (isExpanded) {
+            heightFactor = 1;
+        } else {
+            switch (categoryType) {
+                case phones:
+                    heightFactor = 0.55;
+                    break;
+                case laptops:
+                    heightFactor = 0.45;
+                    break;
+                case accessories:
+                default:
+                    heightFactor = 0.58;
+            }
+        }
+
+        int newHeight = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
+
+        ValueAnimator anim = ValueAnimator.ofFloat(oldHeight, newHeight);
+        anim.addUpdateListener(valueAnimator -> {
+            float val = (Float) valueAnimator.getAnimatedValue();
+            FrameLayout.LayoutParams newParams = (FrameLayout.LayoutParams) vh.carouselContainer.getLayoutParams();
+            newParams.height = (int) val;
+            vh.carouselContainer.setLayoutParams(newParams);
+
+            LinearLayout.LayoutParams newParams2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
+            newParams2.height = (int) val;
+            vh.transparentContainer.setLayoutParams(newParams2);
+        });
+
+        anim.setDuration(ANIMATION_INTERVAL);
+        anim.start();
+    }
+
+    private void initStyling() {
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
         vh.storeName.setText(detailsViewModel.getStoreBranchName());
@@ -191,25 +231,17 @@ public class DetailsActivity extends BaseActivity {
                 initSpecsStyling(CategoryType.laptops);
                 break;
             case phones:
-                heightFactor = 0.55;
                 vh.ramContainer.setVisibility(View.GONE);
                 initSpecsStyling(CategoryType.phones);
                 break;
             case accessories:
-                heightFactor = 0.58;
                 vh.ramContainer.setVisibility(View.GONE);
                 vh.storageContainer.setVisibility(View.GONE);
                 initSpecsStyling(CategoryType.accessories);
                 break;
         }
 
-        LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
-        params2.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
-        vh.transparentContainer.setLayoutParams(params2);
-
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) vh.carouselContainer.getLayoutParams();
-        params.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
-        vh.carouselContainer.setLayoutParams(params);
+        setDynamicHeights(detailsViewModel.getItemCategory());
 
         setDynamicStyling();
     }
@@ -249,10 +281,35 @@ public class DetailsActivity extends BaseActivity {
             this.finish();
         });
 
+        vh.scrollContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        historicY = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        float currentY = motionEvent.getY();
+
+                        if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
+                            isExpanded = !isExpanded;
+                            setDynamicHeights(detailsViewModel.getItemCategory());
+                        }
+
+                        System.out.println("SCROLL" + vh.scrollContainer.getScrollY());
+                        if (currentY < historicY && isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
+                            isExpanded = !isExpanded;
+                            setDynamicHeights(detailsViewModel.getItemCategory());
+                        }
+
+                }
+                return false;
+            }
+        });
+
         vh.transparentContainer.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                System.out.println("SWIPE: " + motionEvent.getAction());
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         historicX = motionEvent.getX();
@@ -264,12 +321,13 @@ public class DetailsActivity extends BaseActivity {
                             imgIndex++;
                             if (imgIndex > maxIndex) imgIndex = maxIndex;
                             vh.carousel.setCurrentItem(imgIndex);
-                            System.out.println("SWIPE: " + imgIndex);
                         } else if (currentX > historicX) {
                             imgIndex--;
                             if (imgIndex < 0) imgIndex = 0;
                             vh.carousel.setCurrentItem(imgIndex);
-                            System.out.println("SWIPE: " + imgIndex);
+                        } else {
+                            isExpanded = !isExpanded;
+                            setDynamicHeights(detailsViewModel.getItemCategory());
                         }
 
                 }
@@ -316,6 +374,7 @@ public class DetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         vh = new ViewHolder();
+        isExpanded = false;
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
