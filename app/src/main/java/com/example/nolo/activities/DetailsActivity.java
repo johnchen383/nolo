@@ -192,18 +192,24 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (isExpanded){
+            isExpanded = false;
+            setDynamicHeights();
+            return;
+        }
+
         super.onBackPressed();
         detailsViewModel.addViewHistory();
     }
 
 
-    private void setDynamicHeights(CategoryType categoryType) {
+    private void setDynamicHeights() {
         int oldHeight = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
 
         if (isExpanded) {
             heightFactor = 1;
         } else {
-            switch (categoryType) {
+            switch (detailsViewModel.getItemCategory()) {
                 case phones:
                     heightFactor = 0.55;
                     break;
@@ -254,8 +260,7 @@ public class DetailsActivity extends BaseActivity {
                 break;
         }
 
-        setDynamicHeights(detailsViewModel.getItemCategory());
-
+        setDynamicHeights();
         setDynamicStyling();
     }
 
@@ -289,6 +294,12 @@ public class DetailsActivity extends BaseActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
+            if (isExpanded){
+                isExpanded = false;
+                setDynamicHeights();
+                return;
+            }
+
             detailsViewModel.addViewHistory();
 
             super.onBackPressed();
@@ -307,7 +318,7 @@ public class DetailsActivity extends BaseActivity {
 
                         if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
                             isExpanded = !isExpanded;
-                            setDynamicHeights(detailsViewModel.getItemCategory());
+                            setDynamicHeights();
                         }
                 }
                 return false;
@@ -334,7 +345,7 @@ public class DetailsActivity extends BaseActivity {
                             vh.carousel.setCurrentItem(imgIndex);
                         } else {
                             isExpanded = !isExpanded;
-                            setDynamicHeights(detailsViewModel.getItemCategory());
+                            setDynamicHeights();
                         }
 
                 }
@@ -356,7 +367,7 @@ public class DetailsActivity extends BaseActivity {
 
                     if (isExpanded) {
                         isExpanded = false;
-                        setDynamicHeights(detailsViewModel.getItemCategory());
+                        setDynamicHeights();
                     }
                 } else {
                     vh.dots.setVisibility(View.VISIBLE);
