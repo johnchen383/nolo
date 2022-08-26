@@ -220,6 +220,7 @@ public class DetailsActivity extends BaseActivity {
             Intent intent = new Intent(this, MapActivity.class);
             intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) detailsViewModel.getItemVariant());
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         vh.addCartBtn.setOnClickListener(v -> {
