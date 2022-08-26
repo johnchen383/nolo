@@ -8,6 +8,7 @@
     tools:context=".activities.DetailsActivity">
 
     <RelativeLayout
+        android:id="@+id/carousel_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
@@ -16,7 +17,23 @@
             android:id="@+id/carousel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="64dp" />
+            android:paddingTop="64dp"
+            android:paddingBottom="32dp"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/dots"
+            android:backgroundTint="@color/light_blue"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:tabIndicatorGravity="bottom"
+            app:tabBackground="@drawable/dot_selector"
+            android:layout_alignParentBottom="true"
+            app:tabGravity="center"
+            app:tabPaddingStart="8dp"
+            app:tabPaddingEnd="8dp"
+            app:tabIndicatorHeight="0dp" />
     </RelativeLayout>
 
     <ScrollView
@@ -190,10 +207,10 @@
 
                 <TextView
                     android:id="@+id/summary_text"
-                    android:layout_marginHorizontal="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="3"/>
+                    android:layout_marginHorizontal="32dp"
+                    android:maxLines="3" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -309,7 +326,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:divider="@null"
-                            android:dividerHeight="20dp"/>
+                            android:dividerHeight="20dp" />
                     </LinearLayout>
 
                     <LinearLayout

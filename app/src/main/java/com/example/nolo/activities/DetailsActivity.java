@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +41,8 @@ import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.List;
 
@@ -58,8 +61,9 @@ public class DetailsActivity extends BaseActivity {
         LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs;
         TextView itemTitle, summaryText, colourTitle, quantityText, storeName, priceText;
         ListView specsList;
+        TabLayout dots;
 
-        RelativeLayout decrementBtn, incrementBtn;
+        RelativeLayout decrementBtn, incrementBtn, carouselContainer;
         RecyclerView coloursList, ramList, storageList, recItemsList;
         ImageView closeBtn, storesBtn;
         MaterialButton addCartBtn;
@@ -93,6 +97,8 @@ public class DetailsActivity extends BaseActivity {
             recItemsList = findViewById(R.id.rec_items_list);
             recContainer = findViewById(R.id.rec_container);
             summaryText = findViewById(R.id.summary_text);
+            dots = findViewById(R.id.dots);
+            carouselContainer = findViewById(R.id.carousel_container);
         }
     }
 
@@ -106,6 +112,12 @@ public class DetailsActivity extends BaseActivity {
         vh.carousel.setAdapter(pagerAdapter);
         vh.carousel.setCurrentItem(imgIndex, false);
         displayedColour = detailsViewModel.getVariantColour();
+
+
+        new TabLayoutMediator(vh.dots, vh.carousel, (tab, position) ->
+        {
+        }
+        ).attach();
     }
 
     private void initAdaptors() {
@@ -195,9 +207,9 @@ public class DetailsActivity extends BaseActivity {
         params2.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
         vh.transparentContainer.setLayoutParams(params2);
 
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) vh.carousel.getLayoutParams();
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) vh.carouselContainer.getLayoutParams();
         params.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
-        vh.carousel.setLayoutParams(params);
+        vh.carouselContainer.setLayoutParams(params);
 
         setDynamicStyling();
     }
