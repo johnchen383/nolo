@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nolo.util.Display;
 
 public class MapColourOverlayDecoration extends RecyclerView.ItemDecoration {
-    private final static int vertOverlap = -80;
+    private final static int vertOverlap = -30;
 
     @Override
     public void getItemOffsets (Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
