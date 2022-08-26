@@ -202,6 +202,28 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public List<Purchasable> getPurchaseHistory() {
+        return currentUser.getPurchaseHistory();
+    }
+
+    /**
+     * Add purchased items into purchase history at the top
+     *
+     * @param purchasedItem purchased items
+     */
+    @Override
+    public void addPurchaseHistory(List<Purchasable> purchasedItem) {
+        currentUser.addPurchaseHistory(purchasedItem);
+
+        String field = "purchaseHistory";
+        if (currentUser.isFieldNameValid(field)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getPurchaseHistory());
+        } else {
+            Log.e("UsersRepository", "Unable to update purchase history as field not matched");
+        }
+    }
+
+    @Override
     public List<Purchasable> getCart() {
         return currentUser.getCart();
     }

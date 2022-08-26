@@ -17,6 +17,8 @@ public interface IUsersRepository {
     void logOut();
     List<ItemVariant> getViewHistory();
     void addViewHistory(IItemVariant item);
+    List<Purchasable> getPurchaseHistory();
+    void addPurchaseHistory(List<Purchasable> purchasedItem);
     List<Purchasable> getCart();
     void addCart(IPurchasable cartItem);
     void updateCart(List<Purchasable> cartItems);

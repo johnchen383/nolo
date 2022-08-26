@@ -35,9 +35,10 @@ public class User implements IUser {
      */
     public User() {}
 
-    public User(List<ItemVariant> viewHistory, List<Purchasable> cart) {
+    public User(List<ItemVariant> viewHistory, List<Purchasable> cart, List<Purchasable> purchaseHistory) {
         this.viewHistory = viewHistory;
         this.cart = cart;
+        this.purchaseHistory = purchaseHistory;
     }
 
     @Override
