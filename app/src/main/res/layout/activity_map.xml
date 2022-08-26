@@ -123,13 +123,14 @@
                             android:textSize="@dimen/font_body1" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:orientation="vertical" >
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
                             android:text="colours in stock"
                             android:fontFamily="@font/abeezee_italic"
                             android:textSize="@dimen/font_caption"
@@ -137,8 +138,8 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/colours_list"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/font_body1" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
