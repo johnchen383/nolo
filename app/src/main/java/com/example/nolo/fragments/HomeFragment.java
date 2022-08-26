@@ -404,7 +404,8 @@ public class HomeFragment extends Fragment {
 
             Intent intent = new Intent(getActivity(), ResultActivity.class);
             intent.putExtra(getString(R.string.search_term), searchTerm);
-            startActivity(intent, Animation.Fade(getActivity()).toBundle());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         }
     }
 }

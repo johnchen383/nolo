@@ -32,12 +32,9 @@ import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.entities.user.IUser;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.enums.SpecsType;
-import com.example.nolo.interactors.user.AddViewedItemUseCase;
-import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
@@ -196,7 +193,7 @@ public class DetailsActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
+        detailsViewModel.addViewHistory();
     }
 
 
@@ -283,6 +280,7 @@ public class DetailsActivity extends BaseActivity {
             Intent intent = new Intent(this, MapActivity.class);
             intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) detailsViewModel.getItemVariant());
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         vh.addCartBtn.setOnClickListener(v -> {
@@ -291,7 +289,7 @@ public class DetailsActivity extends BaseActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
-            AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
+            detailsViewModel.addViewHistory();
 
             super.onBackPressed();
             this.finish();
@@ -432,5 +430,11 @@ public class DetailsActivity extends BaseActivity {
                         fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
         vh.specsList.setAdapter(detailsSpecsAdaptor);
         ListUtil.setDynamicHeight(vh.specsList);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 }
