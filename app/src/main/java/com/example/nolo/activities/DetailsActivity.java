@@ -285,6 +285,12 @@ public class DetailsActivity extends BaseActivity {
                 } else {
                     vh.closeBtn.setVisibility(View.VISIBLE);
                 }
+
+                if (vh.scrollContainer.getScrollY() != 0) {
+                    vh.dots.setVisibility(View.INVISIBLE);
+                } else {
+                    vh.dots.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
