@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.purchasable.IPurchasable;
-import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.specs.ISpecs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
@@ -22,12 +20,17 @@ import com.example.nolo.interactors.user.AddViewedItemUseCase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailsViewModel extends ViewModel {
+public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
+    public static IItemVariant itemVariantFromMap = null;
     private int quantity;
     private IItemVariant itemVariant;
-    public static IItemVariant itemVariantFromMap = null;
-
     private IItem item;
+
+    public DetailsViewModel(IItemVariant itemVariant) {
+        this.itemVariant = itemVariant;
+        this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
+        this.quantity = 1;
+    }
 
     private StoreVariant getStoreVariant() {
         String variantStoreId = itemVariant.getStoreId();
@@ -37,12 +40,7 @@ public class DetailsViewModel extends ViewModel {
                 .get();
     }
 
-    public DetailsViewModel(IItemVariant itemVariant) {
-        this.itemVariant = itemVariant;
-        this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
-        this.quantity = 1;
-    }
-
+    @Override
     public List<ItemVariant> getRecItemVariants() {
         List<ItemVariant> ret = new ArrayList<>();
         if (getItemCategory().equals(CategoryType.accessories)) return ret;
@@ -52,6 +50,7 @@ public class DetailsViewModel extends ViewModel {
         return ret;
     }
 
+    @Override
     public List<String> getImageUrisByColour() {
         Colour colour = getVariantColour();
 
@@ -84,26 +83,32 @@ public class DetailsViewModel extends ViewModel {
         return images;
     }
 
+    @Override
     public IItemVariant getItemVariant() {
         return itemVariant;
     }
 
+    @Override
     public void setItemVariant(IItemVariant itemVariant) {
         this.itemVariant = itemVariant;
     }
 
+    @Override
     public String getItemName() {
         return item.getName();
     }
 
+    @Override
     public List<Colour> getItemColours() {
         return getStoreVariant().getColours();
     }
 
+    @Override
     public Colour getVariantColour() {
         return itemVariant.getColour();
     }
 
+    @Override
     public String getStoreBranchName() {
         String branchName = itemVariant.getBranchName();
         String storeName = GetStoreByIdUseCase.getStoreById(itemVariant.getStoreId()).getStoreName();
@@ -111,10 +116,12 @@ public class DetailsViewModel extends ViewModel {
         return storeName + " " + branchName;
     }
 
+    @Override
     public CategoryType getItemCategory() {
         return itemVariant.getCategoryType();
     }
 
+    @Override
     public List<SpecsOption> getStorageOptions() {
         if (getItemCategory() == CategoryType.laptops || getItemCategory() == CategoryType.phones) {
             System.out.println(item.getSpecs().toString());
@@ -125,6 +132,7 @@ public class DetailsViewModel extends ViewModel {
         }
     }
 
+    @Override
     public List<SpecsOption> getRamOptions() {
         if (getItemCategory() == CategoryType.laptops) {
             return item.getSpecs().getCustomisableSpecs().get(SpecsOptionType.ram.name());
@@ -134,10 +142,12 @@ public class DetailsViewModel extends ViewModel {
         }
     }
 
+    @Override
     public ISpecs getItemSpecs() {
         return item.getSpecs();
     }
 
+    @Override
     public void incrementOrDecrementQuantity(boolean isIncrement) {
         if (isIncrement) {
             this.quantity++;
@@ -148,14 +158,17 @@ public class DetailsViewModel extends ViewModel {
         }
     }
 
+    @Override
     public int getQuantity() {
         return this.quantity;
     }
 
+    @Override
     public void addCart() {
         AddCartItemUseCase.addCart(this.itemVariant, quantity);
     }
 
+    @Override
     public void addViewHistory() {
         AddViewedItemUseCase.addViewHistory(this.itemVariant);
     }

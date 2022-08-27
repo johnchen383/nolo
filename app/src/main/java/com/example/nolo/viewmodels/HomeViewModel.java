@@ -1,10 +1,7 @@
 package com.example.nolo.viewmodels;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.nolo.R;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.user.User;
@@ -14,14 +11,16 @@ import com.example.nolo.interactors.user.GetRecentViewedItemsUseCase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeViewModel extends ViewModel {
+public class HomeViewModel extends ViewModel implements IHomeViewModel {
     public HomeViewModel() {
     }
 
+    @Override
     public List<ItemVariant> getRecentlyViewedItemVariants() {
         return GetRecentViewedItemsUseCase.getRecentViewedItems();
     }
 
+    @Override
     public List<ItemVariant> generateRandomViewedItemVariants() {
         List<ItemVariant> vHist = new ArrayList<>();
         List<IItem> items = GetAllItemsUseCase.getAllItems();

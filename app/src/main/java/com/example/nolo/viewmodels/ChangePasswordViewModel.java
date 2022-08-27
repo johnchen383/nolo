@@ -7,8 +7,8 @@ import com.example.nolo.interactors.user.SignUpUseCase;
 
 import java.util.function.Consumer;
 
-public class ChangePasswordViewModel extends ViewModel {
-
+public class ChangePasswordViewModel extends ViewModel implements IChangePasswordViewModel {
+    @Override
     public void changePassword(Consumer<String> onUserChangePassword, String email, String password) {
         ChangePasswordUseCase.changePassword(onUserChangePassword, email, password);
     }
