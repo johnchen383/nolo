@@ -12,14 +12,17 @@ import com.example.nolo.interactors.user.UpdateCartItemUseCase;
 import java.util.List;
 
 public class CartViewModel extends ViewModel implements ICartViewModel {
+    @Override
     public List<Purchasable> getUserCart() {
         return GetCurrentUserUseCase.getCurrentUser().getCart();
     }
 
+    @Override
     public void updateCartItem(List<Purchasable> cartItems) {
         UpdateCartItemUseCase.updateCartItem(cartItems);
     }
 
+    @Override
     public void addPurchaseHistory() {
         List<Purchasable> cartItems = getUserCart();
         cartItems.forEach(o -> {

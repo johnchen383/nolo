@@ -9,7 +9,7 @@ import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PurchasesViewModel extends ViewModel {
+public class PurchasesViewModel extends ViewModel implements IPurchasesViewModel {
     public List<Purchasable> getUserPurchaseHistoryInTransit() {
         return GetCurrentUserUseCase.getCurrentUser().getPurchaseHistory().stream()
                 .filter(o -> o.getStatus().equals(PurchaseStatus.inTransit))
