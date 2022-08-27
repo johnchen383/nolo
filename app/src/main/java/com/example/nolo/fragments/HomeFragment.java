@@ -189,9 +189,10 @@ public class HomeFragment extends Fragment {
          * Indicator adaptor
          */
         List<String> indicatorFields = new ArrayList<>();
-        indicatorFields.add("01  |");
-        indicatorFields.add("02  |");
-        indicatorFields.add("03  |");
+
+        for (int i = 1; i <= categories.size(); i++){
+            indicatorFields.add(String.format("%02d  |", i));
+        }
 
         HomeIndicatorAdaptor indicatorAdaptor =
                 new HomeIndicatorAdaptor(getContext(), R.layout.item_home_indicator, indicatorFields, (a) -> onClickIndicator(a));
