@@ -58,7 +58,7 @@ public class PurchasesFragment extends Fragment {
 
         PurchasableListAdaptor deliveredPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, purchasesViewModel.getUserPurchaseHistoryDelivered(), v->{});
         vh.deliveredList.setAdapter(deliveredPurchasableAdaptor);
-        ListUtil.setDynamicHeight(vh.transitList);
+        ListUtil.setDynamicHeight(vh.deliveredList);
     }
 
     public PurchasesFragment() {

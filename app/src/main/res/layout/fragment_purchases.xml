@@ -26,74 +26,78 @@
         android:layout_height="155dp"
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/purchases_header" />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="35dp"
-        android:paddingHorizontal="@dimen/purchasable_list_horizontal_margin"
-        android:orientation="vertical">
+        android:layout_marginTop="25dp"
+        android:paddingHorizontal="@dimen/purchasable_list_horizontal_margin" >
 
-        <LinearLayout
-            android:id="@+id/transit_title"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/TextStroke.White"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="65dp">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IN TRANSIT"
-                android:textSize="@dimen/font_body1" />
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                app:cardCornerRadius="20dp"
-                android:backgroundTint="@color/yellow" />
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/transit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        style="@style/TextStroke.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IN TRANSIT"
+                        android:textSize="@dimen/font_body1" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        app:cardCornerRadius="20dp"
+                        android:backgroundTint="@color/yellow" />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <ListView
-            android:id="@+id/transit_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="15dp"/>
+                <ListView
+                    android:id="@+id/transit_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"/>
 
-        <LinearLayout
-            android:id="@+id/delivered_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/TextStroke.White"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DELIVERED"
-                android:textSize="@dimen/font_body1" />
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                app:cardCornerRadius="20dp"
-                android:backgroundTint="@color/green" />
+                <LinearLayout
+                    android:id="@+id/delivered_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        style="@style/TextStroke.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DELIVERED"
+                        android:textSize="@dimen/font_body1" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        app:cardCornerRadius="20dp"
+                        android:backgroundTint="@color/green" />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <ListView
-            android:id="@+id/delivered_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="15dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/navy" />
-    </LinearLayout>
+                <ListView
+                    android:id="@+id/delivered_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 </LinearLayout>
