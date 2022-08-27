@@ -95,8 +95,7 @@ public class ChangePasswordFragment extends Fragment {
         changePasswordViewModel.changePassword((error) -> {
             if (error == null) {
                 vh.errorText.setVisibility(View.INVISIBLE);
-                vh.successMsg.setVisibility(View.VISIBLE);
-                vh.saveBtn.setVisibility(View.GONE);
+                toggleMessageVisibility(true);
             } else {
                 vh.errorText.setText(error);
                 vh.errorText.setVisibility(View.VISIBLE);
@@ -129,14 +128,23 @@ public class ChangePasswordFragment extends Fragment {
 
         vh.oldPasswordInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
+            if (hasFocus) {
+                toggleMessageVisibility(false);
+            }
         });
 
         vh.newPasswordInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
+            if (hasFocus) {
+                toggleMessageVisibility(false);
+            }
         });
 
         vh.repeatPasswordInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
+            if (hasFocus) {
+                toggleMessageVisibility(false);
+            }
         });
 
         vh.repeatPasswordInput.setOnEditorActionListener((v, actionId, event) -> {
@@ -149,20 +157,20 @@ public class ChangePasswordFragment extends Fragment {
         });
     }
 
-    public void togglePassword(EditText input, ImageView icon) {
+    private void togglePassword(EditText input, ImageView icon) {
         boolean isHidden = input.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         input.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         icon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
         setCursorToEnd(input);
     }
 
-    public void clearFocus() {
+    private void clearFocus() {
         vh.oldPasswordInput.clearFocus();
         vh.newPasswordInput.clearFocus();
         vh.repeatPasswordInput.clearFocus();
     }
 
-    public void hideKeyboard(View view, Boolean isClearFocus) {
+    private void hideKeyboard(View view, Boolean isClearFocus) {
         if (isClearFocus) {
             clearFocus();
         }
@@ -177,6 +185,12 @@ public class ChangePasswordFragment extends Fragment {
         Spannable spanText = (Spannable) charSeq;
         Selection.setSelection(spanText, charSeq.length());
     }
+
+    private void toggleMessageVisibility(boolean isVisible) {
+        vh.successMsg.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+        vh.saveBtn.setVisibility(isVisible ? View.GONE : View.VISIBLE);
+    }
+
 
     public ChangePasswordFragment() {
         super(R.layout.fragment_change_password);
