@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.DetailsActivity;
@@ -27,14 +28,17 @@ import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.SpecsOptionType;
+import com.example.nolo.fragments.CartFragment;
+import com.example.nolo.fragments.PurchasesFragment;
 import com.example.nolo.util.Display;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class CartPurchasableAdaptor extends ArrayAdapter {
+public class PurchasableListAdaptor extends ArrayAdapter {
     private int mLayoutID;
+    private Fragment mFragment;
     private List<Purchasable> mItems;
     private Context mContext;
     private Consumer<List<Purchasable>> update;
@@ -42,8 +46,7 @@ public class CartPurchasableAdaptor extends ArrayAdapter {
     private class ViewHolder {
         LinearLayout itemClickable;
         ImageView itemImg;
-        TextView title, ramText, ssdText, colourLabel, price, quantityText;
-        RelativeLayout binBtn, decrementBtn, incrementBtn;
+        TextView title, ramText, ssdText, colourLabel, price;
         MaterialCardView ramTag, ssdTag, colourCircle;
 
         public ViewHolder(View v) {
@@ -54,21 +57,42 @@ public class CartPurchasableAdaptor extends ArrayAdapter {
             ssdText = v.findViewById(R.id.ssd_text);
             colourLabel = v.findViewById(R.id.colour_label);
             price = v.findViewById(R.id.price);
-            quantityText = v.findViewById(R.id.quantity_text);
-            binBtn = v.findViewById(R.id.bin_btn);
-            decrementBtn = v.findViewById(R.id.decrement_btn);
-            incrementBtn = v.findViewById(R.id.increment_btn);
             ramTag = v.findViewById(R.id.ram_tag);
             ssdTag = v.findViewById(R.id.ssd_tag);
             colourCircle = v.findViewById(R.id.colour_circle);
         }
     }
 
-    public CartPurchasableAdaptor(@NonNull Context context, int resource, @NonNull List<Purchasable> cartItems, Consumer<List<Purchasable>> update) {
-        super(context, resource, cartItems);
+    private class CartViewHolder extends ViewHolder {
+        TextView quantityText;
+        RelativeLayout binBtn;
+        RelativeLayout decrementBtn, incrementBtn;
+
+        public CartViewHolder(View v) {
+            super(v);
+            binBtn = v.findViewById(R.id.bin_btn);
+            decrementBtn = v.findViewById(R.id.decrement_btn);
+            incrementBtn = v.findViewById(R.id.increment_btn);
+            quantityText = v.findViewById(R.id.quantity_text);
+
+        }
+    }
+
+    private class PurchasesViewHolder extends ViewHolder {
+        TextView quantityLabel;
+
+        public PurchasesViewHolder(View v) {
+            super(v);
+            quantityLabel = v.findViewById(R.id.quantity_label);
+        }
+    }
+
+    public PurchasableListAdaptor(@NonNull Context context, Fragment fragment, int resource, @NonNull List<Purchasable> purchaseableItems, Consumer<List<Purchasable>> update) {
+        super(context, resource, purchaseableItems);
         mContext = context;
+        mFragment = fragment;
         mLayoutID = resource;
-        mItems = cartItems;
+        mItems = purchaseableItems;
         this.update = update;
     }
 
@@ -85,49 +109,23 @@ public class CartPurchasableAdaptor extends ArrayAdapter {
 
         Purchasable currentItem = mItems.get(position);
 
-        return populateCartItem(currentItem, currentListViewItem);
+        if (mFragment.getClass().equals(CartFragment.class)) {
+            return populateCartItem(currentItem, currentListViewItem);
+        } else if (mFragment.getClass().equals(PurchasesFragment.class)) {
+            return populatePurchasesItem(currentItem, currentListViewItem);
+        }
+
+        return null;
     }
 
-    private View populateCartItem(Purchasable item, View currentListViewItem) {
-        ViewHolder vh = new ViewHolder(currentListViewItem);
-
+    private void populateItem(Purchasable item, View currentListViewItem, ViewHolder vh) {
         if (item == null) {
             vh.itemClickable.setVisibility(View.VISIBLE);
             System.out.println("FROG");
-            return currentListViewItem;
+            return;
         }
 
         ItemVariant variant = item.getItemVariant();
-
-//        price = v.findViewById(R.id.price);
-//        quantityText = v.findViewById(R.id.quantity_text);
-//        binBtn = v.findViewById(R.id.bin_btn);
-//        decrementBtn = v.findViewById(R.id.decrement_btn);
-//        incrementBtn = v.findViewById(R.id.increment_btn);
-        vh.binBtn.setOnClickListener(v -> {
-            mItems.remove(item);
-            update.accept(mItems);
-        });
-
-        vh.quantityText.setText(item.getQuantity() + "");
-
-        vh.decrementBtn.setOnClickListener(v -> {
-            for (Purchasable p : mItems) {
-                if (p.equals(item)) {
-                    p.incrementOrDecrementQuantity(false);
-                }
-            }
-            update.accept(mItems);
-        });
-
-        vh.incrementBtn.setOnClickListener(v -> {
-            for (Purchasable p : mItems) {
-                if (p.equals(item)) {
-                    p.incrementOrDecrementQuantity(true);
-                }
-            }
-            update.accept(mItems);
-        });
 
         int i = mContext.getResources().getIdentifier(
                 variant.getDisplayImage(), "drawable",
@@ -171,6 +169,52 @@ public class CartPurchasableAdaptor extends ArrayAdapter {
 
             baseContext.startActivity(intent);
         });
+    }
+
+    private View populateCartItem(Purchasable item, View currentListViewItem) {
+        CartViewHolder vh = new CartViewHolder(currentListViewItem);
+
+        populateItem(item, currentListViewItem, vh);
+
+        vh.binBtn.setVisibility(View.VISIBLE);
+        vh.binBtn.setOnClickListener(v -> {
+            mItems.remove(item);
+            update.accept(mItems);
+        });
+
+        vh.quantityText.setVisibility(View.VISIBLE);
+        vh.quantityText.setText(String.valueOf(item.getQuantity()));
+
+        vh.decrementBtn.setVisibility(View.VISIBLE);
+        vh.decrementBtn.setOnClickListener(v -> {
+            for (Purchasable p : mItems) {
+                if (p.equals(item)) {
+                    p.incrementOrDecrementQuantity(false);
+                }
+            }
+            update.accept(mItems);
+        });
+
+        vh.incrementBtn.setVisibility(View.VISIBLE);
+        vh.incrementBtn.setOnClickListener(v -> {
+            for (Purchasable p : mItems) {
+                if (p.equals(item)) {
+                    p.incrementOrDecrementQuantity(true);
+                }
+            }
+            update.accept(mItems);
+        });
+
+        return currentListViewItem;
+    }
+
+    private View populatePurchasesItem(Purchasable item, View currentListViewItem) {
+        PurchasesViewHolder vh = new PurchasesViewHolder(currentListViewItem);
+
+        populateItem(item, currentListViewItem, vh);
+
+        vh.quantityLabel.setVisibility(View.VISIBLE);
+        vh.quantityLabel.setText("Quantity: " + item.getQuantity());
 
         return currentListViewItem;
     }
