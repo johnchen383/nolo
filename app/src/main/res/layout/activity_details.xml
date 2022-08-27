@@ -324,30 +324,27 @@
                             android:listSelector="@color/transparent"
                             android:divider="@null"
                             android:dividerHeight="20dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/rec_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_marginBottom="8dp"
-                            android:text="RECOMMENDED ACCESSORIES" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rec_items_list"
+                        <LinearLayout
+                            android:id="@+id/rec_container"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginBottom="8dp"
+                                android:text="RECOMMENDED ACCESSORIES" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rec_items_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
