@@ -167,7 +167,11 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
 
         int index = 0;
 
-        if (items.size() < 1) return currentListViewItem;
+        if (items.size() < 1) {
+            vh.itemClickable.setVisibility(View.GONE);
+            vh.itemClickable2.setVisibility(View.GONE);
+            return currentListViewItem;
+        }
 
         vh.title.setText(items.get(index).getName());
         vh.price.setText(items.get(index).getDefaultItemVariant().getDisplayPrice().substring(1) + " NZD");
@@ -187,7 +191,10 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             }
         });
 
-        if (items.size() < 2) return currentListViewItem;
+        if (items.size() < 2) {
+            vh.itemClickable2.setVisibility(View.GONE);
+            return currentListViewItem;
+        }
         int index2 = 1;
 
         vh.title2.setText(items.get(index2).getName());

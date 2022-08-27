@@ -12,7 +12,7 @@ import com.example.nolo.repositories.user.UsersRepository;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ListViewModel extends ViewModel {
+public class ListViewModel extends ViewModel implements IListViewModel {
     private PhoneOs phoneOs = PhoneOs.android;
     private ICategory category;
 
@@ -20,14 +20,17 @@ public class ListViewModel extends ViewModel {
         this.category = category;
     }
 
+    @Override
     public ICategory getCategory() {
         return category;
     }
 
+    @Override
     public PhoneOs getPhoneOs(){
         return phoneOs;
     }
 
+    @Override
     public void setPhoneOs(PhoneOs os){
         phoneOs = os;
     }

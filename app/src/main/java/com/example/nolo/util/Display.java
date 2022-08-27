@@ -22,12 +22,21 @@ public class Display {
     }
 
     /**
-     * Get height of device screen
+     * Get height of device screen in pixels
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
     public static int getScreenHeight(View v){
         return getDisplayMetrics(v).heightPixels;
+    }
+
+    /**
+     * Get height of device screen in dp
+     * @param v any view associated with an activity (i.e., displayed)
+     * @return
+     */
+    public static int getScreenHeightInDp(View v){
+        return pxToDp(getScreenHeight(v), v.getContext());
     }
 
     /**
@@ -49,5 +58,18 @@ public class Display {
     public static int dpToPx(int dp, Context context) {
         float density = context.getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
+    }
+
+
+    /**
+     * Convert pixels into dp
+     *
+     * @param px
+     * @param context
+     * @return pixels
+     */
+    public static int pxToDp(int px, Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round((float) px / density);
     }
 }

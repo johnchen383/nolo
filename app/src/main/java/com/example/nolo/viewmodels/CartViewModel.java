@@ -1,9 +1,6 @@
 package com.example.nolo.viewmodels;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.interactors.user.AddPurchasedItemsUseCase;
@@ -14,7 +11,7 @@ import com.example.nolo.repositories.user.UsersRepository;
 
 import java.util.List;
 
-public class CartViewModel extends ViewModel {
+public class CartViewModel extends ViewModel implements ICartViewModel {
     public List<Purchasable> getUserCart() {
         return GetCurrentUserUseCase.getCurrentUser().getCart();
     }
