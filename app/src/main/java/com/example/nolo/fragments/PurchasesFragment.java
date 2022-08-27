@@ -16,6 +16,8 @@ import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.PurchasesViewModel;
 
+import java.util.Locale;
+
 public class PurchasesFragment extends Fragment {
     private ViewHolder vh;
     private PurchasesViewModel purchasesViewModel;
@@ -45,8 +47,8 @@ public class PurchasesFragment extends Fragment {
     }
 
     private void initStyling() {
-        vh.transitText.setText(PurchaseStatus.inTransit.getFullname());
-        vh.deliveredText.setText(PurchaseStatus.delivered.getFullname());
+        vh.transitText.setText(PurchaseStatus.inTransit.getFullname().toUpperCase());
+        vh.deliveredText.setText(PurchaseStatus.delivered.getFullname().toUpperCase());
         if (purchasesViewModel.getUserPurchaseHistoryInTransit().isEmpty()) {
             vh.transitTitle.setVisibility(View.GONE);
             vh.transitList.setVisibility(View.GONE);
