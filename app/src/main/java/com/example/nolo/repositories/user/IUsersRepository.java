@@ -14,8 +14,11 @@ public interface IUsersRepository {
     void signUp(Consumer<String> onUserSignedUp, String email, String password);
     void logIn(Consumer<String> onUserLoggedIn, String email, String password);
     void logOut();
+    void changePassword(Consumer<String> onUserChangePassword, String oldPassword, String newPassword);
     List<ItemVariant> getViewHistory();
     void addViewHistory(IItemVariant item);
+    List<Purchasable> getPurchaseHistory();
+    void addPurchaseHistory(List<Purchasable> purchasedItem);
     List<Purchasable> getCart();
     void addCart(IItemVariant cartItem, int quantity);
     void updateCart(List<Purchasable> cartItems);

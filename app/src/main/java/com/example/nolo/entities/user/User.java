@@ -28,15 +28,17 @@ public class User implements IUser {
     private String userAuthUid, email;
     private List<ItemVariant> viewHistory = new ArrayList<>();
     private List<Purchasable> cart = new ArrayList<>();
+    private List<Purchasable> purchaseHistory = new ArrayList<>();
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public User() {}
 
-    public User(List<ItemVariant> viewHistory, List<Purchasable> cart) {
+    public User(List<ItemVariant> viewHistory, List<Purchasable> cart, List<Purchasable> purchaseHistory) {
         this.viewHistory = viewHistory;
         this.cart = cart;
+        this.purchaseHistory = purchaseHistory;
     }
 
     @Override
@@ -82,6 +84,21 @@ public class User implements IUser {
         while (viewHistory.size() > MAX_VIEWED) {
             viewHistory.remove(MAX_VIEWED);
         }
+    }
+
+    @Override
+    public List<Purchasable> getPurchaseHistory() {
+        return purchaseHistory;
+    }
+
+    /**
+     * Add purchased items into purchase history at the top
+     *
+     * @param purchasedItem purchased items
+     */
+    @Override
+    public void addPurchaseHistory(List<Purchasable> purchasedItem) {
+        purchaseHistory.addAll(0, purchasedItem);
     }
 
     @Override
