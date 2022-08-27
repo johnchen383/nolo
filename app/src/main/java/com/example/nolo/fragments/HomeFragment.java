@@ -111,7 +111,6 @@ public class HomeFragment extends Fragment {
 
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
-        vh.indicator.setVisibility(View.INVISIBLE);
 
         LinearLayout.LayoutParams oldLayout = (LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams();
         LinearLayout.LayoutParams newLayout = new LinearLayout.LayoutParams(oldLayout.width, oldLayout.height);
@@ -126,15 +125,7 @@ public class HomeFragment extends Fragment {
     private void snapScroll() {
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
         objectAnimator.start();
-
-        if (panelIndex > 0) {
-            getActivity().getWindow().setStatusBarColor(Color.argb(255, 0, 0, 0));
-            setIndicatorStyles(panelIndex - 1);
-        } else {
-            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
-            vh.indicator.setVisibility(View.INVISIBLE);
-        }
-
+        updateStyling();
         historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
     }
 
@@ -167,6 +158,17 @@ public class HomeFragment extends Fragment {
 
     private void initStyling() {
         vh.searchSuggestionsList.setMinimumWidth(Display.getScreenWidth(vh.scrollView));
+        updateStyling();
+    }
+
+    private void updateStyling() {
+        if (panelIndex > 0) {
+            getActivity().getWindow().setStatusBarColor(Color.argb(255, 0, 0, 0));
+            setIndicatorStyles(panelIndex - 1);
+        } else {
+            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+            vh.indicator.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void initAdaptors() {
