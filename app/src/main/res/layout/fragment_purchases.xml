@@ -58,7 +58,6 @@
                         android:layout_marginLeft="8dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/yellow" />
-
                 </LinearLayout>
 
                 <ListView
