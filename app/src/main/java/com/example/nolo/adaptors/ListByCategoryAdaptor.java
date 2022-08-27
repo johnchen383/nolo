@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Transformation;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,11 +29,13 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class ListByCategoryAdaptor extends ArrayAdapter {
+public class ListByCategoryAdaptor extends ExpandableListView {
     private List<List<IItem>> categoryItems;
     private Context mContext;
     private int mLayoutID;
+    private boolean isExpanded;
 
 //    public class PhoneViewHolder {
 //        RecyclerView childItemsList;
@@ -93,6 +96,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
         this.categoryItems = categoryItems;
         this.mContext = context;
         this.mLayoutID = resource;
+        this.isExpanded = true;
     }
 
     @NonNull
@@ -217,12 +221,19 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
 
         vh.brandName.setText(items.get(0).getBrand().toUpperCase());
         setUpChildRecyclerView(vh.childItemsList, items, 0.4);
-        vh.brandName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                collapse(vh.childItemsList);
-            }
-        });
+//        vh.brandName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isExpanded)
+//                    vh.childItemsList.setVisibility(View.GONE);
+////                    collapse(vh.childItemsList);
+//                else
+//                    vh.childItemsList.setVisibility(View.VISIBLE);
+////                    expand(vh.childItemsList);
+//                isExpanded = !isExpanded;
+//                onExpandCollapse.accept(null);
+//            }
+//        });
 
         return currentListViewItem;
     }

@@ -16,6 +16,7 @@ import com.example.nolo.viewmodels.ListViewModel;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +31,7 @@ public class ListActivity extends BaseActivity {
     private ListViewModel listViewModel;
 
     private class ViewHolder {
-        ListView categoryItemsParentList;
+        ExpandableListView categoryItemsParentList;
         ImageView categoryHeader, appleImage, androidImage;
         ImageButton backButton;
         LinearLayout phoneToggle, appleBtn, androidBtn;
@@ -105,6 +106,10 @@ public class ListActivity extends BaseActivity {
         }
 
         vh.categoryHeader.setImageResource(i);
+    }
+
+    private void updateViewHeight(Void v) {
+        ListUtil.setDynamicHeight(vh.categoryItemsParentList);
     }
 
     private void establishAdaptor() {

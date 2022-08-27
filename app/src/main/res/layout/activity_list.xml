@@ -100,7 +100,7 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-        <ListView
+        <ExpandableListView
             android:id="@+id/category_item_parent_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
