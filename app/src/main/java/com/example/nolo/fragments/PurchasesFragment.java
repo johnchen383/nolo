@@ -5,12 +5,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
 import com.example.nolo.adaptors.PurchasableListAdaptor;
+import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.PurchasesViewModel;
 
@@ -22,6 +24,7 @@ public class PurchasesFragment extends Fragment {
 
         ListView transitList, deliveredList;
         LinearLayout transitTitle, deliveredTitle;
+        TextView transitText, deliveredText;
         RelativeLayout backBtn;
 
         public ViewHolder() {
@@ -29,6 +32,8 @@ public class PurchasesFragment extends Fragment {
             deliveredList = getView().findViewById(R.id.delivered_list);
             transitTitle = getView().findViewById(R.id.transit_title);
             deliveredTitle = getView().findViewById(R.id.delivered_title);
+            transitText = getView().findViewById(R.id.transit_text);
+            deliveredText = getView().findViewById(R.id.delivered_text);
             backBtn = getView().findViewById(R.id.back_btn);
         }
     }
@@ -40,6 +45,8 @@ public class PurchasesFragment extends Fragment {
     }
 
     private void initStyling() {
+        vh.transitText.setText(PurchaseStatus.inTransit.getFullname());
+        vh.deliveredText.setText(PurchaseStatus.delivered.getFullname());
         if (purchasesViewModel.getUserPurchaseHistoryInTransit().isEmpty()) {
             vh.transitTitle.setVisibility(View.GONE);
             vh.transitList.setVisibility(View.GONE);
