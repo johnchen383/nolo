@@ -59,6 +59,21 @@ public class Purchasable implements IPurchasable {
     }
 
     /**
+     * Set quantity (can be more than 1) to the purchasable item
+     *
+     * @param quantity Quantity
+     */
+    @Override
+    public void setToQuantity(int quantity) {
+        if (quantity < 0) {
+            Log.e("Purchasable", "Invalid increment");
+            return;
+        }
+
+        this.quantity = quantity;
+    }
+
+    /**
      * Increment or decrement the quantity of the purchasable item
      *
      * @param isIncrement Specify whether is it incrementing or decrementing

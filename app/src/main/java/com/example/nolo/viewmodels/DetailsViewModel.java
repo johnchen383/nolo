@@ -4,11 +4,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
@@ -161,7 +159,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public void addCart() {
-        this.purchasable.addToQuantity(quantity - 1);  // TODO: need to test
+        this.purchasable.setToQuantity(quantity);  // TODO: need to test
         AddCartItemUseCase.addCart(this.purchasable);
     }
 
