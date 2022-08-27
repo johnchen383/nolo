@@ -197,6 +197,12 @@ public class ItemVariant implements IItemVariant, Serializable {
     }
 
     @Override
+    public IItemVariant copy() {
+        return new ItemVariant(colour, itemId, categoryType, storeId, branchName,
+                (SpecsOption) storageOption.copy(), (SpecsOption) ramOption.copy());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ItemVariant that = (ItemVariant) o;

@@ -74,7 +74,7 @@ public class Purchasable implements IPurchasable {
 
     @Override
     public IPurchasable copy() {
-        return new Purchasable(itemVariant, quantity);
+        return new Purchasable((ItemVariant) itemVariant.copy(), quantity);
     }
 
     @Override

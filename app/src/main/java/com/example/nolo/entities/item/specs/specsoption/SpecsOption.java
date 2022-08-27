@@ -28,6 +28,11 @@ public class SpecsOption implements ISpecsOption, Serializable {
     }
 
     @Override
+    public ISpecsOption copy() {
+        return new SpecsOption(size, additionalPrice);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SpecsOption that = (SpecsOption) o;
