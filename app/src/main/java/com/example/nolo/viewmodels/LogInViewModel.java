@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public class LogInViewModel extends ViewModel implements ILogInViewModel {
     @Override
-     public void logIn(Consumer<String> userLoggedIn, String email, String password) {
-         LogInUseCase.logIn(userLoggedIn, email, password);
-     }
+    public void logIn(Consumer<String> userLoggedIn, String email, String password) {
+        LogInUseCase.logIn(userLoggedIn, email, password);
+    }
 }
