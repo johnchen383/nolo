@@ -119,6 +119,7 @@ public class HomeFragment extends Fragment {
 
         initAdaptors();
         initListeners();
+        initStyling();
     }
 
     private void snapScroll() {
@@ -161,6 +162,10 @@ public class HomeFragment extends Fragment {
         }
         return false;
 
+    }
+
+    private void initStyling() {
+        vh.searchSuggestionsList.setMinimumWidth(Display.getScreenWidth(vh.scrollView));
     }
 
     private void initAdaptors() {
@@ -395,7 +400,7 @@ public class HomeFragment extends Fragment {
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(currentView) / 2 / 120;
+        return Display.getScreenHeight(currentView) / 2 / 200;
     }
 
     private String getColourInHexFromResourceId(int rId) {

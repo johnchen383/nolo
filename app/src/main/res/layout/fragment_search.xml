@@ -30,8 +30,6 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/font_h2"
-        android:layout_marginEnd="@dimen/font_h2"
         android:layout_marginTop="70dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/navy"
