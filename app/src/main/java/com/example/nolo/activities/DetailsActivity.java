@@ -124,9 +124,14 @@ public class DetailsActivity extends BaseActivity {
     private void updateCarouselImages() {
         List<String> uris = detailsViewModel.getImageUrisByColour();
 
-        for (int pos = 0; pos < vh.carousel.getChildCount(); pos++) {
-            RecyclerView rView = (RecyclerView) vh.carousel.getChildAt(0);
+        RecyclerView rView = (RecyclerView) vh.carousel.getChildAt(0);
+        rView.getRecycledViewPool().setMaxRecycledViews(1, 0);
+
+        for (int pos = 0; pos < rView.getChildCount(); pos++) {
             RecyclerView.ViewHolder vh = rView.findViewHolderForAdapterPosition(pos);
+
+//            if (vh == null) return;
+
             ImageView img = vh.itemView.findViewById(R.id.img);
 
             int i = getResources().getIdentifier(
@@ -134,6 +139,8 @@ public class DetailsActivity extends BaseActivity {
                     getPackageName());
 
             img.setImageResource(i);
+
+            return;
         }
     }
 
@@ -176,6 +183,8 @@ public class DetailsActivity extends BaseActivity {
         vh.recItemsList.setLayoutManager(layoutManager);
         ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43);
         vh.recItemsList.setAdapter(featuredItemsAdaptor);
+
+//        initCarouselAdaptor();
     }
 
     @Override
@@ -338,11 +347,15 @@ public class DetailsActivity extends BaseActivity {
                         if (currentX < historicX) {
                             imgIndex++;
                             if (imgIndex > maxIndex) imgIndex = maxIndex;
+
                             vh.carousel.setCurrentItem(imgIndex);
+//                            updateCarouselImages();
                         } else if (currentX > historicX) {
                             imgIndex--;
                             if (imgIndex < 0) imgIndex = 0;
+
                             vh.carousel.setCurrentItem(imgIndex);
+//                            updateCarouselImages();
                         } else {
                             isExpanded = !isExpanded;
                             setDynamicHeights();
@@ -384,7 +397,7 @@ public class DetailsActivity extends BaseActivity {
 
         if (!displayedColour.equals(itemVariant.getColour())) {
             //colour changed
-            updateCarouselImages();
+            initCarouselAdaptor();
             displayedColour = itemVariant.getColour();
         }
     }
