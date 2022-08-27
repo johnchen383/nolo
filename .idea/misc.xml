@@ -78,6 +78,7 @@
         <entry key="app/src/main/res/layout/fragment_purchases.xml" value="0.3661473121494055" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.30512820512820515" />
         <entry key="app/src/main/res/layout/item_details_customisation.xml" value="0.27760416666666665" />
+        <entry key="app/src/main/res/layout/item_home_indicator.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_list_cart.xml" value="0.30512820512820515" />
         <entry key="app/src/main/res/layout/item_list_purchaseable.xml" value="0.34889984130859375" />
         <entry key="app/src/main/res/layout/item_search_bar.xml" value="0.4395261036494795" />

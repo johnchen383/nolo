@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -340,16 +341,17 @@ public class HomeFragment extends Fragment {
         vh.indicator.setVisibility(View.VISIBLE);
 
         for (int pos = 0; pos < vh.indicator.getChildCount(); pos++) {
-            TextView indicatorEl = (TextView) getViewByPosition(pos, vh.indicator);
+            RelativeLayout indicatorEl = (RelativeLayout) getViewByPosition(pos, vh.indicator);
+            TextView indicatorText = indicatorEl.findViewById(R.id.clickable);
 
             if (pos == index) {
-                indicatorEl.setTypeface(indicatorEl.getTypeface(), Typeface.BOLD);
-                indicatorEl.setTextColor(Color.argb(opacitySel, 255, 255, 255));
+                indicatorText.setTypeface(indicatorText.getTypeface(), Typeface.BOLD);
+                indicatorText.setTextColor(Color.argb(opacitySel, 255, 255, 255));
                 continue;
             }
 
-            indicatorEl.setTypeface(indicatorEl.getTypeface(), Typeface.NORMAL);
-            indicatorEl.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
+            indicatorText.setTypeface(indicatorText.getTypeface(), Typeface.NORMAL);
+            indicatorText.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
         }
     }
 
