@@ -7,9 +7,10 @@
     <color name="faint_white">#C2C6C7</color>
     <color name="light_grey">#7B8286</color>
     <color name="light_brown">#BCAAA4</color>
-    <color name="green">#A0EC7C</color>
     <color name="light_blue">#7D8E96</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="red">#E57373</color>
+    <color name="yellow">#FDD835</color>
+    <color name="green">#7CB342</color>
     <color name="transparent_grey">#26000000</color>
 </resources>

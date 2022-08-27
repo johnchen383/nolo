@@ -64,7 +64,7 @@
 
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/payments_btn"
+                    android:id="@+id/purchases_btn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/touch_target_min"
                     android:layout_marginTop="12dp"
@@ -74,7 +74,7 @@
                         style="@style/TextStroke.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PAYMENT CARDS"
+                        android:text="PAST PURCHASES"
                         android:textSize="@dimen/font_body1" />
 
                     <ImageView
