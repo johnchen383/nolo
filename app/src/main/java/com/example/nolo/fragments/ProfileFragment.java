@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.LogInActivity;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
 import com.example.nolo.viewmodels.ProfileViewModel;
@@ -42,6 +43,11 @@ public class ProfileFragment extends Fragment {
     private void initListeners() {
         vh.changePasswordBtn.setOnClickListener(v -> {
             replaceFragment(ChangePasswordFragment.class);
+        });
+
+        vh.signoutBtn.setOnClickListener(v -> {
+            profileViewModel.logOut();
+            startActivity(new Intent(getActivity(), LogInActivity.class), Animation.Fade(getActivity()).toBundle());
         });
     }
 
