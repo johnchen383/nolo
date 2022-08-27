@@ -28,15 +28,17 @@ public class User implements IUser {
     private String userAuthUid, email;
     private List<ItemVariant> viewHistory = new ArrayList<>();
     private List<Purchasable> cart = new ArrayList<>();
+    private List<Purchasable> purchaseHistory = new ArrayList<>();
 
     /**
      * 0 argument constructor for convert Firebase data to this class
      */
     public User() {}
 
-    public User(List<ItemVariant> viewHistory, List<Purchasable> cart) {
+    public User(List<ItemVariant> viewHistory, List<Purchasable> cart, List<Purchasable> purchaseHistory) {
         this.viewHistory = viewHistory;
         this.cart = cart;
+        this.purchaseHistory = purchaseHistory;
     }
 
     @Override
@@ -85,6 +87,21 @@ public class User implements IUser {
     }
 
     @Override
+    public List<Purchasable> getPurchaseHistory() {
+        return purchaseHistory;
+    }
+
+    /**
+     * Add purchased items into purchase history at the top
+     *
+     * @param purchasedItem purchased items
+     */
+    @Override
+    public void addPurchaseHistory(List<Purchasable> purchasedItem) {
+        purchaseHistory.addAll(0, purchasedItem);
+    }
+
+    @Override
     public List<Purchasable> getCart() {
         return cart;
     }
@@ -92,16 +109,16 @@ public class User implements IUser {
     /**
      * Add selected item with quantity (Purchasable) into the user's cart
      *
-     * @param purchasable selected item with quantity (Purchasable)
+     * @param itemVariant selected item with quantity (Purchasable)
      */
     @Override
-    public void addCart(IPurchasable purchasable) {
-        IPurchasable cartItem = purchasable.copy();
+    public void addCart(IItemVariant itemVariant, int quantity) {
+        IPurchasable cartItem = new Purchasable((ItemVariant) itemVariant.copy(), quantity);
 
         //if already in cart, simply increment quantity of that in cart
         for (IPurchasable cItem : cart) {
             if (cItem.equals(cartItem)) {
-                cItem.addToQuantity(cartItem.getQuantity());
+                cItem.addToQuantity(quantity);
                 return;
             }
         }

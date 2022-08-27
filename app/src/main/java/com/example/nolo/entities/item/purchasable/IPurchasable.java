@@ -6,7 +6,5 @@ public interface IPurchasable {
     ItemVariant getItemVariant();
     int getQuantity();
     void addToQuantity(int quantity);
-    void setToQuantity(int quantity);
     void incrementOrDecrementQuantity(boolean isIncrement);
-    IPurchasable copy();
 }

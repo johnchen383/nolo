@@ -59,21 +59,6 @@ public class Purchasable implements IPurchasable {
     }
 
     /**
-     * Set quantity (can be more than 1) to the purchasable item
-     *
-     * @param quantity Quantity
-     */
-    @Override
-    public void setToQuantity(int quantity) {
-        if (quantity < 0) {
-            Log.e("Purchasable", "Invalid increment");
-            return;
-        }
-
-        this.quantity = quantity;
-    }
-
-    /**
      * Increment or decrement the quantity of the purchasable item
      *
      * @param isIncrement Specify whether is it incrementing or decrementing
@@ -83,13 +68,10 @@ public class Purchasable implements IPurchasable {
         if (isIncrement) {
             this.quantity++;
         } else {
-            this.quantity--;
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
         }
-    }
-
-    @Override
-    public IPurchasable copy() {
-        return new Purchasable((ItemVariant) itemVariant.copy(), quantity);
     }
 
     @Override
