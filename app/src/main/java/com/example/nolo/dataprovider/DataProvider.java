@@ -780,7 +780,7 @@ public class DataProvider {
          */
         colours = new ArrayList<>(Arrays.asList(
                 new Colour("grey", "#787878"),
-                new Colour("white", "#000000")
+                new Colour("white", "#FFFFFF")
         ));
         itemStoreVariant = new ArrayList<>(Arrays.asList(
                 new StoreVariant("3xyrxbaFJvwdEhYcnP8g", colours, 3311),
@@ -1213,7 +1213,7 @@ public class DataProvider {
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
                 "Sony WH-1000XM4"
         ));
-        items.add(new Phone("Samsung Galaxy S22 Ultra",
+        items.add(new Phone("Galaxy S22 Ultra",
                 "Samsung",
                 specs,
                 itemStoreVariant,
@@ -1285,7 +1285,7 @@ public class DataProvider {
                 "Xiaomi Mi 20000mAh 50W Fast Charging Power Bank",
                 "Sony WH-1000XM4"
         ));
-        items.add(new Phone("Samsung Galaxy S22",
+        items.add(new Phone("Galaxy S22",
                 "Samsung",
                 specs,
                 itemStoreVariant,
