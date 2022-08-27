@@ -30,10 +30,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="35dp"
-        android:paddingHorizontal="@dimen/login_margin_horizontal"
+        android:paddingHorizontal="@dimen/purchasable_list_horizontal_margin"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/transit_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -60,6 +61,7 @@
             android:layout_marginTop="15dp"/>
 
         <LinearLayout
+            android:id="@+id/delivered_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

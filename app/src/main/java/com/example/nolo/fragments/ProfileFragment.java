@@ -31,11 +31,12 @@ public class ProfileFragment extends Fragment {
     private class ViewHolder {
         TextView emailText;
         MaterialButton signoutBtn;
-        RelativeLayout changePasswordBtn;
+        RelativeLayout changePasswordBtn, purchasesBtn;
 
         public ViewHolder() {
             emailText = getView().findViewById(R.id.email_text);
             changePasswordBtn = getView().findViewById(R.id.change_password_btn);
+            purchasesBtn = getView().findViewById(R.id.purchases_btn);
             signoutBtn = getView().findViewById(R.id.sign_out_btn);
         }
     }
@@ -43,6 +44,10 @@ public class ProfileFragment extends Fragment {
     private void initListeners() {
         vh.changePasswordBtn.setOnClickListener(v -> {
             replaceFragment(ChangePasswordFragment.class);
+        });
+
+        vh.purchasesBtn.setOnClickListener(v -> {
+            replaceFragment(PurchasesFragment.class);
         });
 
         vh.signoutBtn.setOnClickListener(v -> {

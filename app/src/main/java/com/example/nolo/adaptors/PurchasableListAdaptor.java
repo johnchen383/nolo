@@ -66,11 +66,13 @@ public class PurchasableListAdaptor extends ArrayAdapter {
     private class CartViewHolder extends ViewHolder {
         TextView quantityText;
         RelativeLayout binBtn;
+        LinearLayout quantityControl;
         RelativeLayout decrementBtn, incrementBtn;
 
         public CartViewHolder(View v) {
             super(v);
             binBtn = v.findViewById(R.id.bin_btn);
+            quantityControl = v.findViewById(R.id.quantity_control);
             decrementBtn = v.findViewById(R.id.decrement_btn);
             incrementBtn = v.findViewById(R.id.increment_btn);
             quantityText = v.findViewById(R.id.quantity_text);
@@ -182,10 +184,10 @@ public class PurchasableListAdaptor extends ArrayAdapter {
             update.accept(mItems);
         });
 
-        vh.quantityText.setVisibility(View.VISIBLE);
+        vh.quantityControl.setVisibility(View.VISIBLE);
+
         vh.quantityText.setText(String.valueOf(item.getQuantity()));
 
-        vh.decrementBtn.setVisibility(View.VISIBLE);
         vh.decrementBtn.setOnClickListener(v -> {
             for (Purchasable p : mItems) {
                 if (p.equals(item)) {
@@ -195,7 +197,6 @@ public class PurchasableListAdaptor extends ArrayAdapter {
             update.accept(mItems);
         });
 
-        vh.incrementBtn.setVisibility(View.VISIBLE);
         vh.incrementBtn.setOnClickListener(v -> {
             for (Purchasable p : mItems) {
                 if (p.equals(item)) {
