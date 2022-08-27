@@ -176,15 +176,16 @@ public class DataProvider {
         List<IUser> users = new ArrayList<>();
         List<ItemVariant> history = new ArrayList<>();
         List<Purchasable> cart = new ArrayList<>();
+        List<Purchasable> purchase = new ArrayList<>();
         IUser u;
 
         history.add(new ItemVariant());
         cart.add(new Purchasable());
-        u = new User(history, cart);
+        u = new User(history, cart, purchase);
         u.setEmail("john.bm.chen@gmail.com");
         users.add(u);
 
-        u = new User(history, cart);
+        u = new User(history, cart, purchase);
         u.setEmail("nick@gmail.com");
         users.add(u);
 

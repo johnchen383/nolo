@@ -1,10 +1,12 @@
 package com.example.nolo.activities;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,36 +32,39 @@ import com.example.nolo.entities.item.colour.Colour;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.entities.user.IUser;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.enums.SpecsType;
-import com.example.nolo.interactors.user.AddViewedItemUseCase;
-import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.List;
 
 public class DetailsActivity extends BaseActivity {
     private DetailsViewModel detailsViewModel;
 
+    private final int ANIMATION_INTERVAL = 250;
     private ViewHolder vh;
     private int imgIndex;
     private int maxIndex;
     private float historicX;
+    private float historicY;
     private double heightFactor;
     private Colour displayedColour;
+    private boolean isExpanded;
 
     private class ViewHolder {
         HorizontalScrollView transparentContainer;
         LinearLayout detailsContainer, recContainer, ramContainer, storageContainer, specs;
         TextView itemTitle, summaryText, colourTitle, quantityText, storeName, priceText;
         ListView specsList;
+        TabLayout dots;
 
-        RelativeLayout decrementBtn, incrementBtn;
+        RelativeLayout decrementBtn, incrementBtn, carouselContainer;
         RecyclerView coloursList, ramList, storageList, recItemsList;
         ImageView closeBtn, storesBtn;
         MaterialButton addCartBtn;
@@ -93,6 +98,8 @@ public class DetailsActivity extends BaseActivity {
             recItemsList = findViewById(R.id.rec_items_list);
             recContainer = findViewById(R.id.rec_container);
             summaryText = findViewById(R.id.summary_text);
+            dots = findViewById(R.id.dots);
+            carouselContainer = findViewById(R.id.carousel_container);
         }
     }
 
@@ -106,6 +113,28 @@ public class DetailsActivity extends BaseActivity {
         vh.carousel.setAdapter(pagerAdapter);
         vh.carousel.setCurrentItem(imgIndex, false);
         displayedColour = detailsViewModel.getVariantColour();
+
+
+        new TabLayoutMediator(vh.dots, vh.carousel, (tab, position) ->
+        {
+        }
+        ).attach();
+    }
+
+    private void updateCarouselImages() {
+        List<String> uris = detailsViewModel.getImageUrisByColour();
+
+        for (int pos = 0; pos < vh.carousel.getChildCount(); pos++) {
+            RecyclerView rView = (RecyclerView) vh.carousel.getChildAt(0);
+            RecyclerView.ViewHolder vh = rView.findViewHolderForAdapterPosition(pos);
+            ImageView img = vh.itemView.findViewById(R.id.img);
+
+            int i = getResources().getIdentifier(
+                    uris.get(pos), "drawable",
+                    getPackageName());
+
+            img.setImageResource(i);
+        }
     }
 
     private void initAdaptors() {
@@ -163,13 +192,55 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (isExpanded){
+            isExpanded = false;
+            setDynamicHeights();
+            return;
+        }
+
         super.onBackPressed();
-        AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
+        detailsViewModel.addViewHistory();
+    }
+
+
+    private void setDynamicHeights() {
+        int oldHeight = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
+
+        if (isExpanded) {
+            heightFactor = 1;
+        } else {
+            switch (detailsViewModel.getItemCategory()) {
+                case phones:
+                    heightFactor = 0.55;
+                    break;
+                case laptops:
+                    heightFactor = 0.45;
+                    break;
+                case accessories:
+                default:
+                    heightFactor = 0.58;
+            }
+        }
+
+        int newHeight = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
+
+        ValueAnimator anim = ValueAnimator.ofFloat(oldHeight, newHeight);
+        anim.addUpdateListener(valueAnimator -> {
+            float val = (Float) valueAnimator.getAnimatedValue();
+            FrameLayout.LayoutParams newParams = (FrameLayout.LayoutParams) vh.carouselContainer.getLayoutParams();
+            newParams.height = (int) val;
+            vh.carouselContainer.setLayoutParams(newParams);
+
+            LinearLayout.LayoutParams newParams2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
+            newParams2.height = (int) val;
+            vh.transparentContainer.setLayoutParams(newParams2);
+        });
+
+        anim.setDuration(ANIMATION_INTERVAL);
+        anim.start();
     }
 
     private void initStyling() {
-        heightFactor = 0.45;
-
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
         vh.storeName.setText(detailsViewModel.getStoreBranchName());
@@ -179,26 +250,17 @@ public class DetailsActivity extends BaseActivity {
                 initSpecsStyling(CategoryType.laptops);
                 break;
             case phones:
-                heightFactor = 0.55;
                 vh.ramContainer.setVisibility(View.GONE);
                 initSpecsStyling(CategoryType.phones);
                 break;
             case accessories:
-                heightFactor = 0.58;
                 vh.ramContainer.setVisibility(View.GONE);
                 vh.storageContainer.setVisibility(View.GONE);
                 initSpecsStyling(CategoryType.accessories);
                 break;
         }
 
-        LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
-        params2.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
-        vh.transparentContainer.setLayoutParams(params2);
-
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) vh.carousel.getLayoutParams();
-        params.height = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
-        vh.carousel.setLayoutParams(params);
-
+        setDynamicHeights();
         setDynamicStyling();
     }
 
@@ -223,6 +285,7 @@ public class DetailsActivity extends BaseActivity {
             Intent intent = new Intent(this, MapActivity.class);
             intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) detailsViewModel.getItemVariant());
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         vh.addCartBtn.setOnClickListener(v -> {
@@ -231,16 +294,40 @@ public class DetailsActivity extends BaseActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
-            AddViewedItemUseCase.addViewHistory(detailsViewModel.getItemVariant());
+            if (isExpanded){
+                isExpanded = false;
+                setDynamicHeights();
+                return;
+            }
+
+            detailsViewModel.addViewHistory();
 
             super.onBackPressed();
             this.finish();
         });
 
+        vh.scrollContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        historicY = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        float currentY = motionEvent.getY();
+
+                        if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
+                            isExpanded = !isExpanded;
+                            setDynamicHeights();
+                        }
+                }
+                return false;
+            }
+        });
+
         vh.transparentContainer.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                System.out.println("SWIPE: " + motionEvent.getAction());
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         historicX = motionEvent.getX();
@@ -252,12 +339,13 @@ public class DetailsActivity extends BaseActivity {
                             imgIndex++;
                             if (imgIndex > maxIndex) imgIndex = maxIndex;
                             vh.carousel.setCurrentItem(imgIndex);
-                            System.out.println("SWIPE: " + imgIndex);
                         } else if (currentX > historicX) {
                             imgIndex--;
                             if (imgIndex < 0) imgIndex = 0;
                             vh.carousel.setCurrentItem(imgIndex);
-                            System.out.println("SWIPE: " + imgIndex);
+                        } else {
+                            isExpanded = !isExpanded;
+                            setDynamicHeights();
                         }
 
                 }
@@ -273,6 +361,17 @@ public class DetailsActivity extends BaseActivity {
                 } else {
                     vh.closeBtn.setVisibility(View.VISIBLE);
                 }
+
+                if (vh.scrollContainer.getScrollY() != 0) {
+                    vh.dots.setVisibility(View.INVISIBLE);
+
+                    if (isExpanded) {
+                        isExpanded = false;
+                        setDynamicHeights();
+                    }
+                } else {
+                    vh.dots.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -285,7 +384,8 @@ public class DetailsActivity extends BaseActivity {
 
         if (!displayedColour.equals(itemVariant.getColour())) {
             //colour changed
-            initCarouselAdaptor();
+            updateCarouselImages();
+            displayedColour = itemVariant.getColour();
         }
     }
 
@@ -298,6 +398,7 @@ public class DetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         vh = new ViewHolder();
+        isExpanded = false;
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -340,5 +441,11 @@ public class DetailsActivity extends BaseActivity {
                         fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
         vh.specsList.setAdapter(detailsSpecsAdaptor);
         ListUtil.setDynamicHeight(vh.specsList);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 }

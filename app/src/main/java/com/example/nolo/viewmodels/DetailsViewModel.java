@@ -4,11 +4,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.colour.Colour;
-import com.example.nolo.entities.item.colour.IColour;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.specs.ISpecs;
-import com.example.nolo.entities.item.specs.Specs;
 import com.example.nolo.entities.item.specs.specsoption.SpecsOption;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
@@ -30,7 +28,6 @@ public class DetailsViewModel extends ViewModel {
     public static IItemVariant itemVariantFromMap = null;
 
     private IItem item;
-    private IPurchasable purchasable;
 
     private StoreVariant getStoreVariant() {
         String variantStoreId = itemVariant.getStoreId();
@@ -44,7 +41,6 @@ public class DetailsViewModel extends ViewModel {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
         this.quantity = 1;
-        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, this.quantity);
     }
 
     public List<ItemVariant> getRecItemVariants() {
@@ -142,10 +138,6 @@ public class DetailsViewModel extends ViewModel {
         return item.getSpecs();
     }
 
-    public IPurchasable getPurchasable() {
-        return purchasable;
-    }
-
     public void incrementOrDecrementQuantity(boolean isIncrement) {
         if (isIncrement) {
             this.quantity++;
@@ -161,8 +153,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public void addCart() {
-        this.purchasable.addToQuantity(quantity - 1);  // TODO: need to test
-        AddCartItemUseCase.addCart(this.purchasable);
+        AddCartItemUseCase.addCart(this.itemVariant, quantity);
     }
 
     public void addViewHistory() {

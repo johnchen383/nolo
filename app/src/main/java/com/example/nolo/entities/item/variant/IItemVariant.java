@@ -21,4 +21,5 @@ public interface IItemVariant {
     String getDisplayPrice();
     double getNumericalPrice();
     String getDisplayImage();
+    IItemVariant copy();
 }

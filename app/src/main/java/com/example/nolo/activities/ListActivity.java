@@ -148,4 +148,10 @@ public class ListActivity extends BaseActivity {
         vh.categoryItemsParentList.setAdapter(categoryListAdaptor);
         ListUtil.setDynamicHeight(vh.categoryItemsParentList);
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
+    }
 }

@@ -357,4 +357,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         anim.setDuration(ANIMATION_INTERVAL);
         anim.start();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
+    }
 }
