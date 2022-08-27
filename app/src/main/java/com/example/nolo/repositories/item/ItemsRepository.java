@@ -242,45 +242,4 @@ public class ItemsRepository implements IItemsRepository {
         reloadItemsIfExpired();
         return result;
     }
-
-    /**
-     * Get list of Items by the search terms
-     *
-     * @param searchTerm Search terms
-     * @return List of Items if Items' names contain search term;
-     *         Otherwise empty list
-     */
-    @Override
-    public List<IItem> getSearchSuggestions(String searchTerm) {
-        List<IItem> result = new ArrayList<>();
-        for (IItem item : allItemsRepo) {
-            if (item.getName().toLowerCase().contains(searchTerm.toLowerCase())) {
-                result.add(item);
-            }
-        }
-
-        reloadItemsIfExpired();
-        return result;
-    }
-
-    /**
-     * Get list of Accessory ItemVariant that are recommended of a specific Item
-     *
-     * @param itemId Specific Item ID
-     * @return List of Accessory ItemVariant
-     */
-    @Override
-    public List<ItemVariant> getAccessRecommendationsByItemId(String itemId) {
-        List<ItemVariant> result = new ArrayList<>();
-        List<String> recIds = getItemById(itemId).getRecommendedAccessoryIds();
-
-        for (IItem item : accessoriesRepo) {
-            if (recIds.contains(item.getItemId())) {
-                result.add((ItemVariant) item.getDefaultItemVariant());
-            }
-        }
-
-        reloadItemsIfExpired();
-        return result;
-    }
 }

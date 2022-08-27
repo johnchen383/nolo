@@ -1,8 +1,10 @@
 package com.example.nolo.interactors.item;
 
+import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
-import com.example.nolo.repositories.item.ItemsRepository;
+import com.example.nolo.enums.CategoryType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GetAccessRecommendationsByItemIdUseCase {
@@ -13,6 +15,16 @@ public class GetAccessRecommendationsByItemIdUseCase {
      * @return List of Accessory ItemVariant
      */
     public static List<ItemVariant> getAccessRecommendationsByItemId(String itemId) {
-        return ItemsRepository.getInstance().getAccessRecommendationsByItemId(itemId);
+        List<IItem> accessories = GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories);
+        List<String> recIds = GetItemByIdUseCase.getItemById(itemId).getRecommendedAccessoryIds();
+        List<ItemVariant> result = new ArrayList<>();
+
+        for (IItem item : accessories) {
+            if (recIds.contains(item.getItemId())) {
+                result.add((ItemVariant) item.getDefaultItemVariant());
+            }
+        }
+
+        return result;
     }
 }
