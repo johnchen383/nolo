@@ -175,6 +175,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         updateFields();
         updateMarkers();
+        updateColour();
     }
 
     private void updateMarkers() {
