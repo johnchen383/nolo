@@ -90,8 +90,7 @@ public class ListActivity extends BaseActivity {
             establishAdaptor();
         });
 
-        // TODO: change the divider height in phone list here
-        vh.categoryItemsParentList.setDividerHeight(Display.dpToPx(-20, this));
+        vh.categoryItemsParentList.setDividerHeight(Display.dpToPx(-30, this));
     }
 
     private void initStyling() {
