@@ -123,7 +123,7 @@
                             android:textSize="@dimen/font_body1" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:orientation="vertical" >
