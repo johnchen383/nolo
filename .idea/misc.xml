@@ -6,7 +6,10 @@
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3333333333333333" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable-v24/nav_icon_search.xml" value="0.19166666666666668" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable-v24/nav_icons_search.xml" value="0.19166666666666668" />
+        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/custom_bordered_ripple.xml" value="0.203125" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/default_dot.xml" value="0.121484375" />
+        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/details_bar.xml" value="0.203125" />
+        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/details_spec_tag.xml" value="0.203125" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/dot_selector.xml" value="0.121484375" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/home_categories_btn.xml" value="0.2703125" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/drawable/home_categories_btn_border.xml" value="0.2703125" />
@@ -30,7 +33,7 @@
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_list.xml" value="0.3333333333333333" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_main.xml" value="0.3080513418903151" />
-        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_map.xml" value="0.22" />
+        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_map.xml" value="0.16666666666666666" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_search.xml" value="0.17552083333333332" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_signup.xml" value="0.3333333333333333" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/activity_splash.xml" value="0.3333333333333333" />
@@ -41,6 +44,7 @@
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/fragment_profile.xml" value="0.1286231884057971" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/fragment_search.xml" value="0.1286231884057971" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_compact.xml" value="0.4466666666666667" />
+        <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_details_colour.xml" value="0.1" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_home_category.xml" value="0.3333333333333333" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_home_featured.xml" value="0.3333333333333333" />
         <entry key="..\:/Development/Java/Android/nolo/app/src/main/res/layout/item_home_indicator.xml" value="0.109375" />
