@@ -10,6 +10,7 @@ import com.example.nolo.enums.PhoneOs;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.ListViewModel;
 
@@ -89,6 +90,8 @@ public class ListActivity extends BaseActivity {
             listViewModel.setPhoneOs(PhoneOs.ios);
             establishAdaptor();
         });
+
+        vh.categoryItemsParentList.setDividerHeight(Display.dpToPx(-30, this));
     }
 
     private void initStyling() {

@@ -2,7 +2,6 @@ package com.example.nolo.activities;
 
 import android.Manifest;
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,12 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
+import com.example.nolo.adaptors.MapColourOverlayAdaptor;
+import com.example.nolo.adaptors.MapColourOverlayDecoration;
 import com.example.nolo.entities.item.storevariants.IStoreVariant;
 import com.example.nolo.entities.item.storevariants.StoreVariant;
 import com.example.nolo.entities.item.variant.IItemVariant;
-import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.entities.store.Branch;
 import com.example.nolo.entities.store.IBranch;
 import com.example.nolo.entities.store.IStore;
@@ -68,6 +70,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         ImageView img;
         TextView title;
         MaterialButton branchBtn;
+        RecyclerView coloursList;
 
         public ViewHolder() {
             mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -79,6 +82,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             price = findViewById(R.id.price);
             title = findViewById(R.id.title);
             branchBtn = findViewById(R.id.branch_btn);
+            coloursList = findViewById(R.id.colours_list);
         }
     }
 
@@ -94,6 +98,10 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         vh.title.setText(variant.getTitle());
 
         vh.modalHeader.getLayoutParams().height = (int) (Display.getScreenHeight(vh.modalHeader) * 0.1);
+
+        LinearLayoutManager coloursLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        vh.coloursList.setLayoutManager(coloursLayoutManager);
+        vh.coloursList.addItemDecoration(new MapColourOverlayDecoration());
     }
 
     private void initListeners() {
@@ -167,6 +175,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         updateFields();
         updateMarkers();
+        updateColour();
     }
 
     private void updateMarkers() {
@@ -290,6 +299,14 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         }
     }
 
+    private void updateColour() {
+        for (IStoreVariant storeVariant : storeVariants) {
+            if (storeVariant.getStoreId().equals(variant.getStoreId())) {
+                vh.coloursList.setAdapter(new MapColourOverlayAdaptor(this, storeVariant.getColours(), variant));
+            }
+        }
+    }
+
     private boolean onMarkerClick(final Marker marker) {
         if (!isModalOpen) {
             toggleModal();
@@ -302,6 +319,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         if (branchName != null && storeId != null) {
             variant.setBranchName(branchName);
             variant.setStoreId(storeId);
+
+            updateColour();
 
             updateFields();
             activeMarker = marker;
