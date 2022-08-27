@@ -10,7 +10,6 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -111,11 +110,6 @@ public class HomeFragment extends Fragment {
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
         vh.indicator.setVisibility(View.INVISIBLE);
-
-//        ViewGroup.LayoutParams a = vh.homeLogo.getLayoutParams();
-//        LinearLayout.LayoutParams b = new LinearLayout.LayoutParams(a.width, a.height);
-//        b.setMargins(a.);
-//        vh
 
         initAdaptors();
         initListeners();
