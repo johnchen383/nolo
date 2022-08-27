@@ -57,7 +57,8 @@
         <ListView
             android:id="@+id/transit_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginTop="15dp"/>
 
         <LinearLayout
@@ -85,9 +86,14 @@
         <ListView
             android:id="@+id/delivered_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginTop="15dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/navy" />
     </LinearLayout>
 
 </LinearLayout>
