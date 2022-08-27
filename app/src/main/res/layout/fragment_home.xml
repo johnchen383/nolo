@@ -32,10 +32,11 @@
 
                         <LinearLayout
                             android:id="@+id/search_layout_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/touch_target_min"
                             android:layout_gravity="center"
-                            android:layout_marginTop="48dp"
+                            android:gravity="center"
+                            android:layout_marginTop="30dp"
                             android:orientation="horizontal">
 
                             <ImageView
