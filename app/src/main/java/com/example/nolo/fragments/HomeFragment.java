@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
     private final int SNAP_DURATION = 300;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
-    private View currentView;
+    private View currentView; //TODO: necessary??
     private float historicY = 0;
     private int panelIndex = 0;
 
@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initAdaptors();
+        init();
     }
 
     @Override
@@ -109,12 +109,16 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
+        init();
+    }
+
+    private void init(){
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
         LinearLayout.LayoutParams oldLayout = (LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams();
         LinearLayout.LayoutParams newLayout = new LinearLayout.LayoutParams(oldLayout.width, oldLayout.height);
-        newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) (Display.getScreenHeightInDp(view) * 0.2));
+        newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) (Display.getScreenHeightInDp(vh.initialView) * 0.2));
         vh.homeLogo.setLayoutParams(newLayout);
 
         initAdaptors();
