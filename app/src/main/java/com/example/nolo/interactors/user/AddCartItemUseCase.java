@@ -8,6 +8,7 @@ public class AddCartItemUseCase {
      * Adds cart item to cart of current user, and pushes to firebase
      *
      * @param cartItem
+     * @param quantity
      */
     public static void addCart(IItemVariant cartItem, int quantity) {
         UsersRepository.getInstance().addCart(cartItem, quantity);
