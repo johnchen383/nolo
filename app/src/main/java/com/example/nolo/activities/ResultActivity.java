@@ -248,4 +248,10 @@ public class ResultActivity extends BaseActivity {
             vh.deleteBtn.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
+    }
 }

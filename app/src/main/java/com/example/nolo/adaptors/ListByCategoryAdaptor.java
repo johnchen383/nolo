@@ -1,5 +1,6 @@
 package com.example.nolo.adaptors;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -144,7 +145,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) item.getDefaultItemVariant());
-                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+                mContext.startActivity(intent);
             }
         });
 
@@ -166,7 +167,11 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
 
         int index = 0;
 
-        if (items.size() < 1) return currentListViewItem;
+        if (items.size() < 1) {
+            vh.itemClickable.setVisibility(View.GONE);
+            vh.itemClickable2.setVisibility(View.GONE);
+            return currentListViewItem;
+        }
 
         vh.title.setText(items.get(index).getName());
         vh.price.setText(items.get(index).getDefaultItemVariant().getDisplayPrice().substring(1) + " NZD");
@@ -182,11 +187,14 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) items.get(index).getDefaultItemVariant());
-                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+                mContext.startActivity(intent);
             }
         });
 
-        if (items.size() < 2) return currentListViewItem;
+        if (items.size() < 2) {
+            vh.itemClickable2.setVisibility(View.GONE);
+            return currentListViewItem;
+        }
         int index2 = 1;
 
         vh.title2.setText(items.get(index2).getName());
@@ -203,7 +211,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) items.get(index2).getDefaultItemVariant());
-                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+                mContext.startActivity(intent);
             }
         });
 

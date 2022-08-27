@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -13,7 +12,9 @@ import com.example.nolo.entities.user.User;
 import com.example.nolo.enums.CollectionPath;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -180,6 +181,38 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public void changePassword(Consumer<String> onUserChangePassword, String oldPassword, String newPassword) {
+        FirebaseUser currentFBUser = fAuth.getCurrentUser();
+        if (currentFBUser == null)
+            return;
+
+        AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(), oldPassword);
+
+        // First make sure the old password is correct, if so continue the process
+        currentFBUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+
+                    // Old password is correct, now change the password
+                    currentFBUser.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                onUserChangePassword.accept(null);
+                            } else {
+                                onUserChangePassword.accept(task.getException().getMessage());
+                            }
+                        }
+                    });
+                } else {
+                    onUserChangePassword.accept("The current password is incorrect.");
+                }
+            }
+        });
+    }
+
+    @Override
     public List<ItemVariant> getViewHistory() {
         return currentUser.getViewHistory();
     }
@@ -202,6 +235,28 @@ public class UsersRepository implements IUsersRepository {
     }
 
     @Override
+    public List<Purchasable> getPurchaseHistory() {
+        return currentUser.getPurchaseHistory();
+    }
+
+    /**
+     * Add purchased items into purchase history at the top
+     *
+     * @param purchasedItem purchased items
+     */
+    @Override
+    public void addPurchaseHistory(List<Purchasable> purchasedItem) {
+        currentUser.addPurchaseHistory(purchasedItem);
+
+        String field = "purchaseHistory";
+        if (currentUser.isFieldNameValid(field)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getPurchaseHistory());
+        } else {
+            Log.e("UsersRepository", "Unable to update purchase history as field not matched");
+        }
+    }
+
+    @Override
     public List<Purchasable> getCart() {
         return currentUser.getCart();
     }
@@ -212,8 +267,8 @@ public class UsersRepository implements IUsersRepository {
      * @param cartItem selected item with quantity (Purchasable)
      */
     @Override
-    public void addCart(IPurchasable cartItem) {
-        currentUser.addCart(cartItem);
+    public void addCart(IItemVariant cartItem, int quantity) {
+        currentUser.addCart(cartItem, quantity);
 
         String field = "cart";
         if (currentUser.isFieldNameValid(field)) {

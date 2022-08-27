@@ -3,6 +3,7 @@ package com.example.nolo.entities.item.purchasable;
 import android.util.Log;
 
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.enums.PurchaseStatus;
 
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public class Purchasable implements IPurchasable {
      */
     private ItemVariant itemVariant;
     private int quantity;
+    private PurchaseStatus status;
 
     /**
      * 0 argument constructor for convert Firebase data to this class
@@ -31,6 +33,7 @@ public class Purchasable implements IPurchasable {
     public Purchasable(ItemVariant itemVariant, int quantity) {
         this.itemVariant = itemVariant;
         this.quantity = quantity;
+        this.status = PurchaseStatus.inCart;
     }
 
     @Override
@@ -68,13 +71,10 @@ public class Purchasable implements IPurchasable {
         if (isIncrement) {
             this.quantity++;
         } else {
-            this.quantity--;
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
         }
-    }
-
-    @Override
-    public IPurchasable copy() {
-        return new Purchasable(itemVariant, quantity);
     }
 
     @Override
@@ -87,5 +87,15 @@ public class Purchasable implements IPurchasable {
     @Override
     public int hashCode() {
         return Objects.hash(itemVariant, quantity);
+    }
+
+    @Override
+    public PurchaseStatus getStatus() {
+        return status;
+    }
+
+    @Override
+    public void setStatus(PurchaseStatus status) {
+        this.status = status;
     }
 }

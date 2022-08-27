@@ -13,42 +13,91 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="325dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="15dp"
             app:srcCompat="@drawable/profile_header" />
-        <TextView
-            android:id="@+id/purchases_btn"
-            style="@style/TextStroke.White"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/touch_target_min"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="60dp"
-            android:text="PURCHASES"
-            android:textSize="@dimen/font_h6"
-            android:gravity="center" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:paddingHorizontal="@dimen/login_margin_horizontal">
 
-        <TextView
-            android:id="@+id/wishlist_btn"
-            style="@style/TextStroke.White"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/touch_target_min"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"
-            android:text="WISHLIST"
-            android:textSize="@dimen/font_h6"
-            android:gravity="center" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/TextStroke.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EMAIL"
+                    android:textSize="@dimen/font_body1" />
 
-        <TextView
-            android:id="@+id/account_btn"
-            style="@style/TextStroke.White"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/touch_target_min"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"
-            android:text="ACCOUNT"
-            android:textSize="@dimen/font_h6"
-            android:gravity="center" />
+                <TextView
+                    android:id="@+id/email_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="fraserisalegend@gmail.com"
+                    android:textAllCaps="true"
+                    android:textColor="@color/faint_white"
+                    android:textSize="@dimen/font_body2" />
 
+                <RelativeLayout
+                    android:id="@+id/change_password_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center_vertical">
 
+                    <TextView
+                        style="@style/TextStroke.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CHANGE PASSWORD"
+                        android:textSize="@dimen/font_body1" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentRight="true"
+                        app:srcCompat="@drawable/side_arrow" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/payments_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/TextStroke.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PAYMENT CARDS"
+                        android:textSize="@dimen/font_body1" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentRight="true"
+                        app:srcCompat="@drawable/side_arrow" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_out_btn"
+                style="@style/RoundButton.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="80dp"
+                android:gravity="center"
+                android:text="SIGN OUT"
+                android:textAppearance="@style/TextStroke.Navy" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 </FrameLayout>

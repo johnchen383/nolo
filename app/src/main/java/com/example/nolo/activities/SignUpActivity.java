@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
@@ -19,17 +18,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.nolo.BuildConfig;
 import com.example.nolo.R;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.SignUpViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.io.File;
 
 public class SignUpActivity extends BaseActivity {
     private SignUpViewModel signUpViewModel;
@@ -142,18 +137,14 @@ public class SignUpActivity extends BaseActivity {
         });
 
         vh.logInBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, LogInActivity.class));
-//            overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+//            startActivity(new Intent(this, LogInActivity.class));
+            finish();
         });
 
         vh.signUp.setOnClickListener(v -> {
             hideKeyboard(v, true);
             signUp();
         });
-
-//        vh.signUpGoogle.setOnClickListener(v -> {
-//            hideKeyboard(v, true);
-//        });
 
         vh.emailInput.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(v, false);
@@ -217,4 +208,9 @@ public class SignUpActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_out_to_right);
+    }
 }
