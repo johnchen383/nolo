@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ListActivity extends BaseActivity {
     private class ViewHolder {
         ListView categoryItemsParentList;
         ImageView categoryHeader, appleImage, androidImage;
-        ImageButton backButton;
+        RelativeLayout backButton;
         LinearLayout phoneToggle, appleBtn, androidBtn;
         TextView appleSelect, androidSelect;
 
