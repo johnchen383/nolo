@@ -206,7 +206,7 @@ public class UsersRepository implements IUsersRepository {
                         }
                     });
                 } else {
-                    onUserChangePassword.accept(task.getException().getMessage());
+                    onUserChangePassword.accept("The current password is incorrect.");
                 }
             }
         });

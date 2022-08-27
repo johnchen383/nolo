@@ -289,6 +289,7 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/add_cart_btn"
                             style="@style/RoundButton.Filled"
+                            app:rippleColor="@color/lightest_navy"
                             android:layout_width="fill_parent"
                             android:layout_height="40dp"
                             android:layout_gravity="top"
@@ -320,6 +321,7 @@
                             android:id="@+id/specs_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:listSelector="@color/transparent"
                             android:divider="@null"
                             android:dividerHeight="20dp" />
                     </LinearLayout>

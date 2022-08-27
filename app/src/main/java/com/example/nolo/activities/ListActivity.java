@@ -10,6 +10,7 @@ import com.example.nolo.enums.PhoneOs;
 import com.example.nolo.interactors.item.GetCategoryItemsUseCase;
 import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.ListViewModel;
 
@@ -20,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class ListActivity extends BaseActivity {
     private class ViewHolder {
         ListView categoryItemsParentList;
         ImageView categoryHeader, appleImage, androidImage;
-        ImageButton backButton;
+        RelativeLayout backButton;
         LinearLayout phoneToggle, appleBtn, androidBtn;
         TextView appleSelect, androidSelect;
 
@@ -88,6 +90,8 @@ public class ListActivity extends BaseActivity {
             listViewModel.setPhoneOs(PhoneOs.ios);
             establishAdaptor();
         });
+
+        vh.categoryItemsParentList.setDividerHeight(Display.dpToPx(-30, this));
     }
 
     private void initStyling() {

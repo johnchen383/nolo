@@ -1,6 +1,7 @@
 package com.example.nolo.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -36,5 +37,17 @@ public class Display {
      */
     public static int getScreenWidth(View v){
         return getDisplayMetrics(v).widthPixels;
+    }
+
+    /**
+     * Convert dp into pixels
+     *
+     * @param dp
+     * @param context
+     * @return pixels
+     */
+    public static int dpToPx(int dp, Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
     }
 }
