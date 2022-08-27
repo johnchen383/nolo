@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
 
         LinearLayout.LayoutParams oldLayout = (LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams();
         LinearLayout.LayoutParams newLayout = new LinearLayout.LayoutParams(oldLayout.width, oldLayout.height);
-        newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) (Display.getScreenHeightInDp(view) * 0.2));
+        newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) (Display.getScreenHeight(view) * 0.2));
         vh.homeLogo.setLayoutParams(newLayout);
 
         initAdaptors();
