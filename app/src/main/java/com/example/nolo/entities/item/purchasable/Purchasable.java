@@ -68,13 +68,10 @@ public class Purchasable implements IPurchasable {
         if (isIncrement) {
             this.quantity++;
         } else {
-            this.quantity--;
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
         }
-    }
-
-    @Override
-    public IPurchasable copy() {
-        return new Purchasable(itemVariant, quantity);
     }
 
     @Override

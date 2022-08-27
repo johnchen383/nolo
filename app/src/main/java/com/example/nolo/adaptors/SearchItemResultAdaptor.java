@@ -79,7 +79,7 @@ public class SearchItemResultAdaptor extends ArrayAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) currentItem.getDefaultItemVariant());
-                mContext.startActivity(intent, Animation.Fade(mContext).toBundle());
+                mContext.startActivity(intent);
             }
         });
 

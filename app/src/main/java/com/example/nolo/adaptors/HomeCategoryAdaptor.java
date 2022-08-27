@@ -83,6 +83,7 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
             intent.putExtra(baseContext.getString(R.string.extra_category), (Category) currentCategory);
 
             baseContext.startActivity(intent);
+            baseContext.overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         return currentListViewItem;

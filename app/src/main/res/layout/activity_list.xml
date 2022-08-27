@@ -69,7 +69,7 @@
                         android:text="|"
                         android:textStyle="bold"
                         android:textSize="@dimen/font_h5"
-                        android:textColor="@color/faint_white"
+                        android:textColor="@color/navy"
                         android:layout_gravity="center_vertical"
                         android:visibility="visible"/>
                 </LinearLayout>
