@@ -7,7 +7,7 @@ import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.interactors.user.AddPurchasedItemsUseCase;
 import com.example.nolo.interactors.user.ClearCartItemUseCase;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
-import com.example.nolo.interactors.user.UpdateCartItemUseCase;
+import com.example.nolo.interactors.user.UpdateCartItemsUseCase;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class CartViewModel extends ViewModel implements ICartViewModel {
 
     @Override
     public void updateCartItem(List<Purchasable> cartItems) {
-        UpdateCartItemUseCase.updateCartItem(cartItems);
+        UpdateCartItemsUseCase.updateCartItems(cartItems);
     }
 
     @Override

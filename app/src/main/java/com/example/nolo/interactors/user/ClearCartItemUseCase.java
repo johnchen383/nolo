@@ -7,6 +7,6 @@ public class ClearCartItemUseCase {
      * Clear cart and also clear it in Firebase
      */
     public static void clearCartItem() {
-        UpdateCartItemUseCase.updateCartItem(new ArrayList<>());
+        UpdateCartItemsUseCase.updateCartItems(new ArrayList<>());
     }
 }
