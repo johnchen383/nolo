@@ -114,10 +114,7 @@ public class HomeFragment extends Fragment {
 
 
         double bottomMargin = 65.0/480.0 * Display.getScreenHeight(view) - (65.0/480.0*1794);
-        LinearLayout.LayoutParams oldLayout = (LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams();
-        LinearLayout.LayoutParams newLayout = new LinearLayout.LayoutParams(oldLayout.width, oldLayout.height);
-        newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) bottomMargin);
-        vh.homeLogo.setLayoutParams(newLayout);
+        ((LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams()).bottomMargin = (int) bottomMargin;
 
         initAdaptors();
         initListeners();

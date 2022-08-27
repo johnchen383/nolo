@@ -94,8 +94,6 @@ public class SplashActivity extends BaseActivity {
 //            });
 //        });
 
-        System.out.println("HEIGHT: " + Display.getScreenHeight(vh.load_state));
-
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
             LocationUtil.loadCurrentLocation(this);
             loadAllRepositories();
