@@ -92,16 +92,16 @@ public class User implements IUser {
     /**
      * Add selected item with quantity (Purchasable) into the user's cart
      *
-     * @param purchasable selected item with quantity (Purchasable)
+     * @param itemVariant selected item with quantity (Purchasable)
      */
     @Override
-    public void addCart(IPurchasable purchasable) {
-        IPurchasable cartItem = purchasable.copy();
+    public void addCart(IItemVariant itemVariant, int quantity) {
+        IPurchasable cartItem = new Purchasable((ItemVariant) itemVariant.copy(), quantity);
 
         //if already in cart, simply increment quantity of that in cart
         for (IPurchasable cItem : cart) {
             if (cItem.equals(cartItem)) {
-                cItem.addToQuantity(cartItem.getQuantity());
+                cItem.addToQuantity(quantity);
                 return;
             }
         }

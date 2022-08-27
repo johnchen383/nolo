@@ -15,7 +15,7 @@ public interface IUser {
     List<ItemVariant> getViewHistory();
     void addViewHistory(IItemVariant item);
     List<Purchasable> getCart();
-    void addCart(IPurchasable cartItem);
+    void addCart(IItemVariant cartItem, int quantity);
     void updateCart(List<Purchasable> cartItems);
     boolean isFieldNameValid(String fieldName);
 }

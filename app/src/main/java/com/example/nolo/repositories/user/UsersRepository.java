@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
@@ -212,8 +211,8 @@ public class UsersRepository implements IUsersRepository {
      * @param cartItem selected item with quantity (Purchasable)
      */
     @Override
-    public void addCart(IPurchasable cartItem) {
-        currentUser.addCart(cartItem);
+    public void addCart(IItemVariant cartItem, int quantity) {
+        currentUser.addCart(cartItem, quantity);
 
         String field = "cart";
         if (currentUser.isFieldNameValid(field)) {

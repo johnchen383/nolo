@@ -1,6 +1,6 @@
 package com.example.nolo.interactors.user;
 
-import com.example.nolo.entities.item.purchasable.IPurchasable;
+import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.repositories.user.UsersRepository;
 
 public class AddCartItemUseCase {
@@ -9,7 +9,7 @@ public class AddCartItemUseCase {
      *
      * @param cartItem
      */
-    public static void addCart(IPurchasable cartItem) {
-        UsersRepository.getInstance().addCart(cartItem);
+    public static void addCart(IItemVariant cartItem, int quantity) {
+        UsersRepository.getInstance().addCart(cartItem, quantity);
     }
 }

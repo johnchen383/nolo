@@ -28,7 +28,6 @@ public class DetailsViewModel extends ViewModel {
     public static IItemVariant itemVariantFromMap = null;
 
     private IItem item;
-    private IPurchasable purchasable;
 
     private StoreVariant getStoreVariant() {
         String variantStoreId = itemVariant.getStoreId();
@@ -42,7 +41,6 @@ public class DetailsViewModel extends ViewModel {
         this.itemVariant = itemVariant;
         this.item = GetItemByIdUseCase.getItemById(itemVariant.getItemId());
         this.quantity = 1;
-        this.purchasable = new Purchasable((ItemVariant) this.itemVariant, this.quantity);
     }
 
     public List<ItemVariant> getRecItemVariants() {
@@ -140,10 +138,6 @@ public class DetailsViewModel extends ViewModel {
         return item.getSpecs();
     }
 
-    public IPurchasable getPurchasable() {
-        return purchasable;
-    }
-
     public void incrementOrDecrementQuantity(boolean isIncrement) {
         if (isIncrement) {
             this.quantity++;
@@ -159,8 +153,7 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public void addCart() {
-        this.purchasable.setToQuantity(quantity);  // TODO: need to test
-        AddCartItemUseCase.addCart(this.purchasable);
+        AddCartItemUseCase.addCart(this.itemVariant, quantity);
     }
 
     public void addViewHistory() {

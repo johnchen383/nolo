@@ -198,8 +198,16 @@ public class ItemVariant implements IItemVariant, Serializable {
 
     @Override
     public IItemVariant copy() {
-        return new ItemVariant(colour, itemId, categoryType, storeId, branchName,
-                (SpecsOption) storageOption.copy(), (SpecsOption) ramOption.copy());
+        switch (categoryType) {
+            case laptops:
+                return new ItemVariant(colour, itemId, categoryType, storeId, branchName,
+                        (SpecsOption) storageOption.copy(), (SpecsOption) ramOption.copy());
+            case phones:
+                return new ItemVariant(colour, itemId, categoryType, storeId, branchName,
+                        (SpecsOption) storageOption.copy());
+            default:
+                return new ItemVariant(colour, itemId, categoryType, storeId, branchName);
+        }
     }
 
     @Override
