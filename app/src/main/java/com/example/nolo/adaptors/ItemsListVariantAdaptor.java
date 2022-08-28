@@ -45,6 +45,7 @@ public class ItemsListVariantAdaptor extends ArrayAdapter {
         ImageView itemImg;
         TextView title, ramText, ssdText, colourLabel, price;
         MaterialCardView ramTag, ssdTag, colourCircle;
+        RelativeLayout heartOutlineIcon;
 
         public ViewHolder(View v) {
             itemClickable = v.findViewById(R.id.item_clickable);

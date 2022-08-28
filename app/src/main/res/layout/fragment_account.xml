@@ -33,7 +33,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="70dp"
             android:paddingHorizontal="@dimen/login_margin_horizontal">
 
             <LinearLayout
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="230dp"
                 android:gravity="center"
                 android:text="SIGN OUT"
                 android:textAppearance="@style/TextStroke.Navy" />

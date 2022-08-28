@@ -280,6 +280,7 @@ public class DetailsActivity extends BaseActivity {
         vh.colourTitle.setText(capitaliseFirst(detailsViewModel.getVariantColour().getName()));
         System.out.println("price: " + detailsViewModel.getItemVariant().getDisplayPrice());
         vh.priceText.setText(detailsViewModel.getItemVariant().getDisplayPrice() + " NZD");
+        updateHeartIcon();
     }
 
     private void updateHeartIcon() {
