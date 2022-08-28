@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,28 +20,25 @@ import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.DetailsActivity;
-import com.example.nolo.activities.ListActivity;
-import com.example.nolo.entities.category.Category;
-import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.purchasable.Purchasable;
-import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.fragments.CartFragment;
 import com.example.nolo.fragments.PurchasesFragment;
 import com.example.nolo.fragments.WishlistFragment;
-import com.example.nolo.util.Display;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class PurchasableListAdaptor extends ArrayAdapter {
+public class ItemsListVariantAdaptor extends ArrayAdapter {
     private int mLayoutID;
     private Fragment mFragment;
-    private List<Purchasable> mItems;
     private Context mContext;
-    private Consumer<List<Purchasable>> update;
+    private List<Purchasable> mPurchasableItems;
+    private List<ItemVariant> mVariantItems;
+    private Consumer<List<Purchasable>> purchasableUpdate;
+    private Consumer<List<ItemVariant>> variantUpdate;
 
     private class ViewHolder {
         LinearLayout itemClickable;
@@ -101,13 +97,24 @@ public class PurchasableListAdaptor extends ArrayAdapter {
         }
     }
 
-    public PurchasableListAdaptor(@NonNull Context context, Fragment fragment, int resource, @NonNull List<Purchasable> purchaseableItems, Consumer<List<Purchasable>> update) {
-        super(context, resource, purchaseableItems);
+    public ItemsListVariantAdaptor(@NonNull Context context, Fragment fragment, int resource, List<Purchasable> purchasableItems, Consumer<List<Purchasable>> purchasableUpdate, List<ItemVariant> variantItems, Consumer<List<ItemVariant>> variantUpdate) {
+
+        super(context, resource, purchasableItems == null ? variantItems : purchasableItems);
         mContext = context;
         mFragment = fragment;
         mLayoutID = resource;
-        mItems = purchaseableItems;
-        this.update = update;
+
+        if (purchasableItems != null) {
+            mPurchasableItems = purchasableItems;
+            this.purchasableUpdate = purchasableUpdate;
+            mVariantItems = null;
+            variantUpdate = null;
+        } else if (variantItems != null){
+            mVariantItems = variantItems;
+            this.variantUpdate = variantUpdate;
+            mPurchasableItems = null;
+            purchasableUpdate = null;
+        }
     }
 
     @NonNull
@@ -121,27 +128,26 @@ public class PurchasableListAdaptor extends ArrayAdapter {
             currentListViewItem = LayoutInflater.from(getContext()).inflate(mLayoutID, parent, false);
         }
 
-        Purchasable currentItem = mItems.get(position);
+        Purchasable currentPurchasableItem = mPurchasableItems == null ? null : mPurchasableItems.get(position);
+        ItemVariant currentVariantItem = mVariantItems == null ? null : mVariantItems.get(position);
 
         if (mFragment.getClass().equals(CartFragment.class)) {
-            return populateCartItem(currentItem, currentListViewItem);
+            return populateCartItem(currentPurchasableItem, currentListViewItem);
         } else if (mFragment.getClass().equals(PurchasesFragment.class)) {
-            return populatePurchasesItem(currentItem, currentListViewItem);
+            return populatePurchasesItem(currentPurchasableItem, currentListViewItem);
         } else if (mFragment.getClass().equals(WishlistFragment.class)) {
-
+            System.out.println("one!");
+            return populateWishlistItem(currentVariantItem, currentListViewItem);
         }
 
         return null;
     }
 
-    private void populateItem(Purchasable item, View currentListViewItem, ViewHolder vh) {
-        if (item == null) {
+    private void populateItem(ItemVariant variant, ViewHolder vh) {
+        if (variant == null) {
             vh.itemClickable.setVisibility(View.VISIBLE);
-            System.out.println("FROG");
             return;
         }
-
-        ItemVariant variant = item.getItemVariant();
 
         int i = mContext.getResources().getIdentifier(
                 variant.getDisplayImage(), "drawable",
@@ -173,7 +179,7 @@ public class PurchasableListAdaptor extends ArrayAdapter {
         vh.itemImg.setOnClickListener(v -> {
             Activity baseContext = (Activity) getContext();
             Intent intent = new Intent(baseContext, DetailsActivity.class);
-            intent.putExtra(baseContext.getString(R.string.extra_item_variant), item.getItemVariant());
+            intent.putExtra(baseContext.getString(R.string.extra_item_variant), variant);
 
             baseContext.startActivity(intent);
         });
@@ -181,7 +187,7 @@ public class PurchasableListAdaptor extends ArrayAdapter {
         vh.title.setOnClickListener(v -> {
             Activity baseContext = (Activity) getContext();
             Intent intent = new Intent(baseContext, DetailsActivity.class);
-            intent.putExtra(baseContext.getString(R.string.extra_item_variant), item.getItemVariant());
+            intent.putExtra(baseContext.getString(R.string.extra_item_variant), variant);
 
             baseContext.startActivity(intent);
         });
@@ -190,12 +196,12 @@ public class PurchasableListAdaptor extends ArrayAdapter {
     private View populateCartItem(Purchasable item, View currentListViewItem) {
         CartViewHolder vh = new CartViewHolder(currentListViewItem);
 
-        populateItem(item, currentListViewItem, vh);
+        populateItem(item.getItemVariant(), vh);
 
         vh.binBtn.setVisibility(View.VISIBLE);
         vh.binBtn.setOnClickListener(v -> {
-            mItems.remove(item);
-            update.accept(mItems);
+            mPurchasableItems.remove(item);
+            purchasableUpdate.accept(mPurchasableItems);
         });
 
         vh.quantityControl.setVisibility(View.VISIBLE);
@@ -203,21 +209,21 @@ public class PurchasableListAdaptor extends ArrayAdapter {
         vh.quantityText.setText(String.valueOf(item.getQuantity()));
 
         vh.decrementBtn.setOnClickListener(v -> {
-            for (Purchasable p : mItems) {
+            for (Purchasable p : mPurchasableItems) {
                 if (p.equals(item)) {
                     p.incrementOrDecrementQuantity(false);
                 }
             }
-            update.accept(mItems);
+            purchasableUpdate.accept(mPurchasableItems);
         });
 
         vh.incrementBtn.setOnClickListener(v -> {
-            for (Purchasable p : mItems) {
+            for (Purchasable p : mPurchasableItems) {
                 if (p.equals(item)) {
                     p.incrementOrDecrementQuantity(true);
                 }
             }
-            update.accept(mItems);
+            purchasableUpdate.accept(mPurchasableItems);
         });
 
         return currentListViewItem;
@@ -226,7 +232,7 @@ public class PurchasableListAdaptor extends ArrayAdapter {
     private View populatePurchasesItem(Purchasable item, View currentListViewItem) {
         PurchasesViewHolder vh = new PurchasesViewHolder(currentListViewItem);
 
-        populateItem(item, currentListViewItem, vh);
+        populateItem(item.getItemVariant(), vh);
 
         vh.quantityLabel.setVisibility(View.VISIBLE);
         vh.quantityLabel.setText("Quantity: " + item.getQuantity());
@@ -234,18 +240,19 @@ public class PurchasableListAdaptor extends ArrayAdapter {
         return currentListViewItem;
     }
 
-    private View populateWishlistItem(Purchasable item, View currentListViewItem) {
+    private View populateWishlistItem(ItemVariant variant, View currentListViewItem) {
+        System.out.println("one!");
         WishlistViewHolder vh = new WishlistViewHolder(currentListViewItem);
 
-        populateItem(item, currentListViewItem, vh);
+        populateItem(variant, vh);
 
         vh.heartBtn.setOnClickListener(v -> {
-            if (mItems.contains(item)) {
-                mItems.remove(item);
-                update.accept(mItems);
+            if (mVariantItems.contains(variant)) {
+                mVariantItems.remove(variant);
+                variantUpdate.accept(mVariantItems);
             } else {
-                mItems.add(item);
-                update.accept(mItems);
+                mVariantItems.add(variant);
+                variantUpdate.accept(mVariantItems);
             }
         });
 

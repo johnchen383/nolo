@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
-    android:paddingRight="20dp"
+    android:paddingRight="10dp"
     android:background="@color/navy"
     android:orientation="horizontal">
     <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_height="@dimen/touch_target_min"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/heart_icon"

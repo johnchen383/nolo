@@ -11,12 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
-import com.example.nolo.adaptors.PurchasableListAdaptor;
+import com.example.nolo.adaptors.ItemsListVariantAdaptor;
 import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.PurchasesViewModel;
-
-import java.util.Locale;
 
 public class PurchasesFragment extends Fragment {
     private ViewHolder vh;
@@ -61,11 +59,11 @@ public class PurchasesFragment extends Fragment {
     }
 
     private void initAdaptors() {
-        PurchasableListAdaptor transitPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, purchasesViewModel.getUserPurchaseHistoryInTransit(), v->{});
+        ItemsListVariantAdaptor transitPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, purchasesViewModel.getUserPurchaseHistoryInTransit(), v->{}, null, null);
         vh.transitList.setAdapter(transitPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.transitList);
 
-        PurchasableListAdaptor deliveredPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, purchasesViewModel.getUserPurchaseHistoryDelivered(), v->{});
+        ItemsListVariantAdaptor deliveredPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, purchasesViewModel.getUserPurchaseHistoryDelivered(), v->{}, null, null);
         vh.deliveredList.setAdapter(deliveredPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.deliveredList);
     }

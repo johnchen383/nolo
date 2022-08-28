@@ -2,20 +2,19 @@ package com.example.nolo.fragments;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
-import com.example.nolo.adaptors.PurchasableListAdaptor;
-import com.example.nolo.enums.PurchaseStatus;
+import com.example.nolo.adaptors.ItemsListVariantAdaptor;
+import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.util.ListUtil;
-import com.example.nolo.viewmodels.PurchasesViewModel;
 import com.example.nolo.viewmodels.WishlistViewModel;
+
+import java.util.List;
 
 public class WishlistFragment extends Fragment {
     private ViewHolder vh;
@@ -42,7 +41,7 @@ public class WishlistFragment extends Fragment {
     }
 
     private void initAdaptors() {
-        PurchasableListAdaptor wishListPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, wishlistViewModel.getUserWishlist(), v->{});
+        ItemsListVariantAdaptor wishListPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, null, null, wishlistViewModel.getUserWishlist(), v->{});
         vh.wishList.setAdapter(wishListPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.wishList);
 
@@ -68,5 +67,9 @@ public class WishlistFragment extends Fragment {
         super.onResume();
         initStyling();
         initAdaptors();
+    }
+
+    public void updateWishlistItems(List<Purchasable> items) {
+
     }
 }
