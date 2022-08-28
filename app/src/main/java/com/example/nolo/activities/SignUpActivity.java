@@ -80,7 +80,6 @@ public class SignUpActivity extends BaseActivity {
         String userPassword = vh.passwordInput.getText().toString();
         String userRepeatPassword = vh.repeatPasswordInput.getText().toString();
 
-        // @TODO validation for input errors
         if (userEmail.isEmpty()) {
             vh.errorText.setText("Please enter an email address.");
             vh.errorText.setVisibility(View.VISIBLE);
