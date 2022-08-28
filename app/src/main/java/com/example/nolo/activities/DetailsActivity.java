@@ -48,7 +48,7 @@ import java.util.List;
 public class DetailsActivity extends BaseActivity {
     private IDetailsViewModel detailsViewModel;
 
-    private final int ANIMATION_INTERVAL = 250;
+    private static final int ANIMATION_INTERVAL = 250;
     private ViewHolder vh;
     private int imgIndex;
     private int maxIndex;
@@ -106,65 +106,22 @@ public class DetailsActivity extends BaseActivity {
         }
     }
 
-    private void initCarouselAdaptor() {
-        /**
-         * CAROUSEL
-         */
-        List<String> uris = detailsViewModel.getImageUrisByColour();
-        maxIndex = uris.size() - 1;
-        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
-        vh.carousel.setAdapter(pagerAdapter);
-        vh.carousel.setCurrentItem(imgIndex, false);
-        displayedColour = detailsViewModel.getVariantColour();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details);
+        vh = new ViewHolder();
+        isExpanded = false;
 
-
-        new TabLayoutMediator(vh.dots, vh.carousel, (tab, position) ->
-        {
-        }
-        ).attach();
-    }
-
-    private void initAdaptors() {
-        /**
-         * COLOURS ADAPTOR
-         */
-        LinearLayoutManager coloursLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        vh.coloursList.setLayoutManager(coloursLayoutManager);
-
-        List<Colour> colours = detailsViewModel.getItemColours();
-        DetailsColorAdaptor coloursAdaptor = new DetailsColorAdaptor(this, colours, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
-        vh.coloursList.setAdapter(coloursAdaptor);
-
-        /**
-         * CUSTOMISATION ADAPTOR
-         */
-        LinearLayoutManager storageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        vh.storageList.setLayoutManager(storageLayoutManager);
-
-        List<SpecsOption> storageOptions = detailsViewModel.getStorageOptions();
-        System.out.println(storageOptions);
-        if (storageOptions != null) {
-            DetailsCustomisationAdaptor storageAdaptor = new DetailsCustomisationAdaptor(this, storageOptions, SpecsOptionType.storage, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
-            vh.storageList.setAdapter(storageAdaptor);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
         }
 
-        LinearLayoutManager ramLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        vh.ramList.setLayoutManager(ramLayoutManager);
-        List<SpecsOption> ramOptions = detailsViewModel.getRamOptions();
-        if (ramOptions != null) {
-            DetailsCustomisationAdaptor ramAdaptor = new DetailsCustomisationAdaptor(this, ramOptions, SpecsOptionType.ram, detailsViewModel.getItemVariant(), v -> updateAdaptor(v));
-            vh.ramList.setAdapter(ramAdaptor);
-        }
-
-        /**
-         * REC
-         */
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        vh.recItemsList.setLayoutManager(layoutManager);
-        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43);
-        vh.recItemsList.setAdapter(featuredItemsAdaptor);
-
-//        initCarouselAdaptor();
+        IItemVariant itemVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
+        detailsViewModel = new DetailsViewModel(itemVariant);
+        init();
     }
 
     @Override
@@ -172,11 +129,16 @@ public class DetailsActivity extends BaseActivity {
         super.onResume();
 
         if (DetailsViewModel.itemVariantFromMap != null) {
-//            System.out.println("SETTING FROM RESUME");
             detailsViewModel = new DetailsViewModel(DetailsViewModel.itemVariantFromMap);
             init();
             DetailsViewModel.itemVariantFromMap = null;
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 
     @Override
@@ -191,6 +153,115 @@ public class DetailsActivity extends BaseActivity {
         detailsViewModel.addViewHistory();
     }
 
+    /**
+     * Initialisation
+     */
+    private void init() {
+        imgIndex = 0;
+        initStyling();
+        initAdaptors();
+        initCarouselAdaptor();
+        initListeners();
+    }
+
+    private void initStyling() {
+        vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
+        vh.itemTitle.setText(detailsViewModel.getItemName());
+        vh.storeName.setText(detailsViewModel.getStoreBranchName());
+        updateHeartIcon();
+
+        switch (detailsViewModel.getItemCategory()) {
+            case laptops:
+                initSpecsStyling(CategoryType.laptops);
+                break;
+            case phones:
+                vh.ramContainer.setVisibility(View.GONE);
+                initSpecsStyling(CategoryType.phones);
+                break;
+            case accessories:
+                vh.ramContainer.setVisibility(View.GONE);
+                vh.storageContainer.setVisibility(View.GONE);
+                initSpecsStyling(CategoryType.accessories);
+                break;
+        }
+
+        setDynamicHeights();
+        setDynamicStyling();
+    }
+
+    private void initSpecsStyling(CategoryType category) {
+        List<SpecsType> fixedSpecs;
+
+        if (category.equals(CategoryType.laptops)) {
+            fixedSpecs = Laptop.FIXED_SPECS;
+        } else if (category.equals(CategoryType.phones)) {
+            fixedSpecs = Phone.FIXED_SPECS;
+        } else {
+            vh.specs.setVisibility(View.GONE);
+            vh.recContainer.setVisibility(View.GONE);
+            vh.summaryText.setText(detailsViewModel.getItemSpecs().getFixedSpecs().get(SpecsType.summary.name()));
+            return;
+        }
+
+        vh.summaryText.setVisibility(View.GONE);
+
+        DetailsSpecsAdaptor detailsSpecsAdaptor =
+                new DetailsSpecsAdaptor(this, R.layout.item_details_description,
+                        fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
+        vh.specsList.setAdapter(detailsSpecsAdaptor);
+        ListUtil.setDynamicHeight(vh.specsList);
+    }
+
+    private void initAdaptors() {
+        /**
+         * COLOURS ADAPTOR
+         */
+        LinearLayoutManager coloursLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        vh.coloursList.setLayoutManager(coloursLayoutManager);
+
+        List<Colour> colours = detailsViewModel.getItemColours();
+        DetailsColorAdaptor coloursAdaptor =
+                new DetailsColorAdaptor(this, colours,
+                        detailsViewModel.getItemVariant(), this::updateAdaptor);
+        vh.coloursList.setAdapter(coloursAdaptor);
+
+        /**
+         * CUSTOMISATION ADAPTOR
+         */
+        LinearLayoutManager storageLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        vh.storageList.setLayoutManager(storageLayoutManager);
+
+        List<SpecsOption> storageOptions = detailsViewModel.getStorageOptions();
+        if (storageOptions != null) {
+            DetailsCustomisationAdaptor storageAdaptor =
+                    new DetailsCustomisationAdaptor(this, storageOptions,
+                            SpecsOptionType.storage, detailsViewModel.getItemVariant(), this::updateAdaptor);
+            vh.storageList.setAdapter(storageAdaptor);
+        }
+
+        LinearLayoutManager ramLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        vh.ramList.setLayoutManager(ramLayoutManager);
+
+        List<SpecsOption> ramOptions = detailsViewModel.getRamOptions();
+        if (ramOptions != null) {
+            DetailsCustomisationAdaptor ramAdaptor =
+                    new DetailsCustomisationAdaptor(this, ramOptions,
+                            SpecsOptionType.ram, detailsViewModel.getItemVariant(), this::updateAdaptor);
+            vh.ramList.setAdapter(ramAdaptor);
+        }
+
+        /**
+         * REC
+         */
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        vh.recItemsList.setLayoutManager(layoutManager);
+
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(this, detailsViewModel.getRecItemVariants(), 0.43);
+        vh.recItemsList.setAdapter(featuredItemsAdaptor);
+    }
 
     private void setDynamicHeights() {
         int oldHeight = (int) (heightFactor * (Display.getScreenHeight(vh.transparentContainer)));
@@ -223,40 +294,28 @@ public class DetailsActivity extends BaseActivity {
         anim.start();
     }
 
-    private void initStyling() {
-        vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
-        vh.itemTitle.setText(detailsViewModel.getItemName());
-        vh.storeName.setText(detailsViewModel.getStoreBranchName());
-        updateHeartIcon();
-
-        switch (detailsViewModel.getItemCategory()) {
-            case laptops:
-                initSpecsStyling(CategoryType.laptops);
-                break;
-            case phones:
-                vh.ramContainer.setVisibility(View.GONE);
-                initSpecsStyling(CategoryType.phones);
-                break;
-            case accessories:
-                vh.ramContainer.setVisibility(View.GONE);
-                vh.storageContainer.setVisibility(View.GONE);
-                initSpecsStyling(CategoryType.accessories);
-                break;
-        }
-
-        setDynamicHeights();
-        setDynamicStyling();
-    }
-
     private void setDynamicStyling() {
-        vh.colourTitle.setText(capitaliseFirst(detailsViewModel.getVariantColour().getName()));
-        System.out.println("price: " + detailsViewModel.getItemVariant().getDisplayPrice());
-        vh.priceText.setText(detailsViewModel.getItemVariant().getDisplayPrice() + " NZD");
+        vh.colourTitle.setText(detailsViewModel.getVariantColourInString());
+        vh.priceText.setText(detailsViewModel.getItemVariantPriceInString());
         updateHeartIcon();
     }
 
     private void updateHeartIcon() {
         vh.heartFilledBtn.setVisibility(detailsViewModel.isInWishlist() ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    private void initCarouselAdaptor() {
+        /**
+         * CAROUSEL
+         */
+        List<String> uris = detailsViewModel.getImageUrisByColour();
+        maxIndex = uris.size() - 1;
+        CarouselPagerAdaptor pagerAdapter = new CarouselPagerAdaptor(this, uris);
+        vh.carousel.setAdapter(pagerAdapter);
+        vh.carousel.setCurrentItem(imgIndex, false);
+        displayedColour = detailsViewModel.getVariantColour();
+
+        new TabLayoutMediator(vh.dots, vh.carousel, (tab, position) -> {}).attach();
     }
 
     private void initListeners() {
@@ -350,25 +409,22 @@ public class DetailsActivity extends BaseActivity {
             return false;
         });
 
-        vh.scrollContainer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                if (vh.scrollContainer.getScrollY() > ((Display.getScreenHeight(vh.scrollContainer) * heightFactor) - 100)) {
-                    vh.closeBtn.setVisibility(View.INVISIBLE);
-                } else {
-                    vh.closeBtn.setVisibility(View.VISIBLE);
-                }
+        vh.scrollContainer.setOnScrollChangeListener((view, i, i1, i2, i3) -> {
+            if (vh.scrollContainer.getScrollY() > ((Display.getScreenHeight(vh.scrollContainer) * heightFactor) - 100)) {
+                vh.closeBtn.setVisibility(View.INVISIBLE);
+            } else {
+                vh.closeBtn.setVisibility(View.VISIBLE);
+            }
 
-                if (vh.scrollContainer.getScrollY() != 0) {
-                    vh.dots.setVisibility(View.INVISIBLE);
+            if (vh.scrollContainer.getScrollY() != 0) {
+                vh.dots.setVisibility(View.INVISIBLE);
 
-                    if (isExpanded) {
-                        isExpanded = false;
-                        setDynamicHeights();
-                    }
-                } else {
-                    vh.dots.setVisibility(View.VISIBLE);
+                if (isExpanded) {
+                    isExpanded = false;
+                    setDynamicHeights();
                 }
+            } else {
+                vh.dots.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -377,83 +433,11 @@ public class DetailsActivity extends BaseActivity {
         detailsViewModel.setItemVariant(itemVariant);
         initAdaptors();
         setDynamicStyling();
-        initSpecsStyling(detailsViewModel.getItemCategory());
 
         if (!displayedColour.equals(itemVariant.getColour())) {
             //colour changed
             initCarouselAdaptor();
             displayedColour = itemVariant.getColour();
         }
-    }
-
-    private String capitaliseFirst(String string) {
-        return string.substring(0, 1).toUpperCase() + string.substring(1);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
-        vh = new ViewHolder();
-        isExpanded = false;
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
-        IItemVariant itemVariant = (IItemVariant) getIntent().getSerializableExtra(getString(R.string.extra_item_variant));
-        detailsViewModel = new DetailsViewModel(itemVariant);
-//        System.out.println("SETTING FROM CREATE");
-        init();
-    }
-
-    private void init() {
-        imgIndex = 0;
-        initStyling();
-        initAdaptors();
-        initCarouselAdaptor();
-        initListeners();
-
-    }
-
-    /**
-     * Swipe right on carousel
-     */
-    private void swipeRight() {
-        imgIndex++;
-        if (imgIndex > maxIndex) imgIndex = maxIndex;
-
-        vh.carousel.setCurrentItem(imgIndex);
-    }
-
-    private void initSpecsStyling(CategoryType category) {
-        List<SpecsType> fixedSpecs;
-
-        if (category.equals(CategoryType.laptops)) {
-            fixedSpecs = Laptop.FIXED_SPECS;
-        } else if (category.equals(CategoryType.phones)) {
-            fixedSpecs = Phone.FIXED_SPECS;
-        } else {
-            vh.specs.setVisibility(View.GONE);
-            vh.recContainer.setVisibility(View.GONE);
-            vh.summaryText.setText(detailsViewModel.getItemSpecs().getFixedSpecs().get(SpecsType.summary.name()));
-            return;
-        }
-
-        vh.summaryText.setVisibility(View.GONE);
-
-        DetailsSpecsAdaptor detailsSpecsAdaptor =
-                new DetailsSpecsAdaptor(this, R.layout.item_details_description,
-                        fixedSpecs, detailsViewModel.getItemSpecs().getFixedSpecs());
-        vh.specsList.setAdapter(detailsSpecsAdaptor);
-        ListUtil.setDynamicHeight(vh.specsList);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 }
