@@ -38,7 +38,6 @@ public class ProfileFragment extends Fragment {
 
         // Initialisation
         init();
-        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -51,6 +50,8 @@ public class ProfileFragment extends Fragment {
      * Initialisation
      */
     private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
         initListeners();
     }
 

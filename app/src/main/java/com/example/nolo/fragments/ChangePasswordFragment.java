@@ -71,7 +71,6 @@ public class ChangePasswordFragment extends Fragment {
 
         // Initialisation
         init();
-        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -84,6 +83,8 @@ public class ChangePasswordFragment extends Fragment {
      * Initialisation
      */
     private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
         initStyling();
         initListeners();
     }

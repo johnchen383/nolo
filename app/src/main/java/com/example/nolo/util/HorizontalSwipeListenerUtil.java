@@ -3,10 +3,8 @@ package com.example.nolo.util;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.ScrollView;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * Generic Util class to handle horizontal swipe events
@@ -18,6 +16,19 @@ public class HorizontalSwipeListenerUtil {
     private Consumer<Void> minorAction;
     private Consumer<Void> idleAction;
 
+    public HorizontalSwipeListenerUtil(HorizontalScrollView scrollView, Consumer<Void> swipeRight, Consumer<Void> swipeLeft, Consumer<Void> idleAction){
+        this.view = scrollView;
+        this.majorAction = swipeRight;
+        this.minorAction = swipeLeft;
+        this.idleAction = idleAction;
+    }
+
+    /**
+     * Motion event on touch
+     *
+     * @param motionEvent
+     * @return
+     */
     private boolean onTouch(MotionEvent motionEvent) {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -39,16 +50,11 @@ public class HorizontalSwipeListenerUtil {
                 return true;
         }
         return false;
-
     }
 
-    public HorizontalSwipeListenerUtil(HorizontalScrollView scrollView, Consumer<Void> swipeRight, Consumer<Void> swipeLeft, Consumer<Void> idleAction){
-        this.view = scrollView;
-        this.majorAction = swipeRight;
-        this.minorAction = swipeLeft;
-        this.idleAction = idleAction;
-    }
-
+    /**
+     * Listener for motion/touch
+     */
     public void setUpListener(){
         view.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
     }
