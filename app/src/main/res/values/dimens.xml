@@ -90,6 +90,16 @@
         <dimen name="details_container_margin_top">500dp</dimen>
         <dimen name="details_color_size">14dp</dimen>
 
+        <!-- List activity dimensions -->
+        <dimen name="category_header_margin_top">600dp</dimen>
+        <dimen name="category_header_height">180dp</dimen>
+        <dimen name="category_header_margin_start">35dp</dimen>
+        <dimen name="phone_toggle_padding_bottom">20dp</dimen>
+        <dimen name="apple_img_margin_right">-70dp</dimen>
+        <dimen name="apple_img_height">24dp</dimen>
+        <dimen name="android_img_margin_right">-100dp</dimen>
+        <dimen name="android_img_height">24dp</dimen>
+
     <dimen name="list_toggle_radius">5dp</dimen>
 
 </resources>

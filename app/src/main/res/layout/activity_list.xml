@@ -14,14 +14,14 @@
             android:id="@+id/back_btn"
             android:layout_width="@dimen/touch_target_min"
             android:layout_height="@dimen/touch_target_min"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginStart="@dimen/back_btn_margin_start"
+            android:layout_marginTop="@dimen/back_btn_margin_top">
 
             <ImageButton
                 android:id="@+id/back_btn_img"
                 style="@style/BackButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/icon_size_med"
+                android:layout_height="@dimen/icon_size_med"
                 android:layout_centerInParent="true" />
         </RelativeLayout>
         <RelativeLayout
@@ -30,18 +30,18 @@
 
             <ImageView
                 android:id="@+id/category_header"
-                android:layout_width="600dp"
-                android:layout_height="180dp"
+                android:layout_width="@dimen/category_header_margin_top"
+                android:layout_height="@dimen/category_header_height"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="35dp"
+                android:layout_marginStart="@dimen/category_header_margin_start"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
                 android:src="@drawable/category_laptop_header" />
             <LinearLayout
                 android:id="@+id/phone_toggle"
                 android:layout_width="wrap_content"
-                android:paddingBottom="20dp"
+                android:paddingBottom="@dimen/phone_toggle_padding_bottom"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@color/transparent"
@@ -63,9 +63,9 @@
                     <ImageView
                         android:id="@+id/apple_image"
                         android:layout_gravity="center|right"
-                        android:layout_marginRight="-70dp"
+                        android:layout_marginRight="@dimen/apple_img_margin_right"
                         android:layout_width="wrap_content"
-                        android:layout_height="24dp"
+                        android:layout_height="@dimen/apple_img_height"
                         android:src="@drawable/os_button_ios_dim"/>
                     <TextView
                         android:id="@+id/apple_select"
@@ -89,9 +89,9 @@
                     <ImageView
                         android:id="@+id/android_image"
                         android:layout_width="wrap_content"
-                        android:layout_marginRight="-100dp"
+                        android:layout_marginRight="@dimen/android_img_margin_right"
                         android:layout_gravity="center|right"
-                        android:layout_height="24dp"
+                        android:layout_height="@dimen/android_img_height"
                         android:src="@drawable/os_button_android"/>
                     <TextView
                         android:id="@+id/android_select"
