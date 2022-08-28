@@ -50,4 +50,18 @@ public class Display {
         float density = context.getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
     }
+
+    /**
+     * Calculate dynamic height
+     *
+     * @param y1 Height 1
+     * @param y2 Height 2
+     * @return Dynamic height
+     */
+    public static int getDynamicHeight(double y1, double y2) {
+        double x1 = 1794.0;
+        double x2 = 2274.0;
+        double m = (y2 - y1)/(x2 - x1);
+        return (int) (m * x2 - (m * x1) + y1);
+    }
 }
