@@ -117,6 +117,9 @@ public class HomeFragment extends Fragment {
         newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) (Display.getScreenHeightInDp(view) * 0.2));
         vh.homeLogo.setLayoutParams(newLayout);
 
+        String toastMessage = getActivity().getIntent().getStringExtra("MessageFromSignUpActivity");
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_LONG).show();
+
         initAdaptors();
         initListeners();
     }
