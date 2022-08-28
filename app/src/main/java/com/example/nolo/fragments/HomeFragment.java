@@ -113,9 +113,8 @@ public class HomeFragment extends Fragment {
     private void init(){
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
-        
-        double bottomMargin = 65.0/480.0 * Display.getScreenHeight(vh.initialView) - (65.0/480.0*1794);
-        ((LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams()).bottomMargin = (int) bottomMargin;
+
+        ((LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams()).bottomMargin = Display.getDynamicHeight(0.0, 65.0);
 
         initAdaptors();
         initListeners();
