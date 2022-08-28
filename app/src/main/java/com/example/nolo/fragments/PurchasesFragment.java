@@ -66,8 +66,8 @@ public class PurchasesFragment extends Fragment {
      */
     private void init() {
         checkPurchasesEmpty();
-        initListeners();
         initStyling();
+        initListeners();
         initAdaptors();
     }
 
