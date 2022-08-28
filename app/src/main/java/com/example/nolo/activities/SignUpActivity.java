@@ -206,6 +206,7 @@ public class SignUpActivity extends BaseActivity {
 
     }
 
+
     @Override
     public void finish() {
         super.finish();

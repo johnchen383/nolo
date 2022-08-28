@@ -95,9 +95,10 @@
             android:id="@+id/error_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:textSize="@dimen/font_body2"
             android:textColor="@color/red"
-            android:visibility="invisible"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/forgot_text_view"

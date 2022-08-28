@@ -46,7 +46,7 @@
         <dimen name="login_margin_top">112dp</dimen>
 
         <!-- Signup screen dimensions -->
-        <dimen name="signup_margin_top">20dp</dimen>
+        <dimen name="signup_margin_top">30dp</dimen>
         <dimen name="signup_terms_text_indent">-22dp</dimen>
         
         <!-- Category list dimensions -->

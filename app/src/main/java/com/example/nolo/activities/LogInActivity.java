@@ -55,6 +55,7 @@ public class LogInActivity extends BaseActivity {
     }
 
     private void initStyling() {
+        vh.errorText.setVisibility(View.GONE);
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
@@ -165,6 +166,12 @@ public class LogInActivity extends BaseActivity {
         initStyling();
         initListeners();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        vh.errorText.setVisibility(View.GONE);
     }
 
     @Override
