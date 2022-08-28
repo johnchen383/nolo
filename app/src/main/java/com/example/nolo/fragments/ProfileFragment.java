@@ -2,6 +2,7 @@ package com.example.nolo.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -9,7 +10,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.MainActivity;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.FragmentUtil;
+import com.example.nolo.util.ResponsiveView;
 
 /**
  * Fragment to house the profile 'tab' on the main activity
@@ -20,11 +23,13 @@ public class ProfileFragment extends Fragment {
 
     private class ViewHolder {
         TextView purchasesBtn, wishlistBtn, accountBtn;
+        ImageView profileHeader;
 
         public ViewHolder(View view) {
             purchasesBtn = view.findViewById(R.id.purchases_btn);
             wishlistBtn = view.findViewById(R.id.wishlist_btn);
             accountBtn = view.findViewById(R.id.account_btn);
+            profileHeader = view.findViewById(R.id.profile_header);
         }
     }
 
@@ -58,6 +63,7 @@ public class ProfileFragment extends Fragment {
 
     private void initStyling(){
         getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+        ResponsiveView.setHeight((int)(Display.getScreenHeight(vh.purchasesBtn) * 0.4), vh.profileHeader);
     }
 
     private void initListeners() {
