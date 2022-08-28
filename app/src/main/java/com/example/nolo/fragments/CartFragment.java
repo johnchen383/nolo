@@ -36,11 +36,11 @@ public class CartFragment extends Fragment {
         MaterialButton checkoutBtn;
         LinearLayout emptyMsg;
 
-        public ViewHolder(){
-            totalPrice = getView().findViewById(R.id.total_price);
-            cartList = getView().findViewById(R.id.cart_list);
-            checkoutBtn = getView().findViewById(R.id.checkout_btn);
-            emptyMsg = getView().findViewById(R.id.empty_msg);
+        public ViewHolder(View view){
+            totalPrice = view.findViewById(R.id.total_price);
+            cartList = view.findViewById(R.id.cart_list);
+            checkoutBtn = view.findViewById(R.id.checkout_btn);
+            emptyMsg = view.findViewById(R.id.empty_msg);
         }
     }
 
@@ -53,7 +53,7 @@ public class CartFragment extends Fragment {
         cartViewModel =
                 new ViewModelProvider(this).get(CartViewModel.class);
 
-        vh = new ViewHolder();
+        vh = new ViewHolder(view);
 
         ((MainActivity) getActivity()).updateCartBadge();
 

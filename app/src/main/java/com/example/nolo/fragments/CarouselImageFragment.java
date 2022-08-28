@@ -20,7 +20,7 @@ public class CarouselImageFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ImageView img = getView().findViewById(R.id.img);
+        ImageView img = view.findViewById(R.id.img);
 
         int i = getActivity().getResources().getIdentifier(
                 uri, "drawable",

@@ -30,14 +30,14 @@ public class PurchasesFragment extends Fragment {
         TextView transitText, deliveredText;
         RelativeLayout backBtn;
 
-        public ViewHolder() {
-            transitList = getView().findViewById(R.id.transit_list);
-            deliveredList = getView().findViewById(R.id.delivered_list);
-            transitTitle = getView().findViewById(R.id.transit_title);
-            deliveredTitle = getView().findViewById(R.id.delivered_title);
-            transitText = getView().findViewById(R.id.transit_text);
-            deliveredText = getView().findViewById(R.id.delivered_text);
-            backBtn = getView().findViewById(R.id.back_btn);
+        public ViewHolder(View view) {
+            transitList = view.findViewById(R.id.transit_list);
+            deliveredList = view.findViewById(R.id.delivered_list);
+            transitTitle = view.findViewById(R.id.transit_title);
+            deliveredTitle = view.findViewById(R.id.delivered_title);
+            transitText = view.findViewById(R.id.transit_text);
+            deliveredText = view.findViewById(R.id.delivered_text);
+            backBtn = view.findViewById(R.id.back_btn);
         }
     }
 
@@ -79,7 +79,7 @@ public class PurchasesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         purchasesViewModel = new PurchasesViewModel();
-        vh = new ViewHolder();
+        vh = new ViewHolder(view);
 
         ((MainActivity) getActivity()).updateCartBadge();
         initListeners();

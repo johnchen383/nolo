@@ -34,11 +34,11 @@ public class ProfileFragment extends Fragment {
         MaterialButton signoutBtn;
         RelativeLayout changePasswordBtn, purchasesBtn;
 
-        public ViewHolder() {
-            emailText = getView().findViewById(R.id.email_text);
-            changePasswordBtn = getView().findViewById(R.id.change_password_btn);
-            purchasesBtn = getView().findViewById(R.id.purchases_btn);
-            signoutBtn = getView().findViewById(R.id.sign_out_btn);
+        public ViewHolder(View view) {
+            emailText = view.findViewById(R.id.email_text);
+            changePasswordBtn = view.findViewById(R.id.change_password_btn);
+            purchasesBtn = view.findViewById(R.id.purchases_btn);
+            signoutBtn = view.findViewById(R.id.sign_out_btn);
         }
     }
 
@@ -72,7 +72,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
-        vh = new ViewHolder();
+        vh = new ViewHolder(view);
 
         ((MainActivity) getActivity()).updateCartBadge();
         initListeners();
