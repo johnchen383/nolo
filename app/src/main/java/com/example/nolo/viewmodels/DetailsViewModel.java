@@ -112,6 +112,11 @@ public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
     }
 
     @Override
+    public String getVariantColourInString() {
+        return capitaliseFirst(itemVariant.getColour().getName());
+    }
+
+    @Override
     public String getStoreBranchName() {
         String branchName = itemVariant.getBranchName();
         String storeName = GetStoreByIdUseCase.getStoreById(itemVariant.getStoreId()).getStoreName();
@@ -191,8 +196,12 @@ public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
         RemoveWishlistItemsUseCase.removeWishlistItem(this.itemVariant);
     }
 
+    @Override
+    public String getItemVariantPriceInString() {
+        return itemVariant.getDisplayPrice() + " NZD";
+    }
 
-
-
-
+    private String capitaliseFirst(String string) {
+        return string.substring(0, 1).toUpperCase() + string.substring(1);
+    }
 }
