@@ -31,6 +31,7 @@
                         android:layout_height="@dimen/results_heading_height"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="@dimen/padding_lrg"
+                        android:layout_marginBottom="@dimen/padding_lrg"
                         android:src="@drawable/search_result_logo" />
                 </RelativeLayout>
 
@@ -67,7 +68,7 @@
                 android:layout_marginTop="@dimen/padding_lrg"
                 android:layout_gravity="center_horizontal"
                 android:divider="@color/faint_white"
-                android:dividerHeight="1dp"
+                android:dividerHeight="@dimen/search_divider_height"
                 android:orientation="vertical"/>
             <TextView
                 android:id="@+id/number_results_found"
@@ -97,14 +98,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <RelativeLayout
                     android:id="@+id/back_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/padding_xlrg"
-                    android:src="@drawable/back_arrow_hollow" />
+                    android:layout_width="@dimen/touch_target_min"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:layout_marginStart="@dimen/back_btn_margin_start"
+                    android:layout_marginTop="@dimen/back_btn_margin_top">
+
+                    <ImageButton
+                        android:id="@+id/back_btn_img"
+                        style="@style/BackButton"
+                        android:layout_width="@dimen/icon_size_med"
+                        android:layout_height="@dimen/icon_size_med"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
                 <ImageView
                     android:layout_width="@dimen/results_heading_width"
                     android:layout_height="@dimen/results_heading_height"

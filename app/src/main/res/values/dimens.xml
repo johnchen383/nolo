@@ -31,10 +31,12 @@
         <!-- Text input dimensions -->
         <dimen name="text_input_indent_offset">-16dp</dimen>
 
-        <!-- Item list dimensions -->
+        <!-- Back button dimensions -->
+        <dimen name="back_btn_margin_start">10dp</dimen>
+        <dimen name="back_btn_margin_top">20dp</dimen>
 
         <!-- Search dimensions -->
-
+        <dimen name="search_divider_height">1dp</dimen>
 
     <!-- Locally deployed dimensions -->
 
@@ -73,8 +75,8 @@
         <dimen name="indicator_margin_top">3dp</dimen>
 
         <!-- Search results dimensions -->
-        <dimen name="results_heading_width">250dp</dimen>
-        <dimen name="results_heading_height">150dp</dimen>
+        <dimen name="results_heading_width">300dp</dimen>
+        <dimen name="results_heading_height">190dp</dimen>
 
         <!-- Details list dimensions -->
         <dimen name="details_container_margin_top">500dp</dimen>

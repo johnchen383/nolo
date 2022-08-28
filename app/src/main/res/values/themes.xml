@@ -102,4 +102,11 @@
         <item name="android:shadowColor">@color/navy</item>
     </style>
 
+    <!-- Back button styles -->
+    <style name="BackButton">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/back_arrow_hollow</item>
+    </style>
+
 </resources>

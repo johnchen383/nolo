@@ -6,9 +6,11 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +39,9 @@ public class ResultActivity extends BaseActivity {
         EditText searchBarText;
         ListView searchResultList, searchSuggestionsList;
         TextView numOfResultFound;
-        ImageView backBtn, searchBtn, deleteBtn;
+        ImageView searchBtn, deleteBtn;
+        RelativeLayout backBtn;
+        ImageButton backButtonImage;
         View searchView;
 
         public ViewHolder() {
@@ -46,6 +50,7 @@ public class ResultActivity extends BaseActivity {
             searchResultList = findViewById(R.id.search_results_list);
             numOfResultFound = findViewById(R.id.number_results_found);
             backBtn = findViewById(R.id.back_btn);
+            backButtonImage = findViewById(R.id.back_btn_img);
             searchView = findViewById(R.id.search_view);
 
             searchBarText = searchView.findViewById(R.id.search_edittext);
@@ -121,35 +126,29 @@ public class ResultActivity extends BaseActivity {
 
     private void initListeners() {
         // When Enter is pressed in search bar, refresh search result
-        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    String searchTerm = vh.searchBarText.getText().toString();
+        vh.searchBarText.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                String searchTerm = vh.searchBarText.getText().toString();
 
-                    if (searchTerm.isEmpty()) {
-                        Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
-                    } else {
-                        showSearchSuggestionsList(false, v);
-                        resetSearchResults(searchTerm);
-                    }
+                if (searchTerm.isEmpty()) {
+                    Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+                } else {
+                    showSearchSuggestionsList(false, v);
+                    resetSearchResults(searchTerm);
                 }
-                return false;
             }
+            return false;
         });
 
         // When search bar has focus, show search suggestions, otherwise no
-        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    showSearchSuggestionsList(true, v);
-                    resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
-                } else {
-                    showSearchSuggestionsList(false, v);
-                }
-                onSearchBar(hasFocus);
+        vh.searchBarText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                showSearchSuggestionsList(true, v);
+                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
+            } else {
+                showSearchSuggestionsList(false, v);
             }
+            onSearchBar(hasFocus);
         });
 
         vh.searchBarText.addTextChangedListener(new TextWatcher() {
@@ -183,44 +182,29 @@ public class ResultActivity extends BaseActivity {
         });
 
         // When outside box is clicked, hide the search suggestions
-        vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSearchSuggestionsList(false, v);
-            }
-        });
+        vh.outsideSearchContainer.setOnClickListener(v -> showSearchSuggestionsList(false, v));
 
         // When search button is clicked, show search results
-        vh.searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchTerm = vh.searchBarText.getText().toString();
+        vh.searchBtn.setOnClickListener(v -> {
+            String searchTerm = vh.searchBarText.getText().toString();
 
-                if (searchTerm.isEmpty()) {
-                    Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
-                } else {
-                    showSearchSuggestionsList(false, v);
-                    resetSearchResults(searchTerm);
-                }
+            if (searchTerm.isEmpty()) {
+                Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+            } else {
+                showSearchSuggestionsList(false, v);
+                resetSearchResults(searchTerm);
             }
         });
 
         // When delete button is clicked, remove all text in edit text
-        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vh.searchBarText.setText("");
-                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
-            }
+        vh.deleteBtn.setOnClickListener(v -> {
+            vh.searchBarText.setText("");
+            resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
         });
 
         // When back button is clicked, go back to previous activity
-        vh.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        vh.backBtn.setOnClickListener(v -> finish());
+        vh.backButtonImage.setOnClickListener(v -> finish());
     }
 
     private String getColourInHexFromResourceId(int rId) {
