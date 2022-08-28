@@ -125,7 +125,7 @@ public class LogInActivity extends BaseActivity {
 
     public void togglePassword(boolean isHidden) {
         vh.passwordInput.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        vh.eyeIcon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
+        vh.eyeIcon.setImageResource(isHidden ? R.drawable.eye_icon_closed : R.drawable.eye_icon_open);
         setCursorToEnd();
     }
 

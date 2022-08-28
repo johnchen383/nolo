@@ -4,8 +4,7 @@ import android.app.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.Selection;
@@ -22,10 +21,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.activities.MainActivity;
-import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
-import com.example.nolo.viewmodels.ProfileViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputLayout;
@@ -160,7 +156,7 @@ public class ChangePasswordFragment extends Fragment {
     private void togglePassword(EditText input, ImageView icon) {
         boolean isHidden = input.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         input.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        icon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
+        icon.setImageResource(isHidden ? R.drawable.eye_icon_closed : R.drawable.eye_icon_open);
         setCursorToEnd(input);
     }
 
