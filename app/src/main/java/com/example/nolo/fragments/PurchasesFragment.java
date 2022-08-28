@@ -41,6 +41,30 @@ public class PurchasesFragment extends Fragment {
         }
     }
 
+    public PurchasesFragment() {
+        super(R.layout.fragment_purchases);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        purchasesViewModel = new PurchasesViewModel();
+        vh = new ViewHolder(view);
+
+        ((MainActivity) getActivity()).updateCartBadge();
+        initListeners();
+        initStyling();
+        initAdaptors();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initStyling();
+        initAdaptors();
+    }
+
     private void initListeners() {
         vh.backBtn.setOnClickListener(v -> {
             getActivity().getSupportFragmentManager().beginTransaction().remove(PurchasesFragment.this).commit();
@@ -69,29 +93,5 @@ public class PurchasesFragment extends Fragment {
         PurchasableListAdaptor deliveredPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, purchasesViewModel.getUserPurchaseHistoryDelivered(), v->{});
         vh.deliveredList.setAdapter(deliveredPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.deliveredList);
-    }
-
-    public PurchasesFragment() {
-        super(R.layout.fragment_purchases);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        purchasesViewModel = new PurchasesViewModel();
-        vh = new ViewHolder(view);
-
-        ((MainActivity) getActivity()).updateCartBadge();
-        initListeners();
-        initStyling();
-        initAdaptors();
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        initStyling();
-        initAdaptors();
     }
 }

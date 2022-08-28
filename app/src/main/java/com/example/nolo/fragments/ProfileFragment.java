@@ -42,6 +42,20 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    public ProfileFragment() {
+        super(R.layout.fragment_profile);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
+        vh = new ViewHolder(view);
+
+        ((MainActivity) getActivity()).updateCartBadge();
+        initListeners();
+    }
+
     private void initListeners() {
         vh.changePasswordBtn.setOnClickListener(v -> {
             replaceFragment(ChangePasswordFragment.class);
@@ -62,19 +76,5 @@ public class ProfileFragment extends Fragment {
         ft.replace(R.id.profile_fragment, fragment, null, "PROFILE_ADDITION");
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
-    }
-
-    public ProfileFragment() {
-        super(R.layout.fragment_profile);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
-        vh = new ViewHolder(view);
-
-        ((MainActivity) getActivity()).updateCartBadge();
-        initListeners();
     }
 }

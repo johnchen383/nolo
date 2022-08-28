@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.example.nolo.R;
 
 public class CarouselImageFragment extends Fragment {
-    private String uri;
+    private final String uri;
 
     public CarouselImageFragment(String uri) {
         super(R.layout.carousel_img);

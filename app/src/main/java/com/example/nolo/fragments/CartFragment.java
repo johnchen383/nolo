@@ -89,12 +89,6 @@ public class CartFragment extends Fragment {
     }
 
     private void initAdaptor(){
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-
         PurchasableListAdaptor cartPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, cartViewModel.getUserCart(), this::updateCartItems);
         vh.cartList.setAdapter(cartPurchasableAdaptor);
 
