@@ -58,6 +58,7 @@ public class HomeViewModel extends ViewModel implements IHomeViewModel {
 
         return indicatorFields;
     }
+
     private int getMaxNumberOfSearchSuggestionsInList(View v) {
         return Display.getScreenHeight(v) / 2 / 200;
     }

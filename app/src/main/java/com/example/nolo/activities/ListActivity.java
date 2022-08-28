@@ -12,6 +12,7 @@ import com.example.nolo.interactors.item.GetLaptopsGroupedByBrandUseCase;
 import com.example.nolo.interactors.item.GetPhonesGroupedByOsUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.viewmodels.IListViewModel;
 import com.example.nolo.viewmodels.ListViewModel;
 
 import android.graphics.drawable.ColorDrawable;
@@ -28,8 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends BaseActivity {
+    private IListViewModel listViewModel;
     private ViewHolder vh;
-    private ListViewModel listViewModel;
 
     private class ViewHolder {
         ListView categoryItemsParentList;

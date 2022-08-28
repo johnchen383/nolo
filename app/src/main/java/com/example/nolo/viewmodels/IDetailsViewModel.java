@@ -17,6 +17,7 @@ public interface IDetailsViewModel {
     String getItemName();
     List<Colour> getItemColours();
     Colour getVariantColour();
+    String getVariantColourInString();
     String getStoreBranchName();
     CategoryType getItemCategory();
     List<SpecsOption> getStorageOptions();
@@ -29,4 +30,5 @@ public interface IDetailsViewModel {
     boolean isInWishlist();
     void addWishlist();
     void removeWishlist();
+    String getItemVariantPriceInString();
 }

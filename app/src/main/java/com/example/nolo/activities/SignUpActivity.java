@@ -22,12 +22,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.util.Animation;
+import com.example.nolo.viewmodels.ISignUpViewModel;
 import com.example.nolo.viewmodels.SignUpViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends BaseActivity {
-    private SignUpViewModel signUpViewModel;
+    private ISignUpViewModel signUpViewModel;
     private ViewHolder vh;
 
     private class ViewHolder {
