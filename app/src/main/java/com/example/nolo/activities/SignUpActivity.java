@@ -101,7 +101,7 @@ public class SignUpActivity extends BaseActivity {
 
         signUpViewModel.signUp((error) -> {
             if (error == null) {
-                startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
+                startActivity(new Intent(this, MainActivity.class).putExtra("SignUpMessage", "New account successfully created."), Animation.Fade(this).toBundle());
             } else {
                 vh.errorText.setText(error);
                 vh.errorText.setVisibility(View.VISIBLE);
