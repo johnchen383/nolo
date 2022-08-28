@@ -30,9 +30,8 @@ public class ListUtil {
         }
 
         // Set the total height
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = height + (listView.getDividerHeight() * (mListAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
+        height = height + (listView.getDividerHeight() * (mListAdapter.getCount() - 1));
+        ResponsiveView.setHeight(height, listView);
         listView.requestLayout();
     }
 }

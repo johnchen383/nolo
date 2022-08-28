@@ -25,6 +25,7 @@ import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.LocationUtil;
+import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.SplashViewModel;
 
 import java.util.function.Consumer;
@@ -134,23 +135,17 @@ public class SplashActivity extends BaseActivity {
 
     private void pause(int delay, Consumer<Void> method) {
         Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            method.accept(null);
-        }, delay);
+        handler.postDelayed(() -> method.accept(null), delay);
     }
 
     private void setProgressLoad(float progress) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
-                vh.load_state.getLayoutParams();
-        float oldProgress = params.weight;
+        float oldProgress = ResponsiveView.getWeight(vh.load_state);
         float targetProgress = 1f - progress;
 
         anim = ValueAnimator.ofFloat(oldProgress, targetProgress);
         anim.addUpdateListener(valueAnimator -> {
-            float val = (Float) valueAnimator.getAnimatedValue();
-            LinearLayout.LayoutParams newParams = (LinearLayout.LayoutParams) vh.load_state.getLayoutParams();
-            newParams.weight = val;
-            vh.load_state.setLayoutParams(newParams);
+            int val = (Integer) valueAnimator.getAnimatedValue();
+            ResponsiveView.setWeight(val, vh.load_state);
         });
 
         anim.setDuration(ANIMATION_INTERVAL);
