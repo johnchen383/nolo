@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.LogInActivity;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.FragmentUtil;
 import com.example.nolo.viewmodels.AccountViewModel;
@@ -46,6 +47,7 @@ public class AccountFragment extends Fragment {
 
         // Initialisation
         init();
+        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override

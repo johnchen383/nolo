@@ -20,4 +20,9 @@ public class WishlistViewModel extends ViewModel implements IWishlistViewModel {
     public void removeWishlistItem(IItemVariant wishlistItem) {
         RemoveWishlistItemsUseCase.removeWishlistItem(wishlistItem);
     }
+
+    @Override
+    public boolean checkWishlistEmpty() {
+        return getUserWishlist().isEmpty();
+    }
 }

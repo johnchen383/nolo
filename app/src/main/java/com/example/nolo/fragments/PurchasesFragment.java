@@ -72,7 +72,7 @@ public class PurchasesFragment extends Fragment {
     }
 
     /**
-     * Check if the purchase history is empty, if it is hide the empty message
+     * Check if the purchase history is empty, if it is show the empty message
      */
     private void checkPurchasesEmpty() {
         vh.emptyMsg.setVisibility(purchasesViewModel.checkPurchaseHistoryDeliveredEmpty()

@@ -8,4 +8,5 @@ import java.util.List;
 public interface IWishlistViewModel {
     List<ItemVariant> getUserWishlist();
     void removeWishlistItem(IItemVariant wishlistItem);
+    boolean checkWishlistEmpty();
 }
