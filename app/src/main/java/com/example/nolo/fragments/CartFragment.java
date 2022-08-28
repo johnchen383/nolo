@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+import com.example.nolo.adaptors.ItemsListVariantAdaptor;
 import com.example.nolo.activities.MainActivity;
-import com.example.nolo.adaptors.PurchasableListAdaptor;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.util.ListUtil;
@@ -96,7 +96,7 @@ public class CartFragment extends Fragment {
 //        cartItems.add(null);
 //        cartItems.add(null);
 
-        PurchasableListAdaptor cartPurchasableAdaptor = new PurchasableListAdaptor(getActivity(), this, R.layout.item_list_purchaseable, cartViewModel.getUserCart(), this::updateCartItems);
+        ItemsListVariantAdaptor cartPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, cartViewModel.getUserCart(), this::updateCartItems, null, null);
         vh.cartList.setAdapter(cartPurchasableAdaptor);
 
         ListUtil.setDynamicHeight(vh.cartList);

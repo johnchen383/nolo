@@ -103,13 +103,13 @@ public class User implements IUser {
     }
 
     /**
-     * Update the user's wishlist with the new wishlist
+     * Remove item from the user's wishlist
      *
-     * @param items New wishlist
+     * @param item The item to be removed
      */
     @Override
-    public void updateWishlist(List<ItemVariant> items) {
-        wishlist = items;
+    public void removeWishlist(IItemVariant item) {
+        wishlist.remove((ItemVariant) item);
     }
 
     @Override

@@ -26,4 +26,7 @@ public interface IDetailsViewModel {
     int getQuantity();
     void addCart();
     void addViewHistory();
+    boolean isInWishlist();
+    void addWishlist();
+    void removeWishlist();
 }

@@ -262,13 +262,13 @@ public class UsersRepository implements IUsersRepository {
     }
 
     /**
-     * Update the user's wishlist with the new wishlist
+     * Remove item from the user's wishlist
      *
-     * @param items New wishlist
+     * @param item The item to be removed
      */
     @Override
-    public void updateWishlist(List<ItemVariant> items) {
-        currentUser.updateWishlist(items);
+    public void removeWishlist(IItemVariant item) {
+        currentUser.removeWishlist(item);
 
         String field = FIELD_WISHLIST;
         if (currentUser.isFieldNameValid(field)) {
