@@ -82,7 +82,7 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
             intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) variant);
 
             mContext.startActivity(intent);
-            ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
+//            ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
     }
 

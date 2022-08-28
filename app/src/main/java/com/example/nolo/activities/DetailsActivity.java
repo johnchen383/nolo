@@ -200,14 +200,15 @@ public class DetailsActivity extends BaseActivity {
         } else {
             switch (detailsViewModel.getItemCategory()) {
                 case phones:
-                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.50, 0.55);
+                    //0.35 too small
+                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.43, 0.55);
                     break;
                 case laptops:
-                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.40, 0.45);
+                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.32, 0.45);
                     break;
                 case accessories:
                 default:
-                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.53, 0.58);
+                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.47, 0.58);
             }
         }
 
