@@ -21,10 +21,9 @@
             android:id="@+id/category_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="accessories"
             android:letterSpacing="-0.1"
             android:background="@color/transparent"
-            android:textSize="70sp"
+            android:textSize="@dimen/category_heading_font"
             />
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -33,8 +32,8 @@
 
             <ImageButton
                 android:id="@+id/category_btn"
-                android:layout_width="65dp"
-                android:layout_height="31dp"
+                android:layout_width="@dimen/category_btn_width"
+                android:layout_height="@dimen/category_btn_height"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:background="@color/transparent"

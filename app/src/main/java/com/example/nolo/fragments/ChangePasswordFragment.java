@@ -1,5 +1,8 @@
 package com.example.nolo.fragments;
 
+import android.app.Activity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.Selection;
@@ -163,7 +166,7 @@ public class ChangePasswordFragment extends Fragment {
     private void togglePassword(EditText input, ImageView icon) {
         boolean isHidden = input.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         input.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        icon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
+        icon.setImageResource(isHidden ? R.drawable.eye_icon_closed : R.drawable.eye_icon_open);
         setCursorToEnd(input);
     }
 

@@ -20,11 +20,13 @@ import com.example.nolo.adaptors.SearchItemResultAdaptor;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultActivity extends BaseActivity {
     private ViewHolder vh;
@@ -101,15 +103,17 @@ public class ResultActivity extends BaseActivity {
      * SEARCH SUGGESTION ADAPTOR
      */
     private void resetSearchSuggestionsAdaptor(String searchTerm) {
-        List<IItem> searchSuggestions = new ArrayList<>();
+        List<IItem> firstNItems = new ArrayList<>();
 
         if (!searchTerm.isEmpty()) {
-            searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
+            List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
+            firstNItems = searchSuggestions.stream().limit(getMaxNumberOfSearchSuggestionsInList()).collect(Collectors.toList());
+
         }
 
         // Create and Set the adaptor
         SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
-                new SearchItemSuggestionAdaptor(this, R.layout.item_search_suggestion, searchSuggestions, searchTerm,
+                new SearchItemSuggestionAdaptor(this, R.layout.item_search_suggestion, firstNItems, searchTerm,
                         getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
         vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
@@ -221,6 +225,10 @@ public class ResultActivity extends BaseActivity {
 
     private String getColourInHexFromResourceId(int rId) {
         return "#" + Integer.toHexString(ContextCompat.getColor(this, rId) & 0x00ffffff);
+    }
+
+    private int getMaxNumberOfSearchSuggestionsInList() {
+        return Display.getScreenHeight(vh.searchResultList) / 2 / 140;
     }
 
     /**

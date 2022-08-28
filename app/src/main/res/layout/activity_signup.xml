@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LogInActivity"
+    tools:context=".activities.SignUpActivity"
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -14,20 +14,20 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/login_logo" />
+        android:src="@drawable/login_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/signup_margin_top"
         android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/login_margin_horizontal" >
+        android:layout_marginHorizontal="@dimen/screen_margin_horizontal_lrg" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/signup_margin_top"
             android:paddingBottom="@dimen/padding_lrg"
-            android:text="SIGN UP"
+            android:text="@string/title_signup"
             android:textSize="@dimen/font_h5" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/padding_small"
-            android:layout_marginLeft="@dimen/text_input_indent_offset"
+            android:layout_marginStart="@dimen/text_input_indent_offset"
             android:hint="@string/input_hint_email" >
 
             <EditText
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/padding_med"
-                android:layout_marginLeft="@dimen/text_input_indent_offset"
+                android:layout_marginStart="@dimen/text_input_indent_offset"
                 android:hint="@string/input_hint_password">
 
                 <EditText
@@ -72,19 +72,18 @@
 
             <RelativeLayout
                 android:id="@+id/eye_btn"
-                style="@style/TouchTarget"
                 android:layout_width="@dimen/touch_target_min"
                 android:layout_height="@dimen/touch_target_min"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true" >
 
                 <ImageView
                     android:id="@+id/eye_icon"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/signin_icon_eye_open" />
+                    app:srcCompat="@drawable/eye_icon_open" />
 
             </RelativeLayout>
 
@@ -102,8 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_small"
                 android:layout_marginBottom="@dimen/padding_med"
-                android:layout_marginLeft="@dimen/text_input_indent_offset"
-                android:hint="REPEAT PASSWORD" >
+                android:layout_marginStart="@dimen/text_input_indent_offset"
+                android:hint="@string/repeat_password" >
 
                 <EditText
                     android:id="@+id/repeat_password_edit"
@@ -115,19 +114,18 @@
 
             <RelativeLayout
                 android:id="@+id/repeat_eye_btn"
-                style="@style/TouchTarget"
                 android:layout_width="@dimen/touch_target_min"
                 android:layout_height="@dimen/touch_target_min"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true" >
 
                 <ImageView
                     android:id="@+id/repeat_eye_icon"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/signin_icon_eye_open" />
+                    app:srcCompat="@drawable/eye_icon_open" />
 
             </RelativeLayout>
 
@@ -137,10 +135,9 @@
             android:id="@+id/error_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="error"
             android:textSize="@dimen/font_body2"
             android:textColor="@color/red"
-            android:visibility="invisible"/>
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,16 +147,14 @@
 
             <RelativeLayout
                 android:id="@+id/checkbox_btn"
-                style="@style/TouchTarget"
                 android:layout_width="@dimen/touch_target_min"
-                android:layout_height="@dimen/touch_target_min"
-                android:layout_alignParentRight="true" >
+                android:layout_height="@dimen/touch_target_min" >
 
                 <CheckBox
                     android:id="@+id/checkbox"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_alignParentLeft="true"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:buttonTint="@color/white"
                     android:scaleX="0.8"
@@ -170,23 +165,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-22dp"
+                android:layout_marginStart="@dimen/signup_terms_text_indent"
                 android:text="I agree to the "
                 android:textSize="@dimen/font_caption" />
 
             <RelativeLayout
                 android:id="@+id/terms_btn"
-                style="@style/TouchTarget"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/touch_target_min"
-                android:layout_centerVertical="true" >
+                android:layout_height="@dimen/touch_target_min" >
 
                 <TextView
                     android:id="@+id/terms_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Terms of Use"
+                    android:text="@string/signup_terms"
                     android:textSize="@dimen/font_caption" />
             </RelativeLayout>
 
@@ -198,17 +191,15 @@
 
             <RelativeLayout
                 android:id="@+id/privacy_btn"
-                style="@style/TouchTarget"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/touch_target_min"
-                android:layout_centerVertical="true" >
+                android:layout_height="@dimen/touch_target_min" >
 
                 <TextView
                     android:id="@+id/privacy_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Privacy Policy"
+                    android:text="@string/signup_privacy"
                     android:textSize="@dimen/font_caption" />
             </RelativeLayout>
 
@@ -222,15 +213,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/padding_small"
-            android:text="CREATE ACCOUNT" />
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/signup_google_button"-->
-<!--            style="@style/RoundButton.Icon"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:icon="@drawable/login_google"-->
-<!--            android:text="SIGN UP WITH GOOGLE" />-->
+            android:text="@string/signup_create_btn"
+            android:stateListAnimator="@null"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -243,11 +227,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_body2"
-                android:text="Have an account? " />
+                android:text="@string/signup_have_account" />
 
             <RelativeLayout
                 android:id="@+id/login_btn"
-                style="@style/TouchTarget"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/touch_target_min"
                 android:gravity="center_vertical">
@@ -256,7 +239,7 @@
                     android:id="@+id/login_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Log in"
+                    android:text="@string/signup_login_btn"
                     android:textColor="@color/light_brown"
                     android:textSize="@dimen/font_body2" />
 

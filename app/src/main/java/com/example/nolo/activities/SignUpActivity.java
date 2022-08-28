@@ -99,7 +99,7 @@ public class SignUpActivity extends BaseActivity {
 
         signUpViewModel.signUp((error) -> {
             if (error == null) {
-                startActivity(new Intent(this, MainActivity.class).putExtra("MessageFromSignUpActivity", "New account created successfully."), Animation.Fade(this).toBundle());
+                startActivity(new Intent(this, MainActivity.class), Animation.Fade(this).toBundle());
             } else {
                 vh.errorText.setText(error);
                 vh.errorText.setVisibility(View.VISIBLE);
@@ -169,7 +169,7 @@ public class SignUpActivity extends BaseActivity {
     public void togglePassword(EditText input, ImageView icon) {
         boolean isHidden = input.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         input.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        icon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
+        icon.setImageResource(isHidden ? R.drawable.eye_icon_closed : R.drawable.eye_icon_open);
         setCursorToEnd(input);
     }
 
@@ -205,6 +205,7 @@ public class SignUpActivity extends BaseActivity {
         initListeners();
 
     }
+
 
     @Override
     public void finish() {

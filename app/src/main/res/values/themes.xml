@@ -69,7 +69,7 @@
     </style>
 
     <style name="RoundButton.Icon">
-        <item name="iconSize">@dimen/icon_size</item>
+        <item name="iconSize">@dimen/icon_size_med</item>
         <item name="iconTint">@null</item>
         <item name="iconGravity">textStart</item>
     </style>
@@ -100,12 +100,6 @@
 
     <style name="TextStroke.Navy">
         <item name="android:shadowColor">@color/navy</item>
-    </style>
-
-    <!-- Touch target container styles -->
-    <style name="TouchTarget">
-        <item name="android:background">@null</item>
-        <item name="android:clickable">true</item>
     </style>
 
 </resources>
