@@ -2,6 +2,7 @@ package com.example.nolo.util;
 
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
@@ -63,6 +64,24 @@ public class ResponsiveView {
     public static void setBottomMargin(int bottomMargin, @NonNull View... views) {
         for (View v : views) {
             ((LinearLayout.LayoutParams) v.getLayoutParams()).bottomMargin = bottomMargin;
+            v.requestLayout();
+        }
+    }
+
+    /**
+     * Set topMargin of all the views
+     *
+     * @param topMargin New height
+     * @param views List of views
+     */
+    public static void setTopMargin(int topMargin, @NonNull View... views) {
+        for (View v : views) {
+            if (v.getLayoutParams().getClass().equals(LinearLayout.LayoutParams.class)){
+                ((LinearLayout.LayoutParams) v.getLayoutParams()).topMargin = topMargin;
+            } else {
+                ((RelativeLayout.LayoutParams) v.getLayoutParams()).topMargin = topMargin;
+            }
+
             v.requestLayout();
         }
     }
