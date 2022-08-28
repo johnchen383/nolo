@@ -78,6 +78,16 @@ public class Purchasable implements IPurchasable {
     }
 
     @Override
+    public PurchaseStatus getStatus() {
+        return status;
+    }
+
+    @Override
+    public void setStatus(PurchaseStatus status) {
+        this.status = status;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Purchasable that = (Purchasable) o;
@@ -87,15 +97,5 @@ public class Purchasable implements IPurchasable {
     @Override
     public int hashCode() {
         return Objects.hash(itemVariant, quantity);
-    }
-
-    @Override
-    public PurchaseStatus getStatus() {
-        return status;
-    }
-
-    @Override
-    public void setStatus(PurchaseStatus status) {
-        this.status = status;
     }
 }

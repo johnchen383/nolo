@@ -60,7 +60,7 @@ public class CartFragment extends Fragment {
 
         vh.checkoutBtn.setOnClickListener(v -> {
             // TODO: cart to purchase history (purchase status changes, delete cart, add purchase history)
-            cartViewModel.addPurchaseHistory();
+            cartViewModel.moveCartToPurchaseHistory();
             Toast.makeText(getContext(), "Purchase made!", Toast.LENGTH_SHORT).show();
         });
     }

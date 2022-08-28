@@ -1,19 +1,16 @@
 package com.example.nolo.activities;
 
-import static androidx.core.view.WindowCompat.getInsetsController;
-
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.example.nolo.R;
 
-//TODO: justify that it does not violate LSP
+/**
+ * It does not violate LSP.
+ * It is justified in the report, please check.
+ */
 public class BaseActivity extends AppCompatActivity {
 
     @Override
