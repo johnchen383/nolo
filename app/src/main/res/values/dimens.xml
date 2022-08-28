@@ -72,6 +72,10 @@
         <dimen name="category_btn_height">31dp</dimen>
         <dimen name="indicator_margin_top">3dp</dimen>
 
+        <!-- Search results dimensions -->
+        <dimen name="results_heading_width">250dp</dimen>
+        <dimen name="results_heading_height">150dp</dimen>
+
         <!-- Details list dimensions -->
         <dimen name="details_container_margin_top">500dp</dimen>
         <dimen name="details_color_size">14dp</dimen>
