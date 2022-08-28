@@ -25,4 +25,8 @@ public class CartViewModel extends ViewModel implements ICartViewModel {
         MoveCartItemsToPurchasedItemsUseCase.moveCartItemsToPurchasedItems();
     }
 
+    @Override
+    public boolean checkCartEmpty() {
+        return getUserCart().isEmpty();
+    }
 }

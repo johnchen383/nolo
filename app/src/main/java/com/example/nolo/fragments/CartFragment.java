@@ -81,7 +81,7 @@ public class CartFragment extends Fragment {
      * Check if the cart is empty, if it is hide the empty message
      */
     private void checkCartEmpty() {
-        vh.emptyMsg.setVisibility(cartViewModel.getUserCart().isEmpty() ? View.VISIBLE : View.GONE);
+        vh.emptyMsg.setVisibility(cartViewModel.checkCartEmpty() ? View.VISIBLE : View.GONE);
     }
 
     private void updatePrice() {
