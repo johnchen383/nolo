@@ -172,6 +172,4 @@ public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
     public void addViewHistory() {
         AddViewedItemUseCase.addViewHistory(this.itemVariant);
     }
-
-
 }

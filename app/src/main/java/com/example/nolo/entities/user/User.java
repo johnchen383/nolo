@@ -27,6 +27,7 @@ public class User implements IUser {
     public static final int MAX_VIEWED = 5;
     private String userAuthUid, email;
     private List<ItemVariant> viewHistory = new ArrayList<>();
+    private List<ItemVariant> wishlist = new ArrayList<>();
     private List<Purchasable> cart = new ArrayList<>();
     private List<Purchasable> purchaseHistory = new ArrayList<>();
 
@@ -84,6 +85,31 @@ public class User implements IUser {
         while (viewHistory.size() > MAX_VIEWED) {
             viewHistory.remove(MAX_VIEWED);
         }
+    }
+
+    @Override
+    public List<ItemVariant> getWishlist() {
+        return this.wishlist;
+    }
+
+    /**
+     * Add wishlist items into wishlist at the top
+     *
+     * @param item wishlist items
+     */
+    @Override
+    public void addWishlist(IItemVariant item) {
+        wishlist.add(0, (ItemVariant) item.copy());
+    }
+
+    /**
+     * Update the user's wishlist with the new wishlist
+     *
+     * @param items New wishlist
+     */
+    @Override
+    public void updateWishlist(List<ItemVariant> items) {
+        wishlist = items;
     }
 
     @Override

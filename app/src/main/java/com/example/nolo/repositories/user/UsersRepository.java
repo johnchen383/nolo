@@ -29,6 +29,11 @@ import java.util.function.Consumer;
  * This is a singleton class for Users repository.
  */
 public class UsersRepository implements IUsersRepository {
+    private static final String FIELD_VIEW_HISTORY = "viewHistory";
+    private static final String FIELD_WISHLIST = "wishlist";
+    private static final String FIELD_PURCHASE_HISTORY = "purchaseHistory";
+    private static final String FIELD_CART = "cart";
+
     private static UsersRepository usersRepository = null;
     private final FirebaseFirestore db;
     private final FirebaseAuth fAuth;
@@ -226,11 +231,50 @@ public class UsersRepository implements IUsersRepository {
     public void addViewHistory(IItemVariant item) {
         currentUser.addViewHistory(item);
 
-        String field = "viewHistory";
+        String field = FIELD_VIEW_HISTORY;
         if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
         } else {
             Log.e("UsersRepository", "Unable to update view history as field not matched");
+        }
+    }
+
+    @Override
+    public List<ItemVariant> getWishlist() {
+        return currentUser.getWishlist();
+    }
+
+    /**
+     * Add wishlist items into wishlist at the top
+     *
+     * @param item wishlist items
+     */
+    @Override
+    public void addWishlist(IItemVariant item) {
+        currentUser.addWishlist(item);
+
+        String field = FIELD_WISHLIST;
+        if (currentUser.isFieldNameValid(field)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getWishlist());
+        } else {
+            Log.e("UsersRepository", "Unable to update wishlist as field not matched");
+        }
+    }
+
+    /**
+     * Update the user's wishlist with the new wishlist
+     *
+     * @param items New wishlist
+     */
+    @Override
+    public void updateWishlist(List<ItemVariant> items) {
+        currentUser.updateWishlist(items);
+
+        String field = FIELD_WISHLIST;
+        if (currentUser.isFieldNameValid(field)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getWishlist());
+        } else {
+            Log.e("UsersRepository", "Unable to update wishlist as field not matched");
         }
     }
 
@@ -248,7 +292,7 @@ public class UsersRepository implements IUsersRepository {
     public void addPurchaseHistory(List<Purchasable> purchasedItem) {
         currentUser.addPurchaseHistory(purchasedItem);
 
-        String field = "purchaseHistory";
+        String field = FIELD_PURCHASE_HISTORY;
         if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getPurchaseHistory());
         } else {
@@ -270,7 +314,7 @@ public class UsersRepository implements IUsersRepository {
     public void addCart(IItemVariant cartItem, int quantity) {
         currentUser.addCart(cartItem, quantity);
 
-        String field = "cart";
+        String field = FIELD_CART;
         if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
         } else {
@@ -287,7 +331,7 @@ public class UsersRepository implements IUsersRepository {
     public void updateCart(List<Purchasable> cartItems) {
         currentUser.updateCart(cartItems);
 
-        String field = "cart";
+        String field = FIELD_CART;
         if (currentUser.isFieldNameValid(field)) {
             db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
         } else {
