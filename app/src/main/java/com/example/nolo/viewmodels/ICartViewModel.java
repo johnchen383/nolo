@@ -8,4 +8,5 @@ public interface ICartViewModel {
     List<Purchasable> getUserCart();
     void updateCartItem(List<Purchasable> cartItems);
     void moveCartToPurchaseHistory();
+    boolean checkCartEmpty();
 }

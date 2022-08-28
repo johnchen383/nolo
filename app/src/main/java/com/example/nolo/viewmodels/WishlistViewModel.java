@@ -10,12 +10,19 @@ import com.example.nolo.interactors.user.RemoveWishlistItemsUseCase;
 
 import java.util.List;
 
-public class WishlistViewModel extends ViewModel {
+public class WishlistViewModel extends ViewModel implements IWishlistViewModel {
+    @Override
     public List<ItemVariant> getUserWishlist() {
         return GetWishlistItemsUseCase.getWishlist();
     }
 
+    @Override
     public void removeWishlistItem(IItemVariant wishlistItem) {
         RemoveWishlistItemsUseCase.removeWishlistItem(wishlistItem);
+    }
+
+    @Override
+    public boolean checkWishlistEmpty() {
+        return getUserWishlist().isEmpty();
     }
 }

@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,8 +33,8 @@ import com.example.nolo.adaptors.HomeIndicatorAdaptor;
 import com.example.nolo.adaptors.ItemsCompactAdaptor;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.category.ICategory;
-import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
+import com.example.nolo.util.ColourUtil;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Display;
@@ -43,19 +42,18 @@ import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.HomeViewModel;
+import com.example.nolo.viewmodels.IHomeViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Fragment to house the home 'tab' on the main activity
  * Used for viewing featured items, browsing categories, and navigation to search
  */
 public class HomeFragment extends Fragment {
-    private final int SNAP_DURATION = 300;
+    private static final int SNAP_DURATION = 300;
+    private IHomeViewModel homeViewModel;
     private ViewHolder vh;
-    private HomeViewModel homeViewModel;
     private float historicY = 0;
     private int panelIndex = 0;
 
@@ -87,14 +85,23 @@ public class HomeFragment extends Fragment {
             searchBtn = searchView.findViewById(R.id.search_btn);
             searchButtonImage = searchView.findViewById(R.id.search_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
-            deleteButtonImage = searchView.findViewById(R.id.delete_image_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
 
-
     public HomeFragment() {
         super(R.layout.fragment_home);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
+
+        vh = new ViewHolder(view);
+
+        // Initialisation
+        init();
     }
 
     @Override
@@ -103,63 +110,25 @@ public class HomeFragment extends Fragment {
         init();
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        vh = new ViewHolder(view);
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        init();
+    /**
+     * Initialisation
+     */
+    private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
+        initStyling();
+        initListeners();
+        initAdaptors();
     }
 
-    private void init(){
-        ((MainActivity) getActivity()).updateCartBadge();
+    private void initStyling() {
+        vh.searchSuggestionsList.setMinimumWidth(Display.getScreenWidth(vh.scrollView));
 
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
         ResponsiveView.setBottomMargin((int) Display.getDynamicHeight(vh.initialView, 0.0, 65.0), vh.homeLogo);
 
-        initAdaptors();
-        initListeners();
-        initStyling();
-    }
-
-    private void snapScroll() {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
-        objectAnimator.start();
-        updateStyling();
-        historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
-    }
-
-    private boolean onTouch(MotionEvent motionEvent) {
-        switch (motionEvent.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                historicY = vh.scrollView.getScrollY();
-                return true;
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.AXIS_SIZE:
-                float currentY = vh.scrollView.getScrollY();
-                if (currentY > historicY) {
-                    //swipe down
-                    panelIndex++;
-                    snapScroll();
-                } else if (currentY < historicY) {
-                    //swipe up
-                    panelIndex--;
-                    snapScroll();
-                } else {
-                    return false;
-                }
-
-                historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
-                return true;
-        }
-        return false;
-
-    }
-
-    private void initStyling() {
-        vh.searchSuggestionsList.setMinimumWidth(Display.getScreenWidth(vh.scrollView));
         updateStyling();
     }
 
@@ -171,81 +140,6 @@ public class HomeFragment extends Fragment {
             getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
             vh.indicator.setVisibility(View.INVISIBLE);
         }
-    }
-
-    private void initAdaptors() {
-        /**
-         * CATEGORY ADAPTOR
-         */
-        List<ICategory> categories = GetCategoriesUseCase.getCategories();
-        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories);
-        vh.categoryList.setAdapter(categoriesAdaptor);
-
-        ListUtil.setDynamicHeight(vh.categoryList);
-
-        /**
-         * FEATURED ITEMS ADAPTOR
-         */
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        vh.featuredItemsList.setLayoutManager(layoutManager);
-
-        List<ItemVariant> displayVariants = homeViewModel.getRecentlyViewedItemVariants();
-
-        if (displayVariants.size() <= 0) {
-            vh.featuredText.setText(getString(R.string.home_featured_random));
-            displayVariants = homeViewModel.generateRandomViewedItemVariants();
-        } else {
-            vh.featuredText.setText(getString(R.string.home_featured_prev));
-        }
-
-        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43);
-        vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
-
-        /**
-         * Indicator adaptor
-         */
-        List<String> indicatorFields = new ArrayList<>();
-
-        for (int i = 1; i <= categories.size(); i++){
-            indicatorFields.add(String.format("%02d  |", i));
-        }
-
-        HomeIndicatorAdaptor indicatorAdaptor =
-                new HomeIndicatorAdaptor(getContext(), R.layout.item_home_indicator, indicatorFields, (a) -> onClickIndicator(a));
-
-        vh.indicator.setAdapter(indicatorAdaptor);
-    }
-
-    public View getViewByPosition(int pos, ListView listView) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition) {
-            return listView.getAdapter().getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
-        }
-    }
-
-    /**
-     * SEARCH SUGGESTION ADAPTOR
-     */
-    private void resetSearchSuggestionsAdaptor(String searchTerm) {
-        List<IItem> firstNItems = new ArrayList<>();
-
-        if (!searchTerm.isEmpty()) {
-            // First limit the number of items showing in the list
-            List<IItem> searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-            firstNItems = searchSuggestions.stream().limit(getMaxNumberOfSearchSuggestionsInList()).collect(Collectors.toList());
-        }
-
-        // Create and Set the adaptor
-        SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
-                new SearchItemSuggestionAdaptor(getActivity(), R.layout.item_search_suggestion, firstNItems, searchTerm,
-                        getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
-        vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
-        ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
 
     private void initListeners() {
@@ -261,28 +155,22 @@ public class HomeFragment extends Fragment {
         });
 
         // Handle Enter and Back keys
-        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // When Enter key pressed, go to search list
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    goToSearchActivity(vh.searchBarText.getText().toString());
+        vh.searchBarText.setOnKeyListener((v, keyCode, event) -> {
+            // When Enter key pressed, go to search list
+            if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                goToSearchActivity(vh.searchBarText.getText().toString());
 
-                    // When Back key pressed, hide the search bar
-                } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    showSearchContainer(false);
-                }
-
-                return false;
+                // When Back key pressed, hide the search bar
+            } else if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                showSearchContainer(false);
             }
+
+            return false;
         });
 
         // When search bar has focus, show delete button, otherwise search button
-        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                onSearchBar(hasFocus);
-            }
+        vh.searchBarText.setOnFocusChangeListener((v, hasFocus) -> {
+            onSearchBar(hasFocus);
         });
 
         vh.searchBarText.addTextChangedListener(new TextWatcher() {
@@ -327,6 +215,7 @@ public class HomeFragment extends Fragment {
             onClickDelete(vh);
         });
 
+        // When browser button is pressed on the main/first panel
         vh.browseBtn.setOnClickListener(v -> {
             panelIndex = 1;
             snapScroll();
@@ -340,6 +229,124 @@ public class HomeFragment extends Fragment {
         resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
     }
 
+    private void initAdaptors() {
+        /**
+         * CATEGORY ADAPTOR
+         */
+        List<ICategory> categories = homeViewModel.getCategoryTypes();
+        HomeCategoryAdaptor categoriesAdaptor = new HomeCategoryAdaptor(getActivity(), R.layout.item_home_category, categories);
+        vh.categoryList.setAdapter(categoriesAdaptor);
+        ListUtil.setDynamicHeight(vh.categoryList);
+
+        /**
+         * FEATURED ITEMS ADAPTOR
+         */
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        vh.featuredItemsList.setLayoutManager(layoutManager);
+
+        List<ItemVariant> displayVariants = homeViewModel.getRecentlyViewedItemVariants();
+
+        if (displayVariants.size() <= 0) {
+            vh.featuredText.setText(getString(R.string.home_featured_random));
+            displayVariants = homeViewModel.generateRandomViewedItemVariants();
+        } else {
+            vh.featuredText.setText(getString(R.string.home_featured_prev));
+        }
+
+        ItemsCompactAdaptor featuredItemsAdaptor = new ItemsCompactAdaptor(getActivity(), displayVariants, 0.43);
+        vh.featuredItemsList.setAdapter(featuredItemsAdaptor);
+
+        /**
+         * Indicator adaptor
+         */
+        List<String> indicatorFields = homeViewModel.getIndicatorFields();
+
+        HomeIndicatorAdaptor indicatorAdaptor =
+                new HomeIndicatorAdaptor(getContext(), R.layout.item_home_indicator, indicatorFields, (a) -> onClickIndicator(a));
+
+        vh.indicator.setAdapter(indicatorAdaptor);
+    }
+
+    /**
+     * Snap the panel when scroll vertically
+     */
+    private void snapScroll() {
+        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
+        objectAnimator.start();
+        updateStyling();
+        historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
+    }
+
+    /**
+     * For scrollView touch listener
+     * @param motionEvent
+     * @return Touch event listener
+     */
+    private boolean onTouch(MotionEvent motionEvent) {
+        switch (motionEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                historicY = vh.scrollView.getScrollY();
+                return true;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.AXIS_SIZE:
+                float currentY = vh.scrollView.getScrollY();
+                if (currentY > historicY) {
+                    //swipe down
+                    panelIndex++;
+                    snapScroll();
+                } else if (currentY < historicY) {
+                    //swipe up
+                    panelIndex--;
+                    snapScroll();
+                } else {
+                    return false;
+                }
+
+                historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get the child view inside the list view
+     *
+     * @param pos
+     * @param listView
+     * @return Child view
+     */
+    public View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
+        }
+    }
+
+    /**
+     * SEARCH SUGGESTION ADAPTOR
+     */
+    private void resetSearchSuggestionsAdaptor(String searchTerm) {
+        // Create and Set the adaptor
+        SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
+                new SearchItemSuggestionAdaptor(getActivity(), R.layout.item_search_suggestion,
+                        homeViewModel.getTopSearchSuggestions(searchTerm, vh.initialView),
+                        searchTerm,
+                        ColourUtil.getColourInHexFromResourceId(R.color.faint_white, getActivity()),
+                        ColourUtil.getColourInHexFromResourceId(R.color.light_grey, getActivity()));
+        vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
+        ListUtil.setDynamicHeight(vh.searchSuggestionsList);
+    }
+
+    /**
+     * Set the indicator style when scroll to different panel
+     *
+     * @param index Current index
+     */
     private void setIndicatorStyles(int index) {
         int opacityNorm = (int) (255 * 0.4);
         int opacitySel = (int) (255 * 0.7);
@@ -360,6 +367,11 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    /**
+     * When indicator is click, go to that panel
+     *
+     * @param index index of the panel
+     */
     private void onClickIndicator(int index) {
         panelIndex = index + 1;
         snapScroll();
@@ -394,27 +406,12 @@ public class HomeFragment extends Fragment {
      */
     private void onSearchBar(boolean isOnSearchBar) {
         if (isOnSearchBar) {
-            vh.searchBtn.setVisibility(View.GONE);
-            vh.searchButtonImage.setVisibility(View.GONE);
-            vh.deleteBtn.setVisibility(View.VISIBLE);
-            vh.deleteButtonImage.setVisibility(View.VISIBLE);
-
-            vh.homeLogo.setAlpha(0.3f);
-        } else {
-            vh.searchBtn.setVisibility(View.VISIBLE);
-            vh.searchButtonImage.setVisibility(View.VISIBLE);
-            vh.deleteBtn.setVisibility(View.GONE);
-            vh.deleteButtonImage.setVisibility(View.GONE);
-            vh.homeLogo.setAlpha(1.0f);
+            vh.searchBtn.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
+            vh.searchButtonImage.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
+            vh.deleteBtn.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
+            vh.deleteButtonImage.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
+            vh.homeLogo.setAlpha(isOnSearchBar ? 0.3f : 1.0f);
         }
-    }
-
-    private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(vh.initialView) / 2 / 200;
-    }
-
-    private String getColourInHexFromResourceId(int rId) {
-        return "#" + Integer.toHexString(ContextCompat.getColor(getActivity(), rId) & 0x00ffffff);
     }
 
     private void goToSearchActivity(String searchTerm) {

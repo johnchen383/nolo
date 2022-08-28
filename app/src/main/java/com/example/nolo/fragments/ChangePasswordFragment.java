@@ -9,7 +9,6 @@ import android.text.Selection;
 import android.text.Spannable;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -23,13 +22,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nolo.R;
 import com.example.nolo.activities.MainActivity;
 import com.example.nolo.util.FragmentUtil;
+import com.example.nolo.util.Keyboard;
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
+import com.example.nolo.viewmodels.IChangePasswordViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ChangePasswordFragment extends Fragment {
-    private ChangePasswordViewModel changePasswordViewModel;
+    private IChangePasswordViewModel changePasswordViewModel;
     private ViewHolder vh;
 
     private class ViewHolder {
@@ -72,10 +73,23 @@ public class ChangePasswordFragment extends Fragment {
         vh = new ViewHolder(view);
 
         // Initialisation
-        initListeners();
-        initStyling();
+        init();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    /**
+     * Initialisation
+     */
+    private void init() {
         ((MainActivity) getActivity()).updateCartBadge();
+
+        initStyling();
+        initListeners();
     }
 
     private void initStyling() {
@@ -86,11 +100,12 @@ public class ChangePasswordFragment extends Fragment {
         vh.oldPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
         vh.newPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
         vh.newPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
+
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     private void initListeners() {
         vh.backBtn.setOnClickListener(v -> {
-//            getActivity().getSupportFragmentManager().beginTransaction().remove(ChangePasswordFragment.this).commit();
             FragmentUtil.popFragment(getActivity(), ChangePasswordFragment.class.getName());
         });
 
@@ -142,6 +157,12 @@ public class ChangePasswordFragment extends Fragment {
         });
     }
 
+    /**
+     * Show/Hide password
+     *
+     * @param input EditText view
+     * @param icon ImageView
+     */
     private void togglePassword(EditText input, ImageView icon) {
         boolean isHidden = input.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         input.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -149,6 +170,9 @@ public class ChangePasswordFragment extends Fragment {
         setCursorToEnd(input);
     }
 
+    /**
+     * Check validation & Change password
+     */
     private void changePassword() {
         String oldPassword = vh.oldPasswordInput.getText().toString();
         String newPassword = vh.newPasswordInput.getText().toString();
@@ -179,28 +203,48 @@ public class ChangePasswordFragment extends Fragment {
         }, oldPassword, newPassword);
     }
 
+    /**
+     * Clear focus on three EditText views
+     */
     private void clearFocus() {
         vh.oldPasswordInput.clearFocus();
         vh.newPasswordInput.clearFocus();
         vh.repeatPasswordInput.clearFocus();
     }
 
-    private void hideKeyboard(View view, Boolean isClearFocus) {
+    /**
+     * Hide keyboard if no focus on any of the EditText views
+     *
+     * @param view current view
+     * @param isClearFocus identify whether to clear focus on the EditText views
+     */
+    private void hideKeyboard(View view, boolean isClearFocus) {
         if (isClearFocus) {
             clearFocus();
         }
         if (!vh.oldPasswordInput.hasFocus() && !vh.newPasswordInput.hasFocus() && !vh.repeatPasswordInput.hasFocus()) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            Keyboard.hide(getActivity(), view);
         }
     }
 
+    /**
+     * Set cursor to the end of the EditText view
+     *
+     * @param input EditText view
+     */
     private void setCursorToEnd(EditText input) {
         CharSequence charSeq = input.getText();
         Spannable spanText = (Spannable) charSeq;
         Selection.setSelection(spanText, charSeq.length());
     }
 
+    /**
+     * Show/Hide success message or save button
+     *
+     * @param isVisible Boolean for visibility;
+     *                  True for success message;
+     *                  False for save button
+     */
     private void toggleMessageVisibility(boolean isVisible) {
         vh.successMsg.setVisibility(isVisible ? View.VISIBLE : View.GONE);
         vh.saveBtn.setVisibility(isVisible ? View.GONE : View.VISIBLE);

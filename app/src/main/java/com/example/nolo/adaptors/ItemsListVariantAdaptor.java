@@ -98,8 +98,9 @@ public class ItemsListVariantAdaptor extends ArrayAdapter {
         }
     }
 
-    public ItemsListVariantAdaptor(@NonNull Context context, Fragment fragment, int resource, List<Purchasable> purchasableItems, Consumer<List<Purchasable>> purchasableUpdate, List<ItemVariant> variantItems, Consumer<ItemVariant> variantUpdate) {
-
+    public ItemsListVariantAdaptor(@NonNull Context context, Fragment fragment, int resource,
+                                   List<Purchasable> purchasableItems, Consumer<List<Purchasable>> purchasableUpdate,
+                                   List<ItemVariant> variantItems, Consumer<ItemVariant> variantUpdate) {
         super(context, resource, purchasableItems == null ? variantItems : purchasableItems);
         mContext = context;
         mFragment = fragment;

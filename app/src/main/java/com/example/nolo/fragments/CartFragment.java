@@ -12,12 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.adaptors.ItemsListVariantAdaptor;
 import com.example.nolo.activities.MainActivity;
+import com.example.nolo.adaptors.ItemsListVariantAdaptor;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.CartViewModel;
+import com.example.nolo.viewmodels.ICartViewModel;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
@@ -27,8 +28,8 @@ import java.util.List;
  * Used for viewing cart items, modifying cart items, and transitioning to purchase
  */
 public class CartFragment extends Fragment {
+    private ICartViewModel cartViewModel;
     private ViewHolder vh;
-    private CartViewModel cartViewModel;
 
     private class ViewHolder {
         TextView totalPrice;
@@ -36,7 +37,7 @@ public class CartFragment extends Fragment {
         MaterialButton checkoutBtn;
         LinearLayout emptyMsg;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             totalPrice = view.findViewById(R.id.total_price);
             cartList = view.findViewById(R.id.cart_list);
             checkoutBtn = view.findViewById(R.id.checkout_btn);
@@ -55,13 +56,55 @@ public class CartFragment extends Fragment {
 
         vh = new ViewHolder(view);
 
+        // Initialisation
+        init();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    /**
+     * Initialisation
+     */
+    private void init() {
         ((MainActivity) getActivity()).updateCartBadge();
 
-        updatePrice();
-        initAdaptor();
-
         checkCartEmpty();
+        updatePrice();
+        initListeners();
+        initAdaptors();
+        initStyling();
+    }
 
+    /**
+     * Init styling
+     */
+    private void initStyling(){
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+    }
+
+    /**
+     * Check if the cart is empty, if it is show the empty message
+     */
+    private void checkCartEmpty() {
+        vh.emptyMsg.setVisibility(cartViewModel.checkCartEmpty() ? View.VISIBLE : View.GONE);
+    }
+
+    private void updatePrice() {
+        double sum = 0;
+
+        for (IPurchasable purchase : cartViewModel.getUserCart()) {
+            sum += purchase.getQuantity() * purchase.getItemVariant().getNumericalPrice();
+        }
+
+        String price = String.format("$%.2f NZD", sum);
+        vh.totalPrice.setText(price);
+    }
+
+    private void initListeners() {
         vh.checkoutBtn.setOnClickListener(v -> {
             cartViewModel.moveCartToPurchaseHistory();
             Toast.makeText(getContext(), "Purchase made!", Toast.LENGTH_SHORT).show();
@@ -69,40 +112,26 @@ public class CartFragment extends Fragment {
         });
     }
 
-    private void checkCartEmpty(){
-        vh.emptyMsg.setVisibility(cartViewModel.getUserCart().isEmpty() ? View.VISIBLE : View.GONE);
-    }
-
-    private void updateCartItems(List<Purchasable> items){
-        cartViewModel.updateCartItem(items);
-        updatePrice();
-        initAdaptor();
-        checkCartEmpty();
-
-        ((MainActivity) getActivity()).updateCartBadge();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        initAdaptor();
-    }
-
-    private void initAdaptor(){
-        ItemsListVariantAdaptor cartPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, cartViewModel.getUserCart(), this::updateCartItems, null, null);
+    private void initAdaptors() {
+        ItemsListVariantAdaptor cartPurchasableAdaptor =
+                new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant,
+                        cartViewModel.getUserCart(), this::updateCartItems,
+                        null, null);
         vh.cartList.setAdapter(cartPurchasableAdaptor);
-
         ListUtil.setDynamicHeight(vh.cartList);
     }
 
-    private void updatePrice(){
-        double sum = 0;
+    /**
+     * Update the cart when some actions are done to the cart
+     *
+     * @param items New items list
+     */
+    private void updateCartItems(List<Purchasable> items) {
+        cartViewModel.updateCartItem(items);
+        updatePrice();
+        initAdaptors();
+        checkCartEmpty();
 
-        for (IPurchasable purchase : cartViewModel.getUserCart()){
-            sum += purchase.getQuantity() * purchase.getItemVariant().getNumericalPrice();
-        }
-
-        String price = String.format("$%.2f NZD", sum);
-        vh.totalPrice.setText(price);
+        ((MainActivity) getActivity()).updateCartBadge();
     }
 }
