@@ -37,7 +37,6 @@ import com.example.nolo.enums.SpecsType;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.util.ResponsiveView;
-import com.example.nolo.util.HorizontalSwipeListenerUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -122,29 +121,6 @@ public class DetailsActivity extends BaseActivity {
         {
         }
         ).attach();
-    }
-
-    private void updateCarouselImages() {
-        List<String> uris = detailsViewModel.getImageUrisByColour();
-
-        RecyclerView rView = (RecyclerView) vh.carousel.getChildAt(0);
-        rView.getRecycledViewPool().setMaxRecycledViews(1, 0);
-
-        for (int pos = 0; pos < rView.getChildCount(); pos++) {
-            RecyclerView.ViewHolder vh = rView.findViewHolderForAdapterPosition(pos);
-
-//            if (vh == null) return;
-
-            ImageView img = vh.itemView.findViewById(R.id.img);
-
-            int i = getResources().getIdentifier(
-                    uris.get(pos), "drawable",
-                    getPackageName());
-
-            img.setImageResource(i);
-
-            return;
-        }
     }
 
     private void initAdaptors() {
@@ -328,6 +304,35 @@ public class DetailsActivity extends BaseActivity {
             updateHeartIcon();
         });
 
+        vh.transparentContainer.setOnTouchListener((view, motionEvent) -> {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    historicX = motionEvent.getX();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float currentX = motionEvent.getX();
+
+                    if (currentX < historicX) {
+                        imgIndex++;
+                        if (imgIndex > maxIndex) imgIndex = maxIndex;
+
+                        vh.carousel.setCurrentItem(imgIndex);
+//                            updateCarouselImages();
+                    } else if (currentX > historicX) {
+                        imgIndex--;
+                        if (imgIndex < 0) imgIndex = 0;
+
+                        vh.carousel.setCurrentItem(imgIndex);
+//                            updateCarouselImages();
+                    } else {
+                        isExpanded = !isExpanded;
+                        setDynamicHeights();
+                    }
+
+            }
+            return false;
+        });
+
         vh.scrollContainer.setOnTouchListener((view, motionEvent) -> {
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -410,8 +415,6 @@ public class DetailsActivity extends BaseActivity {
         initCarouselAdaptor();
         initListeners();
 
-        //establish swipe listener on carousel
-        new HorizontalSwipeListenerUtil(vh.transparentContainer, (a) -> swipeRight(), (a) -> swipeLeft(), (a) -> swipeIdle()).setUpListener();
     }
 
     /**
@@ -422,23 +425,6 @@ public class DetailsActivity extends BaseActivity {
         if (imgIndex > maxIndex) imgIndex = maxIndex;
 
         vh.carousel.setCurrentItem(imgIndex);
-    }
-
-    /**
-     * Swipe left on carousel
-     */
-    private void swipeLeft() {
-        imgIndex--;
-        if (imgIndex < 0) imgIndex = 0;
-        vh.carousel.setCurrentItem(imgIndex);
-    }
-
-    /**
-     * When tapping carousel
-     */
-    private void swipeIdle() {
-        isExpanded = !isExpanded;
-        setDynamicHeights();
     }
 
     private void initSpecsStyling(CategoryType category) {
