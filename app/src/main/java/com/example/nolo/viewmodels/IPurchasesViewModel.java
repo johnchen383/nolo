@@ -7,4 +7,6 @@ import java.util.List;
 public interface IPurchasesViewModel {
     List<Purchasable> getUserPurchaseHistoryInTransit();
     List<Purchasable> getUserPurchaseHistoryDelivered();
+    boolean checkPurchaseHistoryInTransitEmpty();
+    boolean checkPurchaseHistoryDeliveredEmpty();
 }

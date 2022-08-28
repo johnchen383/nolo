@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -124,29 +123,6 @@ public class DetailsActivity extends BaseActivity {
         ).attach();
     }
 
-    private void updateCarouselImages() {
-        List<String> uris = detailsViewModel.getImageUrisByColour();
-
-        RecyclerView rView = (RecyclerView) vh.carousel.getChildAt(0);
-        rView.getRecycledViewPool().setMaxRecycledViews(1, 0);
-
-        for (int pos = 0; pos < rView.getChildCount(); pos++) {
-            RecyclerView.ViewHolder vh = rView.findViewHolderForAdapterPosition(pos);
-
-//            if (vh == null) return;
-
-            ImageView img = vh.itemView.findViewById(R.id.img);
-
-            int i = getResources().getIdentifier(
-                    uris.get(pos), "drawable",
-                    getPackageName());
-
-            img.setImageResource(i);
-
-            return;
-        }
-    }
-
     private void initAdaptors() {
         /**
          * COLOURS ADAPTOR
@@ -204,7 +180,7 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (isExpanded){
+        if (isExpanded) {
             isExpanded = false;
             setDynamicHeights();
             return;
@@ -306,7 +282,7 @@ public class DetailsActivity extends BaseActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
-            if (isExpanded){
+            if (isExpanded) {
                 isExpanded = false;
                 setDynamicHeights();
                 return;
@@ -326,22 +302,6 @@ public class DetailsActivity extends BaseActivity {
         vh.heartFilledBtn.setOnClickListener(v -> {
             detailsViewModel.removeWishlist();
             updateHeartIcon();
-        });
-
-        vh.scrollContainer.setOnTouchListener((view, motionEvent) -> {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    historicY = motionEvent.getY();
-                    break;
-                case MotionEvent.ACTION_UP:
-                    float currentY = motionEvent.getY();
-
-                    if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
-                        isExpanded = !isExpanded;
-                        setDynamicHeights();
-                    }
-            }
-            return false;
         });
 
         vh.transparentContainer.setOnTouchListener((view, motionEvent) -> {
@@ -369,6 +329,22 @@ public class DetailsActivity extends BaseActivity {
                         setDynamicHeights();
                     }
 
+            }
+            return false;
+        });
+
+        vh.scrollContainer.setOnTouchListener((view, motionEvent) -> {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    historicY = motionEvent.getY();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float currentY = motionEvent.getY();
+
+                    if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
+                        isExpanded = !isExpanded;
+                        setDynamicHeights();
+                    }
             }
             return false;
         });
@@ -438,6 +414,17 @@ public class DetailsActivity extends BaseActivity {
         initAdaptors();
         initCarouselAdaptor();
         initListeners();
+
+    }
+
+    /**
+     * Swipe right on carousel
+     */
+    private void swipeRight() {
+        imgIndex++;
+        if (imgIndex > maxIndex) imgIndex = maxIndex;
+
+        vh.carousel.setCurrentItem(imgIndex);
     }
 
     private void initSpecsStyling(CategoryType category) {
