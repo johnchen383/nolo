@@ -4,9 +4,8 @@
     android:id="@+id/item_clickable"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
-    android:paddingRight="20dp"
+    android:paddingVertical="15dp"
+    android:paddingRight="10dp"
     android:background="@color/navy"
     android:orientation="horizontal">
     <LinearLayout
@@ -45,7 +44,8 @@
                 android:layout_width="@dimen/touch_target_min"
                 android:layout_height="@dimen/touch_target_min"
                 android:layout_alignParentRight="true"
-                android:layout_centerInParent="true">
+                android:layout_centerInParent="true"
+                android:visibility="invisible">
 
                 <ImageView
                     android:layout_width="16dp"
@@ -53,6 +53,23 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/bin_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/heart_btn"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/heart_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/heart_white_filled" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -68,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:backgroundTint="@color/transparent"
+                android:outlineSpotShadowColor="@color/transparent"
                 app:cardCornerRadius="6dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="@color/faint_white"
@@ -90,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/transparent"
+                android:outlineSpotShadowColor="@color/transparent"
                 app:cardCornerRadius="6dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="@color/faint_white"
@@ -147,22 +166,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="4299.00 NZD" />
             <LinearLayout
+                android:id="@+id/quantity_control"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="-21dp"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentRight="true"
+                android:visibility="invisible">
                 <RelativeLayout
                     android:id="@+id/decrement_btn"
                     android:layout_width="@dimen/touch_target_min"
                     android:layout_height="@dimen/touch_target_min"
                     android:layout_marginRight="-5dp"
-                    android:background="@color/transparent">>
+                    android:background="@color/transparent">
 
                     <TextView
                         style="@style/TextStroke.Brown"
@@ -202,6 +221,17 @@
                         android:textSize="@dimen/font_body1"/>
                 </RelativeLayout>
             </LinearLayout>
+            <TextView
+                android:id="@+id/quantity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/abeezee_italic"
+                android:textSize="@dimen/font_caption"
+                android:text="Quantity: 1"
+                android:visibility="invisible"/>
         </RelativeLayout>
     </LinearLayout>
 

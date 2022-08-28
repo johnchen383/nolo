@@ -34,6 +34,7 @@ public class ListActivity extends BaseActivity {
     private class ViewHolder {
         ListView categoryItemsParentList;
         ImageView categoryHeader, appleImage, androidImage;
+        ImageButton backButtonImg;
         RelativeLayout backButton;
         LinearLayout phoneToggle, appleBtn, androidBtn;
         TextView appleSelect, androidSelect;
@@ -49,6 +50,7 @@ public class ListActivity extends BaseActivity {
             androidSelect = findViewById(R.id.android_select);
             appleImage = findViewById(R.id.apple_image);
             androidImage = findViewById(R.id.android_image);
+            backButtonImg = findViewById(R.id.back_btn_img);
         }
     }
 
@@ -67,9 +69,8 @@ public class ListActivity extends BaseActivity {
     }
 
     private void initListeners() {
-        vh.backButton.setOnClickListener(v -> {
-            finish();
-        });
+        vh.backButton.setOnClickListener(v -> finish());
+        vh.backButtonImg.setOnClickListener(v -> finish());
     }
 
     private void initPhoneListeners() {
@@ -124,7 +125,7 @@ public class ListActivity extends BaseActivity {
                 break;
             case phones:
                 items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(listViewModel.getPhoneOs());
-                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone_child, items);
+                categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone, items);
                 break;
             case accessories:
                 List<IItem> tempItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories);

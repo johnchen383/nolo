@@ -13,6 +13,9 @@ public interface IUser {
     void setEmail(String email);
     List<ItemVariant> getViewHistory();
     void addViewHistory(IItemVariant item);
+    List<ItemVariant> getWishlist();
+    void addWishlist(IItemVariant item);
+    void removeWishlist(IItemVariant item);
     List<Purchasable> getPurchaseHistory();
     void addPurchaseHistory(List<Purchasable> purchasedItem);
     List<Purchasable> getCart();

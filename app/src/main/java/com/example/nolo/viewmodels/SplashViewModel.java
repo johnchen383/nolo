@@ -14,7 +14,7 @@ public class SplashViewModel extends ViewModel implements ISplashViewModel {
     Set<Class<?>> loadable = new HashSet<>();
     Set<Class<?>> loaded = new HashSet<>();
 
-    public SplashViewModel(){
+    public SplashViewModel() {
         loadable.add(StoresRepository.class);
         loadable.add(CategoriesRepository.class);
         loadable.add(UsersRepository.class);
@@ -22,22 +22,22 @@ public class SplashViewModel extends ViewModel implements ISplashViewModel {
     }
 
     @Override
-    public Set<Class<?>> getLoadable(){
+    public Set<Class<?>> getLoadable() {
         return this.loadable;
     }
 
     @Override
-    public Set<Class<?>> getLoaded(){
+    public Set<Class<?>> getLoaded() {
         return this.loaded;
     }
 
     @Override
-    public void addLoaded(Class<?> repoClass){
+    public void addLoaded(Class<?> repoClass) {
         loaded.add(repoClass);
     }
 
     @Override
-    public float getLoadProgress(){
-        return ((float)loaded.size()) / ((float) loadable.size());
+    public float getLoadProgress() {
+        return ((float) loaded.size()) / ((float) loadable.size());
     }
 }

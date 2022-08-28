@@ -1,10 +1,13 @@
 package com.example.nolo.fragments;
 
 import android.app.Activity;
+<<<<<<< HEAD
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+=======
+>>>>>>> 85da739b56f1e6ce797e7bb1b42e262c33720772
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.Selection;
@@ -17,10 +20,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+<<<<<<< HEAD
+=======
+import com.example.nolo.activities.MainActivity;
+import com.example.nolo.util.Animation;
+import com.example.nolo.util.FragmentUtil;
+>>>>>>> 85da739b56f1e6ce797e7bb1b42e262c33720772
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -59,6 +70,23 @@ public class ChangePasswordFragment extends Fragment {
         }
     }
 
+    public ChangePasswordFragment() {
+        super(R.layout.fragment_change_password);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        changePasswordViewModel =
+                new ViewModelProvider(this).get(ChangePasswordViewModel.class);
+        vh = new ViewHolder(view);
+
+        // Initialisation
+        initListeners();
+        initStyling();
+
+        ((MainActivity) getActivity()).updateCartBadge();
+    }
+
     private void initStyling() {
         vh.oldPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.newPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -69,40 +97,10 @@ public class ChangePasswordFragment extends Fragment {
         vh.newPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
     }
 
-    private void changePassword() {
-        String oldPassword = vh.oldPasswordInput.getText().toString();
-        String newPassword = vh.newPasswordInput.getText().toString();
-        String repeatPassword = vh.repeatPasswordInput.getText().toString();
-
-        if (oldPassword.isEmpty()) {
-            vh.errorText.setText("Please enter your current password.");
-            vh.errorText.setVisibility(View.VISIBLE);
-            return;
-        } else if (newPassword.isEmpty() && repeatPassword.isEmpty()) {
-            vh.errorText.setText("Please enter a password.");
-            vh.errorText.setVisibility(View.VISIBLE);
-            return;
-        } else if (!newPassword.equals(repeatPassword)) {
-            vh.errorText.setText("The passwords do not match.");
-            vh.errorText.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        changePasswordViewModel.changePassword((error) -> {
-            if (error == null) {
-                vh.errorText.setVisibility(View.INVISIBLE);
-                toggleMessageVisibility(true);
-            } else {
-                vh.errorText.setText(error);
-                vh.errorText.setVisibility(View.VISIBLE);
-            }
-        }, oldPassword, newPassword);
-    }
-
     private void initListeners() {
         vh.backBtn.setOnClickListener(v -> {
-            System.out.println("clicked");
-            getActivity().getSupportFragmentManager().beginTransaction().remove(ChangePasswordFragment.this).commit();
+//            getActivity().getSupportFragmentManager().beginTransaction().remove(ChangePasswordFragment.this).commit();
+            FragmentUtil.popFragment(getActivity(), ChangePasswordFragment.class.getName());
         });
 
         vh.oldEyeBtn.setOnClickListener(v -> {
@@ -160,6 +158,36 @@ public class ChangePasswordFragment extends Fragment {
         setCursorToEnd(input);
     }
 
+    private void changePassword() {
+        String oldPassword = vh.oldPasswordInput.getText().toString();
+        String newPassword = vh.newPasswordInput.getText().toString();
+        String repeatPassword = vh.repeatPasswordInput.getText().toString();
+
+        if (oldPassword.isEmpty()) {
+            vh.errorText.setText("Please enter your current password.");
+            vh.errorText.setVisibility(View.VISIBLE);
+            return;
+        } else if (newPassword.isEmpty() && repeatPassword.isEmpty()) {
+            vh.errorText.setText("Please enter a password.");
+            vh.errorText.setVisibility(View.VISIBLE);
+            return;
+        } else if (!newPassword.equals(repeatPassword)) {
+            vh.errorText.setText("The passwords do not match.");
+            vh.errorText.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        changePasswordViewModel.changePassword((error) -> {
+            if (error == null) {
+                vh.errorText.setVisibility(View.INVISIBLE);
+                toggleMessageVisibility(true);
+            } else {
+                vh.errorText.setText(error);
+                vh.errorText.setVisibility(View.VISIBLE);
+            }
+        }, oldPassword, newPassword);
+    }
+
     private void clearFocus() {
         vh.oldPasswordInput.clearFocus();
         vh.newPasswordInput.clearFocus();
@@ -185,18 +213,5 @@ public class ChangePasswordFragment extends Fragment {
     private void toggleMessageVisibility(boolean isVisible) {
         vh.successMsg.setVisibility(isVisible ? View.VISIBLE : View.GONE);
         vh.saveBtn.setVisibility(isVisible ? View.GONE : View.VISIBLE);
-    }
-
-
-    public ChangePasswordFragment() {
-        super(R.layout.fragment_change_password);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        changePasswordViewModel =
-                new ViewModelProvider(this).get(ChangePasswordViewModel.class);
-        vh = new ViewHolder(view);
-        initListeners();
     }
 }

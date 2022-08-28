@@ -18,7 +18,11 @@
     <dimen name="padding_xlrg">32dp</dimen>
     <dimen name="icon_size">20dp</dimen>
     <dimen name="header_indent">16dp</dimen>
+<<<<<<< HEAD
     <dimen name="screen_margin_horizontal_lrg">48dp</dimen>
+=======
+    <dimen name="purchasable_list_horizontal_margin">20dp</dimen>
+>>>>>>> 85da739b56f1e6ce797e7bb1b42e262c33720772
 
         <!-- Round button dimensions -->
         <dimen name="round_button_padding">14dp</dimen>
