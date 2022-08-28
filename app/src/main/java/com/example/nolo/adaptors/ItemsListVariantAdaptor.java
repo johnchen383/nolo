@@ -38,7 +38,7 @@ public class ItemsListVariantAdaptor extends ArrayAdapter {
     private List<Purchasable> mPurchasableItems;
     private List<ItemVariant> mVariantItems;
     private Consumer<List<Purchasable>> purchasableUpdate;
-    private Consumer<List<ItemVariant>> variantUpdate;
+    private Consumer<ItemVariant> variantUpdate;
 
     private class ViewHolder {
         LinearLayout itemClickable;
@@ -97,7 +97,7 @@ public class ItemsListVariantAdaptor extends ArrayAdapter {
         }
     }
 
-    public ItemsListVariantAdaptor(@NonNull Context context, Fragment fragment, int resource, List<Purchasable> purchasableItems, Consumer<List<Purchasable>> purchasableUpdate, List<ItemVariant> variantItems, Consumer<List<ItemVariant>> variantUpdate) {
+    public ItemsListVariantAdaptor(@NonNull Context context, Fragment fragment, int resource, List<Purchasable> purchasableItems, Consumer<List<Purchasable>> purchasableUpdate, List<ItemVariant> variantItems, Consumer<ItemVariant> variantUpdate) {
 
         super(context, resource, purchasableItems == null ? variantItems : purchasableItems);
         mContext = context;
@@ -247,13 +247,7 @@ public class ItemsListVariantAdaptor extends ArrayAdapter {
         populateItem(variant, vh);
 
         vh.heartBtn.setOnClickListener(v -> {
-            if (mVariantItems.contains(variant)) {
-                mVariantItems.remove(variant);
-                variantUpdate.accept(mVariantItems);
-            } else {
-                mVariantItems.add(variant);
-                variantUpdate.accept(mVariantItems);
-            }
+            variantUpdate.accept(variant);
         });
 
         return currentListViewItem;

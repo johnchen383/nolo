@@ -69,8 +69,8 @@ public class CartFragment extends Fragment {
         vh.emptyMsg.setVisibility(cartViewModel.getUserCart().isEmpty() ? View.VISIBLE : View.GONE);
     }
 
-    private void updateCartItems(List<?> items){
-        cartViewModel.updateCartItem((List<Purchasable>) items);
+    private void updateCartItems(List<Purchasable> items){
+        cartViewModel.updateCartItem(items);
         updatePrice();
         initAdaptor();
         checkCartEmpty();
