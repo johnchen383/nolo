@@ -45,7 +45,6 @@ public class WishlistFragment extends Fragment {
 
         // Initialisation
         init();
-        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -58,6 +57,8 @@ public class WishlistFragment extends Fragment {
      * Initialisation
      */
     private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
         checkWishlistEmpty();
         initListeners();
         initAdaptors();

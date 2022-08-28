@@ -58,7 +58,6 @@ public class CartFragment extends Fragment {
 
         // Initialisation
         init();
-        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -71,6 +70,8 @@ public class CartFragment extends Fragment {
      * Initialisation
      */
     private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
         checkCartEmpty();
         updatePrice();
         initListeners();

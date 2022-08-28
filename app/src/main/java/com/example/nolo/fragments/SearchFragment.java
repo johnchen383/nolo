@@ -67,7 +67,6 @@ public class SearchFragment extends Fragment {
 
         // Initialisation
         init();
-        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -80,6 +79,8 @@ public class SearchFragment extends Fragment {
      * Initialisation
      */
     private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
         initStyling();
         initListeners();
     }

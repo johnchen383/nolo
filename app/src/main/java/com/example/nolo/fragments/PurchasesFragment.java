@@ -52,7 +52,6 @@ public class PurchasesFragment extends Fragment {
 
         // Initialisation
         init();
-        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -65,6 +64,8 @@ public class PurchasesFragment extends Fragment {
      * Initialisation
      */
     private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
         checkPurchasesEmpty();
         initStyling();
         initListeners();
