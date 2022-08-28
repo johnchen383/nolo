@@ -23,7 +23,7 @@ public class PurchasesFragment extends Fragment {
     private class ViewHolder {
 
         ListView transitList, deliveredList;
-        LinearLayout transitTitle, deliveredTitle;
+        LinearLayout transitTitle, deliveredTitle, emptyMsg;
         TextView transitText, deliveredText;
         RelativeLayout backBtn;
 
@@ -35,6 +35,7 @@ public class PurchasesFragment extends Fragment {
             transitText = getView().findViewById(R.id.transit_text);
             deliveredText = getView().findViewById(R.id.delivered_text);
             backBtn = getView().findViewById(R.id.back_btn);
+            emptyMsg = getView().findViewById(R.id.empty_msg);
         }
     }
 
@@ -80,6 +81,7 @@ public class PurchasesFragment extends Fragment {
         initListeners();
         initStyling();
         initAdaptors();
+        checkPurchasesEmpty();
 
     }
 
@@ -88,5 +90,9 @@ public class PurchasesFragment extends Fragment {
         super.onResume();
         initStyling();
         initAdaptors();
+    }
+
+    private void checkPurchasesEmpty(){
+        vh.emptyMsg.setVisibility(purchasesViewModel.getUserPurchaseHistoryDelivered().isEmpty() && purchasesViewModel.getUserPurchaseHistoryInTransit().isEmpty()? View.VISIBLE : View.GONE);
     }
 }
