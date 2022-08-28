@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
@@ -70,6 +71,8 @@ public class SearchFragment extends Fragment {
         vh = new ViewHolder(view);
         searchViewModel =
                 new ViewModelProvider(this).get(SearchViewModel.class);
+
+        ((MainActivity) getActivity()).updateCartBadge();
 
         initListeners();
     }

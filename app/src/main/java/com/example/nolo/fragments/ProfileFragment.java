@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.LogInActivity;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.util.Animation;
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
 import com.example.nolo.viewmodels.ProfileViewModel;
@@ -72,6 +73,8 @@ public class ProfileFragment extends Fragment {
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         vh = new ViewHolder();
+
+        ((MainActivity) getActivity()).updateCartBadge();
         initListeners();
     }
 }

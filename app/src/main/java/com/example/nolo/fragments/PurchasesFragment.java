@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.adaptors.PurchasableListAdaptor;
 import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.util.ListUtil;
@@ -79,6 +80,8 @@ public class PurchasesFragment extends Fragment {
         super.onCreate(savedInstanceState);
         purchasesViewModel = new PurchasesViewModel();
         vh = new ViewHolder();
+
+        ((MainActivity) getActivity()).updateCartBadge();
         initListeners();
         initStyling();
         initAdaptors();

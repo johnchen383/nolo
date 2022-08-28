@@ -146,6 +146,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) item.getDefaultItemVariant());
                 mContext.startActivity(intent);
+                ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
             }
         });
 
@@ -188,6 +189,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) items.get(index).getDefaultItemVariant());
                 mContext.startActivity(intent);
+                ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
             }
         });
 
@@ -212,6 +214,7 @@ public class ListByCategoryAdaptor extends ArrayAdapter {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
                 intent.putExtra(mContext.getString(R.string.extra_item_variant), (ItemVariant) items.get(index2).getDefaultItemVariant());
                 mContext.startActivity(intent);
+                ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
             }
         });
 

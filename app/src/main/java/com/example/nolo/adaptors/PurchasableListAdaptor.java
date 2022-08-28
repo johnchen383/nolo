@@ -162,6 +162,7 @@ public class PurchasableListAdaptor extends ArrayAdapter {
             intent.putExtra(baseContext.getString(R.string.extra_item_variant), item.getItemVariant());
 
             baseContext.startActivity(intent);
+            ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
 
         vh.title.setOnClickListener(v -> {
@@ -170,6 +171,7 @@ public class PurchasableListAdaptor extends ArrayAdapter {
             intent.putExtra(baseContext.getString(R.string.extra_item_variant), item.getItemVariant());
 
             baseContext.startActivity(intent);
+            ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_stationery);
         });
     }
 

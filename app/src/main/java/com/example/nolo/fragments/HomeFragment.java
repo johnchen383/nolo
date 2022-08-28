@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.HomeIndicatorAdaptor;
@@ -112,6 +113,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void init(){
+        ((MainActivity) getActivity()).updateCartBadge();
+
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
