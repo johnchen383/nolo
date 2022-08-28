@@ -74,9 +74,17 @@
         <dimen name="category_btn_height">31dp</dimen>
         <dimen name="indicator_margin_top">3dp</dimen>
 
+        <!-- Search bar dimensions -->
+        <dimen name="search_bar_padding_bottom">10dp</dimen>
+
+        <!-- Search screen dimensions -->
+        <dimen name="search_heading_width">300dp</dimen>
+        <dimen name="search_heading_height">400dp</dimen>
+        <dimen name="search_bar_margin_top">70dp</dimen>
+
         <!-- Search results dimensions -->
         <dimen name="results_heading_width">300dp</dimen>
-        <dimen name="results_heading_height">190dp</dimen>
+        <dimen name="results_heading_height">180dp</dimen>
 
         <!-- Details list dimensions -->
         <dimen name="details_container_margin_top">500dp</dimen>

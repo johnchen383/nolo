@@ -10,8 +10,6 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +38,6 @@ import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.interactors.category.GetCategoriesUseCase;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
-import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
@@ -68,7 +65,8 @@ public class HomeFragment extends Fragment {
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchBarText;
-        ImageView homeLogo, searchBtn, deleteBtn;
+        RelativeLayout searchBtn, deleteBtn;
+        ImageView homeLogo, searchButtonImage, deleteButtonImage;
         ScrollView scrollView;
         View searchView;
 
@@ -86,8 +84,10 @@ public class HomeFragment extends Fragment {
             searchView = view.findViewById(R.id.search_view);
 
             searchBarText = searchView.findViewById(R.id.search_edittext);
-            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            searchBtn = searchView.findViewById(R.id.search_btn);
+            searchButtonImage = searchView.findViewById(R.id.search_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
+            deleteButtonImage = searchView.findViewById(R.id.delete_image_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
@@ -315,20 +315,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToSearchActivity(vh.searchBarText.getText().toString());
-            }
-        });
+        vh.searchButtonImage.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
+        vh.searchBtn.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
 
         // When delete button is clicked, remove all text in edit text
-        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vh.searchBarText.setText("");
-                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
-            }
+        vh.deleteButtonImage.setOnClickListener(v -> {
+            onClickDelete(vh);
+        });
+
+        vh.deleteBtn.setOnClickListener(v -> {
+            onClickDelete(vh);
         });
 
         vh.browseBtn.setOnClickListener(v -> {
@@ -337,6 +333,11 @@ public class HomeFragment extends Fragment {
         });
 
         vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
+    }
+
+    private void onClickDelete(ViewHolder vh) {
+        vh.searchBarText.setText("");
+        resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
     }
 
     private void setIndicatorStyles(int index) {
@@ -394,13 +395,16 @@ public class HomeFragment extends Fragment {
     private void onSearchBar(boolean isOnSearchBar) {
         if (isOnSearchBar) {
             vh.searchBtn.setVisibility(View.GONE);
+            vh.searchButtonImage.setVisibility(View.GONE);
             vh.deleteBtn.setVisibility(View.VISIBLE);
+            vh.deleteButtonImage.setVisibility(View.VISIBLE);
 
             vh.homeLogo.setAlpha(0.3f);
         } else {
             vh.searchBtn.setVisibility(View.VISIBLE);
+            vh.searchButtonImage.setVisibility(View.VISIBLE);
             vh.deleteBtn.setVisibility(View.GONE);
-
+            vh.deleteButtonImage.setVisibility(View.GONE);
             vh.homeLogo.setAlpha(1.0f);
         }
     }

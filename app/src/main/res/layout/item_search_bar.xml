@@ -25,24 +25,41 @@
             android:textColor="@color/faint_white"
             android:textColorHint="@color/light_grey"
             android:textSize="@dimen/font_body1" />
-        <ImageView
-            android:id="@+id/delete_btn"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/delete_icon"
-            android:visibility="gone"/>
 
-        <ImageView
-            android:id="@+id/search_image_btn"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+        <RelativeLayout
+            android:id="@+id/delete_btn"
+            android:layout_width="@dimen/touch_target_min"
+            android:layout_height="@dimen/touch_target_min"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/nav_icon_search" />
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/delete_image_btn"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/delete_icon"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/search_btn"
+            android:layout_width="@dimen/touch_target_min"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:id="@+id/search_image_btn"
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/nav_icon_search" />
+        </RelativeLayout>
+
     </RelativeLayout>
     <ListView
         android:id="@+id/search_suggestions_list"

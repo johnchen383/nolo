@@ -112,12 +112,13 @@
                         android:layout_height="@dimen/icon_size_med"
                         android:layout_centerInParent="true" />
                 </RelativeLayout>
+
                 <ImageView
                     android:layout_width="@dimen/results_heading_width"
                     android:layout_height="@dimen/results_heading_height"
-                    android:src="@drawable/search_result_logo"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/padding_lrg"
-                    android:layout_alignParentEnd="true" />
+                    android:src="@drawable/search_result_logo" />
             </RelativeLayout>
 
             <include

@@ -6,15 +6,14 @@
     android:background="@color/navy"
     tools:context=".fragments.SearchFragment">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/padding_xlrg">
         <ImageView
             android:id="@+id/search_logo"
-            android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:layout_width="@dimen/search_heading_width"
+            android:layout_height="@dimen/search_heading_height"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:src="@drawable/search_logo"/>
@@ -30,7 +29,7 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="@dimen/search_bar_margin_top"
         android:layout_gravity="center_horizontal"
         android:background="@color/navy"
         layout="@layout/item_search_bar"/>

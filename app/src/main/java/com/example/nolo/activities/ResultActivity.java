@@ -39,8 +39,8 @@ public class ResultActivity extends BaseActivity {
         EditText searchBarText;
         ListView searchResultList, searchSuggestionsList;
         TextView numOfResultFound;
-        ImageView searchBtn, deleteBtn;
-        RelativeLayout backBtn;
+        ImageView searchButtonImage, deleteButtonImage;
+        RelativeLayout backBtn, searchBtn, deleteBtn;
         ImageButton backButtonImage;
         View searchView;
 
@@ -54,7 +54,9 @@ public class ResultActivity extends BaseActivity {
             searchView = findViewById(R.id.search_view);
 
             searchBarText = searchView.findViewById(R.id.search_edittext);
-            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            searchButtonImage = searchView.findViewById(R.id.search_image_btn);
+            searchBtn = searchView.findViewById(R.id.search_btn);
+            deleteButtonImage = searchView.findViewById(R.id.delete_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
@@ -185,21 +187,21 @@ public class ResultActivity extends BaseActivity {
         vh.outsideSearchContainer.setOnClickListener(v -> showSearchSuggestionsList(false, v));
 
         // When search button is clicked, show search results
-        vh.searchBtn.setOnClickListener(v -> {
-            String searchTerm = vh.searchBarText.getText().toString();
+        vh.searchButtonImage.setOnClickListener(v -> {
+            onClickSearch(vh, v);
+        });
 
-            if (searchTerm.isEmpty()) {
-                Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
-            } else {
-                showSearchSuggestionsList(false, v);
-                resetSearchResults(searchTerm);
-            }
+        vh.searchBtn.setOnClickListener(v -> {
+            onClickSearch(vh, v);
         });
 
         // When delete button is clicked, remove all text in edit text
+        vh.deleteButtonImage.setOnClickListener(v -> {
+            onClickDelete(vh);
+        });
+
         vh.deleteBtn.setOnClickListener(v -> {
-            vh.searchBarText.setText("");
-            resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
+            onClickDelete(vh);
         });
 
         // When back button is clicked, go back to previous activity
@@ -207,6 +209,21 @@ public class ResultActivity extends BaseActivity {
         vh.backButtonImage.setOnClickListener(v -> finish());
     }
 
+    private void onClickDelete(ViewHolder vh) {
+        vh.searchBarText.setText("");
+        resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
+    }
+
+    private void onClickSearch(ViewHolder vh, View v) {
+        String searchTerm = vh.searchBarText.getText().toString();
+
+        if (searchTerm.isEmpty()) {
+            Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+        } else {
+            showSearchSuggestionsList(false, v);
+            resetSearchResults(searchTerm);
+        }
+    }
     private String getColourInHexFromResourceId(int rId) {
         return "#" + Integer.toHexString(ContextCompat.getColor(this, rId) & 0x00ffffff);
     }
@@ -247,10 +264,14 @@ public class ResultActivity extends BaseActivity {
     private void onSearchBar(boolean isOnSearchBar) {
         if (isOnSearchBar) {
             vh.searchBtn.setVisibility(View.GONE);
+            vh.searchButtonImage.setVisibility(View.GONE);
             vh.deleteBtn.setVisibility(View.VISIBLE);
+            vh.deleteButtonImage.setVisibility(View.VISIBLE);
         } else {
             vh.searchBtn.setVisibility(View.VISIBLE);
+            vh.searchButtonImage.setVisibility(View.VISIBLE);
             vh.deleteBtn.setVisibility(View.GONE);
+            vh.deleteButtonImage.setVisibility(View.GONE);
         }
     }
 
