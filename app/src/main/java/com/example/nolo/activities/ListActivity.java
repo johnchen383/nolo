@@ -63,9 +63,24 @@ public class ListActivity extends BaseActivity {
         listViewModel = new ListViewModel(category);
 
         vh = new ViewHolder();
+        init();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
+    }
+
+    private void init() {
         initStyling();
-        establishAdaptor();
+        initAdaptors();
         initListeners();
     }
 
@@ -81,7 +96,7 @@ public class ListActivity extends BaseActivity {
             vh.appleImage.setImageResource(R.drawable.os_button_ios_dim);
             vh.appleSelect.setTextColor(getColor(R.color.navy));
             listViewModel.setPhoneOs(PhoneOs.android);
-            establishAdaptor();
+            initAdaptors();
         });
 
         vh.appleBtn.setOnClickListener(v -> {
@@ -90,7 +105,7 @@ public class ListActivity extends BaseActivity {
             vh.appleImage.setImageResource(R.drawable.os_button_ios);
             vh.appleSelect.setTextColor(getColor(R.color.white));
             listViewModel.setPhoneOs(PhoneOs.ios);
-            establishAdaptor();
+            initAdaptors();
         });
 
         vh.categoryItemsParentList.setDividerHeight(Display.dpToPx(-30, this));
@@ -113,28 +128,21 @@ public class ListActivity extends BaseActivity {
         vh.categoryHeader.setImageResource(i);
     }
 
-    private void establishAdaptor() {
-        CategoryType categoryType = listViewModel.getCategory().getCategoryType();
-
+    private void initAdaptors() {
         ListByCategoryAdaptor categoryListAdaptor;
         List<List<IItem>> items = new ArrayList<>();
 
-        switch (categoryType) {
+        switch (listViewModel.getCategoryType()) {
             case laptops:
-                items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
+                items = listViewModel.getGroupedList(CategoryType.laptops);
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
                 break;
             case phones:
-                items = GetPhonesGroupedByOsUseCase.getPhonesGroupedByOs(listViewModel.getPhoneOs());
+                items = listViewModel.getGroupedList(CategoryType.phones);
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_phone, items);
                 break;
             case accessories:
-                List<IItem> tempItems = GetCategoryItemsUseCase.getCategoryItems(CategoryType.accessories);
-                for (IItem tempItem : tempItems) {
-                    List<IItem> l = new ArrayList<>();
-                    l.add(tempItem);
-                    items.add(l);
-                }
+                items = listViewModel.getGroupedList(CategoryType.accessories);
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_vertical, items);
 
                 ColorDrawable whiteDivider = new ColorDrawable(getColor(R.color.faint_white));
@@ -144,17 +152,11 @@ public class ListActivity extends BaseActivity {
                 break;
             default:
                 System.err.println("No adaptor created for this category");
-                items = GetLaptopsGroupedByBrandUseCase.getLaptopsGroupedByBrand();
+                items = listViewModel.getGroupedList(CategoryType.laptops);
                 categoryListAdaptor = new ListByCategoryAdaptor(this, R.layout.item_list_laptop, items);
         }
 
         vh.categoryItemsParentList.setAdapter(categoryListAdaptor);
         ListUtil.setDynamicHeight(vh.categoryItemsParentList);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_stationery, R.anim.slide_down);
     }
 }
