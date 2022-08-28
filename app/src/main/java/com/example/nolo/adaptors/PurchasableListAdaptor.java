@@ -30,6 +30,7 @@ import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.fragments.CartFragment;
 import com.example.nolo.fragments.PurchasesFragment;
+import com.example.nolo.fragments.WishlistFragment;
 import com.example.nolo.util.Display;
 import com.google.android.material.card.MaterialCardView;
 
@@ -89,6 +90,17 @@ public class PurchasableListAdaptor extends ArrayAdapter {
         }
     }
 
+    private class WishlistViewHolder extends ViewHolder {
+        RelativeLayout heartBtn;
+        ImageView heartIcon;
+
+        public WishlistViewHolder(View v) {
+            super(v);
+            heartBtn = v.findViewById(R.id.heart_btn);
+            heartIcon = v.findViewById(R.id.heart_icon);
+        }
+    }
+
     public PurchasableListAdaptor(@NonNull Context context, Fragment fragment, int resource, @NonNull List<Purchasable> purchaseableItems, Consumer<List<Purchasable>> update) {
         super(context, resource, purchaseableItems);
         mContext = context;
@@ -115,6 +127,8 @@ public class PurchasableListAdaptor extends ArrayAdapter {
             return populateCartItem(currentItem, currentListViewItem);
         } else if (mFragment.getClass().equals(PurchasesFragment.class)) {
             return populatePurchasesItem(currentItem, currentListViewItem);
+        } else if (mFragment.getClass().equals(WishlistFragment.class)) {
+
         }
 
         return null;
@@ -216,6 +230,24 @@ public class PurchasableListAdaptor extends ArrayAdapter {
 
         vh.quantityLabel.setVisibility(View.VISIBLE);
         vh.quantityLabel.setText("Quantity: " + item.getQuantity());
+
+        return currentListViewItem;
+    }
+
+    private View populateWishlistItem(Purchasable item, View currentListViewItem) {
+        WishlistViewHolder vh = new WishlistViewHolder(currentListViewItem);
+
+        populateItem(item, currentListViewItem, vh);
+
+        vh.heartBtn.setOnClickListener(v -> {
+            if (mItems.contains(item)) {
+                mItems.remove(item);
+                update.accept(mItems);
+            } else {
+                mItems.add(item);
+                update.accept(mItems);
+            }
+        });
 
         return currentListViewItem;
     }
