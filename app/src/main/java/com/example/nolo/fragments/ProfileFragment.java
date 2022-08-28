@@ -52,6 +52,11 @@ public class ProfileFragment extends Fragment {
      */
     private void init() {
         initListeners();
+        initStyling();
+    }
+
+    private void initStyling(){
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     private void initListeners() {

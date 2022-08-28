@@ -75,6 +75,14 @@ public class CartFragment extends Fragment {
         updatePrice();
         initListeners();
         initAdaptors();
+        initStyling();
+    }
+
+    /**
+     * Init styling
+     */
+    private void initStyling(){
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     /**

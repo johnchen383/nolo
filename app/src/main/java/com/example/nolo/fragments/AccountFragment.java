@@ -66,6 +66,7 @@ public class AccountFragment extends Fragment {
 
     private void initStyling() {
         vh.emailText.setText(accountViewModel.getCurrentUserEmail());
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     private void initListeners() {
