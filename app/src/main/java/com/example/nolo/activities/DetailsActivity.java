@@ -38,6 +38,7 @@ import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.DetailsViewModel;
+import com.example.nolo.viewmodels.IDetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -45,7 +46,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.List;
 
 public class DetailsActivity extends BaseActivity {
-    private DetailsViewModel detailsViewModel;
+    private IDetailsViewModel detailsViewModel;
 
     private final int ANIMATION_INTERVAL = 250;
     private ViewHolder vh;

@@ -21,13 +21,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.util.Animation;
+import com.example.nolo.viewmodels.ILogInViewModel;
 import com.example.nolo.viewmodels.LogInViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LogInActivity extends BaseActivity {
-    private LogInViewModel logInViewModel;
-
+    private ILogInViewModel logInViewModel;
     private ViewHolder vh;
 
     private class ViewHolder {

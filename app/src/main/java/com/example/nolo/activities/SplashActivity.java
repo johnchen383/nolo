@@ -1,33 +1,28 @@
 package com.example.nolo.activities;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.nolo.R;
-import com.example.nolo.dataprovider.DataProvider;
-import com.example.nolo.enums.CollectionPath;
-import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
 import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
+import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
-import com.example.nolo.util.Display;
 import com.example.nolo.util.LocationUtil;
 import com.example.nolo.util.ResponsiveView;
+import com.example.nolo.viewmodels.ISplashViewModel;
 import com.example.nolo.viewmodels.SplashViewModel;
 
 import java.util.function.Consumer;
@@ -37,7 +32,7 @@ public class SplashActivity extends BaseActivity {
     private final int END_DELAY = 1000;
     private final int ANIMATION_INTERVAL = 1000;
 
-    private SplashViewModel splashViewModel;
+    private ISplashViewModel splashViewModel;
     private ViewHolder vh;
     private ValueAnimator anim;
 
