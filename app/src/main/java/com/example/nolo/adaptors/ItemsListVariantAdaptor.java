@@ -246,6 +246,8 @@ public class ItemsListVariantAdaptor extends ArrayAdapter {
 
         populateItem(variant, vh);
 
+        vh.heartBtn.setVisibility(View.VISIBLE);
+
         vh.heartBtn.setOnClickListener(v -> {
             variantUpdate.accept(variant);
         });

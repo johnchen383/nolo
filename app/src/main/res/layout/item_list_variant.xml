@@ -4,8 +4,7 @@
     android:id="@+id/item_clickable"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
+    android:paddingVertical="15dp"
     android:paddingRight="10dp"
     android:background="@color/navy"
     android:orientation="horizontal">

@@ -2,6 +2,7 @@ package com.example.nolo.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -26,10 +27,12 @@ public class WishlistFragment extends Fragment {
 
         ListView wishList;
         RelativeLayout backBtn;
+        LinearLayout emptyMsg;
 
         public ViewHolder() {
             wishList = getView().findViewById(R.id.wishlist_list);
             backBtn = getView().findViewById(R.id.back_btn);
+            emptyMsg = getView().findViewById(R.id.empty_msg);
         }
     }
 
@@ -37,9 +40,6 @@ public class WishlistFragment extends Fragment {
         vh.backBtn.setOnClickListener(v -> {
             getActivity().getSupportFragmentManager().beginTransaction().remove(WishlistFragment.this).commit();
         });
-    }
-
-    private void initStyling() {
     }
 
     private void initAdaptors() {
@@ -59,20 +59,24 @@ public class WishlistFragment extends Fragment {
         wishlistViewModel = new WishlistViewModel();
         vh = new ViewHolder();
         initListeners();
-        initStyling();
         initAdaptors();
+        checkWishlistEmpty();
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        initStyling();
         initAdaptors();
+    }
+
+    private void checkWishlistEmpty(){
+        vh.emptyMsg.setVisibility(wishlistViewModel.getUserWishlist().isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     public void updateWishlistItems(ItemVariant variant) {
         wishlistViewModel.removeWishlistItem(variant);
         initAdaptors();
+        checkWishlistEmpty();
     }
 }

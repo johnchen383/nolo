@@ -26,6 +26,25 @@
         android:layout_height="155dp"
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/wishlist_header" />
+    <LinearLayout
+        android:id="@+id/empty_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center"
+            android:src="@drawable/heart_white_hollow" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/font_body1"
+            android:text="YOUR WISHLIST IS EMPTY" />
+    </LinearLayout>
     <ListView
         android:id="@+id/wishlist_list"
         android:layout_width="match_parent"
