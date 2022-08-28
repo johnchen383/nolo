@@ -58,10 +58,12 @@ public class Display {
      * @param y2 Height 2
      * @return Dynamic height
      */
-    public static int getDynamicHeight(double y1, double y2) {
+    public static double getDynamicHeight(View v, double y1, double y2) {
+        double currentHeight = getScreenHeight(v);
         double x1 = 1794.0;
         double x2 = 2274.0;
         double m = (y2 - y1)/(x2 - x1);
-        return (int) (m * x2 - (m * x1) + y1);
+        double c = y1 - (m * x1);
+        return m * currentHeight + c;
     }
 }
