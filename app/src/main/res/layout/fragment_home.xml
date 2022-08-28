@@ -32,10 +32,11 @@
 
                         <LinearLayout
                             android:id="@+id/search_layout_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/touch_target_min"
                             android:layout_gravity="center"
-                            android:layout_marginTop="48dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -60,8 +61,8 @@
                             android:id="@+id/home_logo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="32dp"
-                            android:layout_marginBottom="65dp"
+                            android:layout_marginTop="42dp"
+                            android:layout_marginBottom="50dp"
                             android:src="@drawable/home_logo" />
 
                         <LinearLayout
@@ -86,7 +87,6 @@
                                 android:layout_marginTop="10dp" />
                         </LinearLayout>
 
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -96,7 +96,7 @@
                         android:orientation="horizontal"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:paddingBottom="75dp">
+                        android:paddingBottom="100dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -132,22 +132,26 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/font_h3"
-        android:layout_marginEnd="@dimen/font_h3"
-        android:layout_marginTop="@dimen/padding_xlrg"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/navy"
         layout="@layout/item_search_bar"
         android:visibility="gone"/>
 
-    <RelativeLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginRight="18dp"
+        android:layout_gravity="bottom"
+        android:gravity="right">
         <ListView
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="84dp"
-            android:divider="@null">
-        </ListView>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:divider="@null" />
     </RelativeLayout>
+
 </FrameLayout>

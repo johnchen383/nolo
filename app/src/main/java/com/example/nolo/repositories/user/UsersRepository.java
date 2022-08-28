@@ -29,6 +29,11 @@ import java.util.function.Consumer;
  * This is a singleton class for Users repository.
  */
 public class UsersRepository implements IUsersRepository {
+    private static final String FIELD_VIEW_HISTORY = "viewHistory";
+    private static final String FIELD_WISHLIST = "wishlist";
+    private static final String FIELD_PURCHASE_HISTORY = "purchaseHistory";
+    private static final String FIELD_CART = "cart";
+
     private static UsersRepository usersRepository = null;
     private final FirebaseFirestore db;
     private final FirebaseAuth fAuth;
@@ -225,13 +230,34 @@ public class UsersRepository implements IUsersRepository {
     @Override
     public void addViewHistory(IItemVariant item) {
         currentUser.addViewHistory(item);
+        updateFirebaseField(FIELD_VIEW_HISTORY, currentUser.getViewHistory());
+    }
 
-        String field = "viewHistory";
-        if (currentUser.isFieldNameValid(field)) {
-            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getViewHistory());
-        } else {
-            Log.e("UsersRepository", "Unable to update view history as field not matched");
-        }
+    @Override
+    public List<ItemVariant> getWishlist() {
+        return currentUser.getWishlist();
+    }
+
+    /**
+     * Add wishlist items into wishlist at the top
+     *
+     * @param item wishlist items
+     */
+    @Override
+    public void addWishlist(IItemVariant item) {
+        currentUser.addWishlist(item);
+        updateFirebaseField(FIELD_WISHLIST, currentUser.getWishlist());
+    }
+
+    /**
+     * Remove item from the user's wishlist
+     *
+     * @param item The item to be removed
+     */
+    @Override
+    public void removeWishlist(IItemVariant item) {
+        currentUser.removeWishlist(item);
+        updateFirebaseField(FIELD_WISHLIST, currentUser.getWishlist());
     }
 
     @Override
@@ -247,13 +273,7 @@ public class UsersRepository implements IUsersRepository {
     @Override
     public void addPurchaseHistory(List<Purchasable> purchasedItem) {
         currentUser.addPurchaseHistory(purchasedItem);
-
-        String field = "purchaseHistory";
-        if (currentUser.isFieldNameValid(field)) {
-            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getPurchaseHistory());
-        } else {
-            Log.e("UsersRepository", "Unable to update purchase history as field not matched");
-        }
+        updateFirebaseField(FIELD_PURCHASE_HISTORY, currentUser.getPurchaseHistory());
     }
 
     @Override
@@ -269,13 +289,7 @@ public class UsersRepository implements IUsersRepository {
     @Override
     public void addCart(IItemVariant cartItem, int quantity) {
         currentUser.addCart(cartItem, quantity);
-
-        String field = "cart";
-        if (currentUser.isFieldNameValid(field)) {
-            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
-        } else {
-            Log.e("UsersRepository", "Unable to update cart as field not matched");
-        }
+        updateFirebaseField(FIELD_CART, currentUser.getCart());
     }
 
     /**
@@ -286,12 +300,14 @@ public class UsersRepository implements IUsersRepository {
     @Override
     public void updateCart(List<Purchasable> cartItems) {
         currentUser.updateCart(cartItems);
+        updateFirebaseField(FIELD_CART, currentUser.getCart());
+    }
 
-        String field = "cart";
-        if (currentUser.isFieldNameValid(field)) {
-            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(field, currentUser.getCart());
+    private void updateFirebaseField(String fieldName, List<?> listToStore) {
+        if (currentUser.isFieldNameValid(fieldName)) {
+            db.collection(CollectionPath.users.name()).document(currentUser.getUserAuthUid()).update(fieldName, listToStore);
         } else {
-            Log.e("UsersRepository", "Unable to update cart as field not matched");
+            Log.e("UsersRepository", "Unable to update " + fieldName + " as field not matched");
         }
     }
 }

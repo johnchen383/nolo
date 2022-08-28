@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.HomeCategoryAdaptor;
 import com.example.nolo.adaptors.HomeIndicatorAdaptor;
@@ -42,6 +44,7 @@ import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.HomeViewModel;
 
 import java.util.ArrayList;
@@ -56,7 +59,6 @@ public class HomeFragment extends Fragment {
     private final int SNAP_DURATION = 300;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
-    private View currentView;
     private float historicY = 0;
     private int panelIndex = 0;
 
@@ -98,44 +100,38 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initAdaptors();
+        init();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        currentView = view;
         vh = new ViewHolder(view);
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
+        init();
+    }
+
+    private void init(){
+        ((MainActivity) getActivity()).updateCartBadge();
+
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
-        vh.indicator.setVisibility(View.INVISIBLE);
 
-        LinearLayout.LayoutParams oldLayout = (LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams();
-        LinearLayout.LayoutParams newLayout = new LinearLayout.LayoutParams(oldLayout.width, oldLayout.height);
-        newLayout.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, (int) (Display.getScreenHeightInDp(view) * 0.2));
-        vh.homeLogo.setLayoutParams(newLayout);
+        ResponsiveView.setBottomMargin((int) Display.getDynamicHeight(vh.initialView, 0.0, 65.0), vh.homeLogo);
 
         String toastMessage = getActivity().getIntent().getStringExtra("MessageFromSignUpActivity");
         Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_LONG).show();
 
         initAdaptors();
         initListeners();
+        initStyling();
     }
 
     private void snapScroll() {
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(vh.scrollView, "scrollY", vh.scrollView.getScrollY(), Display.getScreenHeight(vh.scrollView) * panelIndex).setDuration(SNAP_DURATION);
         objectAnimator.start();
-
-        if (panelIndex > 0) {
-            getActivity().getWindow().setStatusBarColor(Color.argb(255, 0, 0, 0));
-            setIndicatorStyles(panelIndex - 1);
-        } else {
-            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
-            vh.indicator.setVisibility(View.INVISIBLE);
-        }
-
+        updateStyling();
         historicY = Display.getScreenHeight(vh.scrollView) * panelIndex;
     }
 
@@ -164,6 +160,21 @@ public class HomeFragment extends Fragment {
         }
         return false;
 
+    }
+
+    private void initStyling() {
+        vh.searchSuggestionsList.setMinimumWidth(Display.getScreenWidth(vh.scrollView));
+        updateStyling();
+    }
+
+    private void updateStyling() {
+        if (panelIndex > 0) {
+            getActivity().getWindow().setStatusBarColor(Color.argb(255, 0, 0, 0));
+            setIndicatorStyles(panelIndex - 1);
+        } else {
+            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+            vh.indicator.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void initAdaptors() {
@@ -338,16 +349,17 @@ public class HomeFragment extends Fragment {
         vh.indicator.setVisibility(View.VISIBLE);
 
         for (int pos = 0; pos < vh.indicator.getChildCount(); pos++) {
-            TextView indicatorEl = (TextView) getViewByPosition(pos, vh.indicator);
+            RelativeLayout indicatorEl = (RelativeLayout) getViewByPosition(pos, vh.indicator);
+            TextView indicatorText = indicatorEl.findViewById(R.id.clickable);
 
             if (pos == index) {
-                indicatorEl.setTypeface(indicatorEl.getTypeface(), Typeface.BOLD);
-                indicatorEl.setTextColor(Color.argb(opacitySel, 255, 255, 255));
+                indicatorText.setTypeface(indicatorText.getTypeface(), Typeface.BOLD);
+                indicatorText.setTextColor(Color.argb(opacitySel, 255, 255, 255));
                 continue;
             }
 
-            indicatorEl.setTypeface(indicatorEl.getTypeface(), Typeface.NORMAL);
-            indicatorEl.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
+            indicatorText.setTypeface(indicatorText.getTypeface(), Typeface.NORMAL);
+            indicatorText.setTextColor(Color.argb(opacityNorm, 255, 255, 255));
         }
     }
 
@@ -374,7 +386,7 @@ public class HomeFragment extends Fragment {
             vh.outsideSearchContainer.setVisibility(View.GONE);
 
             // Hide the keyboard
-            Keyboard.hide(getActivity(), currentView);
+            Keyboard.hide(getActivity(), vh.initialView);
         }
     }
 
@@ -398,7 +410,7 @@ public class HomeFragment extends Fragment {
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(currentView) / 2 / 120;
+        return Display.getScreenHeight(vh.initialView) / 2 / 200;
     }
 
     private String getColourInHexFromResourceId(int rId) {

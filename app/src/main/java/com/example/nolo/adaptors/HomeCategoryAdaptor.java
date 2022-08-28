@@ -19,6 +19,7 @@ import com.example.nolo.entities.category.Category;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.R;
 import com.example.nolo.util.Display;
+import com.example.nolo.util.ResponsiveView;
 
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class HomeCategoryAdaptor extends ArrayAdapter {
 
         //setting the category img
         vh.categoryImg.setImageResource(i);
-        vh.categoryImg.getLayoutParams().height = Display.getScreenHeight(currentListViewItem);
+        ResponsiveView.setHeight(Display.getScreenHeight(currentListViewItem), vh.categoryImg);
 
         // Setting the category label
         vh.categoryLabel.setText(currentCategory.getCategoryName());

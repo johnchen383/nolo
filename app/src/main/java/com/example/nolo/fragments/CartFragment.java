@@ -12,12 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.adaptors.CartPurchasableAdaptor;
+import com.example.nolo.adaptors.ItemsListVariantAdaptor;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
-import com.example.nolo.entities.user.IUser;
-import com.example.nolo.interactors.user.GetCurrentUserUseCase;
-import com.example.nolo.interactors.user.UpdateCartItemUseCase;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.CartViewModel;
 import com.google.android.material.button.MaterialButton;
@@ -31,8 +29,6 @@ import java.util.List;
 public class CartFragment extends Fragment {
     private ViewHolder vh;
     private CartViewModel cartViewModel;
-    private IUser user;
-    private List<Purchasable> cartItems;
 
     private class ViewHolder {
         TextView totalPrice;
@@ -40,11 +36,11 @@ public class CartFragment extends Fragment {
         MaterialButton checkoutBtn;
         LinearLayout emptyMsg;
 
-        public ViewHolder(){
-            totalPrice = getView().findViewById(R.id.total_price);
-            cartList = getView().findViewById(R.id.cart_list);
-            checkoutBtn = getView().findViewById(R.id.checkout_btn);
-            emptyMsg = getView().findViewById(R.id.empty_msg);
+        public ViewHolder(View view){
+            totalPrice = view.findViewById(R.id.total_price);
+            cartList = view.findViewById(R.id.cart_list);
+            checkoutBtn = view.findViewById(R.id.checkout_btn);
+            emptyMsg = view.findViewById(R.id.empty_msg);
         }
     }
 
@@ -57,9 +53,9 @@ public class CartFragment extends Fragment {
         cartViewModel =
                 new ViewModelProvider(this).get(CartViewModel.class);
 
-        vh = new ViewHolder();
-        user = GetCurrentUserUseCase.getCurrentUser();
-        cartItems = user.getCart();
+        vh = new ViewHolder(view);
+
+        ((MainActivity) getActivity()).updateCartBadge();
 
         updatePrice();
         initAdaptor();
@@ -67,21 +63,23 @@ public class CartFragment extends Fragment {
         checkCartEmpty();
 
         vh.checkoutBtn.setOnClickListener(v -> {
-            // TODO: cart to purchase history (purchase status changes, delete cart, add purchase history)
+            cartViewModel.moveCartToPurchaseHistory();
             Toast.makeText(getContext(), "Purchase made!", Toast.LENGTH_SHORT).show();
+            ((MainActivity) getActivity()).updateCartBadge();
         });
     }
 
     private void checkCartEmpty(){
-        vh.emptyMsg.setVisibility(cartItems.isEmpty() ? View.VISIBLE : View.GONE);
+        vh.emptyMsg.setVisibility(cartViewModel.getUserCart().isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     private void updateCartItems(List<Purchasable> items){
-        cartItems = items;
+        cartViewModel.updateCartItem(items);
         updatePrice();
         initAdaptor();
-        UpdateCartItemUseCase.updateCartItem(items);
         checkCartEmpty();
+
+        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override
@@ -91,14 +89,8 @@ public class CartFragment extends Fragment {
     }
 
     private void initAdaptor(){
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-
-        CartPurchasableAdaptor categoriesAdaptor = new CartPurchasableAdaptor(getActivity(), R.layout.item_list_cart, cartItems, this::updateCartItems);
-        vh.cartList.setAdapter(categoriesAdaptor);
+        ItemsListVariantAdaptor cartPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, cartViewModel.getUserCart(), this::updateCartItems, null, null);
+        vh.cartList.setAdapter(cartPurchasableAdaptor);
 
         ListUtil.setDynamicHeight(vh.cartList);
     }
@@ -106,7 +98,7 @@ public class CartFragment extends Fragment {
     private void updatePrice(){
         double sum = 0;
 
-        for (IPurchasable purchase : cartItems){
+        for (IPurchasable purchase : cartViewModel.getUserCart()){
             sum += purchase.getQuantity() * purchase.getItemVariant().getNumericalPrice();
         }
 

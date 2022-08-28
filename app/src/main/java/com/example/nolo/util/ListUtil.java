@@ -6,22 +6,32 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class ListUtil {
-    public static void setDynamicHeight(ListView mListView) {
-        ListAdapter mListAdapter = mListView.getAdapter();
+    /**
+     * Set dynamic height for the list view
+     *
+     * @param listView
+     */
+    public static void setDynamicHeight(ListView listView) {
+        ListAdapter mListAdapter = listView.getAdapter();
+
+        // when adapter is null
         if (mListAdapter == null) {
-            // when adapter is null
             return;
         }
+
         int height = 0;
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+
+        // Get the total height of the list view
         for (int i = 0; i < mListAdapter.getCount(); i++) {
-            View listItem = mListAdapter.getView(i, null, mListView);
+            View listItem = mListAdapter.getView(i, null, listView);
             listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
             height += listItem.getMeasuredHeight();
         }
-        ViewGroup.LayoutParams params = mListView.getLayoutParams();
-        params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
-        mListView.setLayoutParams(params);
-        mListView.requestLayout();
+
+        // Set the total height
+        height = height + (listView.getDividerHeight() * (mListAdapter.getCount() - 1));
+        ResponsiveView.setHeight(height, listView);
+        listView.requestLayout();
     }
 }

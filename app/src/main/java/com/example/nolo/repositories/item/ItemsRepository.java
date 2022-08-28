@@ -8,7 +8,6 @@ import com.example.nolo.entities.item.Accessory;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.entities.item.Laptop;
 import com.example.nolo.entities.item.Phone;
-import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.enums.CategoryType;
 import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.repositories.RepositoryExpiredTime;

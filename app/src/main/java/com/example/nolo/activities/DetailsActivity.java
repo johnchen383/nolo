@@ -37,6 +37,7 @@ import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.enums.SpecsType;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -66,7 +67,7 @@ public class DetailsActivity extends BaseActivity {
 
         RelativeLayout decrementBtn, incrementBtn, carouselContainer;
         RecyclerView coloursList, ramList, storageList, recItemsList;
-        ImageView closeBtn, storesBtn;
+        ImageView closeBtn, storesBtn, heartHollowBtn, heartFilledBtn;
         MaterialButton addCartBtn;
         ViewPager2 carousel;
         ScrollView scrollContainer;
@@ -89,6 +90,8 @@ public class DetailsActivity extends BaseActivity {
             priceText = findViewById(R.id.price_text);
             storesBtn = findViewById(R.id.store_btn);
             closeBtn = findViewById(R.id.close_btn);
+            heartHollowBtn = findViewById(R.id.heart_hollow_btn);
+            heartFilledBtn = findViewById(R.id.heart_filled_btn);
 
             specs = findViewById(R.id.specs);
             specsList = findViewById(R.id.specs_list);
@@ -220,14 +223,14 @@ public class DetailsActivity extends BaseActivity {
         } else {
             switch (detailsViewModel.getItemCategory()) {
                 case phones:
-                    heightFactor = 0.55;
+                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.50, 0.55);
                     break;
                 case laptops:
-                    heightFactor = 0.45;
+                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.40, 0.45);
                     break;
                 case accessories:
                 default:
-                    heightFactor = 0.58;
+                    heightFactor = Display.getDynamicHeight(vh.transparentContainer, 0.53, 0.58);
             }
         }
 
@@ -235,14 +238,8 @@ public class DetailsActivity extends BaseActivity {
 
         ValueAnimator anim = ValueAnimator.ofFloat(oldHeight, newHeight);
         anim.addUpdateListener(valueAnimator -> {
-            float val = (Float) valueAnimator.getAnimatedValue();
-            FrameLayout.LayoutParams newParams = (FrameLayout.LayoutParams) vh.carouselContainer.getLayoutParams();
-            newParams.height = (int) val;
-            vh.carouselContainer.setLayoutParams(newParams);
-
-            LinearLayout.LayoutParams newParams2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
-            newParams2.height = (int) val;
-            vh.transparentContainer.setLayoutParams(newParams2);
+            int val = (Integer) valueAnimator.getAnimatedValue();
+            ResponsiveView.setHeight(val, vh.carouselContainer, vh.transparentContainer);
         });
 
         anim.setDuration(ANIMATION_INTERVAL);
@@ -253,6 +250,7 @@ public class DetailsActivity extends BaseActivity {
         vh.detailsContainer.setMinimumHeight(Display.getScreenHeight(vh.detailsContainer));
         vh.itemTitle.setText(detailsViewModel.getItemName());
         vh.storeName.setText(detailsViewModel.getStoreBranchName());
+        updateHeartIcon();
 
         switch (detailsViewModel.getItemCategory()) {
             case laptops:
@@ -277,6 +275,11 @@ public class DetailsActivity extends BaseActivity {
         vh.colourTitle.setText(capitaliseFirst(detailsViewModel.getVariantColour().getName()));
         System.out.println("price: " + detailsViewModel.getItemVariant().getDisplayPrice());
         vh.priceText.setText(detailsViewModel.getItemVariant().getDisplayPrice() + " NZD");
+        updateHeartIcon();
+    }
+
+    private void updateHeartIcon() {
+        vh.heartFilledBtn.setVisibility(detailsViewModel.isInWishlist() ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void initListeners() {
@@ -315,55 +318,59 @@ public class DetailsActivity extends BaseActivity {
             this.finish();
         });
 
-        vh.scrollContainer.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        historicY = motionEvent.getY();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        float currentY = motionEvent.getY();
-
-                        if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
-                            isExpanded = !isExpanded;
-                            setDynamicHeights();
-                        }
-                }
-                return false;
-            }
+        vh.heartHollowBtn.setOnClickListener(v -> {
+            detailsViewModel.addWishlist();
+            updateHeartIcon();
         });
 
-        vh.transparentContainer.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        historicX = motionEvent.getX();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        float currentX = motionEvent.getX();
+        vh.heartFilledBtn.setOnClickListener(v -> {
+            detailsViewModel.removeWishlist();
+            updateHeartIcon();
+        });
 
-                        if (currentX < historicX) {
-                            imgIndex++;
-                            if (imgIndex > maxIndex) imgIndex = maxIndex;
+        vh.scrollContainer.setOnTouchListener((view, motionEvent) -> {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    historicY = motionEvent.getY();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float currentY = motionEvent.getY();
 
-                            vh.carousel.setCurrentItem(imgIndex);
-//                            updateCarouselImages();
-                        } else if (currentX > historicX) {
-                            imgIndex--;
-                            if (imgIndex < 0) imgIndex = 0;
-
-                            vh.carousel.setCurrentItem(imgIndex);
-//                            updateCarouselImages();
-                        } else {
-                            isExpanded = !isExpanded;
-                            setDynamicHeights();
-                        }
-
-                }
-                return false;
+                    if (currentY > historicY && !isExpanded && (vh.scrollContainer.getScrollY() == 0)) {
+                        isExpanded = !isExpanded;
+                        setDynamicHeights();
+                    }
             }
+            return false;
+        });
+
+        vh.transparentContainer.setOnTouchListener((view, motionEvent) -> {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    historicX = motionEvent.getX();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float currentX = motionEvent.getX();
+
+                    if (currentX < historicX) {
+                        imgIndex++;
+                        if (imgIndex > maxIndex) imgIndex = maxIndex;
+
+                        vh.carousel.setCurrentItem(imgIndex);
+//                            updateCarouselImages();
+                    } else if (currentX > historicX) {
+                        imgIndex--;
+                        if (imgIndex < 0) imgIndex = 0;
+
+                        vh.carousel.setCurrentItem(imgIndex);
+//                            updateCarouselImages();
+                    } else {
+                        isExpanded = !isExpanded;
+                        setDynamicHeights();
+                    }
+
+            }
+            return false;
         });
 
         vh.scrollContainer.setOnScrollChangeListener(new View.OnScrollChangeListener() {

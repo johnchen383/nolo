@@ -8,10 +8,11 @@ import android.view.View;
 public class Display {
     /**
      * Retrieve display metrics
+     *
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    private static DisplayMetrics getDisplayMetrics(View v){
+    private static DisplayMetrics getDisplayMetrics(View v) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
 
         ((Activity) v.getContext()).getWindowManager()
@@ -23,28 +24,21 @@ public class Display {
 
     /**
      * Get height of device screen in pixels
+     *
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    public static int getScreenHeight(View v){
+    public static int getScreenHeight(View v) {
         return getDisplayMetrics(v).heightPixels;
     }
 
     /**
-     * Get height of device screen in dp
+     * Get width of device screen in pixels
+     *
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    public static int getScreenHeightInDp(View v){
-        return pxToDp(getScreenHeight(v), v.getContext());
-    }
-
-    /**
-     * Get width of device screen
-     * @param v any view associated with an activity (i.e., displayed)
-     * @return
-     */
-    public static int getScreenWidth(View v){
+    public static int getScreenWidth(View v) {
         return getDisplayMetrics(v).widthPixels;
     }
 
@@ -60,16 +54,19 @@ public class Display {
         return Math.round((float) dp * density);
     }
 
-
     /**
-     * Convert pixels into dp
+     * Calculate dynamic height
      *
-     * @param px
-     * @param context
-     * @return pixels
+     * @param y1 Height 1
+     * @param y2 Height 2
+     * @return Dynamic height
      */
-    public static int pxToDp(int px, Context context) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return Math.round((float) px / density);
+    public static double getDynamicHeight(View v, double y1, double y2) {
+        double currentHeight = getScreenHeight(v);
+        double x1 = 1794.0;
+        double x2 = 2274.0;
+        double m = (y2 - y1) / (x2 - x1);
+        double c = y1 - (m * x1);
+        return m * currentHeight + c;
     }
 }

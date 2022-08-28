@@ -33,6 +33,7 @@ import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.LocationUtil;
+import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -97,7 +98,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         vh.mapFragment.getMapAsync(this);
         vh.title.setText(variant.getTitle());
 
-        vh.modalHeader.getLayoutParams().height = (int) (Display.getScreenHeight(vh.modalHeader) * 0.1);
+        ResponsiveView.setHeight((int) (Display.getScreenHeight(vh.modalHeader) * 0.1), vh.modalHeader);
 
         LinearLayoutManager coloursLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         vh.coloursList.setLayoutManager(coloursLayoutManager);
@@ -348,10 +349,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         ValueAnimator anim = ValueAnimator.ofFloat(old, target);
         anim.addUpdateListener(valueAnimator -> {
-            float val = (Float) valueAnimator.getAnimatedValue();
-            LinearLayout.LayoutParams newParams = (LinearLayout.LayoutParams) vh.mapContainer.getLayoutParams();
-            newParams.weight = val;
-            vh.mapContainer.setLayoutParams(newParams);
+            int val = (Integer) valueAnimator.getAnimatedValue();
+            ResponsiveView.setWeight(val, vh.mapContainer);
         });
 
         anim.setDuration(ANIMATION_INTERVAL);
