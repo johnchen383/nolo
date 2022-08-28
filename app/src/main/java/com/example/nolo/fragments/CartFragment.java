@@ -36,11 +36,11 @@ public class CartFragment extends Fragment {
         MaterialButton checkoutBtn;
         LinearLayout emptyMsg;
 
-        public ViewHolder(){
-            totalPrice = getView().findViewById(R.id.total_price);
-            cartList = getView().findViewById(R.id.cart_list);
-            checkoutBtn = getView().findViewById(R.id.checkout_btn);
-            emptyMsg = getView().findViewById(R.id.empty_msg);
+        public ViewHolder(View view){
+            totalPrice = view.findViewById(R.id.total_price);
+            cartList = view.findViewById(R.id.cart_list);
+            checkoutBtn = view.findViewById(R.id.checkout_btn);
+            emptyMsg = view.findViewById(R.id.empty_msg);
         }
     }
 
@@ -53,7 +53,7 @@ public class CartFragment extends Fragment {
         cartViewModel =
                 new ViewModelProvider(this).get(CartViewModel.class);
 
-        vh = new ViewHolder();
+        vh = new ViewHolder(view);
 
         ((MainActivity) getActivity()).updateCartBadge();
 
@@ -63,8 +63,7 @@ public class CartFragment extends Fragment {
         checkCartEmpty();
 
         vh.checkoutBtn.setOnClickListener(v -> {
-            // TODO: cart to purchase history (purchase status changes, delete cart, add purchase history)
-            cartViewModel.addPurchaseHistory();
+            cartViewModel.moveCartToPurchaseHistory();
             Toast.makeText(getContext(), "Purchase made!", Toast.LENGTH_SHORT).show();
             ((MainActivity) getActivity()).updateCartBadge();
         });
@@ -90,12 +89,6 @@ public class CartFragment extends Fragment {
     }
 
     private void initAdaptor(){
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-//        cartItems.add(null);
-
         ItemsListVariantAdaptor cartPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, cartViewModel.getUserCart(), this::updateCartItems, null, null);
         vh.cartList.setAdapter(cartPurchasableAdaptor);
 

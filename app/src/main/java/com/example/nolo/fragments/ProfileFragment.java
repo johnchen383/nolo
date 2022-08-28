@@ -27,11 +27,25 @@ public class ProfileFragment extends Fragment {
     private class ViewHolder {
         TextView purchasesBtn, wishlistBtn, accountBtn;
 
-        public ViewHolder() {
-            purchasesBtn = getView().findViewById(R.id.purchases_btn);
-            wishlistBtn = getView().findViewById(R.id.wishlist_btn);
-            accountBtn = getView().findViewById(R.id.account_btn);
+        public ViewHolder(View view) {
+            purchasesBtn = view.findViewById(R.id.purchases_btn);
+            wishlistBtn = view.findViewById(R.id.wishlist_btn);
+            accountBtn = view.findViewById(R.id.account_btn);
         }
+    }
+
+    public ProfileFragment() {
+        super(R.layout.fragment_profile);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
+        vh = new ViewHolder(view);
+
+        ((MainActivity) getActivity()).updateCartBadge();
+        initListeners();
     }
 
     private void initListeners() {
@@ -46,17 +60,5 @@ public class ProfileFragment extends Fragment {
         vh.purchasesBtn.setOnClickListener(v -> {
             FragmentUtil.addFragment(getActivity(), R.id.profile_fragment, PurchasesFragment.class, "PROFILE_ADDITION");
         });
-    }
-
-    public ProfileFragment() {
-        super(R.layout.fragment_profile);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
-        vh = new ViewHolder();
-        initListeners();
     }
 }

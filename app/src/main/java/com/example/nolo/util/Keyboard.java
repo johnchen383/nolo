@@ -19,7 +19,7 @@ public class Keyboard {
      * Hide the keyboard for the current activity
      *
      * @param activity current activity
-     * @param view current view
+     * @param view     current view
      */
     public static void hide(Activity activity, View view) {
         ((InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE))

@@ -18,6 +18,7 @@ import com.example.nolo.entities.item.variant.IItemVariant;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
+import com.example.nolo.util.ResponsiveView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,14 +74,8 @@ public class ItemsCompactAdaptor extends RecyclerView.Adapter<ItemsCompactAdapto
 
         double width = Display.getScreenWidth(holder.itemClickable) * widthFactor;
 
-        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) holder.itemClickable.getLayoutParams();
-        layoutParams.width = (int) width;
-
-        LinearLayout.LayoutParams ivLayoutParams = (LinearLayout.LayoutParams) holder.img.getLayoutParams();
-        ivLayoutParams.height = (int) (0.75 * width);
-
-        holder.itemClickable.setLayoutParams(layoutParams);
-        holder.img.setLayoutParams(ivLayoutParams);
+        ResponsiveView.setWidth((int) width, holder.itemClickable);
+        ResponsiveView.setHeight((int) (0.75 * width), holder.img);
 
         holder.itemClickable.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, DetailsActivity.class);

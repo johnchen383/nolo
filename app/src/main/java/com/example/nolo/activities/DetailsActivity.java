@@ -37,6 +37,7 @@ import com.example.nolo.enums.SpecsOptionType;
 import com.example.nolo.enums.SpecsType;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -237,14 +238,8 @@ public class DetailsActivity extends BaseActivity {
 
         ValueAnimator anim = ValueAnimator.ofFloat(oldHeight, newHeight);
         anim.addUpdateListener(valueAnimator -> {
-            float val = (Float) valueAnimator.getAnimatedValue();
-            FrameLayout.LayoutParams newParams = (FrameLayout.LayoutParams) vh.carouselContainer.getLayoutParams();
-            newParams.height = (int) val;
-            vh.carouselContainer.setLayoutParams(newParams);
-
-            LinearLayout.LayoutParams newParams2 = (LinearLayout.LayoutParams) vh.transparentContainer.getLayoutParams();
-            newParams2.height = (int) val;
-            vh.transparentContainer.setLayoutParams(newParams2);
+            int val = (Integer) valueAnimator.getAnimatedValue();
+            ResponsiveView.setHeight(val, vh.carouselContainer, vh.transparentContainer);
         });
 
         anim.setDuration(ANIMATION_INTERVAL);

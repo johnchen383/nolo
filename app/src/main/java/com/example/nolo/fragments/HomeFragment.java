@@ -44,6 +44,7 @@ import com.example.nolo.util.Animation;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.util.ResponsiveView;
 import com.example.nolo.viewmodels.HomeViewModel;
 
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class HomeFragment extends Fragment {
         //set size of initial view to be screen height
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
-        ((LinearLayout.LayoutParams) vh.homeLogo.getLayoutParams()).bottomMargin = (int) Display.getDynamicHeight(vh.initialView, 0.0, 65.0);
+        ResponsiveView.setBottomMargin((int) Display.getDynamicHeight(vh.initialView, 0.0, 65.0), vh.homeLogo);
 
         initAdaptors();
         initListeners();

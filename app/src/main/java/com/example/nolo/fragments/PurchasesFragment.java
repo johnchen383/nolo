@@ -28,16 +28,40 @@ public class PurchasesFragment extends Fragment {
         TextView transitText, deliveredText;
         RelativeLayout backBtn;
 
-        public ViewHolder() {
-            transitList = getView().findViewById(R.id.transit_list);
-            deliveredList = getView().findViewById(R.id.delivered_list);
-            transitTitle = getView().findViewById(R.id.transit_title);
-            deliveredTitle = getView().findViewById(R.id.delivered_title);
-            transitText = getView().findViewById(R.id.transit_text);
-            deliveredText = getView().findViewById(R.id.delivered_text);
-            backBtn = getView().findViewById(R.id.back_btn);
-            emptyMsg = getView().findViewById(R.id.empty_msg);
+        public ViewHolder(View view) {
+            transitList = view.findViewById(R.id.transit_list);
+            deliveredList = view.findViewById(R.id.delivered_list);
+            transitTitle = view.findViewById(R.id.transit_title);
+            deliveredTitle = view.findViewById(R.id.delivered_title);
+            transitText = view.findViewById(R.id.transit_text);
+            deliveredText = view.findViewById(R.id.delivered_text);
+            backBtn = view.findViewById(R.id.back_btn);
+            emptyMsg = view.findViewById(R.id.empty_msg);
         }
+    }
+
+    public PurchasesFragment() {
+        super(R.layout.fragment_purchases);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        purchasesViewModel = new PurchasesViewModel();
+        vh = new ViewHolder(view);
+
+        ((MainActivity) getActivity()).updateCartBadge();
+        initListeners();
+        initStyling();
+        initAdaptors();
+        checkPurchasesEmpty();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initStyling();
+        initAdaptors();
     }
 
     private void initListeners() {
@@ -69,32 +93,7 @@ public class PurchasesFragment extends Fragment {
         vh.deliveredList.setAdapter(deliveredPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.deliveredList);
     }
-
-    public PurchasesFragment() {
-        super(R.layout.fragment_purchases);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        purchasesViewModel = new PurchasesViewModel();
-        vh = new ViewHolder();
-
-        ((MainActivity) getActivity()).updateCartBadge();
-        initListeners();
-        initStyling();
-        initAdaptors();
-        checkPurchasesEmpty();
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        initStyling();
-        initAdaptors();
-    }
-
+    
     private void checkPurchasesEmpty(){
         vh.emptyMsg.setVisibility(purchasesViewModel.getUserPurchaseHistoryDelivered().isEmpty() && purchasesViewModel.getUserPurchaseHistoryInTransit().isEmpty()? View.VISIBLE : View.GONE);
     }

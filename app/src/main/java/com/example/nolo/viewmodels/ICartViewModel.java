@@ -7,5 +7,5 @@ import java.util.List;
 public interface ICartViewModel {
     List<Purchasable> getUserCart();
     void updateCartItem(List<Purchasable> cartItems);
-    void addPurchaseHistory();
+    void moveCartToPurchaseHistory();
 }

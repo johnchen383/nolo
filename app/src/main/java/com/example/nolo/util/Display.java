@@ -8,10 +8,11 @@ import android.view.View;
 public class Display {
     /**
      * Retrieve display metrics
+     *
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    private static DisplayMetrics getDisplayMetrics(View v){
+    private static DisplayMetrics getDisplayMetrics(View v) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
 
         ((Activity) v.getContext()).getWindowManager()
@@ -23,19 +24,21 @@ public class Display {
 
     /**
      * Get height of device screen in pixels
+     *
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    public static int getScreenHeight(View v){
+    public static int getScreenHeight(View v) {
         return getDisplayMetrics(v).heightPixels;
     }
 
     /**
-     * Get width of device screen
+     * Get width of device screen in pixels
+     *
      * @param v any view associated with an activity (i.e., displayed)
      * @return
      */
-    public static int getScreenWidth(View v){
+    public static int getScreenWidth(View v) {
         return getDisplayMetrics(v).widthPixels;
     }
 
@@ -62,7 +65,7 @@ public class Display {
         double currentHeight = getScreenHeight(v);
         double x1 = 1794.0;
         double x2 = 2274.0;
-        double m = (y2 - y1)/(x2 - x1);
+        double m = (y2 - y1) / (x2 - x1);
         double c = y1 - (m * x1);
         return m * currentHeight + c;
     }
