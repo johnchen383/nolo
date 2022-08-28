@@ -35,6 +35,8 @@ import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.category.ICategory;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.util.ColourUtil;
+import com.example.nolo.interactors.category.GetCategoriesUseCase;
+import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
@@ -61,7 +63,8 @@ public class HomeFragment extends Fragment {
         RecyclerView featuredItemsList;
         TextView featuredText;
         EditText searchBarText;
-        ImageView homeLogo, searchBtn, deleteBtn;
+        RelativeLayout searchBtn, deleteBtn;
+        ImageView homeLogo, searchButtonImage, deleteButtonImage;
         ScrollView scrollView;
         View searchView;
 
@@ -79,7 +82,8 @@ public class HomeFragment extends Fragment {
             searchView = view.findViewById(R.id.search_view);
 
             searchBarText = searchView.findViewById(R.id.search_edittext);
-            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            searchBtn = searchView.findViewById(R.id.search_btn);
+            searchButtonImage = searchView.findViewById(R.id.search_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
@@ -199,14 +203,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        vh.searchBtn.setOnClickListener(v -> {
-            goToSearchActivity(vh.searchBarText.getText().toString());
-        });
+        vh.searchButtonImage.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
+        vh.searchBtn.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
 
         // When delete button is clicked, remove all text in edit text
+        vh.deleteButtonImage.setOnClickListener(v -> {
+            onClickDelete(vh);
+        });
+
         vh.deleteBtn.setOnClickListener(v -> {
-            vh.searchBarText.setText("");
-            resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
+            onClickDelete(vh);
         });
 
         // When browser button is pressed on the main/first panel
@@ -216,6 +222,11 @@ public class HomeFragment extends Fragment {
         });
 
         vh.scrollView.setOnTouchListener((view1, motionEvent) -> onTouch(motionEvent));
+    }
+
+    private void onClickDelete(ViewHolder vh) {
+        vh.searchBarText.setText("");
+        resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
     }
 
     private void initAdaptors() {
@@ -394,9 +405,13 @@ public class HomeFragment extends Fragment {
      * @param isOnSearchBar indicate whether it is on search bar or not
      */
     private void onSearchBar(boolean isOnSearchBar) {
-        vh.searchBtn.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
-        vh.deleteBtn.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
-        vh.homeLogo.setAlpha(isOnSearchBar ? 0.3f : 1.0f);
+        if (isOnSearchBar) {
+            vh.searchBtn.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
+            vh.searchButtonImage.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
+            vh.deleteBtn.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
+            vh.deleteButtonImage.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
+            vh.homeLogo.setAlpha(isOnSearchBar ? 0.3f : 1.0f);
+        }
     }
 
     private void goToSearchActivity(String searchTerm) {

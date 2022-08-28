@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,8 @@ public class SearchFragment extends Fragment {
 
     private class ViewHolder {
         EditText searchBarText;
-        ImageView searchLogo, searchBtn, deleteBtn;
+        RelativeLayout searchBtn, deleteBtn;
+        ImageView searchLogo, searchButtonImage, deleteButtonImage;
         ListView searchSuggestionsList;
         LinearLayout outsideSearchContainer;
         View searchView;
@@ -48,8 +50,10 @@ public class SearchFragment extends Fragment {
             searchView = view.findViewById(R.id.search_view);
 
             searchBarText = searchView.findViewById(R.id.search_edittext);
-            searchBtn = searchView.findViewById(R.id.search_image_btn);
+            searchBtn = searchView.findViewById(R.id.search_btn);
+            searchButtonImage = searchView.findViewById(R.id.search_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
+            deleteButtonImage = searchView.findViewById(R.id.delete_image_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
     }
@@ -131,15 +135,16 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        // When search button is clicked
-        vh.searchBtn.setOnClickListener(v -> {
-            goToSearchActivity(vh.searchBarText.getText().toString());
-        });
+        vh.searchButtonImage.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
+        vh.searchBtn.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
 
         // When delete button is clicked, remove all text in edit text
+        vh.deleteButtonImage.setOnClickListener(v -> {
+            onClickDelete(vh);
+        });
+
         vh.deleteBtn.setOnClickListener(v -> {
-            vh.searchBarText.setText("");
-            resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
+            onClickDelete(vh);
         });
 
         // When outside of the search bar is clicked
@@ -148,6 +153,11 @@ public class SearchFragment extends Fragment {
             // Hide the keyboard
             Keyboard.hide(getActivity(), currentView);
         });
+    }
+
+    private void onClickDelete(ViewHolder vh) {
+        vh.searchBarText.setText("");
+        resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
     }
 
     /**
@@ -171,8 +181,10 @@ public class SearchFragment extends Fragment {
      * @param isOnSearchBar indicate whether it is on search bar or not
      */
     private void onSearchBar(boolean isOnSearchBar) {
+        vh.searchButtonImage.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
         vh.searchBtn.setVisibility(isOnSearchBar ? View.GONE : View.VISIBLE);
         vh.deleteBtn.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
+        vh.deleteButtonImage.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
         vh.searchSuggestionsList.setVisibility(isOnSearchBar ? View.VISIBLE : View.GONE);
         vh.searchLogo.setAlpha(isOnSearchBar ? 0.3f : 1.0f);
     }
