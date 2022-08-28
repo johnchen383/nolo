@@ -15,6 +15,7 @@ public class ResponsiveView {
     public static void setHeight(int height, @NonNull View... views) {
         for (View v : views) {
             v.getLayoutParams().height = height;
+            v.requestLayout();
         }
     }
 
@@ -27,6 +28,7 @@ public class ResponsiveView {
     public static void setWidth(int width, @NonNull View... views) {
         for (View v : views) {
             v.getLayoutParams().width = width;
+            v.requestLayout();
         }
     }
 
@@ -45,9 +47,10 @@ public class ResponsiveView {
      * @param weight New height
      * @param views List of views
      */
-    public static void setWeight(int weight, @NonNull View... views) {
+    public static void setWeight(float weight, @NonNull View... views) {
         for (View v : views) {
             ((LinearLayout.LayoutParams) v.getLayoutParams()).weight = weight;
+            v.requestLayout();
         }
     }
 
@@ -60,6 +63,7 @@ public class ResponsiveView {
     public static void setBottomMargin(int bottomMargin, @NonNull View... views) {
         for (View v : views) {
             ((LinearLayout.LayoutParams) v.getLayoutParams()).bottomMargin = bottomMargin;
+            v.requestLayout();
         }
     }
 }

@@ -238,8 +238,8 @@ public class DetailsActivity extends BaseActivity {
 
         ValueAnimator anim = ValueAnimator.ofFloat(oldHeight, newHeight);
         anim.addUpdateListener(valueAnimator -> {
-            int val = (Integer) valueAnimator.getAnimatedValue();
-            ResponsiveView.setHeight(val, vh.carouselContainer, vh.transparentContainer);
+            float val = (Float) valueAnimator.getAnimatedValue();
+            ResponsiveView.setHeight((int) val, vh.carouselContainer, vh.transparentContainer);
         });
 
         anim.setDuration(ANIMATION_INTERVAL);

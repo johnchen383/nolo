@@ -131,7 +131,7 @@ public class SplashActivity extends BaseActivity {
 
         anim = ValueAnimator.ofFloat(oldProgress, targetProgress);
         anim.addUpdateListener(valueAnimator -> {
-            int val = (Integer) valueAnimator.getAnimatedValue();
+            float val = (Float) valueAnimator.getAnimatedValue();
             ResponsiveView.setWeight(val, vh.load_state);
         });
 
