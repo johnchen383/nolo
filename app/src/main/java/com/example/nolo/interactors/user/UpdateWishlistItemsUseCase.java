@@ -3,15 +3,13 @@ package com.example.nolo.interactors.user;
 import com.example.nolo.entities.item.variant.ItemVariant;
 import com.example.nolo.repositories.user.UsersRepository;
 
-import java.util.List;
-
 public class UpdateWishlistItemsUseCase {
     /**
-     * Update the user's wishlist with the new wishlist
+     * Remove item from the user's wishlist
      *
-     * @param wishlistItems New wishlist
+     * @param wishlistItem The item to be removed
      */
-    public static void updateWishlistItems(List<ItemVariant> wishlistItems) {
-        UsersRepository.getInstance().updateWishlist(wishlistItems);
+    public static void updateWishlistItems(ItemVariant wishlistItem) {
+        UsersRepository.getInstance().removeWishlist(wishlistItem);
     }
 }

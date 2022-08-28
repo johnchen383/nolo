@@ -19,7 +19,7 @@ public interface IUsersRepository {
     void addViewHistory(IItemVariant item);
     List<ItemVariant> getWishlist();
     void addWishlist(IItemVariant item);
-    void updateWishlist(List<ItemVariant> items);
+    void removeWishlist(IItemVariant item);
     List<Purchasable> getPurchaseHistory();
     void addPurchaseHistory(List<Purchasable> purchasedItem);
     List<Purchasable> getCart();
