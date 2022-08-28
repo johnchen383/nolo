@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -120,8 +121,14 @@ public class ResultActivity extends BaseActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    showSearchSuggestionsList(false, v);
-                    resetSearchResults(vh.searchBarText.getText().toString());
+                    String searchTerm = vh.searchBarText.getText().toString();
+
+                    if (searchTerm.isEmpty()) {
+                        Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+                    } else {
+                        showSearchSuggestionsList(false, v);
+                        resetSearchResults(searchTerm);
+                    }
                 }
                 return false;
             }
@@ -183,8 +190,14 @@ public class ResultActivity extends BaseActivity {
         vh.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSearchSuggestionsList(false, v);
-                resetSearchResults(vh.searchBarText.getText().toString());
+                String searchTerm = vh.searchBarText.getText().toString();
+
+                if (searchTerm.isEmpty()) {
+                    Toast.makeText(v.getContext(), "Search bar is empty!", Toast.LENGTH_LONG).show();
+                } else {
+                    showSearchSuggestionsList(false, v);
+                    resetSearchResults(searchTerm);
+                }
             }
         });
 
