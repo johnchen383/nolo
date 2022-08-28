@@ -66,7 +66,13 @@ public class LogInActivity extends BaseActivity {
         String userEmail = vh.emailInput.getText().toString();
         String userPassword = vh.passwordInput.getText().toString();
 
-        if (userEmail.isEmpty() || userPassword.isEmpty()) {
+        if (userEmail.isEmpty()) {
+            vh.errorText.setText("Please enter an email address.");
+            vh.errorText.setVisibility(View.VISIBLE);
+            return;
+        } else if (userPassword.isEmpty()) {
+            vh.errorText.setText("Please enter a password.");
+            vh.errorText.setVisibility(View.VISIBLE);
             return;
         }
 
