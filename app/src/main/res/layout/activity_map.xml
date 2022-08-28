@@ -147,6 +147,7 @@
                 android:id="@+id/branch_btn"
                 style="@style/RoundButton.Filled"
                 android:textColor="@color/navy"
+                android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
