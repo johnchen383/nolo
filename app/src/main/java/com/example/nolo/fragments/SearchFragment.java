@@ -20,6 +20,7 @@ import com.example.nolo.R;
 import com.example.nolo.activities.MainActivity;
 import com.example.nolo.activities.ResultActivity;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
+import com.example.nolo.util.ColourUtil;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.viewmodels.ISearchViewModel;
@@ -158,8 +159,8 @@ public class SearchFragment extends Fragment {
                 new SearchItemSuggestionAdaptor(getActivity(), R.layout.item_search_suggestion,
                         searchViewModel.getTopSearchSuggestions(searchTerm, currentView),
                         searchTerm,
-                        searchViewModel.getColourInHexFromResourceId(R.color.faint_white, getActivity()),
-                        searchViewModel.getColourInHexFromResourceId(R.color.light_grey, getActivity()));
+                        ColourUtil.getColourInHexFromResourceId(R.color.faint_white, getActivity()),
+                        ColourUtil.getColourInHexFromResourceId(R.color.light_grey, getActivity()));
         vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
