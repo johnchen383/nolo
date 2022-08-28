@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment {
     private final int SNAP_DURATION = 300;
     private ViewHolder vh;
     private HomeViewModel homeViewModel;
-    private View currentView; //TODO: necessary??
     private float historicY = 0;
     private int panelIndex = 0;
 
@@ -104,7 +103,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        currentView = view;
         vh = new ViewHolder(view);
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
@@ -384,7 +382,7 @@ public class HomeFragment extends Fragment {
             vh.outsideSearchContainer.setVisibility(View.GONE);
 
             // Hide the keyboard
-            Keyboard.hide(getActivity(), currentView);
+            Keyboard.hide(getActivity(), vh.initialView);
         }
     }
 
@@ -408,7 +406,7 @@ public class HomeFragment extends Fragment {
     }
 
     private int getMaxNumberOfSearchSuggestionsInList() {
-        return Display.getScreenHeight(currentView) / 2 / 200;
+        return Display.getScreenHeight(vh.initialView) / 2 / 200;
     }
 
     private String getColourInHexFromResourceId(int rId) {
