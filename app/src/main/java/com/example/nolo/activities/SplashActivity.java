@@ -94,10 +94,7 @@ public class SplashActivity extends BaseActivity {
 //            });
 //        });
 
-        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
-            LocationUtil.loadCurrentLocation(this);
-            loadAllRepositories();
-        }));
+        checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> loadAllRepositories()));
     }
 
     private void showConnectivityPopup() {
