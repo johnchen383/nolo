@@ -67,8 +67,10 @@
         <dimen name="home_browse_icon_margin_start">8dp</dimen>
         
         <!-- Category list dimensions -->
-        <dimen name="category_button_radius">10dp</dimen>
-        <dimen name="category_button_width">1dp</dimen>
+        <dimen name="category_heading_font">70sp</dimen>
+        <dimen name="category_btn_width">65dp</dimen>
+        <dimen name="category_btn_height">31dp</dimen>
+        <dimen name="indicator_margin_top">3dp</dimen>
 
         <!-- Details list dimensions -->
         <dimen name="details_container_margin_top">500dp</dimen>
