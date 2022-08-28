@@ -4,12 +4,10 @@
     android:layout_height="wrap_content"
     android:clickable="false">
     <TextView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/clickable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/indicator_margin_top"
         android:layout_alignParentRight="true"
-        android:letterSpacing="-0.1"
-        android:text="03  |" />
+        android:letterSpacing="-0.1" />
 </RelativeLayout>

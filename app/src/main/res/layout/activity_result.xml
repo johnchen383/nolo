@@ -8,7 +8,6 @@
     android:fillViewport="true"
     tools:context=".activities.ResultActivity">
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,33 +25,33 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/search_result_logo"
+                        android:layout_width="@dimen/results_heading_width"
+                        android:layout_height="@dimen/results_heading_height"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="@dimen/padding_lrg"
-                        android:layout_alignParentEnd="true"/>
+                        android:src="@drawable/search_result_logo" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/font_h2"
-                    android:layout_marginEnd="@dimen/font_h2"
                     android:layout_gravity="center">
+
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/faint_white"
                         android:hint="@string/search_bar"
-                        android:textAllCaps="true"
                         android:singleLine="true"
-                        android:textSize="@dimen/font_body1"
+                        android:textAllCaps="true"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/light_grey"
-                        android:backgroundTint="@color/faint_white"/>
+                        android:textSize="@dimen/font_body1" />
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="@dimen/icon_size_small"
+                        android:layout_height="@dimen/icon_size_small"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/nav_icon_search"/>
@@ -92,7 +91,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -102,24 +101,22 @@
                     android:id="@+id/back_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/back_arrow_hollow"
-                    android:layout_marginStart="@dimen/padding_xlrg"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/padding_xlrg"
+                    android:src="@drawable/back_arrow_hollow" />
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/results_heading_width"
+                    android:layout_height="@dimen/results_heading_height"
                     android:src="@drawable/search_result_logo"
                     android:layout_marginTop="@dimen/padding_lrg"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
 
             <include
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/font_h2"
-                android:layout_marginEnd="@dimen/font_h2"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/navy"
                 layout="@layout/item_search_bar"/>

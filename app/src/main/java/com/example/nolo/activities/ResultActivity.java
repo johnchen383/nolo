@@ -20,13 +20,19 @@ import com.example.nolo.adaptors.SearchItemResultAdaptor;
 import com.example.nolo.adaptors.SearchItemSuggestionAdaptor;
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.interactors.item.GetSearchSuggestionsUseCase;
+import com.example.nolo.util.ColourUtil;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.Keyboard;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.viewmodels.IResultViewModel;
+import com.example.nolo.viewmodels.ResultViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultActivity extends BaseActivity {
+    private IResultViewModel resultViewModel;
     private ViewHolder vh;
 
     private class ViewHolder {
@@ -59,6 +65,7 @@ public class ResultActivity extends BaseActivity {
         setContentView(R.layout.activity_result);
         String searchTerm = getIntent().getExtras().getString(getString(R.string.search_term));
 
+        resultViewModel = new ResultViewModel();
         vh = new ViewHolder();
 
         initStyle(searchTerm);
@@ -101,16 +108,13 @@ public class ResultActivity extends BaseActivity {
      * SEARCH SUGGESTION ADAPTOR
      */
     private void resetSearchSuggestionsAdaptor(String searchTerm) {
-        List<IItem> searchSuggestions = new ArrayList<>();
-
-        if (!searchTerm.isEmpty()) {
-            searchSuggestions = GetSearchSuggestionsUseCase.getSearchSuggestions(searchTerm);
-        }
-
         // Create and Set the adaptor
         SearchItemSuggestionAdaptor searchItemSuggestionAdaptor =
-                new SearchItemSuggestionAdaptor(this, R.layout.item_search_suggestion, searchSuggestions, searchTerm,
-                        getColourInHexFromResourceId(R.color.faint_white), getColourInHexFromResourceId(R.color.light_grey));
+                new SearchItemSuggestionAdaptor(this, R.layout.item_search_suggestion,
+                        resultViewModel.getTopSearchSuggestions(searchTerm, vh.searchSuggestionsList),
+                        searchTerm,
+                        ColourUtil.getColourInHexFromResourceId(R.color.faint_white, this),
+                        ColourUtil.getColourInHexFromResourceId(R.color.light_grey, this));
         vh.searchSuggestionsList.setAdapter(searchItemSuggestionAdaptor);
         ListUtil.setDynamicHeight(vh.searchSuggestionsList);
     }
@@ -217,10 +221,6 @@ public class ResultActivity extends BaseActivity {
                 finish();
             }
         });
-    }
-
-    private String getColourInHexFromResourceId(int rId) {
-        return "#" + Integer.toHexString(ContextCompat.getColor(this, rId) & 0x00ffffff);
     }
 
     /**

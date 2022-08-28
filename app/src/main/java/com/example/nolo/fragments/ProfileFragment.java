@@ -2,19 +2,17 @@ package com.example.nolo.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.util.FragmentUtil;
-import com.example.nolo.activities.LogInActivity;
 import com.example.nolo.activities.MainActivity;
-import com.example.nolo.util.Animation;
-import com.example.nolo.viewmodels.ChangePasswordViewModel;
-import com.example.nolo.viewmodels.ProfileViewModel;
+import com.example.nolo.util.Display;
+import com.example.nolo.util.FragmentUtil;
+import com.example.nolo.util.ResponsiveView;
 
 /**
  * Fragment to house the profile 'tab' on the main activity
@@ -22,15 +20,16 @@ import com.example.nolo.viewmodels.ProfileViewModel;
  */
 public class ProfileFragment extends Fragment {
     private ViewHolder vh;
-    private ProfileViewModel profileViewModel;
 
     private class ViewHolder {
         TextView purchasesBtn, wishlistBtn, accountBtn;
+        ImageView profileHeader;
 
         public ViewHolder(View view) {
             purchasesBtn = view.findViewById(R.id.purchases_btn);
             wishlistBtn = view.findViewById(R.id.wishlist_btn);
             accountBtn = view.findViewById(R.id.account_btn);
+            profileHeader = view.findViewById(R.id.profile_header);
         }
     }
 
@@ -40,12 +39,31 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
         vh = new ViewHolder(view);
 
+        // Initialisation
+        init();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    /**
+     * Initialisation
+     */
+    private void init() {
         ((MainActivity) getActivity()).updateCartBadge();
+
         initListeners();
+        initStyling();
+    }
+
+    private void initStyling(){
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+        ResponsiveView.setHeight((int)(Display.getScreenHeight(vh.purchasesBtn) * 0.4), vh.profileHeader);
     }
 
     private void initListeners() {

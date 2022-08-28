@@ -6,6 +6,6 @@ import com.example.nolo.entities.item.IItem;
 
 import java.util.List;
 
-public interface ISearchViewModel {
+public interface IResultViewModel {
     List<IItem> getTopSearchSuggestions(String searchTerm, View v);
 }

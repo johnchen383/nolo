@@ -4,6 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
+    <string name="title_login">LOG IN</string>
     <string name="home_featured_random">FEATURED PRODUCTS</string>
     <string name="home_featured_prev">PREVIOUSLY VIEWED</string>
     <string name="search_bar">ENTER SEARCH TERMS</string>
@@ -17,4 +18,15 @@
     <string name="search_term">SEARCH_TERM</string>
     <string name="laptops">Laptops</string>
     <string name="phones">Phones</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="login_no_account">Don\'t have an account?\u0020</string>
+    <string name="login_register">Register</string>
+    <string name="repeat_password">REPEAT PASSWORD</string>
+    <string name="signup_terms">Terms of Use</string>
+    <string name="signup_privacy">Privacy Policy</string>
+    <string name="signup_create_btn">CREATE ACCOUNT</string>
+    <string name="signup_have_account">Have an account?\u0020</string>
+    <string name="signup_login_btn">Log in</string>
+    <string name="title_signup">SIGN UP</string>
+    <string name="browse_btn">BROWSE CATEGORIES</string>
 </resources>

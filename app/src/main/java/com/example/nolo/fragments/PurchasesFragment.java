@@ -11,18 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.nolo.R;
-import com.example.nolo.adaptors.ItemsListVariantAdaptor;
 import com.example.nolo.activities.MainActivity;
+import com.example.nolo.adaptors.ItemsListVariantAdaptor;
 import com.example.nolo.enums.PurchaseStatus;
 import com.example.nolo.util.ListUtil;
+import com.example.nolo.viewmodels.IPurchasesViewModel;
 import com.example.nolo.viewmodels.PurchasesViewModel;
 
 public class PurchasesFragment extends Fragment {
+    private IPurchasesViewModel purchasesViewModel;
     private ViewHolder vh;
-    private PurchasesViewModel purchasesViewModel;
 
     private class ViewHolder {
-
         ListView transitList, deliveredList;
         LinearLayout transitTitle, deliveredTitle, emptyMsg;
         TextView transitText, deliveredText;
@@ -50,18 +50,35 @@ public class PurchasesFragment extends Fragment {
         purchasesViewModel = new PurchasesViewModel();
         vh = new ViewHolder(view);
 
-        ((MainActivity) getActivity()).updateCartBadge();
-        initListeners();
-        initStyling();
-        initAdaptors();
-        checkPurchasesEmpty();
+        // Initialisation
+        init();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        init();
+    }
+
+    /**
+     * Initialisation
+     */
+    private void init() {
+        ((MainActivity) getActivity()).updateCartBadge();
+
+        checkPurchasesEmpty();
         initStyling();
+        initListeners();
         initAdaptors();
+    }
+
+    /**
+     * Check if the purchase history is empty, if it is show the empty message
+     */
+    private void checkPurchasesEmpty() {
+        vh.emptyMsg.setVisibility(purchasesViewModel.checkPurchaseHistoryDeliveredEmpty()
+                && purchasesViewModel.checkPurchaseHistoryInTransitEmpty()
+                ? View.VISIBLE : View.GONE);
     }
 
     private void initListeners() {
@@ -71,30 +88,37 @@ public class PurchasesFragment extends Fragment {
     }
 
     private void initStyling() {
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+
         vh.transitText.setText(PurchaseStatus.inTransit.getFullname().toUpperCase());
         vh.deliveredText.setText(PurchaseStatus.delivered.getFullname().toUpperCase());
-        if (purchasesViewModel.getUserPurchaseHistoryInTransit().isEmpty()) {
+
+        if (purchasesViewModel.checkPurchaseHistoryInTransitEmpty()) {
             vh.transitTitle.setVisibility(View.GONE);
             vh.transitList.setVisibility(View.GONE);
         }
 
-        if (purchasesViewModel.getUserPurchaseHistoryDelivered().isEmpty()) {
+        if (purchasesViewModel.checkPurchaseHistoryDeliveredEmpty()) {
             vh.deliveredTitle.setVisibility(View.GONE);
             vh.deliveredList.setVisibility(View.GONE);
         }
     }
 
     private void initAdaptors() {
-        ItemsListVariantAdaptor transitPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, purchasesViewModel.getUserPurchaseHistoryInTransit(), v->{}, null, null);
+        // Items in Transit
+        ItemsListVariantAdaptor transitPurchasableAdaptor
+                = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant,
+                purchasesViewModel.getUserPurchaseHistoryInTransit(), v -> {},
+                null, null);
         vh.transitList.setAdapter(transitPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.transitList);
 
-        ItemsListVariantAdaptor deliveredPurchasableAdaptor = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant, purchasesViewModel.getUserPurchaseHistoryDelivered(), v->{}, null, null);
+        // Items in Delivered
+        ItemsListVariantAdaptor deliveredPurchasableAdaptor
+                = new ItemsListVariantAdaptor(getActivity(), this, R.layout.item_list_variant,
+                purchasesViewModel.getUserPurchaseHistoryDelivered(), v -> {},
+                null, null);
         vh.deliveredList.setAdapter(deliveredPurchasableAdaptor);
         ListUtil.setDynamicHeight(vh.deliveredList);
-    }
-    
-    private void checkPurchasesEmpty(){
-        vh.emptyMsg.setVisibility(purchasesViewModel.getUserPurchaseHistoryDelivered().isEmpty() && purchasesViewModel.getUserPurchaseHistoryInTransit().isEmpty()? View.VISIBLE : View.GONE);
     }
 }

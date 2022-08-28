@@ -14,13 +14,13 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/login_logo" />
+        android:src="@drawable/login_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/login_margin_horizontal" >
+        android:layout_marginHorizontal="@dimen/screen_margin_horizontal_lrg" >
 
         <TextView
             android:id="@+id/title_text_view"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/login_margin_top"
             android:paddingBottom="@dimen/padding_lrg"
-            android:text="LOG IN"
+            android:text="@string/title_login"
             android:textSize="@dimen/font_h5" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/padding_small"
-            android:layout_marginLeft="@dimen/text_input_indent_offset"
+            android:layout_marginStart="@dimen/text_input_indent_offset"
             android:hint="@string/input_hint_email" >
 
             <EditText
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/padding_med"
-                android:layout_marginLeft="@dimen/text_input_indent_offset"
+                android:layout_marginStart="@dimen/text_input_indent_offset"
                 android:hint="@string/input_hint_password" >
 
                 <EditText
@@ -74,7 +74,6 @@
 
             <RelativeLayout
                 android:id="@+id/eye_btn"
-                style="@style/TouchTarget"
                 android:layout_width="@dimen/touch_target_min"
                 android:layout_height="@dimen/touch_target_min"
                 android:layout_alignParentRight="true"
@@ -82,11 +81,11 @@
 
                 <ImageView
                     android:id="@+id/eye_icon"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/signin_icon_eye_open" />
+                    android:src="@drawable/eye_icon_open" />
 
             </RelativeLayout>
 
@@ -96,10 +95,10 @@
             android:id="@+id/error_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="error"
+            android:layout_marginBottom="5dp"
             android:textSize="@dimen/font_body2"
             android:textColor="@color/red"
-            android:visibility="invisible"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/forgot_text_view"
@@ -107,7 +106,7 @@
             android:layout_height="@dimen/touch_target_min"
             android:layout_marginBottom="@dimen/padding_med"
             android:paddingTop="@dimen/padding_small"
-            android:text="Forgot your password?"
+            android:text="@string/forgot_your_password"
             android:textSize="@dimen/font_body2"
             android:textColor="@color/light_brown" />
 
@@ -117,15 +116,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/padding_small"
-            android:text="LOG IN" />
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/login_google_button"-->
-<!--            style="@style/RoundButton.Icon"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:icon="@drawable/login_google"-->
-<!--            android:text="LOG IN WITH GOOGLE" />-->
+            android:text="@string/title_login"
+            android:stateListAnimator="@null"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -138,11 +130,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_body2"
-                android:text="Don't have an account? " />
+                android:text="@string/login_no_account" />
 
             <RelativeLayout
                 android:id="@+id/register_btn"
-                style="@style/TouchTarget"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/touch_target_min"
                 android:gravity="center_vertical">
@@ -152,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/font_body2"
-                    android:text="Register"
+                    android:text="@string/login_register"
                     android:textColor="@color/light_brown" />
 
             </RelativeLayout>
@@ -160,6 +151,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

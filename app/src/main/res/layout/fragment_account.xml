@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="70dp"
-            android:paddingHorizontal="@dimen/login_margin_horizontal">
+            android:paddingHorizontal="@dimen/screen_margin_horizontal_lrg">
 
             <LinearLayout
                 android:layout_width="match_parent"

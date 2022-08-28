@@ -21,13 +21,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.util.Animation;
+import com.example.nolo.viewmodels.ILogInViewModel;
 import com.example.nolo.viewmodels.LogInViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LogInActivity extends BaseActivity {
-    private LogInViewModel logInViewModel;
-
+    private ILogInViewModel logInViewModel;
     private ViewHolder vh;
 
     private class ViewHolder {
@@ -55,6 +55,7 @@ public class LogInActivity extends BaseActivity {
     }
 
     private void initStyling() {
+        vh.errorText.setVisibility(View.GONE);
         vh.passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         vh.signUpText.setPaintFlags(vh.signUpText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
@@ -66,7 +67,13 @@ public class LogInActivity extends BaseActivity {
         String userEmail = vh.emailInput.getText().toString();
         String userPassword = vh.passwordInput.getText().toString();
 
-        if (userEmail.isEmpty() || userPassword.isEmpty()) {
+        if (userEmail.isEmpty()) {
+            vh.errorText.setText("Please enter an email address.");
+            vh.errorText.setVisibility(View.VISIBLE);
+            return;
+        } else if (userPassword.isEmpty()) {
+            vh.errorText.setText("Please enter a password.");
+            vh.errorText.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -125,7 +132,7 @@ public class LogInActivity extends BaseActivity {
 
     public void togglePassword(boolean isHidden) {
         vh.passwordInput.setInputType(isHidden ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        vh.eyeIcon.setImageResource(isHidden ? R.drawable.signin_icon_eye_closed : R.drawable.signin_icon_eye_open);
+        vh.eyeIcon.setImageResource(isHidden ? R.drawable.eye_icon_closed : R.drawable.eye_icon_open);
         setCursorToEnd();
     }
 
@@ -159,6 +166,12 @@ public class LogInActivity extends BaseActivity {
         initStyling();
         initListeners();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        vh.errorText.setVisibility(View.GONE);
     }
 
     @Override

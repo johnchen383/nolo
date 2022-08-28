@@ -52,5 +52,5 @@
         android:layout_weight="1"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="65dp"
-        android:paddingHorizontal="@dimen/purchasable_list_horizontal_margin" />
+        android:paddingHorizontal="@dimen/screen_margin_horizontal_small" />
 </LinearLayout>

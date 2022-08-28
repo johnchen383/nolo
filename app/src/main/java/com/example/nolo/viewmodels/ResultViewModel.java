@@ -2,17 +2,15 @@ package com.example.nolo.viewmodels;
 
 import android.view.View;
 
-import androidx.lifecycle.ViewModel;
-
 import com.example.nolo.entities.item.IItem;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.SearchUtil;
 
 import java.util.List;
 
-public class SearchViewModel extends ViewModel implements ISearchViewModel {
+public class ResultViewModel implements IResultViewModel {
     private int getMaxNumberOfSearchSuggestionsInList(View v) {
-        return Display.getScreenHeight(v) / 2 / 100;
+        return Display.getScreenHeight(v) / 2 / 140;
     }
 
     @Override
