@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +37,7 @@ import com.example.nolo.enums.SpecsType;
 import com.example.nolo.util.Display;
 import com.example.nolo.util.ListUtil;
 import com.example.nolo.util.ResponsiveView;
+import com.example.nolo.util.HorizontalSwipeListenerUtil;
 import com.example.nolo.viewmodels.DetailsViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -204,7 +204,7 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (isExpanded){
+        if (isExpanded) {
             isExpanded = false;
             setDynamicHeights();
             return;
@@ -306,7 +306,7 @@ public class DetailsActivity extends BaseActivity {
         });
 
         vh.closeBtn.setOnClickListener(v -> {
-            if (isExpanded){
+            if (isExpanded) {
                 isExpanded = false;
                 setDynamicHeights();
                 return;
@@ -340,35 +340,6 @@ public class DetailsActivity extends BaseActivity {
                         isExpanded = !isExpanded;
                         setDynamicHeights();
                     }
-            }
-            return false;
-        });
-
-        vh.transparentContainer.setOnTouchListener((view, motionEvent) -> {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    historicX = motionEvent.getX();
-                    break;
-                case MotionEvent.ACTION_UP:
-                    float currentX = motionEvent.getX();
-
-                    if (currentX < historicX) {
-                        imgIndex++;
-                        if (imgIndex > maxIndex) imgIndex = maxIndex;
-
-                        vh.carousel.setCurrentItem(imgIndex);
-//                            updateCarouselImages();
-                    } else if (currentX > historicX) {
-                        imgIndex--;
-                        if (imgIndex < 0) imgIndex = 0;
-
-                        vh.carousel.setCurrentItem(imgIndex);
-//                            updateCarouselImages();
-                    } else {
-                        isExpanded = !isExpanded;
-                        setDynamicHeights();
-                    }
-
             }
             return false;
         });
@@ -438,6 +409,26 @@ public class DetailsActivity extends BaseActivity {
         initAdaptors();
         initCarouselAdaptor();
         initListeners();
+
+        new HorizontalSwipeListenerUtil(vh.transparentContainer, (a) -> swipeRight(), (a) -> swipeLeft(), (a) -> swipeIdle()).setUpListener();
+    }
+
+    private void swipeRight() {
+        imgIndex++;
+        if (imgIndex > maxIndex) imgIndex = maxIndex;
+
+        vh.carousel.setCurrentItem(imgIndex);
+    }
+
+    private void swipeLeft() {
+        imgIndex--;
+        if (imgIndex < 0) imgIndex = 0;
+        vh.carousel.setCurrentItem(imgIndex);
+    }
+
+    private void swipeIdle() {
+        isExpanded = !isExpanded;
+        setDynamicHeights();
     }
 
     private void initSpecsStyling(CategoryType category) {

@@ -120,8 +120,8 @@ public class HomeFragment extends Fragment {
 
         ResponsiveView.setBottomMargin((int) Display.getDynamicHeight(vh.initialView, 0.0, 65.0), vh.homeLogo);
 
-        String toastMessage = getActivity().getIntent().getStringExtra("MessageFromSignUpActivity");
-        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_LONG).show();
+//        String toastMessage = getActivity().getIntent().getStringExtra("MessageFromSignUpActivity");
+//        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_LONG).show();
 
         initAdaptors();
         initListeners();
