@@ -84,6 +84,7 @@ public class HomeFragment extends Fragment {
             searchBarText = searchView.findViewById(R.id.search_edittext);
             searchBtn = searchView.findViewById(R.id.search_btn);
             searchButtonImage = searchView.findViewById(R.id.search_image_btn);
+            deleteButtonImage = searchView.findViewById(R.id.delete_image_btn);
             deleteBtn = searchView.findViewById(R.id.delete_btn);
             searchSuggestionsList = searchView.findViewById(R.id.search_suggestions_list);
         }
