@@ -1,13 +1,8 @@
 package com.example.nolo.fragments;
 
 import android.app.Activity;
-<<<<<<< HEAD
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-=======
->>>>>>> 85da739b56f1e6ce797e7bb1b42e262c33720772
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.Selection;
@@ -26,12 +21,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-<<<<<<< HEAD
-=======
 import com.example.nolo.activities.MainActivity;
-import com.example.nolo.util.Animation;
 import com.example.nolo.util.FragmentUtil;
->>>>>>> 85da739b56f1e6ce797e7bb1b42e262c33720772
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
