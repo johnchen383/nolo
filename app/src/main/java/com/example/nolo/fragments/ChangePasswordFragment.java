@@ -20,6 +20,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
 import com.example.nolo.activities.MainActivity;
+import com.example.nolo.util.Animation;
+import com.example.nolo.util.FragmentUtil;
 import com.example.nolo.viewmodels.ChangePasswordViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -87,8 +89,8 @@ public class ChangePasswordFragment extends Fragment {
 
     private void initListeners() {
         vh.backBtn.setOnClickListener(v -> {
-            System.out.println("clicked");
-            getActivity().getSupportFragmentManager().beginTransaction().remove(ChangePasswordFragment.this).commit();
+//            getActivity().getSupportFragmentManager().beginTransaction().remove(ChangePasswordFragment.this).commit();
+            FragmentUtil.popFragment(getActivity(), ChangePasswordFragment.class.getName());
         });
 
         vh.oldEyeBtn.setOnClickListener(v -> {

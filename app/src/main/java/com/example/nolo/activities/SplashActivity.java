@@ -18,6 +18,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.nolo.R;
+import com.example.nolo.dataprovider.DataProvider;
+import com.example.nolo.enums.CollectionPath;
 import com.example.nolo.interactors.user.GetCurrentUserUseCase;
 import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
@@ -86,7 +88,7 @@ public class SplashActivity extends BaseActivity {
         splashViewModel = new ViewModelProvider(this).get(SplashViewModel.class);
         setContentView(R.layout.activity_splash);
         vh = new ViewHolder();
-//
+
 //        DataProvider.clearAndAddEntity(CollectionPath.laptops.name(), (a) -> {
 //            DataProvider.clearAndAddEntity(CollectionPath.accessories.name(), (b) -> {
 //                DataProvider.clearAndAddEntity(CollectionPath.phones.name(), (c) -> {
@@ -97,22 +99,7 @@ public class SplashActivity extends BaseActivity {
 
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> loadAllRepositories()));
     }
-
-    private void showConnectivityPopup() {
-        //Delay required for android bug with popup windows
-        new Handler().postDelayed(() -> {
-            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-            final PopupWindow popupWindow = new PopupWindow(vh.popupView, width, height, true);
-            popupWindow.showAtLocation(vh.popupView, Gravity.BOTTOM, 0, 0);
-
-            vh.popupView.setOnTouchListener((v, event) -> {
-                popupWindow.dismiss();
-                return false;
-            });
-        }, 50);
-    }
-
+    
     private void checkLocationPermissionsAndContinue(Consumer<Void> func) {
         if (!LocationUtil.hasLocationPermissions(this)) {
             promptLocationPermissionsDialog((a) -> func.accept(null));

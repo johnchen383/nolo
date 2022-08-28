@@ -16,6 +16,9 @@ import com.example.nolo.interactors.item.GetItemByIdUseCase;
 import com.example.nolo.interactors.store.GetStoreByIdUseCase;
 import com.example.nolo.interactors.user.AddCartItemUseCase;
 import com.example.nolo.interactors.user.AddViewedItemUseCase;
+import com.example.nolo.interactors.user.AddWishlistItemUseCase;
+import com.example.nolo.interactors.user.GetWishlistItemsUseCase;
+import com.example.nolo.interactors.user.RemoveWishlistItemsUseCase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,4 +175,24 @@ public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
     public void addViewHistory() {
         AddViewedItemUseCase.addViewHistory(this.itemVariant);
     }
+
+    @Override
+    public boolean isInWishlist() {
+        return GetWishlistItemsUseCase.getWishlist().contains(itemVariant);
+    }
+
+    @Override
+    public void addWishlist() {
+        AddWishlistItemUseCase.addWishlist(this.itemVariant);
+    }
+
+    @Override
+    public void removeWishlist() {
+        RemoveWishlistItemsUseCase.removeWishlistItem(this.itemVariant);
+    }
+
+
+
+
+
 }

@@ -17,6 +17,7 @@
             android:id="@+id/carousel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:paddingTop="64dp"
             android:paddingBottom="32dp" />
 
@@ -352,12 +353,36 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/close_btn"
-        android:layout_width="@dimen/touch_target_min"
-        android:layout_height="@dimen/touch_target_min"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="20dp"
-        android:paddingRight="28dp"
-        android:src="@drawable/exit_cross" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/touch_target_min">
+        <ImageView
+            android:id="@+id/close_btn"
+            android:layout_width="@dimen/touch_target_min"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="28dp"
+            android:src="@drawable/exit_cross" />
+        <ImageView
+            android:id="@+id/heart_hollow_btn"
+            android:layout_width="@dimen/touch_target_min"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_marginRight="27dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="22dp"
+            android:src="@drawable/heart_blue_hollow" />
+        <ImageView
+            android:id="@+id/heart_filled_btn"
+            android:layout_width="@dimen/touch_target_min"
+            android:layout_height="@dimen/touch_target_min"
+            android:layout_marginRight="27dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="22dp"
+            android:visibility="invisible"
+            android:src="@drawable/heart_blue_filled" />
+    </RelativeLayout>
+
 </FrameLayout>
