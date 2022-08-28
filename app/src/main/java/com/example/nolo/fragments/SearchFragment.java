@@ -86,6 +86,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void initStyling() {
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
         vh.searchSuggestionsList.setVisibility(View.GONE);
     }
 

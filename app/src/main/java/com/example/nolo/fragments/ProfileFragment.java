@@ -53,6 +53,11 @@ public class ProfileFragment extends Fragment {
         ((MainActivity) getActivity()).updateCartBadge();
 
         initListeners();
+        initStyling();
+    }
+
+    private void initStyling(){
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     private void initListeners() {

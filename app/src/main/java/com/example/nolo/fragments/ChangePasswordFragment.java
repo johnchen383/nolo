@@ -97,6 +97,8 @@ public class ChangePasswordFragment extends Fragment {
         vh.oldPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
         vh.newPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
         vh.newPasswordLayout.setBoxStrokeColorStateList(AppCompatResources.getColorStateList(getActivity(), R.color.text_input_layout_stroke_colour));
+
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     private void initListeners() {

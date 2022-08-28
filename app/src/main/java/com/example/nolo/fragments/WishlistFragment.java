@@ -62,6 +62,11 @@ public class WishlistFragment extends Fragment {
         checkWishlistEmpty();
         initListeners();
         initAdaptors();
+        initStyling();
+    }
+
+    private void initStyling(){
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
     }
 
     /**

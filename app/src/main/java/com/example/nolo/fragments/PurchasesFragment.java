@@ -88,6 +88,8 @@ public class PurchasesFragment extends Fragment {
     }
 
     private void initStyling() {
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.navy));
+
         vh.transitText.setText(PurchaseStatus.inTransit.getFullname().toUpperCase());
         vh.deliveredText.setText(PurchaseStatus.delivered.getFullname().toUpperCase());
 
