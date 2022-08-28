@@ -19,13 +19,13 @@
     <string name="laptops">Laptops</string>
     <string name="phones">Phones</string>
     <string name="forgot_your_password">Forgot your password?</string>
-    <string name="login_no_account">Don\'t have an account?</string>
+    <string name="login_no_account">Don\'t have an account?\u0020</string>
     <string name="login_register">Register</string>
     <string name="repeat_password">REPEAT PASSWORD</string>
     <string name="signup_terms">Terms of Use</string>
     <string name="signup_privacy">Privacy Policy</string>
     <string name="signup_create_btn">CREATE ACCOUNT</string>
-    <string name="signup_have_account">Have an account?</string>
+    <string name="signup_have_account">Have an account?\u0020</string>
     <string name="signup_login_btn">Log in</string>
     <string name="title_signup">SIGN UP</string>
 </resources>
