@@ -79,8 +79,8 @@
 
                 <ImageView
                     android:id="@+id/eye_icon"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     app:srcCompat="@drawable/eye_icon_open" />
@@ -121,8 +121,8 @@
 
                 <ImageView
                     android:id="@+id/repeat_eye_icon"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     app:srcCompat="@drawable/eye_icon_open" />
@@ -152,8 +152,8 @@
 
                 <CheckBox
                     android:id="@+id/checkbox"
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
+                    android:layout_width="@dimen/icon_size_med"
+                    android:layout_height="@dimen/icon_size_med"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:buttonTint="@color/white"

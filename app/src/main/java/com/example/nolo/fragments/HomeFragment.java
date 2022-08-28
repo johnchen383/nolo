@@ -108,7 +108,6 @@ public class HomeFragment extends Fragment {
         vh = new ViewHolder(view);
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-
         init();
     }
 
@@ -119,11 +118,6 @@ public class HomeFragment extends Fragment {
         vh.initialView.setMinimumHeight(Display.getScreenHeight(vh.initialView));
 
         ResponsiveView.setBottomMargin((int) Display.getDynamicHeight(vh.initialView, 0.0, 65.0), vh.homeLogo);
-
-        String toastMessage = getActivity().getIntent().getStringExtra("MessageFromSignUpActivity");
-        if (toastMessage != null) {
-            Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_LONG).show();
-        }
 
         initAdaptors();
         initListeners();

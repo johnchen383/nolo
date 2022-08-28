@@ -16,9 +16,11 @@
     <dimen name="padding_med">8dp</dimen>
     <dimen name="padding_lrg">16dp</dimen>
     <dimen name="padding_xlrg">32dp</dimen>
-    <dimen name="icon_size">20dp</dimen>
+    <dimen name="icon_size_med">20dp</dimen>
+    <dimen name="icon_size_small">16dp</dimen>
     <dimen name="header_indent">16dp</dimen>
     <dimen name="screen_margin_horizontal_lrg">48dp</dimen>
+    <dimen name="screen_margin_horizontal_small">20dp</dimen>
 
 
         <!-- Round button dimensions -->
@@ -29,8 +31,10 @@
         <!-- Text input dimensions -->
         <dimen name="text_input_indent_offset">-16dp</dimen>
 
-        <!-- Item list variant adaptor dimensions -->
-        <dimen name="variant_list_horizontal_margin">20dp</dimen>
+        <!-- Item list dimensions -->
+
+        <!-- Search dimensions -->
+
 
     <!-- Locally deployed dimensions -->
 
@@ -48,6 +52,19 @@
         <!-- Signup screen dimensions -->
         <dimen name="signup_margin_top">30dp</dimen>
         <dimen name="signup_terms_text_indent">-22dp</dimen>
+
+        <!-- Home screen dimensions -->
+        <dimen name="home_search_margin_top">20dp</dimen>
+        <dimen name="home_search_margin_bottom">42dp</dimen>
+        <dimen name="home_search_text_margin_start">8dp</dimen>
+        <dimen name="home_title_margin_bottom">50dp</dimen>
+        <dimen name="recently_viewed_margin_start">8dp</dimen>
+        <dimen name="recently_viewed_margin_end">18dp</dimen>
+        <dimen name="recently_viewed_margin_top">10dp</dimen>
+        <dimen name="recently_viewed_margin_bottom">75dp</dimen>
+        <dimen name="recently_viewed_height">100dp</dimen>
+        <dimen name="home_browse_btn_padding_bottom">100dp</dimen>
+        <dimen name="home_browse_icon_margin_start">8dp</dimen>
         
         <!-- Category list dimensions -->
         <dimen name="category_button_radius">10dp</dimen>
