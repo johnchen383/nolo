@@ -202,5 +202,7 @@ public class ChangePasswordFragment extends Fragment {
                 new ViewModelProvider(this).get(ChangePasswordViewModel.class);
         vh = new ViewHolder(view);
         initListeners();
+
+        ((MainActivity) getActivity()).updateCartBadge();
     }
 }

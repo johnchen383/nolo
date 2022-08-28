@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
+import com.example.nolo.activities.MainActivity;
 import com.example.nolo.adaptors.PurchasableListAdaptor;
 import com.example.nolo.entities.item.purchasable.IPurchasable;
 import com.example.nolo.entities.item.purchasable.Purchasable;
@@ -53,6 +54,9 @@ public class CartFragment extends Fragment {
                 new ViewModelProvider(this).get(CartViewModel.class);
 
         vh = new ViewHolder();
+
+        ((MainActivity) getActivity()).updateCartBadge();
+
         updatePrice();
         initAdaptor();
 
@@ -62,6 +66,7 @@ public class CartFragment extends Fragment {
             // TODO: cart to purchase history (purchase status changes, delete cart, add purchase history)
             cartViewModel.addPurchaseHistory();
             Toast.makeText(getContext(), "Purchase made!", Toast.LENGTH_SHORT).show();
+            ((MainActivity) getActivity()).updateCartBadge();
         });
     }
 
@@ -74,6 +79,8 @@ public class CartFragment extends Fragment {
         updatePrice();
         initAdaptor();
         checkCartEmpty();
+
+        ((MainActivity) getActivity()).updateCartBadge();
     }
 
     @Override

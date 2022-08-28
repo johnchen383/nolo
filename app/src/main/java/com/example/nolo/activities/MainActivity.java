@@ -10,7 +10,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.nolo.R;
+import com.example.nolo.entities.item.purchasable.Purchasable;
+import com.example.nolo.interactors.user.GetCartItemsUseCase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private ViewHolder vh;
@@ -35,6 +39,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        updateCartBadge();
     }
 
     @Override
@@ -53,7 +58,29 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         NavigationUI.setupWithNavController(vh.navView, navController);
+
+        updateCartBadge();
     }
+
+    public void updateCartBadge(){
+        List<Purchasable> cartItems = GetCartItemsUseCase.getCartItems();
+        int sum = 0;
+
+        for (Purchasable c : cartItems){
+            sum += c.getQuantity();
+        }
+
+        if (vh == null) return;
+
+        if (sum == 0){
+            vh.navView.removeBadge(R.id.navigation_cart);
+            return;
+        }
+
+        vh.navView.getOrCreateBadge(R.id.navigation_cart).setNumber(sum);
+        vh.navView.getOrCreateBadge(R.id.navigation_cart).setBackgroundColor(getColor(R.color.white));
+    }
+
 
     @Override
     public void finish() {
