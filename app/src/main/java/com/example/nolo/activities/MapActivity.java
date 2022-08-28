@@ -103,6 +103,18 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         LinearLayoutManager coloursLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         vh.coloursList.setLayoutManager(coloursLayoutManager);
         vh.coloursList.addItemDecoration(new MapColourOverlayDecoration());
+
+        initStyles();
+    }
+
+    private void initStyles(){
+        double addyMargin = Display.getDynamicHeight(vh.address, Display.dpToPx(-45,  this), Display.dpToPx(-55,  this));
+        ResponsiveView.setTopMargin((int) addyMargin, vh.address);
+        double addyBottomMargin = Display.getDynamicHeight(vh.address, Display.dpToPx(5,  this), Display.dpToPx(30,  this));
+        ResponsiveView.setBottomMargin((int) addyBottomMargin, vh.address);
+
+        double branchTop = Display.getDynamicHeight(vh.branchBtn, Display.dpToPx(-100,  this), Display.dpToPx(0,  this));
+        ResponsiveView.setTopMargin((int) branchTop, vh.branchBtn);
     }
 
     private void initListeners() {
@@ -117,10 +129,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         vh.branchBtn.setOnClickListener(v -> {
             DetailsViewModel.itemVariantFromMap = variant;
             finish();
-//            Intent intent = new Intent(this, DetailsActivity.class);
-//            intent.putExtra(getString(R.string.extra_item_variant), (ItemVariant) variant);
-//
-//            startActivity(intent);
         });
     }
 
