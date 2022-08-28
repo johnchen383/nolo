@@ -410,9 +410,13 @@ public class DetailsActivity extends BaseActivity {
         initCarouselAdaptor();
         initListeners();
 
+        //establish swipe listener on carousel
         new HorizontalSwipeListenerUtil(vh.transparentContainer, (a) -> swipeRight(), (a) -> swipeLeft(), (a) -> swipeIdle()).setUpListener();
     }
 
+    /**
+     * Swipe right on carousel
+     */
     private void swipeRight() {
         imgIndex++;
         if (imgIndex > maxIndex) imgIndex = maxIndex;
@@ -420,12 +424,18 @@ public class DetailsActivity extends BaseActivity {
         vh.carousel.setCurrentItem(imgIndex);
     }
 
+    /**
+     * Swipe left on carousel
+     */
     private void swipeLeft() {
         imgIndex--;
         if (imgIndex < 0) imgIndex = 0;
         vh.carousel.setCurrentItem(imgIndex);
     }
 
+    /**
+     * When tapping carousel
+     */
     private void swipeIdle() {
         isExpanded = !isExpanded;
         setDynamicHeights();

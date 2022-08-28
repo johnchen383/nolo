@@ -8,6 +8,9 @@ import android.widget.ScrollView;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * Generic Util class to handle horizontal swipe events
+ */
 public class HorizontalSwipeListenerUtil {
     private float historicVal = 0;
     private View view;
@@ -18,22 +21,11 @@ public class HorizontalSwipeListenerUtil {
     private boolean onTouch(MotionEvent motionEvent) {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (view.getClass().equals(ScrollView.class)){
-                    historicVal = motionEvent.getY();
-                } else {
-                    historicVal = motionEvent.getX();
-                }
-
+                historicVal = motionEvent.getX();
                 return true;
             case MotionEvent.ACTION_UP:
             case MotionEvent.AXIS_SIZE:
-                float currentVal;
-
-                if (view.getClass().equals(ScrollView.class)){
-                    currentVal = motionEvent.getY();
-                } else {
-                    currentVal = motionEvent.getX();
-                }
+                float currentVal = motionEvent.getX();
 
                 if (currentVal > historicVal) {
                     minorAction.accept(null);
