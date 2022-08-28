@@ -6,15 +6,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nolo.R;
-import com.example.nolo.util.FragmentUtil;
-import com.example.nolo.activities.LogInActivity;
 import com.example.nolo.activities.MainActivity;
-import com.example.nolo.util.Animation;
-import com.example.nolo.viewmodels.ChangePasswordViewModel;
-import com.example.nolo.viewmodels.ProfileViewModel;
+import com.example.nolo.util.FragmentUtil;
 
 /**
  * Fragment to house the profile 'tab' on the main activity
@@ -22,7 +17,6 @@ import com.example.nolo.viewmodels.ProfileViewModel;
  */
 public class ProfileFragment extends Fragment {
     private ViewHolder vh;
-    private ProfileViewModel profileViewModel;
 
     private class ViewHolder {
         TextView purchasesBtn, wishlistBtn, accountBtn;
@@ -40,11 +34,23 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
         vh = new ViewHolder(view);
 
+        // Initialisation
+        init();
         ((MainActivity) getActivity()).updateCartBadge();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    /**
+     * Initialisation
+     */
+    private void init() {
         initListeners();
     }
 
