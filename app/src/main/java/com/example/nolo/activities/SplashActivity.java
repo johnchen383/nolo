@@ -23,6 +23,7 @@ import com.example.nolo.interactors.category.LoadCategoriesRepositoryUseCase;
 import com.example.nolo.interactors.item.LoadItemsRepositoryUseCase;
 import com.example.nolo.interactors.store.LoadStoresRepositoryUseCase;
 import com.example.nolo.interactors.user.LoadUsersRepositoryUseCase;
+import com.example.nolo.util.Display;
 import com.example.nolo.util.LocationUtil;
 import com.example.nolo.viewmodels.SplashViewModel;
 
@@ -92,7 +93,6 @@ public class SplashActivity extends BaseActivity {
 //                });
 //            });
 //        });
-
 
         checkLocationPermissionsAndContinue((a) -> pause(START_DELAY, (b) -> {
             LocationUtil.loadCurrentLocation(this);
