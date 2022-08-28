@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/clickable"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="3dp"
-    android:letterSpacing="-0.1"
-    android:text="03  |" />
+    android:clickable="false">
+    <TextView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/clickable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_alignParentRight="true"
+        android:letterSpacing="-0.1"
+        android:text="03  |" />
+</RelativeLayout>

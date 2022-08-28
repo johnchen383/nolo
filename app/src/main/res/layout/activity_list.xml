@@ -14,14 +14,13 @@
             android:id="@+id/back_btn"
             android:layout_width="@dimen/touch_target_min"
             android:layout_height="@dimen/touch_target_min"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp">
 
             <ImageButton
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="25dp"
+                android:layout_centerInParent="true"
                 android:background="@color/transparent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/back_arrow_hollow" />

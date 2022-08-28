@@ -95,25 +95,19 @@ public class SearchFragment extends Fragment {
     }
 
     private void initListeners() {
-        // When Enter is pressed in search bar, go to search result
-        vh.searchBarText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    goToSearchActivity(vh.searchBarText.getText().toString());
-                }
+        vh.searchSuggestionsList.setVisibility(View.GONE);
 
-                return false;
+        // When Enter is pressed in search bar, go to search result
+        vh.searchBarText.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER) {
+                goToSearchActivity(vh.searchBarText.getText().toString());
             }
+
+            return false;
         });
 
         // When search bar has focus, show delete button, otherwise search button
-        vh.searchBarText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                onSearchBar(hasFocus);
-            }
-        });
+        vh.searchBarText.setOnFocusChangeListener((v, hasFocus) -> onSearchBar(hasFocus));
 
         vh.searchBarText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,29 +135,18 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        vh.searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToSearchActivity(vh.searchBarText.getText().toString());
-            }
-        });
+        vh.searchBtn.setOnClickListener(v -> goToSearchActivity(vh.searchBarText.getText().toString()));
 
         // When delete button is clicked, remove all text in edit text
-        vh.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vh.searchBarText.setText("");
-                resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
-            }
+        vh.deleteBtn.setOnClickListener(v -> {
+            vh.searchBarText.setText("");
+            resetSearchSuggestionsAdaptor(vh.searchBarText.getText().toString());
         });
 
-        vh.outsideSearchContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vh.searchBarText.clearFocus();
-                // Hide the keyboard
-                Keyboard.hide(getActivity(), currentView);
-            }
+        vh.outsideSearchContainer.setOnClickListener(v -> {
+            vh.searchBarText.clearFocus();
+            // Hide the keyboard
+            Keyboard.hide(getActivity(), currentView);
         });
     }
 
@@ -176,12 +159,12 @@ public class SearchFragment extends Fragment {
         if (isOnSearchBar) {
             vh.searchBtn.setVisibility(View.GONE);
             vh.deleteBtn.setVisibility(View.VISIBLE);
-
+            vh.searchSuggestionsList.setVisibility(View.VISIBLE);
             vh.searchLogo.setAlpha(0.3f);
         } else {
             vh.searchBtn.setVisibility(View.VISIBLE);
             vh.deleteBtn.setVisibility(View.GONE);
-
+            vh.searchSuggestionsList.setVisibility(View.GONE);
             vh.searchLogo.setAlpha(1.0f);
         }
     }
