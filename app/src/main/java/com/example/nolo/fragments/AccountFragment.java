@@ -14,24 +14,52 @@ import com.example.nolo.activities.LogInActivity;
 import com.example.nolo.util.Animation;
 import com.example.nolo.util.FragmentUtil;
 import com.example.nolo.viewmodels.AccountViewModel;
+import com.example.nolo.viewmodels.IAccountViewModel;
 import com.google.android.material.button.MaterialButton;
 
 public class AccountFragment extends Fragment {
+    private IAccountViewModel accountViewModel;
     private ViewHolder vh;
-    private AccountViewModel accountViewModel;
 
     private class ViewHolder {
-
         RelativeLayout changePasswordBtn, backBtn;
         TextView emailText;
         MaterialButton signoutBtn;
 
-        public ViewHolder() {
-            changePasswordBtn = getView().findViewById(R.id.change_password_btn);
-            backBtn = getView().findViewById(R.id.back_btn);
-            emailText = getView().findViewById(R.id.email_text);
-            signoutBtn = getView().findViewById(R.id.sign_out_btn);
+        public ViewHolder(View view) {
+            changePasswordBtn = view.findViewById(R.id.change_password_btn);
+            backBtn = view.findViewById(R.id.back_btn);
+            emailText = view.findViewById(R.id.email_text);
+            signoutBtn = view.findViewById(R.id.sign_out_btn);
         }
+    }
+
+    public AccountFragment() {
+        super(R.layout.fragment_account);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        accountViewModel = new AccountViewModel();
+        vh = new ViewHolder(view);
+
+        // Initialisation
+        init();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    /**
+     * Initialisation
+     */
+    private void init() {
+        initStyling();
+        initListeners();
     }
 
     private void initStyling() {
@@ -51,19 +79,5 @@ public class AccountFragment extends Fragment {
             accountViewModel.logOut();
             startActivity(new Intent(getActivity(), LogInActivity.class), Animation.Fade(getActivity()).toBundle());
         });
-    }
-
-    public AccountFragment() {
-        super(R.layout.fragment_account);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        accountViewModel = new AccountViewModel();
-        vh = new ViewHolder();
-        initStyling();
-        initListeners();
-
     }
 }
