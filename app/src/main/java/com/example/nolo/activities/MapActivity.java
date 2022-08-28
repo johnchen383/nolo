@@ -349,7 +349,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         ValueAnimator anim = ValueAnimator.ofFloat(old, target);
         anim.addUpdateListener(valueAnimator -> {
-            int val = (Integer) valueAnimator.getAnimatedValue();
+            float val = (Float) valueAnimator.getAnimatedValue();
             ResponsiveView.setWeight(val, vh.mapContainer);
         });
 
