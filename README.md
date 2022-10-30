@@ -1,6 +1,8 @@
 # nolo
 An ecommerce mobile application build in Android Studio with Java for Software Engineering Design II (SE306)
 
+Promotional video: https://youtu.be/a_OxFXqDIiQ
+
 ## Commit conventions
 Please use the following convention when creating commits `[type]: [msg]`
 
